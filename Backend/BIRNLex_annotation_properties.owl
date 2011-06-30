@@ -1,711 +1,1739 @@
 <?xml version="1.0"?>
-<rdf:RDF
-    xmlns:core="http://www.w3.org/2004/02/skos/core#"
-    xmlns:skos="http://www.w3.org/2004/02/skos/core/owl-dl/skos-core-owl-dl.owl#"
-    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
-    xmlns:protege-dc="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
-    xmlns="http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
-    xmlns:obo_annot="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xml:base="http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl">
-  <owl:Ontology rdf:about="">
-    <dc:title xml:lang="en">BIRNLex_annotation_properties</dc:title>
-    <core:changeNote xml:lang="en">v1.3.0 (2007-08-03) - Changed many things, but primarily: (1) removed rdf:datatype xsd:string specs for all AnnotationProperties, since they are now all untyped and should assume STRING as a the default; (2) added the typing of AnnotationProperties using annotationType which should aid in algorithmically processing; (3) added ReferenceURLTemplate to linked IDs to aid in algorithmically constructing URLs from IDs.  The reference URL template provides a URL template that includes a specification of how to combine it with the associated ID to build a putative URL for an external resource - putative in the sense that there is no guarantee the external curating authority will maintain this URL template; however, with these paired fields - ID and URL template template - it should be possible to update the template, when the authority changes their URL template - an updated that would then be algorithmicaly percollated to the use of that field across BIRNLex.</core:changeNote>
-    <core:changeNote xml:lang="en"> v1.2 (2007-03-20): Changed all Class identifiers to rdf:ID properties.  Some had previously been rdf:about properties.  Since Protege-OWL automatically sets new class identifiers to rdf:ID, I'm changing these across the files, to help make it more deterministic when parsing the RDF/XML.</core:changeNote>
-    <owl:imports rdf:resource="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl"/>
-    <rdfs:comment xml:lang="en">These are OWL Annotation Properties created by the BIRN OTF for the purposes of better managing the curation of the BIRNLex ontology.</rdfs:comment>
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >1.3.1</owl:versionInfo>
-    <core:changeNote xml:lang="en">Have 'cleansed' the file to be OWL-DL (v1.2.2).</core:changeNote>
-    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    > xml:lang="en"The BIRN Ontology Task Force</dc:creator>
-    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2008-03-21</obo_annot:modifiedDate>
-    <core:changeNote xml:lang="en"> (2008-03-21) - finally added ID property and Template URLs for ChEBI and PubChem CIDs.</core:changeNote>
-    <core:changeNote xml:lang="en">Now using a specific set of AnnotationProperties that link to specific Enumeration classes to specify annotations from a fixed list of values - e.g., ExternalSource, DefinitionSource.  This is the second iteration of this mechanism (first was put in v1.2.2).  This second version follows a patter recommended by Alan Ruttenberg which avoids using ObjectProperties as the Manchester design pattern for Value Partitions recommends, and instead sticks to AnnotationProperties only.  Note this version of OBO_annotation_properties uses the same EnumerationClasses from v1.2.2, and still includes the related ObjectProperties, so as to be able to support XSLT-based translation of the BIRNLex files that used the v1.2.2 pattern.  The next version of this file will eliminate the ObjectProperties and will rename the equivalent AnnotationProperties to remove the trailing '2' put in there to provide a unique name.</core:changeNote>
-    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2006-09-26</obo_annot:createdDate>
-    <core:changeNote xml:lang="en">Processed file with XSLT to remove the explicit DataTypeProperty declarations (v1.2.2)</core:changeNote>
-    <core:changeNote xml:lang="en"> (2008-03-13) - finally added Template URLs for GO ID.</core:changeNote>
-    <core:changeNote xml:lang="en">v1.3.1 (2007-11-30) - Removed some UTF8 characters that dont translate well to other encodings (e.g., curly double quotes 0xE2809C).</core:changeNote>
-  </owl:Ontology>
-  <owl:Class rdf:ID="_birnlex_retired_class">
-    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >_birnlex_retired_class</core:prefLabel>
-    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2007-06-06</obo_annot:createdDate>
-    <hasBirnlexCurator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</hasBirnlexCurator>
-    <birnlexDefinition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >These are classes for which the represented entities are now described using a different class.  A class is deprecated if it's semantic meaning required alteration or its entity is now represented directly in an imported foundational ontology.  Such obseleted classes are removed from the core subsumptive hierarchy and retired to this root branch of the tree for this ontology.  Deprecated classes maintain their original identifiers, so as to provide support for previous applications making use of the class prior to its being deprecated.</birnlexDefinition>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >_birnlex_retired_class</rdfs:label>
-    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2007-06-06</obo_annot:modifiedDate>
-  </owl:Class>
-  <owl:Class rdf:ID="BirnlexDefinitionSource">
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:oneOf rdf:parseType="Collection">
-          <BirnlexDefinitionSource rdf:ID="BAMS_defSource"/>
-          <BirnlexDefinitionSource rdf:ID="BrainMap.org_defSource"/>
-          <BirnlexDefinitionSource rdf:ID="IMSR_Glossary_defSource"/>
-          <BirnlexDefinitionSource rdf:ID="MGI_defSource"/>
-          <BirnlexDefinitionSource rdf:ID="NeuroNames_defSource"/>
-          <BirnlexDefinitionSource rdf:ID="The_Sylvius_Project_defSource"/>
-          <BirnlexDefinitionSource rdf:ID="ATCC_defSource"/>
-          <BirnlexDefinitionSource rdf:ID="ChEBI_defSource"/>
-        </owl:oneOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"/>
-    <core:definition xml:lang="en">It indicates the external knowledge resource from which this class's definition derived.</core:definition>
-  </owl:Class>
-  <owl:Class rdf:ID="BirnlexAbbrevSource">
-    <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"/>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:oneOf rdf:parseType="Collection">
-          <BirnlexAbbrevSource rdf:ID="NeuroNames_abbrevSource"/>
-          <BirnlexAbbrevSource rdf:ID="Paxinos-Franklin-mouse-2001_abbrevSource"/>
-          <BirnlexAbbrevSource rdf:ID="Paxinos-Watson-rat-1998_abbrevSource"/>
-          <BirnlexAbbrevSource rdf:ID="Swanson-rat-1992_abbrevSource"/>
-          <BirnlexAbbrevSource rdf:ID="Swanson-rat-1998_abbrevSource"/>
-          <BirnlexAbbrevSource rdf:ID="Swanson-rat-2004_abbrevSource"/>
-          <BirnlexAbbrevSource rdf:ID="Hof-et-al-mouse-2000_abbrevSource"/>
-          <BirnlexAbbrevSource rdf:ID="SumsDB_abbrevSource"/>
-        </owl:oneOf>
-      </owl:Class>
-    </owl:equivalentClass>
-  </owl:Class>
-  <owl:Class rdf:ID="BirnlexCurator">
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:oneOf rdf:parseType="Collection">
-          <BirnlexCurator rdf:ID="BIRN_OTF"/>
-          <BirnlexCurator rdf:ID="Carol_Bean"/>
-          <BirnlexCurator rdf:ID="Bill_Bug"/>
-          <BirnlexCurator rdf:ID="Christine_Fennema-Notestine"/>
-          <BirnlexCurator rdf:ID="Jeff_Grethe"/>
-          <BirnlexCurator rdf:ID="Amarnath_Gupta"/>
-          <BirnlexCurator rdf:ID="David_Kennedy"/>
-          <BirnlexCurator rdf:ID="Maryann_Martone"/>
-          <BirnlexCurator rdf:ID="Jessica_Turner"/>
-          <BirnlexCurator rdf:ID="Jyl_Boline"/>
-          <BirnlexCurator rdf:ID="Karen_Crawford"/>
-          <BirnlexCurator rdf:ID="Angie_Laird"/>
-          <BirnlexCurator rdf:ID="Allan_MacKenzie-Graham"/>
-          <BirnlexCurator rdf:ID="Brett_Peterson"/>
-          <BirnlexCurator rdf:ID="Rob_Williams"/>
-          <BirnlexCurator rdf:ID="Michele_Diaz"/>
-          <BirnlexCurator rdf:ID="Karl_Helmer"/>
-        </owl:oneOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"/>
-    <core:definition xml:lang="en">This property defines the BIRNLex ontology curators who've contributed to the definition of a class.  More than one instance of this property is valid.  In the case of multiple curators, the individual curator name may also be associated with the definition, if that person was primarily responsible for it.</core:definition>
-  </owl:Class>
-  <owl:Class rdf:ID="ReferenceURLTemplate">
-    <obo_annot:usageNote xml:lang="en">The URL reference template is given exactly as posted in the form of a HTTP query, with the unique ID represented with the symbol '$$ID$$'</obo_annot:usageNote>
-    <obo_annot:usageNote xml:lang="en">Note that each instance of ReferenceURLTemplate will be named using the template name of the matching ID AnnotationProperty.  For example, the ReferenceURLTemplate ncbiTaxURLTemplate is linked to the ncbiTaxID AnnotationProperty, whose value can be combined algorithmically with this URL template to construct a working URL to the specific class reference.  This is a far from perfect solution to some of the limitations of imposed on the use of AnnotationProperties - in particular, the inability to explicitly link one annotation property to another (e.g., explicitly relating ncbiTaxID ncbiTaxURLTemplate as applied to a specific owl:Class).  However, this mechanism should suffice for now.  It will not only support more complete automatic processing of this critical information, but can also be algorithmically translated to whatever better mechanims may become available in future versions of OWL.</obo_annot:usageNote>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:oneOf rdf:parseType="Collection">
-          <ReferenceURLTemplate rdf:ID="ncbiTaxURLTemplate">
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ncbiTaxID</urlTemplateLinkedID>
-            <webServiceUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&amp;id=$$ID$$</webServiceUrlTemplate>
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=$$ID$$</httpQueryUrlTemplate>
-            <obo_annot:usageNote xml:lang="en">The URL reference template for a taxonomic category in NCBI Taxonomy</obo_annot:usageNote>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="gbifURLTemplate">
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#gbifID</urlTemplateLinkedID>
-            <obo_annot:usageNote xml:lang="en">The URL reference template for a taxonomic category in Global Biodiversity Information Facility taxonomic ,knowledgebase</obo_annot:usageNote>
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://data.gbif.org/species/$$ID$$</httpQueryUrlTemplate>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="gbifTaxonKeyURLTemplate">
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://www.europe.gbif.net/portal/ecat_browser.jsp?taxonKey=$$ID$$&amp;countryKey=0&amp;resourceKey=0</httpQueryUrlTemplate>
-            <obo_annot:usageNote xml:lang="en">The URL reference template for a taxonomy key in Global Biodiversity Information Facility taxonomic ,knowledgebase</obo_annot:usageNote>
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#gbifTaxonKeyID</urlTemplateLinkedID>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="itisURLTemplate">
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&amp;search_value=$$ID$$</httpQueryUrlTemplate>
-            <obo_annot:usageNote xml:lang="en">The URL reference template for a taxonomic category in the North American Integrated Taxonomic Information System (ITIS) taxonomic ,knowledgebase</obo_annot:usageNote>
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#itisID</urlTemplateLinkedID>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="jaxMiceURLTemplate">
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#jaxMiceID</urlTemplateLinkedID>
-            <obo_annot:usageNote xml:lang="en">The URL reference template for a mouse strain tracked in the Jackson Laboratory Mouse database</obo_annot:usageNote>
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://jaxmice.jax.org/strain/$$ID$$.html</httpQueryUrlTemplate>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="tacMiceURLTemplate">
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://www.taconic.com/wmspage.cfm?parm1=$$ID$$</httpQueryUrlTemplate>
-            <obo_annot:usageNote xml:lang="en">The URL reference template for a mouse strain tracked in the Taconic Farms Mouse database</obo_annot:usageNote>
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#tacMiceID</urlTemplateLinkedID>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="emapMouseStageDataURLTemplate">
-            <obo_annot:usageNote xml:lang="en">The URL reference template for the data associated with a Theiler mouse prenatal development stage as given by the EMAP Project,</obo_annot:usageNote>
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://genex.hgu.mrc.ac.uk/Databases/Anatomy/XML/$$ID$$.xml</httpQueryUrlTemplate>
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#emapMouseStageDataID</urlTemplateLinkedID>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="emapMouseStageDiagramURLTemplate">
-            <obo_annot:usageNote xml:lang="en">The URL reference template for the diagram associated with a Theiler mouse prenatal development stage as given by the EMAP Project.</obo_annot:usageNote>
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#emapMouseStageDiagramID</urlTemplateLinkedID>
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://genex.hgu.mrc.ac.uk/Databases/Anatomy/Diagrams/$$ID$$</httpQueryUrlTemplate>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="neuronamesURLTemplate">
-            <obo_annot:usageNote xml:lang="en">The URL reference template for the main page in the BrainInfo.org portal for a NeuroNames neuroanatomical structure.</obo_annot:usageNote>
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#neuronamesID</urlTemplateLinkedID>
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=$$ID$$</httpQueryUrlTemplate>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="bamsURLTemplate">
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#bamsID</urlTemplateLinkedID>
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://brancusi.usc.edu/bkms/brain/show-braing2.php?aidi=$$ID$$</httpQueryUrlTemplate>
-            <obo_annot:usageNote xml:lang="en">The URL reference template for the main page in the Brain Architecture Management portal for a BAMS-defined neuroanatomical structure.</obo_annot:usageNote>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="atccURLTemplate">
-            <obo_annot:usageNote xml:lang="en">The URL reference template for a resource page at the American Type Culture Collection catalog.</obo_annot:usageNote>
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#atccID</urlTemplateLinkedID>
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://www.atcc.org/common/catalog/numSearch/numResults.cfm?atccNum=$$ID$$</httpQueryUrlTemplate>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="meshURLTemplate">
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://www.nlm.nih.gov/cgi/mesh/2008/MB_cgi?field=uid&amp;term=$$ID$$</httpQueryUrlTemplate>
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#MeshUid</urlTemplateLinkedID>
-            <obo_annot:usageNote xml:lang="en">The URL reference template for an NLM MeSH Browser page for a given MeSH heading.</obo_annot:usageNote>
-            <webServiceUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=mesh&amp;id=$$ID$$</webServiceUrlTemplate>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="goURLTemplate">
-            <webServiceUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://amigo.geneontology.org/cgi-bin/amigo/go.cgi?format=xml&amp;query=$$ID$$</webServiceUrlTemplate>
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://amigo.geneontology.org/cgi-bin/amigo/go.cgi?view=details&amp;query=$$ID$$</httpQueryUrlTemplate>
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GOid</urlTemplateLinkedID>
-            <obo_annot:usageNote xml:lang="en">The URL reference template for an AmiGO Browser page for a given Gene Ontology term.</obo_annot:usageNote>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="chebiURLTemplate">
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#ChEBIid</urlTemplateLinkedID>
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://www.ebi.ac.uk/ontology-lookup/?termId=CHEBI%3A$$ID$$</httpQueryUrlTemplate>
-            <obo_annot:usageNote xml:lang="en">The URL reference template for an Ontology Lookup Service Browser page for a given ChEBI term.</obo_annot:usageNote>
-          </ReferenceURLTemplate>
-          <ReferenceURLTemplate rdf:ID="pubchemCicURLTemplate">
-            <urlTemplateLinkedID rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#ChEBIid</urlTemplateLinkedID>
-            <httpQueryUrlTemplate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=$$ID$$</httpQueryUrlTemplate>
-            <obo_annot:usageNote xml:lang="en">The URL reference template for an PubChem Browser page for a given PubChem CID term.</obo_annot:usageNote>
-          </ReferenceURLTemplate>
-        </owl:oneOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"/>
-  </owl:Class>
-  <owl:Class rdf:ID="CurationStatus">
-    <core:scopeNote xml:lang="en">The current range of values for this property are: (1) raw_import :== a class derived directly via import of an entity form an existing knowledge resource.  Terms labeled as such has yet to receive any additional curation.  As they do, their status is likely to change, though the link back to the original entity in the external resource is maintained; (2) definition_incomplete :== the curators recognize the definition of the class remains incomplete in someway.  Many definitions are dervied from external sources (a fact tracked via an additional annotation property) and require considerable amending before they fully comply with the OBO Foundry Aristotelean genera/differentia &amp; non-circular specification; (3) graph_position_temporary :== indicates the class may not be in its final preferred location within the ontology graph.  This label can be particularly useful during early ontology creation, as for certain entities, it may not be obvious where precisely a given class should reside until a sufficiently large portion of the graph has been settled; (4) uncurated :== indicates a class has been created by curators but has received minimal review; (5) pending_final_vetting :== indicates the term is likely ready for promotion to "curation_complete" status, and only requires a final review by the curators responsible.  A class may also be demoted to this status when a formerly "complete" class has been determined to require amendments.  In accordance with the emerging best practices, such a term will be moved to an obsolete branch of the ontology, when the new replacement class has been fully vetted and marked as such; (6) curation_complete :== indicates a class has been fully vetted by the curation authorities and to the best of their ability determined to be ready for use.</core:scopeNote>
-    <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"/>
-    <core:definition xml:lang="en">This provides specific info on the level of curation a given class has received and is specifically design to promote automated reporting on the status of classes in an ontology.  It is likely some classes will require more than one instance of this property to fully describe their status.   Is a type of skos_editorial_note.</core:definition>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:oneOf rdf:parseType="Collection">
-          <CurationStatus rdf:ID="uncurated">
-            <core:definition xml:lang="en">indicates a class has been created by curators but has received minimal review.</core:definition>
-          </CurationStatus>
-          <CurationStatus rdf:ID="curation_complete">
-            <core:definition xml:lang="en">indicates a class has been fully vetted by the curation authorities and to the best of their ability determined to be ready for use.</core:definition>
-          </CurationStatus>
-          <CurationStatus rdf:ID="raw_import">
-            <core:definition xml:lang="en">a class derived directly via import of an entity form an existing knowledge resource.  Terms labeled as such has yet to receive any additional curation.  As they do, their status is likely to change, though the link back to the original entity in the external resource is maintained.</core:definition>
-          </CurationStatus>
-          <CurationStatus rdf:ID="definition_incomplete">
-            <core:definition xml:lang="en">the curators recognize the definition of the class remains incomplete in someway.  Many definitions are dervied from external sources (a fact tracked via an additional annotation property) and require considerable amending before they fully comply with the OBO Foundry Aristotelean genera/differentia &amp; non-circular specification.</core:definition>
-          </CurationStatus>
-          <CurationStatus rdf:ID="graph_position_temporary">
-            <core:definition xml:lang="en">indicates the class may not be in its final preferred location within the ontology graph.  This label can be particularly useful during early ontology creation, as for certain entities, it may not be obvious where precisely a given class should reside until a sufficiently large portion of the graph has been settled.</core:definition>
-          </CurationStatus>
-          <CurationStatus rdf:ID="pending_final_vetting">
-            <core:definition xml:lang="en">indicates the term is likely ready for promotion to "curation_complete" status, and only requires a final review by the curators responsible.  A class may also be demoted to this status when a formerly "complete" class has been determined to require amendments.  In accordance with the emerging best practices, such a term will be moved to an obsolete branch of the ontology, when the new replacement class has been fully vetted and marked as such.</core:definition>
-          </CurationStatus>
-        </owl:oneOf>
-      </owl:Class>
-    </owl:equivalentClass>
-  </owl:Class>
-  <owl:Class rdf:ID="_birnlex_limbo_class">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >_birnlex_limbo_class</rdfs:label>
-    <core:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >_birnlex_limbo_class</core:prefLabel>
-    <hasBirnlexCurator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</hasBirnlexCurator>
-    <core:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >class in limbo since major refactoring of foundational community ontologies (e.g., BFO, OBI, SKOS). (BB:2007-03-05).</core:definition>
-    <obo_annot:createdDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2007-03-05</obo_annot:createdDate>
-    <obo_annot:modifiedDate rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2007-03-05</obo_annot:modifiedDate>
-  </owl:Class>
-  <owl:Class rdf:ID="BirnlexExternalSource">
-    <core:definition xml:lang="en">It indicates the external knowledge resource from which this class's definition derived.</core:definition>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:oneOf rdf:parseType="Collection">
-          <BirnlexExternalSource rdf:ID="BAMS">
-            <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >Brain Architecture Management System</dc:title>
-            <dc:publisher rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >Brain Architecture Center, University of Southern California, CA, USA</dc:publisher>
-            <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://brancusi.usc.edu/bkms/</dc:source>
-          </BirnlexExternalSource>
-          <BirnlexExternalSource rdf:ID="EMAP">
-            <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://genex.hgu.mrc.ac.uk/</dc:source>
-            <dc:publisher rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >MRC Human Genetics Unit, Western General Hospital, Edinburgh, UK</dc:publisher>
-            <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >Edinburgh Mouse Atlas Project</dc:title>
-          </BirnlexExternalSource>
-          <BirnlexExternalSource rdf:ID="BONFIRE">
-            <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >The BIRN BONFIRE terminology server</dc:title>
-            <dc:publisher rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >The Biomedical Informatics Research Network (BIRN), NCRR, NIH</dc:publisher>
-          </BirnlexExternalSource>
-          <BirnlexExternalSource rdf:ID="BrainMap.org">
-            <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >The BrainMap Project</dc:title>
-            <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://www.brainmap.org/</dc:source>
-            <dc:publisher rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >Research Imaging Center, University of Texas Health Science Center, San Antonio, TX, USA</dc:publisher>
-          </BirnlexExternalSource>
-          <BirnlexExternalSource rdf:ID="Hof-et-al-mouse-2001"/>
-          <BirnlexExternalSource rdf:ID="JAX-mouse-stock"/>
-          <BirnlexExternalSource rdf:ID="MGI"/>
-          <BirnlexExternalSource rdf:ID="IMSR"/>
-          <BirnlexExternalSource rdf:ID="NeuroNames">
-            <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >The NeuroNames Ontologies</dc:title>
-            <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >http://braininfo.rprc.washington.edu/nnont.html</dc:source>
-            <dc:publisher rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >The BrainInfo Project, Washington National Primate Research Center, University of Washington, Seattle, WA, USA</dc:publisher>
-          </BirnlexExternalSource>
-          <BirnlexExternalSource rdf:ID="Paxinos-Franklin-mouse-2001"/>
-          <BirnlexExternalSource rdf:ID="PsychInfo_Thesaurus"/>
-          <BirnlexExternalSource rdf:ID="SAO"/>
-          <BirnlexExternalSource rdf:ID="TacFarms"/>
-          <BirnlexExternalSource rdf:ID="ATCC"/>
-          <BirnlexExternalSource rdf:ID="SumsDB"/>
-        </owl:oneOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"/>
-  </owl:Class>
-  <owl:Class rdf:ID="KnownApplicationUses">
-    <core:scopeNote xml:lang="en">This property is merely informative and not assumed to be an exhaustive list.  Rather, it is just an list of examples known to the BIRNLex curators at the time the term was last modified.</core:scopeNote>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:oneOf rdf:parseType="Collection">
-          <KnownApplicationUses rdf:ID="ABA_app"/>
-          <KnownApplicationUses rdf:ID="BAMS_app"/>
-          <KnownApplicationUses rdf:ID="BrainInfo.org_app"/>
-          <KnownApplicationUses rdf:ID="BrainMaps.org_app"/>
-          <KnownApplicationUses rdf:ID="BrainMap.org_app"/>
-          <KnownApplicationUses rdf:ID="CoCoMac_app"/>
-          <KnownApplicationUses rdf:ID="Franklin-Paxinos-mouse-2001_app"/>
-          <KnownApplicationUses rdf:ID="FreeSurfer_app"/>
-          <KnownApplicationUses rdf:ID="GENSAT_app"/>
-          <KnownApplicationUses rdf:ID="IATR_app"/>
-          <KnownApplicationUses rdf:ID="MBAT_app"/>
-          <KnownApplicationUses rdf:ID="SenseLab_app"/>
-        </owl:oneOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"/>
-    <core:definition xml:lang="en">A application where the class entity is known to currently be in use by annotators and users searching those annotations.  Multiple instances of this property can be used to identify more than one current application.</core:definition>
-  </owl:Class>
-  <owl:AnnotationProperty rdf:ID="ncbiTaxScientificName">
-    <core:definition xml:lang="en">The preferred label for this taxonomic category in the NCBI Taxonomy database</core:definition>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#synonym</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AllDifferent>
-    <owl:distinctMembers rdf:parseType="Collection">
-      <BirnlexAbbrevSource rdf:about="#NeuroNames_abbrevSource"/>
-      <BirnlexAbbrevSource rdf:about="#Paxinos-Franklin-mouse-2001_abbrevSource"/>
-      <BirnlexAbbrevSource rdf:about="#Paxinos-Watson-rat-1998_abbrevSource"/>
-      <BirnlexAbbrevSource rdf:about="#Swanson-rat-1992_abbrevSource"/>
-      <BirnlexAbbrevSource rdf:about="#Swanson-rat-1998_abbrevSource"/>
-      <BirnlexAbbrevSource rdf:about="#Swanson-rat-2004_abbrevSource"/>
-      <BirnlexAbbrevSource rdf:about="#Hof-et-al-mouse-2000_abbrevSource"/>
-      <BirnlexAbbrevSource rdf:about="#SumsDB_abbrevSource"/>
-    </owl:distinctMembers>
-  </owl:AllDifferent>
-  <owl:AllDifferent>
-    <owl:distinctMembers rdf:parseType="Collection">
-      <ReferenceURLTemplate rdf:about="#ncbiTaxURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#gbifURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#gbifTaxonKeyURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#itisURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#jaxMiceURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#emapMouseStageDataURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#emapMouseStageDiagramURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#neuronamesURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#bamsURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#atccURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#meshURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#goURLTemplate"/>
-      <ReferenceURLTemplate rdf:about="#chebiURLTemplate"/>
-    </owl:distinctMembers>
-  </owl:AllDifferent>
-  <owl:AllDifferent>
-    <owl:distinctMembers rdf:parseType="Collection">
-      <CurationStatus rdf:about="#uncurated"/>
-      <CurationStatus rdf:about="#curation_complete"/>
-      <CurationStatus rdf:about="#raw_import"/>
-      <CurationStatus rdf:about="#definition_incomplete"/>
-      <CurationStatus rdf:about="#graph_position_temporary"/>
-      <CurationStatus rdf:about="#pending_final_vetting"/>
-    </owl:distinctMembers>
-  </owl:AllDifferent>
-  <owl:AnnotationProperty rdf:ID="animalModel">
-    <core:definition xml:lang="en">An organism providing a model system which mimics certain aspects of a particular human clinical syndrome or disease.</core:definition>
-  </owl:AnnotationProperty>
-  <rdf:Description rdf:ID="birnlexDefinition">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#oboDefinition</obo_annot:annotationType>
-    <core:definition xml:lang="en">This is a type of OBO_definition that includes additional requirements specified by the BIRN OTF (additional requirements pending as of 2006-10-02).</core:definition>
-  </rdf:Description>
-  <rdf:Description rdf:ID="birnlexPendingDifferentiaNote">
-    <core:example xml:lang="en">"Basal nucleus of Meynert" is used for labeling the Basal nucleus in humans.  In a human specific neuroanatomical ontology layer, basal nucleus will receive the prefered lable "Basal nucleus of Meynert".</core:example>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#scopeNote</obo_annot:annotationType>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote</obo_annot:annotationType>
-    <core:definition xml:lang="en">This is a note describing a pending class sub-genera.</core:definition>
-  </rdf:Description>
-  <owl:AnnotationProperty rdf:ID="httpQueryUrlTemplate">
-    <core:definition xml:lang="en">This is a template for constructing an HTTP-based dynamic query using an associated source ID.</core:definition>
-    <obo_annot:usageNote xml:lang="en">This URL will typically return a well-formed HTML page for viewing in a web browser, so long as the curating authority doesn't changed their HTTP Query template.</obo_annot:usageNote>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://purl.org/dc/elements/1.1/relation</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="ncbiTaxGenbankCommonName">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#altLabel</obo_annot:annotationType>
-    <obo_annot:usageNote xml:lang="en">The common taxonomic name assigned by NCBI Taxonomy and applied to GENBANK sequence records.</obo_annot:usageNote>
-    <core:definition xml:lang="en">The "genbank common name" was introduced to provide a mechanism by which, when there is more than one common name associated with a particular node in the taxonomy, one of them could be designated to be the common name that should be used by default in the GenBank flat- files and other applications that are trying to find a common name to use for display (or other) purposes. This is not intended to confer any special status or blessing on this particular common name over any of the other common names that might be associated with the same node, and we have developed mechanisms to override this choice for a common name on a case-by-case basis if another name is more appropriate or desirable for a particular sequence entry. Each node may have at most one "genbank common name" (NCBI doc on NCBI Taxonomy, 2003).</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="ncbiTaxID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-    <core:definition xml:lang="en">The unique ID for this taxonomic category in the NCBI Taxonomy database</core:definition>
-  </owl:AnnotationProperty>
-  <rdf:Description rdf:ID="hasCurationStatus">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#editorialNote</obo_annot:annotationType>
-    <obo_annot:annotationPropertyRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#CurationStatus</obo_annot:annotationPropertyRange>
-    <obo_annot:annotationPropertyDomain rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >owl:Class</obo_annot:annotationPropertyDomain>
-    <obo_annot:hasValidationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >sparql_verify_annotation_domain_and_range</obo_annot:hasValidationMethod>
-  </rdf:Description>
-  <owl:AllDifferent>
-    <owl:distinctMembers rdf:parseType="Collection">
-      <BirnlexDefinitionSource rdf:about="#BAMS_defSource"/>
-      <BirnlexDefinitionSource rdf:about="#BrainMap.org_defSource"/>
-      <BirnlexDefinitionSource rdf:about="#IMSR_Glossary_defSource"/>
-      <BirnlexDefinitionSource rdf:about="#MGI_defSource"/>
-      <BirnlexDefinitionSource rdf:about="#NeuroNames_defSource"/>
-      <BirnlexDefinitionSource rdf:about="#The_Sylvius_Project_defSource"/>
-      <BirnlexDefinitionSource rdf:about="#ATCC_defSource"/>
-      <BirnlexDefinitionSource rdf:about="#ChEBI_defSource"/>
-    </owl:distinctMembers>
-  </owl:AllDifferent>
-  <owl:AnnotationProperty rdf:ID="ncbiTaxBlastName">
-    <core:definition xml:lang="en">The "BLAST names" are a specially designated set of common names selected from the Taxonomy database. These were chosen to provide a pool of familiar names for large groups of organisms (such as "insects", "mammals", "fungi", and others) so that any particular species (which may not have an informative common name of its own) could inherit a meaningful collective common name from the Taxonomy database. This was originally developed for BLAST, because a list of BLAST results will typically include entries from many species identified by Latin binomials, which may not be familiar to all users. BLAST names may be nested; for example, "eukaryotes", "animals", "chordates", "mammals", and "primates" are all flagged as "blast names". 
-         Blast names are now used in several other applications, for example the Tax BLAST displays, the Summary view in Entrez Taxonomy, and in the Summary display of the Common Tree
-         format (NCBI doc on NCBI Taxonomy, 2003).</core:definition>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#altLabel</obo_annot:annotationType>
-    <obo_annot:usageNote xml:lang="en">The taxonomic name used in BLAST homology analysis given in NCBI Taxonomy</obo_annot:usageNote>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="isReplacedByClass">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#historyNote</obo_annot:annotationType>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://purl.org/dc/elements/1.1/identifier</obo_annot:annotationType>
-    <core:definition xml:lang="en">This annotation property is used to link the new classes that now are used to represent the entities formerly represented by an obsoleted class.  The value of this property will simply be the ontology ID for the replacement class(es).</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="nitrc_ID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="hasFormerParentClass">
-    <core:definition xml:lang="en">This annotation property is used to link back to the original parent class for an obsoleted term.  The value of this property will simply be the ontology ID for the parent class.  An obsoleted asserted class should have one and only one former parent class.</core:definition>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#historyNote</obo_annot:annotationType>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://purl.org/dc/elements/1.1/identifier</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="ncbiIncludesName">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#scopeNote</obo_annot:annotationType>
-    <core:definition xml:lang="en">The "includes" nametype is the opposite of the in-part nametype and is included for retrieval terms that have a narrower scope of application than the taxon at which they appear. For example, we could list "reptiles" as an "includes" nametype for the Amniota (or at any higher node in the lineage) (NCBI doc on NCBI Taxonomy, 2003).</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="emapMouseStageDiagramID">
-    <core:definition xml:lang="en">The unique ID type linked to a partiular URL Template.  An instance of this ID type can be combined algorithmically with a URL template ('$$ID$$') placeholder literal is replaced by an ID value to create a URL that links to the curated info associated with that ID.</core:definition>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="imsrStandardStrainName">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://purl.org/dc/elements/1.1/identifier</obo_annot:annotationType>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#altLabel</obo_annot:annotationType>
-    <core:definition xml:lang="en">This annotation property contains the approved strain name for an inbred mouse or rat as given by the International Mouse Strain Repository (IMSR).</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="atccID">
-    <core:definition xml:lang="en">The unique ID for a biological material - typically a cell line - from the American Type Culture Collection database.</core:definition>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="ChEBIid">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-    <core:definition xml:lang="en">The ID from the Chemical Entities of Biological Interest (ChEBI) chemical taxonomy corresponding to this class.</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="tacMiceID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-    <core:definition xml:lang="en">The unique ID for a mouse strain distributed by and tracked in the Taconic Farms Mouse database.</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="itisID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-    <core:definition xml:lang="en">The unique ID for this taxonomic category in the North American Integrated Taxonomic Information System (ITIS) taxonomic ,knowledgebase</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="bamsID">
-    <core:definition xml:lang="en">The "aidi" ID from the Brain Architecture Management System (BAMS) corresponding to this class.</core:definition>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="PMID">
-    <core:definition xml:lang="en">A PMID (PubMed Identifier or PubMed Unique Identifier) is a unique number assigned to each PubMed citation of life sciences and biomedical scientific journal articles.</core:definition>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="urlTemplateLinkedID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-    <core:definition xml:lang="en">This is a template for constructing an HTTP-based dynamic query using an associated source ID.</core:definition>
-    <obo_annot:usageNote xml:lang="en">This URL constructed this way will typically return a well-formed HTML page for viewing in a web browser, so long as the curating authority doesn't changed their HTTP Query template.</obo_annot:usageNote>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="sao_ID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="webServiceUrlTemplate">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://purl.org/dc/elements/1.1/relation</obo_annot:annotationType>
-    <obo_annot:usageNote xml:lang="en">This is merely information and is designed to be associated with an ExternalSource, when a service is available to access related resource information using an External ID tracked in the ontology.</obo_annot:usageNote>
-    <core:definition xml:lang="en">This is the HTTP or WSDL URL with which a query can be constructed to return a data fragment describing the associated source ID.</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="emapMouseStageDataID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-    <core:definition xml:lang="en">The unique ID for a Theiler mouse prenatal development stage as given by the EMAP Project.</core:definition>
-  </owl:AnnotationProperty>
-  <rdf:Description rdf:ID="hasBirnlexCurator">
-    <obo_annot:annotationPropertyDomain rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >owl:Class</obo_annot:annotationPropertyDomain>
-    <obo_annot:annotationPropertyRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BirnlexCurator</obo_annot:annotationPropertyRange>
-    <obo_annot:hasValidationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >sparql_verify_annotation_domain_and_range</obo_annot:hasValidationMethod>
-  </rdf:Description>
-  <rdf:Description rdf:ID="hasKnownApplicationUses">
-    <obo_annot:annotationPropertyRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#KnownApplicationUses</obo_annot:annotationPropertyRange>
-    <obo_annot:hasValidationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >sparql_verify_annotation_domain_and_range</obo_annot:hasValidationMethod>
-    <obo_annot:annotationPropertyDomain rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >owl:Class</obo_annot:annotationPropertyDomain>
-  </rdf:Description>
-  <owl:AnnotationProperty rdf:ID="bonfireID">
-    <core:definition xml:lang="en">This ID is derived from the BIRN BONFIRE vocubulary management system</core:definition>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="gene_Ontology_ID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="gbifTaxonKeyID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-    <core:definition xml:lang="en">The unique ID for this taxonomy key in Global Biodiversity Information Facility taxonomic ,knowledgebase</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AllDifferent>
-    <owl:distinctMembers rdf:parseType="Collection">
-      <BirnlexCurator rdf:about="#BIRN_OTF"/>
-      <BirnlexCurator rdf:about="#Carol_Bean"/>
-      <BirnlexCurator rdf:about="#Bill_Bug"/>
-      <BirnlexCurator rdf:about="#Christine_Fennema-Notestine"/>
-      <BirnlexCurator rdf:about="#Jeff_Grethe"/>
-      <BirnlexCurator rdf:about="#Amarnath_Gupta"/>
-      <BirnlexCurator rdf:about="#David_Kennedy"/>
-      <BirnlexCurator rdf:about="#Maryann_Martone"/>
-      <BirnlexCurator rdf:about="#Jessica_Turner"/>
-      <BirnlexCurator rdf:about="#Jyl_Boline"/>
-      <BirnlexCurator rdf:about="#Karen_Crawford"/>
-      <BirnlexCurator rdf:about="#Angie_Laird"/>
-      <BirnlexCurator rdf:about="#Allan_MacKenzie-Graham"/>
-      <BirnlexCurator rdf:about="#Brett_Peterson"/>
-      <BirnlexCurator rdf:about="#Rob_Williams"/>
-      <BirnlexCurator rdf:about="#Michele_Diaz"/>
-      <BirnlexCurator rdf:about="#Karl_Helmer"/>
-    </owl:distinctMembers>
-  </owl:AllDifferent>
-  <rdf:Description rdf:ID="birnlexComment">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#editorialNote</obo_annot:annotationType>
-    <core:editorialNote xml:lang="en">Is there a use for a BIRN-specific comment independent of rdfs:comment?</core:editorialNote>
-  </rdf:Description>
-  <owl:AnnotationProperty rdf:ID="ncbiInPartName">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#scopeNote</obo_annot:annotationType>
-    <core:definition xml:lang="en">The "in-part" nametype is included for retrieval terms that have a broader range of application than the taxon or taxa at which they appear. For example, we list reptiles and Reptilia as in-part nametypes at our nodes Testudines (the turtles), Lepidosauria (the lizards and snakes), and Crocodylidae (the crocodilians).
-         (NCBI doc on NCBI Taxonomy, 2003).</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="jaxMiceID">
-    <core:definition xml:lang="en">The unique ID for a mouse strain distributed by and tracked in the Jackson Laboratory Mouse database.</core:definition>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="putativeClassExtension">
-    <core:definition xml:lang="en">This is a note describing possible class sub-genera.</core:definition>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#scopeNote</obo_annot:annotationType>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="gbifID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-    <core:definition xml:lang="en">The unique ID for this taxonomic category in Global Biodiversity Information Facility taxonomic ,knowledgebase</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="PubMedID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-    <core:definition xml:lang="en">The ID from the NIH/NLM/NCBI PubChem chemical taxonomy corresponding to this class.</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AllDifferent>
-    <owl:distinctMembers rdf:parseType="Collection">
-      <KnownApplicationUses rdf:about="#ABA_app"/>
-      <KnownApplicationUses rdf:about="#BAMS_app"/>
-      <KnownApplicationUses rdf:about="#BrainInfo.org_app"/>
-      <KnownApplicationUses rdf:about="#BrainMaps.org_app"/>
-      <KnownApplicationUses rdf:about="#BrainMap.org_app"/>
-      <KnownApplicationUses rdf:about="#CoCoMac_app"/>
-      <KnownApplicationUses rdf:about="#Franklin-Paxinos-mouse-2001_app"/>
-      <KnownApplicationUses rdf:about="#FreeSurfer_app"/>
-      <KnownApplicationUses rdf:about="#GENSAT_app"/>
-      <KnownApplicationUses rdf:about="#IATR_app"/>
-      <KnownApplicationUses rdf:about="#MBAT_app"/>
-      <KnownApplicationUses rdf:about="#SenseLab_app"/>
-    </owl:distinctMembers>
-  </owl:AllDifferent>
-  <owl:AnnotationProperty rdf:ID="umls_ID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="hasReferenceURLTemplate">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://purl.org/dc/elements/1.1/relation</obo_annot:annotationType>
-    <obo_annot:annotationPropertyDomain rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >owl:Class</obo_annot:annotationPropertyDomain>
-    <obo_annot:annotationPropertyRange rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >ReferenceURLTemplate</obo_annot:annotationPropertyRange>
-    <obo_annot:usageNote xml:lang="en">A Class can be assigned more than one ReferenceURLTemplate assigned via distince hasReferenceURLTemplate properties</obo_annot:usageNote>
-    <obo_annot:hasValidationMethod rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >sparql_verify_annotation_domain_and_range</obo_annot:hasValidationMethod>
-  </owl:AnnotationProperty>
-  <owl:AllDifferent>
-    <owl:distinctMembers rdf:parseType="Collection">
-      <BirnlexExternalSource rdf:about="#BAMS"/>
-      <BirnlexExternalSource rdf:about="#EMAP"/>
-      <BirnlexExternalSource rdf:about="#BONFIRE"/>
-      <BirnlexExternalSource rdf:about="#BrainMap.org"/>
-      <BirnlexExternalSource rdf:about="#Hof-et-al-mouse-2001"/>
-      <BirnlexExternalSource rdf:about="#JAX-mouse-stock"/>
-      <BirnlexExternalSource rdf:about="#MGI"/>
-      <BirnlexExternalSource rdf:about="#IMSR"/>
-      <BirnlexExternalSource rdf:about="#NeuroNames"/>
-      <BirnlexExternalSource rdf:about="#Paxinos-Franklin-mouse-2001"/>
-      <BirnlexExternalSource rdf:about="#PsychInfo_Thesaurus"/>
-      <BirnlexExternalSource rdf:about="#SAO"/>
-      <BirnlexExternalSource rdf:about="#TacFarms"/>
-      <BirnlexExternalSource rdf:about="#ATCC"/>
-      <BirnlexExternalSource rdf:about="#SumsDB"/>
-    </owl:distinctMembers>
-  </owl:AllDifferent>
-  <owl:AnnotationProperty rdf:ID="neuronamesID">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</obo_annot:annotationType>
-    <core:definition xml:lang="en">The ID from the NeuroNames neuroanatomical thesaurus corresponding to this class.</core:definition>
-  </owl:AnnotationProperty>
-  <rdf:Description rdf:ID="birnlexRetiredDefinition">
-    <core:definition xml:lang="en">A former definition for a class.  It is kept for the purposes of interpreting annotations made when this definition was in effect and to monitor the evolution of class definitions.  Given this requirement, a "retiredDate" is added to the definition on the date of retirement.</core:definition>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#definition</obo_annot:annotationType>
-  </rdf:Description>
-  <owl:AnnotationProperty rdf:ID="hasFormerChildClass">
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://www.w3.org/2004/02/skos/core#historyNote</obo_annot:annotationType>
-    <obo_annot:annotationType rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >http://purl.org/dc/elements/1.1/identifier</obo_annot:annotationType>
-    <core:definition xml:lang="en">This annotation property is used to link back to an original child class for an obsoleted term.  The value of this property will simply be the ontology ID for the child class.  An obsoleted class can have greater than one former children..</core:definition>
-  </owl:AnnotationProperty>
-  <owl:AnnotationProperty rdf:ID="neuroNamesAncillaryTerm">
-    <core:definition xml:lang="en">"(NeuroNames) defines the brain in terms of about 550 primary structures to which all other structures, names, and synonyms are related.  (It) provides standard English and Latin names for more than 850 unique structures including the primary structures, superstructures and related superficial features and shows hierarchical relations of each structure to its superstructures and substructures.  NeuroNames also defines more than 1500 other neuroanatomical entities in terms of structures in the Hierarchy. The structure you name may not be part of the Brain Hierarchy. For example, it may represent a different way of subdividing the brain or it may exist only at the embryonic stage of brain development. Such items are referred to as 'ancillary structures' (http://braininfo.rprc.washington.edu/indexabout.html).</core:definition>
-    <core:definition xml:lang="en"> This class was derived from a NeuroNames ancillary term, indicated the NeuroNames developers were unable to fit it into the core NN hierarchy.</core:definition>
-  </owl:AnnotationProperty>
-</rdf:RDF>
 
-<!-- Created with Protege (with OWL Plugin 3.4.3, Build 572)  http://protege.stanford.edu -->
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl">
+    <Prefix name="xsp" IRI="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="obo_annot" IRI="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#"/>
+    <Prefix name="swrl" IRI="http://www.w3.org/2003/11/swrl#"/>
+    <Prefix name="core" IRI="http://www.w3.org/2004/02/skos/core#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="swrlb" IRI="http://www.w3.org/2003/11/swrlb#"/>
+    <Prefix name="protege-dc" IRI="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#"/>
+    <Prefix name="protege" IRI="http://protege.stanford.edu/plugins/owl/protege#"/>
+    <Prefix name="" IRI="http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#"/>
+    <Prefix name="dc" IRI="http://purl.org/dc/elements/1.1/"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="skos" IRI="http://www.w3.org/2004/02/skos/core/owl-dl/skos-core-owl-dl.owl#"/>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dc:creator"/>
+        <Literal datatypeIRI="&xsd;string"> xml:lang=&quot;en&quot;The BIRN Ontology Task Force</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="core:changeNote"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Now using a specific set of AnnotationProperties that link to specific Enumeration classes to specify annotations from a fixed list of values - e.g., ExternalSource, DefinitionSource.  This is the second iteration of this mechanism (first was put in v1.2.2).  This second version follows a patter recommended by Alan Ruttenberg which avoids using ObjectProperties as the Manchester design pattern for Value Partitions recommends, and instead sticks to AnnotationProperties only.  Note this version of OBO_annotation_properties uses the same EnumerationClasses from v1.2.2, and still includes the related ObjectProperties, so as to be able to support XSLT-based translation of the BIRNLex files that used the v1.2.2 pattern.  The next version of this file will eliminate the ObjectProperties and will rename the equivalent AnnotationProperties to remove the trailing &#39;2&#39; put in there to provide a unique name.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">These are OWL Annotation Properties created by the BIRN OTF for the purposes of better managing the curation of the BIRNLex ontology.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="obo_annot:modifiedDate"/>
+        <Literal datatypeIRI="&xsd;string">2008-03-21</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="core:changeNote"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral"> (2008-03-21) - finally added ID property and Template URLs for ChEBI and PubChem CIDs.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="owl:versionInfo"/>
+        <Literal datatypeIRI="&xsd;string">1.3.1</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="core:changeNote"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">v1.3.0 (2007-08-03) - Changed many things, but primarily: (1) removed rdf:datatype xsd:string specs for all AnnotationProperties, since they are now all untyped and should assume STRING as a the default; (2) added the typing of AnnotationProperties using annotationType which should aid in algorithmically processing; (3) added ReferenceURLTemplate to linked IDs to aid in algorithmically constructing URLs from IDs.  The reference URL template provides a URL template that includes a specification of how to combine it with the associated ID to build a putative URL for an external resource - putative in the sense that there is no guarantee the external curating authority will maintain this URL template; however, with these paired fields - ID and URL template template - it should be possible to update the template, when the authority changes their URL template - an updated that would then be algorithmicaly percollated to the use of that field across BIRNLex.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="core:changeNote"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral"> (2008-03-13) - finally added Template URLs for GO ID.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="core:changeNote"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral"> v1.2 (2007-03-20): Changed all Class identifiers to rdf:ID properties.  Some had previously been rdf:about properties.  Since Protege-OWL automatically sets new class identifiers to rdf:ID, I&#39;m changing these across the files, to help make it more deterministic when parsing the RDF/XML.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="core:changeNote"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Have &#39;cleansed&#39; the file to be OWL-DL (v1.2.2).</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="obo_annot:createdDate"/>
+        <Literal datatypeIRI="&xsd;string">2006-09-26</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="core:changeNote"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Processed file with XSLT to remove the explicit DataTypeProperty declarations (v1.2.2)</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="core:changeNote"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">v1.3.1 (2007-11-30) - Removed some UTF8 characters that dont translate well to other encodings (e.g., curly double quotes 0xE2809C).</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dc:title"/>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">BIRNLex_annotation_properties</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="#BirnlexAbbrevSource"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BirnlexCurator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BirnlexDefinitionSource"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BirnlexExternalSource"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CurationStatus"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#KnownApplicationUses"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ReferenceURLTemplate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#_birnlex_limbo_class"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#_birnlex_retired_class"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Anita_Bandrowski"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Fahim_Imam"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#ChEBIid"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#PMID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#PubMedID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#animalModel"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#atccID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#bamsID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#bonfireID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#emapMouseStageDataID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#emapMouseStageDiagramID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#gbifID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#gbifTaxonKeyID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#gene_Ontology_ID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#hasFormerChildClass"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#hasFormerParentClass"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#hasReferenceURLTemplate"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#imsrStandardStrainName"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#isReplacedByClass"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#itisID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#jaxMiceID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#ncbiInPartName"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#ncbiIncludesName"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#ncbiTaxBlastName"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#ncbiTaxGenbankCommonName"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#ncbiTaxID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#ncbiTaxScientificName"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#neuroNamesAncillaryTerm"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#neuronamesID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#nitrc_ID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#putativeClassExtension"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#sao_ID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#tacMiceID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#umls_ID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="#webServiceUrlTemplate"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#BirnlexAbbrevSource"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#NeuroNames_abbrevSource"/>
+            <NamedIndividual IRI="#Paxinos-Franklin-mouse-2001_abbrevSource"/>
+            <NamedIndividual IRI="#Swanson-rat-1998_abbrevSource"/>
+            <NamedIndividual IRI="#Swanson-rat-1992_abbrevSource"/>
+            <NamedIndividual IRI="#Swanson-rat-2004_abbrevSource"/>
+            <NamedIndividual IRI="#Hof-et-al-mouse-2000_abbrevSource"/>
+            <NamedIndividual IRI="#SumsDB_abbrevSource"/>
+            <NamedIndividual IRI="#Paxinos-Watson-rat-1998_abbrevSource"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#BirnlexCurator"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#Karen_Crawford"/>
+            <NamedIndividual IRI="#Bill_Bug"/>
+            <NamedIndividual IRI="#Jeff_Grethe"/>
+            <NamedIndividual IRI="#BIRN_OTF"/>
+            <NamedIndividual IRI="#Jessica_Turner"/>
+            <NamedIndividual IRI="#Maryann_Martone"/>
+            <NamedIndividual IRI="#Allan_MacKenzie-Graham"/>
+            <NamedIndividual IRI="#Jyl_Boline"/>
+            <NamedIndividual IRI="#Brett_Peterson"/>
+            <NamedIndividual IRI="#Carol_Bean"/>
+            <NamedIndividual IRI="#Michele_Diaz"/>
+            <NamedIndividual IRI="#Karl_Helmer"/>
+            <NamedIndividual IRI="#David_Kennedy"/>
+            <NamedIndividual IRI="#Amarnath_Gupta"/>
+            <NamedIndividual IRI="#Christine_Fennema-Notestine"/>
+            <NamedIndividual IRI="#Angie_Laird"/>
+            <NamedIndividual IRI="#Rob_Williams"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#BirnlexDefinitionSource"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#BAMS_defSource"/>
+            <NamedIndividual IRI="#MGI_defSource"/>
+            <NamedIndividual IRI="#ChEBI_defSource"/>
+            <NamedIndividual IRI="#The_Sylvius_Project_defSource"/>
+            <NamedIndividual IRI="#IMSR_Glossary_defSource"/>
+            <NamedIndividual IRI="#BrainMap.org_defSource"/>
+            <NamedIndividual IRI="#ATCC_defSource"/>
+            <NamedIndividual IRI="#NeuroNames_defSource"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#BirnlexExternalSource"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#ATCC"/>
+            <NamedIndividual IRI="#IMSR"/>
+            <NamedIndividual IRI="#PsychInfo_Thesaurus"/>
+            <NamedIndividual IRI="#BAMS"/>
+            <NamedIndividual IRI="#Paxinos-Franklin-mouse-2001"/>
+            <NamedIndividual IRI="#BrainMap.org"/>
+            <NamedIndividual IRI="#BONFIRE"/>
+            <NamedIndividual IRI="#MGI"/>
+            <NamedIndividual IRI="#SAO"/>
+            <NamedIndividual IRI="#TacFarms"/>
+            <NamedIndividual IRI="#Hof-et-al-mouse-2001"/>
+            <NamedIndividual IRI="#EMAP"/>
+            <NamedIndividual IRI="#SumsDB"/>
+            <NamedIndividual IRI="#NeuroNames"/>
+            <NamedIndividual IRI="#JAX-mouse-stock"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#CurationStatus"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#pending_final_vetting"/>
+            <NamedIndividual IRI="#curation_complete"/>
+            <NamedIndividual IRI="#raw_import"/>
+            <NamedIndividual IRI="#graph_position_temporary"/>
+            <NamedIndividual IRI="#uncurated"/>
+            <NamedIndividual IRI="#definition_incomplete"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#KnownApplicationUses"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#CoCoMac_app"/>
+            <NamedIndividual IRI="#FreeSurfer_app"/>
+            <NamedIndividual IRI="#BrainMap.org_app"/>
+            <NamedIndividual IRI="#IATR_app"/>
+            <NamedIndividual IRI="#ABA_app"/>
+            <NamedIndividual IRI="#GENSAT_app"/>
+            <NamedIndividual IRI="#SenseLab_app"/>
+            <NamedIndividual IRI="#BAMS_app"/>
+            <NamedIndividual IRI="#Franklin-Paxinos-mouse-2001_app"/>
+            <NamedIndividual IRI="#BrainInfo.org_app"/>
+            <NamedIndividual IRI="#BrainMaps.org_app"/>
+            <NamedIndividual IRI="#MBAT_app"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#tacMiceURLTemplate"/>
+            <NamedIndividual IRI="#neuronamesURLTemplate"/>
+            <NamedIndividual IRI="#atccURLTemplate"/>
+            <NamedIndividual IRI="#chebiURLTemplate"/>
+            <NamedIndividual IRI="#jaxMiceURLTemplate"/>
+            <NamedIndividual IRI="#bamsURLTemplate"/>
+            <NamedIndividual IRI="#gbifTaxonKeyURLTemplate"/>
+            <NamedIndividual IRI="#pubchemCicURLTemplate"/>
+            <NamedIndividual IRI="#itisURLTemplate"/>
+            <NamedIndividual IRI="#meshURLTemplate"/>
+            <NamedIndividual IRI="#gbifURLTemplate"/>
+            <NamedIndividual IRI="#emapMouseStageDiagramURLTemplate"/>
+            <NamedIndividual IRI="#emapMouseStageDataURLTemplate"/>
+            <NamedIndividual IRI="#goURLTemplate"/>
+            <NamedIndividual IRI="#ncbiTaxURLTemplate"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#BirnlexAbbrevSource"/>
+        <Class abbreviatedIRI="obo_annot:EnumerationClass"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BirnlexCurator"/>
+        <Class abbreviatedIRI="obo_annot:EnumerationClass"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BirnlexDefinitionSource"/>
+        <Class abbreviatedIRI="obo_annot:EnumerationClass"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BirnlexExternalSource"/>
+        <Class abbreviatedIRI="obo_annot:EnumerationClass"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CurationStatus"/>
+        <Class abbreviatedIRI="obo_annot:EnumerationClass"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#KnownApplicationUses"/>
+        <Class abbreviatedIRI="obo_annot:EnumerationClass"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <Class abbreviatedIRI="obo_annot:EnumerationClass"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#ABA_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#ATCC"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexDefinitionSource"/>
+        <NamedIndividual IRI="#ATCC_defSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Allan_MacKenzie-Graham"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Amarnath_Gupta"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Angie_Laird"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Anita_Bandrowski"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#BAMS"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#BAMS_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexDefinitionSource"/>
+        <NamedIndividual IRI="#BAMS_defSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#BIRN_OTF"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#BONFIRE"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Bill_Bug"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#BrainInfo.org_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#BrainMap.org"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#BrainMap.org_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexDefinitionSource"/>
+        <NamedIndividual IRI="#BrainMap.org_defSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#BrainMaps.org_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Brett_Peterson"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Carol_Bean"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexDefinitionSource"/>
+        <NamedIndividual IRI="#ChEBI_defSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Christine_Fennema-Notestine"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#CoCoMac_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#David_Kennedy"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#EMAP"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Fahim_Imam"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#Franklin-Paxinos-mouse-2001_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#FreeSurfer_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#GENSAT_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexAbbrevSource"/>
+        <NamedIndividual IRI="#Hof-et-al-mouse-2000_abbrevSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#Hof-et-al-mouse-2001"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#IATR_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#IMSR"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexDefinitionSource"/>
+        <NamedIndividual IRI="#IMSR_Glossary_defSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#JAX-mouse-stock"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Jeff_Grethe"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Jessica_Turner"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Jyl_Boline"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Karen_Crawford"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Karl_Helmer"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#MBAT_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#MGI"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexDefinitionSource"/>
+        <NamedIndividual IRI="#MGI_defSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Maryann_Martone"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Michele_Diaz"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#NeuroNames"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexAbbrevSource"/>
+        <NamedIndividual IRI="#NeuroNames_abbrevSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexDefinitionSource"/>
+        <NamedIndividual IRI="#NeuroNames_defSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#Paxinos-Franklin-mouse-2001"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexAbbrevSource"/>
+        <NamedIndividual IRI="#Paxinos-Franklin-mouse-2001_abbrevSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexAbbrevSource"/>
+        <NamedIndividual IRI="#Paxinos-Watson-rat-1998_abbrevSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#PsychInfo_Thesaurus"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexCurator"/>
+        <NamedIndividual IRI="#Rob_Williams"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#SAO"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#KnownApplicationUses"/>
+        <NamedIndividual IRI="#SenseLab_app"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#SumsDB"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexAbbrevSource"/>
+        <NamedIndividual IRI="#SumsDB_abbrevSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexAbbrevSource"/>
+        <NamedIndividual IRI="#Swanson-rat-1992_abbrevSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexAbbrevSource"/>
+        <NamedIndividual IRI="#Swanson-rat-1998_abbrevSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexAbbrevSource"/>
+        <NamedIndividual IRI="#Swanson-rat-2004_abbrevSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexExternalSource"/>
+        <NamedIndividual IRI="#TacFarms"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BirnlexDefinitionSource"/>
+        <NamedIndividual IRI="#The_Sylvius_Project_defSource"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#atccURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#bamsURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#chebiURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CurationStatus"/>
+        <NamedIndividual IRI="#curation_complete"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CurationStatus"/>
+        <NamedIndividual IRI="#definition_incomplete"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#emapMouseStageDataURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#emapMouseStageDiagramURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#gbifTaxonKeyURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#gbifURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#goURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CurationStatus"/>
+        <NamedIndividual IRI="#graph_position_temporary"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#itisURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#jaxMiceURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#meshURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#ncbiTaxURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#neuronamesURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CurationStatus"/>
+        <NamedIndividual IRI="#pending_final_vetting"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#pubchemCicURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CurationStatus"/>
+        <NamedIndividual IRI="#raw_import"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ReferenceURLTemplate"/>
+        <NamedIndividual IRI="#tacMiceURLTemplate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CurationStatus"/>
+        <NamedIndividual IRI="#uncurated"/>
+    </ClassAssertion>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#ABA_app"/>
+        <NamedIndividual IRI="#BAMS_app"/>
+        <NamedIndividual IRI="#BrainInfo.org_app"/>
+        <NamedIndividual IRI="#BrainMap.org_app"/>
+        <NamedIndividual IRI="#BrainMaps.org_app"/>
+        <NamedIndividual IRI="#CoCoMac_app"/>
+        <NamedIndividual IRI="#Franklin-Paxinos-mouse-2001_app"/>
+        <NamedIndividual IRI="#FreeSurfer_app"/>
+        <NamedIndividual IRI="#GENSAT_app"/>
+        <NamedIndividual IRI="#IATR_app"/>
+        <NamedIndividual IRI="#MBAT_app"/>
+        <NamedIndividual IRI="#SenseLab_app"/>
+    </DifferentIndividuals>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#ATCC"/>
+        <NamedIndividual IRI="#BAMS"/>
+        <NamedIndividual IRI="#BONFIRE"/>
+        <NamedIndividual IRI="#BrainMap.org"/>
+        <NamedIndividual IRI="#EMAP"/>
+        <NamedIndividual IRI="#Hof-et-al-mouse-2001"/>
+        <NamedIndividual IRI="#IMSR"/>
+        <NamedIndividual IRI="#JAX-mouse-stock"/>
+        <NamedIndividual IRI="#MGI"/>
+        <NamedIndividual IRI="#NeuroNames"/>
+        <NamedIndividual IRI="#Paxinos-Franklin-mouse-2001"/>
+        <NamedIndividual IRI="#PsychInfo_Thesaurus"/>
+        <NamedIndividual IRI="#SAO"/>
+        <NamedIndividual IRI="#SumsDB"/>
+        <NamedIndividual IRI="#TacFarms"/>
+    </DifferentIndividuals>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#ATCC_defSource"/>
+        <NamedIndividual IRI="#BAMS_defSource"/>
+        <NamedIndividual IRI="#BrainMap.org_defSource"/>
+        <NamedIndividual IRI="#ChEBI_defSource"/>
+        <NamedIndividual IRI="#IMSR_Glossary_defSource"/>
+        <NamedIndividual IRI="#MGI_defSource"/>
+        <NamedIndividual IRI="#NeuroNames_defSource"/>
+        <NamedIndividual IRI="#The_Sylvius_Project_defSource"/>
+    </DifferentIndividuals>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#Allan_MacKenzie-Graham"/>
+        <NamedIndividual IRI="#Amarnath_Gupta"/>
+        <NamedIndividual IRI="#Angie_Laird"/>
+        <NamedIndividual IRI="#BIRN_OTF"/>
+        <NamedIndividual IRI="#Bill_Bug"/>
+        <NamedIndividual IRI="#Brett_Peterson"/>
+        <NamedIndividual IRI="#Carol_Bean"/>
+        <NamedIndividual IRI="#Christine_Fennema-Notestine"/>
+        <NamedIndividual IRI="#David_Kennedy"/>
+        <NamedIndividual IRI="#Jeff_Grethe"/>
+        <NamedIndividual IRI="#Jessica_Turner"/>
+        <NamedIndividual IRI="#Jyl_Boline"/>
+        <NamedIndividual IRI="#Karen_Crawford"/>
+        <NamedIndividual IRI="#Karl_Helmer"/>
+        <NamedIndividual IRI="#Maryann_Martone"/>
+        <NamedIndividual IRI="#Michele_Diaz"/>
+        <NamedIndividual IRI="#Rob_Williams"/>
+    </DifferentIndividuals>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#Hof-et-al-mouse-2000_abbrevSource"/>
+        <NamedIndividual IRI="#NeuroNames_abbrevSource"/>
+        <NamedIndividual IRI="#Paxinos-Franklin-mouse-2001_abbrevSource"/>
+        <NamedIndividual IRI="#Paxinos-Watson-rat-1998_abbrevSource"/>
+        <NamedIndividual IRI="#SumsDB_abbrevSource"/>
+        <NamedIndividual IRI="#Swanson-rat-1992_abbrevSource"/>
+        <NamedIndividual IRI="#Swanson-rat-1998_abbrevSource"/>
+        <NamedIndividual IRI="#Swanson-rat-2004_abbrevSource"/>
+    </DifferentIndividuals>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#atccURLTemplate"/>
+        <NamedIndividual IRI="#bamsURLTemplate"/>
+        <NamedIndividual IRI="#chebiURLTemplate"/>
+        <NamedIndividual IRI="#emapMouseStageDataURLTemplate"/>
+        <NamedIndividual IRI="#emapMouseStageDiagramURLTemplate"/>
+        <NamedIndividual IRI="#gbifTaxonKeyURLTemplate"/>
+        <NamedIndividual IRI="#gbifURLTemplate"/>
+        <NamedIndividual IRI="#goURLTemplate"/>
+        <NamedIndividual IRI="#itisURLTemplate"/>
+        <NamedIndividual IRI="#jaxMiceURLTemplate"/>
+        <NamedIndividual IRI="#meshURLTemplate"/>
+        <NamedIndividual IRI="#ncbiTaxURLTemplate"/>
+        <NamedIndividual IRI="#neuronamesURLTemplate"/>
+    </DifferentIndividuals>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#curation_complete"/>
+        <NamedIndividual IRI="#definition_incomplete"/>
+        <NamedIndividual IRI="#graph_position_temporary"/>
+        <NamedIndividual IRI="#pending_final_vetting"/>
+        <NamedIndividual IRI="#raw_import"/>
+        <NamedIndividual IRI="#uncurated"/>
+    </DifferentIndividuals>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:publisher"/>
+        <IRI>#BAMS</IRI>
+        <Literal datatypeIRI="&xsd;string">Brain Architecture Center, University of Southern California, CA, USA</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:source"/>
+        <IRI>#BAMS</IRI>
+        <Literal datatypeIRI="&xsd;string">http://brancusi.usc.edu/bkms/</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:title"/>
+        <IRI>#BAMS</IRI>
+        <Literal datatypeIRI="&xsd;string">Brain Architecture Management System</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:publisher"/>
+        <IRI>#BONFIRE</IRI>
+        <Literal datatypeIRI="&xsd;string">The Biomedical Informatics Research Network (BIRN), NCRR, NIH</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:title"/>
+        <IRI>#BONFIRE</IRI>
+        <Literal datatypeIRI="&xsd;string">The BIRN BONFIRE terminology server</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#BirnlexCurator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This property defines the BIRNLex ontology curators who&#39;ve contributed to the definition of a class.  More than one instance of this property is valid.  In the case of multiple curators, the individual curator name may also be associated with the definition, if that person was primarily responsible for it.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#BirnlexDefinitionSource</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">It indicates the external knowledge resource from which this class&#39;s definition derived.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#BirnlexExternalSource</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">It indicates the external knowledge resource from which this class&#39;s definition derived.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:publisher"/>
+        <IRI>#BrainMap.org</IRI>
+        <Literal datatypeIRI="&xsd;string">Research Imaging Center, University of Texas Health Science Center, San Antonio, TX, USA</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:source"/>
+        <IRI>#BrainMap.org</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.brainmap.org/</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:title"/>
+        <IRI>#BrainMap.org</IRI>
+        <Literal datatypeIRI="&xsd;string">The BrainMap Project</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#ChEBIid</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#ChEBIid</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The ID from the Chemical Entities of Biological Interest (ChEBI) chemical taxonomy corresponding to this class.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#CurationStatus</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This provides specific info on the level of curation a given class has received and is specifically design to promote automated reporting on the status of classes in an ontology.  It is likely some classes will require more than one instance of this property to fully describe their status.   Is a type of skos_editorial_note.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:scopeNote"/>
+        <IRI>#CurationStatus</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The current range of values for this property are: (1) raw_import :== a class derived directly via import of an entity form an existing knowledge resource.  Terms labeled as such has yet to receive any additional curation.  As they do, their status is likely to change, though the link back to the original entity in the external resource is maintained; (2) definition_incomplete :== the curators recognize the definition of the class remains incomplete in someway.  Many definitions are dervied from external sources (a fact tracked via an additional annotation property) and require considerable amending before they fully comply with the OBO Foundry Aristotelean genera/differentia &amp; non-circular specification; (3) graph_position_temporary :== indicates the class may not be in its final preferred location within the ontology graph.  This label can be particularly useful during early ontology creation, as for certain entities, it may not be obvious where precisely a given class should reside until a sufficiently large portion of the graph has been settled; (4) uncurated :== indicates a class has been created by curators but has received minimal review; (5) pending_final_vetting :== indicates the term is likely ready for promotion to &quot;curation_complete&quot; status, and only requires a final review by the curators responsible.  A class may also be demoted to this status when a formerly &quot;complete&quot; class has been determined to require amendments.  In accordance with the emerging best practices, such a term will be moved to an obsolete branch of the ontology, when the new replacement class has been fully vetted and marked as such; (6) curation_complete :== indicates a class has been fully vetted by the curation authorities and to the best of their ability determined to be ready for use.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:publisher"/>
+        <IRI>#EMAP</IRI>
+        <Literal datatypeIRI="&xsd;string">MRC Human Genetics Unit, Western General Hospital, Edinburgh, UK</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:source"/>
+        <IRI>#EMAP</IRI>
+        <Literal datatypeIRI="&xsd;string">http://genex.hgu.mrc.ac.uk/</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:title"/>
+        <IRI>#EMAP</IRI>
+        <Literal datatypeIRI="&xsd;string">Edinburgh Mouse Atlas Project</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#KnownApplicationUses</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A application where the class entity is known to currently be in use by annotators and users searching those annotations.  Multiple instances of this property can be used to identify more than one current application.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:scopeNote"/>
+        <IRI>#KnownApplicationUses</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This property is merely informative and not assumed to be an exhaustive list.  Rather, it is just an list of examples known to the BIRNLex curators at the time the term was last modified.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:publisher"/>
+        <IRI>#NeuroNames</IRI>
+        <Literal datatypeIRI="&xsd;string">The BrainInfo Project, Washington National Primate Research Center, University of Washington, Seattle, WA, USA</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:source"/>
+        <IRI>#NeuroNames</IRI>
+        <Literal datatypeIRI="&xsd;string">http://braininfo.rprc.washington.edu/nnont.html</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:title"/>
+        <IRI>#NeuroNames</IRI>
+        <Literal datatypeIRI="&xsd;string">The NeuroNames Ontologies</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#PMID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#PMID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A PMID (PubMed Identifier or PubMed Unique Identifier) is a unique number assigned to each PubMed citation of life sciences and biomedical scientific journal articles.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#PubMedID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#PubMedID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The ID from the NIH/NLM/NCBI PubChem chemical taxonomy corresponding to this class.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#ReferenceURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Note that each instance of ReferenceURLTemplate will be named using the template name of the matching ID AnnotationProperty.  For example, the ReferenceURLTemplate ncbiTaxURLTemplate is linked to the ncbiTaxID AnnotationProperty, whose value can be combined algorithmically with this URL template to construct a working URL to the specific class reference.  This is a far from perfect solution to some of the limitations of imposed on the use of AnnotationProperties - in particular, the inability to explicitly link one annotation property to another (e.g., explicitly relating ncbiTaxID ncbiTaxURLTemplate as applied to a specific owl:Class).  However, this mechanism should suffice for now.  It will not only support more complete automatic processing of this critical information, but can also be algorithmically translated to whatever better mechanims may become available in future versions of OWL.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#ReferenceURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template is given exactly as posted in the form of a HTTP query, with the unique ID represented with the symbol &#39;$$ID$$&#39;</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#hasBirnlexCurator"/>
+        <IRI>#_birnlex_limbo_class</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:createdDate"/>
+        <IRI>#_birnlex_limbo_class</IRI>
+        <Literal datatypeIRI="&xsd;string">2007-03-05</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:modifiedDate"/>
+        <IRI>#_birnlex_limbo_class</IRI>
+        <Literal datatypeIRI="&xsd;string">2007-03-05</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#_birnlex_limbo_class</IRI>
+        <Literal datatypeIRI="&xsd;string">_birnlex_limbo_class</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#_birnlex_limbo_class</IRI>
+        <Literal datatypeIRI="&xsd;string">class in limbo since major refactoring of foundational community ontologies (e.g., BFO, OBI, SKOS). (BB:2007-03-05).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:prefLabel"/>
+        <IRI>#_birnlex_limbo_class</IRI>
+        <Literal datatypeIRI="&xsd;string">_birnlex_limbo_class</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#birnlexDefinition"/>
+        <IRI>#_birnlex_retired_class</IRI>
+        <Literal datatypeIRI="&xsd;string">These are classes for which the represented entities are now described using a different class.  A class is deprecated if it&#39;s semantic meaning required alteration or its entity is now represented directly in an imported foundational ontology.  Such obseleted classes are removed from the core subsumptive hierarchy and retired to this root branch of the tree for this ontology.  Deprecated classes maintain their original identifiers, so as to provide support for previous applications making use of the class prior to its being deprecated.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#hasBirnlexCurator"/>
+        <IRI>#_birnlex_retired_class</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:createdDate"/>
+        <IRI>#_birnlex_retired_class</IRI>
+        <Literal datatypeIRI="&xsd;string">2007-06-06</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:modifiedDate"/>
+        <IRI>#_birnlex_retired_class</IRI>
+        <Literal datatypeIRI="&xsd;string">2007-06-06</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#_birnlex_retired_class</IRI>
+        <Literal datatypeIRI="&xsd;string">_birnlex_retired_class</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:prefLabel"/>
+        <IRI>#_birnlex_retired_class</IRI>
+        <Literal datatypeIRI="&xsd;string">_birnlex_retired_class</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#animalModel</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">An organism providing a model system which mimics certain aspects of a particular human clinical syndrome or disease.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#atccID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#atccID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The unique ID for a biological material - typically a cell line - from the American Type Culture Collection database.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#atccURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.atcc.org/common/catalog/numSearch/numResults.cfm?atccNum=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#atccURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#atccID</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#atccURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for a resource page at the American Type Culture Collection catalog.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#bamsID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#bamsID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The &quot;aidi&quot; ID from the Brain Architecture Management System (BAMS) corresponding to this class.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#bamsURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://brancusi.usc.edu/bkms/brain/show-braing2.php?aidi=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#bamsURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#bamsID</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#bamsURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for the main page in the Brain Architecture Management portal for a BAMS-defined neuroanatomical structure.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#birnlexComment</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#editorialNote</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:editorialNote"/>
+        <IRI>#birnlexComment</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Is there a use for a BIRN-specific comment independent of rdfs:comment?</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#birnlexDefinition</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#oboDefinition</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#birnlexDefinition</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This is a type of OBO_definition that includes additional requirements specified by the BIRN OTF (additional requirements pending as of 2006-10-02).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#birnlexPendingDifferentiaNote</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#birnlexPendingDifferentiaNote</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#scopeNote</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#birnlexPendingDifferentiaNote</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This is a note describing a pending class sub-genera.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:example"/>
+        <IRI>#birnlexPendingDifferentiaNote</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">&quot;Basal nucleus of Meynert&quot; is used for labeling the Basal nucleus in humans.  In a human specific neuroanatomical ontology layer, basal nucleus will receive the prefered lable &quot;Basal nucleus of Meynert&quot;.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#birnlexRetiredDefinition</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#definition</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#birnlexRetiredDefinition</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A former definition for a class.  It is kept for the purposes of interpreting annotations made when this definition was in effect and to monitor the evolution of class definitions.  Given this requirement, a &quot;retiredDate&quot; is added to the definition on the date of retirement.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#bonfireID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#bonfireID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This ID is derived from the BIRN BONFIRE vocubulary management system</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#chebiURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.ebi.ac.uk/ontology-lookup/?termId=CHEBI%3A$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#chebiURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#ChEBIid</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#chebiURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for an Ontology Lookup Service Browser page for a given ChEBI term.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#curation_complete</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">indicates a class has been fully vetted by the curation authorities and to the best of their ability determined to be ready for use.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#definition_incomplete</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">the curators recognize the definition of the class remains incomplete in someway.  Many definitions are dervied from external sources (a fact tracked via an additional annotation property) and require considerable amending before they fully comply with the OBO Foundry Aristotelean genera/differentia &amp; non-circular specification.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#emapMouseStageDataID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#emapMouseStageDataID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The unique ID for a Theiler mouse prenatal development stage as given by the EMAP Project.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#emapMouseStageDataURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://genex.hgu.mrc.ac.uk/Databases/Anatomy/XML/$$ID$$.xml</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#emapMouseStageDataURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#emapMouseStageDataID</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#emapMouseStageDataURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for the data associated with a Theiler mouse prenatal development stage as given by the EMAP Project,</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#emapMouseStageDiagramID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#emapMouseStageDiagramID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The unique ID type linked to a partiular URL Template.  An instance of this ID type can be combined algorithmically with a URL template (&#39;$$ID$$&#39;) placeholder literal is replaced by an ID value to create a URL that links to the curated info associated with that ID.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#emapMouseStageDiagramURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://genex.hgu.mrc.ac.uk/Databases/Anatomy/Diagrams/$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#emapMouseStageDiagramURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#emapMouseStageDiagramID</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#emapMouseStageDiagramURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for the diagram associated with a Theiler mouse prenatal development stage as given by the EMAP Project.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#gbifID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#gbifID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The unique ID for this taxonomic category in Global Biodiversity Information Facility taxonomic ,knowledgebase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#gbifTaxonKeyID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#gbifTaxonKeyID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The unique ID for this taxonomy key in Global Biodiversity Information Facility taxonomic ,knowledgebase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#gbifTaxonKeyURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.europe.gbif.net/portal/ecat_browser.jsp?taxonKey=$$ID$$&amp;countryKey=0&amp;resourceKey=0</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#gbifTaxonKeyURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#gbifTaxonKeyID</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#gbifTaxonKeyURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for a taxonomy key in Global Biodiversity Information Facility taxonomic ,knowledgebase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#gbifURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://data.gbif.org/species/$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#gbifURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#gbifID</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#gbifURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for a taxonomic category in Global Biodiversity Information Facility taxonomic ,knowledgebase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#gene_Ontology_ID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#goURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://amigo.geneontology.org/cgi-bin/amigo/go.cgi?view=details&amp;query=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#goURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GOid</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#webServiceUrlTemplate"/>
+        <IRI>#goURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://amigo.geneontology.org/cgi-bin/amigo/go.cgi?format=xml&amp;query=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#goURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for an AmiGO Browser page for a given Gene Ontology term.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#graph_position_temporary</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">indicates the class may not be in its final preferred location within the ontology graph.  This label can be particularly useful during early ontology creation, as for certain entities, it may not be obvious where precisely a given class should reside until a sufficiently large portion of the graph has been settled.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationPropertyDomain"/>
+        <IRI>#hasBirnlexCurator</IRI>
+        <Literal datatypeIRI="&xsd;string">owl:Class</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationPropertyRange"/>
+        <IRI>#hasBirnlexCurator</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BirnlexCurator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:hasValidationMethod"/>
+        <IRI>#hasBirnlexCurator</IRI>
+        <Literal datatypeIRI="&xsd;string">sparql_verify_annotation_domain_and_range</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationPropertyDomain"/>
+        <IRI>#hasCurationStatus</IRI>
+        <Literal datatypeIRI="&xsd;string">owl:Class</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationPropertyRange"/>
+        <IRI>#hasCurationStatus</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#CurationStatus</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#hasCurationStatus</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#editorialNote</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:hasValidationMethod"/>
+        <IRI>#hasCurationStatus</IRI>
+        <Literal datatypeIRI="&xsd;string">sparql_verify_annotation_domain_and_range</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#hasFormerChildClass</IRI>
+        <Literal datatypeIRI="&xsd;string">http://purl.org/dc/elements/1.1/identifier</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#hasFormerChildClass</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#historyNote</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#hasFormerChildClass</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This annotation property is used to link back to an original child class for an obsoleted term.  The value of this property will simply be the ontology ID for the child class.  An obsoleted class can have greater than one former children..</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#hasFormerParentClass</IRI>
+        <Literal datatypeIRI="&xsd;string">http://purl.org/dc/elements/1.1/identifier</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#hasFormerParentClass</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#historyNote</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#hasFormerParentClass</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This annotation property is used to link back to the original parent class for an obsoleted term.  The value of this property will simply be the ontology ID for the parent class.  An obsoleted asserted class should have one and only one former parent class.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationPropertyDomain"/>
+        <IRI>#hasKnownApplicationUses</IRI>
+        <Literal datatypeIRI="&xsd;string">owl:Class</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationPropertyRange"/>
+        <IRI>#hasKnownApplicationUses</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#KnownApplicationUses</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:hasValidationMethod"/>
+        <IRI>#hasKnownApplicationUses</IRI>
+        <Literal datatypeIRI="&xsd;string">sparql_verify_annotation_domain_and_range</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationPropertyDomain"/>
+        <IRI>#hasReferenceURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">owl:Class</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationPropertyRange"/>
+        <IRI>#hasReferenceURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">ReferenceURLTemplate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#hasReferenceURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://purl.org/dc/elements/1.1/relation</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:hasValidationMethod"/>
+        <IRI>#hasReferenceURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">sparql_verify_annotation_domain_and_range</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#hasReferenceURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">A Class can be assigned more than one ReferenceURLTemplate assigned via distince hasReferenceURLTemplate properties</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#httpQueryUrlTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://purl.org/dc/elements/1.1/relation</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#httpQueryUrlTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This URL will typically return a well-formed HTML page for viewing in a web browser, so long as the curating authority doesn&#39;t changed their HTTP Query template.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#httpQueryUrlTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This is a template for constructing an HTTP-based dynamic query using an associated source ID.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#imsrStandardStrainName</IRI>
+        <Literal datatypeIRI="&xsd;string">http://purl.org/dc/elements/1.1/identifier</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#imsrStandardStrainName</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#altLabel</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#imsrStandardStrainName</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This annotation property contains the approved strain name for an inbred mouse or rat as given by the International Mouse Strain Repository (IMSR).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#isReplacedByClass</IRI>
+        <Literal datatypeIRI="&xsd;string">http://purl.org/dc/elements/1.1/identifier</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#isReplacedByClass</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#historyNote</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#isReplacedByClass</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This annotation property is used to link the new classes that now are used to represent the entities formerly represented by an obsoleted class.  The value of this property will simply be the ontology ID for the replacement class(es).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#itisID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#itisID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The unique ID for this taxonomic category in the North American Integrated Taxonomic Information System (ITIS) taxonomic ,knowledgebase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#itisURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&amp;search_value=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#itisURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#itisID</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#itisURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for a taxonomic category in the North American Integrated Taxonomic Information System (ITIS) taxonomic ,knowledgebase</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#jaxMiceID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#jaxMiceID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The unique ID for a mouse strain distributed by and tracked in the Jackson Laboratory Mouse database.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#jaxMiceURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://jaxmice.jax.org/strain/$$ID$$.html</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#jaxMiceURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#jaxMiceID</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#jaxMiceURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for a mouse strain tracked in the Jackson Laboratory Mouse database</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#meshURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.nlm.nih.gov/cgi/mesh/2008/MB_cgi?field=uid&amp;term=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#meshURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#MeshUid</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#webServiceUrlTemplate"/>
+        <IRI>#meshURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=mesh&amp;id=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#meshURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for an NLM MeSH Browser page for a given MeSH heading.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#ncbiInPartName</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#scopeNote</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#ncbiInPartName</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The &quot;in-part&quot; nametype is included for retrieval terms that have a broader range of application than the taxon or taxa at which they appear. For example, we list reptiles and Reptilia as in-part nametypes at our nodes Testudines (the turtles), Lepidosauria (the lizards and snakes), and Crocodylidae (the crocodilians).
+         (NCBI doc on NCBI Taxonomy, 2003).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#ncbiIncludesName</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#scopeNote</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#ncbiIncludesName</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The &quot;includes&quot; nametype is the opposite of the in-part nametype and is included for retrieval terms that have a narrower scope of application than the taxon at which they appear. For example, we could list &quot;reptiles&quot; as an &quot;includes&quot; nametype for the Amniota (or at any higher node in the lineage) (NCBI doc on NCBI Taxonomy, 2003).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#ncbiTaxBlastName</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#altLabel</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#ncbiTaxBlastName</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The taxonomic name used in BLAST homology analysis given in NCBI Taxonomy</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#ncbiTaxBlastName</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The &quot;BLAST names&quot; are a specially designated set of common names selected from the Taxonomy database. These were chosen to provide a pool of familiar names for large groups of organisms (such as &quot;insects&quot;, &quot;mammals&quot;, &quot;fungi&quot;, and others) so that any particular species (which may not have an informative common name of its own) could inherit a meaningful collective common name from the Taxonomy database. This was originally developed for BLAST, because a list of BLAST results will typically include entries from many species identified by Latin binomials, which may not be familiar to all users. BLAST names may be nested; for example, &quot;eukaryotes&quot;, &quot;animals&quot;, &quot;chordates&quot;, &quot;mammals&quot;, and &quot;primates&quot; are all flagged as &quot;blast names&quot;. 
+         Blast names are now used in several other applications, for example the Tax BLAST displays, the Summary view in Entrez Taxonomy, and in the Summary display of the Common Tree
+         format (NCBI doc on NCBI Taxonomy, 2003).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#ncbiTaxGenbankCommonName</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#altLabel</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#ncbiTaxGenbankCommonName</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The common taxonomic name assigned by NCBI Taxonomy and applied to GENBANK sequence records.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#ncbiTaxGenbankCommonName</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The &quot;genbank common name&quot; was introduced to provide a mechanism by which, when there is more than one common name associated with a particular node in the taxonomy, one of them could be designated to be the common name that should be used by default in the GenBank flat- files and other applications that are trying to find a common name to use for display (or other) purposes. This is not intended to confer any special status or blessing on this particular common name over any of the other common names that might be associated with the same node, and we have developed mechanisms to override this choice for a common name on a case-by-case basis if another name is more appropriate or desirable for a particular sequence entry. Each node may have at most one &quot;genbank common name&quot; (NCBI doc on NCBI Taxonomy, 2003).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#ncbiTaxID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#ncbiTaxID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The unique ID for this taxonomic category in the NCBI Taxonomy database</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#ncbiTaxScientificName</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#synonym</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#ncbiTaxScientificName</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The preferred label for this taxonomic category in the NCBI Taxonomy database</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#ncbiTaxURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#ncbiTaxURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ncbiTaxID</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#webServiceUrlTemplate"/>
+        <IRI>#ncbiTaxURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&amp;id=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#ncbiTaxURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for a taxonomic category in NCBI Taxonomy</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#neuroNamesAncillaryTerm</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral"> This class was derived from a NeuroNames ancillary term, indicated the NeuroNames developers were unable to fit it into the core NN hierarchy.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#neuroNamesAncillaryTerm</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">&quot;(NeuroNames) defines the brain in terms of about 550 primary structures to which all other structures, names, and synonyms are related.  (It) provides standard English and Latin names for more than 850 unique structures including the primary structures, superstructures and related superficial features and shows hierarchical relations of each structure to its superstructures and substructures.  NeuroNames also defines more than 1500 other neuroanatomical entities in terms of structures in the Hierarchy. The structure you name may not be part of the Brain Hierarchy. For example, it may represent a different way of subdividing the brain or it may exist only at the embryonic stage of brain development. Such items are referred to as &#39;ancillary structures&#39; (http://braininfo.rprc.washington.edu/indexabout.html).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#neuronamesID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#neuronamesID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The ID from the NeuroNames neuroanatomical thesaurus corresponding to this class.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#neuronamesURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#neuronamesURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#neuronamesID</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#neuronamesURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for the main page in the BrainInfo.org portal for a NeuroNames neuroanatomical structure.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#nitrc_ID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#pending_final_vetting</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">indicates the term is likely ready for promotion to &quot;curation_complete&quot; status, and only requires a final review by the curators responsible.  A class may also be demoted to this status when a formerly &quot;complete&quot; class has been determined to require amendments.  In accordance with the emerging best practices, such a term will be moved to an obsolete branch of the ontology, when the new replacement class has been fully vetted and marked as such.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#pubchemCicURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#pubchemCicURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#ChEBIid</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#pubchemCicURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for an PubChem Browser page for a given PubChem CID term.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#putativeClassExtension</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#putativeClassExtension</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.w3.org/2004/02/skos/core#scopeNote</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#putativeClassExtension</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This is a note describing possible class sub-genera.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#raw_import</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">a class derived directly via import of an entity form an existing knowledge resource.  Terms labeled as such has yet to receive any additional curation.  As they do, their status is likely to change, though the link back to the original entity in the external resource is maintained.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#sao_ID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#tacMiceID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#tacMiceID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The unique ID for a mouse strain distributed by and tracked in the Taconic Farms Mouse database.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#httpQueryUrlTemplate"/>
+        <IRI>#tacMiceURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://www.taconic.com/wmspage.cfm?parm1=$$ID$$</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty IRI="#urlTemplateLinkedID"/>
+        <IRI>#tacMiceURLTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#tacMiceID</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#tacMiceURLTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">The URL reference template for a mouse strain tracked in the Taconic Farms Mouse database</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#umls_ID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#uncurated</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">indicates a class has been created by curators but has received minimal review.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#urlTemplateLinkedID</IRI>
+        <Literal datatypeIRI="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#urlTemplateLinkedID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This URL constructed this way will typically return a well-formed HTML page for viewing in a web browser, so long as the curating authority doesn&#39;t changed their HTTP Query template.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#urlTemplateLinkedID</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This is a template for constructing an HTTP-based dynamic query using an associated source ID.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:annotationType"/>
+        <IRI>#webServiceUrlTemplate</IRI>
+        <Literal datatypeIRI="&xsd;string">http://purl.org/dc/elements/1.1/relation</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="obo_annot:usageNote"/>
+        <IRI>#webServiceUrlTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This is merely information and is designed to be associated with an ExternalSource, when a service is available to access related resource information using an External ID tracked in the ontology.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="core:definition"/>
+        <IRI>#webServiceUrlTemplate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">This is the HTTP or WSDL URL with which a query can be constructed to return a data fragment describing the associated source ID.</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.22702) http://owlapi.sourceforge.net -->
+
