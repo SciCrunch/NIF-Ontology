@@ -1,0 +1,749 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY obo "http://purl.org/obo/owl/obo#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+    <!ENTITY BIRNLex-OBO-UBO "http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#" >
+    <!ENTITY OBO_annotation_properties "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#" >
+    <!ENTITY BIRNLex_annotation_properties "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#"
+     xml:base="http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:obo="http://purl.org/obo/owl/obo#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:BIRNLex-OBO-UBO="http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:OBO_annotation_properties="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#"
+     xmlns:BIRNLex_annotation_properties="http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#">
+    <owl:Ontology rdf:about="http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl">
+        <owl:versionInfo rdf:datatype="&xsd;string">1.3.2</owl:versionInfo>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2008-03-22</OBO_annotation_properties:modifiedDate>
+        <dc:contributor rdf:datatype="&xsd;string">Amarnath Gupta</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Bill Bug</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Carol Bean</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Christine Fennema-Notestine</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">David Kennedy</dc:contributor>
+        <skos:editorialNote rdf:datatype="&xsd;string">ID use: 1 - 25</skos:editorialNote>
+        <dc:contributor rdf:datatype="&xsd;string">Jeff Grethe</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Jessica Turner</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Maryann Martone</dc:contributor>
+        <dc:creator rdf:datatype="&xsd;string">The BIRN Ontology Task Force</dc:creator>
+        <dc:subject rdf:datatype="&xsd;string">The BIRN project lexicon</dc:subject>
+        <protege:defaultLanguage rdf:datatype="&xsd;string">en</protege:defaultLanguage>
+        <skos:editorialNote rdf:datatype="&xsd;string">next ID: birnlex_25</skos:editorialNote>
+        <skos:changeNote xml:lang="en">(BB:2008-03-22) - Added a molecule and biomolecule class.  The former was added to classify entities that are ChEBI derived, but are not of biomaterial origin.  The latter was for those that are of biomaterial origin.  Also shifted macromolecule and macromolecular complex to be childre of biomolecule.</skos:changeNote>
+        <skos:changeNote xml:lang="en">Added the LIGHT version of the OBO Relation ontology from IFOMIS/NCBO at http://www.ifomis.org/obo/ro/1.0/light. (BB: 2007-03-01).</skos:changeNote>
+        <skos:changeNote xml:lang="en">Added the is_bearer_of ObjectProperty - inverse of inheres_in property used to link PATO dependent_continuants to independent_continuants.  is_bearer_of enables one to represent the link from independen_continuant to dependent_continuant.</skos:changeNote>
+        <skos:changeNote xml:lang="en">Duplicated all SKOS core:prefLabel Annotations as rdfs:label Annotations using a parsing script supplied by Trish Whetzel (UPenn/OBI community).  This makes it possible to use rdfs:label as the DISPLAY_SLOT in Protege to match OBI and to use it to generate OWLDocs where both BIRNLex and OBI classes will use the same AnnotationProperty for their preferred display name (BB: 2007-02-27).</skos:changeNote>
+        <skos:changeNote xml:lang="en">OBO-RO LIGHT version no longer available from IFOMIS/NCBO at http://www.ifomis.org/obo/ro/1.0/light.  Switched to Chris M&#39;s OWL version of OBO-RO at http://www.berkeleybop.org/ontologies/obo-all/relationship/relationship.owl.  Need to look at using Chris M&#39;s OBO-RO to BFO bridge as well (BB: 2007-05-07).</skos:changeNote>
+        <dc:description xml:lang="en">This is a proposed upper biomedial ontology derived by examples from the Biodynamic Ontology, the Simple Upper Bio Ontology, the Ontology of Biomedical Reality, and the Foundational Model of Anatomy.  It is designed to be a very slim layer intervening between the Basic Formal Ontology (BFO) and the generic, domain, and application ontologies developed to formally represent entities relevant to biomedical research and clinical practice.  The intension is for their to be a shared layer for all of these ontologies to use to declares a biological context from which they can all derive required classes thereby making the equivalent foundational entities 100% algorithmically commensurate across all of these ontological artifacts.  At this date (2006-10-06), this is just a proposal meant for: review by the community of OBO Foundry-associated biomedical ontology developers; very sparse and preliminary with the bulk of the coverage in the domain of biomaterial and immaterial objects; immediate use by the BIRN Ontology Task Force with the expectation this normalized layer will expedite future integration/import of the upper level biomedical ontology eventually adopted and endorsed by the OBO Foundry participant ontology development community members.</dc:description>
+        <OBO_annotation_properties:pendingActionNote xml:lang="en">This is likely to be replaced soon by some combination of BioTop (http://www.ifomis.uni-saarland.de/biotop/), the Simple Upper Bio Ontology (http://www.cs.man.ac.uk/~rector/ontologies/simple-top-bio/), OBO-UBO from NCBO, and the contents of this current file (BB: 2007-02-27).</OBO_annotation_properties:pendingActionNote>
+        <dc:title xml:lang="en">Upper Biomedical Ontology (BIRN proposal)</dc:title>
+        <skos:changeNote xml:lang="en">v1.2.2 (2007-03-19): Since Protege-OWL automatically sets new class identifiers to rdf:ID, but SOME of the classes appear to have been setup using rdf:about, I&#39;m changing these across the files, to help make it more deterministic when parsing the RDF/XML.</skos:changeNote>
+        <skos:changeNote xml:lang="en">v1.3.0 (2007-08-03) - Changed many things, but primarily: (1) removed rdf:datatype xsd:string specs for all AnnotationProperties, since they are now all untyped and should assume STRING as a the default; (2) added the typing of AnnotationProperties using annotationType which should aid in algorithmically processing; (3) Removed all underscore characters from the prefLabel field, and since the rdfs:labels are regenerated in the cleanser from prefLabel, they too are now free of underscores; (4) Also updated the XSLT BIRNLex cleanser to clean up more Protege mangling and provide a fixed order for certain properties.  This last tool is brittle, as it probably will require continued maintenance to handle more complex OWL constructs than we know have in the file - especially highly nested constructs using class axioms.</skos:changeNote>
+        <skos:changeNote xml:lang="en">v1.3.2 (2007-10-08) - switched to importing BIRNLex_annoation_properties.owl so would have access to _birnlex_retired_class</skos:changeNote>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&OBO_annotation_properties;hasExternalSource"/>
+    <owl:AnnotationProperty rdf:about="&OBO_annotation_properties;tempDefinition"/>
+    <owl:AnnotationProperty rdf:about="&OBO_annotation_properties;definingCitation"/>
+    <owl:AnnotationProperty rdf:about="&skos;prefLabel"/>
+    <owl:AnnotationProperty rdf:about="&skos;historyNote"/>
+    <owl:AnnotationProperty rdf:about="&skos;example"/>
+    <owl:AnnotationProperty rdf:about="&BIRNLex_annotation_properties;isReplacedByClass"/>
+    <owl:AnnotationProperty rdf:about="&OBO_annotation_properties;nifID"/>
+    <owl:AnnotationProperty rdf:about="&OBO_annotation_properties;pendingActionNote"/>
+    <owl:AnnotationProperty rdf:about="&BIRNLex_annotation_properties;hasFormerParentClass"/>
+    <owl:AnnotationProperty rdf:about="&skos;note"/>
+    <owl:AnnotationProperty rdf:about="&OBO_annotation_properties;createdDate"/>
+    <owl:AnnotationProperty rdf:about="&OBO_annotation_properties;curator"/>
+    <owl:AnnotationProperty rdf:about="&skos;definition"/>
+    <owl:AnnotationProperty rdf:about="&OBO_annotation_properties;modifiedDate"/>
+    <owl:AnnotationProperty rdf:about="&OBO_annotation_properties;synonym"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_17 -->
+
+    <owl:ObjectProperty rdf:about="&BIRNLex-OBO-UBO;birnlex_17">
+        <rdfs:label rdf:datatype="&xsd;string">is_bearer_of</rdfs:label>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2007-10-02</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2007-10-02</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">Makes it possible for an independent_continuant to represent its relation to a dependent_continuant, such as a PATO quality, a bfo:disposition, or a bfo:function.</OBO_annotation_properties:tempDefinition>
+        <skos:prefLabel rdf:datatype="&xsd;string">is_bearer_of</skos:prefLabel>
+        <owl:inverseOf rdf:resource="&obo;inheres_in"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/obo/owl/obo#inheres_in -->
+
+    <owl:ObjectProperty rdf:about="&obo;inheres_in">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_1 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_1">
+        <rdfs:label rdf:datatype="&xsd;string">Macromolecular complex</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <skos:example rdf:datatype="&xsd;string">16S ribosomal complex</skos:example>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2008-03-22</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">A large, multi-molecular biological aggregate held together by van der Waals, hydrophobic, and hydrophilic interactions. Such complexes have a myriad of interactions with other cellular constituents with help to situate them within the cell - e.g., with the periphery of the phospholipid bilayer, penetrating some or all of the bilayer, interactions with intra- or extracellular fibrous matrices, and finally with other macromolecular complexes. Conformational changes in one molecular constituent of a complex frequently caused by covalent modification will tend to high non-local effects on the over conformation and energy profile of all the constituents in the complex.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Macromolecular complex</skos:prefLabel>
+        <skos:example rdf:datatype="&xsd;string">axonal Na+-K+ ATPase transporter</skos:example>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#birnlex_1</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">neuronal nicotinic Acetylcholine receptor</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_10 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_10">
+        <rdfs:label rdf:datatype="&xsd;string">Constitutional part of cell</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Constitutional part of cell</skos:prefLabel>
+        <skos:example rdf:datatype="&xsd;string">cytoskeletal system</skos:example>
+        <OBO_annotation_properties:hasExternalSource rdf:datatype="&xsd;string">http://ccdb.ucsd.edu/NIF/OBO_annotation_properties.owl#UMLS</OBO_annotation_properties:hasExternalSource>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#birnlex_10</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">post-synaptic density</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_11 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_11">
+        <rdfs:label rdf:datatype="&xsd;string">Regional part of body system</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Regional part of body system</skos:prefLabel>
+        <skos:example rdf:datatype="&xsd;string">arterial vasculature</skos:example>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_11</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">peripheral nervous system</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_12 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_12">
+        <rdfs:label rdf:datatype="&xsd;string">Cell</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2007-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Cell</skos:prefLabel>
+        <skos:example rdf:datatype="&xsd;string">Mauthner cell</skos:example>
+        <skos:example rdf:datatype="&xsd;string">hepatocyte</skos:example>
+        <OBO_annotation_properties:hasExternalSource rdf:datatype="&xsd;string">http://ccdb.ucsd.edu/NIF/OBO_annotation_properties.owl#OBR</OBO_annotation_properties:hasExternalSource>
+        <BIRNLex_annotation_properties:hasFormerParentClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_6</BIRNLex_annotation_properties:hasFormerParentClass>
+        <skos:example rdf:datatype="&xsd;string">oocyte</skos:example>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">sao1813327414</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">stomatal guard cell</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_13 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_13">
+        <rdfs:label rdf:datatype="&xsd;string">Sample population</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">A defined subset of a population whose spatio-temporal interactions or aggregate behavior is representative of the whole population.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Sample population</skos:prefLabel>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#birnlex_13</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_14 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_14">
+        <rdfs:label rdf:datatype="&xsd;string">Body system</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Body system</skos:prefLabel>
+        <OBO_annotation_properties:hasExternalSource rdf:datatype="&xsd;string">http://ccdb.ucsd.edu/NIF/OBO_annotation_properties.owl#FMA</OBO_annotation_properties:hasExternalSource>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_14</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">insect tracheolar network</skos:example>
+        <skos:example rdf:datatype="&xsd;string">nervous system</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_15 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_15">
+        <rdfs:label rdf:datatype="&xsd;string">Macromolecule</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2008-03-22</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Macromolecule</skos:prefLabel>
+        <OBO_annotation_properties:nifID rdf:datatype="&xsd;string">_5.2_6</OBO_annotation_properties:nifID>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#birnlex_15</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_16 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_16">
+        <rdfs:label rdf:datatype="&xsd;string">Regional part of organ</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Regional part of organ</skos:prefLabel>
+        <skos:example rdf:datatype="&xsd;string">cardiac ventricle</skos:example>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_16</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">ommatidium of insect eye</skos:example>
+        <skos:example rdf:datatype="&xsd;string">regional part of brain</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_18 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_18">
+        <rdfs:label rdf:datatype="&xsd;string">Body</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2007-10-08</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2007-10-08</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Body</skos:prefLabel>
+        <OBO_annotation_properties:nifID rdf:datatype="&xsd;string">_5.2_1</OBO_annotation_properties:nifID>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_18</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_19 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_19">
+        <rdfs:label rdf:datatype="&xsd;string">Tissue</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2007-10-10</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2007-10-10</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Tissue</skos:prefLabel>
+        <OBO_annotation_properties:nifID rdf:datatype="&xsd;string">_1_3.3</OBO_annotation_properties:nifID>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_19</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_2 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_2">
+        <rdfs:label rdf:datatype="&xsd;string">Organism</rdfs:label>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">A biomaterial object capable of reproduction and harvesting energy from some biomaterial source in order to sustain its existance.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Organism</skos:prefLabel>
+        <OBO_annotation_properties:synonym rdf:datatype="&xsd;string">Organismal_object</OBO_annotation_properties:synonym>
+        <OBO_annotation_properties:pendingActionNote rdf:datatype="&xsd;string">This part of the graph will need to adjust as organism taxonomy is handled more consistently by the biomedical-ontology community</OBO_annotation_properties:pendingActionNote>
+        <OBO_annotation_properties:nifID rdf:datatype="&xsd;string">_6</OBO_annotation_properties:nifID>
+        <skos:example rdf:datatype="&xsd;string">insect</skos:example>
+        <skos:example rdf:datatype="&xsd;string">macaque monkey</skos:example>
+        <skos:example rdf:datatype="&xsd;string">procaryote</skos:example>
+        <skos:example rdf:datatype="&xsd;string">vascular plant</skos:example>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_20 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_20">
+        <rdfs:label rdf:datatype="&xsd;string">Bodily fluid</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2007-10-18</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2007-10-18</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Bodily fluid</skos:prefLabel>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_20</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_21 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_21">
+        <rdfs:label rdf:datatype="&xsd;string">Molecule</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2008-03-21</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2008-03-21</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">An object consisting of a set of bonded atoms that is not of organismal origin.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Molecule</skos:prefLabel>
+        <skos:example rdf:datatype="&xsd;string">Saponin</skos:example>
+        <skos:example rdf:datatype="&xsd;string">glutaraldehyde</skos:example>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#birnlex_21</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_22 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_22">
+        <rdfs:label rdf:datatype="&xsd;string">Biomolecule</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2008-03-22</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">An object consisting of a set of bonded atoms that is of organismal origin.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Biomolecule</skos:prefLabel>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">February 18, 2009</OBO_annotation_properties:modifiedDate>
+        <rdfs:comment rdf:datatype="&xsd;string">This class has been retired.</rdfs:comment>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#birnlex_22</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">insulin</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <skos:example rdf:datatype="&xsd;string">voltage-gated Ca++ ion channel</skos:example>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_23 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_23">
+        <rdfs:label rdf:datatype="&xsd;string">Protein</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2008-03-22</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2008-03-22</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">A macromolecule consisting primarily of a single covalently bound array of naturally occuring amino acids.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Protein</skos:prefLabel>
+        <rdfs:comment rdf:datatype="&xsd;string">This class hes been retired.</rdfs:comment>
+        <BIRNLex_annotation_properties:hasFormerParentClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_15</BIRNLex_annotation_properties:hasFormerParentClass>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao26622963</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">insulin</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_24 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_24">
+        <rdfs:label rdf:datatype="&xsd;string">Protein complex</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2008-03-22</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2008-03-22</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">A macromolecule consisting primarily of a multiple covalently bound arrays of naturally occuring amino acids where the individual proteins are typically bound together through ionic and hydrogen bond interactions.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Protein complex</skos:prefLabel>
+        <rdfs:comment rdf:datatype="&xsd;string">This class has been retired.</rdfs:comment>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <skos:example rdf:datatype="&xsd;string">voltage-gated Na++ ion channel</skos:example>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_25 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_25">
+        <rdfs:label rdf:datatype="&xsd;string">Peptide</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2008-03-22</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2008-03-22</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">A macromolecule consisting exclusively of a single covalently bound array of naturally occuring amino acids.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Peptide</skos:prefLabel>
+        <BIRNLex_annotation_properties:hasFormerParentClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_23</BIRNLex_annotation_properties:hasFormerParentClass>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#nifext_5000</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">insulin</skos:example>
+        <skos:example rdf:datatype="&xsd;string">somatostatin</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <skos:example rdf:datatype="&xsd;string">vasopressin</skos:example>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_3 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_3">
+        <rdfs:label rdf:datatype="&xsd;string">Supracellular structure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">Anatomical structure consisting of an identifable arrangement of multiple cellular structures into a functional unit.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:example rdf:datatype="&xsd;string">Node of Ranvier</skos:example>
+        <skos:prefLabel rdf:datatype="&xsd;string">Supracellular structure</skos:prefLabel>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_3</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">neuropil</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_4 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_4">
+        <rdfs:label rdf:datatype="&xsd;string">Organ</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">Anatomical structure, which consists of the maximal set of organ parts so connected to one another that together they constitute a unit of macroscopic anatomy, structurally distinct from other such units.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:example rdf:datatype="&xsd;string">Manduca sexta prothoracic gland</skos:example>
+        <skos:prefLabel rdf:datatype="&xsd;string">Organ</skos:prefLabel>
+        <skos:example rdf:datatype="&xsd;string">bicep skeletal muscle</skos:example>
+        <skos:example rdf:datatype="&xsd;string">coral snake venom sac</skos:example>
+        <skos:example rdf:datatype="&xsd;string">heart</skos:example>
+        <OBO_annotation_properties:hasExternalSource rdf:datatype="&xsd;string">http://ccdb.ucsd.edu/NIF/OBO_annotation_properties.owl#FMA</OBO_annotation_properties:hasExternalSource>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_4</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">liver</skos:example>
+        <skos:example rdf:datatype="&xsd;string">ovary</skos:example>
+        <skos:example rdf:datatype="&xsd;string">skin</skos:example>
+        <skos:example rdf:datatype="&xsd;string">tracheobronchial tree</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <skos:example rdf:datatype="&xsd;string">vertebrate femur</skos:example>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_5 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_5">
+        <rdfs:label rdf:datatype="&xsd;string">Biomaterial object</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">An object constituting a biological organism either in whole or in part, or one derived from a biological organism.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Biomaterial object</skos:prefLabel>
+        <skos:historyNote rdf:datatype="&xsd;string">The entity descriptions in this branch of the ontology are informed by previous efforts in biomedical ontology development, particularly the Foundational Model of Anatomy, Biodynamic ontology, and the Ontology of Biomedical Reality, though they do not necessary recapitulate the principles defined there verbatim.</skos:historyNote>
+        <skos:example rdf:datatype="&xsd;string">erythrocyte</skos:example>
+        <skos:example rdf:datatype="&xsd;string">head</skos:example>
+        <skos:example rdf:datatype="&xsd;string">heart</skos:example>
+        <skos:example rdf:datatype="&xsd;string">hemoglobin molecule</skos:example>
+        <skos:example rdf:datatype="&xsd;string">mitochondrion</skos:example>
+        <skos:example rdf:datatype="&xsd;string">mouse</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_6 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_6">
+        <rdfs:label rdf:datatype="&xsd;string">Constitutional part of organismal object</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">A biomaterial object constituting a part of a complete organismal object.</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">Biomaterial object constituting the structural organization of a biological organism or an attribute of that organization.</OBO_annotation_properties:tempDefinition>
+        <skos:prefLabel rdf:datatype="&xsd;string">Constitutional part of organismal object</skos:prefLabel>
+        <rdfs:comment rdf:datatype="&xsd;string">This class has been retired</rdfs:comment>
+        <OBO_annotation_properties:nifID rdf:datatype="&xsd;string">_5.2</OBO_annotation_properties:nifID>
+        <OBO_annotation_properties:synonym rdf:datatype="&xsd;string">anatomical_object</OBO_annotation_properties:synonym>
+        <skos:example rdf:datatype="&xsd;string">cell</skos:example>
+        <skos:example rdf:datatype="&xsd;string">glucose-6-phosphate</skos:example>
+        <skos:example rdf:datatype="&xsd;string">head</skos:example>
+        <skos:example rdf:datatype="&xsd;string">heart</skos:example>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_6</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <skos:example rdf:datatype="&xsd;string">voltage-dependent ion-channel</skos:example>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_7 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_7">
+        <rdfs:label rdf:datatype="&xsd;string">Regional part of body</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Regional part of body</skos:prefLabel>
+        <skos:example rdf:datatype="&xsd;string">antenna</skos:example>
+        <skos:example rdf:datatype="&xsd;string">head</skos:example>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_7</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">leg</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_8 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_8">
+        <rdfs:label rdf:datatype="&xsd;string">Population</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">A collection of independent organismal entities engaged in some form of spatio-temporal interaction or aggregate behavior</OBO_annotation_properties:tempDefinition>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Population</skos:prefLabel>
+        <rdfs:comment rdf:datatype="&xsd;string">This class has been retired.</rdfs:comment>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao2254405550</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_9 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;birnlex_9">
+        <rdfs:label rdf:datatype="&xsd;string">Bio physical immaterial entity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">2006-09-07</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:modifiedDate rdf:datatype="&xsd;string">2006-10-09</OBO_annotation_properties:modifiedDate>
+        <OBO_annotation_properties:curator rdf:datatype="&xsd;string">Bill Bug</OBO_annotation_properties:curator>
+        <skos:prefLabel rdf:datatype="&xsd;string">Bio physical immaterial entity</skos:prefLabel>
+        <OBO_annotation_properties:tempDefinition rdf:datatype="&xsd;string">Physical entity of biological origin which is a three-dimensional space, surface, line or point associated with a biomaterial object.</OBO_annotation_properties:tempDefinition>
+        <skos:example rdf:datatype="&xsd;string">anterior compartment of right arm</skos:example>
+        <skos:example rdf:datatype="&xsd;string">apex of right lung</skos:example>
+        <skos:example rdf:datatype="&xsd;string">body space</skos:example>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_9</BIRNLex_annotation_properties:isReplacedByClass>
+        <skos:example rdf:datatype="&xsd;string">sulcal invaginations of the mammalian brain.</skos:example>
+        <skos:example rdf:datatype="&xsd;string">surface of heart</skos:example>
+        <skos:example rdf:datatype="&xsd;string">third ventricle of the mammalian brain.</skos:example>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090201 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;nlx_ubo_20090201">
+        <rdfs:label rdf:datatype="&xsd;string">Body membrane</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <skos:prefLabel rdf:datatype="&xsd;string">Body membrane</skos:prefLabel>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">February 24, 2009</OBO_annotation_properties:createdDate>
+        <rdfs:comment rdf:datatype="&xsd;string">Not sure this is the correct designation; FMA has &quot;membranous organ&quot; but that doesn&#39;t seem quite right either.</rdfs:comment>
+        <skos:definition rdf:datatype="&xsd;string">Part of body that takes the form of a thin sheet of cells or fibrous material, e.g., the meningeal coverings of the brain.</skos:definition>
+        <BIRNLex_annotation_properties:hasFormerParentClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_5</BIRNLex_annotation_properties:hasFormerParentClass>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090201</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090202 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;nlx_ubo_20090202">
+        <rdfs:label rdf:datatype="&xsd;string">Endoneurium</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <skos:prefLabel rdf:datatype="&xsd;string">Endoneurium</skos:prefLabel>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">February 24, 2009</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:definingCitation rdf:datatype="&xsd;string">Nolte, J., The Human Brain 3rd edition</OBO_annotation_properties:definingCitation>
+        <skos:definition rdf:datatype="&xsd;string">The loose connective tissue within the perineurium that continues into nerve fascicles and surrounds individual fibers. (Nolte, J. The Human Brain 3rd edition)</skos:definition>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090202</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090203 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;nlx_ubo_20090203">
+        <rdfs:label rdf:datatype="&xsd;string">Epineurium</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <skos:definition rdf:datatype="&xsd;string">A loose connective tissue sheath surrounding each peripheral nerve. Composed mainly of colagen and fibroblasts, it forms a substantial covering over nerve trunks, then thins to an incomplete layer around smaller branches near their terminations. The epineurium is continuous centrally with the dura. Peripherally, it usually ends near the termination of a nerve fiber, but it may continue as the capsule of Meissner corpuscles and a few other encapsulated endings. Nolte, J. The Human Brain 3rd edition</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">Epineurium</skos:definition>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">February 24, 2009</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:definingCitation rdf:datatype="&xsd;string">Nolte, J., The Human Brain 3rd edition</OBO_annotation_properties:definingCitation>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090203</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090204 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;nlx_ubo_20090204">
+        <rdfs:label rdf:datatype="&xsd;string">Meninx</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <skos:note rdf:datatype="&xsd;string">FMAID: 9589</skos:note>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">February 24, 2009</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:synonym rdf:datatype="&xsd;string">Meninges</OBO_annotation_properties:synonym>
+        <rdfs:comment rdf:datatype="&xsd;string">Meninges is not technally a synonym but the plural form; however, it is more commonly used than &quot;meninx&quot;</rdfs:comment>
+        <skos:definition rdf:datatype="&xsd;string">Meninx</skos:definition>
+        <skos:definition rdf:datatype="&xsd;string">One of three membranous coverings that surrounds the brain and spinal cord</skos:definition>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090204</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090205 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;nlx_ubo_20090205">
+        <rdfs:label rdf:datatype="&xsd;string">Perineurium</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <skos:definition rdf:datatype="&xsd;string">A layer of thin, concentrically arranged cells with interspersed collagen that lies within the epineurium. (Nolte, J., The Human Brain 3rd edition)</skos:definition>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">February 24, 2009</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:definingCitation rdf:datatype="&xsd;string">Nolte, J., The Human Brain 3rd edition</OBO_annotation_properties:definingCitation>
+        <skos:definition rdf:datatype="&xsd;string">Perineurium</skos:definition>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090205</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090206 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;nlx_ubo_20090206">
+        <rdfs:label rdf:datatype="&xsd;string">Dura Mater</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:synonym rdf:datatype="&xsd;string">Dura</OBO_annotation_properties:synonym>
+        <skos:prefLabel rdf:datatype="&xsd;string">Dura Mater</skos:prefLabel>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">February 24, 2009</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:synonym rdf:datatype="&xsd;string">Pachymeninges</OBO_annotation_properties:synonym>
+        <skos:definition rdf:datatype="&xsd;string">Thick, fibrous meningeal covering surrounding the brain and spinal cord. It is the outermost of the three meningeal coverings. It consists of two layers: the periosteal dura linking the inner surface of the skull and the meningeal dura that lies above the arachnoid dural membrane. The meningeal layer draws away from the periosteal layer and certain locations to form the dural reflections.</skos:definition>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090206</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090207 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;nlx_ubo_20090207">
+        <rdfs:label rdf:datatype="&xsd;string">Leptomeninx</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <skos:definition rdf:datatype="&xsd;string">Delicate meningeal covering of the brain and spinal cord, consisting of an outer arachnoid membrane that sits beneath the dura and an inner pial membrane that lies on the surface of the brain and spinal cord.</skos:definition>
+        <skos:note rdf:datatype="&xsd;string">FMAID: 231515</skos:note>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">February 24, 2009</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:synonym rdf:datatype="&xsd;string">Leptomeninges</OBO_annotation_properties:synonym>
+        <rdfs:comment rdf:datatype="&xsd;string">Leptomeninges is technically not a synonym but a plural form. However, it is more commonly used that the singular form.</rdfs:comment>
+        <skos:prefLabel rdf:datatype="&xsd;string">Leptomeninx</skos:prefLabel>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090207</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090208 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;nlx_ubo_20090208">
+        <rdfs:label rdf:datatype="&xsd;string">Arachnoid membrane</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:synonym rdf:datatype="&xsd;string">Arachnoid</OBO_annotation_properties:synonym>
+        <OBO_annotation_properties:synonym rdf:datatype="&xsd;string">Arachnoid mater</OBO_annotation_properties:synonym>
+        <skos:prefLabel rdf:datatype="&xsd;string">Arachnoid membrane</skos:prefLabel>
+        <skos:note rdf:datatype="&xsd;string">FMAID: 9591</skos:note>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">February 24, 2009</OBO_annotation_properties:createdDate>
+        <skos:definition rdf:datatype="&xsd;string">One of two leptomeningeal membranes covering the brain and spinal cord. The arachnoid membrane lies under the dura mater and above the pial membrane. It closely hugs the outside surface of the brain in many places, but does not extend into sulci in gyrencephalic species.</skos:definition>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090208</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090209 -->
+
+    <owl:Class rdf:about="&BIRNLex-OBO-UBO;nlx_ubo_20090209">
+        <rdfs:label rdf:datatype="&xsd;string">Pial membrane</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+        <OBO_annotation_properties:createdDate rdf:datatype="&xsd;string">February 24, 2009</OBO_annotation_properties:createdDate>
+        <OBO_annotation_properties:synonym rdf:datatype="&xsd;string">Pia</OBO_annotation_properties:synonym>
+        <OBO_annotation_properties:synonym rdf:datatype="&xsd;string">Pia mater</OBO_annotation_properties:synonym>
+        <skos:prefLabel rdf:datatype="&xsd;string">Pial membrane</skos:prefLabel>
+        <skos:definition rdf:datatype="&xsd;string">The innermost layer of the leptomeninges, consisting of a delicate membrane closely covering the surface of the brain and spinal cord,and lying under the arachnoid membrane. The pia, unlike the arachnoid, extends into the sulci in gyrencephalic animals.</skos:definition>
+        <BIRNLex_annotation_properties:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090209</BIRNLex_annotation_properties:isReplacedByClass>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#_birnlex_retired_class -->
+
+    <owl:Class rdf:about="&BIRNLex_annotation_properties;_birnlex_retired_class"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.22702) http://owlapi.sourceforge.net -->
+
