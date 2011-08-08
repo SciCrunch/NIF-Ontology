@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2004/02/skos/core#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:dcmitype="http://purl.org/dc/dcmitype/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.w3.org/2004/02/skos/core">
+  <owl:Ontology rdf:about="">
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >--- $Revision: 1.1 $ ---</owl:versionInfo>
+  </owl:Ontology>
+  <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Document"/>
+  <owl:Class rdf:ID="OrderedCollection">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Collection"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="memberList"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#memberList"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://purl.org/dc/dcmitype/Image"/>
+  <owl:Class rdf:ID="Concept">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Collection"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="ConceptScheme"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="inScheme"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:InverseFunctionalProperty rdf:ID="subjectIndicator"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="semanticRelation"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Concept"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Collection">
+    <owl:disjointWith rdf:resource="#Concept"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="member"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Concept"/>
+              <owl:Class rdf:about="#Collection"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#ConceptScheme">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Concept"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasTopConcept"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="primarySubject">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="subject"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isPrimarySubjectOf"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="narrower">
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="broader"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#semanticRelation"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#inScheme">
+    <rdfs:range rdf:resource="#ConceptScheme"/>
+    <rdfs:domain rdf:resource="#Concept"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isPrimarySubjectOf">
+    <owl:inverseOf rdf:resource="#primarySubject"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="isSubjectOf"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#subject">
+    <rdfs:range rdf:resource="#Concept"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#isSubjectOf"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#member">
+    <rdfs:domain rdf:resource="#Collection"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isSubjectOf">
+    <rdfs:domain rdf:resource="#Concept"/>
+    <owl:inverseOf rdf:resource="#subject"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#memberList">
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+    <rdfs:domain rdf:resource="#OrderedCollection"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#semanticRelation">
+    <rdfs:domain rdf:resource="#Concept"/>
+    <rdfs:range rdf:resource="#Concept"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasTopConcept">
+    <rdfs:domain rdf:resource="#ConceptScheme"/>
+    <rdfs:range rdf:resource="#Concept"/>
+  </owl:ObjectProperty>
+  <owl:TransitiveProperty rdf:about="#broader">
+    <rdfs:subPropertyOf rdf:resource="#semanticRelation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#narrower"/>
+  </owl:TransitiveProperty>
+  <owl:SymmetricProperty rdf:ID="related">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#related"/>
+    <rdfs:subPropertyOf rdf:resource="#semanticRelation"/>
+  </owl:SymmetricProperty>
+  <owl:InverseFunctionalProperty rdf:about="#subjectIndicator">
+    <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:InverseFunctionalProperty>
+  <owl:AnnotationProperty rdf:ID="changeNote"/>
+  <owl:AnnotationProperty rdf:ID="hiddenLabel"/>
+  <owl:AnnotationProperty rdf:ID="editorialNote"/>
+  <owl:AnnotationProperty rdf:ID="altSymbol"/>
+  <owl:AnnotationProperty rdf:ID="prefLabel"/>
+  <owl:AnnotationProperty rdf:ID="prefSymbol"/>
+  <owl:AnnotationProperty rdf:ID="altLabel"/>
+  <owl:AnnotationProperty rdf:ID="note"/>
+  <owl:AnnotationProperty rdf:ID="scopeNote"/>
+  <owl:AnnotationProperty rdf:ID="example"/>
+  <owl:AnnotationProperty rdf:ID="definition"/>
+  <owl:AnnotationProperty rdf:ID="historyNote"/>
+  <owl:AnnotationProperty rdf:ID="symbol"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.3, Build 572)  http://protege.stanford.edu -->
