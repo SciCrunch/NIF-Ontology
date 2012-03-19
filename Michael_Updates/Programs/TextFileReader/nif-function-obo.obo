@@ -1,0 +1,2067 @@
+format-version: 1.2
+date: 16:03:2012 12:43
+saved-by: mimam
+auto-generated-by: The OWL API (version 3.2.3.1824)
+id_space: rdfs http://www.w3.org/2000/01/rdf-schema#
+id_space: snap http://www.ifomis.org/bfo/1.1/snap#
+id_space: ro http://www.obofoundry.org/ro/ro.owl#
+id_space: span http://www.ifomis.org/bfo/1.1/span#
+id_space: protege http://protege.stanford.edu/plugins/owl/protege#
+id_space: rdf http://www.w3.org/1999/02/22-rdf-syntax-ns#
+id_space: BIRNLex_annotation_properties http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#
+id_space: OBO_annotation_properties http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#
+id_space: owl http://www.w3.org/2002/07/owl#
+id_space: dc http://purl.org/dc/elements/1.1/
+id_space: NIF-Function http://ontology.neuinfo.org/NIF/Function/NIF-Function.owl#
+id_space: xsd http://www.w3.org/2001/XMLSchema#
+id_space: skos http://www.w3.org/2004/02/skos/core#
+editorialNote: The current (2006-10-10) members of the BIRN Ontology Task Force are listed here as the primary curators of the main BIRNLex ontology.  Others from within BIRN labs and directly collaborating with BIRN labs have also contributed to specific classes and class properties.  Effort is made to provide attribution for each class, where appropriate.
+editorialNote: next ID: birnlex_15000
+editorialNote: ID use: 1800 - 1914; 2500 - 2512
+title: NIF-Function (formerlly BIRNLex-CogBehavior)
+definition: This ontology contain what was formally known as BIRNLex-CogSenseBehavior version 1.3.1. -- The BIRN Project lexicon will provide entities for data and database annotation for the BIRN project, covering anatomy, disease, data collection, project management and experimental design.  It is built using the organizational framework provided by the foundational Basic Formal Ontology (BFO).  It uses an abstract biomedical layer on top of that - OBO-UBO which has been constructed  as a proposal to the OBO Foundry.  This is meant to support creating a sharable view of core biomedical objects such as biomaterial_entity, and organismal_entity that all biomedical ontologies are likely to need and want to use with the same intended meaning.  The BIRNLex-Main.owl ontology imports the several domain specific ontology modues required to construct a formal ontology for the multiscale investigation of neurological disease.  This particular module contains entities related to the behavior and cognitive capabilities and actions of organisms (BB:2007-03-05).
+changeNote: Processed file with XSLT to remove the explicit DataTypeProperty declarations (v1.2.2)
+changeNote: Now using a specific set of AnnotationProperties that link to specific Enumeration classes to specify annotations from a fixed list of values - e.g., ExternalSource, DefinitionSource.  This is the second iteration of this mechanism (first was put in v1.2.2).  This second version follows a patter recommended by Alan Ruttenberg which avoids using ObjectProperties as the Manchester design pattern for Value Partitions recommends, and instead sticks to AnnotationProperties only.  Note this version of OBO_annotation_properties uses the same EnumerationClasses from v1.2.2, and still includes the related ObjectProperties, so as to be able to support XSLT-based translation of the BIRNLex files that used the v1.2.2 pattern.  The next version of this file will eliminate the ObjectProperties and will rename the equivalent AnnotationProperties to remove the trailing '2' put in there to provide a unique name.
+changeNote: Have 'cleansed' the file to be OWL-DL (v1.2.2).
+changeNote: Filled out and reconciled the sensory sensation and transduction classes, collating them against UMLS, MeSH, and GO - also adding external IDs for each of those sources.
+changeNote: Adjusted some disjoints and restrictions, so the the ontology would pass Pellet consistency tests. Adjusted mereological relaions for certain types of memory to link them to appropriate sensory perceptions and behavioral activties (BB: 2007-10-04).
+changeNote: v1.3.0 (2007-08-18) - Changed many things, but primarily: (1) removed rdf:datatype xsd:string specs for all AnnotationProperties, since they are now all untyped and should assume STRING as a the default; (2) added the typing of AnnotationProperties using annotationType which should aid in algorithmically processing; (3) Also updated the XSLT BIRNLex cleanser to clean up more Protege mangling and provide a fixed order for certain properties.  This last tool is brittle, as it probably will require continued maintenance to handle more complex OWL constructs than we know have in the file - especially highly nested constructs using class axioms; (4) added use of hasReferenceURLTemplate for linking IDs; (5) Added many more concepts to cover NIF and other BIRN requirements.
+subject: The BIRN project lexicon+ontology
+contributor: Amarnath Gupta
+contributor: Maryann Martone
+contributor: Bill Bug
+contributor: Jeff Grethe
+contributor: Jessica Turner
+contributor: Christine Fennema-Notestine
+contributor: David Kennedy
+contributor: Carol Bean
+defaultLanguage: en
+creator: The BIRN Ontology Task Force
+
+
+! ----------------------  CLASSES  -------------------------
+
+[Term]
+id: birnlex_15000
+name: Sensory stimulus transduction
+is_a: Disposition
+UmlsCui: C0683184
+editorialNote: * The series of events during sensory perception in which a sensory stimulus is received and converted into a molecular signal. [GO:ai, MGI:dph] (GO)
+* The absorption of environmental physico-chemical energy thus altering the energy profile of specific molecular constituents in a specific cell or cells thus changing the state of the organism itself. (BB)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Sensation
+prefLabel: Sensory stimulus transduction
+GOid: 0007600
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15001
+name: Mechanical stimulus transduction
+is_a: birnlex_15000
+UmlsCui: C1327507
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+definition: The series of events in which a sensory mechanical stimulus is received and converted into a molecular signal. [GO:ai] (GO)
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: sensory detection of mechanical stimulus
+prefLabel: Mechanical stimulus transduction
+GOid: 0050982
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15002
+name: Chemical stimulus transduction
+is_a: birnlex_15000
+UmlsCui: C1327496
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+definition: * The series of events in which a sensory chemical stimulus is received and converted into a molecular signal. [GO:ai] (GO)
+* Sensory transduction where the binding of a specific molecular species is the direct stimulus being.
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: sensory detection of chemical stimulus
+synonym: Molecule binding stimulus transduction
+prefLabel: Chemical stimulus transduction
+GOid: 0009593
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15003
+name: Light stimulus transduction
+is_a: birnlex_15000
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C1655408
+definition: The series of events in which a sensory light stimulus is received and converted into a molecular signal. [GO:ai] (GO)
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: sensory detection of light stimulus
+prefLabel: Light stimulus transduction
+GOid: 0050962
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15004
+name: Temperature stimulus transduction
+is_a: birnlex_15000
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C1659756
+definition: The series of events in which a sensory temperature stimulus is received and converted into a molecular signal. [GO:ai] (GO)
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: sensory transduction of temperature stimulus
+prefLabel: Temperature stimulus transduction
+GOid: 0050961
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15005
+name: Generative memory activity
+is_a: birnlex_15022
+birnlexDefinition: A behavioral activity which when expressed entails the generation and use of stored memories (BB:2008-03-13).
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+editorialNote: This may not be the optimal asserted classification for these extensions  (BB:2008-03-13).
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Generative memory activity
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15006
+name: Gustatory stimulus transduction
+is_a: birnlex_15002
+UmlsCui: C1327496
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+definition: The series of events in which a sensory chemical stimulus is received and converted into a molecular signal. [GO:ai] (GO)
+synonym: taste stimulus transduction
+synonym: sensory detection of gustatory stimulus
+synonym: sensory detection of taste stimulus
+prefLabel: Gustatory stimulus transduction
+GOid: 0050911
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15007
+name: Olfactory stimulus transduction
+is_a: birnlex_15002
+UmlsCui: C1327496
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+definition: The series of events in which a sensory chemical stimulus is received and converted into a molecular signal. [GO:ai] (GO)
+synonym: sensory detection of smell stimulus
+synonym: sensory detection of olfactory stimulus
+synonym: smell stimulus transduction
+prefLabel: Olfactory stimulus transduction
+GOid: 0009593
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15008
+name: Bicarbonate stimulus transduction
+is_a: birnlex_15009
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+definition: A sensory transduction event whereby chemoreceptors in the carotid body of higher mammals detect the amount of plasma bicarbonate communicating this signal to medullary neurons involved in control of respiratory rate.  Higher pH derives primarily from higher plasma pCO2.  The medullary neurons increase respiratory rate in response to a rise in pH, so as to vent more CO2 and thereby decrease pH back toward neutral (BB: 2008-03-13)
+synonym: pH stimulus transduction
+prefLabel: Bicarbonate stimulus transduction
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15009
+name: Molecule flow stimulus transduction
+is_a: birnlex_15000
+
+
+
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+definition: This is a stimulus where the flow of a specific molecular species is the direct event being detected
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Molecule flow stimulus transduction
+example: Bicarbonate concentration stimulus
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15010
+name: Pressure stimulus transduction
+is_a: birnlex_15001
+
+
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+definition: This is a stimulus where the the direct physical property being sensed is the local pressure, such as with the baroreceptors in the the aortic arch and carotid sinuses of higher mammals.
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Pressure stimulus transduction
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15011
+name: Touch stimulus transduction
+is_a: birnlex_15001
+
+
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+definition: The series of events involved in the perception of touch in which a sensory mechanical stimulus is received by a cell and converted into a molecular signal.
+prefLabel: Touch stimulus transduction
+example: Touch stimulus transduction
+GOid: 0050976
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15012
+name: Echolocation sensation
+is_a: birnlex_15013
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C0013529
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+definition: * An auditory orientation mechanism involving the emission of high frequency sounds which are reflected back to the emitter (animal). (MSH)
+* Echolocation is the method used by some animals (e.g. bats, dolphins and some whales) to determine the location of something by measuring the time it takes for an echo to return from it. These animals emit sound waves and listen for the echo, calculating the distance to the object from the time lapse between sound emission and the echo returning. [source: http://www.onelook.com/, http://www.wikipedia.org/]
+synonym: perception of environment using reflected sound waves
+synonym: echo location
+prefLabel: Echolocation sensation
+GOid: 0050959
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15013
+name: Sound sensation
+is_a: birnlex_1825
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C0018767
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+definition: The series of events in which a sensory chemical stimulus is converted into a percieved senstation. (BB:2008-03-13)
+synonym: sound perception
+synonym: sensory detection of sound stimulus
+synonym: sensory detection of olfactory stimulus
+prefLabel: Sound sensation
+GOid: 0050910
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15014
+name: Heat sensation
+is_a: birnlex_1806
+UmlsCui: C0234193
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+definition: The series of events in which a sensory heat stimulus is converted into a percieved senstation. (BB:2008-03-13)
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: hot sense
+prefLabel: Heat sensation
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15015
+name: Cold sensation
+is_a: birnlex_1806
+UmlsCui: C0234192
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+definition: The series of events in which a sensory cold stimulus is converted into a percieved senstation. (BB:2008-03-13)
+prefLabel: Cold sensation
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15016
+name: Ciliary displacement stimulus transduction
+is_a: birnlex_15001
+
+
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+definition: Energy transfer between some physical force and primary sensory cilia displacement which to stimulation of the neurons (BB: 2008-03-13)
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Ciliary displacement stimulus transduction
+example: otolith displacement in equilibrioception.
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15017
+name: Accelleration stimulus transduction
+is_a: birnlex_15019
+
+
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+UmlsCui: C1327475
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+definition: The series of events involved in equilibrioception in which a sensory mechanical stimulus is received by a cell and converted into a molecular signal. During equilibrioception, mechanical stimuli may be in the form of input from pressure receptors or from the labyrinth system of the inner ears.
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: equilibrioception, sensory transduction of mechanical stimulus
+prefLabel: Accelleration stimulus transduction
+GOid: 0050973
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15017_2
+name: Electroception stimulus transduction
+is_a: birnlex_15000
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C1327499
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+definition: The series of events during electroception in which a sensory electrical stimulus is received by a cell and converted into a molecular signal.
+synonym: electroception, sensory transduction
+prefLabel: Electroception stimulus transduction
+GOid: 0050964
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15018
+name: Magnetic field stimulus transduction
+is_a: birnlex_15019
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+UmlsCui: C1327483
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+definition: The series of events involved in magnetoception in which a sensory mechanical stimulus is received by a cell and converted into a molecular signal. The stimulus is in the form of torque on particles such as magnetite which respond to a magnetic field.
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: magnetoception, sensory transduction of mechanical stimulus
+prefLabel: Magnetic field stimulus transduction
+GOid: 0050971
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15019
+name: Solid object-coupled ciliary displacement stimulus transduction
+is_a: birnlex_15016
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+definition: Energy transfer between some physical force and a solid object which is coupled to primary sensory cilia and whose displacement leads to stimulation of the neurons (BB: 2008-03-13)
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Solid object-coupled ciliary displacement stimulus transduction
+example: otolith displacement in equilibrioception.
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15020
+name: Fluid-coupled ciliary displacement stimulus transduction
+is_a: birnlex_15016
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+definition: Energy transfer between some physical force and a solid object which is coupled to primary sensory cilia and whose displacement leads to stimulation of the neurons (BB: 2008-03-13)
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Fluid-coupled ciliary displacement stimulus transduction
+example: endolymph-based displacement of cochlear hair cell cilia in the mammalian ear.
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15021
+name: Musculoskeletal equilibrium sensation
+is_a: birnlex_1897
+MeshUid: D004856
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#MeSH_defSource
+externallySourcedDefinition: A state of the body being evenly balanced in POSTURE. The biomechanical responses of the MUSCULOSKELETAL SYSTEM during standing, walking, sitting, and other movements.
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1256755
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: postural balance sense
+synonym: postural equilibrium sensation
+prefLabel: Musculoskeletal equilibrium sensation
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_15022
+name: Memory-driven activity
+is_a: birnlex_1827
+birnlexDefinition: A behavioral activity which when expressed entails the generation and/or use of stored memories (BB:2008-03-13).
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+editorialNote: This may not be the optimal asserted classification for these extensions  (BB:2008-03-13).
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Memory-driven activity
+createdDate: 2008-03-13
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_1800
+name: Cognitive process
+is_a: birnlex_1910
+externallySourcedDefinition: * Conceptual functions or thinking in all its forms. (MSH)
+* Conceptual functions or thinking in all its forms. (NCI) (NCI)
+* conceptual functions or thinking in all its forms. (CSP)
+* Mental processes involved in the acquisition, processing, and utilization of knowledge or information. (PSY)
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0871689
+UmlsCui: C0025361
+editorialNote: Note that we are distinguishing between processes and functions, so there will appear to be a set of duplicate classes.  The distinction as described by BFO, as we understand it, is that functions are end-directed activities of continuants.  So memory function is an end activity of a memory process.  We therefore measure memory function as an indicator of the effectiveness of the memory process.
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BIRN_OTF
+prefLabel: Cognitive process
+createdDate: 2006-05-15
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1801
+name: Procedural memory
+is_a: birnlex_1876
+relationship: has_part birnlex_1827
+UmlsCui: C0561782
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Practice memory
+synonym: Motor memory
+prefLabel: Procedural memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1802
+name: Generative verbal activity
+is_a: birnlex_1869
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Generative verbal activity
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1803
+name: Touch sensation
+is_a: birnlex_1822
+nifID: _8.1_1.4.2
+MeshUid: D014110
+externallySourcedDefinition: * Awareness of the qualities or characteristics of objects, substances, or surfaces by means of touch. (PSY)
+* Sensation or perception by which contact with objects, animate or inanimate, gives evidence as to certain qualities or characteristics. (MSH)
+* The series of events required for an organism to receive a touch stimulus, convert it to a molecular signal, and recognize and characterize the signal. The perception of touch in animals is mediated by mechanoreceptors in the skin and mucous membranes and is the sense by which contact with objects gives evidence as to certain of their qualities. Different types of touch can be perceived (for example, light, coarse, pressure and tickling) and the stimulus may be external or internal (e.g. the feeling of a full stomach). [GO:ai] (GO)
+* Touch; the faculty of touch, the sensation produced by pressure receptors in the skin. (NCI)
+* group of senses by which contact with objects gives evidence as to certain of their qualities, as registered by mechanoreceptors in the skin and mucous membranes. (CSP)
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0702221
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Tactile perception
+synonym: Touch perception
+synonym: Tactile sensation
+prefLabel: Touch sensation
+GOid: 0050975
+createdDate: 2007-08-22
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_1804
+name: Reasoning function
+is_a: birnlex_1864
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Reasoning function
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1805
+name: Interpretive verbal activity
+is_a: birnlex_1869
+
+relationship: has_part birnlex_1825
+
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Interpretive verbal activity
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1806
+name: Temperature sensation
+is_a: birnlex_1822
+MeshUid: D013697
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: * The sensation of cold, heat, coolness, and warmth. (MSH)
+* The series of events required for an organism to receive a temperature stimulus, convert it to a molecular signal, and recognize and characterize the signal. Thermoception in larger animals is mainly done in the skin; mammals have at least two types of sensor, for detecting heat (temperatures above body temperature) and cold (temperatures below body temperature). [GO:ai, http://www.wikipedia.org/] (GO)
+* sensation of temperature. (CSP)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1655407
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Temperature perception
+synonym: thermoception
+prefLabel: Temperature sensation
+GOid: 0050951
+createdDate: 2007-08-22
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_1807
+name: Prospective memory
+is_a: birnlex_1876
+UmlsCui: C0589154
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Prospective memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1808
+name: Free recall
+is_a: birnlex_1855
+birnlexDefinition: The cognitive process of remembering/recollecting previously learned material without aid of any external cues.
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Christine_Fennema-Notestine
+bonfireID: BF_T0000231
+prefLabel: Free recall
+createdDate: 2006-05-15
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1809
+name: Discrimination activity
+is_a: birnlex_15005
+relationship: has_part birnlex_1825
+usageNote: Note you could create a more specific type of discrimination activity - e.g., 2 point discrimination - by declaring it as a type and specifying it has_integral_part SOME Visual Perception (BB).
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: * Ability to distinguish between examples vs nonexamples of a concept, based on the presence or absence of its defining attributes. (PSY)
+* Conceptually broad term referring to the general process of differentiation between qualities, entities, or people. Use a more specific term if possible. (PSY)
+* Differential response to different stimuli. (MSH)
+UmlsCui: C0012632
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Discrimination activity
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1810
+name: Cognitive state
+is_a: Disposition
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+editorialNote: Describes entities related to cognitive processes.  At some point, this will have to be merged with the OBR but for now I think it's best kept separate (MM).
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Maryann_Martone
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+changeNote: Moved from base of hiearchy to a subclass of bfo:realizable_entity (BB).
+changeNote: Moved under bfo:Disposition, as these are states toward which the organisms in which they inhere are disposed (BB:2007-03-05).
+prefLabel: Cognitive state
+createdDate: 2006-06-01
+modifiedDate: 2007-03-05
+
+[Term]
+id: birnlex_1811
+name: Iconic memory
+is_a: birnlex_1876
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: Brief sensory memory, usually lasting only fractions of a second. (PSY)
+UmlsCui: C0871777
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+scopeNote: How would this entity related to short-term and long-term memory (BB).
+prefLabel: Iconic memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1812
+name: Drawing
+is_a: birnlex_1802
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Drawing
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1813
+name: Remote memory
+is_a: birnlex_1876
+UmlsCui: C0233793
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Memory of past events
+prefLabel: Remote memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1814
+name: Pain sensation
+is_a: birnlex_1822
+usageNote: MeSH includes the following qualified subtypes based on the nature of the pain experienced: Burning Pain; Crushing Pain; Migratory Pain; Radiating Pain; Splitting Pain
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: * The series of events required for an organism to receive a painful stimulus, convert it to a molecular signal, and recognize and characterize the signal. Pain is medically defined as the physical sensation of discomfort or distress caused by injury or illness, so can hence be described as a harmful stimulus which signals current (or impending) tissue damage. Pain may come from extremes of temperature, mechanical damage, electricity or from noxious chemical substances. [http://www.onelook.com/] (GO)
+* The stimulus-response process involving the stimulation of peripheral pain-carrying nerve fibers (e.g., C-fibers, A-delta fibers) and the transmission of impulses along peripheral nerves of the central nervous system, where the stimulus is perceived as pain. (Taber's) (NCI)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0234194
+definition: An unpleasant sensation induced by noxious stimuli and generally received by specialized nerve endings (MeSH).
+definingCitation: Adams et al., Principles of Neurology, 6th ed, p45
+synonym: Pain perception
+synonym: Ache
+synonym: Pain
+synonym: Physical suffering
+synonym: Nociception
+prefLabel: Pain sensation
+GOid: 0050967
+modifiedDate: May 3, 2010
+nifID: _8.1_1.4.3
+MeshUid: D010146
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+createdDate: 2007-08-22
+
+[Term]
+id: birnlex_1815
+name: Emotion
+is_a: birnlex_1810
+nifID: _8.1_4
+birnlexDefinition: A mental state that arises spontaneously rather than through conscious effort and is often accompanied by physiological changes; a feeling.
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: * Conceptually broad term referring to the affective aspects of human consciousness. Use a more specific term if possible. Use ANIMAL EMOTIONALITY for nonhuman subjects. (PSY)
+* Those affective states which can be experienced and have arousing and motivational properties. (MSH)
+* that aspect of consciousness devoted to affect or feeling. (CSP)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0013987
+UmlsCui: C0935620
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+synonym: affective state
+hasExternalSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS
+prefLabel: Emotion
+createdDate: 2006-06-01
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_1816
+name: Memory consolidation
+is_a: birnlex_1833
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0679057
+scopeNote: As opposed to simple storage and recall (BB).
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Memory consolidation
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1817
+name: Locomotor function
+is_a: birnlex_1865
+nifID: _8.1_6.1
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Locomotor function
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+tempDefinition: A behavioral function enabling an entity to alter its location under the power of its own motive force (BB:2007-03-05).
+
+[Term]
+id: birnlex_1818
+name: Memory retrieval
+is_a: birnlex_1833
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0679061
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Memory retrieval
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1819
+name: Semantic memory
+is_a: birnlex_1876
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: Organized knowledge about words, their meanings, and their relations. (PSY)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C0542312
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Semantic memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1820
+name: Bitter taste sensation
+is_a: birnlex_1912
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+externallySourcedDefinition: The series of events required to receive a bitter taste stimulus, convert it to a molecular signal, and recognize and characterize the signal.
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0039336
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Bitter taste perception
+prefLabel: Bitter taste sensation
+GOid: 0001580
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1821
+name: Behavioral system function
+is_a: birnlex_2501
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Behavioral system function
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+tempDefinition: Behavioral system functions consist of the variety of emergent operations for which the organism's nervous system is the primary enabling organ system and as such behavioral system functions can be said to inhere in the nervous system.  Behavioral functions may lead to action via a physiological actuation system such as the skeleto-muscular system or give rise to actions only percieved internally by the individual in which the function inheres (BB).
+
+[Term]
+id: birnlex_1822
+name: Somatic sensation
+is_a: birnlex_1825
+nifID: _8.1_1.4
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+externallySourcedDefinition: consciousness of having a body. (CSP)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0234209
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Somatic perception
+prefLabel: Somatic sensation
+createdDate: 2007-08-22
+
+[Term]
+id: birnlex_1823
+name: Happiness
+is_a: birnlex_1815
+birnlexDefinition: Highly pleasant emotion characterized by outward manifestations of gratification; joy
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0018592
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+hasExternalSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS
+prefLabel: Happiness
+createdDate: 2006-06-01
+modifiedDate: 2007-03-11
+
+[Term]
+id: birnlex_1824
+name: Electrical sensation
+is_a: birnlex_1825
+externallySourcedDefinition: The series of events required for an organism to receive a sensory electrical stimulus, convert it to a molecular signal, and recognize and characterize the signal.
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1327497
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: electroception
+synonym: Electrical sense perception
+prefLabel: Electrical sensation
+GOid: 0050964
+createdDate: 2007-08-22
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_1825
+name: Sensory perception
+is_a: Disposition
+nifID: _4_1.5
+editorialNote: The disposition to perceive sensory stimuli is used within BIRNLex to fully define the context for stimulus-triggered behavioral or neurophysiological activity, such as stimulus-triggered functional imaging studies.  They will also be used to specify the type of sensory system a stimuli given in a protocol is designed to affect (BB).
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C0036658
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: esthesia
+synonym: aesthesia
+synonym: sensation
+synonym: feeling
+prefLabel: Sensory perception
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1826
+name: Sensory memory
+is_a: birnlex_1876
+relationship: has_part birnlex_1825
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C0679051
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Sensory memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1827
+name: Behavioral activity
+is_a: Disposition
+usageNote: These descriptions of activity are intended to be used to represent behavior at the level of organism, typically engaging complex brain circuitry, multple brain regions, and complex effector systems.  It is not intended for descriptions of single cell activity.
+externallySourcedDefinition: * Behavior; the actions or reactions of an object or organism, usually in relation to the environment or surrounding world of stimuli. (NCI)
+* Conceptually broad term referring to any or all aspects of human or animal behavior. Use a more specific term if possible. (PSY)
+* The conscious tendency to act, usually an aspect of mental process. (NCI)
+* The observable response a person makes to any situation. (MSH)
+* The specific actions or reactions of an organism in response to external or internal stimuli. Patterned activity of a whole organism in a manner dependent upon some combination of that organism's internal state and external conditions. [ISBN:0395448956, WB:ems] (GO)
+* human or animal activity studied in terms of motivation, direction, result, emotion, perception, or etiology. (CSP)
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+editorialNote: This seems a bit contrived but appears to be an appropriate way to classify the sub-classes of behavioral activity derived from this class.  These certainly are dispositions inhering in the entity performing the activity.  There are also many behavioral activities where it really is a non-sequetor to call them behavioral functions - e.g., 'smoking' is certainly a behavior, but it really makes little sense to represent a 'smoking function' and underlying 'smoking process.' Describing behavior as an activity to which an entity is disposed makes it possible to represent very complex behaviors for which the corresponding behavioral function(s) and underlying process(es) are not yet characterized.  Note also that one can describe the activity without proscribing the associated function and underlying process - e.g., ants and humans can both be said to be disposed toward expressing 'locomotive behavior', and, yet, the associated 'locomotor function' and underlying 'locomotor process' in each organism is very different.  Note also that behavior in general is not restricted to organic 'living' entities but can also be expressed by 'non-living' entities such as the old 'bobbing bird' toy or an automatic loom.  Specific entities may have specific dispositions for expressing certain sets of behavioral activities (BB:2007-03-05).
+UmlsCui: C0004927
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+changeNote: The has_integral_part restriction can be used to define complex activities that include a specific sensory component, such as a stimulus-triggered type of activity, where the stimulus targets one or more sensory modalities This restriction is not required or defining, but it declares what other continuants can be associated with a type of behavioral activity to create more complex activities.  Right now, that is limited to sensory perception associated with a particular sensory stimulus.  It's possible this is not quite the right type of obo_ro mereological relation, but it seemed like an appropriate start.  When a sensory perception is involved in an activity, it would be hard to refer to that disposition as a proper_part, though possibly this should just fall back to the more generic obo_ro:part_of (BB).
+prefLabel: Behavioral activity
+createdDate: 2007-03-06
+modifiedDate: 2007-08-22
+tempDefinition: Overt activity inhering in the action of instantiating a behavioral function.  In other words, the expressed activity resulting from the action of the behavioral process which makes up a given behavioral function (BB: 2007-03-05).
+
+[Term]
+id: birnlex_1828
+name: Visceral sensation
+is_a: birnlex_1822
+nifID: _8.1_1.4.4
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+externallySourcedDefinition: The series of events required for an organism to receive a sensory temperature stimulus, convert it to a molecular signal, and recognize and characterize the signal.
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1301578
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Visceral perception
+prefLabel: Visceral sensation
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1829
+name: Verbal memory
+is_a: birnlex_1876
+usageNote: How does this related to Verbal behavioral function? Possibly not at all - really need a definition to know (BB).
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C0561770
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Verbal memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1831
+name: Anxiety
+is_a: birnlex_1815
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#MeSH_defSource
+externallySourcedDefinition: Persistent feeling of dread, apprehension, and impending disaster (MeSH).
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0003467
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+hasExternalSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS
+prefLabel: Anxiety
+createdDate: 2006-06-01
+modifiedDate: 2007-03-05
+
+[Term]
+id: birnlex_1832
+name: Auditory sensation
+is_a: birnlex_15013
+MeshUid: D001307
+nifID: _8.1_1.1
+externallySourcedDefinition: * The auditory faculty, the perception of sound by the ear. (NCI)
+* The perception of sound by the ears. (OMS)
+* The sensation of sound. (MSH)
+* The series of events required for an organism to receive an auditory stimulus, convert it to a molecular signal, and recognize and characterize the signal. Sonic stimuli are detected in the form of vibrations and are processed to form a sound. [GO:ai] (GO)
+* process whereby auditory stimuli are selected, organized and interpreted by the organism. (CSP)
+* sensation of sound. (CSP)
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0018767
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: hearing
+synonym: audition
+synonym: auditory perception
+synonym: hearing sensation
+prefLabel: Auditory sensation
+GOid: 0050910
+createdDate: 2007-08-22
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_1833
+name: Memory Process
+is_a: birnlex_1800
+
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+birnlexDefinition: The cognitive process of encoding, storing and retrieving past experience
+externallySourcedDefinition: * Complex mental function having four distinct phases: (1) memorizing or learning, (2) retention, (3) recall, and (4) recognition. Clinically, it is usually subdivided into immediate, recent, and remote memory. (MSH)
+* Memory; the power of retaining and recalling past experience, something that is remembered. (NCI)
+* The activities involved in the mental information processing system that receives (registers), modifies, stores, and retrieves informational stimuli. The main stages involved in the formation and retrieval of memory are encoding (processing of received information by acquisition), storage (building a permanent record of received information as a result of consolidation) and retrieval (calling back the stored information and use it in a suitable way to execute a given task). [http://cancerweb.ncl.ac.uk/, http://www.onelook.com/, ISBN:0582227089] (GO)
+* mental function underlying learning; one model specifies 4 phases: acquisition, retention, recall, and recognition. (CSP)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0025260
+UmlsCui: C0679052
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+prefLabel: Memory
+createdDate: 2006-05-15
+modifiedDate: October 1, 2009
+
+[Term]
+id: birnlex_1834
+name: Deductive reasoning function
+is_a: birnlex_1804
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Deductive reasoning function
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1835
+name: Smoking
+is_a: birnlex_1827
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: The act of puffing and/or inhaling smoke from a lit cigarette, cigar, or pipe. (NCI)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0453996
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Tobacco smoking behavior
+prefLabel: Smoking
+createdDate: 2007-03-06
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1836
+name: Verbal speaking
+is_a: birnlex_1802
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Verbal speaking
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1837
+name: Visual memory
+is_a: birnlex_1876
+relationship: has_part birnlex_1909
+usageNote: How does this related to Visual perception? Possibly not at all - really need a definition to know (BB).
+UmlsCui: C0542316
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Visual memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1838
+name: Fast pain sensation
+is_a: birnlex_1814
+externallySourcedDefinition: The series of events required for an organism to receive a fast pain stimulus, convert it to a molecular signal, and recognize and characterize the signal. Fast pain is often subjectively described as a sharp or stabbing pain; in humans, the signals from a fast pain stimulus are perceived and relayed along myelinated A-delta fibers to the central nervous system, reaching their target in about 0.1 seconds. [http://www.spine-health.com/]
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1622491
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Fast Pain perception
+prefLabel: Fast pain sensation
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1839
+name: Oculomotor function
+is_a: birnlex_1865
+nifID: _8.1_6.2
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0683208
+UmlsCui: C0589522
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Oculomotor function
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1841
+name: Fear
+is_a: birnlex_1815
+externallySourcedDefinition: The affective response to an actual current external danger which subsides with the elimination of the threatening condition. (MeSH)
+externallySourcedDefinition: Unpleasant but normal emotional response to genuine external danger or threats; compare with ANXIETY and CLINICAL ANXIETY. (CSP)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0015726
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+hasExternalSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS
+prefLabel: Fear
+createdDate: 2006-06-01
+modifiedDate: 2007-03-05
+
+[Term]
+id: birnlex_1842
+name: Anger
+is_a: birnlex_1815
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#MeSH_defSource
+externallySourcedDefinition: A strong emotional feeling of displeasure aroused by being interfered with, injured or threatened (MeSH).
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0002957
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+hasExternalSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS
+prefLabel: Anger
+createdDate: 2006-06-01
+modifiedDate: 2007-03-05
+
+[Term]
+id: birnlex_1843
+name: Attention
+is_a: birnlex_1800
+
+externallySourcedDefinition: The process of focusing on certain aspects of current experience to the exclusion of others. It is the act of heeding or taking notice or concentrating. (MeSH)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0004268
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+hasExternalSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#MeSH-UMLS
+prefLabel: Attention
+createdDate: 2006-05-15
+modifiedDate: 2007-03-05
+
+[Term]
+id: birnlex_1844
+name: Olfactory sensation
+is_a: birnlex_1889
+
+MeshUid: D012903
+nifID: _8.1_1.2.1
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: * Smell; the faculty of smell, the sensation that results when olfactory receptors in the nose are stimulated by particular chemicals in gaseous form. (NCI)
+* The sensation or perception of scents or odors. (MSH)
+* The series of events required for an organism to receive an olfactory stimulus, convert it to a molecular signal, and recognize and characterize the signal. Olfaction involves the detection of chemical composition of an organism's ambient medium by chemoreceptors. [GO:ai, http://www.onelook.com/] (GO)
+* sensation or perception of scents or odors; sense of smell. (CSP)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0037361
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Olfactory perception
+synonym: olfaction
+prefLabel: Olfactory sensation
+GOid: 0007608
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1845
+name: Moral reasoning activity
+is_a: birnlex_1906
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Moral reasoning activity
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+tempDefinition: Moral reasoning is individual or collective practical reasoning about what, morally, one ought to do (Stanford Encyclopedia of Philosphy).
+
+[Term]
+id: birnlex_1846
+name: Lateralized activity
+is_a: birnlex_1827
+birnlexDefinition: A behavioral activity expressing a behavioral function that is differentially supported across the two cerebrain hemispheres in the vertebrate brain (BB:2007-03-05).
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+editorialNote: Laterality may actually be most effectively expressed as a measured quality via PATO (BB:2007-03-05).
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Lateralized activity
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1847
+name: Item recognition activity
+is_a: birnlex_1809
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Item recognition activity
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1848
+name: Interpretive braille reading
+is_a: birnlex_1805
+
+
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Interpretive braille reading
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1849
+name: Sadness
+is_a: birnlex_1815
+editorialNote: In what way is this related to Happiness?  Is there in fact a single underlying Cognitive_entity for which Happiness and Sadness are just either end of the quality gamut describing that entity as experienced by an individual (BB)?  Can you experience both Happiness and Sadness simultaneously (BB)?
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0233486
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BIRN_OTF
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Sadness
+createdDate: 2006-06-01
+modifiedDate: 2007-03-05
+
+[Term]
+id: birnlex_1850
+name: Autobiographical memory
+is_a: birnlex_1859
+
+
+birnlexDefinition: Memory that involves the conscious recall or recognition of one's own life.
+UmlsCui: C0561843
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+prefLabel: Autobiographical memory
+createdDate: 2006-05-15
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1851
+name: Inductive reasoning activity
+is_a: birnlex_1906
+
+
+
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#Wikipedia_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Inductive reasoning activity
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+tempDefinition: inductive reasoning is a type of reasoning in which the premises of an argument are believed to support the conclusion but do not ensure it. It is used to ascribe properties or relations to types based on tokens (i.e., on one or a small number of observations or experiences); or to formulate laws based on limited observations of recurring phenomenal patterns. Induction is used, for example, in USING SPECIFIC PROPOSITIONS such as:'this ice is cold'; 'a billiard ball moves when struck with a cue' TO INFER GENERAL PROPOSITIONS such as:'all ice is cold'; 'all billiard balls struck with a cue move.' In other words, inductive reasoning infers probable antecedents as a result of observing multiple consequents - i.e., inferring some 'b' from multiple instantiations of 'a' when 'b' entails 'a'.. (Wikipedia - BB:2007-03-05).
+
+[Term]
+id: birnlex_1852
+name: Verbal function
+is_a: birnlex_1864
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Verbal function
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1853
+name: Topographical memory
+is_a: birnlex_1857
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C0814087
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Topographical memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1855
+name: Memory recall
+is_a: birnlex_1818
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+scopeNote: Recall as opposed to storage (BB:2007-03-05).
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Memory recall
+createdDate: 2006-05-15
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1856
+name: Working memory
+is_a: birnlex_1859
+birnlexDefinition: Memory that involves the conscious encoding, storing and retrieving information encountered recently
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+bonfireID: BF_T0000218
+prefLabel: Working memory
+createdDate: 2006-05-15
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1857
+name: Spatial memory
+is_a: birnlex_1876
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C0814087
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Spatial memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1859
+name: Requested recall
+is_a: birnlex_1855
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+scopeNote: Requested as opposed to free (BB:2007-03-05).
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Requested recall
+createdDate: 2007-03-05
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1860
+name: Recognition memory
+is_a: birnlex_1859
+externallySourcedDefinition: The memory that someone or something present has been previously encountered. (MeSH)
+UmlsCui: C0524637
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Christine_Fennema-Notestine
+hasExternalSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#MeSH-UMLS
+prefLabel: Recognition memory
+createdDate: 2006-05-15
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1862
+name: Motor activity
+is_a: birnlex_1827
+externallySourcedDefinition: * Any form of exercise or movement. Physical activity may include planned activity such as walking, running, basketball, or other sports. Physical activity may also include other daily activities such as household chores, yard work, walking the dog, etc. (from NIDDK Glossary; http://www.niddk.nih.gov/health/nutrit/pubs/glossary/glossaryintro.htm) (NCI)
+* State or quality of body actions in daily living. (OMS)
+* The physical activity of a human or an animal as a behavioral phenomenon. (MSH)
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0474393
+UmlsCui: C0026606
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Motor activity
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1863
+name: Slow pain sensation
+is_a: birnlex_1814
+externallySourcedDefinition: The series of events required for an organism to receive a slow pain stimulus, convert it to a molecular signal, and recognize and characterize the signal. Slow pain is often subjectively described as an aching or throbbing pain; in humans, the signals from a slow pain stimulus are perceived and relayed along unmyelinated C fibers to the central nervous system, reaching their target in about 1 second. Slow pain is often associated with tissue destruction. [http://www.people.vcu.edu/~mikuleck/ssspain/, http://www.spine-health.com/]
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1623032
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Slow Pain perception
+prefLabel: Slow pain sensation
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1864
+name: Cognitive function
+is_a: birnlex_1821
+externallySourcedDefinition: * Level of functioning in intellectual tasks. (PSY)
+* Ability to perform cognitive activity (observable entity)
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS
+UmlsCui: C0392335
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+prefLabel: Cognitive function
+modifiedDate: October 1, 2009
+nifID: _8.1_3
+editorialNote: The examples are derived from the Wikipedia page on 'Mental function.'  Perhaps a more narrow set of examples that specifically fit to our requirements in BIRN would be more appropriate.  A more authoritative neuropsychological source should also be used, as some of these examples may be considered by neuropsychologists to be degenerate - e.g., 'belief function' is_a 'imaginative function' (BB:2007-03-05).
+editorialNote: Note that we are distinguishing between processes and functions, so there will appear to be a set of duplicate classes.  The distinction as described by BFO, as we understand it, is that functions are end-directed activities of continuants.  So memory function is an end activity of a memory process.  We therefore measure memory function as an indicator of the effectiveness of the memory process.
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+scopeNote: A specific instance of engaging a cognitive function leads to the creation of a mental event distinct from the cognitive functional process itself. The event of perceiving something, for instance, is different from the perceptual process in its entirety, the overall ability to perceive things. In other words, an instance of perceiving is different from the cognitive function that makes it possible (BB:2007-03-05 - derived from Wikipedia).
+example: conceptual function
+example: volitional function
+example: creative function
+example: introspective function
+example: imaginative function
+example: emotional function
+example: belief function
+example: perceptual function
+example: reasoning function
+example: memory function
+createdDate: 2007-03-05
+tempDefinition: Cognitive functions are a type of behavioral function giving rise to actions only percieved internally by the individual in which the function inheres, though this internal perception may ultimately give rise to an externalized action (BB).
+
+[Term]
+id: birnlex_1865
+name: Motor system function
+is_a: birnlex_1821
+nifID: _8.1_6
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0589522
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Motor system function
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1867
+name: Salty taste sensation
+is_a: birnlex_1912
+externallySourcedDefinition: The series of events required to receive a salty taste stimulus, convert it to a molecular signal, and recognize and characterize the signal.
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1154611
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Salty taste perception
+prefLabel: Salty taste sensation
+GOid: 0001583
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1868
+name: Free recall function
+is_a: birnlex_1874
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Free recall
+createdDate: 2006-06-01
+modifiedDate: October 1, 2009
+
+[Term]
+id: birnlex_1869
+name: Verbal activity
+is_a: birnlex_1827
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: * Includes both producing and responding to words, either written or spoken. (MSH)
+* both producing and responding to words, either written or spoken. (CSP)
+birnlexDefinition: A behavioral activity employing verbal function to either generate or interpreting meaningful spoken or writen words or symbols.  If generating verbal output, a motor system is invoked.  If interpreting verbal input, typically a sensory system is invoked, though certain interpretive activity involves movement of the sensory organ - e.g., eye movements during reading (BB:2007-03-05).
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0042530
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Verbal activity
+createdDate: 2007-03-06
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1870
+name: Communication function
+is_a: birnlex_1821
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Communication function
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1872
+name: Episodic memory
+is_a: birnlex_1876
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+UmlsCui: C0589153
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Episodic memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1873
+name: Sour taste sensation
+is_a: birnlex_1912
+externallySourcedDefinition: The series of events required to receive a sour taste stimulus, convert it to a molecular signal, and recognize and characterize the signal.
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1154612
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Sour taste perception
+prefLabel: Sour taste sensation
+GOid: 0001581
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1874
+name: Memory function
+is_a: birnlex_1864
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+editorialNote: Note the has_integral_part restriction helps to support the variety of memory types - e.g., verbal memory, motor memory, sense memory, etc..  It isn't truly correct to say a memory instance includes a behavioral activity as an integral part.  It would be more correct to say a memory instance (measured through some assessment technique) ENCODES or somehow includes a link to a particular behavioral activity (BB).
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Memory
+prefLabel: Memory function
+createdDate: 2007-03-06
+modifiedDate: August 24, 2009
+
+[Term]
+id: birnlex_1876
+name: Memory
+is_a: birnlex_1810
+UmlsCui: C0935620
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+editorialNote: The has_integral_part restriction can be used to create very specific Memory extensions based on the sensation(s) and activity(s) the memory entails (BB).
+editorialNote: These are problematic and imply a certain amount of multiple inheritance - e.g., there can be an instance of a memory that is both a Remote memory and an Autobiographical memory.  Trying to cover the distinct types of memory covered in UMLS mostly derived from PsychInfo (BB).
+scopeNote: Need to develop a means of using ObjectProperties to define short-term and long-term memory.
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+hasExternalSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS
+prefLabel: Memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1877
+name: Sweet taste sensation
+is_a: birnlex_1912
+externallySourcedDefinition: The series of events required to receive a sweet taste stimulus, convert it to a molecular signal, and recognize and characterize the signal.
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1154613
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Sweet taste perception
+prefLabel: Sweet taste sensation
+GOid: 0001582
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1878
+name: Inductive reasoning function
+is_a: birnlex_1804
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Inductive reasoning function
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1879
+name: Verbal writing
+is_a: birnlex_1802
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Verbal writing
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1880
+name: Autobiographical memory
+is_a: birnlex_1876
+birnlexDefinition: Memory that involves the conscious recall or recognition of ones own life.
+UmlsCui: C0561843
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+prefLabel: Autobiographical memory
+createdDate: 2006-05-15
+modifiedDate: 2007-08-20
+
+[Term]
+id: birnlex_1881
+name: Feeding
+comment: I'm not sure that the examples given were consistent with the synonym "eating". Rather, these activities are part of and activity that is "feeding/eating". So I deleted them. I would also favor moving "feeding" to the preferred label and getting rid of "appetitive activity". (Maryann Martone)
+is_a: birnlex_1827
+relationship: has_part birnlex_1825
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: eating
+synonym: appetitive activity
+prefLabel: Appetitive activity
+gene_Ontology_ID: 0007631
+createdDate: 2007-03-06
+tempDefinition: A behavioral activity expressed while ingesting food.
+modifiedDate: June 21, 2009
+
+[Term]
+id: birnlex_1882
+name: Abductive reasoning function
+is_a: birnlex_1804
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Abductive reasoning function
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1883
+name: Recognition memory function
+is_a: birnlex_1874
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+bonfireID: BF_T0000228
+prefLabel: Recognition memory function
+createdDate: 2007-03-06
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1884
+name: Umami taste sensation
+is_a: birnlex_1912
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+externallySourcedDefinition: The series of events required to receive an umami taste stimulus, convert it to a molecular signal, and recognize and characterize the signal. Umami taste is the savory taste of meats and other foods that are rich in glutamates.
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1154614
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Umami taste perception
+prefLabel: Umami taste sensation
+GOid: 0046535
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1885
+name: Interpretive vision based reading
+is_a: birnlex_1805
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Interpretive vision based reading
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1886
+name: Skeletomotor reflex activity
+is_a: birnlex_1862
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Skeletomotor reflex activity
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+tempDefinition: A behavioral activity expressing immediate sensory-motor integration through activation of muscular-driven process (BB:2007-03-05).
+
+[Term]
+id: birnlex_1887
+name: Working memory
+is_a: birnlex_1876
+birnlexDefinition: Memory that involves the conscious encoding, storing and retrieving information encountered recently
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+scopeNote: How would this entity related to short-term and long-term memory (BB).
+bonfireID: BF_T0000218
+prefLabel: Working memory
+createdDate: 2006-05-15
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1888
+name: Appetitive function
+is_a: birnlex_1821
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Appetitive function
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+tempDefinition: A behavioral function supporting the process of ingesting food.
+
+[Term]
+id: birnlex_1889
+name: Chemical sensation
+is_a: birnlex_1825
+nifID: _8.1_1.2
+externallySourcedDefinition: The series of events required for an organism to receive a sensory chemical stimulus, convert it to a molecular signal, and recognize and characterize the signal.
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+UmlsCui: C1154586
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: chemosensory perception
+prefLabel: Chemical sensation
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1890
+name: Working memory function
+is_a: birnlex_1874
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Working memory
+bonfireID: BF_T0000218
+prefLabel: Working memory function
+createdDate: 2007-03-06
+modifiedDate: August 24, 2009
+
+[Term]
+id: birnlex_1891
+name: Photo sensation
+is_a: birnlex_1825
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+externallySourcedDefinition: The series of events in which a sensory light stimulus is received and converted into a molecular signal.
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1655408
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: sensory transduction of light stimulus
+synonym: Photo perception
+prefLabel: Photo sensation
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1892
+name: Locomotor activity
+is_a: birnlex_1862
+nifID: _8.1_6.1
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: * Movement or the ability to move from one place or another. It can refer to humans, vertebrate or invertebrate animals, and microorganisms. (MSH)
+* Self-propelled movement of a cell or organism from one location to another. [ZFIN:dh] (GO)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0023946
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Locomotor activity
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1893
+name: Abductive reasoning activity
+is_a: birnlex_1906
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#Wikipedia_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Abductive reasoning activity
+createdDate: 2007-03-06
+tempDefinition: Abductive reasoning is a type of reasoning in which a hypothesis is chosen to best explain the relevant evidence - also called 'inference to the best explanation'. Abduction starts from a set of accepted facts and infers to their most likely, or best, explanations. The term abduction is also sometimes used to just mean the generation of hypotheses to explain observations or conclusions. Abductive reasoning allows inferring 'a' as an explanation of 'b'. Because of this, abduction allows the precondition 'a' of 'a entails b' to be inferred from the consequence, and, as such, such abduction is formally equivalent to the logical fallacy 'affirming the consequent.' (Wikipedia - BB:2007-03-05).
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1894
+name: Discrimination function
+is_a: birnlex_1864
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Discrimination function
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1895
+name: Interpretive listening
+is_a: birnlex_1805
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Interpretive listening
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1896
+name: Skeletomotor reflex function
+is_a: birnlex_1865
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Skeletomotor reflex function
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+tempDefinition: A behavioral function supporting immediate sensory-motor integration with minimal nervous system processing (BB:2007-03-05).
+
+[Term]
+id: birnlex_1897
+name: Proprioception
+is_a: birnlex_1822
+nifID: _8.1_1.4.1
+MeshUid: D011434
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: * The mechanism involved in the self-regulation of posture and movement through stimuli originating in the receptors imbedded in the joints, tendons, muscles, and labyrinth. (MSH)
+* The series of events by which an organism senses the position, location, orientation, and movement of the body and its parts. Proprioception is mediated by proprioceptors, sensory nerve terminals found in muscles, tendons, and joint capsules, which give information concerning movements and position of the body. The receptors in the labyrinth are sometimes also considered proprioceptors. [http://www.onelook.com/, ISBN:072168677X] (GO)
+* proprioception is the sense of body position and movement, mediated by the labyrinth (equilibrium) and peripheral receptors in the muscles and elsewhere (limb and joint position); kinesthesia includes the latter, but not equilibrium. (CSP)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0178811
+UmlsCui: C0033499
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Proprioceptive sensation
+prefLabel: Proprioception
+GOid: 0019230
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1898
+name: Memory acquistion
+is_a: birnlex_1833
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0439045
+scopeNote: Storage as opposed to recall (BB).
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Memory acquistion
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1899
+name: Explicit memory
+is_a: birnlex_1876
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: Memory of events where one is also aware of learning or experiencing the event. (PSY)
+UmlsCui: C0561766
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Explicit memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1900
+name: Magnetic sensation
+is_a: birnlex_1825
+externallySourcedDefinition: The series of events required for an organism to receive a stimulus relating to a magnetic field, convert it to a molecular signal, and recognize and characterize the signal. Stimuli may be chemical, mechanical or electrical and interpreting these stimuli allows an organism to determine the orientation of a magnetic field. Magnetoreception also involves the perception of light; birds cannot orient without the presence of short wavelength (blue/green) light
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#Wikipedia_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1327477
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: magnetoreception
+synonym: magnetoception
+synonym: Magnetic sense perception
+prefLabel: Magnetic sensation
+GOid: 0050958
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1901
+name: Inidividual body part movement
+is_a: birnlex_1862
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Inidividual body part movement
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1902
+name: Memory retention
+is_a: birnlex_1874
+UmlsCui: C0598851
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Memory retention
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1903
+name: Equilibrioception sensation
+is_a: birnlex_1825
+MeshUid: D018466
+externallySourcedDefinition: The series of events required for an organism to receive an orientational stimulus, convert it to a molecular signal, and recognize and characterize the signal. Equilibrioception refers to a combination of processes by which an organism can perceive its orientation with respect to gravity. In animals, stimuli come from labyrinth system of the inner ears, monitoring the direction of motion; visual stimuli, with information on orientation and motion; pressure receptors, which tell the organism which body surfaces are in contact with the ground; and proprioceptive cues, which report which parts of the body are in motion. [http://www.medterms.com, http://www.onelook.com/]
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1327474
+UmlsCui: C0678902
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Equilibrioception perception
+synonym: Orientation relative to gravity sensation
+synonym: Orientation relative to gravity perception
+prefLabel: OrEquilibrioception sensation
+GOid: 0050973
+createdDate: 2007-08-22
+modifiedDate: 2008-03-13
+
+[Term]
+id: birnlex_1904
+name: Implicit memory
+is_a: birnlex_1876
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: Memory of events without specific awareness of learning or experiencing the event. (PSY)
+UmlsCui: C0561768
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Implicit memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1905
+name: Nutrition function
+is_a: birnlex_1821
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: Nourishment of the body with balanced food in a manner that energy, maintenance, and growth processes occur. (OMS)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C1442959
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Nutrition function
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1906
+name: Reasoning activity
+is_a: birnlex_1827
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Reasoning activity
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1907
+name: Requested recall function
+is_a: birnlex_1874
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Requested recall
+createdDate: 2007-08-22
+modifiedDate: October 1, 2009
+
+[Term]
+id: birnlex_1908
+name: Eye movement
+is_a: birnlex_1901
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Eye movement
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1909
+name: Visual sensation
+is_a: birnlex_1891
+nifID: _8.1_1.5
+MeshUid: D014785
+externallySourcedDefinition: * Sight; the faculty of vision, the perception of objects by the eye. (NCI)
+* The act or power of sensing with the eyes. (OMS)
+* The sensation of sight. (MSH)
+* The series of events required for an organism to receive a visual stimulus, convert it to a molecular signal, and recognize and characterize the signal. Visual stimuli are detected in the form of photons and are processed to form an image. [GO:ai] (GO)
+* sense of sight. (CSP)
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0042789
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: sight
+synonym: vision
+synonym: Visual perception
+synonym: sense of sight
+prefLabel: Visual sensation
+GOid: 0007601
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1910
+name: Behavioral process
+is_a: Process
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BIRN_OTF
+prefLabel: Behavioral process
+createdDate: 2006-05-15
+modifiedDate: 2007-03-05
+
+[Term]
+id: birnlex_1911
+name: Deductive reasoning activity
+is_a: birnlex_1906
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#Wikipedia_defSource
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Deductive reasoning activity
+createdDate: 2007-03-06
+modifiedDate: 2007-03-06
+tempDefinition: Deductive reasoning is a type of reasoning in which the conclusion is necessitated by, or reached from, previously known facts (the premises). If the premises are true, the conclusion must be true. In deductive reasoning, the conclusion is dependent on its premises. That is, a false premise can possibly lead to a false conclusion, and inconclusive premises will also yield an inconclusive conclusion (Wikipedia - BB:2007-03-05).
+
+[Term]
+id: birnlex_1912
+name: Taste sensation
+is_a: birnlex_1889
+MeshUid: D013649
+nifID: _8.1_1.2.2
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: * Taste; the faculty of taste, distinguishing substances by means of the taste buds. (NCI)
+* The sensation or perception of certain qualities of substances put in the mouth, primarily sweet, sour, salt and bitter. (MSH)
+* The series of events required for an organism to receive a gustatory stimulus, convert it to a molecular signal, and recognize and characterize the signal. Gustation involves the direct detection of chemical composition, usually through contact with chemoreceptor cells. [GO:ai, http://www.onelook.com/] (GO)
+* sense effected by the gustatory receptors in the tongue; primarily sweet, sour, salty and bitter. (CSP)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0039336
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Taste perception
+synonym: Gustatory perception
+prefLabel: Taste sensation
+GOid: 0050912
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_1913
+name: Saccadic eye movement
+is_a: birnlex_1908
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Saccadic eye movement
+createdDate: 2007-03-06
+tempDefinition: Rapid eye movement relative to an initial target
+modifiedDate: 2007-03-06
+
+[Term]
+id: birnlex_1914
+name: Eidetic memory
+is_a: birnlex_1837
+externallySourcedDefinition: * A visual image which is recalled in accurate detail. It is a sort of projection of an image on a mental screen. (MSH)
+* Clear and detailed memory for objects or events perceived, usually visually. (PSY)
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+UmlsCui: C0013727
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Photographic memory
+prefLabel: Eidetic memory
+createdDate: 2007-08-22
+modifiedDate: 2007-08-22
+
+[Term]
+id: birnlex_2500
+name: Sensory system function
+is_a: birnlex_2501
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0423552
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Sensory system function
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+tempDefinition: Sensory system functions consist of the variety of capabilities for transducing external stimuli into internal receptive signals for which the organism's nervous system is the primary enabling organ system.  As such sensory functions can be said to inhere in the nervous system.  Sensory system functions usual lead through the action of complex nervous system circuitry to higher level cognitive perception such as a visual image, a smell, a taste, etc.
+
+[Term]
+id: birnlex_2501
+name: Nervous system function
+is_a: Function
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Nervous system function
+createdDate: 2007-08-25
+tempDefinition: These are parts of nervous system function - i.e., functional components which inhere in some portion of the nervous system.
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_2502
+name: Visual system function
+is_a: birnlex_2500
+UmlsCui: C0042789
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Visual system function
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_2503
+name: Vestibular system function
+is_a: birnlex_2500
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Vestibular system function
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_2504
+name: Auditory system function
+is_a: birnlex_2500
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: process whereby auditory stimuli are selected, organized and interpreted by the organism. (CSP)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+editorialNote: Though the CSP definition given refers to a process (which will exist separately in BIRNLex as an occurent), this is the closest definition that captures the sense of a function part of the nervous system.   The several other definitions relate more specifically only to the direct sensation component of overall auditory system function.
+UmlsCui: C0018767
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Auditory system function
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_2505
+name: Somatosensory system function
+is_a: birnlex_2500
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0682661
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Somatosensory system function
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_2506
+name: Autonomic nervous system function
+is_a: birnlex_2501
+nifID: _8.1_2
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Autonomic nervous system function
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_2507
+name: Sympathetic nervous system function
+is_a: birnlex_2506
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Sympathetic nervous system function
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_2508
+name: Parasympathetic nervous system function
+is_a: birnlex_2506
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Parasympathetic nervous system function
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_2509
+name: Proprioceptive system function
+is_a: birnlex_2500
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Proprioceptive system function
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_2510
+name: Kinesthetic sensation
+is_a: birnlex_1897
+MeshUid: D007699
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: The sense of body position and movement, mediated by peripheral receptors in the muscles and elsewhere (limb and joint position) (CSP)
+UmlsCui: C0178811
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: kinesthesia
+prefLabel: Kinesthetic sensation
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_2511
+name: Kinesthetic system function
+is_a: birnlex_2509
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: Provides for the sense of body position and movement (limb and joint position). (CSP)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+prefLabel: Kinesthetic system function
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+
+[Term]
+id: birnlex_2512
+name: Gustatory system function
+is_a: birnlex_2500
+hasDefinitionSource: http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
+externallySourcedDefinition: * Taste; the faculty of taste, distinguishing substances by means of the taste buds. (NCI)
+* The sensation or perception of certain qualities of substances put in the mouth, primarily sweet, sour, salt and bitter. (MSH)
+* The series of events required for an organism to receive a gustatory stimulus, convert it to a molecular signal, and recognize and characterize the signal. Gustation involves the direct detection of chemical composition, usually through contact with chemoreceptor cells. [GO:ai, http://www.onelook.com/] (GO)
+* sense effected by the gustatory receptors in the tongue; primarily sweet, sour, salty and bitter. (CSP)
+hasCurationStatus: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+UmlsCui: C0039336
+editorialNote: Though the definition given refers to a disposition toward sensing and processing (which will exist separately in BIRNLex as an occurent), this is the closest definition that captures the sense of a function part of the nervous system.   The several other definitions relate more specifically only to the direct sensation component of overall auditory system function.
+hasBirnlexCurator: http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+synonym: Taste system function
+prefLabel: Gustatory system function
+createdDate: 2007-08-25
+modifiedDate: 2007-08-25
+
+[Term]
+id: nlx_func_090801
+name: Learning
+is_a: birnlex_1864
+contributor: Maryann Martone
+createdDate: August 21, 2009
+
+[Term]
+id: nlx_func_1005001
+name: Consciousness
+is_a: birnlex_1910
+definition: Sense of awareness of self and of the environment.(NCI)
+createdDate: May 17, 2010
+
+[Term]
+id: nlx_func_20090501
+name: Play activity
+is_a: birnlex_1827
+contributor: Maryann Martone
+createdDate: May 18, 2009
+
+[Term]
+id: nlx_func_20090502
+name: Executive function
+is_a: birnlex_1864
+definition: A cognitive function that controls and regulates other abilities and behaviors. Executive functions include the ability to initiate and stop actions, to monitor and change behavior as needed, and to plan future behavior when faced with novel tasks and situations. Executive functions allow us to anticipate outcomes and adapt to changing situations. The ability to form concepts and think abstractly are often considered components of executive function.
+contributor: Maryann Martone
+createdDate: May 21, 2009
+definingCitationURI: http://www.minddisorders.com/Del-Fi/Executive-function.html
+
+[Term]
+id: Disposition
+name: Disposition
+namespace: snap
+is_a: Thing
+
+[Term]
+id: Function
+name: Function
+namespace: snap
+is_a: Thing
+
+[Term]
+id: Process
+name: Process
+namespace: span
+is_a: Thing
+
+
+! ----------------------  PROPERTIES  -------------------------
+
+[Typedef]
+id: has_part
+name: has_part
+namespace: ro
+is_metadata_tag: false
+

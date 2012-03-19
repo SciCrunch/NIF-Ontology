@@ -1,0 +1,145 @@
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+import java.io.File;
+
+/**
+ * TextFileReader class
+ * 
+ * @author Michael Aranda
+ * @param textfile to read, textfile to print output to
+ * @data last modified: February 01, 2012
+ */
+
+public class TextFileReader{
+	
+	/**
+	 * main method takes 2 paramaters: file to be read and file to print to
+	 */
+	public static void main(String[] args){
+		
+		try{
+			BufferedReader in = new BufferedReader(new FileReader(args[0]));
+			
+			FileWriter outFile = new FileWriter(args[1]);
+			PrintWriter out = new PrintWriter(outFile);
+			ArrayList<String> labelList = new ArrayList<String>(18);
+					
+			//Code below added specifically for file CNO_0.2.3.obo on Feb.1, 2012
+			out.print("id,name,namespace,comment,is_a,definition,externalSourceURI,synonym," +
+					"is_metadata_tag,hasComponent,isComponentOf,hasParameter," +
+					"hasParameterValue, isParameterValueOf, hasVariable, isVariableOf," +
+					"hasBiologicalCorrelate, isBiologicalCorrelateOf");
+			out.println();		
+			
+			/* Line has been read in, 3 cases
+			 * 	1. Line -> [Term] or [Typedef]
+			 *  2. Line -> label: ...
+			 *  3. Line -> Anything else
+			 *  
+			 *  Case 1: 
+			 *    i. Print out contents of labelList as new line in CSV output file.
+			 *    ii. Clear contents of labelList.
+			 *  Case 2: 
+			 *    i. Add everything after "label:" to index in labelList corresponding
+			 *       to label (e.g. "id" -> 0, "namespace" -> 1, etc.)
+			 *  Case 3:
+			 *    i. Skip.
+			 */
+			String line;
+			
+			while((line = in.readLine()) != null){
+				
+				int indexOfColon = line.indexOf(':');
+				
+				//Case 1
+				if(line.equals("[Term]") || line.equals("[Typedef]")){
+					printTermValues(labelList, out);
+				}
+				
+				//Case 2
+				else if(indexOfColon > 0){			
+					
+					String label = line.substring(0,indexOfColon);
+					String entry = line.substring(indexOfColon+1);
+					int indexToAdd = 0;
+					
+					if(label.equals("id")){
+						indexToAdd = 1;
+					}
+					if(label.equals("name")){
+						indexToAdd = 2;
+					}
+					if(label.equals("namespace")){
+						indexToAdd = 3;
+					}
+					if(label.equals("comment")){
+						indexToAdd = 4;
+					}
+					if(label.equals("is_a")){
+						indexToAdd = 5;
+					}
+					if(label.equals("definition")){
+						indexToAdd = 6;
+					}
+					if(label.equals("externalSourceURI")){
+						indexToAdd = 7;
+					}
+					if(label.equals("synonym")){
+						indexToAdd = 8;
+					}
+					if(label.equals("is_metadata_tag")){
+						indexToAdd = 9;
+					}
+					if(label.equals("hasComponent")){
+						indexToAdd = 10;
+					}
+					if(label.equals("isComponentOf")){
+						indexToAdd = 11;
+					}
+					if(label.equals("hasParameter")){
+						indexToAdd = 12;
+					}
+					if(label.equals("hasParameterValue")){
+						indexToAdd = 13;
+					}
+					if(label.equals("isParameterValueOf")){
+						indexToAdd = 14;
+					}
+					if(label.equals("hasVariable")){
+						indexToAdd = 15;
+					}
+					if(label.equals("isVariableOf")){
+						indexToAdd = 16;
+					}
+					if(label.equals("hasBiologicalCorrelate")){
+						indexToAdd = 17;
+					}
+					if(label.equals("isBiologicalCorrelateOf")){
+						indexToAdd = 18;
+					}
+
+					//check if this is the first entry into this index of the labelList ArrayList
+					if(labelList.get(indexToAdd) != null){
+						labelList.add(indexToAdd, ",");
+					}
+					labelList.add(indexToAdd, entry);
+				}
+	
+			}
+		
+			out.close();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static void printTermValues(ArrayList<String> list, PrintWriter fout){
+		for(String s : list){
+			fout.print(s);
+		}
+		list = new ArrayList<String>(18);
+	}
+
+}
