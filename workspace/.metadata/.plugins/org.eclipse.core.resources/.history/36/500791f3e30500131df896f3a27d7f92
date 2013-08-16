@@ -1,0 +1,98 @@
+/*
+ * This program reads an excel document that contains 2 columns - first for the source
+ * and the second for the target URIs. Finally, this program writes an OWL file with OWLEquivalent statements between the mapping classes. 
+ * @Fahim Imam (January 14, 2013)
+ */
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+
+
+public class SetOWLEquivalence {
+	
+	//Global declarations.
+	static ArrayList<String> srcURI = new ArrayList<String>(); //List of source URI.
+    static ArrayList<String> targetURI = new ArrayList<String>(); //List of target URI.
+	
+    public static void main (String[] args)
+	{
+	    String srcClassURI = "";    // If the mapping excel file only contains Class IDs, 
+	    String targetClassURI = ""; // please insert the URI portion of the Class IDs here.
+		
+		String excelFileName = "NIFSTD-PRO-Mappings.xls"; // Change the file name as you wish.
+														  // Make sure to keep the excel file at the same directory of this program.
+		loadExcelDocument(srcClassURI, targetClassURI, excelFileName);
+		writeOWLEquivFile(); 
+	}
+
+public static void loadExcelDocument(String srcClassURI, String targetClassURI, String fileName)
+{
+	try 
+    {
+        InputStream input = new BufferedInputStream(
+                    new FileInputStream(fileName)); //Note: Only works with xls file not xslx.
+        POIFSFileSystem fs = new POIFSFileSystem( input );
+        HSSFWorkbook wb = new HSSFWorkbook(fs);
+        HSSFSheet sheet = wb.getSheetAt(0);
+        
+        Iterator rows = sheet.rowIterator();
+        while( rows.hasNext() ) 
+        {  
+            HSSFRow row = (HSSFRow) rows.next();
+            Iterator cells = row.cellIterator();
+          
+            while( cells.hasNext() ) 
+            {
+               HSSFCell cell = (HSSFCell) cells.next();
+                if (cell.getColumnIndex() == 0) //if first column.
+            	  	    srcURI.add(srcClassURI + cell.getStringCellValue());
+                	else 
+                		targetURI.add(targetClassURI + cell.getStringCellValue());
+            } //End of while block 2.
+
+        } //End of while block 1.
+             
+    } // End of try block.
+    
+    catch ( IOException ex ) 
+    {
+        ex.printStackTrace();
+    } // End of catch.
+
+}
+
+public static void writeOWLEquivFile()
+	{
+		String OWLStatement = "";
+		Iterator <String>srcItr = srcURI.iterator();
+		Iterator <String>targetItr = targetURI.iterator();
+		
+	     while(srcItr.hasNext()) // loop thro elements
+	          {
+	    	    //System.out.println(srcItr.next()); 
+		
+				OWLStatement = "\n<owl:Class rdf:about=\"" + srcItr.next() + "\"/>";
+				OWLStatement += "\n<owl:equivalentClass rdf:resource=\"" + targetItr.next() + "\"/>";
+				OWLStatement += "\n</owl:Class>";
+	            
+				System.out.println(OWLStatement);
+	          }
+		/*
+		OWL Equivalent Statement format:
+		<owl:Class rdf:about="http://purl.obolibrary.org/obo/ERO_0000019"/>	
+		  <owl:equivalentClass rdf:resource="http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#nlx_inv_20090407"/>
+		</owl:Class> 
+		*/	
+	}
+
+}

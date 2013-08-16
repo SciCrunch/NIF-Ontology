@@ -1,0 +1,194 @@
+/*
+ * This program reads an excel document that is generated from an OWL file
+ * with extra spaces and blanks (using excel's XML import). Finally, this program
+ * writes an output excel document without the unnecessary blanks and spaces.
+ * This can be used for the NIF project where we need to generate excel/csv data
+ * extracted from a set of OWL ontology classes. 
+ * @Fahim Imam (August 14, 2013)
+ */
+
+import java.awt.List;
+import java.io.BufferedInputStream;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Iterator;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.util.HSSFColor;
+ 
+public class ReadExcel 
+{
+ 
+    public static void main( String [] args ) 
+    {
+        
+        readExcelDocument();
+        writeExcelDocument();
+        writeExcelDocument2();
+        
+    } // End of main.
+    
+    // Reads the excel document.
+    public static void readExcelDocument()
+    {
+    	try 
+        {
+            InputStream input = new BufferedInputStream(
+                        new FileInputStream("sample.xls")); //Note: Only works with xls file not xslx.
+            POIFSFileSystem fs = new POIFSFileSystem( input );
+            HSSFWorkbook wb = new HSSFWorkbook(fs);
+            HSSFSheet sheet = wb.getSheetAt(0);
+            
+			String data; 
+			data = "";
+			int lastColIndex = 0;
+			
+            Iterator rows = sheet.rowIterator();
+            while( rows.hasNext() ) 
+            {  
+                HSSFRow row = (HSSFRow) rows.next();
+                //System.out.println("\n");
+                Iterator cells = row.cellIterator();
+                
+                
+                while( cells.hasNext() ) 
+                {
+                     
+                    HSSFCell cell = (HSSFCell) cells.next();
+                  /*  if(HSSFCell.CELL_TYPE_NUMERIC==cell.getCellType())
+                    System.out.print( cell.getNumericCellValue()+"     " );
+                    else */
+                  if (cell.getColumnIndex() == 0)
+                	  {
+                	  	System.out.print("\n new row.\n");
+                	  	data += "\n";
+                	  	lastColIndex = 0;
+                	  	System.out.print (lastColIndex);
+                	  }
+                    
+                  if(HSSFCell.CELL_TYPE_STRING==cell.getCellType())
+                        {
+                	  	if (cell.getColumnIndex() < lastColIndex) // if the cell value has the same column index
+                	  	   {  										  // then append a semicolon instead of a tab.
+                	         data += cell.getStringCellValue() + "; "; 
+                	  		 
+                	  	   }
+                	  		 
+                	  	System.out.print( " COL["+ cell.getColumnIndex() + "]" );
+                	  	data += cell.getStringCellValue() + "\t"; // concatenate a tab.
+                	  				
+                	  	 
+                        }
+                    /*else
+                        if(HSSFCell.CELL_TYPE_BOOLEAN==cell.getCellType())
+                        System.out.print( cell.getBooleanCellValue()+"     " );
+                        else*/
+                    else if(HSSFCell.CELL_TYPE_BLANK==cell.getCellType())
+                        System.out.print( "BLANK" );
+                        else
+                        	System.out.print("Unknown cell type");
+                  
+                 System.out.print("(LAST COL:" +lastColIndex + ")");
+                  lastColIndex +=1;
+                } //End of while block 2.
+                
+                
+            } //End of while block 1.
+            
+        System.out.print(data);     
+        } // End of try block.
+        
+        catch ( IOException ex ) 
+        {
+            ex.printStackTrace();
+        } // End of catch.
+    }
+    
+    //Example manipulation of excel data.
+    public static void writeExcelDocument()
+    {
+    	 try 
+         {
+ 			FileOutputStream fileOut = new FileOutputStream("poi-test.xls");
+ 			HSSFWorkbook workbook = new HSSFWorkbook();
+ 			HSSFSheet worksheet = workbook.createSheet("POI Worksheet");
+            
+ 			// index from 0,0... cell A1 is cell(0,0)
+ 			
+ 			HSSFRow row1 = worksheet.createRow((short) 0);
+
+ 			HSSFCell cellA1 = row1.createCell((short) 0);
+ 			cellA1.setCellValue("Hello");
+ 			HSSFCellStyle cellStyle = workbook.createCellStyle();
+ 			cellStyle.setFillForegroundColor(HSSFColor.GOLD.index);
+ 			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+ 			cellA1.setCellStyle(cellStyle);
+
+ 			HSSFCell cellB1 = row1.createCell((short) 1);
+ 			cellB1.setCellValue("Goodbye");
+ 			cellStyle = workbook.createCellStyle();
+ 			cellStyle.setFillForegroundColor(HSSFColor.LIGHT_CORNFLOWER_BLUE.index);
+ 			cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+ 			cellB1.setCellStyle(cellStyle);
+
+ 			HSSFCell cellC1 = row1.createCell((short) 2);
+ 			cellC1.setCellValue(true);
+
+ 			HSSFCell cellD1 = row1.createCell((short) 3);
+ 			cellD1.setCellValue(new Date(12,12,12));
+ 			cellStyle = workbook.createCellStyle();
+ 			cellStyle.setDataFormat(HSSFDataFormat
+ 					.getBuiltinFormat("m/d/yy h:mm"));
+ 			cellD1.setCellStyle(cellStyle);
+
+ 			workbook.write(fileOut);
+ 			fileOut.flush();
+ 			fileOut.close();
+ 			
+ 			
+
+ 		} 
+         
+         catch (FileNotFoundException e) 
+         {
+ 			e.printStackTrace();
+ 		} 
+         
+         catch (IOException e) 
+ 		{
+ 			e.printStackTrace();
+ 		}
+    	
+    }
+   
+   public static void writeExcelDocument2()
+    {
+	  try
+	  {
+	    // Create file 
+	    FileWriter fstream = new FileWriter(System.currentTimeMillis() + "out.xls");
+	    BufferedWriter output = new BufferedWriter(fstream);
+	    String data = "abc\tdef\tghi\njkl\tmno\tpqr\nstu\tvwx\tyz\n";
+	    
+	    output.write(data);
+	    //Close the output stream
+	    output.close();
+	    }
+	  catch (Exception e)
+	  {//Catch exception if any
+	      System.err.println("Error: " + e.getMessage());
+	  }
+    }
+}
