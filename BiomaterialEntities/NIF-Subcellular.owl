@@ -2,6 +2,7 @@
 
 
 <!DOCTYPE rdf:RDF [
+    <!ENTITY terms "http://purl.org/dc/terms/" >
     <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
     <!ENTITY dcmitype "http://purl.org/dc/dcmitype/" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
@@ -35,11 +36,12 @@
      xmlns:p2="http://ontology.neuinfo.org/NIF/Backend/nif_backend.owl#"
      xmlns:p1="http://ontology.neuinfo.org/NIF/Backend/obo-foundry-core.owl#"
      xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
+     xmlns:terms="http://purl.org/dc/terms/"
      xmlns:NIF-Molecule="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#"
      xmlns:obo_annot="http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:NIF-Cell="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#"
      xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:NIF-Cell="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#"
      xmlns:NIF-GrossAnatomy="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -57,23 +59,26 @@
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl">
         <core:changeNote rdf:datatype="&xsd;string"></core:changeNote>
-        <owl:versionInfo rdf:datatype="&xsd;string">1.3 (May 2012)</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&xsd;string">1.3.1 (July 15, 2013)</owl:versionInfo>
         <dc:title rdf:datatype="&xsd;string">NIF-Subcellular: contains cell parts and subcellular structures from SAO-CORE and Gene Ontology Cellular Component (GO-CC)</dc:title>
         <rdfs:comment rdf:datatype="&xsd;string">next ID: nlx_subcell_20090212</rdfs:comment>
         <core:changeNote rdf:datatype="&xsd;string">v1.1 (February, 2009) - * Duplicate classes from SAO (sao_ and nifext_ prefixed IDs) has been eliminated as identified in the NeuroLex wiki. While retiring the duplicate classes, kept the ones with most detailed annotations or merged the annotation (synonyms, definitions etc) into the ones that had more/better information regardless of their IDs with sao or nifext prefixes. * Not all sao prefixed IDs are out of date or replaced by nifext.
 
 v.1.0 (January, 2009) - Updated with simplified import hierarchy of upper level ontologies as part of the transition from NIFSTD 0.5 to 1.0.
 
+v1.2 (July, 2009) - New terms have been added since the January release (ID used: nlx_subcell_20090101 - 20090703)
 
-v1.2 (July, 2009) - New terms have been added since the January release (ID used: nlx_subcell_20090101 - 20090703)</core:changeNote>
+v1.3 (May, 2012) - New terms have been added from NeuroLex.
+
+v1.3.1 (July, 2013) - Older PURL links are replaced with the new ones.</core:changeNote>
         <owl:imports rdf:resource="http://ontology.neuinfo.org/NIF/Backend/nif_backend.owl"/>
-        <oboInOwl:hasSubset rdf:resource="http://purl.org/obo/owl/obo#goslim_candida"/>
-        <oboInOwl:hasSubset rdf:resource="http://purl.org/obo/owl/obo#goslim_generic"/>
-        <oboInOwl:hasSubset rdf:resource="http://purl.org/obo/owl/obo#goslim_goa"/>
-        <oboInOwl:hasSubset rdf:resource="http://purl.org/obo/owl/obo#goslim_pir"/>
-        <oboInOwl:hasSubset rdf:resource="http://purl.org/obo/owl/obo#goslim_plant"/>
-        <oboInOwl:hasSubset rdf:resource="http://purl.org/obo/owl/obo#goslim_yeast"/>
-        <oboInOwl:hasSubset rdf:resource="http://purl.org/obo/owl/obo#gosubset_prok"/>
+        <oboInOwl:hasSubset rdf:resource="http://purl.obolibrary.org/obo/goslim_candida"/>
+        <oboInOwl:hasSubset rdf:resource="http://purl.obolibrary.org/obo/goslim_generic"/>
+        <oboInOwl:hasSubset rdf:resource="http://purl.obolibrary.org/obo/goslim_goa"/>
+        <oboInOwl:hasSubset rdf:resource="http://purl.obolibrary.org/obo/goslim_pir"/>
+        <oboInOwl:hasSubset rdf:resource="http://purl.obolibrary.org/obo/goslim_plant"/>
+        <oboInOwl:hasSubset rdf:resource="http://purl.obolibrary.org/obo/goslim_yeast"/>
+        <oboInOwl:hasSubset rdf:resource="http://purl.obolibrary.org/obo/gosubset_prok"/>
     </owl:Ontology>
     
 
@@ -86,36 +91,134 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <rdf:Description rdf:about="&core;prefLabel">
-        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2004/02/skos/core"/>
-    </rdf:Description>
-    <rdf:Description rdf:about="&core;changeNote">
-        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2004/02/skos/core"/>
-    </rdf:Description>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#UmlsCui -->
+
+    <owl:AnnotationProperty rdf:about="&birn_annot;UmlsCui"/>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#bonfire_ID -->
+
+    <owl:AnnotationProperty rdf:about="&birn_annot;bonfire_ID"/>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#curationStatus -->
+
+    <owl:AnnotationProperty rdf:about="&birn_annot;curationStatus"/>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#hasCurationStatus -->
+
+    <owl:AnnotationProperty rdf:about="&birn_annot;hasCurationStatus"/>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#definitionSource -->
+
+    <owl:AnnotationProperty rdf:about="&obo_annot;definitionSource"/>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#note -->
+
+    <owl:AnnotationProperty rdf:about="&obo_annot;note"/>
+    
+
+
+    <!-- http://protege.stanford.edu/plugins/owl/protege#subclassesDisjoint -->
+
+    <owl:AnnotationProperty rdf:about="&protege;subclassesDisjoint"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/contributor -->
+
     <rdf:Description rdf:about="&dc;contributor">
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/elements/1.1/"/>
     </rdf:Description>
-    <owl:AnnotationProperty rdf:about="&obo_annot;definitionSource"/>
-    <owl:AnnotationProperty rdf:about="&obo_annot;note"/>
-    <owl:AnnotationProperty rdf:about="&oboInOwl;replacedBy"/>
-    <rdf:Description rdf:about="&core;definition">
-        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2004/02/skos/core"/>
-    </rdf:Description>
-    <owl:AnnotationProperty rdf:about="&oboInOwl;hasDefinition"/>
-    <rdf:Description rdf:about="&core;altLabel">
-        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2004/02/skos/core"/>
-    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
     <rdf:Description rdf:about="&dc;title">
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/elements/1.1/"/>
     </rdf:Description>
+    
+
+
+    <!-- http://purl.org/dc/terms/contributor -->
+
+    <owl:AnnotationProperty rdf:about="&terms;contributor"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/description -->
+
+    <owl:AnnotationProperty rdf:about="&terms;description"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasDefinition -->
+
+    <owl:AnnotationProperty rdf:about="&oboInOwl;hasDefinition"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasSubset -->
+
     <owl:AnnotationProperty rdf:about="&oboInOwl;hasSubset"/>
-    <owl:AnnotationProperty rdf:about="&birn_annot;UmlsCui"/>
-    <owl:AnnotationProperty rdf:about="&birn_annot;hasCurationStatus"/>
-    <owl:AnnotationProperty rdf:about="&birn_annot;bonfire_ID"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#replacedBy -->
+
+    <owl:AnnotationProperty rdf:about="&oboInOwl;replacedBy"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#altLabel -->
+
+    <rdf:Description rdf:about="&core;altLabel">
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#changeNote -->
+
+    <rdf:Description rdf:about="&core;changeNote">
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#definition -->
+
+    <rdf:Description rdf:about="&core;definition">
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#example -->
+
     <rdf:Description rdf:about="&core;example">
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2004/02/skos/core"/>
     </rdf:Description>
-    <owl:AnnotationProperty rdf:about="&birn_annot;curationStatus"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#prefLabel -->
+
+    <rdf:Description rdf:about="&core;prefLabel">
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+    </rdf:Description>
     
 
 
@@ -144,6 +247,18 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.obofoundry.org/ro/ro.owl#has_part -->
+
+    <owl:ObjectProperty rdf:about="&ro;has_part"/>
+    
+
+
+    <!-- http://www.obofoundry.org/ro/ro.owl#has_proper_part -->
+
+    <owl:ObjectProperty rdf:about="&ro;has_proper_part"/>
     
 
 
@@ -192,7 +307,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
 
     <owl:Class rdf:about="&NIF-GrossAnatomy;birnlex_878">
         <rdfs:label rdf:datatype="&xsd;string">Cytoskeletal system</rdfs:label>
-        <rdfs:comment rdf:datatype="&xsd;string">This class classifies fine under &#39;Constitutional part of cell&#39;, while loaded with NIF-GrossAnatomy.owl module.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">This class classifies fine under &apos;Constitutional part of cell&apos;, while loaded with NIF-GrossAnatomy.owl module.</rdfs:comment>
     </owl:Class>
     
 
@@ -210,7 +325,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
     <owl:Class rdf:about="&NIF-Molecule;sao1246280606">
         <rdfs:label rdf:datatype="&xsd;string">Synthetic Enzyme</rdfs:label>
         <owl:disjointWith rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao587592318"/>
-        <rdfs:comment rdf:datatype="&xsd;string">This class classifies fine under &#39;Enzyme&#39;, while loaded with NIF-Molecule.owl module.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">This class classifies fine under &apos;Enzyme&apos;, while loaded with NIF-Molecule.owl module.</rdfs:comment>
     </owl:Class>
     
 
@@ -220,7 +335,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
     <owl:Class rdf:about="&NIF-Molecule;sao26622963">
         <rdfs:label rdf:datatype="&xsd;string">Protein</rdfs:label>
         <obo_annot:modifiedDate rdf:datatype="&xsd;string">March 18, 2009</obo_annot:modifiedDate>
-        <rdfs:comment rdf:datatype="&xsd;string">This class classifies fine under &#39;Macromolecule&#39; while loaded with NIF-Molecule.owl module.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">This class classifies fine under &apos;Macromolecule&apos; while loaded with NIF-Molecule.owl module.</rdfs:comment>
         <birn_annot:hasFormerParentClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#sao500241072</birn_annot:hasFormerParentClass>
     </owl:Class>
     
@@ -243,10 +358,10 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
     <owl:Class rdf:about="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#FMA_83605">
         <rdfs:label rdf:datatype="&xsd;string">Meissners corpuscle</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#nlx_subcell_20090505"/>
-        <obo_annot:synonym rdf:datatype="&xsd;string">Meisner&#39;s corpuscle</obo_annot:synonym>
+        <obo_annot:synonym rdf:datatype="&xsd;string">Meisner&apos;s corpuscle</obo_annot:synonym>
         <obo_annot:synonym rdf:datatype="&xsd;string">Meisners corpuscle</obo_annot:synonym>
-        <obo_annot:synonym rdf:datatype="&xsd;string">Meissner&#39;s corpuscle</obo_annot:synonym>
-        <core:definition rdf:datatype="&xsd;string">Meissner&#39;s corpuscles are encapsulated nerve endings of dorsal root ganglion cells. They are located in skin, which consist of flattened supportive cells arranged as horizontal lamellae surrounded by a connective tissue capsule, that function as mechanoreceptors for light touch. The corpuscle is between 30-140 μm in length and 40-60 μm in diameter.</core:definition>
+        <obo_annot:synonym rdf:datatype="&xsd;string">Meissner&apos;s corpuscle</obo_annot:synonym>
+        <core:definition rdf:datatype="&xsd;string">Meissner&apos;s corpuscles are encapsulated nerve endings of dorsal root ganglion cells. They are located in skin, which consist of flattened supportive cells arranged as horizontal lamellae surrounded by a connective tissue capsule, that function as mechanoreceptors for light touch. The corpuscle is between 30-140 μm in length and 40-60 μm in diameter.</core:definition>
         <obo_annot:synonym rdf:datatype="&xsd;string">tactile corpuscle</obo_annot:synonym>
     </owl:Class>
     
@@ -263,8 +378,8 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <obo_annot:definingCitation rdf:datatype="&xsd;string">Foundational Model of Anatomy</obo_annot:definingCitation>
         <obo_annot:synonym rdf:datatype="&xsd;string">Merkel cell-neurite complex</obo_annot:synonym>
         <obo_annot:synonym rdf:datatype="&xsd;string">Merkel disk receptor</obo_annot:synonym>
-        <obo_annot:synonym rdf:datatype="&xsd;string">Merkel&#39;s disc</obo_annot:synonym>
-        <obo_annot:synonym rdf:datatype="&xsd;string">Merkel&#39;s disk</obo_annot:synonym>
+        <obo_annot:synonym rdf:datatype="&xsd;string">Merkel&apos;s disc</obo_annot:synonym>
+        <obo_annot:synonym rdf:datatype="&xsd;string">Merkel&apos;s disk</obo_annot:synonym>
     </owl:Class>
     
 
@@ -315,7 +430,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <obo_annot:modifiedDate rdf:datatype="&xsd;string">2006-09-28</obo_annot:modifiedDate>
         <obo_annot:UmlsCui rdf:datatype="&xsd;string">C0034667</obo_annot:UmlsCui>
         <core:prefLabel rdf:datatype="&xsd;string">Node of Ranvier</core:prefLabel>
-        <core:definition rdf:datatype="&xsd;string">Site located at the gaps in the myelin sheaths of myelinated axons. Axon diameter is generally decreased in the nodal region, compared to the internode.  Ranvier&#39;s nodes allow saltatory conduction, that is, jumping of impulses from node to node, which is faster and more energetically favorable than continuous conduction (MSH).</core:definition>
+        <core:definition rdf:datatype="&xsd;string">Site located at the gaps in the myelin sheaths of myelinated axons. Axon diameter is generally decreased in the nodal region, compared to the internode.  Ranvier&apos;s nodes allow saltatory conduction, that is, jumping of impulses from node to node, which is faster and more energetically favorable than continuous conduction (MSH).</core:definition>
         <birn_annot:birnlexDefinition rdf:datatype="&xsd;string">Specialized supracellular structures found in myelinated axons at the gaps between the myelin sheaths.  The Node of Ranvier consists of the axonal membrane at the gap, the surrounding myelin processes and additional components such as astrocytic processes or basal lamina, depending upon whether the Node occurs in axons in the peripheral or central nervous system.</birn_annot:birnlexDefinition>
         <birn_annot:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Maryann_Martone</birn_annot:hasBirnlexCurator>
         <birn_annot:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</birn_annot:hasCurationStatus>
@@ -487,6 +602,20 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <birn_annot:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated</birn_annot:hasCurationStatus>
         <birn_annot:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao2006047981</birn_annot:isReplacedByClass>
         <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#nlx_151681 -->
+
+    <owl:Class rdf:about="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#nlx_151681">
+        <rdfs:label>Complex laminated body</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao506721981"/>
+        <owl:versionInfo xml:lang="en">201976</owl:versionInfo>
+        <terms:description xml:lang="en">Cytoplasmic organelles described in some lateral geniculate neurons composed of sheets of tubules (25 nm in diameter) separated by dense material (about 75 nm wide), which together with the tubules whorl give a structure resembling a &apos;finger-print &apos;. In 2 um thick Epon-Araldite sections stained with methylene-blue and Azure II, CLBs are dark blue, round or oval bodies of the same order of size as the nucleolus.</terms:description>
+        <terms:contributor xml:lang="en">Maryann Martone</terms:contributor>
+        <obo_annot:createdDate xml:lang="en">November 8, 2012</obo_annot:createdDate>
+        <obo_annot:definitionSource xml:lang="en">Winfield DA (1982) A quantitative study of the complex laminated body in the lateral geniculate nucleus of the cat. Brain Res 235: 17-30. PubMed:7188322</obo_annot:definitionSource>
     </owl:Class>
     
 
@@ -809,7 +938,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
     <owl:Class rdf:about="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#nlx_subcell_20090105">
         <rdfs:label rdf:datatype="&xsd;string">Lewy Body-like Hyaline Inclusion</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao120573470"/>
-        <core:definition rdf:datatype="&xsd;string">In H&amp;E preparations, neuronal LBHIs show an eosinphilic core with a paler peripheral halo, and their name is derived from their H&amp;E staining features, which resemble those of Lewy bodies in patients with Parkinson&#39;s disease. Neuronal Lewy Body-like Hyaline Inclusions consist of filaments and granular materials, exhibit dense cores with rough preipheral halos and lack a limiting membrane. The filaments of these inclusions are composed of approximately 15-25 nm granule-coated fibrils in association with normal 10-nm neurofilaments.</core:definition>
+        <core:definition rdf:datatype="&xsd;string">In H&amp;E preparations, neuronal LBHIs show an eosinphilic core with a paler peripheral halo, and their name is derived from their H&amp;E staining features, which resemble those of Lewy bodies in patients with Parkinson&apos;s disease. Neuronal Lewy Body-like Hyaline Inclusions consist of filaments and granular materials, exhibit dense cores with rough preipheral halos and lack a limiting membrane. The filaments of these inclusions are composed of approximately 15-25 nm granule-coated fibrils in association with normal 10-nm neurofilaments.</core:definition>
         <obo_annot:createdDate rdf:datatype="&xsd;string">January 9, 2009</obo_annot:createdDate>
         <obo_annot:definingCitation rdf:datatype="&xsd;string">Kato S. 2008 Amyotrophic lateral sclerosis models and human neuropathology: similarities and differences. Acta Neuropathol 115:97-114. page 101</obo_annot:definingCitation>
         <core:prefLabel rdf:datatype="&xsd;string">Lewy Body-like Hyaline Inclusion</core:prefLabel>
@@ -1853,7 +1982,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <owl:disjointWith rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao885490876"/>
         <birn_annot:gene_Ontology_ID rdf:datatype="&xsd;string">0008021</birn_annot:gene_Ontology_ID>
         <birn_annot:umls_ID rdf:datatype="&xsd;string">C0039065</birn_annot:umls_ID>
-        <core:definition rdf:datatype="&xsd;string">Secretory organelles, some 50 nm in diameter, of pre-synaptic nerve terminals; accumulate high concentrations of neurotransmitters and secrete these into the synaptic cleft by fusion with the &#39;active zone&#39; of the pre-synaptic plasma membrane (Gene Ontology).</core:definition>
+        <core:definition rdf:datatype="&xsd;string">Secretory organelles, some 50 nm in diameter, of pre-synaptic nerve terminals; accumulate high concentrations of neurotransmitters and secrete these into the synaptic cleft by fusion with the &apos;active zone&apos; of the pre-synaptic plasma membrane (Gene Ontology).</core:definition>
         <core:prefLabel rdf:datatype="&xsd;string">Synaptic Vesicle</core:prefLabel>
         <core:example rdf:datatype="&xsd;string">http://ccdb.ucsd.edu/SAO/images/syn_vesicles_2_sw_512x512.jpg</core:example>
         <core:example rdf:datatype="&xsd;string">http://ccdb.ucsd.edu/SAO/images/syn_vesicles_3_sw_512x512.jpg</core:example>
@@ -1869,7 +1998,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
     <owl:Class rdf:about="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao1074198261">
         <rdfs:label rdf:datatype="&xsd;string">Post-synaptic Site</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao-946766835"/>
-        <rdfs:comment rdf:datatype="&xsd;string">Before replacing the is_Location_Of property with RO&#39;s contained_in and the site_Contained_In property with RO&#39;s contained_in, we had the two restrictions: 1) is_Location_Of some Post-synaptic Density and 2) site_Contained_In some Post-synatpic Density.  Thus, now we just have one restriction: contained_in some Post-synaptic Density.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">Before replacing the is_Location_Of property with RO&apos;s contained_in and the site_Contained_In property with RO&apos;s contained_in, we had the two restrictions: 1) is_Location_Of some Post-synaptic Density and 2) site_Contained_In some Post-synatpic Density.  Thus, now we just have one restriction: contained_in some Post-synaptic Density.</rdfs:comment>
         <core:prefLabel rdf:datatype="&xsd;string">Post-synaptic Site</core:prefLabel>
         <birn_annot:sao_ID rdf:datatype="&xsd;string">sao1074198261</birn_annot:sao_ID>
     </owl:Class>
@@ -2224,7 +2353,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <owl:disjointWith rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao508958414"/>
         <birn_annot:gene_Ontology_ID rdf:datatype="&xsd;string">0005758</birn_annot:gene_Ontology_ID>
         <birn_annot:umls_ID rdf:datatype="&xsd;string">C1166886</birn_annot:umls_ID>
-        <rdfs:comment rdf:datatype="&xsd;string">I&#39;m having difficulty deciding whether this is a regional part of a mitochondrion or whether it is a site;  today it is a regional part.</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">I&apos;m having difficulty deciding whether this is a regional part of a mitochondrion or whether it is a site;  today it is a regional part.</rdfs:comment>
         <core:prefLabel rdf:datatype="&xsd;string">Mitochondrial Intermembrane Space</core:prefLabel>
         <core:definition rdf:datatype="&xsd;string">The region between the inner and outer lipid bilayers of the mitochondrial envelope. (Gene Ontology).</core:definition>
         <birn_annot:curationStatus rdf:datatype="&xsd;string">graph position temporary</birn_annot:curationStatus>
@@ -2265,7 +2394,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <birn_annot:gene_Ontology_ID rdf:datatype="&xsd;string">0014069</birn_annot:gene_Ontology_ID>
         <birn_annot:bonfire_ID rdf:datatype="&xsd;string">BF_C000103</birn_annot:bonfire_ID>
         <core:prefLabel rdf:datatype="&xsd;string">Post-synaptic Density</core:prefLabel>
-        <core:definition rdf:datatype="&xsd;string">Synaptic component; electron dense cytoskeletal specialization located on the post synaptic membrane at the site of synaptic contact. The PSD is particularly prominent in glutamatergic synapses, giving the synapse an asymmetrical appearance. This type of PSD is often referred to as &quot;asymmetrical&quot; or Gray&#39;s Type 1 (Maryann Martone, from the CCDB Dictionary).</core:definition>
+        <core:definition rdf:datatype="&xsd;string">Synaptic component; electron dense cytoskeletal specialization located on the post synaptic membrane at the site of synaptic contact. The PSD is particularly prominent in glutamatergic synapses, giving the synapse an asymmetrical appearance. This type of PSD is often referred to as &quot;asymmetrical&quot; or Gray&apos;s Type 1 (Maryann Martone, from the CCDB Dictionary).</core:definition>
         <core:example rdf:datatype="&xsd;string">http://ccdb.ucsd.edu/SAO/images/psd_sw_512x512.jpg</core:example>
         <birn_annot:sao_ID rdf:datatype="&xsd;string">sao1196688972</birn_annot:sao_ID>
     </owl:Class>
@@ -2552,7 +2681,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <core:prefLabel rdf:datatype="&xsd;string">Cell Cell Contact Zone</core:prefLabel>
         <core:definition rdf:datatype="&xsd;string">Extended zone of intimate apposition between two cells containing one or more types of intercellular junctions, e.g., the intercalated disk of muscle</core:definition>
         <dc:contributor rdf:datatype="&xsd;string">Maryann Martone</dc:contributor>
-        <rdfs:comment rdf:datatype="&xsd;string">We still don&#39;t know if the synapse, in the sense that it is typically used, belongs here or whether large, multicontact synapses like the neuromuscular junction and the calycl synapse of Held, belong here and not simple synapses</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">We still don&apos;t know if the synapse, in the sense that it is typically used, belongs here or whether large, multicontact synapses like the neuromuscular junction and the calycl synapse of Held, belong here and not simple synapses</rdfs:comment>
         <birn_annot:sao_ID rdf:datatype="&xsd;string">sao1299635018</birn_annot:sao_ID>
         <birn_annot:curationStatus rdf:datatype="&xsd;string">uncurated</birn_annot:curationStatus>
     </owl:Class>
@@ -2953,7 +3082,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
     <owl:Class rdf:about="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao1490223249">
         <rdfs:label rdf:datatype="&xsd;string">Vesicle Cargo</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao1455064842"/>
-        <rdfs:comment rdf:datatype="&xsd;string">Need to determine whether this should be a part of a vesicle;  I think it shouldn&#39;t be</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">Need to determine whether this should be a part of a vesicle;  I think it shouldn&apos;t be</rdfs:comment>
         <core:definition rdf:datatype="&xsd;string">Refers to the contents contained in the vesicle.</core:definition>
         <core:prefLabel rdf:datatype="&xsd;string">Vesicle Cargo</core:prefLabel>
         <birn_annot:sao_ID rdf:datatype="&xsd;string">sao1490223249</birn_annot:sao_ID>
@@ -5194,7 +5323,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <birn_annot:umls_ID rdf:datatype="&xsd;string">C0034667</birn_annot:umls_ID>
         <obo_annot:modifiedDate rdf:datatype="&xsd;string">May 16, 2009</obo_annot:modifiedDate>
         <core:prefLabel rdf:datatype="&xsd;string">Node Of Ranvier</core:prefLabel>
-        <core:definition rdf:datatype="&xsd;string">Site located at the gaps in the myelin sheaths of myelinated axons. Axon diameter is generally decreased in the nodal region, compared to the internode.  Ranvier&#39;s nodes allow saltatory conduction, that is, jumping of impulses from node to node, which is faster and more energetically favorable than continuous conduction (MSH).</core:definition>
+        <core:definition rdf:datatype="&xsd;string">Site located at the gaps in the myelin sheaths of myelinated axons. Axon diameter is generally decreased in the nodal region, compared to the internode.  Ranvier&apos;s nodes allow saltatory conduction, that is, jumping of impulses from node to node, which is faster and more energetically favorable than continuous conduction (MSH).</core:definition>
         <rdfs:comment rdf:datatype="&xsd;string">This class has been retired.</rdfs:comment>
         <birn_annot:isReplacedByClass rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#birnlex_1152_2</birn_annot:isReplacedByClass>
         <birn_annot:sao_ID rdf:datatype="&xsd;string">sao571652273</birn_annot:sao_ID>
@@ -5212,7 +5341,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <core:prefLabel rdf:datatype="&xsd;string">Corona</core:prefLabel>
         <obo_annot:synonym rdf:datatype="&xsd;string">Halo</obo_annot:synonym>
         <dc:contributor rdf:datatype="&xsd;string">Sarah M. Maynard</dc:contributor>
-        <core:definition rdf:datatype="&xsd;string">The periphery of the Lewy Body.  In Parkinson&#39;s Disease, it contains sperical accumulations of filaments arrange in a loose, radiating array.</core:definition>
+        <core:definition rdf:datatype="&xsd;string">The periphery of the Lewy Body.  In Parkinson&apos;s Disease, it contains sperical accumulations of filaments arrange in a loose, radiating array.</core:definition>
         <birn_annot:sao_ID rdf:datatype="&xsd;string">sao5764355747</birn_annot:sao_ID>
         <birn_annot:curationStatus rdf:datatype="&xsd;string">uncurated</birn_annot:curationStatus>
     </owl:Class>
@@ -5269,6 +5398,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
 
     <owl:Class rdf:about="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao587592318">
         <rdfs:label rdf:datatype="&xsd;string">Neurotransmitter receptor role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&snap;Role"/>
         <birn_annot:umls_ID rdf:datatype="&xsd;string">C0034828</birn_annot:umls_ID>
         <core:definition rdf:datatype="&xsd;string">Cell surface receptors that bind signalling molecules released by neurons and convert these signals into intracellular changes influencing the behavior of cells. Neurotransmitter is used here in its most general sense, including not only messengers that act to regulate ion channels, but also those which act on second messenger systems and those which may act at a distance from their release sites. Included are receptors for neuromodulators, neuroregulators, neuromediators, and neurohumors, whether or not located at synapses (MSH).</core:definition>
         <core:prefLabel rdf:datatype="&xsd;string">Neurotransmitter Receptor Role</core:prefLabel>
@@ -5284,7 +5414,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <rdfs:label rdf:datatype="&xsd;string">Glomerulus</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao205380252"/>
         <core:prefLabel rdf:datatype="&xsd;string">Glomerulus</core:prefLabel>
-        <rdfs:comment rdf:datatype="&xsd;string">I&#39;m not sure whether this should be a type of neuropil or a type of synaptic complex. (Maryann Martone)</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">I&apos;m not sure whether this should be a type of neuropil or a type of synaptic complex. (Maryann Martone)</rdfs:comment>
         <obo_annot:modifiedDate rdf:datatype="&xsd;string">June 22, 2009</obo_annot:modifiedDate>
         <core:definition rdf:datatype="&xsd;string">Large synaptic bouton found in areas like olfactory bulb, cerebellar cortex and thalamus, that contacts many post-synaptic targets. http://ccdb.ucsd.edu/SAO/images/glomerulus_sw_512x512.jpg</core:definition>
         <core:definition rdf:datatype="&xsd;string">Type of neuropil characterized by a large synaptic bouton that contacts many post-synaptic targets found in areas like olfactory bulb, cerebellar cortex and thalamus.</core:definition>
@@ -5299,7 +5429,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
     <owl:Class rdf:about="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao601362597">
         <rdfs:label rdf:datatype="&xsd;string">Lewy Neurite</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao-867568886"/>
-        <core:definition rdf:datatype="&xsd;string">Elongated neuronal process, described in brains of patients with Parkinson&#39;s disease, many of which exhibit side branches and have more than one branching point.  Stains positively for ubiquitin in brainstem and forebrain regions affected in Parkinson&#39;s disease.</core:definition>
+        <core:definition rdf:datatype="&xsd;string">Elongated neuronal process, described in brains of patients with Parkinson&apos;s disease, many of which exhibit side branches and have more than one branching point.  Stains positively for ubiquitin in brainstem and forebrain regions affected in Parkinson&apos;s disease.</core:definition>
         <core:prefLabel rdf:datatype="&xsd;string">Lewy Neurite</core:prefLabel>
         <birn_annot:sao_ID rdf:datatype="&xsd;string">sao601362597</birn_annot:sao_ID>
         <birn_annot:curationStatus rdf:datatype="&xsd;string">uncurated</birn_annot:curationStatus>
@@ -5380,7 +5510,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao1894609662"/>
         <core:prefLabel rdf:datatype="&xsd;string">Core</core:prefLabel>
         <dc:contributor rdf:datatype="&xsd;string">Sarah M. Maynard</dc:contributor>
-        <core:definition rdf:datatype="&xsd;string">The center portion of the Lewy Body.  In Parkinson&#39;s Disease, it contains a matted meshwork of filaments.</core:definition>
+        <core:definition rdf:datatype="&xsd;string">The center portion of the Lewy Body.  In Parkinson&apos;s Disease, it contains a matted meshwork of filaments.</core:definition>
         <birn_annot:sao_ID rdf:datatype="&xsd;string">sao6587439252</birn_annot:sao_ID>
         <birn_annot:curationStatus rdf:datatype="&xsd;string">uncurated</birn_annot:curationStatus>
     </owl:Class>
@@ -5576,7 +5706,7 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
         <rdfs:label rdf:datatype="&xsd;string">Alpha-Synuclein Fibril</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao5051906853"/>
         <core:prefLabel rdf:datatype="&xsd;string">Alpha-Synuclein Fibril</core:prefLabel>
-        <core:definition rdf:datatype="&xsd;string">Insoluble fibrils that form in pathological conditions characterized by Lewy bodies, such as Parkinson&#39;s disease, dementia with Lewy bodies, and multiple system atrophy. Alpha-synuclein is the primary structural component.</core:definition>
+        <core:definition rdf:datatype="&xsd;string">Insoluble fibrils that form in pathological conditions characterized by Lewy bodies, such as Parkinson&apos;s disease, dementia with Lewy bodies, and multiple system atrophy. Alpha-synuclein is the primary structural component.</core:definition>
         <dc:contributor rdf:datatype="&xsd;string">Sarah M. Maynard</dc:contributor>
         <birn_annot:sao_ID rdf:datatype="&xsd;string">sao7474011676</birn_annot:sao_ID>
         <birn_annot:curationStatus rdf:datatype="&xsd;string">uncurated</birn_annot:curationStatus>
@@ -6175,20 +6305,9 @@ v1.2 (July, 2009) - New terms have been added since the January release (ID used
     <!-- http://xmlns.com/foaf/0.1/Document -->
 
     <owl:Class rdf:about="&foaf;Document"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-    -->
-  
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 

@@ -2,16 +2,16 @@
 
 
 <!DOCTYPE rdf:RDF [
-    <!ENTITY owl2 "http://purl.org/obo/owl/" >
-    <!ENTITY obo "http://purl.org/obo/owl/obo#" >
-    <!ENTITY PATO "http://purl.org/obo/owl/PATO#" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY owl2 "http://purl.obolibrary.org/obo/" >
     <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
     <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
     <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY j.1 "http://ontology.neuinfo.org/NIF/#" >
+    <!ENTITY obo "http://purl.obolibrary.org/obo/obo#" >
     <!ENTITY snap "http://www.ifomis.org/bfo/1.1/snap#" >
+    <!ENTITY PATO "http://purl.obolibrary.org/obo/PATO#" >
     <!ENTITY j.0 "http://www.w3.org/2004/02/skos/core#" >
     <!ENTITY daml "http://www.daml.org/2001/03/daml+oil#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
@@ -36,7 +36,7 @@
      xmlns:p2="http://ontology.neuinfo.org/NIF/Backend/nif_backend.owl#"
      xmlns:p1="http://ontology.neuinfo.org/NIF/Backend/obo-foundry-core.owl#"
      xmlns:snap="http://www.ifomis.org/bfo/1.1/snap#"
-     xmlns:owl2="http://purl.org/obo/owl/"
+     xmlns:owl2="http://purl.obolibrary.org/obo/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:swrl="http://www.w3.org/2003/11/swrl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -58,11 +58,12 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl">
-        <owl:versionInfo rdf:datatype="&xsd;string">1.3</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&xsd;string">1.4</owl:versionInfo>
         <dc:title rdf:datatype="&xsd;string">NIF-Organism: contains classes from NCBI Organismal Taxonomy and BIRNLex-OrganismalTaxonomy</dc:title>
         <j.0:changeNote rdf:datatype="&xsd;string">v.1.0 (January, 2009) - Updated with simplified import hierarchy of upper level ontologies as part of the transition from NIFSTD 0.5 to 1.0.
 v.1.2 (October, 2011) - Imports NIF-NCBITaxonomy-Slim to incorportae a smaller list of organisms as well as English names as alternative labels. An equivalancy bridge module associates the mapping terms between NIF organisms and the organisms from the NCBI Taxonomy slim.
-v.1.3 (May, 2012) - Unusual synonyms and abbreviations are removed. </j.0:changeNote>
+v.1.3 (May, 2012) - Unusual synonyms and abbreviations are removed.
+v.1.4 (July, 2013) - Old PURLs are replaced with new ones for the OBO ontologies. </j.0:changeNote>
         <owl:imports rdf:resource="http://ontology.neuinfo.org/NIF/Backend/nif_backend.owl"/>
         <owl:imports rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITax-Bridge.owl"/>
         <owl:imports rdf:resource="http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-Slim.owl"/>
@@ -79,14 +80,41 @@ v.1.3 (May, 2012) - Unusual synonyms and abbreviations are removed. </j.0:change
      -->
 
     
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Datatypes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
 
+
+    <!-- http://ontology.neuinfo.org/NIF/#modifiedDate -->
+
+    <owl:AnnotationProperty rdf:about="&j.1;modifiedDate"/>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/#synonym -->
+
+    <owl:AnnotationProperty rdf:about="&j.1;synonym"/>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#hasCurationStatus -->
+
+    <owl:AnnotationProperty rdf:about="&j.2;hasCurationStatus"/>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#hasCoveringOrganism -->
+
+    <owl:AnnotationProperty rdf:about="&p11;hasCoveringOrganism"/>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#hasMutationType -->
+
+    <owl:AnnotationProperty rdf:about="&p11;hasMutationType"/>
+    
+
+
+    <!-- http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#hasTaxonRank -->
+
+    <owl:AnnotationProperty rdf:about="&p11;hasTaxonRank"/>
     
 
 
@@ -101,9 +129,10 @@ v.1.3 (May, 2012) - Unusual synonyms and abbreviations are removed. </j.0:change
     
 
 
-    <!-- http://purl.org/obo/owl/obo#inheres_in -->
+    <!-- http://purl.obolibrary.org/obo/pato#inheres_in -->
 
-    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/pato#inheres_in"/>
+    <owl:ObjectProperty rdf:about="&owl2;pato#inheres_in"/>
+    
 
 
     <!-- 
@@ -1184,8 +1213,8 @@ Related Genotype: A/A</j.2:birnlexDefinition>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_574"/>
         <owl:disjointWith rdf:resource="&p11;birnlex_580"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13149062</j.2:gbifID>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-02</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-02</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-02</j.3:modifiedDate>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">345140</j.2:gbifTaxonKeyID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">9480</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0006763</j.3:UmlsCui>
@@ -1331,8 +1360,8 @@ Related Genotype: A/A</j.2:birnlexDefinition>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_138"/>
         <owl:disjointWith rdf:resource="&p11;birnlex_362"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13181156</j.2:gbifID>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">415120</j.2:gbifTaxonKeyID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">6737</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0998250</j.3:UmlsCui>
@@ -1789,8 +1818,8 @@ Strain Description
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">85604</j.2:ncbiTaxID>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Amphiesmenoptera</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Amphiesmenoptera</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Amphiesmenoptera</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -1921,11 +1950,11 @@ Strain Description
     <owl:Class rdf:about="&p11;birnlex_170">
         <rdfs:label rdf:datatype="&xsd;string">Neolepidoptera</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_165"/>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">41196</j.2:ncbiTaxID>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Neolepidoptera</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Neolepidoptera</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Neolepidoptera</j.2:ncbiTaxScientificName>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -2244,8 +2273,8 @@ Genetics:  For genetic comparisons and pertinent data, refer to &quot;Genetics&q
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">119258</j.2:ncbiTaxID>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Bombyciformes</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Bombyciformes</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Bombyciformes</j.0:prefLabel>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1057192</j.3:UmlsCui>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
@@ -2574,8 +2603,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">33217</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1081802</j.3:UmlsCui>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Pseudocoelomata</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Pseudocoelomata</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Pseudocoelomata</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -3043,8 +3072,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <j.3:createdDate rdf:datatype="&xsd;string">2007-06-03</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-06-03</j.3:modifiedDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">8492</j.2:ncbiTaxID>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Archosauria</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Archosauria</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Archosauria</j.0:prefLabel>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0999075</j.3:UmlsCui>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
@@ -3408,8 +3437,8 @@ Clearly, major revision of the nomenclature of this group of strains is necessar
     <owl:Class rdf:about="&p11;birnlex_235">
         <rdfs:label rdf:datatype="&xsd;string">Xenopus</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_632"/>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-04</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-04</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-04</j.3:modifiedDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">262014</j.2:ncbiTaxID>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Xenopus</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Xenopus</j.0:prefLabel>
@@ -3465,8 +3494,8 @@ Clearly, major revision of the nomenclature of this group of strains is necessar
     <owl:Class rdf:about="&p11;birnlex_238">
         <rdfs:label rdf:datatype="&xsd;string">Homo Pan Gorilla group</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_110"/>
-        <j.3:createdDate rdf:datatype="&xsd;string">2006-10-07</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2006-10-07</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2006-10-07</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">207598</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1224354</j.3:UmlsCui>
         <j.0:prefLabel rdf:datatype="&xsd;string">Homo Pan Gorilla group</j.0:prefLabel>
@@ -3790,8 +3819,8 @@ Clearly, major revision of the nomenclature of this group of strains is necessar
         <j.3:hasDefinitionSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource</j.3:hasDefinitionSource>
         <hasTaxonRank rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_779</hasTaxonRank>
         <j.3:taxonomicCommonName rdf:datatype="&xsd;string">mammals</j.3:taxonomicCommonName>
-        <j.2:ncbiTaxGenbankCommonName rdf:datatype="&xsd;string">mammals</j.2:ncbiTaxGenbankCommonName>
         <j.2:ncbiTaxBlastName rdf:datatype="&xsd;string">mammals</j.2:ncbiTaxBlastName>
+        <j.2:ncbiTaxGenbankCommonName rdf:datatype="&xsd;string">mammals</j.2:ncbiTaxGenbankCommonName>
         <j.0:editorialNote xml:lang="en">This class is not intended to present a normative, comprehensive, taxonomic hierarchy, but rather is provided as an approximate indication of the phylogenetic relatedness amongst the taxonomic groups nested under it (BB).</j.0:editorialNote>
     </owl:Class>
     
@@ -4244,8 +4273,8 @@ Clearly, major revision of the nomenclature of this group of strains is necessar
         <j.3:createdDate rdf:datatype="&xsd;string">2007-07-27</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-07-27</j.3:modifiedDate>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1059401</j.3:UmlsCui>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Neoteleostei</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Neoteleostei</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Neoteleostei</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -4292,8 +4321,8 @@ Clearly, major revision of the nomenclature of this group of strains is necessar
         <j.3:modifiedDate rdf:datatype="&xsd;string">August 20, 2009</j.3:modifiedDate>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0021585</j.3:UmlsCui>
         <j.3:synonym rdf:datatype="&xsd;string">Insect</j.3:synonym>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Insecta</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Insecta</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Insecta</j.0:prefLabel>
         <j.3:synonym rdf:datatype="&xsd;string">Insects</j.3:synonym>
         <j.3:nifID rdf:datatype="&xsd;string">_6_2.2.2</j.3:nifID>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
@@ -4386,8 +4415,8 @@ Clearly, major revision of the nomenclature of this group of strains is necessar
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-07-27</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-07-27</j.3:createdDate>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1089829</j.3:UmlsCui>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Eurypterygii</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Eurypterygii</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Eurypterygii</j.2:ncbiTaxScientificName>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -5006,8 +5035,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
     <owl:Class rdf:about="&p11;birnlex_306">
         <rdfs:label rdf:datatype="&xsd;string">Dunkin Hartley guinea pig</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_307"/>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-06</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-06</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-06</j.3:modifiedDate>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0324524</j.3:UmlsCui>
         <j.0:prefLabel rdf:datatype="&xsd;string">Dunkin Hartley guinea pig</j.0:prefLabel>
         <j.3:synonym rdf:datatype="&xsd;string">Hartley guinea pig</j.3:synonym>
@@ -5067,8 +5096,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <rdfs:label rdf:datatype="&xsd;string">Gorilla</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_238"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13184942</j.2:gbifID>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">345359</j.2:gbifTaxonKeyID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">9592</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1095850</j.3:UmlsCui>
@@ -5226,8 +5255,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_429"/>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Quail newborn</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#definition_incomplete</j.2:hasCurationStatus>
@@ -5636,8 +5665,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <rdfs:subClassOf rdf:resource="&p11;birnlex_141"/>
         <owl:disjointWith rdf:resource="&p11;birnlex_641"/>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">138700</j.2:ncbiTaxID>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-04</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-04</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-04</j.3:modifiedDate>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1066997</j.3:UmlsCui>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1271374</j.3:UmlsCui>
         <j.0:prefLabel rdf:datatype="&xsd;string">Phyllonycterinae</j.0:prefLabel>
@@ -6003,8 +6032,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <owl:disjointWith rdf:resource="&p11;birnlex_371"/>
         <owl:disjointWith rdf:resource="&p11;birnlex_552"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13782288</j.2:gbifID>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-15</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-15</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-15</j.3:createdDate>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">61184</j.2:gbifTaxonKeyID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">6618</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0998178</j.3:UmlsCui>
@@ -6229,8 +6258,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">31211</j.2:ncbiTaxID>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">61098</j.2:gbifTaxonKeyID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1081666</j.3:UmlsCui>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Loligo opalescens</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Loligo opalescens</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Loligo opalescens</j.2:ncbiTaxScientificName>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -6293,15 +6322,15 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <j.3:taxonomicCommonName rdf:datatype="&xsd;string">zebra danio</j.3:taxonomicCommonName>
         <j.3:taxonomicCommonName rdf:datatype="&xsd;string">zebra fish</j.3:taxonomicCommonName>
         <j.2:ncbiTaxGenbankCommonName rdf:datatype="&xsd;string">zebrafish</j.2:ncbiTaxGenbankCommonName>
-        <j.3:synonym>Cyprinus chapalio</j.3:synonym>
-        <j.3:synonym>Barilius rerio</j.3:synonym>
-        <j.3:synonym>Danio rerio</j.3:synonym>
         <j.3:synonym>Perilampus striatus</j.3:synonym>
+        <j.3:synonym>Danio rerio</j.3:synonym>
         <j.3:synonym>Nuria rerio</j.3:synonym>
         <j.3:synonym>Cyprinus rerio</j.3:synonym>
         <j.3:synonym>Brachydanio rerio</j.3:synonym>
         <j.3:synonym>Danio lineatus</j.3:synonym>
         <j.3:synonym>Danio foankei</j.3:synonym>
+        <j.3:synonym>Cyprinus chapalio</j.3:synonym>
+        <j.3:synonym>Barilius rerio</j.3:synonym>
     </owl:Class>
     
 
@@ -7216,11 +7245,11 @@ Historically, the 129 inbred mice are known for the high incidence of spontaneou
     <owl:Class rdf:about="&p11;birnlex_400">
         <rdfs:label rdf:datatype="&xsd;string">Aculeata</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_503"/>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">7434</j.2:ncbiTaxID>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Aculeata</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Aculeata</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Aculeata</j.2:ncbiTaxScientificName>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0998588</j.3:UmlsCui>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
@@ -7259,8 +7288,8 @@ Historically, the 129 inbred mice are known for the high incidence of spontaneou
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">251373</j.2:gbifTaxonKeyID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">6243</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1081024</j.3:UmlsCui>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Rhabditidae</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Rhabditidae</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Rhabditidae</j.2:ncbiTaxScientificName>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -7546,8 +7575,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1055834</j.3:UmlsCui>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Heterotremata/Thoracotremata group</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Heterotremata/Thoracotremata group</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Heterotremata/Thoracotremata group</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -7788,8 +7817,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-15</j.3:createdDate>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">60808</j.2:gbifTaxonKeyID>
         <j.0:editorialNote rdf:datatype="&xsd;string">NCBI Taxonomy does not list an Order in the taxonomy of the family Loliginidae - only the superorder Decapodiformes.  In fact, the term Teuthida is not listed at all in NCBI Taxonomy in any form.</j.0:editorialNote>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Teuthida</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Teuthida</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Teuthida</j.2:ncbiTaxScientificName>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -7874,8 +7903,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
     <owl:Class rdf:about="&p11;birnlex_429">
         <rdfs:label rdf:datatype="&xsd;string">Newborn</rdfs:label>
         <rdfs:subClassOf rdf:resource="&j.2;_birnlex_retired_class"/>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-16</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-16</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-16</j.3:modifiedDate>
         <j.3:synonym rdf:datatype="&xsd;string">Neonate</j.3:synonym>
         <j.0:prefLabel rdf:datatype="&xsd;string">Newborn</j.0:prefLabel>
         <j.3:nifID rdf:datatype="&xsd;string">_8.2_2</j.3:nifID>
@@ -8171,8 +8200,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
     <owl:Class rdf:about="&p11;birnlex_443">
         <rdfs:label rdf:datatype="&xsd;string">Ostariophysi</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_522"/>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-07-27</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-07-27</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-07-27</j.3:modifiedDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">32519</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1004204</j.3:UmlsCui>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Ostariophysi</j.2:ncbiTaxScientificName>
@@ -8214,7 +8243,7 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-16</j.3:createdDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Juvenile</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
-        <j.2:isReplacedByClass rdf:datatype="&xsd;string">http://purl.org/obo/owl/PATO#PATO_0001190</j.2:isReplacedByClass>
+        <j.2:isReplacedByClass rdf:datatype="&xsd;string">http://purl.obolibrary.org/obo/PATO#PATO_0001190</j.2:isReplacedByClass>
         <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
     </owl:Class>
     
@@ -8364,8 +8393,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">216318</j.2:ncbiTaxID>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Aplysioidea</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Aplysioidea</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Aplysioidea</j.2:ncbiTaxScientificName>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1228801</j.3:UmlsCui>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
@@ -8648,8 +8677,8 @@ Related Genotype: a/a Tyrp1b/Tyrp1b Myo5ad/Myo5ad</j.3:externallySourcedDefiniti
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">259875</j.2:gbifTaxonKeyID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">6499</j.2:ncbiTaxID>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Aplysia</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Aplysia</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Aplysia</j.2:ncbiTaxScientificName>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0003577</j.3:UmlsCui>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
@@ -8857,7 +8886,7 @@ Related Genotype: a/a</j.3:tempDefinition>
         <j.0:prefLabel rdf:datatype="&xsd;string">Maturation stage</j.0:prefLabel>
         <j.3:nifID rdf:datatype="&xsd;string">_8.2</j.3:nifID>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
-        <j.2:isReplacedByClass rdf:datatype="&xsd;string">http://purl.org/obo/owl/PATO#PATO_0000261</j.2:isReplacedByClass>
+        <j.2:isReplacedByClass rdf:datatype="&xsd;string">http://purl.obolibrary.org/obo/PATO#PATO_0000261</j.2:isReplacedByClass>
         <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
     </owl:Class>
     
@@ -9383,8 +9412,8 @@ In 1951 C57BL/6J, then at generation F32, were sent from The Jackson Laboratory 
         <j.3:createdDate rdf:datatype="&xsd;string">2007-07-27</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">32443</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1004151</j.3:UmlsCui>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Teleostei</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Teleostei</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Teleostei</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -9399,8 +9428,8 @@ In 1951 C57BL/6J, then at generation F32, were sent from The Jackson Laboratory 
     <owl:Class rdf:about="&p11;birnlex_496">
         <rdfs:label rdf:datatype="&xsd;string">Laurasiatheria</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_605"/>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-06-03</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-06-03</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-06-03</j.3:modifiedDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">314145</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1671525</j.3:UmlsCui>
         <j.0:prefLabel rdf:datatype="&xsd;string">Laurasiatheria</j.0:prefLabel>
@@ -9623,12 +9652,12 @@ Related Genotype: A/A Tyrc/Tyrc</j.2:birnlexDefinition>
     <owl:Class rdf:about="&p11;birnlex_506">
         <rdfs:label rdf:datatype="&xsd;string">Ranoidea</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_490"/>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-04</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-04</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-04</j.3:modifiedDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">30352</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1003197</j.3:UmlsCui>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Ranoidea</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Ranoidea</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Ranoidea</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -9735,8 +9764,8 @@ Related Genotype: p Tyrc/p Tyrc</j.3:externallySourcedDefinition>
         <rdfs:label rdf:datatype="&xsd;string">Hipposideros terasensis</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_500"/>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">186991</j.2:ncbiTaxID>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-04</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-04</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-04</j.3:modifiedDate>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1210684</j.3:UmlsCui>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Hipposideros terasensis</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Hipposideros terasensis</j.0:prefLabel>
@@ -10420,12 +10449,12 @@ Related Genotype: p Tyrc/p Tyrc</j.3:externallySourcedDefinition>
     <owl:Class rdf:about="&p11;birnlex_542">
         <rdfs:label rdf:datatype="&xsd;string">Calyptratae</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_299"/>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">43742</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1010981</j.3:UmlsCui>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Calyptratae</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Calyptratae</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Calyptratae</j.2:ncbiTaxScientificName>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -10520,8 +10549,8 @@ Appearance
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-04</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-04</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">297253</j.2:ncbiTaxID>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Azores noctule</j.0:prefLabel>
         <j.2:ncbiTaxGenbankCommonName rdf:datatype="&xsd;string">Azores noctule</j.2:ncbiTaxGenbankCommonName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Azores noctule</j.0:prefLabel>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1663352</j.3:UmlsCui>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Nyctalus azoreum</j.2:ncbiTaxScientificName>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
@@ -10643,8 +10672,8 @@ Historically, the 129 inbred mice are known for the high incidence of spontaneou
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">259873</j.2:gbifTaxonKeyID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">6497</j.2:ncbiTaxID>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Anaspidea</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Anaspidea</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Anaspidea</j.0:prefLabel>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0998097</j.3:UmlsCui>
         <j.0:scopeNote rdf:datatype="&xsd;string">Note GBIF lists this as an Order, not a Suborder.</j.0:scopeNote>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
@@ -10706,8 +10735,8 @@ Historically, the 129 inbred mice are known for the high incidence of spontaneou
         <rdfs:label rdf:datatype="&xsd;string">Rhinolophinae</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_545"/>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">186995</j.2:ncbiTaxID>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-04</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-04</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-04</j.3:modifiedDate>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1210688</j.3:UmlsCui>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1271365</j.3:UmlsCui>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Rhinolophinae</j.2:ncbiTaxScientificName>
@@ -10977,8 +11006,8 @@ Strain Description
     <owl:Class rdf:about="&p11;birnlex_566">
         <rdfs:label rdf:datatype="&xsd;string">Muscinae</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_558"/>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">43910</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1011084</j.3:UmlsCui>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Muscinae</j.2:ncbiTaxScientificName>
@@ -11040,8 +11069,8 @@ Strain Description
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">6072</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0997870</j.3:UmlsCui>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Eumetazoa</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Eumetazoa</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Eumetazoa</j.2:ncbiTaxScientificName>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -11495,8 +11524,8 @@ A small percent (4%) of nonproductive males are hermaphrodites. An additional 17
         <owl:equivalentClass rdf:resource="&owl2;NCBITaxon#NCBITaxon_9513"/>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_580"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13803515</j.2:gbifID>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-07-28</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-07-28</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-07-28</j.3:modifiedDate>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">345223</j.2:gbifTaxonKeyID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">9513</j.2:ncbiTaxID>
         <j.3:externallySourcedDefinition rdf:datatype="&xsd;string">A genus of the family CEBIDAE, subfamily CEBINAE, consisting of four species which are divided into two groups, the tufted and untufted. C. apella has tufts of hair over the eyes and sides of the head. The remaining species are without tufts - C. capucinus, C. nigrivultatus, and C. albifrons. Cebus inhabits the forests of Central and South America. (MSH)</j.3:externallySourcedDefinition>
@@ -12076,8 +12105,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-06-03</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">33213</j.2:ncbiTaxID>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Bilateria</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Bilateria</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Bilateria</j.0:prefLabel>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1004398</j.3:UmlsCui>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
@@ -12251,8 +12280,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">327609</j.2:gbifTaxonKeyID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1202909</j.3:UmlsCui>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Neotrypaea</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Neotrypaea</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Neotrypaea</j.2:ncbiTaxScientificName>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -12267,8 +12296,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:label rdf:datatype="&xsd;string">Homarus</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_169"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13187459</j.2:gbifID>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-03</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-08-03</j.3:createdDate>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">327714</j.2:gbifTaxonKeyID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">6705</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0998231</j.3:UmlsCui>
@@ -12919,8 +12948,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">241978</j.2:gbifTaxonKeyID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">9726</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0524554</j.3:UmlsCui>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Delphinidae</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Delphinidae</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Delphinidae</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -12982,8 +13011,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:label rdf:datatype="&xsd;string">Monodontidae</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_648"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13144022</j.2:gbifID>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-10-06</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-06</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-10-06</j.3:createdDate>
         <j.2:gbifTaxonKeyID rdf:datatype="&xsd;string">242052</j.2:gbifTaxonKeyID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">9747</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0524752</j.3:UmlsCui>
@@ -13285,8 +13314,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:label rdf:datatype="&xsd;string">Caniformia</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_510"/>
         <j.3:UmlsCui rdf:datatype="&xsd;string"></j.3:UmlsCui>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-10-14</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-14</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-10-14</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">379584</j.2:ncbiTaxID>
         <j.0:prefLabel rdf:datatype="&xsd;string">Caniformia</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Caniformia</j.2:ncbiTaxScientificName>
@@ -13622,7 +13651,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_681">
         <rdfs:label rdf:datatype="&xsd;string">Adult</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0000261"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0000261"/>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.0:definition rdf:datatype="&xsd;string">A maturity quality inhering in an individual by virtue of the individual having attained sexual maturity and full growth</j.0:definition>
         <j.0:prefLabel rdf:datatype="&xsd;string">Adult</j.0:prefLabel>
@@ -13681,7 +13710,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_685">
         <rdfs:label rdf:datatype="&xsd;string">Early juvenile</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0001190"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0001190"/>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-15</j.3:modifiedDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Early juvenile</j.0:prefLabel>
@@ -13695,7 +13724,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_686">
         <rdfs:label rdf:datatype="&xsd;string">Middle juvenile</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0001190"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0001190"/>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-15</j.3:modifiedDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Middle juvenile</j.0:prefLabel>
@@ -13709,7 +13738,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_687">
         <rdfs:label rdf:datatype="&xsd;string">Late juvenile</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0001190"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0001190"/>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-15</j.3:modifiedDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Late juvenile</j.0:prefLabel>
@@ -13723,7 +13752,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_688">
         <rdfs:label rdf:datatype="&xsd;string">Early adolescent</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0001189"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0001189"/>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-15</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Early adolescent</j.0:prefLabel>
@@ -13737,7 +13766,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_689">
         <rdfs:label rdf:datatype="&xsd;string">Middle adolescent</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0001189"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0001189"/>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-15</j.3:modifiedDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Middle adolescent</j.0:prefLabel>
@@ -13751,7 +13780,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_690">
         <rdfs:label rdf:datatype="&xsd;string">Late adolescent</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0001189"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0001189"/>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-15</j.3:modifiedDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Late adolescent</j.0:prefLabel>
@@ -13765,7 +13794,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_691">
         <rdfs:label rdf:datatype="&xsd;string">Elderly</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0000261"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0000261"/>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-15</j.3:modifiedDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Elderly</j.0:prefLabel>
@@ -13821,7 +13850,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_695">
         <rdfs:label rdf:datatype="&xsd;string">Infant</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0000261"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0000261"/>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-15</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Infant</j.0:prefLabel>
@@ -13878,7 +13907,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_699">
         <rdfs:label rdf:datatype="&xsd;string">Newborn</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0000261"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0000261"/>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-15</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Newborn</j.0:prefLabel>
@@ -14179,7 +14208,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_7014">
         <rdfs:label rdf:datatype="&xsd;string">Prenatal</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0000261"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0000261"/>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-15</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Prenatal</j.0:prefLabel>
@@ -14244,12 +14273,12 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7015"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/pato#inheres_in"/>
+                <owl:onProperty rdf:resource="&owl2;pato#inheres_in"/>
                 <owl:someValuesFrom rdf:resource="&p11;birnlex_516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-10-15</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-10-15</j.3:createdDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">First trimester</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary</j.2:hasCurationStatus>
@@ -14264,7 +14293,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7015"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/pato#inheres_in"/>
+                <owl:onProperty rdf:resource="&owl2;pato#inheres_in"/>
                 <owl:someValuesFrom rdf:resource="&p11;birnlex_516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -14285,7 +14314,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7015"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/pato#inheres_in"/>
+                <owl:onProperty rdf:resource="&owl2;pato#inheres_in"/>
                 <owl:someValuesFrom rdf:resource="&p11;birnlex_516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -14318,7 +14347,7 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
 
     <owl:Class rdf:about="&p11;birnlex_7130">
         <rdfs:label rdf:datatype="&xsd;string">Sexual maturation stage</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0000261"/>
+        <rdfs:subClassOf rdf:resource="&owl2;PATO_0000261"/>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-11-18</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-11-18</j.3:modifiedDate>
         <j.0:prefLabel rdf:datatype="&xsd;string">Sexual maturation stage</j.0:prefLabel>
@@ -14489,8 +14518,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-11-30</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-11-30</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">33214</j.2:ncbiTaxID>
-        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Acoelomata</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Acoelomata</j.0:prefLabel>
+        <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Acoelomata</j.2:ncbiTaxScientificName>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1004399</j.3:UmlsCui>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
@@ -14696,8 +14725,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7208"/>
         <owl:disjointWith rdf:resource="&p11;birnlex_7210"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13194041</j.2:gbifID>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-11-30</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-11-30</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-11-30</j.3:modifiedDate>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0032068</j.3:UmlsCui>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Planaria</j.2:ncbiTaxScientificName>
         <j.0:prefLabel rdf:datatype="&xsd;string">Planaria</j.0:prefLabel>
@@ -14753,12 +14782,12 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
     <owl:Class rdf:about="&p11;birnlex_7212">
         <rdfs:label rdf:datatype="&xsd;string">Dugesia japonica</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7210"/>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-11-30</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-11-30</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-11-30</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">6161</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0997935</j.3:UmlsCui>
-        <j.0:prefLabel rdf:datatype="&xsd;string">Dugesia japonica</j.0:prefLabel>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Dugesia japonica</j.2:ncbiTaxScientificName>
+        <j.0:prefLabel rdf:datatype="&xsd;string">Dugesia japonica</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
         <j.2:hasCurationStatus rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting</j.2:hasCurationStatus>
         <j.3:hasExternalSource rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy</j.3:hasExternalSource>
@@ -14772,8 +14801,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
     <owl:Class rdf:about="&p11;birnlex_7213">
         <rdfs:label rdf:datatype="&xsd;string">Schmidtea</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7211"/>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-11-30</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-11-30</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-11-30</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">55270</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1093626</j.3:UmlsCui>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Schmidtea</j.2:ncbiTaxScientificName>
@@ -14874,8 +14903,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:label rdf:datatype="&xsd;string">Dugesia tigrina</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7210"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13787965</j.2:gbifID>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-11-30</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-11-30</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-11-30</j.3:modifiedDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">6162</j.2:ncbiTaxID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0997936</j.3:UmlsCui>
         <j.2:ncbiTaxScientificName rdf:datatype="&xsd;string">Dugesia tigrina</j.2:ncbiTaxScientificName>
@@ -15150,8 +15179,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:label rdf:datatype="&xsd;string">Planorbidae</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7223"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13144719</j.2:gbifID>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2008-02-02</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2008-02-02</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2008-02-02</j.3:modifiedDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">6524</j.2:ncbiTaxID>
         <j.2:itisID rdf:datatype="&xsd;string">76591</j.2:itisID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0323862</j.3:UmlsCui>
@@ -15832,8 +15861,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:label rdf:datatype="&xsd;string">Tritoniidae</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7256"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13144891</j.2:gbifID>
-        <j.3:createdDate rdf:datatype="&xsd;string">2008-02-02</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2008-02-02</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2008-02-02</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">70851</j.2:ncbiTaxID>
         <j.2:itisID rdf:datatype="&xsd;string">78471</j.2:itisID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1028256</j.3:UmlsCui>
@@ -15854,8 +15883,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7264"/>
         <owl:disjointWith rdf:resource="&p11;birnlex_7269"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13195533</j.2:gbifID>
-        <j.3:createdDate rdf:datatype="&xsd;string">2008-02-02</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2008-02-02</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2008-02-02</j.3:createdDate>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">70852</j.2:ncbiTaxID>
         <j.2:itisID rdf:datatype="&xsd;string">78472</j.2:itisID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1028257</j.3:UmlsCui>
@@ -16037,8 +16066,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7271"/>
         <j.2:gbifID rdf:datatype="&xsd;string">13780936</j.2:gbifID>
         <j.2:ncbiTaxID rdf:datatype="&xsd;string">154605</j.2:ncbiTaxID>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2008-02-05</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2008-02-05</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2008-02-05</j.3:modifiedDate>
         <j.2:itisID rdf:datatype="&xsd;string">78508</j.2:itisID>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C1073817</j.3:UmlsCui>
         <j.0:prefLabel rdf:datatype="&xsd;string">Dendronotus dalli</j.0:prefLabel>
@@ -16629,8 +16658,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
         <owl:disjointWith rdf:resource="&p11;birnlex_7387"/>
         <owl:disjointWith rdf:resource="&p11;birnlex_7388"/>
         <owl:disjointWith rdf:resource="&p11;birnlex_7390"/>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2008-03-14</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2008-03-14</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2008-03-14</j.3:modifiedDate>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0015671</j.3:UmlsCui>
         <j.0:prefLabel rdf:datatype="&xsd;string">Father</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
@@ -16901,8 +16930,8 @@ Related Genotype: A/A Tyrp1b/Tyrp1b Tyrc/Tyrc</j.2:birnlexDefinition>
     <owl:Class rdf:about="&p11;birnlex_7401">
         <rdfs:label rdf:datatype="&xsd;string">Step brother</rdfs:label>
         <rdfs:subClassOf rdf:resource="&p11;birnlex_7389"/>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2008-03-14</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2008-03-14</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2008-03-14</j.3:modifiedDate>
         <j.0:definition rdf:datatype="&xsd;string">A step brother is a brother with whom an individual bears no blood or equivalent adoptive relation, and is related by the marriage or relationship of one parent of the individual to one parent of the sibling. (WIkipedia)</j.0:definition>
         <j.3:UmlsCui rdf:datatype="&xsd;string">C0337530</j.3:UmlsCui>
         <j.0:prefLabel rdf:datatype="&xsd;string">Step brother</j.0:prefLabel>
@@ -17569,13 +17598,238 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     
 
 
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_10090 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_10090"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_10114 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_10114"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_205592 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_205592"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_216331 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_216331"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_40674 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_40674"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_50557 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_50557"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_55824 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_55824"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_6231 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_6231"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_6239 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_6239"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_6340 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_6340"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_6447 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_6447"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_6499 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_6499"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_6534 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_6534"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_6656 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_6656"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_6657 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_6657"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_6693 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_6693"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_6762 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_6762"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_6995 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_6995"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_70852 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_70852"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_7215 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_7215"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_7460 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_7460"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_7742 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_7742"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_8292 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_8292"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_85823 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_85823"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_8782 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_8782"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9479 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9479"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9504 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9504"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9513 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9513"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9520 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9520"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9527 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9527"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9539 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9539"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9554 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9554"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9606 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9606"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9615 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9615"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9685 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9685"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9940 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9940"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9986 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9986"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/NCBITaxon#NCBITaxon_9989 -->
+
+    <rdf:Description rdf:about="&owl2;NCBITaxon#NCBITaxon_9989"/>
+    
+
+
     <!-- http://purl.org/dc/dcmitype/Image -->
 
     <owl:Class rdf:about="http://purl.org/dc/dcmitype/Image"/>
     
-
-
-   
 
 
     <!-- http://www.ifomis.org/bfo/1.1/snap#MaterialEntity -->
@@ -17612,8 +17866,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7021">
         <rdf:type rdf:resource="&p11;birnlex_368"/>
         <rdfs:label rdf:datatype="&xsd;string">Chromosomal aberration</rdfs:label>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-16</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-16</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-16</j.3:modifiedDate>
         <j.3:externallySourcedDefinition rdf:datatype="&xsd;string">A chromosomal rearrangement or a numerical chromosomal aberration. (http://www.informatics.jax.org/imsr/glossary.jsp)</j.3:externallySourcedDefinition>
         <j.3:abbrev rdf:datatype="&xsd;string">CH</j.3:abbrev>
         <j.0:prefLabel rdf:datatype="&xsd;string">Chromosomal aberration</j.0:prefLabel>
@@ -17664,8 +17918,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7024">
         <rdf:type rdf:resource="&p11;birnlex_368"/>
         <rdfs:label rdf:datatype="&xsd;string">ENU induced mutation</rdfs:label>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-16</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-16</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-16</j.3:modifiedDate>
         <j.3:externallySourcedDefinition rdf:datatype="&xsd;string">A mutation induced by treatment with the chemical mutagen ENU (ethyl nitrosourea). (http://www.informatics.jax.org/imsr/glossary.jsp)</j.3:externallySourcedDefinition>
         <j.0:prefLabel rdf:datatype="&xsd;string">ENU induced mutation</j.0:prefLabel>
         <j.2:hasBirnlexCurator rdf:datatype="&xsd;string">http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug</j.2:hasBirnlexCurator>
@@ -18096,8 +18350,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7049">
         <rdf:type rdf:resource="&p11;birnlex_484"/>
         <rdfs:label rdf:datatype="&xsd;string">Theiler Stage 1</rdfs:label>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.0:definition rdf:datatype="&xsd;string">One-cell egg</j.0:definition>
         <j.2:emapMouseStageDataID rdf:datatype="&xsd;string">TS1</j.2:emapMouseStageDataID>
         <j.0:prefLabel rdf:datatype="&xsd;string">Theiler Stage 1</j.0:prefLabel>
@@ -18172,8 +18426,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7053">
         <rdf:type rdf:resource="&p11;birnlex_484"/>
         <rdfs:label rdf:datatype="&xsd;string">Theiler Stage 5</rdfs:label>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.0:definition rdf:datatype="&xsd;string">Blastocyst (zona-free)</j.0:definition>
         <j.2:emapMouseStageDataID rdf:datatype="&xsd;string">TS5</j.2:emapMouseStageDataID>
         <j.0:prefLabel rdf:datatype="&xsd;string">Theiler Stage 5</j.0:prefLabel>
@@ -18226,8 +18480,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7056">
         <rdf:type rdf:resource="&p11;birnlex_484"/>
         <rdfs:label rdf:datatype="&xsd;string">Theiler Stage 8</rdfs:label>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
         <j.0:definition rdf:datatype="&xsd;string">Differentiation of egg cylinder, Implantation sites 2x3mm. Ectoplacental cone region invaded by maternal blood, Reichert&apos;s membrane and proamniotic cavity form</j.0:definition>
         <j.2:emapMouseStageDataID rdf:datatype="&xsd;string">TS8</j.2:emapMouseStageDataID>
         <j.0:prefLabel rdf:datatype="&xsd;string">Theiler Stage 8</j.0:prefLabel>
@@ -18244,8 +18498,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7057">
         <rdf:type rdf:resource="&p11;birnlex_484"/>
         <rdfs:label rdf:datatype="&xsd;string">Theiler Stage 9a</rdfs:label>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.0:definition rdf:datatype="&xsd;string">Pre-streak (PS), advanced endometrial reaction, ectoplacental cone invaded by blood, extraembryonic ectoderm, embryonic axis visible</j.0:definition>
         <j.2:emapMouseStageDataID rdf:datatype="&xsd;string">TS9</j.2:emapMouseStageDataID>
         <j.0:prefLabel rdf:datatype="&xsd;string">Theiler Stage 9a</j.0:prefLabel>
@@ -18280,8 +18534,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7059">
         <rdf:type rdf:resource="&p11;birnlex_484"/>
         <rdfs:label rdf:datatype="&xsd;string">Theiler Stage 10a</rdfs:label>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.0:definition rdf:datatype="&xsd;string">Mid streak (MS), amniotic fold starts to form</j.0:definition>
         <j.2:emapMouseStageDataID rdf:datatype="&xsd;string">TS10</j.2:emapMouseStageDataID>
         <j.0:prefLabel rdf:datatype="&xsd;string">Theiler Stage 10a</j.0:prefLabel>
@@ -18334,8 +18588,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7062">
         <rdf:type rdf:resource="&p11;birnlex_484"/>
         <rdfs:label rdf:datatype="&xsd;string">Theiler Stage 11a</rdfs:label>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.0:definition rdf:datatype="&xsd;string">Neural plate (NP), head process developing, amnion complete</j.0:definition>
         <j.2:emapMouseStageDataID rdf:datatype="&xsd;string">TS11</j.2:emapMouseStageDataID>
         <j.0:prefLabel rdf:datatype="&xsd;string">Theiler Stage 11a</j.0:prefLabel>
@@ -18352,8 +18606,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7063">
         <rdf:type rdf:resource="&p11;birnlex_484"/>
         <rdfs:label rdf:datatype="&xsd;string">Theiler Stage 11b</rdfs:label>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
         <j.0:definition rdf:datatype="&xsd;string">Late neural plate (LNP), elongated allantoic bud</j.0:definition>
         <j.2:emapMouseStageDataID rdf:datatype="&xsd;string">TS11</j.2:emapMouseStageDataID>
         <j.0:prefLabel rdf:datatype="&xsd;string">Theiler Stage 11b</j.0:prefLabel>
@@ -18558,8 +18812,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7074">
         <rdf:type rdf:resource="&p11;birnlex_484"/>
         <rdfs:label rdf:datatype="&xsd;string">Theiler Stage 19</rdfs:label>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
         <j.0:definition rdf:datatype="&xsd;string">Lens vesicle completely separated from the surface epithelium. Anterior, but no posterior, footplate. Auditory hillocks first visible; Absent retinal pigmentation and sign of fingers</j.0:definition>
         <j.2:emapMouseStageDataID rdf:datatype="&xsd;string">TS19</j.2:emapMouseStageDataID>
         <j.0:prefLabel rdf:datatype="&xsd;string">Theiler Stage 19</j.0:prefLabel>
@@ -18671,8 +18925,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7080">
         <rdf:type rdf:resource="&p11;birnlex_484"/>
         <rdfs:label rdf:datatype="&xsd;string">Theiler Stage 25</rdfs:label>
-        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.3:modifiedDate rdf:datatype="&xsd;string">2007-8-14</j.3:modifiedDate>
+        <j.3:createdDate rdf:datatype="&xsd;string">2007-8-14</j.3:createdDate>
         <j.0:definition rdf:datatype="&xsd;string">Skin is wrinkled, eyelids are closed,umbilical hernia is gone; Absent ear extending over auditory meatus, long whiskers</j.0:definition>
         <j.2:emapMouseStageDataID rdf:datatype="&xsd;string">TS25</j.2:emapMouseStageDataID>
         <j.0:prefLabel rdf:datatype="&xsd;string">Theiler Stage 25</j.0:prefLabel>
@@ -19614,8 +19868,8 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <owl:NamedIndividual rdf:about="&p11;birnlex_7123">
         <rdf:type rdf:resource="&p11;birnlex_591"/>
         <rdfs:label rdf:datatype="&xsd;string">Mutant strain</rdfs:label>
-        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-16</j.3:modifiedDate>
         <j.3:createdDate rdf:datatype="&xsd;string">2007-08-16</j.3:createdDate>
+        <j.3:modifiedDate rdf:datatype="&xsd;string">2007-08-16</j.3:modifiedDate>
         <j.3:externallySourcedDefinition rdf:datatype="&xsd;string">An inbred strain carrying one or more phenotypic mutations. For example, the mutant strain C3H/H3eSn-bc3J/J carries the bouncy 3 Jackson phenotypic mutation. (http://www.informatics.jax.org/imsr/glossary.jsp)</j.3:externallySourcedDefinition>
         <j.3:abbrev rdf:datatype="&xsd;string">MSR</j.3:abbrev>
         <j.0:prefLabel rdf:datatype="&xsd;string">Mutant strain</j.0:prefLabel>
@@ -21979,16 +22233,6 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-   
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
     // General axioms
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -21997,48 +22241,70 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7343"/>
-            <rdf:Description rdf:about="&p11;birnlex_7344"/>
+            <rdf:Description rdf:about="&p11;first_trimester"/>
+            <rdf:Description rdf:about="&p11;second_trimester"/>
+            <rdf:Description rdf:about="&p11;third_trimester"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7311"/>
-            <rdf:Description rdf:about="&p11;birnlex_7312"/>
+            <rdf:Description rdf:about="&p11;birnlex_7359"/>
+            <rdf:Description rdf:about="&p11;birnlex_7360"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7021"/>
-            <rdf:Description rdf:about="&p11;birnlex_7022"/>
-            <rdf:Description rdf:about="&p11;birnlex_7023"/>
-            <rdf:Description rdf:about="&p11;birnlex_7024"/>
-            <rdf:Description rdf:about="&p11;birnlex_7025"/>
-            <rdf:Description rdf:about="&p11;birnlex_7026"/>
-            <rdf:Description rdf:about="&p11;birnlex_7027"/>
-            <rdf:Description rdf:about="&p11;birnlex_7028"/>
-            <rdf:Description rdf:about="&p11;birnlex_7029"/>
-            <rdf:Description rdf:about="&p11;birnlex_7030"/>
-            <rdf:Description rdf:about="&p11;birnlex_7031"/>
-            <rdf:Description rdf:about="&p11;birnlex_7032"/>
-            <rdf:Description rdf:about="&p11;birnlex_7033"/>
-            <rdf:Description rdf:about="&p11;birnlex_7034"/>
-            <rdf:Description rdf:about="&p11;birnlex_7035"/>
-            <rdf:Description rdf:about="&p11;birnlex_7036"/>
-            <rdf:Description rdf:about="&p11;birnlex_7037"/>
-            <rdf:Description rdf:about="&p11;birnlex_7038"/>
-            <rdf:Description rdf:about="&p11;birnlex_7039"/>
-            <rdf:Description rdf:about="&p11;birnlex_7040"/>
-            <rdf:Description rdf:about="&p11;birnlex_7041"/>
-            <rdf:Description rdf:about="&p11;birnlex_7042"/>
-            <rdf:Description rdf:about="&p11;birnlex_7043"/>
-            <rdf:Description rdf:about="&p11;birnlex_7044"/>
-            <rdf:Description rdf:about="&p11;birnlex_7045"/>
-            <rdf:Description rdf:about="&p11;birnlex_7046"/>
-            <rdf:Description rdf:about="&p11;birnlex_7047"/>
-            <rdf:Description rdf:about="&p11;birnlex_7048"/>
+            <rdf:Description rdf:about="&p11;birnlex_7049"/>
+            <rdf:Description rdf:about="&p11;birnlex_7050"/>
+            <rdf:Description rdf:about="&p11;birnlex_7051"/>
+            <rdf:Description rdf:about="&p11;birnlex_7052"/>
+            <rdf:Description rdf:about="&p11;birnlex_7053"/>
+            <rdf:Description rdf:about="&p11;birnlex_7054"/>
+            <rdf:Description rdf:about="&p11;birnlex_7055"/>
+            <rdf:Description rdf:about="&p11;birnlex_7056"/>
+            <rdf:Description rdf:about="&p11;birnlex_7057"/>
+            <rdf:Description rdf:about="&p11;birnlex_7058"/>
+            <rdf:Description rdf:about="&p11;birnlex_7059"/>
+            <rdf:Description rdf:about="&p11;birnlex_7060"/>
+            <rdf:Description rdf:about="&p11;birnlex_7061"/>
+            <rdf:Description rdf:about="&p11;birnlex_7062"/>
+            <rdf:Description rdf:about="&p11;birnlex_7063"/>
+            <rdf:Description rdf:about="&p11;birnlex_7064"/>
+            <rdf:Description rdf:about="&p11;birnlex_7065"/>
+            <rdf:Description rdf:about="&p11;birnlex_7066"/>
+            <rdf:Description rdf:about="&p11;birnlex_7067"/>
+            <rdf:Description rdf:about="&p11;birnlex_7068"/>
+            <rdf:Description rdf:about="&p11;birnlex_7069"/>
+            <rdf:Description rdf:about="&p11;birnlex_7070"/>
+            <rdf:Description rdf:about="&p11;birnlex_7071"/>
+            <rdf:Description rdf:about="&p11;birnlex_7072"/>
+            <rdf:Description rdf:about="&p11;birnlex_7073"/>
+            <rdf:Description rdf:about="&p11;birnlex_7074"/>
+            <rdf:Description rdf:about="&p11;birnlex_7075"/>
+            <rdf:Description rdf:about="&p11;birnlex_7076"/>
+            <rdf:Description rdf:about="&p11;birnlex_7077"/>
+            <rdf:Description rdf:about="&p11;birnlex_7078"/>
+            <rdf:Description rdf:about="&p11;birnlex_7079"/>
+            <rdf:Description rdf:about="&p11;birnlex_7080"/>
+            <rdf:Description rdf:about="&p11;birnlex_7081"/>
+            <rdf:Description rdf:about="&p11;birnlex_7082"/>
+            <rdf:Description rdf:about="&p11;birnlex_7083"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&p11;birnlex_7340"/>
+            <rdf:Description rdf:about="&p11;birnlex_7341"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&p11;birnlex_7314"/>
+            <rdf:Description rdf:about="&p11;birnlex_7315"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
@@ -22046,6 +22312,34 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
         <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="&p11;birnlex_7333"/>
             <rdf:Description rdf:about="&p11;birnlex_7334"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&p11;birnlex_7346"/>
+            <rdf:Description rdf:about="&p11;birnlex_7347"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&p11;birnlex_7308"/>
+            <rdf:Description rdf:about="&p11;birnlex_7309"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&p11;birnlex_7356"/>
+            <rdf:Description rdf:about="&p11;birnlex_7357"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&p11;birnlex_7321"/>
+            <rdf:Description rdf:about="&p11;birnlex_7322"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
@@ -22102,44 +22396,9 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7340"/>
-            <rdf:Description rdf:about="&p11;birnlex_7341"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7362"/>
-            <rdf:Description rdf:about="&p11;birnlex_7363"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7349"/>
-            <rdf:Description rdf:about="&p11;birnlex_7350"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7359"/>
-            <rdf:Description rdf:about="&p11;birnlex_7360"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7365"/>
-            <rdf:Description rdf:about="&p11;birnlex_7366"/>
-            <rdf:Description rdf:about="&p11;birnlex_7367"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7321"/>
-            <rdf:Description rdf:about="&p11;birnlex_7322"/>
+            <rdf:Description rdf:about="&p11;birnlex_7352"/>
+            <rdf:Description rdf:about="&p11;birnlex_7353"/>
+            <rdf:Description rdf:about="&p11;birnlex_7354"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
@@ -22152,53 +22411,24 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;first_trimester"/>
-            <rdf:Description rdf:about="&p11;second_trimester"/>
-            <rdf:Description rdf:about="&p11;third_trimester"/>
+            <rdf:Description rdf:about="&p11;birnlex_7311"/>
+            <rdf:Description rdf:about="&p11;birnlex_7312"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7317"/>
-            <rdf:Description rdf:about="&p11;birnlex_7318"/>
-            <rdf:Description rdf:about="&p11;birnlex_7319"/>
+            <rdf:Description rdf:about="&p11;birnlex_7375"/>
+            <rdf:Description rdf:about="&p11;birnlex_7376"/>
+            <rdf:Description rdf:about="&p11;birnlex_7377"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7324"/>
-            <rdf:Description rdf:about="&p11;birnlex_7325"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7372"/>
-            <rdf:Description rdf:about="&p11;birnlex_7373"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7352"/>
-            <rdf:Description rdf:about="&p11;birnlex_7353"/>
-            <rdf:Description rdf:about="&p11;birnlex_7354"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7382"/>
-            <rdf:Description rdf:about="&p11;birnlex_7383"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7356"/>
-            <rdf:Description rdf:about="&p11;birnlex_7357"/>
+            <rdf:Description rdf:about="&p11;birnlex_7336"/>
+            <rdf:Description rdf:about="&p11;birnlex_7337"/>
+            <rdf:Description rdf:about="&p11;birnlex_7338"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
@@ -22219,16 +22449,29 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7346"/>
-            <rdf:Description rdf:about="&p11;birnlex_7347"/>
+            <rdf:Description rdf:about="&p11;birnlex_7343"/>
+            <rdf:Description rdf:about="&p11;birnlex_7344"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7375"/>
-            <rdf:Description rdf:about="&p11;birnlex_7376"/>
-            <rdf:Description rdf:about="&p11;birnlex_7377"/>
+            <rdf:Description rdf:about="&p11;birnlex_7362"/>
+            <rdf:Description rdf:about="&p11;birnlex_7363"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&p11;birnlex_7382"/>
+            <rdf:Description rdf:about="&p11;birnlex_7383"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&p11;birnlex_7372"/>
+            <rdf:Description rdf:about="&p11;birnlex_7373"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
@@ -22241,63 +22484,64 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7336"/>
-            <rdf:Description rdf:about="&p11;birnlex_7337"/>
-            <rdf:Description rdf:about="&p11;birnlex_7338"/>
+            <rdf:Description rdf:about="&p11;birnlex_7365"/>
+            <rdf:Description rdf:about="&p11;birnlex_7366"/>
+            <rdf:Description rdf:about="&p11;birnlex_7367"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7049"/>
-            <rdf:Description rdf:about="&p11;birnlex_7050"/>
-            <rdf:Description rdf:about="&p11;birnlex_7051"/>
-            <rdf:Description rdf:about="&p11;birnlex_7052"/>
-            <rdf:Description rdf:about="&p11;birnlex_7053"/>
-            <rdf:Description rdf:about="&p11;birnlex_7054"/>
-            <rdf:Description rdf:about="&p11;birnlex_7055"/>
-            <rdf:Description rdf:about="&p11;birnlex_7056"/>
-            <rdf:Description rdf:about="&p11;birnlex_7057"/>
-            <rdf:Description rdf:about="&p11;birnlex_7058"/>
-            <rdf:Description rdf:about="&p11;birnlex_7059"/>
-            <rdf:Description rdf:about="&p11;birnlex_7060"/>
-            <rdf:Description rdf:about="&p11;birnlex_7061"/>
-            <rdf:Description rdf:about="&p11;birnlex_7062"/>
-            <rdf:Description rdf:about="&p11;birnlex_7063"/>
-            <rdf:Description rdf:about="&p11;birnlex_7064"/>
-            <rdf:Description rdf:about="&p11;birnlex_7065"/>
-            <rdf:Description rdf:about="&p11;birnlex_7066"/>
-            <rdf:Description rdf:about="&p11;birnlex_7067"/>
-            <rdf:Description rdf:about="&p11;birnlex_7068"/>
-            <rdf:Description rdf:about="&p11;birnlex_7069"/>
-            <rdf:Description rdf:about="&p11;birnlex_7070"/>
-            <rdf:Description rdf:about="&p11;birnlex_7071"/>
-            <rdf:Description rdf:about="&p11;birnlex_7072"/>
-            <rdf:Description rdf:about="&p11;birnlex_7073"/>
-            <rdf:Description rdf:about="&p11;birnlex_7074"/>
-            <rdf:Description rdf:about="&p11;birnlex_7075"/>
-            <rdf:Description rdf:about="&p11;birnlex_7076"/>
-            <rdf:Description rdf:about="&p11;birnlex_7077"/>
-            <rdf:Description rdf:about="&p11;birnlex_7078"/>
-            <rdf:Description rdf:about="&p11;birnlex_7079"/>
-            <rdf:Description rdf:about="&p11;birnlex_7080"/>
-            <rdf:Description rdf:about="&p11;birnlex_7081"/>
-            <rdf:Description rdf:about="&p11;birnlex_7082"/>
-            <rdf:Description rdf:about="&p11;birnlex_7083"/>
+            <rdf:Description rdf:about="&p11;birnlex_7021"/>
+            <rdf:Description rdf:about="&p11;birnlex_7022"/>
+            <rdf:Description rdf:about="&p11;birnlex_7023"/>
+            <rdf:Description rdf:about="&p11;birnlex_7024"/>
+            <rdf:Description rdf:about="&p11;birnlex_7025"/>
+            <rdf:Description rdf:about="&p11;birnlex_7026"/>
+            <rdf:Description rdf:about="&p11;birnlex_7027"/>
+            <rdf:Description rdf:about="&p11;birnlex_7028"/>
+            <rdf:Description rdf:about="&p11;birnlex_7029"/>
+            <rdf:Description rdf:about="&p11;birnlex_7030"/>
+            <rdf:Description rdf:about="&p11;birnlex_7031"/>
+            <rdf:Description rdf:about="&p11;birnlex_7032"/>
+            <rdf:Description rdf:about="&p11;birnlex_7033"/>
+            <rdf:Description rdf:about="&p11;birnlex_7034"/>
+            <rdf:Description rdf:about="&p11;birnlex_7035"/>
+            <rdf:Description rdf:about="&p11;birnlex_7036"/>
+            <rdf:Description rdf:about="&p11;birnlex_7037"/>
+            <rdf:Description rdf:about="&p11;birnlex_7038"/>
+            <rdf:Description rdf:about="&p11;birnlex_7039"/>
+            <rdf:Description rdf:about="&p11;birnlex_7040"/>
+            <rdf:Description rdf:about="&p11;birnlex_7041"/>
+            <rdf:Description rdf:about="&p11;birnlex_7042"/>
+            <rdf:Description rdf:about="&p11;birnlex_7043"/>
+            <rdf:Description rdf:about="&p11;birnlex_7044"/>
+            <rdf:Description rdf:about="&p11;birnlex_7045"/>
+            <rdf:Description rdf:about="&p11;birnlex_7046"/>
+            <rdf:Description rdf:about="&p11;birnlex_7047"/>
+            <rdf:Description rdf:about="&p11;birnlex_7048"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7308"/>
-            <rdf:Description rdf:about="&p11;birnlex_7309"/>
+            <rdf:Description rdf:about="&p11;birnlex_7317"/>
+            <rdf:Description rdf:about="&p11;birnlex_7318"/>
+            <rdf:Description rdf:about="&p11;birnlex_7319"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="&p11;birnlex_7314"/>
-            <rdf:Description rdf:about="&p11;birnlex_7315"/>
+            <rdf:Description rdf:about="&p11;birnlex_7324"/>
+            <rdf:Description rdf:about="&p11;birnlex_7325"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&p11;birnlex_7349"/>
+            <rdf:Description rdf:about="&p11;birnlex_7350"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
@@ -22311,5 +22555,5 @@ Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding de
 
 
 
-<!-- Generated by the OWL API (version 3.2.5.1928) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 
