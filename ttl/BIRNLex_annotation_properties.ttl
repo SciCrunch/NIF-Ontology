@@ -1,0 +1,1635 @@
+@prefix : <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#> .
+@prefix core: <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core/owl-dl/skos-core-owl-dl.owl#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix protege: <http://protege.stanford.edu/plugins/owl/protege#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+@prefix obo_annot: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
+@prefix protege-dc: <http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#> .
+@base <http://ontology.neuinfo.org/NIF/ttl/BIRNLex_annotation_properties.ttl> .
+
+<http://ontology.neuinfo.org/NIF/ttl/BIRNLex_annotation_properties.ttl> rdf:type owl:Ontology ;
+                                                                            
+                                                                            owl:imports <http://ontology.neuinfo.org/NIF/ttl/OBO_annotation_properties.ttl> ,
+                                                                                        <http://www.w3.org/2004/02/skos/core> ,
+                                                                                        <http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl> ;
+                                                                            
+                                                                            dc:title "BIRNLex_annotation_properties"@en ;
+                                                                            
+                                                                            core:changeNote "Now using a specific set of AnnotationProperties that link to specific Enumeration classes to specify annotations from a fixed list of values - e.g., ExternalSource, DefinitionSource.  This is the second iteration of this mechanism (first was put in v1.2.2).  This second version follows a patter recommended by Alan Ruttenberg which avoids using ObjectProperties as the Manchester design pattern for Value Partitions recommends, and instead sticks to AnnotationProperties only.  Note this version of OBO_annotation_properties uses the same EnumerationClasses from v1.2.2, and still includes the related ObjectProperties, so as to be able to support XSLT-based translation of the BIRNLex files that used the v1.2.2 pattern.  The next version of this file will eliminate the ObjectProperties and will rename the equivalent AnnotationProperties to remove the trailing '2' put in there to provide a unique name."@en ,
+                                                                                            "Processed file with XSLT to remove the explicit DataTypeProperty declarations (v1.2.2)"@en ,
+                                                                                            "Have 'cleansed' the file to be OWL-DL (v1.2.2)."@en ;
+                                                                            
+                                                                            owl:versionInfo "1.3.1"^^xsd:string ;
+                                                                            
+                                                                            rdfs:comment "These are OWL Annotation Properties created by the BIRN OTF for the purposes of better managing the curation of the BIRNLex ontology."@en ;
+                                                                            
+                                                                            obo_annot:createdDate "2006-09-26"^^xsd:string ;
+                                                                            
+                                                                            core:changeNote "v1.3.1 (2007-11-30) - Removed some UTF8 characters that dont translate well to other encodings (e.g., curly double quotes 0xE2809C)."@en ;
+                                                                            
+                                                                            dc:creator " xml:lang=\"en\"The BIRN Ontology Task Force"^^xsd:string ;
+                                                                            
+                                                                            core:changeNote "v1.3.0 (2007-08-03) - Changed many things, but primarily: (1) removed rdf:datatype xsd:string specs for all AnnotationProperties, since they are now all untyped and should assume STRING as a the default; (2) added the typing of AnnotationProperties using annotationType which should aid in algorithmically processing; (3) added ReferenceURLTemplate to linked IDs to aid in algorithmically constructing URLs from IDs.  The reference URL template provides a URL template that includes a specification of how to combine it with the associated ID to build a putative URL for an external resource - putative in the sense that there is no guarantee the external curating authority will maintain this URL template; however, with these paired fields - ID and URL template template - it should be possible to update the template, when the authority changes their URL template - an updated that would then be algorithmicaly percollated to the use of that field across BIRNLex."@en ,
+                                                                                            " (2008-03-13) - finally added Template URLs for GO ID."@en ,
+                                                                                            " (2008-03-21) - finally added ID property and Template URLs for ChEBI and PubChem CIDs."@en ;
+                                                                            
+                                                                            obo_annot:modifiedDate "2008-03-21"^^xsd:string ;
+                                                                            
+                                                                            core:changeNote " v1.2 (2007-03-20): Changed all Class identifiers to rdf:ID properties.  Some had previously been rdf:about properties.  Since Protege-OWL automatically sets new class identifiers to rdf:ID, I'm changing these across the files, to help make it more deterministic when parsing the RDF/XML."@en .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ChEBIid
+
+:ChEBIid rdf:type owl:AnnotationProperty ;
+         
+         obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+         
+         core:definition "The ID from the Chemical Entities of Biological Interest (ChEBI) chemical taxonomy corresponding to this class."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#PMID
+
+:PMID rdf:type owl:AnnotationProperty ;
+      
+      obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+      
+      core:definition "A PMID (PubMed Identifier or PubMed Unique Identifier) is a unique number assigned to each PubMed citation of life sciences and biomedical scientific journal articles."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#PubMedID
+
+:PubMedID rdf:type owl:AnnotationProperty ;
+          
+          obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+          
+          core:definition "The ID from the NIH/NLM/NCBI PubChem chemical taxonomy corresponding to this class."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#animalModel
+
+:animalModel rdf:type owl:AnnotationProperty ;
+             
+             core:definition "An organism providing a model system which mimics certain aspects of a particular human clinical syndrome or disease."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#atccID
+
+:atccID rdf:type owl:AnnotationProperty ;
+        
+        obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+        
+        core:definition "The unique ID for a biological material - typically a cell line - from the American Type Culture Collection database."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#bamsID
+
+:bamsID rdf:type owl:AnnotationProperty ;
+        
+        obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+        
+        core:definition "The \"aidi\" ID from the Brain Architecture Management System (BAMS) corresponding to this class."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#birnlexDefinition
+
+:birnlexDefinition obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#oboDefinition"^^xsd:string ;
+                   
+                   core:definition "This is a type of OBO_definition that includes additional requirements specified by the BIRN OTF (additional requirements pending as of 2006-10-02)."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#bonfireID
+
+:bonfireID rdf:type owl:AnnotationProperty ;
+           
+           obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+           
+           core:definition "This ID is derived from the BIRN BONFIRE vocubulary management system"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#emapMouseStageDataID
+
+:emapMouseStageDataID rdf:type owl:AnnotationProperty ;
+                      
+                      obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+                      
+                      core:definition "The unique ID for a Theiler mouse prenatal development stage as given by the EMAP Project."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#emapMouseStageDiagramID
+
+:emapMouseStageDiagramID rdf:type owl:AnnotationProperty ;
+                         
+                         obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+                         
+                         core:definition "The unique ID type linked to a partiular URL Template.  An instance of this ID type can be combined algorithmically with a URL template ('$$ID$$') placeholder literal is replaced by an ID value to create a URL that links to the curated info associated with that ID."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#gbifID
+
+:gbifID rdf:type owl:AnnotationProperty ;
+        
+        obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+        
+        core:definition "The unique ID for this taxonomic category in Global Biodiversity Information Facility taxonomic ,knowledgebase"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#gbifTaxonKeyID
+
+:gbifTaxonKeyID rdf:type owl:AnnotationProperty ;
+                
+                obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+                
+                core:definition "The unique ID for this taxonomy key in Global Biodiversity Information Facility taxonomic ,knowledgebase"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#gene_Ontology_ID
+
+:gene_Ontology_ID rdf:type owl:AnnotationProperty ;
+                  
+                  obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#hasBirnlexCurator
+
+:hasBirnlexCurator obo_annot:annotationPropertyDomain "owl:Class"^^xsd:string ;
+                   
+                   obo_annot:annotationPropertyRange "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BirnlexCurator"^^xsd:string ;
+                   
+                   obo_annot:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#hasFormerChildClass
+
+:hasFormerChildClass rdf:type owl:AnnotationProperty ;
+                     
+                     obo_annot:annotationType "http://purl.org/dc/elements/1.1/identifier"^^xsd:string ,
+                                              "http://www.w3.org/2004/02/skos/core#historyNote"^^xsd:string ;
+                     
+                     core:definition "This annotation property is used to link back to an original child class for an obsoleted term.  The value of this property will simply be the ontology ID for the child class.  An obsoleted class can have greater than one former children.."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#hasFormerParentClass
+
+:hasFormerParentClass rdf:type owl:AnnotationProperty ;
+                      
+                      obo_annot:annotationType "http://purl.org/dc/elements/1.1/identifier"^^xsd:string ,
+                                               "http://www.w3.org/2004/02/skos/core#historyNote"^^xsd:string ;
+                      
+                      core:definition "This annotation property is used to link back to the original parent class for an obsoleted term.  The value of this property will simply be the ontology ID for the parent class.  An obsoleted asserted class should have one and only one former parent class."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#hasReferenceURLTemplate
+
+:hasReferenceURLTemplate rdf:type owl:AnnotationProperty ;
+                         
+                         obo_annot:annotationPropertyDomain "owl:Class"^^xsd:string ;
+                         
+                         obo_annot:annotationPropertyRange "ReferenceURLTemplate"^^xsd:string ;
+                         
+                         obo_annot:annotationType "http://purl.org/dc/elements/1.1/relation"^^xsd:string ;
+                         
+                         obo_annot:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string ;
+                         
+                         obo_annot:usageNote "A Class can be assigned more than one ReferenceURLTemplate assigned via distince hasReferenceURLTemplate properties"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#httpQueryUrlTemplate
+
+:httpQueryUrlTemplate rdf:type owl:AnnotationProperty ;
+                      
+                      obo_annot:annotationType "http://purl.org/dc/elements/1.1/relation"^^xsd:string ;
+                      
+                      obo_annot:usageNote "This URL will typically return a well-formed HTML page for viewing in a web browser, so long as the curating authority doesn't changed their HTTP Query template."@en ;
+                      
+                      core:definition "This is a template for constructing an HTTP-based dynamic query using an associated source ID."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#imsrStandardStrainName
+
+:imsrStandardStrainName rdf:type owl:AnnotationProperty ;
+                        
+                        obo_annot:annotationType "http://purl.org/dc/elements/1.1/identifier"^^xsd:string ,
+                                                 "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string ;
+                        
+                        core:definition "This annotation property contains the approved strain name for an inbred mouse or rat as given by the International Mouse Strain Repository (IMSR)."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#isReplacedByClass
+
+:isReplacedByClass rdf:type owl:AnnotationProperty ;
+                   
+                   obo_annot:annotationType "http://purl.org/dc/elements/1.1/identifier"^^xsd:string ,
+                                            "http://www.w3.org/2004/02/skos/core#historyNote"^^xsd:string ;
+                   
+                   core:definition "This annotation property is used to link the new classes that now are used to represent the entities formerly represented by an obsoleted class.  The value of this property will simply be the ontology ID for the replacement class(es)."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#itisID
+
+:itisID rdf:type owl:AnnotationProperty ;
+        
+        obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+        
+        core:definition "The unique ID for this taxonomic category in the North American Integrated Taxonomic Information System (ITIS) taxonomic ,knowledgebase"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#jaxMiceID
+
+:jaxMiceID rdf:type owl:AnnotationProperty ;
+           
+           obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+           
+           core:definition "The unique ID for a mouse strain distributed by and tracked in the Jackson Laboratory Mouse database."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ncbiInPartName
+
+:ncbiInPartName rdf:type owl:AnnotationProperty ;
+                
+                obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#scopeNote"^^xsd:string ;
+                
+                core:definition """The \"in-part\" nametype is included for retrieval terms that have a broader range of application than the taxon or taxa at which they appear. For example, we list reptiles and Reptilia as in-part nametypes at our nodes Testudines (the turtles), Lepidosauria (the lizards and snakes), and Crocodylidae (the crocodilians).
+         (NCBI doc on NCBI Taxonomy, 2003)."""@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ncbiIncludesName
+
+:ncbiIncludesName rdf:type owl:AnnotationProperty ;
+                  
+                  obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#scopeNote"^^xsd:string ;
+                  
+                  core:definition "The \"includes\" nametype is the opposite of the in-part nametype and is included for retrieval terms that have a narrower scope of application than the taxon at which they appear. For example, we could list \"reptiles\" as an \"includes\" nametype for the Amniota (or at any higher node in the lineage) (NCBI doc on NCBI Taxonomy, 2003)."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ncbiTaxBlastName
+
+:ncbiTaxBlastName rdf:type owl:AnnotationProperty ;
+                  
+                  obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string ;
+                  
+                  obo_annot:usageNote "The taxonomic name used in BLAST homology analysis given in NCBI Taxonomy"@en ;
+                  
+                  core:definition """The \"BLAST names\" are a specially designated set of common names selected from the Taxonomy database. These were chosen to provide a pool of familiar names for large groups of organisms (such as \"insects\", \"mammals\", \"fungi\", and others) so that any particular species (which may not have an informative common name of its own) could inherit a meaningful collective common name from the Taxonomy database. This was originally developed for BLAST, because a list of BLAST results will typically include entries from many species identified by Latin binomials, which may not be familiar to all users. BLAST names may be nested; for example, \"eukaryotes\", \"animals\", \"chordates\", \"mammals\", and \"primates\" are all flagged as \"blast names\". 
+         Blast names are now used in several other applications, for example the Tax BLAST displays, the Summary view in Entrez Taxonomy, and in the Summary display of the Common Tree
+         format (NCBI doc on NCBI Taxonomy, 2003)."""@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ncbiTaxGenbankCommonName
+
+:ncbiTaxGenbankCommonName rdf:type owl:AnnotationProperty ;
+                          
+                          obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string ;
+                          
+                          obo_annot:usageNote "The common taxonomic name assigned by NCBI Taxonomy and applied to GENBANK sequence records."@en ;
+                          
+                          core:definition "The \"genbank common name\" was introduced to provide a mechanism by which, when there is more than one common name associated with a particular node in the taxonomy, one of them could be designated to be the common name that should be used by default in the GenBank flat- files and other applications that are trying to find a common name to use for display (or other) purposes. This is not intended to confer any special status or blessing on this particular common name over any of the other common names that might be associated with the same node, and we have developed mechanisms to override this choice for a common name on a case-by-case basis if another name is more appropriate or desirable for a particular sequence entry. Each node may have at most one \"genbank common name\" (NCBI doc on NCBI Taxonomy, 2003)."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ncbiTaxID
+
+:ncbiTaxID rdf:type owl:AnnotationProperty ;
+           
+           obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+           
+           core:definition "The unique ID for this taxonomic category in the NCBI Taxonomy database"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ncbiTaxScientificName
+
+:ncbiTaxScientificName rdf:type owl:AnnotationProperty ;
+                       
+                       obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#synonym"^^xsd:string ;
+                       
+                       core:definition "The preferred label for this taxonomic category in the NCBI Taxonomy database"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#neuroNamesAncillaryTerm
+
+:neuroNamesAncillaryTerm rdf:type owl:AnnotationProperty ;
+                         
+                         core:definition " This class was derived from a NeuroNames ancillary term, indicated the NeuroNames developers were unable to fit it into the core NN hierarchy."@en ,
+                                         "\"(NeuroNames) defines the brain in terms of about 550 primary structures to which all other structures, names, and synonyms are related.  (It) provides standard English and Latin names for more than 850 unique structures including the primary structures, superstructures and related superficial features and shows hierarchical relations of each structure to its superstructures and substructures.  NeuroNames also defines more than 1500 other neuroanatomical entities in terms of structures in the Hierarchy. The structure you name may not be part of the Brain Hierarchy. For example, it may represent a different way of subdividing the brain or it may exist only at the embryonic stage of brain development. Such items are referred to as 'ancillary structures' (http://braininfo.rprc.washington.edu/indexabout.html)."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#neuronamesID
+
+:neuronamesID rdf:type owl:AnnotationProperty ;
+              
+              obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+              
+              core:definition "The ID from the NeuroNames neuroanatomical thesaurus corresponding to this class."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#nitrc_ID
+
+:nitrc_ID rdf:type owl:AnnotationProperty ;
+          
+          obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#putativeClassExtension
+
+:putativeClassExtension rdf:type owl:AnnotationProperty ;
+                        
+                        obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote"^^xsd:string ,
+                                                 "http://www.w3.org/2004/02/skos/core#scopeNote"^^xsd:string ;
+                        
+                        core:definition "This is a note describing possible class sub-genera."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#sao_ID
+
+:sao_ID rdf:type owl:AnnotationProperty ;
+        
+        obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#tacMiceID
+
+:tacMiceID rdf:type owl:AnnotationProperty ;
+           
+           obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+           
+           core:definition "The unique ID for a mouse strain distributed by and tracked in the Taconic Farms Mouse database."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#umls_ID
+
+:umls_ID rdf:type owl:AnnotationProperty ;
+         
+         obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#urlTemplateLinkedID
+
+:urlTemplateLinkedID rdf:type owl:AnnotationProperty ;
+                     
+                     obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
+                     
+                     obo_annot:usageNote "This URL constructed this way will typically return a well-formed HTML page for viewing in a web browser, so long as the curating authority doesn't changed their HTTP Query template."@en ;
+                     
+                     core:definition "This is a template for constructing an HTTP-based dynamic query using an associated source ID."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#webServiceUrlTemplate
+
+:webServiceUrlTemplate rdf:type owl:AnnotationProperty ;
+                       
+                       obo_annot:annotationType "http://purl.org/dc/elements/1.1/relation"^^xsd:string ;
+                       
+                       obo_annot:usageNote "This is merely information and is designed to be associated with an ExternalSource, when a service is available to access related resource information using an External ID tracked in the ontology."@en ;
+                       
+                       core:definition "This is the HTTP or WSDL URL with which a query can be constructed to return a data fragment describing the associated source ID."@en .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/SKOS_Entity
+
+<http://ontology.neuinfo.org/NIF/Backend/SKOS_Entity rdf:type owl:Class> ;
+                    
+                    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> ;
+                    
+                    rdfs:comment "Parent class of the class entities imported from SKOS."@en ;
+                    
+                    rdfs:label "SKOS_Entity"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/_backend_class
+
+<http://ontology.neuinfo.org/NIF/Backend/_backend_class rdf:type owl:Class> ;
+                       
+                       obo_annot:createdDate "July 15, 2011"@en ;
+                       
+                       rdfs:comment "Parent class of all the common 'backend' class entities for all the NIFSTD modules. These classes are imported from SKOS, Dublin Core Meta Data, Protege-DC, and 'extra' classes generated by OBO-to-OWL converted ontologies."@en ;
+                       
+                       rdfs:label "_backend_entity" .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BirnlexAbbrevSource
+
+:BirnlexAbbrevSource rdf:type owl:Class ;
+                     
+                     owl:equivalentClass [ rdf:type owl:Class ;
+                                           owl:oneOf ( :Hof-et-al-mouse-2000_abbrevSource
+                                                       :NeuroNames_abbrevSource
+                                                       :Paxinos-Franklin-mouse-2001_abbrevSource
+                                                       :Paxinos-Watson-rat-1998_abbrevSource
+                                                       :SumsDB_abbrevSource
+                                                       :Swanson-rat-1992_abbrevSource
+                                                       :Swanson-rat-1998_abbrevSource
+                                                       :Swanson-rat-2004_abbrevSource
+                                                     )
+                                         ] ;
+                     
+                     rdfs:subClassOf obo_annot:EnumerationClass .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BirnlexCurator
+
+:BirnlexCurator rdf:type owl:Class ;
+                
+                owl:equivalentClass [ rdf:type owl:Class ;
+                                      owl:oneOf ( :Allan_MacKenzie-Graham
+                                                  :Amarnath_Gupta
+                                                  :Angie_Laird
+                                                  :BIRN_OTF
+                                                  :Bill_Bug
+                                                  :Brett_Peterson
+                                                  :Carol_Bean
+                                                  :Christine_Fennema-Notestine
+                                                  :David_Kennedy
+                                                  :Jeff_Grethe
+                                                  :Jessica_Turner
+                                                  :Jyl_Boline
+                                                  :Karen_Crawford
+                                                  :Karl_Helmer
+                                                  :Maryann_Martone
+                                                  :Michele_Diaz
+                                                  :Rob_Williams
+                                                )
+                                    ] ;
+                
+                rdfs:subClassOf obo_annot:EnumerationClass ;
+                
+                core:definition "This property defines the BIRNLex ontology curators who've contributed to the definition of a class.  More than one instance of this property is valid.  In the case of multiple curators, the individual curator name may also be associated with the definition, if that person was primarily responsible for it."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BirnlexDefinitionSource
+
+:BirnlexDefinitionSource rdf:type owl:Class ;
+                         
+                         owl:equivalentClass [ rdf:type owl:Class ;
+                                               owl:oneOf ( :ATCC_defSource
+                                                           :BAMS_defSource
+                                                           :BrainMap.org_defSource
+                                                           :ChEBI_defSource
+                                                           :IMSR_Glossary_defSource
+                                                           :MGI_defSource
+                                                           :NeuroNames_defSource
+                                                           :The_Sylvius_Project_defSource
+                                                         )
+                                             ] ;
+                         
+                         rdfs:subClassOf obo_annot:EnumerationClass ;
+                         
+                         core:definition "It indicates the external knowledge resource from which this class's definition derived."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BirnlexExternalSource
+
+:BirnlexExternalSource rdf:type owl:Class ;
+                       
+                       owl:equivalentClass [ rdf:type owl:Class ;
+                                             owl:oneOf ( :ATCC
+                                                         :BAMS
+                                                         :BONFIRE
+                                                         :BrainMap.org
+                                                         :EMAP
+                                                         :Hof-et-al-mouse-2001
+                                                         :IMSR
+                                                         :JAX-mouse-stock
+                                                         :MGI
+                                                         :NeuroNames
+                                                         :Paxinos-Franklin-mouse-2001
+                                                         :PsychInfo_Thesaurus
+                                                         :SAO
+                                                         :SumsDB
+                                                         :TacFarms
+                                                       )
+                                           ] ;
+                       
+                       rdfs:subClassOf obo_annot:EnumerationClass ;
+                       
+                       core:definition "It indicates the external knowledge resource from which this class's definition derived."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#CurationStatus
+
+:CurationStatus rdf:type owl:Class ;
+                
+                owl:equivalentClass [ rdf:type owl:Class ;
+                                      owl:oneOf ( :curation_complete
+                                                  :definition_incomplete
+                                                  :graph_position_temporary
+                                                  :pending_final_vetting
+                                                  :raw_import
+                                                  :uncurated
+                                                )
+                                    ] ;
+                
+                rdfs:subClassOf obo_annot:EnumerationClass ;
+                
+                core:definition "This provides specific info on the level of curation a given class has received and is specifically design to promote automated reporting on the status of classes in an ontology.  It is likely some classes will require more than one instance of this property to fully describe their status.   Is a type of skos_editorial_note."@en ;
+                
+                core:scopeNote "The current range of values for this property are: (1) raw_import :== a class derived directly via import of an entity form an existing knowledge resource.  Terms labeled as such has yet to receive any additional curation.  As they do, their status is likely to change, though the link back to the original entity in the external resource is maintained; (2) definition_incomplete :== the curators recognize the definition of the class remains incomplete in someway.  Many definitions are dervied from external sources (a fact tracked via an additional annotation property) and require considerable amending before they fully comply with the OBO Foundry Aristotelean genera/differentia & non-circular specification; (3) graph_position_temporary :== indicates the class may not be in its final preferred location within the ontology graph.  This label can be particularly useful during early ontology creation, as for certain entities, it may not be obvious where precisely a given class should reside until a sufficiently large portion of the graph has been settled; (4) uncurated :== indicates a class has been created by curators but has received minimal review; (5) pending_final_vetting :== indicates the term is likely ready for promotion to \"curation_complete\" status, and only requires a final review by the curators responsible.  A class may also be demoted to this status when a formerly \"complete\" class has been determined to require amendments.  In accordance with the emerging best practices, such a term will be moved to an obsolete branch of the ontology, when the new replacement class has been fully vetted and marked as such; (6) curation_complete :== indicates a class has been fully vetted by the curation authorities and to the best of their ability determined to be ready for use."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#KnownApplicationUses
+
+:KnownApplicationUses rdf:type owl:Class ;
+                      
+                      owl:equivalentClass [ rdf:type owl:Class ;
+                                            owl:oneOf ( :ABA_app
+                                                        :BAMS_app
+                                                        :BrainInfo.org_app
+                                                        :BrainMap.org_app
+                                                        :BrainMaps.org_app
+                                                        :CoCoMac_app
+                                                        :Franklin-Paxinos-mouse-2001_app
+                                                        :FreeSurfer_app
+                                                        :GENSAT_app
+                                                        :IATR_app
+                                                        :MBAT_app
+                                                        :SenseLab_app
+                                                      )
+                                          ] ;
+                      
+                      rdfs:subClassOf obo_annot:EnumerationClass ;
+                      
+                      core:definition "A application where the class entity is known to currently be in use by annotators and users searching those annotations.  Multiple instances of this property can be used to identify more than one current application."@en ;
+                      
+                      core:scopeNote "This property is merely informative and not assumed to be an exhaustive list.  Rather, it is just an list of examples known to the BIRNLex curators at the time the term was last modified."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ReferenceURLTemplate
+
+:ReferenceURLTemplate rdf:type owl:Class ;
+                      
+                      owl:equivalentClass [ rdf:type owl:Class ;
+                                            owl:oneOf ( :atccURLTemplate
+                                                        :bamsURLTemplate
+                                                        :chebiURLTemplate
+                                                        :emapMouseStageDataURLTemplate
+                                                        :emapMouseStageDiagramURLTemplate
+                                                        :gbifTaxonKeyURLTemplate
+                                                        :gbifURLTemplate
+                                                        :goURLTemplate
+                                                        :itisURLTemplate
+                                                        :jaxMiceURLTemplate
+                                                        :meshURLTemplate
+                                                        :ncbiTaxURLTemplate
+                                                        :neuronamesURLTemplate
+                                                        :pubchemCicURLTemplate
+                                                        :tacMiceURLTemplate
+                                                      )
+                                          ] ;
+                      
+                      rdfs:subClassOf obo_annot:EnumerationClass ;
+                      
+                      obo_annot:usageNote "Note that each instance of ReferenceURLTemplate will be named using the template name of the matching ID AnnotationProperty.  For example, the ReferenceURLTemplate ncbiTaxURLTemplate is linked to the ncbiTaxID AnnotationProperty, whose value can be combined algorithmically with this URL template to construct a working URL to the specific class reference.  This is a far from perfect solution to some of the limitations of imposed on the use of AnnotationProperties - in particular, the inability to explicitly link one annotation property to another (e.g., explicitly relating ncbiTaxID ncbiTaxURLTemplate as applied to a specific owl:Class).  However, this mechanism should suffice for now.  It will not only support more complete automatic processing of this critical information, but can also be algorithmically translated to whatever better mechanims may become available in future versions of OWL."@en ,
+                                          "The URL reference template is given exactly as posted in the form of a HTTP query, with the unique ID represented with the symbol '$$ID$$'"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#_birnlex_limbo_class
+
+:_birnlex_limbo_class rdf:type owl:Class ;
+                      
+                      rdfs:subClassOf owl:Thing ;
+                      
+                      :hasBirnlexCurator "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug"^^xsd:string ;
+                      
+                      obo_annot:createdDate "2007-03-05"^^xsd:string ;
+                      
+                      obo_annot:modifiedDate "2007-03-05"^^xsd:string ;
+                      
+                      rdfs:label "_limbo_class"@en ;
+                      
+                      core:definition "class in limbo since major refactoring of foundational community ontologies (e.g., BFO, OBI, SKOS). (BB:2007-03-05)."^^xsd:string ;
+                      
+                      core:prefLabel "_birnlex_limbo_class"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#_birnlex_retired_class
+
+:_birnlex_retired_class rdf:type owl:Class ;
+                        
+                        rdfs:subClassOf owl:Thing ;
+                        
+                        :birnlexDefinition "These are classes for which the represented entities are now described using a different class.  A class is deprecated if it's semantic meaning required alteration or its entity is now represented directly in an imported foundational ontology.  Such obseleted classes are removed from the core subsumptive hierarchy and retired to this root branch of the tree for this ontology.  Deprecated classes maintain their original identifiers, so as to provide support for previous applications making use of the class prior to its being deprecated."^^xsd:string ;
+                        
+                        :hasBirnlexCurator "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug"^^xsd:string ;
+                        
+                        obo_annot:createdDate "2007-06-06"^^xsd:string ;
+                        
+                        obo_annot:modifiedDate "2007-06-06"^^xsd:string ;
+                        
+                        rdfs:label "_retired_class"@en ;
+                        
+                        core:prefLabel "_birnlex_retired_class"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass
+
+obo_annot:EnumerationClass rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> .
+
+
+
+###  http://purl.org/dc/dcmitype/Image
+
+dcmitype:Image rdf:type owl:Class ;
+               
+               rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> .
+
+
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#List
+
+rdf:List rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#Collection
+
+core:Collection rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/SKOS_Entity> .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#ConceptScheme
+
+core:ConceptScheme rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/SKOS_Entity> .
+
+
+
+###  http://xmlns.com/foaf/0.1/Document
+
+foaf:Document rdf:type owl:Class ;
+              
+              rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ABA_app
+
+:ABA_app rdf:type owl:NamedIndividual ,
+                  :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ATCC
+
+:ATCC rdf:type owl:NamedIndividual ,
+               :BirnlexExternalSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ATCC_defSource
+
+:ATCC_defSource rdf:type owl:NamedIndividual ,
+                         :BirnlexDefinitionSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Allan_MacKenzie-Graham
+
+:Allan_MacKenzie-Graham rdf:type owl:NamedIndividual ,
+                                 :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Amarnath_Gupta
+
+:Amarnath_Gupta rdf:type owl:NamedIndividual ,
+                         :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Angie_Laird
+
+:Angie_Laird rdf:type owl:NamedIndividual ,
+                      :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BAMS
+
+:BAMS rdf:type owl:NamedIndividual ,
+               :BirnlexExternalSource ;
+      
+      dc:publisher "Brain Architecture Center, University of Southern California, CA, USA"^^xsd:string ;
+      
+      dc:source "http://brancusi.usc.edu/bkms/"^^xsd:string ;
+      
+      dc:title "Brain Architecture Management System"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BAMS_app
+
+:BAMS_app rdf:type owl:NamedIndividual ,
+                   :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BAMS_defSource
+
+:BAMS_defSource rdf:type owl:NamedIndividual ,
+                         :BirnlexDefinitionSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BIRN_OTF
+
+:BIRN_OTF rdf:type owl:NamedIndividual ,
+                   :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BONFIRE
+
+:BONFIRE rdf:type owl:NamedIndividual ,
+                  :BirnlexExternalSource ;
+         
+         dc:publisher "The Biomedical Informatics Research Network (BIRN), NCRR, NIH"^^xsd:string ;
+         
+         dc:title "The BIRN BONFIRE terminology server"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Bill_Bug
+
+:Bill_Bug rdf:type owl:NamedIndividual ,
+                   :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BrainInfo.org_app
+
+:BrainInfo.org_app rdf:type owl:NamedIndividual ,
+                            :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BrainMap.org
+
+:BrainMap.org rdf:type owl:NamedIndividual ,
+                       :BirnlexExternalSource ;
+              
+              dc:publisher "Research Imaging Center, University of Texas Health Science Center, San Antonio, TX, USA"^^xsd:string ;
+              
+              dc:source "http://www.brainmap.org/"^^xsd:string ;
+              
+              dc:title "The BrainMap Project"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BrainMap.org_app
+
+:BrainMap.org_app rdf:type owl:NamedIndividual ,
+                           :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BrainMap.org_defSource
+
+:BrainMap.org_defSource rdf:type owl:NamedIndividual ,
+                                 :BirnlexDefinitionSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#BrainMaps.org_app
+
+:BrainMaps.org_app rdf:type owl:NamedIndividual ,
+                            :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Brett_Peterson
+
+:Brett_Peterson rdf:type owl:NamedIndividual ,
+                         :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Carol_Bean
+
+:Carol_Bean rdf:type owl:NamedIndividual ,
+                     :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ChEBI_defSource
+
+:ChEBI_defSource rdf:type owl:NamedIndividual ,
+                          :BirnlexDefinitionSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Christine_Fennema-Notestine
+
+:Christine_Fennema-Notestine rdf:type owl:NamedIndividual ,
+                                      :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#CoCoMac_app
+
+:CoCoMac_app rdf:type owl:NamedIndividual ,
+                      :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#David_Kennedy
+
+:David_Kennedy rdf:type owl:NamedIndividual ,
+                        :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#EMAP
+
+:EMAP rdf:type owl:NamedIndividual ,
+               :BirnlexExternalSource ;
+      
+      dc:publisher "MRC Human Genetics Unit, Western General Hospital, Edinburgh, UK"^^xsd:string ;
+      
+      dc:source "http://genex.hgu.mrc.ac.uk/"^^xsd:string ;
+      
+      dc:title "Edinburgh Mouse Atlas Project"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Franklin-Paxinos-mouse-2001_app
+
+:Franklin-Paxinos-mouse-2001_app rdf:type owl:NamedIndividual ,
+                                          :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#FreeSurfer_app
+
+:FreeSurfer_app rdf:type owl:NamedIndividual ,
+                         :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#GENSAT_app
+
+:GENSAT_app rdf:type owl:NamedIndividual ,
+                     :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Hof-et-al-mouse-2000_abbrevSource
+
+:Hof-et-al-mouse-2000_abbrevSource rdf:type owl:NamedIndividual ,
+                                            :BirnlexAbbrevSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Hof-et-al-mouse-2001
+
+:Hof-et-al-mouse-2001 rdf:type owl:NamedIndividual ,
+                               :BirnlexExternalSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#IATR_app
+
+:IATR_app rdf:type owl:NamedIndividual ,
+                   :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#IMSR
+
+:IMSR rdf:type owl:NamedIndividual ,
+               :BirnlexExternalSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#IMSR_Glossary_defSource
+
+:IMSR_Glossary_defSource rdf:type owl:NamedIndividual ,
+                                  :BirnlexDefinitionSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#JAX-mouse-stock
+
+:JAX-mouse-stock rdf:type owl:NamedIndividual ,
+                          :BirnlexExternalSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jeff_Grethe
+
+:Jeff_Grethe rdf:type owl:NamedIndividual ,
+                      :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jessica_Turner
+
+:Jessica_Turner rdf:type owl:NamedIndividual ,
+                         :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Jyl_Boline
+
+:Jyl_Boline rdf:type owl:NamedIndividual ,
+                     :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Karen_Crawford
+
+:Karen_Crawford rdf:type owl:NamedIndividual ,
+                         :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Karl_Helmer
+
+:Karl_Helmer rdf:type owl:NamedIndividual ,
+                      :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#MBAT_app
+
+:MBAT_app rdf:type owl:NamedIndividual ,
+                   :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#MGI
+
+:MGI rdf:type owl:NamedIndividual ,
+              :BirnlexExternalSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#MGI_defSource
+
+:MGI_defSource rdf:type owl:NamedIndividual ,
+                        :BirnlexDefinitionSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Maryann_Martone
+
+:Maryann_Martone rdf:type owl:NamedIndividual ,
+                          :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Michele_Diaz
+
+:Michele_Diaz rdf:type owl:NamedIndividual ,
+                       :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#NeuroNames
+
+:NeuroNames rdf:type owl:NamedIndividual ,
+                     :BirnlexExternalSource ;
+            
+            dc:publisher "The BrainInfo Project, Washington National Primate Research Center, University of Washington, Seattle, WA, USA"^^xsd:string ;
+            
+            dc:source "http://braininfo.rprc.washington.edu/nnont.html"^^xsd:string ;
+            
+            dc:title "The NeuroNames Ontologies"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#NeuroNames_abbrevSource
+
+:NeuroNames_abbrevSource rdf:type owl:NamedIndividual ,
+                                  :BirnlexAbbrevSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#NeuroNames_defSource
+
+:NeuroNames_defSource rdf:type owl:NamedIndividual ,
+                               :BirnlexDefinitionSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Paxinos-Franklin-mouse-2001
+
+:Paxinos-Franklin-mouse-2001 rdf:type owl:NamedIndividual ,
+                                      :BirnlexExternalSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Paxinos-Franklin-mouse-2001_abbrevSource
+
+:Paxinos-Franklin-mouse-2001_abbrevSource rdf:type owl:NamedIndividual ,
+                                                   :BirnlexAbbrevSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Paxinos-Watson-rat-1998_abbrevSource
+
+:Paxinos-Watson-rat-1998_abbrevSource rdf:type owl:NamedIndividual ,
+                                               :BirnlexAbbrevSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#PsychInfo_Thesaurus
+
+:PsychInfo_Thesaurus rdf:type owl:NamedIndividual ,
+                              :BirnlexExternalSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Rob_Williams
+
+:Rob_Williams rdf:type owl:NamedIndividual ,
+                       :BirnlexCurator .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#SAO
+
+:SAO rdf:type owl:NamedIndividual ,
+              :BirnlexExternalSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#SenseLab_app
+
+:SenseLab_app rdf:type owl:NamedIndividual ,
+                       :KnownApplicationUses .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#SumsDB
+
+:SumsDB rdf:type owl:NamedIndividual ,
+                 :BirnlexExternalSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#SumsDB_abbrevSource
+
+:SumsDB_abbrevSource rdf:type owl:NamedIndividual ,
+                              :BirnlexAbbrevSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Swanson-rat-1992_abbrevSource
+
+:Swanson-rat-1992_abbrevSource rdf:type owl:NamedIndividual ,
+                                        :BirnlexAbbrevSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Swanson-rat-1998_abbrevSource
+
+:Swanson-rat-1998_abbrevSource rdf:type owl:NamedIndividual ,
+                                        :BirnlexAbbrevSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#Swanson-rat-2004_abbrevSource
+
+:Swanson-rat-2004_abbrevSource rdf:type owl:NamedIndividual ,
+                                        :BirnlexAbbrevSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#TacFarms
+
+:TacFarms rdf:type owl:NamedIndividual ,
+                   :BirnlexExternalSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#The_Sylvius_Project_defSource
+
+:The_Sylvius_Project_defSource rdf:type owl:NamedIndividual ,
+                                        :BirnlexDefinitionSource .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#atccURLTemplate
+
+:atccURLTemplate rdf:type owl:NamedIndividual ,
+                          :ReferenceURLTemplate ;
+                 
+                 :httpQueryUrlTemplate "http://www.atcc.org/common/catalog/numSearch/numResults.cfm?atccNum=$$ID$$"^^xsd:string ;
+                 
+                 :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#atccID"^^xsd:string ;
+                 
+                 obo_annot:usageNote "The URL reference template for a resource page at the American Type Culture Collection catalog."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#bamsURLTemplate
+
+:bamsURLTemplate rdf:type owl:NamedIndividual ,
+                          :ReferenceURLTemplate ;
+                 
+                 :httpQueryUrlTemplate "http://brancusi.usc.edu/bkms/brain/show-braing2.php?aidi=$$ID$$"^^xsd:string ;
+                 
+                 :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#bamsID"^^xsd:string ;
+                 
+                 obo_annot:usageNote "The URL reference template for the main page in the Brain Architecture Management portal for a BAMS-defined neuroanatomical structure."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#chebiURLTemplate
+
+:chebiURLTemplate rdf:type owl:NamedIndividual ,
+                           :ReferenceURLTemplate ;
+                  
+                  :httpQueryUrlTemplate "http://www.ebi.ac.uk/ontology-lookup/?termId=CHEBI%3A$$ID$$"^^xsd:string ;
+                  
+                  :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#ChEBIid"^^xsd:string ;
+                  
+                  obo_annot:usageNote "The URL reference template for an Ontology Lookup Service Browser page for a given ChEBI term."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#curation_complete
+
+:curation_complete rdf:type owl:NamedIndividual ,
+                            :CurationStatus ;
+                   
+                   core:definition "indicates a class has been fully vetted by the curation authorities and to the best of their ability determined to be ready for use."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#definition_incomplete
+
+:definition_incomplete rdf:type owl:NamedIndividual ,
+                                :CurationStatus ;
+                       
+                       core:definition "the curators recognize the definition of the class remains incomplete in someway.  Many definitions are dervied from external sources (a fact tracked via an additional annotation property) and require considerable amending before they fully comply with the OBO Foundry Aristotelean genera/differentia & non-circular specification."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#emapMouseStageDataURLTemplate
+
+:emapMouseStageDataURLTemplate rdf:type owl:NamedIndividual ,
+                                        :ReferenceURLTemplate ;
+                               
+                               :httpQueryUrlTemplate "http://genex.hgu.mrc.ac.uk/Databases/Anatomy/XML/$$ID$$.xml"^^xsd:string ;
+                               
+                               :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#emapMouseStageDataID"^^xsd:string ;
+                               
+                               obo_annot:usageNote "The URL reference template for the data associated with a Theiler mouse prenatal development stage as given by the EMAP Project,"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#emapMouseStageDiagramURLTemplate
+
+:emapMouseStageDiagramURLTemplate rdf:type owl:NamedIndividual ,
+                                           :ReferenceURLTemplate ;
+                                  
+                                  :httpQueryUrlTemplate "http://genex.hgu.mrc.ac.uk/Databases/Anatomy/Diagrams/$$ID$$"^^xsd:string ;
+                                  
+                                  :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#emapMouseStageDiagramID"^^xsd:string ;
+                                  
+                                  obo_annot:usageNote "The URL reference template for the diagram associated with a Theiler mouse prenatal development stage as given by the EMAP Project."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#gbifTaxonKeyURLTemplate
+
+:gbifTaxonKeyURLTemplate rdf:type owl:NamedIndividual ,
+                                  :ReferenceURLTemplate ;
+                         
+                         :httpQueryUrlTemplate "http://www.europe.gbif.net/portal/ecat_browser.jsp?taxonKey=$$ID$$&countryKey=0&resourceKey=0"^^xsd:string ;
+                         
+                         :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#gbifTaxonKeyID"^^xsd:string ;
+                         
+                         obo_annot:usageNote "The URL reference template for a taxonomy key in Global Biodiversity Information Facility taxonomic ,knowledgebase"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#gbifURLTemplate
+
+:gbifURLTemplate rdf:type owl:NamedIndividual ,
+                          :ReferenceURLTemplate ;
+                 
+                 :httpQueryUrlTemplate "http://data.gbif.org/species/$$ID$$"^^xsd:string ;
+                 
+                 :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#gbifID"^^xsd:string ;
+                 
+                 obo_annot:usageNote "The URL reference template for a taxonomic category in Global Biodiversity Information Facility taxonomic ,knowledgebase"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#goURLTemplate
+
+:goURLTemplate rdf:type owl:NamedIndividual ,
+                        :ReferenceURLTemplate ;
+               
+               :httpQueryUrlTemplate "http://amigo.geneontology.org/cgi-bin/amigo/go.cgi?view=details&query=$$ID$$"^^xsd:string ;
+               
+               :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GOid"^^xsd:string ;
+               
+               :webServiceUrlTemplate "http://amigo.geneontology.org/cgi-bin/amigo/go.cgi?format=xml&query=$$ID$$"^^xsd:string ;
+               
+               obo_annot:usageNote "The URL reference template for an AmiGO Browser page for a given Gene Ontology term."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#graph_position_temporary
+
+:graph_position_temporary rdf:type owl:NamedIndividual ,
+                                   :CurationStatus ;
+                          
+                          core:definition "indicates the class may not be in its final preferred location within the ontology graph.  This label can be particularly useful during early ontology creation, as for certain entities, it may not be obvious where precisely a given class should reside until a sufficiently large portion of the graph has been settled."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#itisURLTemplate
+
+:itisURLTemplate rdf:type owl:NamedIndividual ,
+                          :ReferenceURLTemplate ;
+                 
+                 :httpQueryUrlTemplate "http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=$$ID$$"^^xsd:string ;
+                 
+                 :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#itisID"^^xsd:string ;
+                 
+                 obo_annot:usageNote "The URL reference template for a taxonomic category in the North American Integrated Taxonomic Information System (ITIS) taxonomic ,knowledgebase"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#jaxMiceURLTemplate
+
+:jaxMiceURLTemplate rdf:type owl:NamedIndividual ,
+                             :ReferenceURLTemplate ;
+                    
+                    :httpQueryUrlTemplate "http://jaxmice.jax.org/strain/$$ID$$.html"^^xsd:string ;
+                    
+                    :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#jaxMiceID"^^xsd:string ;
+                    
+                    obo_annot:usageNote "The URL reference template for a mouse strain tracked in the Jackson Laboratory Mouse database"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#meshURLTemplate
+
+:meshURLTemplate rdf:type owl:NamedIndividual ,
+                          :ReferenceURLTemplate ;
+                 
+                 :httpQueryUrlTemplate "http://www.nlm.nih.gov/cgi/mesh/2008/MB_cgi?field=uid&term=$$ID$$"^^xsd:string ;
+                 
+                 :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#MeshUid"^^xsd:string ;
+                 
+                 :webServiceUrlTemplate "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=mesh&id=$$ID$$"^^xsd:string ;
+                 
+                 obo_annot:usageNote "The URL reference template for an NLM MeSH Browser page for a given MeSH heading."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ncbiTaxURLTemplate
+
+:ncbiTaxURLTemplate rdf:type owl:NamedIndividual ,
+                             :ReferenceURLTemplate ;
+                    
+                    :httpQueryUrlTemplate "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=$$ID$$"^^xsd:string ;
+                    
+                    :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#ncbiTaxID"^^xsd:string ;
+                    
+                    :webServiceUrlTemplate "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=taxonomy&id=$$ID$$"^^xsd:string ;
+                    
+                    obo_annot:usageNote "The URL reference template for a taxonomic category in NCBI Taxonomy"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#neuronamesURLTemplate
+
+:neuronamesURLTemplate rdf:type owl:NamedIndividual ,
+                                :ReferenceURLTemplate ;
+                       
+                       :httpQueryUrlTemplate "http://braininfo.rprc.washington.edu/Scripts/hiercentraldirectory.aspx?ID=$$ID$$"^^xsd:string ;
+                       
+                       :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#neuronamesID"^^xsd:string ;
+                       
+                       obo_annot:usageNote "The URL reference template for the main page in the BrainInfo.org portal for a NeuroNames neuroanatomical structure."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#nlx_000014
+
+:nlx_000014 rdf:type owl:NamedIndividual ,
+                     :BirnlexCurator ;
+            
+            rdfs:label "Anita_Bandrowski"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pending_final_vetting
+
+:pending_final_vetting rdf:type owl:NamedIndividual ,
+                                :CurationStatus ;
+                       
+                       core:definition "indicates the term is likely ready for promotion to \"curation_complete\" status, and only requires a final review by the curators responsible.  A class may also be demoted to this status when a formerly \"complete\" class has been determined to require amendments.  In accordance with the emerging best practices, such a term will be moved to an obsolete branch of the ontology, when the new replacement class has been fully vetted and marked as such."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#pubchemCicURLTemplate
+
+:pubchemCicURLTemplate rdf:type owl:NamedIndividual ,
+                                :ReferenceURLTemplate ;
+                       
+                       :httpQueryUrlTemplate "http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=$$ID$$"^^xsd:string ;
+                       
+                       :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#ChEBIid"^^xsd:string ;
+                       
+                       obo_annot:usageNote "The URL reference template for an PubChem Browser page for a given PubChem CID term."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#raw_import
+
+:raw_import rdf:type owl:NamedIndividual ,
+                     :CurationStatus ;
+            
+            core:definition "a class derived directly via import of an entity form an existing knowledge resource.  Terms labeled as such has yet to receive any additional curation.  As they do, their status is likely to change, though the link back to the original entity in the external resource is maintained."@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#tacMiceURLTemplate
+
+:tacMiceURLTemplate rdf:type owl:NamedIndividual ,
+                             :ReferenceURLTemplate ;
+                    
+                    :httpQueryUrlTemplate "http://www.taconic.com/wmspage.cfm?parm1=$$ID$$"^^xsd:string ;
+                    
+                    :urlTemplateLinkedID "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#tacMiceID"^^xsd:string ;
+                    
+                    obo_annot:usageNote "The URL reference template for a mouse strain tracked in the Taconic Farms Mouse database"@en .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#uncurated
+
+:uncurated rdf:type owl:NamedIndividual ,
+                    :CurationStatus ;
+           
+           core:definition "indicates a class has been created by curators but has received minimal review."@en .
+
+
+
+
+
+#################################################################
+#
+#    Annotations
+#
+#################################################################
+
+
+:birnlexComment core:editorialNote "Is there a use for a BIRN-specific comment independent of rdfs:comment?"@en ;
+                
+                obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#editorialNote"^^xsd:string .
+
+
+
+:birnlexPendingDifferentiaNote obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#scopeNote"^^xsd:string ,
+                                                        "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote"^^xsd:string ;
+                               
+                               core:example "\"Basal nucleus of Meynert\" is used for labeling the Basal nucleus in humans.  In a human specific neuroanatomical ontology layer, basal nucleus will receive the prefered lable \"Basal nucleus of Meynert\"."@en ;
+                               
+                               core:definition "This is a note describing a pending class sub-genera."@en .
+
+
+
+:birnlexRetiredDefinition obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#definition"^^xsd:string ;
+                          
+                          core:definition "A former definition for a class.  It is kept for the purposes of interpreting annotations made when this definition was in effect and to monitor the evolution of class definitions.  Given this requirement, a \"retiredDate\" is added to the definition on the date of retirement."@en .
+
+
+
+:hasCurationStatus obo_annot:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string ;
+                   
+                   obo_annot:annotationPropertyRange "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#CurationStatus"^^xsd:string ;
+                   
+                   obo_annot:annotationPropertyDomain "owl:Class"^^xsd:string ;
+                   
+                   obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#editorialNote"^^xsd:string .
+
+
+
+:hasKnownApplicationUses obo_annot:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string ;
+                         
+                         obo_annot:annotationPropertyDomain "owl:Class"^^xsd:string ;
+                         
+                         obo_annot:annotationPropertyRange "http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#KnownApplicationUses"^^xsd:string .
+
+
+
+
+
+#################################################################
+#
+#    General axioms
+#
+#################################################################
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :ABA_app
+                        :BAMS_app
+                        :BrainInfo.org_app
+                        :BrainMap.org_app
+                        :BrainMaps.org_app
+                        :CoCoMac_app
+                        :Franklin-Paxinos-mouse-2001_app
+                        :FreeSurfer_app
+                        :GENSAT_app
+                        :IATR_app
+                        :MBAT_app
+                        :SenseLab_app
+                      )
+] .
+
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :ATCC
+                        :BAMS
+                        :BONFIRE
+                        :BrainMap.org
+                        :EMAP
+                        :Hof-et-al-mouse-2001
+                        :IMSR
+                        :JAX-mouse-stock
+                        :MGI
+                        :NeuroNames
+                        :Paxinos-Franklin-mouse-2001
+                        :PsychInfo_Thesaurus
+                        :SAO
+                        :SumsDB
+                        :TacFarms
+                      )
+] .
+
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :ATCC_defSource
+                        :BAMS_defSource
+                        :BrainMap.org_defSource
+                        :ChEBI_defSource
+                        :IMSR_Glossary_defSource
+                        :MGI_defSource
+                        :NeuroNames_defSource
+                        :The_Sylvius_Project_defSource
+                      )
+] .
+
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Allan_MacKenzie-Graham
+                        :Amarnath_Gupta
+                        :Angie_Laird
+                        :BIRN_OTF
+                        :Bill_Bug
+                        :Brett_Peterson
+                        :Carol_Bean
+                        :Christine_Fennema-Notestine
+                        :David_Kennedy
+                        :Jeff_Grethe
+                        :Jessica_Turner
+                        :Jyl_Boline
+                        :Karen_Crawford
+                        :Karl_Helmer
+                        :Maryann_Martone
+                        :Michele_Diaz
+                        :Rob_Williams
+                      )
+] .
+
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Hof-et-al-mouse-2000_abbrevSource
+                        :NeuroNames_abbrevSource
+                        :Paxinos-Franklin-mouse-2001_abbrevSource
+                        :Paxinos-Watson-rat-1998_abbrevSource
+                        :SumsDB_abbrevSource
+                        :Swanson-rat-1992_abbrevSource
+                        :Swanson-rat-1998_abbrevSource
+                        :Swanson-rat-2004_abbrevSource
+                      )
+] .
+
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :atccURLTemplate
+                        :bamsURLTemplate
+                        :chebiURLTemplate
+                        :emapMouseStageDataURLTemplate
+                        :emapMouseStageDiagramURLTemplate
+                        :gbifTaxonKeyURLTemplate
+                        :gbifURLTemplate
+                        :goURLTemplate
+                        :itisURLTemplate
+                        :jaxMiceURLTemplate
+                        :meshURLTemplate
+                        :ncbiTaxURLTemplate
+                        :neuronamesURLTemplate
+                      )
+] .
+
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :curation_complete
+                        :definition_incomplete
+                        :graph_position_temporary
+                        :pending_final_vetting
+                        :raw_import
+                        :uncurated
+                      )
+] .
+
+
+
+
+###  Generated by the OWL API (version 4.1.4) https://github.com/owlcs/owlapi
+

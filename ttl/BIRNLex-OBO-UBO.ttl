@@ -1,0 +1,1108 @@
+@prefix : <http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix j.0: <http://protege.stanford.edu/plugins/owl/protege#> .
+@prefix j.1: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#> .
+@prefix obo: <http://purl.org/obo/owl/obo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#> .
+@prefix core: <http://www.w3.org/2004/02/skos/core#> .
+@prefix daml: <http://www.daml.org/2001/03/daml+oil#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix obo_annot: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
+@prefix protege-dc: <http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl#> .
+@prefix obo_foundry_core_full: <http://ontology.neuinfo.org/NIF/Backend/obo-foundry-core-full-import.owl#> .
+@base <http://ontology.neuinfo.org/NIF/ttl/BIRNLex-OBO-UBO.ttl> .
+
+<http://ontology.neuinfo.org/NIF/ttl/BIRNLex-OBO-UBO.ttl> rdf:type owl:Ontology ;
+                                                              
+                                                              core:changeNote "Added the is_bearer_of ObjectProperty - inverse of inheres_in property used to link PATO dependent_continuants to independent_continuants.  is_bearer_of enables one to represent the link from independen_continuant to dependent_continuant."@en ;
+                                                              
+                                                              obo_annot:createdDate "2006-09-07"^^xsd:string ;
+                                                              
+                                                              obo_annot:modifiedDate "2008-03-22"^^xsd:string ;
+                                                              
+                                                              core:changeNote "(BB:2008-03-22) - Added a molecule and biomolecule class.  The former was added to classify entities that are ChEBI derived, but are not of biomaterial origin.  The latter was for those that are of biomaterial origin.  Also shifted macromolecule and macromolecular complex to be childre of biomolecule."@en ;
+                                                              
+                                                              dc:contributor "Jeff Grethe"^^xsd:string ;
+                                                              
+                                                              dc:title "Upper Biomedical Ontology (BIRN proposal)"@en ;
+                                                              
+                                                              core:changeNote "v1.3.2 (2007-10-08) - switched to importing BIRNLex_annoation_properties.owl so would have access to _birnlex_retired_class"@en ;
+                                                              
+                                                              dc:subject "The BIRN project lexicon"^^xsd:string ;
+                                                              
+                                                              dc:contributor "David Kennedy"^^xsd:string ,
+                                                                             "Jessica Turner"^^xsd:string ;
+                                                              
+                                                              core:changeNote "OBO-RO LIGHT version no longer available from IFOMIS/NCBO at http://www.ifomis.org/obo/ro/1.0/light.  Switched to Chris M's OWL version of OBO-RO at http://www.berkeleybop.org/ontologies/obo-all/relationship/relationship.owl.  Need to look at using Chris M's OBO-RO to BFO bridge as well (BB: 2007-05-07)."@en ;
+                                                              
+                                                              dc:contributor "Christine Fennema-Notestine"^^xsd:string ,
+                                                                             "Bill Bug"^^xsd:string ;
+                                                              
+                                                              dc:creator "The BIRN Ontology Task Force"^^xsd:string ;
+                                                              
+                                                              core:editorialNote "next ID: birnlex_25"^^xsd:string ;
+                                                              
+                                                              dc:contributor "Carol Bean"^^xsd:string ;
+                                                              
+                                                              obo_annot:pendingActionNote "This is likely to be replaced soon by some combination of BioTop (http://www.ifomis.uni-saarland.de/biotop/), the Simple Upper Bio Ontology (http://www.cs.man.ac.uk/~rector/ontologies/simple-top-bio/), OBO-UBO from NCBO, and the contents of this current file (BB: 2007-02-27)."@en ;
+                                                              
+                                                              core:editorialNote "ID use: 1 - 25"^^xsd:string ;
+                                                              
+                                                              dc:description "This is a proposed upper biomedial ontology derived by examples from the Biodynamic Ontology, the Simple Upper Bio Ontology, the Ontology of Biomedical Reality, and the Foundational Model of Anatomy.  It is designed to be a very slim layer intervening between the Basic Formal Ontology (BFO) and the generic, domain, and application ontologies developed to formally represent entities relevant to biomedical research and clinical practice.  The intension is for their to be a shared layer for all of these ontologies to use to declares a biological context from which they can all derive required classes thereby making the equivalent foundational entities 100% algorithmically commensurate across all of these ontological artifacts.  At this date (2006-10-06), this is just a proposal meant for: review by the community of OBO Foundry-associated biomedical ontology developers; very sparse and preliminary with the bulk of the coverage in the domain of biomaterial and immaterial objects; immediate use by the BIRN Ontology Task Force with the expectation this normalized layer will expedite future integration/import of the upper level biomedical ontology eventually adopted and endorsed by the OBO Foundry participant ontology development community members."@en ;
+                                                              
+                                                              core:changeNote "Duplicated all SKOS core:prefLabel Annotations as rdfs:label Annotations using a parsing script supplied by Trish Whetzel (UPenn/OBI community).  This makes it possible to use rdfs:label as the DISPLAY_SLOT in Protege to match OBI and to use it to generate OWLDocs where both BIRNLex and OBI classes will use the same AnnotationProperty for their preferred display name (BB: 2007-02-27)."@en ,
+                                                                              "v1.3.0 (2007-08-03) - Changed many things, but primarily: (1) removed rdf:datatype xsd:string specs for all AnnotationProperties, since they are now all untyped and should assume STRING as a the default; (2) added the typing of AnnotationProperties using annotationType which should aid in algorithmically processing; (3) Removed all underscore characters from the prefLabel field, and since the rdfs:labels are regenerated in the cleanser from prefLabel, they too are now free of underscores; (4) Also updated the XSLT BIRNLex cleanser to clean up more Protege mangling and provide a fixed order for certain properties.  This last tool is brittle, as it probably will require continued maintenance to handle more complex OWL constructs than we know have in the file - especially highly nested constructs using class axioms."@en ;
+                                                              
+                                                              owl:versionInfo "1.3.2"^^xsd:string ;
+                                                              
+                                                              core:changeNote "v1.2.2 (2007-03-19): Since Protege-OWL automatically sets new class identifiers to rdf:ID, but SOME of the classes appear to have been setup using rdf:about, I'm changing these across the files, to help make it more deterministic when parsing the RDF/XML."@en ;
+                                                              
+                                                              dc:contributor "Amarnath Gupta"^^xsd:string ;
+                                                              
+                                                              j.0:defaultLanguage "en"^^xsd:string ;
+                                                              
+                                                              dc:contributor "Maryann Martone"^^xsd:string ;
+                                                              
+                                                              core:changeNote "Added the LIGHT version of the OBO Relation ontology from IFOMIS/NCBO at http://www.ifomis.org/obo/ro/1.0/light. (BB: 2007-03-01)."@en .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#hasFormerParentClass
+
+j.1:hasFormerParentClass rdf:type owl:AnnotationProperty .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#isReplacedByClass
+
+j.1:isReplacedByClass rdf:type owl:AnnotationProperty .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#createdDate
+
+obo_annot:createdDate rdf:type owl:AnnotationProperty .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#curator
+
+obo_annot:curator rdf:type owl:AnnotationProperty .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#definingCitation
+
+obo_annot:definingCitation rdf:type owl:AnnotationProperty .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#hasExternalSource
+
+obo_annot:hasExternalSource rdf:type owl:AnnotationProperty .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#modifiedDate
+
+obo_annot:modifiedDate rdf:type owl:AnnotationProperty .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#nifID
+
+obo_annot:nifID rdf:type owl:AnnotationProperty .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote
+
+obo_annot:pendingActionNote rdf:type owl:AnnotationProperty .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#synonym
+
+obo_annot:synonym rdf:type owl:AnnotationProperty .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#tempDefinition
+
+obo_annot:tempDefinition rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+
+core:definition rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#example
+
+core:example rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#historyNote
+
+core:historyNote rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#note
+
+core:note rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+
+core:prefLabel rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_17
+
+:birnlex_17 rdf:type owl:ObjectProperty ;
+            
+            owl:inverseOf <http://purl.obolibrary.org/obo/pato#inheres_in> ;
+            
+            obo_annot:createdDate "2007-10-02"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2007-10-02"^^xsd:string ;
+            
+            obo_annot:tempDefinition "Makes it possible for an independent_continuant to represent its relation to a dependent_continuant, such as a PATO quality, a bfo:disposition, or a bfo:function."^^xsd:string ;
+            
+            rdfs:label "is_bearer_of"^^xsd:string ;
+            
+            core:prefLabel "is_bearer_of"^^xsd:string .
+
+
+
+###  http://purl.obolibrary.org/obo/pato#inheres_in
+
+<http://purl.obolibrary.org/obo/pato#inheres_in> rdf:type owl:ObjectProperty ,
+                                                          owl:FunctionalProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_1
+
+:birnlex_1 rdf:type owl:Class ;
+           
+           rdfs:subClassOf j.1:_birnlex_retired_class ;
+           
+           j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#birnlex_1"^^xsd:string ;
+           
+           obo_annot:createdDate "2006-09-07"^^xsd:string ;
+           
+           obo_annot:curator "Bill Bug"^^xsd:string ;
+           
+           obo_annot:modifiedDate "2008-03-22"^^xsd:string ;
+           
+           obo_annot:tempDefinition "A large, multi-molecular biological aggregate held together by van der Waals, hydrophobic, and hydrophilic interactions. Such complexes have a myriad of interactions with other cellular constituents with help to situate them within the cell - e.g., with the periphery of the phospholipid bilayer, penetrating some or all of the bilayer, interactions with intra- or extracellular fibrous matrices, and finally with other macromolecular complexes. Conformational changes in one molecular constituent of a complex frequently caused by covalent modification will tend to high non-local effects on the over conformation and energy profile of all the constituents in the complex."^^xsd:string ;
+           
+           rdfs:label "Macromolecular complex"^^xsd:string ;
+           
+           owl:deprecated "true"^^xsd:boolean ;
+           
+           core:example "16S ribosomal complex"^^xsd:string ,
+                        "axonal Na+-K+ ATPase transporter"^^xsd:string ,
+                        "neuronal nicotinic Acetylcholine receptor"^^xsd:string ;
+           
+           core:prefLabel "Macromolecular complex"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_10
+
+:birnlex_10 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#birnlex_10"^^xsd:string ;
+            
+            obo_annot:createdDate "2006-09-07"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:hasExternalSource "http://ccdb.ucsd.edu/NIF/OBO_annotation_properties.owl#UMLS"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+            
+            rdfs:label "Constitutional part of cell"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:example "cytoskeletal system"^^xsd:string ,
+                         "post-synaptic density"^^xsd:string ;
+            
+            core:prefLabel "Constitutional part of cell"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_11
+
+:birnlex_11 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_11"^^xsd:string ;
+            
+            obo_annot:createdDate "2006-09-07"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+            
+            rdfs:label "Regional part of body system"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:example "arterial vasculature"^^xsd:string ,
+                         "peripheral nervous system"^^xsd:string ;
+            
+            core:prefLabel "Regional part of body system"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_12
+
+:birnlex_12 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:hasFormerParentClass "http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_6"^^xsd:string ;
+            
+            j.1:isReplacedByClass "sao1813327414"^^xsd:string ;
+            
+            obo_annot:createdDate "2006-09-07"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:hasExternalSource "http://ccdb.ucsd.edu/NIF/OBO_annotation_properties.owl#OBR"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2007-10-09"^^xsd:string ;
+            
+            rdfs:label "Cell"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:example "Mauthner cell"^^xsd:string ,
+                         "hepatocyte"^^xsd:string ,
+                         "oocyte"^^xsd:string ,
+                         "stomatal guard cell"^^xsd:string ;
+            
+            core:prefLabel "Cell"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_13
+
+:birnlex_13 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#birnlex_13"^^xsd:string ;
+            
+            obo_annot:createdDate "2006-09-07"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+            
+            obo_annot:tempDefinition "A defined subset of a population whose spatio-temporal interactions or aggregate behavior is representative of the whole population."^^xsd:string ;
+            
+            rdfs:label "Sample population"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:prefLabel "Sample population"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_14
+
+:birnlex_14 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_14"^^xsd:string ;
+            
+            obo_annot:createdDate "2006-09-07"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:hasExternalSource "http://ccdb.ucsd.edu/NIF/OBO_annotation_properties.owl#FMA"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+            
+            rdfs:label "Body system"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:example "insect tracheolar network"^^xsd:string ,
+                         "nervous system"^^xsd:string ;
+            
+            core:prefLabel "Body system"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_15
+
+:birnlex_15 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#birnlex_15"^^xsd:string ;
+            
+            obo_annot:createdDate "2006-09-07"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2008-03-22"^^xsd:string ;
+            
+            obo_annot:nifID "_5.2_6"^^xsd:string ;
+            
+            rdfs:label "Macromolecule"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:prefLabel "Macromolecule"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_16
+
+:birnlex_16 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_16"^^xsd:string ;
+            
+            obo_annot:createdDate "2006-09-07"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+            
+            rdfs:label "Regional part of organ"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:example "cardiac ventricle"^^xsd:string ,
+                         "ommatidium of insect eye"^^xsd:string ,
+                         "regional part of brain"^^xsd:string ;
+            
+            core:prefLabel "Regional part of organ"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_18
+
+:birnlex_18 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_18"^^xsd:string ;
+            
+            obo_annot:createdDate "2007-10-08"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2007-10-08"^^xsd:string ;
+            
+            obo_annot:nifID "_5.2_1"^^xsd:string ;
+            
+            rdfs:label "Body"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:prefLabel "Body"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_19
+
+:birnlex_19 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_19"^^xsd:string ;
+            
+            obo_annot:createdDate "2007-10-10"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2007-10-10"^^xsd:string ;
+            
+            obo_annot:nifID "_1_3.3"^^xsd:string ;
+            
+            rdfs:label "Tissue"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:prefLabel "Tissue"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_2
+
+:birnlex_2 rdf:type owl:Class ;
+           
+           obo_annot:createdDate "2006-09-07"^^xsd:string ;
+           
+           obo_annot:curator "Bill Bug"^^xsd:string ;
+           
+           obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+           
+           obo_annot:nifID "_6"^^xsd:string ;
+           
+           obo_annot:pendingActionNote "This part of the graph will need to adjust as organism taxonomy is handled more consistently by the biomedical-ontology community"^^xsd:string ;
+           
+           obo_annot:synonym "Organismal_object"^^xsd:string ;
+           
+           obo_annot:tempDefinition "A biomaterial object capable of reproduction and harvesting energy from some biomaterial source in order to sustain its existance."^^xsd:string ;
+           
+           rdfs:label "Organism"^^xsd:string ;
+           
+           core:example "insect"^^xsd:string ,
+                        "macaque monkey"^^xsd:string ,
+                        "procaryote"^^xsd:string ,
+                        "vascular plant"^^xsd:string ;
+           
+           core:prefLabel "Organism"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_20
+
+:birnlex_20 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_20"^^xsd:string ;
+            
+            obo_annot:createdDate "2007-10-18"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2007-10-18"^^xsd:string ;
+            
+            rdfs:label "Bodily fluid"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:prefLabel "Bodily fluid"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_21
+
+:birnlex_21 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#birnlex_21"^^xsd:string ;
+            
+            obo_annot:createdDate "2008-03-21"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2008-03-21"^^xsd:string ;
+            
+            obo_annot:tempDefinition "An object consisting of a set of bonded atoms that is not of organismal origin."^^xsd:string ;
+            
+            rdfs:label "Molecule"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:example "Saponin"^^xsd:string ,
+                         "glutaraldehyde"^^xsd:string ;
+            
+            core:prefLabel "Molecule"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_22
+
+:birnlex_22 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#birnlex_22"^^xsd:string ;
+            
+            obo_annot:createdDate "2008-03-22"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "February 18, 2009"^^xsd:string ;
+            
+            obo_annot:tempDefinition "An object consisting of a set of bonded atoms that is of organismal origin."^^xsd:string ;
+            
+            rdfs:comment "This class has been retired."^^xsd:string ;
+            
+            rdfs:label "Biomolecule"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:example "insulin"^^xsd:string ,
+                         "voltage-gated Ca++ ion channel"^^xsd:string ;
+            
+            core:prefLabel "Biomolecule"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_23
+
+:birnlex_23 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:hasFormerParentClass "http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_15"^^xsd:string ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao26622963"^^xsd:string ;
+            
+            obo_annot:createdDate "2008-03-22"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2008-03-22"^^xsd:string ;
+            
+            obo_annot:tempDefinition "A macromolecule consisting primarily of a single covalently bound array of naturally occuring amino acids."^^xsd:string ;
+            
+            rdfs:comment "This class hes been retired."^^xsd:string ;
+            
+            rdfs:label "Protein"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:example "insulin"^^xsd:string ;
+            
+            core:prefLabel "Protein"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_24
+
+:birnlex_24 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            obo_annot:createdDate "2008-03-22"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2008-03-22"^^xsd:string ;
+            
+            obo_annot:tempDefinition "A macromolecule consisting primarily of a multiple covalently bound arrays of naturally occuring amino acids where the individual proteins are typically bound together through ionic and hydrogen bond interactions."^^xsd:string ;
+            
+            rdfs:comment "This class has been retired."^^xsd:string ;
+            
+            rdfs:label "Protein complex"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:example "voltage-gated Na++ ion channel"^^xsd:string ;
+            
+            core:prefLabel "Protein complex"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_25
+
+:birnlex_25 rdf:type owl:Class ;
+            
+            rdfs:subClassOf j.1:_birnlex_retired_class ;
+            
+            j.1:hasFormerParentClass "http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_23"^^xsd:string ;
+            
+            j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#nifext_5000"^^xsd:string ;
+            
+            obo_annot:createdDate "2008-03-22"^^xsd:string ;
+            
+            obo_annot:curator "Bill Bug"^^xsd:string ;
+            
+            obo_annot:modifiedDate "2008-03-22"^^xsd:string ;
+            
+            obo_annot:tempDefinition "A macromolecule consisting exclusively of a single covalently bound array of naturally occuring amino acids."^^xsd:string ;
+            
+            rdfs:label "Peptide"^^xsd:string ;
+            
+            owl:deprecated "true"^^xsd:boolean ;
+            
+            core:example "insulin"^^xsd:string ,
+                         "somatostatin"^^xsd:string ,
+                         "vasopressin"^^xsd:string ;
+            
+            core:prefLabel "Peptide"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_3
+
+:birnlex_3 rdf:type owl:Class ;
+           
+           rdfs:subClassOf j.1:_birnlex_retired_class ;
+           
+           j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_3"^^xsd:string ;
+           
+           obo_annot:createdDate "2006-09-07"^^xsd:string ;
+           
+           obo_annot:curator "Bill Bug"^^xsd:string ;
+           
+           obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+           
+           obo_annot:tempDefinition "Anatomical structure consisting of an identifable arrangement of multiple cellular structures into a functional unit."^^xsd:string ;
+           
+           rdfs:label "Supracellular structure"^^xsd:string ;
+           
+           owl:deprecated "true"^^xsd:boolean ;
+           
+           core:example "Node of Ranvier"^^xsd:string ,
+                        "neuropil"^^xsd:string ;
+           
+           core:prefLabel "Supracellular structure"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_4
+
+:birnlex_4 rdf:type owl:Class ;
+           
+           rdfs:subClassOf j.1:_birnlex_retired_class ;
+           
+           j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_4"^^xsd:string ;
+           
+           obo_annot:createdDate "2006-09-07"^^xsd:string ;
+           
+           obo_annot:curator "Bill Bug"^^xsd:string ;
+           
+           obo_annot:hasExternalSource "http://ccdb.ucsd.edu/NIF/OBO_annotation_properties.owl#FMA"^^xsd:string ;
+           
+           obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+           
+           obo_annot:tempDefinition "Anatomical structure, which consists of the maximal set of organ parts so connected to one another that together they constitute a unit of macroscopic anatomy, structurally distinct from other such units."^^xsd:string ;
+           
+           rdfs:label "Organ"^^xsd:string ;
+           
+           owl:deprecated "true"^^xsd:boolean ;
+           
+           core:example "Manduca sexta prothoracic gland"^^xsd:string ,
+                        "bicep skeletal muscle"^^xsd:string ,
+                        "coral snake venom sac"^^xsd:string ,
+                        "heart"^^xsd:string ,
+                        "liver"^^xsd:string ,
+                        "ovary"^^xsd:string ,
+                        "skin"^^xsd:string ,
+                        "tracheobronchial tree"^^xsd:string ,
+                        "vertebrate femur"^^xsd:string ;
+           
+           core:prefLabel "Organ"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_5
+
+:birnlex_5 rdf:type owl:Class ;
+           
+           rdfs:subClassOf j.1:_birnlex_retired_class ;
+           
+           obo_annot:createdDate "2006-09-07"^^xsd:string ;
+           
+           obo_annot:curator "Bill Bug"^^xsd:string ;
+           
+           obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+           
+           obo_annot:tempDefinition "An object constituting a biological organism either in whole or in part, or one derived from a biological organism."^^xsd:string ;
+           
+           rdfs:label "Biomaterial object"^^xsd:string ;
+           
+           owl:deprecated "true"^^xsd:boolean ;
+           
+           core:example "erythrocyte"^^xsd:string ,
+                        "head"^^xsd:string ,
+                        "heart"^^xsd:string ,
+                        "hemoglobin molecule"^^xsd:string ,
+                        "mitochondrion"^^xsd:string ,
+                        "mouse"^^xsd:string ;
+           
+           core:historyNote "The entity descriptions in this branch of the ontology are informed by previous efforts in biomedical ontology development, particularly the Foundational Model of Anatomy, Biodynamic ontology, and the Ontology of Biomedical Reality, though they do not necessary recapitulate the principles defined there verbatim."^^xsd:string ;
+           
+           core:prefLabel "Biomaterial object"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_6
+
+:birnlex_6 rdf:type owl:Class ;
+           
+           rdfs:subClassOf j.1:_birnlex_retired_class ;
+           
+           j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_6"^^xsd:string ;
+           
+           obo_annot:createdDate "2006-09-07"^^xsd:string ;
+           
+           obo_annot:curator "Bill Bug"^^xsd:string ;
+           
+           obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+           
+           obo_annot:nifID "_5.2"^^xsd:string ;
+           
+           obo_annot:synonym "anatomical_object"^^xsd:string ;
+           
+           obo_annot:tempDefinition "A biomaterial object constituting a part of a complete organismal object."^^xsd:string ,
+                                    "Biomaterial object constituting the structural organization of a biological organism or an attribute of that organization."^^xsd:string ;
+           
+           rdfs:comment "This class has been retired"^^xsd:string ;
+           
+           rdfs:label "Constitutional part of organismal object"^^xsd:string ;
+           
+           owl:deprecated "true"^^xsd:boolean ;
+           
+           core:example "cell"^^xsd:string ,
+                        "glucose-6-phosphate"^^xsd:string ,
+                        "head"^^xsd:string ,
+                        "heart"^^xsd:string ,
+                        "voltage-dependent ion-channel"^^xsd:string ;
+           
+           core:prefLabel "Constitutional part of organismal object"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_7
+
+:birnlex_7 rdf:type owl:Class ;
+           
+           rdfs:subClassOf j.1:_birnlex_retired_class ;
+           
+           j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_7"^^xsd:string ;
+           
+           obo_annot:createdDate "2006-09-07"^^xsd:string ;
+           
+           obo_annot:curator "Bill Bug"^^xsd:string ;
+           
+           obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+           
+           rdfs:label "Regional part of body"^^xsd:string ;
+           
+           owl:deprecated "true"^^xsd:boolean ;
+           
+           core:example "antenna"^^xsd:string ,
+                        "head"^^xsd:string ,
+                        "leg"^^xsd:string ;
+           
+           core:prefLabel "Regional part of body"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_8
+
+:birnlex_8 rdf:type owl:Class ;
+           
+           rdfs:subClassOf j.1:_birnlex_retired_class ;
+           
+           j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#sao2254405550"^^xsd:string ;
+           
+           obo_annot:createdDate "2006-09-07"^^xsd:string ;
+           
+           obo_annot:curator "Bill Bug"^^xsd:string ;
+           
+           obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+           
+           obo_annot:tempDefinition "A collection of independent organismal entities engaged in some form of spatio-temporal interaction or aggregate behavior"^^xsd:string ;
+           
+           rdfs:comment "This class has been retired."^^xsd:string ;
+           
+           rdfs:label "Population"^^xsd:string ;
+           
+           owl:deprecated "true"^^xsd:boolean ;
+           
+           core:prefLabel "Population"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_9
+
+:birnlex_9 rdf:type owl:Class ;
+           
+           rdfs:subClassOf j.1:_birnlex_retired_class ;
+           
+           j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_9"^^xsd:string ;
+           
+           obo_annot:createdDate "2006-09-07"^^xsd:string ;
+           
+           obo_annot:curator "Bill Bug"^^xsd:string ;
+           
+           obo_annot:modifiedDate "2006-10-09"^^xsd:string ;
+           
+           obo_annot:tempDefinition "Physical entity of biological origin which is a three-dimensional space, surface, line or point associated with a biomaterial object."^^xsd:string ;
+           
+           rdfs:label "Bio physical immaterial entity"^^xsd:string ;
+           
+           owl:deprecated "true"^^xsd:boolean ;
+           
+           core:example "anterior compartment of right arm"^^xsd:string ,
+                        "apex of right lung"^^xsd:string ,
+                        "body space"^^xsd:string ,
+                        "sulcal invaginations of the mammalian brain."^^xsd:string ,
+                        "surface of heart"^^xsd:string ,
+                        "third ventricle of the mammalian brain."^^xsd:string ;
+           
+           core:prefLabel "Bio physical immaterial entity"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090201
+
+:nlx_ubo_20090201 rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf j.1:_birnlex_retired_class ;
+                  
+                  j.1:hasFormerParentClass "http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_5"^^xsd:string ;
+                  
+                  j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090201"^^xsd:string ;
+                  
+                  obo_annot:createdDate "February 24, 2009"^^xsd:string ;
+                  
+                  rdfs:comment "Not sure this is the correct designation; FMA has \"membranous organ\" but that doesn't seem quite right either."^^xsd:string ;
+                  
+                  rdfs:label "Body membrane"^^xsd:string ;
+                  
+                  owl:deprecated "true"^^xsd:boolean ;
+                  
+                  core:definition "Part of body that takes the form of a thin sheet of cells or fibrous material, e.g., the meningeal coverings of the brain."^^xsd:string ;
+                  
+                  core:prefLabel "Body membrane"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090202
+
+:nlx_ubo_20090202 rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf j.1:_birnlex_retired_class ;
+                  
+                  j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090202"^^xsd:string ;
+                  
+                  obo_annot:createdDate "February 24, 2009"^^xsd:string ;
+                  
+                  obo_annot:definingCitation "Nolte, J., The Human Brain 3rd edition"^^xsd:string ;
+                  
+                  rdfs:label "Endoneurium"^^xsd:string ;
+                  
+                  owl:deprecated "true"^^xsd:boolean ;
+                  
+                  core:definition "The loose connective tissue within the perineurium that continues into nerve fascicles and surrounds individual fibers. (Nolte, J. The Human Brain 3rd edition)"^^xsd:string ;
+                  
+                  core:prefLabel "Endoneurium"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090203
+
+:nlx_ubo_20090203 rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf j.1:_birnlex_retired_class ;
+                  
+                  j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090203"^^xsd:string ;
+                  
+                  obo_annot:createdDate "February 24, 2009"^^xsd:string ;
+                  
+                  obo_annot:definingCitation "Nolte, J., The Human Brain 3rd edition"^^xsd:string ;
+                  
+                  rdfs:label "Epineurium"^^xsd:string ;
+                  
+                  owl:deprecated "true"^^xsd:boolean ;
+                  
+                  core:definition "A loose connective tissue sheath surrounding each peripheral nerve. Composed mainly of colagen and fibroblasts, it forms a substantial covering over nerve trunks, then thins to an incomplete layer around smaller branches near their terminations. The epineurium is continuous centrally with the dura. Peripherally, it usually ends near the termination of a nerve fiber, but it may continue as the capsule of Meissner corpuscles and a few other encapsulated endings. Nolte, J. The Human Brain 3rd edition"^^xsd:string ,
+                                  "Epineurium"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090204
+
+:nlx_ubo_20090204 rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf j.1:_birnlex_retired_class ;
+                  
+                  j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090204"^^xsd:string ;
+                  
+                  obo_annot:createdDate "February 24, 2009"^^xsd:string ;
+                  
+                  obo_annot:synonym "Meninges"^^xsd:string ;
+                  
+                  rdfs:comment "Meninges is not technally a synonym but the plural form; however, it is more commonly used than \"meninx\""^^xsd:string ;
+                  
+                  rdfs:label "Meninx"^^xsd:string ;
+                  
+                  owl:deprecated "true"^^xsd:boolean ;
+                  
+                  core:definition "Meninx"^^xsd:string ,
+                                  "One of three membranous coverings that surrounds the brain and spinal cord"^^xsd:string ;
+                  
+                  core:note "FMAID: 9589"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090205
+
+:nlx_ubo_20090205 rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf j.1:_birnlex_retired_class ;
+                  
+                  j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090205"^^xsd:string ;
+                  
+                  obo_annot:createdDate "February 24, 2009"^^xsd:string ;
+                  
+                  obo_annot:definingCitation "Nolte, J., The Human Brain 3rd edition"^^xsd:string ;
+                  
+                  rdfs:label "Perineurium"^^xsd:string ;
+                  
+                  owl:deprecated "true"^^xsd:boolean ;
+                  
+                  core:definition "A layer of thin, concentrically arranged cells with interspersed collagen that lies within the epineurium. (Nolte, J., The Human Brain 3rd edition)"^^xsd:string ,
+                                  "Perineurium"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090206
+
+:nlx_ubo_20090206 rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf j.1:_birnlex_retired_class ;
+                  
+                  j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090206"^^xsd:string ;
+                  
+                  obo_annot:createdDate "February 24, 2009"^^xsd:string ;
+                  
+                  obo_annot:synonym "Dura"^^xsd:string ,
+                                    "Pachymeninges"^^xsd:string ;
+                  
+                  rdfs:label "Dura Mater"^^xsd:string ;
+                  
+                  owl:deprecated "true"^^xsd:boolean ;
+                  
+                  core:definition "Thick, fibrous meningeal covering surrounding the brain and spinal cord. It is the outermost of the three meningeal coverings. It consists of two layers: the periosteal dura linking the inner surface of the skull and the meningeal dura that lies above the arachnoid dural membrane. The meningeal layer draws away from the periosteal layer and certain locations to form the dural reflections."^^xsd:string ;
+                  
+                  core:prefLabel "Dura Mater"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090207
+
+:nlx_ubo_20090207 rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf j.1:_birnlex_retired_class ;
+                  
+                  j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090207"^^xsd:string ;
+                  
+                  obo_annot:createdDate "February 24, 2009"^^xsd:string ;
+                  
+                  obo_annot:synonym "Leptomeninges"^^xsd:string ;
+                  
+                  rdfs:comment "Leptomeninges is technically not a synonym but a plural form. However, it is more commonly used that the singular form."^^xsd:string ;
+                  
+                  rdfs:label "Leptomeninx"^^xsd:string ;
+                  
+                  owl:deprecated "true"^^xsd:boolean ;
+                  
+                  core:definition "Delicate meningeal covering of the brain and spinal cord, consisting of an outer arachnoid membrane that sits beneath the dura and an inner pial membrane that lies on the surface of the brain and spinal cord."^^xsd:string ;
+                  
+                  core:note "FMAID: 231515"^^xsd:string ;
+                  
+                  core:prefLabel "Leptomeninx"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090208
+
+:nlx_ubo_20090208 rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf j.1:_birnlex_retired_class ;
+                  
+                  j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090208"^^xsd:string ;
+                  
+                  obo_annot:createdDate "February 24, 2009"^^xsd:string ;
+                  
+                  obo_annot:synonym "Arachnoid"^^xsd:string ,
+                                    "Arachnoid mater"^^xsd:string ;
+                  
+                  rdfs:label "Arachnoid membrane"^^xsd:string ;
+                  
+                  owl:deprecated "true"^^xsd:boolean ;
+                  
+                  core:definition "One of two leptomeningeal membranes covering the brain and spinal cord. The arachnoid membrane lies under the dura mater and above the pial membrane. It closely hugs the outside surface of the brain in many places, but does not extend into sulci in gyrencephalic species."^^xsd:string ;
+                  
+                  core:note "FMAID: 9591"^^xsd:string ;
+                  
+                  core:prefLabel "Arachnoid membrane"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#nlx_ubo_20090209
+
+:nlx_ubo_20090209 rdf:type owl:Class ;
+                  
+                  rdfs:subClassOf j.1:_birnlex_retired_class ;
+                  
+                  j.1:isReplacedByClass "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#nlx_anat_090209"^^xsd:string ;
+                  
+                  obo_annot:createdDate "February 24, 2009"^^xsd:string ;
+                  
+                  obo_annot:synonym "Pia"^^xsd:string ,
+                                    "Pia mater"^^xsd:string ;
+                  
+                  rdfs:label "Pial membrane"^^xsd:string ;
+                  
+                  owl:deprecated "true"^^xsd:boolean ;
+                  
+                  core:definition "The innermost layer of the leptomeninges, consisting of a delicate membrane closely covering the surface of the brain and spinal cord,and lying under the arachnoid membrane. The pia, unlike the arachnoid, extends into the sulci in gyrencephalic animals."^^xsd:string ;
+                  
+                  core:prefLabel "Pial membrane"^^xsd:string .
+
+
+
+###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#_birnlex_retired_class
+
+j.1:_birnlex_retired_class rdf:type owl:Class .
+
+
+
+
+###  Generated by the OWL API (version 4.1.4) https://github.com/owlcs/owlapi
+
