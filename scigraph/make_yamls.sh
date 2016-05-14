@@ -108,8 +108,13 @@ echo 'graphConfiguration:
       - abbreviation
 
 ontologies:
-  - url: http://ontology.neuinfo.org/NIF/ttl/nif.ttl
   - url: http://ontology.neuinfo.org/NIF/scicrunch-registry.ttl
+  - url: http://ontology.neuinfo.org/NIF/ttl/nif.ttl
+    reasonerConfiguration:
+      factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
+      addDirectInferredEdges: true
+      removeUnsatisfiableClasses: true
+
 
 categories:
     http://purl.obolibrary.org/obo/OBI_0100026 : organism
