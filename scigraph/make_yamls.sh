@@ -108,8 +108,7 @@ echo 'graphConfiguration:
       - abbreviation
 
 ontologies:
-  - url: http://ontology.neuinfo.org/NIF/scicrunch-registry.ttl
-  - url: http://ontology.neuinfo.org/NIF/ttl/nif.ttl
+  - url: http://ontology.neuinfo.org/NIF/nif.owl
     reasonerConfiguration:
       factory: org.semanticweb.elk.owlapi.ElkReasonerFactory
       addDirectInferredEdges: true
