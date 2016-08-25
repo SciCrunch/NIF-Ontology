@@ -26,21 +26,19 @@
 @prefix BIRNLex-OBO-UBO: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#> .
 @prefix NIF-GrossAnatomy: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#> .
 @prefix BIRNLex-OBI-proxy: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#> .
-@prefix NEMO_annotation_properties: <http://purl.bioontology.org/NEMO/ontology/NEMO_annotation_properties.owl#> .
 @base <http://ontology.neuinfo.org/NIF/ttl/NIF-Investigation.ttl> .
 
 <http://ontology.neuinfo.org/NIF/ttl/NIF-Investigation.ttl> rdf:type owl:Ontology ;
-                                                                        
-                                                                        owl:imports <http://ontology.neuinfo.org/NIF/DigitalEntities/NEMO_vv2.98.owl> ,
-                                                                                    <http://ontology.neuinfo.org/NIF/ttl/NIF-Scientific-Discipline.ttl> ,
-                                                                                    <http://ontology.neuinfo.org/NIF/ttl/NIF-Resource.ttl> ,
-                                                                                    <http://ontology.neuinfo.org/NIF/ttl/external/CogPO.owl> ,
-                                                                                    <http://ontology.neuinfo.org/NIF/ttl/NIF-Government-Granting-Agency.ttl> ,
-                                                                                    <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> ,
-                                                                                    <http://ontology.neuinfo.org/NIF/ttl/BIRNLex-OBI-proxy.ttl> ,
-                                                                                    <http://ontology.neuinfo.org/NIF/DigitalEntities/cogat_v0.3.owl> ;
-                                                                        
-                                                                        core:changeNote """v.1.2 (July, 2009) - New classes have been added from NeuroLex wiki since 
+                                                            
+                                                            owl:imports <http://ontology.neuinfo.org/NIF/ttl/NIF-Scientific-Discipline.ttl> ,
+                                                                        <http://ontology.neuinfo.org/NIF/ttl/external/CogPO.owl> ,
+                                                                        <http://ontology.neuinfo.org/NIF/ttl/external/cogat_v0.3.owl> ,
+                                                                        <http://ontology.neuinfo.org/NIF/ttl/NIF-Government-Granting-Agency.ttl> ,
+                                                                        <http://ontology.neuinfo.org/NIF/ttl/NIF-Resource.ttl> ,
+                                                                        <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> ,
+                                                                        <http://ontology.neuinfo.org/NIF/ttl/BIRNLex-OBI-proxy.ttl> ;
+                                                            
+                                                            core:changeNote """v.1.2 (July, 2009) - New classes have been added from NeuroLex wiki since 
     the February release (Class ID: nlx_inv_20090401 to 20090610).
 v 2.0 (August, 2011) - NIF-Investigation now imports NIF-Resource.owl, NIF-Government-Granting-Agency.owl, and NIF-Scientific-discipline.owl as part of its direct imports. Imports Cognitive paradigm ontology (CogPO).
 v 2.1 (April, 2012) - Modified the hierarchy of 'Data set'. all the subclasses of 'Data set' are kept as 'Information content entity'. The reason for this chage was to provide a cleaner hierarchy for NIF Resource descriptor.
@@ -48,10 +46,10 @@ v2.2 (October, 2012) - New classes added under Electron microscopic imaging assa
 v2.3 (December, 2012) - Addition of NEMO (v.2.98) as an imported module.
 Addition of Cognitive Atlas Ontology (CogAt v.0.3) as an import. Note that we have only imported the 'concepts' and excluded the 'task' classes for now.
 Newly defined classes: Neuroimaging and Immunolabeling."""^^xsd:string ;
-                                                                        
-                                                                        owl:versionInfo "2.3; December 1, 2012"^^xsd:string ;
-                                                                        
-                                                                        dc:title "NIF-Investigation"^^xsd:string .
+                                                            
+                                                            owl:versionInfo "2.3; December 1, 2012"^^xsd:string ;
+                                                            
+                                                            dc:title "NIF-Investigation"^^xsd:string .
 
 
 #################################################################
@@ -269,6 +267,12 @@ core:symbol rdf:type owl:AnnotationProperty .
 ###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_17
 
 BIRNLex-OBO-UBO:birnlex_17 rdf:type owl:ObjectProperty .
+
+
+
+###  http://purl.obolibrary.org/obo/OBI_0000316
+
+PATO:OBI_0000316 rdf:type owl:ObjectProperty .
 
 
 
@@ -6265,7 +6269,6 @@ p17:birnlex_2235 rdf:type owl:Class ;
 p17:birnlex_2236 rdf:type owl:Class ;
                  
                  rdfs:subClassOf p17:birnlex_2485 ,
-                                 p17:nlx_151314 ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty PATO:OBI_0000316 ;
                                    owl:someValuesFrom p17:nlx_inv_122010
@@ -15038,18 +15041,6 @@ p17:nlx_inv_20090610 rdf:type owl:Class ;
 NIF-Resource:nlx_res_20090101 rdfs:subClassOf snap:GenericallyDependentContinuant ;
                               
                               oboInOwl:hasDefinition "Any class that describes a resource." .
-
-
-
-###  http://purl.bioontology.org/NEMO/ontology/NEMO_annotation_properties.owl#_annotation
-
-NEMO_annotation_properties:_annotation rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> .
-
-
-
-###  http://purl.bioontology.org/NEMO/ontology/NEMO_annotation_properties.owl#_limbo
-
-NEMO_annotation_properties:_limbo rdfs:subClassOf birn_annot:_birnlex_limbo_class .
 
 
 
