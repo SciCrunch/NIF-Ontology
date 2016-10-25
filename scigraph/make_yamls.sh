@@ -123,7 +123,8 @@ categories:
     http://purl.obolibrary.org/obo/CHEBI_23367 : molecular entity
     http://purl.obolibrary.org/obo/chebi.owl#CHEBI_23367 : molecular entity
     http://purl.obolibrary.org/obo/ERO_0000007 : technique
-    http://purl.obolibrary.org/obo/GO_0005623 : cell
+    #http://purl.obolibrary.org/obo/GO_0005623 : cell
+    http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#sao1813327414 : cell
     http://purl.obolibrary.org/obo/GO_0008150 : biological process
     http://purl.obolibrary.org/obo/GO_0005575 : subcellular entity
     http://purl.obolibrary.org/obo/PATO_0000001 : quality
