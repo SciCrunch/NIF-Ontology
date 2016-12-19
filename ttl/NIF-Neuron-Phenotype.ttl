@@ -1,1338 +1,399 @@
-@prefix : <http://FIXME.org/> .
-@prefix PR: <http://purl.obolibrary.org/obo/PR_> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix ILX: <http://uri.interlex.org/base/ilx_> .
 @prefix ilx: <http://uri.interlex.org/base/> .
+@prefix ILX: <http://uri.interlex.org/base/ilx_> .
+@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@prefix NIFCELL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#> .
+@prefix NIFMOL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
+@prefix NIFQUAL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Quality.owl#> .
 @prefix nsu: <http://www.FIXME.org/nsupper#> .
+@prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix PR: <http://purl.obolibrary.org/obo/PR_> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix NIFMOL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
-@prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
-@prefix OBOOWL: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
-@prefix NIFCELL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#> .
-@prefix NIFQUAL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Quality.owl#> .
-@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
-@base <http://ontology.neuinfo.org/NIF/ttl/NIF-Neuron-phenotypes.ttl> .
-
-<http://ontology.neuinfo.org/NIF/ttl/NIF-Neuron-phenotypes.ttl> rdf:type owl:Ontology ;
-                                                                
-                                                                rdfs:label "NIF Neuron phenotypes" ;
-                                                                
-                                                                rdfs:comment "The NIF Neuron phenotype ontology holds neuron phenotypes." .
-
-
-#################################################################
-#
-#    Annotation properties
-#
-#################################################################
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#synonym
-
-OBOANN:synonym rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.w3.org/2004/02/skos/core#definition
-
-skos:definition rdf:type owl:AnnotationProperty .
-
-
-
-
-
-#################################################################
-#
-#    Object Properties
-#
-#################################################################
-
-
-###  http://uri.interlex.org/base/hasAxonLocatedIn
-
-ilx:hasAxonLocatedIn rdf:type owl:ObjectProperty ;
-                     
-                     rdfs:subPropertyOf ilx:hasLocationPhenotype ;
-                     
-                     rdf:type owl:AsymmetricProperty ,
-                              owl:IrreflexiveProperty .
-
-
-
-###  http://uri.interlex.org/base/hasDendriteLocatedIn
-
-ilx:hasDendriteLocatedIn rdf:type owl:ObjectProperty ;
-                         
-                         rdfs:subPropertyOf ilx:hasLocationPhenotype ;
-                         
-                         rdf:type owl:AsymmetricProperty ,
-                                  owl:IrreflexiveProperty .
-
-
-
-###  http://uri.interlex.org/base/hasDevelopmentalOrigin
-
-ilx:hasDevelopmentalOrigin rdf:type owl:ObjectProperty ;
-                           
-                           skos:definition "Expresses a relationship between a neuron type and a developmental cell population. This should be used when a neuron develops from an identified developmental cell population." .
-
-
-
-###  http://uri.interlex.org/base/hasElectrophysiologicalPhenotype
-
-ilx:hasElectrophysiologicalPhenotype rdf:type owl:ObjectProperty ;
-                                     
-                                     rdfs:subPropertyOf ilx:hasIntrinsicPhenotype ;
-                                     
-                                     rdf:type owl:AsymmetricProperty ,
-                                              owl:IrreflexiveProperty ;
-                                     
-                                     skos:definition "Expresses a relationship between a neuron type and an electrophysiological phenotype concept. This should be used when a neuron type is described using a high level electrophysiological concept class." .
-
-
-
-###  http://uri.interlex.org/base/hasExpressionPhenotype
-
-ilx:hasExpressionPhenotype rdf:type owl:ObjectProperty ;
-                           
-                           rdfs:subPropertyOf ilx:hasIntrinsicPhenotype ;
-                           
-                           rdf:type owl:AsymmetricProperty ,
-                                    owl:IrreflexiveProperty ;
-                           
-                           skos:definition "Expresses a relationship between a neuron type and a gene type. This should be used for detection of RNAs that code for proteins which may or may not have been detected directly." .
-
-
-
-###  http://uri.interlex.org/base/hasExtrinsicPhenotype
-
-ilx:hasExtrinsicPhenotype rdf:type owl:ObjectProperty ;
-                          
-                          rdfs:subPropertyOf ilx:hasPhenotype .
-
-
-
-###  http://uri.interlex.org/base/hasInstanceInSpecies
-
-ilx:hasInstanceInSpecies rdf:type owl:ObjectProperty ;
-                         
-                         rdfs:subPropertyOf ilx:hasExtrinsicPhenotype ;
-                         
-                         rdf:type owl:AsymmetricProperty ,
-                                  owl:IrreflexiveProperty ;
-                         
-                         skos:definition "Expresses a relationship between a neuron type and a species. This should be used when a neuron type has been observed in a specific species." .
-
-
-
-###  http://uri.interlex.org/base/hasIntrinsicPhenotype
-
-ilx:hasIntrinsicPhenotype rdf:type owl:ObjectProperty ;
-                          
-                          rdfs:subPropertyOf ilx:hasPhenotype ;
-                          
-                          rdf:type owl:AsymmetricProperty ,
-                                   owl:IrreflexiveProperty .
-
-
-
-###  http://uri.interlex.org/base/hasLayerLocationPhenotype
-
-ilx:hasLayerLocationPhenotype rdf:type owl:ObjectProperty ;
-                              
-                              rdfs:subPropertyOf ilx:hasLocationPhenotype ;
-                              
-                              rdf:type owl:AsymmetricProperty ,
-                                       owl:IrreflexiveProperty ;
-                              
-                              skos:definition "Expresses a relationship between a neuron type and a laminer brain region." .
-
-
-
-###  http://uri.interlex.org/base/hasLocationPhenotype
-
-ilx:hasLocationPhenotype rdf:type owl:ObjectProperty ;
-                         
-                         rdfs:subPropertyOf ilx:hasExtrinsicPhenotype ;
-                         
-                         rdf:type owl:AsymmetricProperty ,
-                                  owl:IrreflexiveProperty ;
-                         
-                         skos:definition "Expresses a relationship between a neuron type and a brain region. This is a superProperty and should not be used directly." .
-
-
-
-###  http://uri.interlex.org/base/hasMolecularPhenotype
-
-ilx:hasMolecularPhenotype rdf:type owl:ObjectProperty ;
-                          
-                          rdfs:subPropertyOf ilx:hasExpressionPhenotype ;
-                          
-                          rdf:type owl:AsymmetricProperty ,
-                                   owl:IrreflexiveProperty ;
-                          
-                          skos:definition "Expresses a relationship between a neuron type and a molecule type. This should be used for direct detection of the molecule, whether it is a small molecule or a peptide." .
-
-
-
-###  http://uri.interlex.org/base/hasMorphologicalPhenotype
-
-ilx:hasMorphologicalPhenotype rdf:type owl:ObjectProperty ;
-                              
-                              rdfs:subPropertyOf ilx:hasIntrinsicPhenotype ;
-                              
-                              rdf:type owl:AsymmetricProperty ,
-                                       owl:IrreflexiveProperty ;
-                              
-                              skos:definition "Expresses a relationship between a neuron type and a morphological phenotype concept. This should be used when a neuron type is described using a high level morphological concept class." .
-
-
-
-###  http://uri.interlex.org/base/hasNeurotransmitterPhenotype
-
-ilx:hasNeurotransmitterPhenotype rdf:type owl:ObjectProperty ;
-                                 
-                                 rdfs:subPropertyOf ilx:hasExpressionPhenotype ;
-                                 
-                                 rdf:type owl:AsymmetricProperty ,
-                                          owl:IrreflexiveProperty .
-
-
-
-###  http://uri.interlex.org/base/hasPhenotype
-
-ilx:hasPhenotype rdf:type owl:ObjectProperty ;
-                 
-                 owl:inverseOf ilx:phenotypeOf ;
-                 
-                 rdf:type owl:AsymmetricProperty ,
-                          owl:IrreflexiveProperty .
-
-
-
-###  http://uri.interlex.org/base/hasPresynapticTerminalsIn
-
-ilx:hasPresynapticTerminalsIn rdf:type owl:ObjectProperty ,
-                                       owl:AsymmetricProperty ,
-                                       owl:IrreflexiveProperty .
-
-
-
-###  http://uri.interlex.org/base/hasProjectionPhenotype
-
-ilx:hasProjectionPhenotype rdf:type owl:ObjectProperty .
-
-
-
-###  http://uri.interlex.org/base/hasSomaLocatedIn
-
-ilx:hasSomaLocatedIn rdf:type owl:ObjectProperty ;
-                     
-                     rdfs:subPropertyOf ilx:hasLocationPhenotype ;
-                     
-                     rdf:type owl:AsymmetricProperty ,
-                              owl:IrreflexiveProperty .
-
-
-
-###  http://uri.interlex.org/base/hasSpikingPhenotype
-
-ilx:hasSpikingPhenotype rdf:type owl:ObjectProperty ;
-                        
-                        rdfs:subPropertyOf ilx:hasElectrophysiologicalPhenotype ;
-                        
-                        rdf:type owl:AsymmetricProperty ,
-                                 owl:IrreflexiveProperty .
-
-
-
-###  http://uri.interlex.org/base/hasTaxonRank
-
-ilx:hasTaxonRank rdf:type owl:ObjectProperty ;
-                 
-                 rdfs:subPropertyOf ilx:hasExtrinsicPhenotype ;
-                 
-                 rdf:type owl:AsymmetricProperty ,
-                          owl:IrreflexiveProperty ;
-                 
-                 skos:definition "Expresses a relationship between a neuron type and a taxon. This should be used when a neuron type is thought to have been present in the last common ancestor of the taxon." .
-
-
-
-###  http://uri.interlex.org/base/phenotypeCooccuresWith
-
-ilx:phenotypeCooccuresWith rdf:type owl:ObjectProperty ;
-                           
-                           skos:definition "Expresses a relationship between a phenotype and a phenotype. This should be used when two phenotypes commonly cooccure." .
-
-
-
-###  http://uri.interlex.org/base/phenotypeObservedInBrainRegion
-
-ilx:phenotypeObservedInBrainRegion rdf:type owl:ObjectProperty ;
-                                   
-                                   skos:definition "Expresses a relationship between a phenotype and a brain region. This should be used when a neuron phenotype is observed in specific brain regions." .
-
-
-
-###  http://uri.interlex.org/base/phenotypeOf
-
-ilx:phenotypeOf rdf:type owl:ObjectProperty ,
-                         owl:AsymmetricProperty ,
-                         owl:IrreflexiveProperty .
-
-
-
-
-
-#################################################################
-#
-#    Classes
-#
-#################################################################
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#sao1417703748
-
-NIFCELL:sao1417703748 rdf:type owl:Class .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#nifext_6
-
-NIFMOL:nifext_6 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/PR_000004967
-
-PR:000004967 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/PR_000004968
-
-PR:000004968 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/PR_000011387
-
-PR:000011387 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/PR_000015665
-
-PR:000015665 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/PR_000017299
-
-PR:000017299 rdf:type owl:Class .
-
-
-
-###  http://uri.interlex.org/base/AccomodatingSpikingPhenotype
-
-ilx:AccomodatingSpikingPhenotype rdf:type owl:Class ;
-                                 
-                                 rdfs:subClassOf ilx:SpikingPhenotype ;
-                                 
-                                 owl:disjointWith ilx:NonAccomodatingSpikingPhenotype ;
-                                 
-                                 rdfs:label "Accomodating Spiking Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/AxonMorphologicalPhenotype
-
-ilx:AxonMorphologicalPhenotype rdf:type owl:Class ;
-                               
-                               rdfs:subClassOf ilx:AxonPhenotype ;
-                               
-                               rdfs:label "Axon Morphological Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/AxonPhenotype
-
-ilx:AxonPhenotype rdf:type owl:Class ;
-                  
-                  rdfs:label "Axon Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/BasketPhenotype
-
-ilx:BasketPhenotype rdf:type owl:Class ;
-                    
-                    rdfs:subClassOf ilx:MorphologicalPhenotype ;
-                    
-                    owl:disjointWith ilx:BipolarPhenotype ,
-                                     ilx:BituftedPhenotype ,
-                                     ilx:ChandelierPhenotype ,
-                                     ilx:DoubleBouquetPhenotype ,
-                                     ilx:MartinottiPhenotype ,
-                                     ilx:NeurogliaformPhenotype ,
-                                     ilx:PyramidalPhenotype ;
-                    
-                    rdfs:label "Basket Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/BipolarPhenotype
-
-ilx:BipolarPhenotype rdf:type owl:Class ;
-                     
-                     rdfs:subClassOf ilx:MorphologicalPhenotype ;
-                     
-                     owl:disjointWith ilx:BituftedPhenotype ,
-                                      ilx:ChandelierPhenotype ,
-                                      ilx:DoubleBouquetPhenotype ,
-                                      ilx:MartinottiPhenotype ,
-                                      ilx:NeurogliaformPhenotype ,
-                                      ilx:PyramidalPhenotype ;
-                     
-                     rdfs:label "Bipolar Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/BituftedPhenotype
-
-ilx:BituftedPhenotype rdf:type owl:Class ;
-                      
-                      rdfs:subClassOf ilx:MorphologicalPhenotype ;
-                      
-                      owl:disjointWith ilx:ChandelierPhenotype ,
-                                       ilx:DoubleBouquetPhenotype ,
-                                       ilx:MartinottiPhenotype ,
-                                       ilx:NeurogliaformPhenotype ,
-                                       ilx:PyramidalPhenotype ;
-                      
-                      rdfs:label "Bitufted Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/CellPhenotype
-
-ilx:CellPhenotype rdf:type owl:Class ;
-                  
-                  rdfs:label "Cell Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/ChandelierPhenotype
-
-ilx:ChandelierPhenotype rdf:type owl:Class ;
-                        
-                        rdfs:subClassOf ilx:MorphologicalPhenotype ;
-                        
-                        owl:disjointWith ilx:DoubleBouquetPhenotype ,
-                                         ilx:MartinottiPhenotype ,
-                                         ilx:NeurogliaformPhenotype ,
-                                         ilx:PyramidalPhenotype ;
-                        
-                        rdfs:label "Chandelier Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/DendriteMorphologicalPhenotype
-
-ilx:DendriteMorphologicalPhenotype rdf:type owl:Class ;
-                                   
-                                   rdfs:subClassOf ilx:DendritePhenotype ;
-                                   
-                                   rdfs:label "Dendrite Morphological Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/DendritePhenotype
-
-ilx:DendritePhenotype rdf:type owl:Class ;
-                      
-                      rdfs:label "Dendrite Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/DoubleBouquetPhenotype
-
-ilx:DoubleBouquetPhenotype rdf:type owl:Class ;
-                           
-                           rdfs:subClassOf ilx:MorphologicalPhenotype ;
-                           
-                           owl:disjointWith ilx:MartinottiPhenotype ,
-                                            ilx:NeurogliaformPhenotype ,
-                                            ilx:PyramidalPhenotype ;
-                           
-                           rdfs:label "Double Bouquet Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/ElectrophysiologicalPhenotype
-
-ilx:ElectrophysiologicalPhenotype rdf:type owl:Class ;
-                                  
-                                  rdfs:subClassOf ilx:NeuronPhenotype ;
-                                  
-                                  rdfs:label "Electrophysiological Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/ExpressionClassifiedNeuron
-
-ilx:ExpressionClassifiedNeuron rdf:type owl:Class .
-
-
-
-###  http://uri.interlex.org/base/FastSpikingPhenotype
-
-ilx:FastSpikingPhenotype rdf:type owl:Class ;
-                         
-                         rdfs:subClassOf ilx:SpikingPhenotype ;
-                         
-                         owl:disjointWith ilx:RegularSpikingNonPyramidalPhenotype ;
-                         
-                         rdfs:label "Fast Spiking Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/LargeBasketPhenotype
-
-ilx:LargeBasketPhenotype rdf:type owl:Class ;
-                         
-                         rdfs:subClassOf ilx:BasketPhenotype ;
-                         
-                         owl:disjointWith ilx:NestBasketPhenotype ,
-                                          ilx:SmallBasketPhenotype ;
-                         
-                         rdfs:label "Large Basket Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/MartinottiPhenotype
-
-ilx:MartinottiPhenotype rdf:type owl:Class ;
-                        
-                        rdfs:subClassOf ilx:MorphologicalPhenotype ;
-                        
-                        owl:disjointWith ilx:NeurogliaformPhenotype ,
-                                         ilx:PyramidalPhenotype ;
-                        
-                        rdfs:label "Martinotti Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/MorphologicalPhenotype
-
-ilx:MorphologicalPhenotype rdf:type owl:Class ;
-                           
-                           rdfs:subClassOf ilx:NeuronPhenotype ;
-                           
-                           rdfs:label "Morphological Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/NestBasketPhenotype
-
-ilx:NestBasketPhenotype rdf:type owl:Class ;
-                        
-                        rdfs:subClassOf ilx:BasketPhenotype ;
-                        
-                        owl:disjointWith ilx:SmallBasketPhenotype ;
-                        
-                        rdfs:label "Nest Basket Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/NeurogliaformPhenotype
-
-ilx:NeurogliaformPhenotype rdf:type owl:Class ;
-                           
-                           rdfs:subClassOf ilx:MorphologicalPhenotype ;
-                           
-                           owl:disjointWith ilx:PyramidalPhenotype ;
-                           
-                           rdfs:label "Neurogliaform Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/NeuronPhenotype
-
-ilx:NeuronPhenotype rdf:type owl:Class ;
-                    
-                    rdfs:subClassOf ilx:CellPhenotype ;
-                    
-                    rdfs:label "Neuron Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/NonAccomodatingSpikingPhenotype
-
-ilx:NonAccomodatingSpikingPhenotype rdf:type owl:Class ;
-                                    
-                                    rdfs:subClassOf ilx:SpikingPhenotype ;
-                                    
-                                    rdfs:label "Non Accomodating Spiking Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/PetillaInitialBurstSpikingPhenotype
-
-ilx:PetillaInitialBurstSpikingPhenotype rdf:type owl:Class ;
-                                        
-                                        rdfs:subClassOf ilx:PetillaInitialSpikingPhenotype ;
-                                        
-                                        owl:disjointWith ilx:PetillaInitialClassicalSpikingPhenotype ,
-                                                         ilx:PetillaInitialDelayedSpikingPhenotype ;
-                                        
-                                        OBOANN:synonym "petilla b" ;
-                                        
-                                        rdfs:label "Petilla Initial Burst Spiking Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/PetillaInitialClassicalSpikingPhenotype
-
-ilx:PetillaInitialClassicalSpikingPhenotype rdf:type owl:Class ;
-                                            
-                                            rdfs:subClassOf ilx:PetillaInitialSpikingPhenotype ;
-                                            
-                                            owl:disjointWith ilx:PetillaInitialDelayedSpikingPhenotype ;
-                                            
-                                            OBOANN:synonym "petilla c" ;
-                                            
-                                            rdfs:label "Petilla Initial Classical Spiking Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/PetillaInitialDelayedSpikingPhenotype
-
-ilx:PetillaInitialDelayedSpikingPhenotype rdf:type owl:Class ;
-                                          
-                                          rdfs:subClassOf ilx:PetillaInitialSpikingPhenotype ;
-                                          
-                                          OBOANN:synonym "petilla d" ;
-                                          
-                                          rdfs:label "Petilla Initial Delayed Spiking Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/PetillaInitialSpikingPhenotype
-
-ilx:PetillaInitialSpikingPhenotype rdf:type owl:Class ;
-                                   
-                                   rdfs:subClassOf ilx:SpikingPhenotype ;
-                                   
-                                   rdfs:label "Petilla Initial Spiking Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/PetillaSustainedAccomodatingPhenotype
-
-ilx:PetillaSustainedAccomodatingPhenotype rdf:type owl:Class ;
-                                          
-                                          rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
-                                          
-                                          owl:disjointWith ilx:PetillaSustainedIrregularPhenotype ,
-                                                           ilx:PetillaSustainedNonAccomodatingPhenotype ,
-                                                           ilx:PetillaSustainedStutteringPhenotype ;
-                                          
-                                          OBOANN:synonym "petilla ac" ;
-                                          
-                                          rdfs:label "Petilla Sustained Accomodating Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/PetillaSustainedIrregularPhenotype
-
-ilx:PetillaSustainedIrregularPhenotype rdf:type owl:Class ;
-                                       
-                                       rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
-                                       
-                                       owl:disjointWith ilx:PetillaSustainedNonAccomodatingPhenotype ,
-                                                        ilx:PetillaSustainedStutteringPhenotype ;
-                                       
-                                       OBOANN:synonym "petilla ir" ;
-                                       
-                                       rdfs:label "Petilla Sustained Irregular Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/PetillaSustainedNonAccomodatingPhenotype
-
-ilx:PetillaSustainedNonAccomodatingPhenotype rdf:type owl:Class ;
-                                             
-                                             rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
-                                             
-                                             owl:disjointWith ilx:PetillaSustainedStutteringPhenotype ;
-                                             
-                                             OBOANN:synonym "petilla nac" ;
-                                             
-                                             rdfs:label "Petilla Sustained Non Accomodating Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/PetillaSustainedSpikingPhenotype
-
-ilx:PetillaSustainedSpikingPhenotype rdf:type owl:Class ;
-                                     
-                                     rdfs:subClassOf ilx:SpikingPhenotype ;
-                                     
-                                     rdfs:label "Petilla Sustained Spiking Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/PetillaSustainedStutteringPhenotype
-
-ilx:PetillaSustainedStutteringPhenotype rdf:type owl:Class ;
-                                        
-                                        rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
-                                        
-                                        OBOANN:synonym "petilla stut" ;
-                                        
-                                        rdfs:label "Petilla Sustained Stuttering Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/PyramidalPhenotype
-
-ilx:PyramidalPhenotype rdf:type owl:Class ;
-                       
-                       rdfs:subClassOf ilx:MorphologicalPhenotype ;
-                       
-                       rdfs:label "Pyramidal Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/RegularSpikingNonPyramidalPhenotype
-
-ilx:RegularSpikingNonPyramidalPhenotype rdf:type owl:Class ;
-                                        
-                                        rdfs:subClassOf ilx:SpikingPhenotype ;
-                                        
-                                        rdfs:label "Regular Spiking Non Pyramidal Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/SmallBasketPhenotype
-
-ilx:SmallBasketPhenotype rdf:type owl:Class ;
-                         
-                         rdfs:subClassOf ilx:BasketPhenotype ;
-                         
-                         rdfs:label "Small Basket Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/SomaMorphologicalPhenotype
-
-ilx:SomaMorphologicalPhenotype rdf:type owl:Class ;
-                               
-                               rdfs:subClassOf ilx:SomaPhenotype ;
-                               
-                               rdfs:label "Soma Morphological Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/SomaPhenotype
-
-ilx:SomaPhenotype rdf:type owl:Class ;
-                  
-                  rdfs:label "Soma Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/SpikingPhenotype
-
-ilx:SpikingPhenotype rdf:type owl:Class ;
-                     
-                     rdfs:subClassOf ilx:ElectrophysiologicalPhenotype ;
-                     
-                     rdfs:label "Spiking Phenotype" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050115
-
-ilx:ilx_0050115 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:MorphologicalPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Morphological neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050116
-
-ilx:ilx_0050116 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:BasketPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Basket neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050117
-
-ilx:ilx_0050117 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:LargeBasketPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Large Basket neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050118
-
-ilx:ilx_0050118 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:NestBasketPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Nest Basket neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050119
-
-ilx:ilx_0050119 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:SmallBasketPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Small Basket neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050120
-
-ilx:ilx_0050120 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:BituftedPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Bitufted neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050121
-
-ilx:ilx_0050121 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:BipolarPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Bipolar neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050122
-
-ilx:ilx_0050122 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:ChandelierPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Chandelier neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050123
-
-ilx:ilx_0050123 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:DoubleBouquetPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Double Bouquet neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050124
-
-ilx:ilx_0050124 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:MartinottiPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Martinotti neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050125
-
-ilx:ilx_0050125 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:NeurogliaformPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Neurogliaform neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050126
-
-ilx:ilx_0050126 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:PyramidalPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Pyramidal neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050127
-
-ilx:ilx_0050127 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:ElectrophysiologicalPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Electrophysiological neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050128
-
-ilx:ilx_0050128 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:SpikingPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Spiking neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050129
-
-ilx:ilx_0050129 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:PetillaInitialSpikingPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Petilla Initial Spiking neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050130
-
-ilx:ilx_0050130 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:PetillaInitialBurstSpikingPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Petilla Initial Burst Spiking neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050131
-
-ilx:ilx_0050131 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:PetillaInitialClassicalSpikingPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Petilla Initial Classical Spiking neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050132
-
-ilx:ilx_0050132 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:PetillaInitialDelayedSpikingPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Petilla Initial Delayed Spiking neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050133
-
-ilx:ilx_0050133 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:PetillaSustainedSpikingPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Petilla Sustained Spiking neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050134
-
-ilx:ilx_0050134 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:PetillaSustainedAccomodatingPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Petilla Sustained Accomodating neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050135
-
-ilx:ilx_0050135 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:PetillaSustainedNonAccomodatingPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Petilla Sustained Non Accomodating neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050136
-
-ilx:ilx_0050136 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:PetillaSustainedStutteringPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Petilla Sustained Stuttering neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050137
-
-ilx:ilx_0050137 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:PetillaSustainedIrregularPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Petilla Sustained Irregular neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050138
-
-ilx:ilx_0050138 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:FastSpikingPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Fast Spiking neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050139
-
-ilx:ilx_0050139 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:RegularSpikingNonPyramidalPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Regular Spiking Non Pyramidal neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050140
-
-ilx:ilx_0050140 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:AccomodatingSpikingPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Accomodating Spiking neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050141
-
-ilx:ilx_0050141 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasPhenotype ;
-                                                             owl:someValuesFrom ilx:NonAccomodatingSpikingPhenotype
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:label "Non Accomodating Spiking neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050142
-
-ilx:ilx_0050142 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasExpressionPhenotype ;
-                                                             owl:someValuesFrom PR:000017299
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:subClassOf ilx:ExpressionClassifiedNeuron ;
-                
-                rdfs:label "VIP peptides neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050143
-
-ilx:ilx_0050143 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasExpressionPhenotype ;
-                                                             owl:someValuesFrom PR:000004967
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:subClassOf ilx:ExpressionClassifiedNeuron ;
-                
-                rdfs:label "calbindin neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050144
-
-ilx:ilx_0050144 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasExpressionPhenotype ;
-                                                             owl:someValuesFrom NIFMOL:nifext_6
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:subClassOf ilx:ExpressionClassifiedNeuron ;
-                
-                rdfs:label "Parvalbumin neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050145
-
-ilx:ilx_0050145 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasExpressionPhenotype ;
-                                                             owl:someValuesFrom PR:000004968
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:subClassOf ilx:ExpressionClassifiedNeuron ;
-                
-                rdfs:label "calretinin neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050146
-
-ilx:ilx_0050146 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasExpressionPhenotype ;
-                                                             owl:someValuesFrom PR:000015665
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:subClassOf ilx:ExpressionClassifiedNeuron ;
-                
-                rdfs:label "somatostatin neuron" .
-
-
-
-###  http://uri.interlex.org/base/ilx_0050147
-
-ilx:ilx_0050147 rdf:type owl:Class ;
-                
-                owl:equivalentClass [ owl:intersectionOf ( NIFCELL:sao1417703748
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty ilx:hasExpressionPhenotype ;
-                                                             owl:someValuesFrom PR:000011387
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                
-                rdfs:subClassOf ilx:ExpressionClassifiedNeuron ;
-                
-                rdfs:label "neuropeptide Y neuron" .
-
-
-
-
-###  Generated by the OWL API (version 4.1.4) https://github.com/owlcs/owlapi
-
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://ontology.neuinfo.org/NIF/ttl/NIF-Neuron-Phenotype.ttl> a owl:Ontology ;
+    rdfs:label "NIF Neuron phenotypes" ;
+    rdfs:comment "The NIF Neuron phenotype ontology holds neuron phenotypes." .
+
+### Object Properties
+
+ilx:hasAxonLocatedIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasAxonLocatedIn" ;
+    rdfs:subPropertyOf ilx:hasLocationPhenotype .
+
+ilx:hasDendriteLocatedIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasDendriteLocatedIn" ;
+    rdfs:subPropertyOf ilx:hasLocationPhenotype .
+
+ilx:hasDevelopmentalOrigin a owl:ObjectProperty ;
+    rdfs:label "hasDevelopmentalOrigin" ;
+    skos:definition "Expresses a relationship between a neuron type and a developmental cell population. This should be used when a neuron develops from an identified developmental cell population." .
+
+ilx:hasElectrophysiologicalPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasElectrophysiologicalPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and an electrophysiological phenotype concept. This should be used when a neuron type is described using a high level electrophysiological concept class." ;
+    rdfs:subPropertyOf ilx:hasIntrinsicPhenotype .
+
+ilx:hasExpressionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasExpressionPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a gene type. This should be used for detection of RNAs that code for proteins which may or may not have been detected directly." ;
+    rdfs:subPropertyOf ilx:hasIntrinsicPhenotype .
+
+ilx:hasExtrinsicPhenotype a owl:ObjectProperty ;
+    rdfs:label "hasExtrinsicPhenotype" ;
+    rdfs:subPropertyOf ilx:hasPhenotype .
+
+ilx:hasInstanceInSpecies a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasInstanceInSpecies" ;
+    skos:definition "Expresses a relationship between a neuron type and a species. This should be used when a neuron type has been observed in a specific species." ;
+    rdfs:subPropertyOf ilx:hasExtrinsicPhenotype .
+
+ilx:hasIntrinsicPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasIntrinsicPhenotype" ;
+    rdfs:subPropertyOf ilx:hasPhenotype .
+
+ilx:hasLayerLocationPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasLayerLocationPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a laminer brain region." ;
+    rdfs:subPropertyOf ilx:hasLocationPhenotype .
+
+ilx:hasLocationPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasLocationPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a brain region. This is a superProperty and should not be used directly." ;
+    rdfs:subPropertyOf ilx:hasExtrinsicPhenotype .
+
+ilx:hasMolecularPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasMolecularPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a molecule type. This should be used for direct detection of the molecule, whether it is a small molecule or a peptide." ;
+    rdfs:subPropertyOf ilx:hasExpressionPhenotype .
+
+ilx:hasMorphologicalPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasMorphologicalPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a morphological phenotype concept. This should be used when a neuron type is described using a high level morphological concept class." ;
+    rdfs:subPropertyOf ilx:hasIntrinsicPhenotype .
+
+ilx:hasNeurotransmitterPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasNeurotransmitterPhenotype" ;
+    rdfs:subPropertyOf ilx:hasExpressionPhenotype .
+
+ilx:hasPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasPhenotype" ;
+    owl:inverseOf ilx:phenotypeOf .
+
+ilx:hasPresynapticTerminalsIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasPresynapticTerminalsIn" .
+
+ilx:hasProjectionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasProjectionPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a brain region that said neuron type sends axons to." ;
+    rdfs:subPropertyOf ilx:hasPhenotype .
+
+ilx:hasSomaLocatedIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasSomaLocatedIn" ;
+    rdfs:subPropertyOf ilx:hasLocationPhenotype .
+
+ilx:hasSpikingPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasSpikingPhenotype" ;
+    rdfs:subPropertyOf ilx:hasElectrophysiologicalPhenotype .
+
+ilx:hasTaxonRank a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasTaxonRank" ;
+    skos:definition "Expresses a relationship between a neuron type and a taxon. This should be used when a neuron type is thought to have been present in the last common ancestor of the taxon." ;
+    rdfs:subPropertyOf ilx:hasExtrinsicPhenotype .
+
+ilx:phenotypeCooccuresWith a owl:ObjectProperty ;
+    rdfs:label "phenotypeCooccuresWith" ;
+    skos:definition "Expresses a relationship between a phenotype and a phenotype. This should be used when two phenotypes commonly cooccure." .
+
+ilx:phenotypeObservedInBrainRegion a owl:ObjectProperty ;
+    rdfs:label "phenotypeObservedInBrainRegion" ;
+    skos:definition "Expresses a relationship between a phenotype and a brain region. This should be used when a neuron phenotype is observed in specific brain regions." .
+
+ilx:phenotypeOf a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "phenotypeOf" .
+
+### Classes
+
+ilx:AccomodatingSpikingPhenotype a owl:Class ;
+    rdfs:label "Accomodating Spiking Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    owl:disjointWith ilx:NonAccomodatingSpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Accomodating Spiking" .
+
+ilx:AxonMorphologicalPhenotype a owl:Class ;
+    rdfs:label "Axon Morphological Phenotype" ;
+    rdfs:subClassOf ilx:AxonPhenotype .
+
+ilx:AxonPhenotype a owl:Class ;
+    rdfs:label "Axon Phenotype" .
+
+ilx:BasketPhenotype a owl:Class ;
+    rdfs:label "Basket Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BipolarPhenotype,
+        ilx:BituftedPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Basket" .
+
+ilx:BipolarPhenotype a owl:Class ;
+    rdfs:label "Bipolar Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Bipolar" .
+
+ilx:BituftedPhenotype a owl:Class ;
+    rdfs:label "Bitufted Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BipolarPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Bitufted" .
+
+ilx:CellPhenotype a owl:Class ;
+    rdfs:label "Cell Phenotype" .
+
+ilx:ChandelierPhenotype a owl:Class ;
+    rdfs:label "Chandelier Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BipolarPhenotype,
+        ilx:NeurogliaformPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Chandelier" .
+
+ilx:DendriteMorphologicalPhenotype a owl:Class ;
+    rdfs:label "Dendrite Morphological Phenotype" ;
+    rdfs:subClassOf ilx:DendritePhenotype .
+
+ilx:DendritePhenotype a owl:Class ;
+    rdfs:label "Dendrite Phenotype" .
+
+ilx:DoubleBouquetPhenotype a owl:Class ;
+    rdfs:label "Double Bouquet Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BipolarPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Double Bouquet" .
+
+ilx:ElectrophysiologicalPhenotype a owl:Class ;
+    rdfs:label "Electrophysiological Phenotype" ;
+    rdfs:subClassOf ilx:NeuronPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Electrophysiological" .
+
+ilx:FastSpikingPhenotype a owl:Class ;
+    rdfs:label "Fast Spiking Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    owl:disjointWith ilx:RegularSpikingNonPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Fast Spiking" .
+
+ilx:LargeBasketPhenotype a owl:Class ;
+    rdfs:label "Large Basket Phenotype" ;
+    rdfs:subClassOf ilx:BasketPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Large Basket" .
+
+ilx:MartinottiPhenotype a owl:Class ;
+    rdfs:label "Martinotti Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BasketPhenotype,
+        ilx:BipolarPhenotype,
+        ilx:BituftedPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Martinotti" .
+
+ilx:MorphologicalPhenotype a owl:Class ;
+    rdfs:label "Morphological Phenotype" ;
+    rdfs:subClassOf ilx:NeuronPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Morphological" .
+
+ilx:NestBasketPhenotype a owl:Class ;
+    rdfs:label "Nest Basket Phenotype" ;
+    rdfs:subClassOf ilx:BasketPhenotype ;
+    owl:disjointWith ilx:LargeBasketPhenotype,
+        ilx:SmallBasketPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Nest Basket" .
+
+ilx:NeurogliaformPhenotype a owl:Class ;
+    rdfs:label "Neurogliaform Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BipolarPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Neurogliaform" .
+
+ilx:NeuronPhenotype a owl:Class ;
+    rdfs:label "Neuron Phenotype" ;
+    rdfs:subClassOf ilx:CellPhenotype ;
+    ilx:useObjectProperty ilx:hasPhenotype .
+
+ilx:NonAccomodatingSpikingPhenotype a owl:Class ;
+    rdfs:label "Non Accomodating Spiking Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Non Accomodating Spiking" .
+
+ilx:PetillaInitialBurstSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Burst Spiking Phenotype" ;
+    OBOANN:synonym "petilla b" ;
+    rdfs:subClassOf ilx:PetillaInitialSpikingPhenotype ;
+    owl:disjointWith ilx:PetillaInitialClassicalSpikingPhenotype,
+        ilx:PetillaInitialDelayedSpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Burst Spiking" .
+
+ilx:PetillaInitialClassicalSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Classical Spiking Phenotype" ;
+    OBOANN:synonym "petilla c" ;
+    rdfs:subClassOf ilx:PetillaInitialSpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Classical Spiking" .
+
+ilx:PetillaInitialDelayedSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Delayed Spiking Phenotype" ;
+    OBOANN:synonym "petilla d" ;
+    rdfs:subClassOf ilx:PetillaInitialSpikingPhenotype ;
+    owl:disjointWith ilx:PetillaInitialClassicalSpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Delayed Spiking" .
+
+ilx:PetillaInitialSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Spiking Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Spiking" .
+
+ilx:PetillaSustainedAccomodatingPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Accomodating Phenotype" ;
+    OBOANN:synonym "petilla ac" ;
+    rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Accomodating" .
+
+ilx:PetillaSustainedIrregularPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Irregular Phenotype" ;
+    OBOANN:synonym "petilla ir" ;
+    rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
+    owl:disjointWith ilx:PetillaSustainedAccomodatingPhenotype,
+        ilx:PetillaSustainedNonAccomodatingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Irregular" .
+
+ilx:PetillaSustainedNonAccomodatingPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Non Accomodating Phenotype" ;
+    OBOANN:synonym "petilla nac" ;
+    rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
+    owl:disjointWith ilx:PetillaSustainedAccomodatingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Non Accomodating" .
+
+ilx:PetillaSustainedSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Spiking Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Spiking" .
+
+ilx:PetillaSustainedStutteringPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Stuttering Phenotype" ;
+    OBOANN:synonym "petilla stut" ;
+    rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
+    owl:disjointWith ilx:PetillaSustainedAccomodatingPhenotype,
+        ilx:PetillaSustainedIrregularPhenotype,
+        ilx:PetillaSustainedNonAccomodatingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Stuttering" .
+
+ilx:PyramidalPhenotype a owl:Class ;
+    rdfs:label "Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BipolarPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:NeurogliaformPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Pyramidal" .
+
+ilx:RegularSpikingNonPyramidalPhenotype a owl:Class ;
+    rdfs:label "Regular Spiking Non Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Regular Spiking Non Pyramidal" .
+
+ilx:SmallBasketPhenotype a owl:Class ;
+    rdfs:label "Small Basket Phenotype" ;
+    rdfs:subClassOf ilx:BasketPhenotype ;
+    owl:disjointWith ilx:LargeBasketPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Small Basket" .
+
+ilx:SomaMorphologicalPhenotype a owl:Class ;
+    rdfs:label "Soma Morphological Phenotype" ;
+    rdfs:subClassOf ilx:SomaPhenotype .
+
+ilx:SomaPhenotype a owl:Class ;
+    rdfs:label "Soma Phenotype" .
+
+ilx:SpikingPhenotype a owl:Class ;
+    rdfs:label "Spiking Phenotype" ;
+    rdfs:subClassOf ilx:ElectrophysiologicalPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Spiking" .
+
+### Serialized using the nifstd custom serializer v1.0.1
