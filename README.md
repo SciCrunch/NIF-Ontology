@@ -1,14 +1,25 @@
 # NIF-Ontology
-Repository for the development NIF Standard (NIFSTD) Ontologies.
+Repository for the development of NIF Standard (NIFSTD) Ontologies.
 
-This repository is currently a work in progress and will be undergoing
-significant changes as we transition NIFSTD to git.
+# Notice
+NIFSTD is undergoing significant changes. Please see the
+[issue tracker](https://github.com/SciCrunch/NIF-Ontology/issues)
+for upcoming changes. For a full record of changes please see
+the [log](https://github.com/SciCrunch/NIF-Ontology/commits/master) or
+run `git log` for a quick overview.
 
-If you need a stable version see http://ontology.neuinfo.org/NIF/.
+There is older xml version of the ontology in the
+[xml-final branch](https://github.com/SciCrunch/NIF-Ontology/tree/xml-final)
+but it is no longer being updated or maintained.
 
-# NOTICE
-All ontology files outside the [ttl](ttl) folder will no longer be updated.
-A final release of the old owl form of the ontology will be created in the near future.
-If you want to make modifications please edit files in [ttl](ttl).
-In the future the file hierarchy seen in the `ttl` folder will have its root in the repository root.
+# Documentation
+Please see the [GitHub wiki](https://github.com/SciCrunch/NIF-Ontology/wiki)
+for documentation about the structure of the ontology and how to load and edit it.
 
+# Contributing
+Please [fork](https://github.com/SciCrunch/NIF-Ontology/commits/master#fork-destination-box)
+and submit [pull requests](https://github.com/SciCrunch/NIF-Ontology/pull/new/master) on GitHub.
+See the [wiki](https://github.com/SciCrunch/NIF-Ontology/wiki) for full documentation.
+In short, load [ttl/nif.ttl](ttl/nif.ttl) in your favourite ontology editor,
+and before commit run [ttlfmt](https://github.com/tgbugs/pyontutils/blob/ttlfmt.py) on any files
+that you have modified.
