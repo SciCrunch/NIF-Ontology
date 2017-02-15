@@ -21,5 +21,5 @@ Please [fork](https://github.com/SciCrunch/NIF-Ontology/commits/master#fork-dest
 and submit [pull requests](https://github.com/SciCrunch/NIF-Ontology/pull/new/master) on GitHub.
 See the [wiki](https://github.com/SciCrunch/NIF-Ontology/wiki) for full documentation.
 In short, load [ttl/nif.ttl](ttl/nif.ttl) in your favourite ontology editor,
-and before commit run [ttlfmt](https://github.com/tgbugs/pyontutils/blob/ttlfmt.py) on any files
-that you have modified.
+and before commit run [ttlfmt](https://github.com/tgbugs/pyontutils/blob/master/ttlfmt.py)
+on any files that you have modified.
