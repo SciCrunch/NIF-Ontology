@@ -1,320 +1,121 @@
 @prefix : <http://ontology.neuinfo.org/NIF/Backend/quality_bfo_bridge.owl#> .
 @prefix bfo: <http://www.ifomis.org/bfo/1.1#> .
 @prefix obo: <http://purl.org/obo/owl/obo#> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix PATO: <http://purl.obolibrary.org/obo/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix snap: <http://www.ifomis.org/bfo/1.1/snap#> .
 @prefix span: <http://www.ifomis.org/bfo/1.1/span#> .
-@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
-@base <http://ontology.neuinfo.org/NIF/ttl/quality_bfo_bridge.ttl> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://ontology.neuinfo.org/NIF/ttl/quality_bfo_bridge.ttl> rdf:type owl:Ontology .
+<http://ontology.neuinfo.org/NIF/ttl/quality_bfo_bridge.ttl> a owl:Ontology .
 
+### Object Properties
 
-#################################################################
-#
-#    Annotation properties
-#
-#################################################################
+obo:inheres_in a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "inheres_in"@en ;
+    rdfs:comment "Examples: the redness inhering in an eye of a wild-type fruitfly"^^xsd:string ;
+    oboInOwl:hasOBONamespace "quality" .
 
+obo:towards a owl:ObjectProperty ;
+    rdfs:label "towards"@en ;
+    rdfs:comment "Examples: sensitivity towards chlorine."^^xsd:string ;
+    oboInOwl:hasOBONamespace "quality" .
 
-###  http://www.geneontology.org/formats/oboInOwl#consider
+oboInOwl:ObsoleteProperty a owl:ObjectProperty .
 
-oboInOwl:consider rdf:type owl:AnnotationProperty .
+### Annotation Properties
 
+oboInOwl:consider a owl:AnnotationProperty .
 
+oboInOwl:expandAssertionTo a owl:AnnotationProperty .
 
-###  http://www.geneontology.org/formats/oboInOwl#expandAssertionTo
+oboInOwl:expandExpressionTo a owl:AnnotationProperty .
 
-oboInOwl:expandAssertionTo rdf:type owl:AnnotationProperty .
+oboInOwl:hasAlternativeId a owl:AnnotationProperty .
 
+oboInOwl:hasBroadSynonym a owl:AnnotationProperty .
 
+oboInOwl:hasDate a owl:AnnotationProperty .
 
-###  http://www.geneontology.org/formats/oboInOwl#expandExpressionTo
+oboInOwl:hasDbXref a owl:AnnotationProperty .
 
-oboInOwl:expandExpressionTo rdf:type owl:AnnotationProperty .
+oboInOwl:hasDefaultNamespace a owl:AnnotationProperty .
 
+oboInOwl:hasDefinition a owl:AnnotationProperty .
 
+oboInOwl:hasExactSynonym a owl:AnnotationProperty .
 
-###  http://www.geneontology.org/formats/oboInOwl#hasAlternativeId
+oboInOwl:hasNarrowSynonym a owl:AnnotationProperty .
 
-oboInOwl:hasAlternativeId rdf:type owl:AnnotationProperty .
+oboInOwl:hasOBONamespace a owl:AnnotationProperty .
 
+oboInOwl:hasRelatedSynonym a owl:AnnotationProperty .
 
+oboInOwl:hasSubset a owl:AnnotationProperty .
 
-###  http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym
+oboInOwl:hasSynonym a owl:AnnotationProperty .
 
-oboInOwl:hasBroadSynonym rdf:type owl:AnnotationProperty .
+oboInOwl:hasSynonymType a owl:AnnotationProperty .
 
+oboInOwl:hasURI a owl:AnnotationProperty .
 
+oboInOwl:hasVersion a owl:AnnotationProperty .
 
-###  http://www.geneontology.org/formats/oboInOwl#hasDate
+oboInOwl:inSubset a owl:AnnotationProperty .
 
-oboInOwl:hasDate rdf:type owl:AnnotationProperty .
+oboInOwl:isCyclic a owl:AnnotationProperty .
 
+oboInOwl:replacedBy a owl:AnnotationProperty .
 
+oboInOwl:savedBy a owl:AnnotationProperty .
 
-###  http://www.geneontology.org/formats/oboInOwl#hasDbXref
+### Classes
 
-oboInOwl:hasDbXref rdf:type owl:AnnotationProperty .
+bfo:Entity a owl:Class .
 
+oboInOwl:DbXref a owl:Class .
 
+oboInOwl:Definition a owl:Class .
 
-###  http://www.geneontology.org/formats/oboInOwl#hasDefaultNamespace
+oboInOwl:ObsoleteClass a owl:Class .
 
-oboInOwl:hasDefaultNamespace rdf:type owl:AnnotationProperty .
+oboInOwl:Subset a owl:Class .
 
+oboInOwl:Synonym a owl:Class .
 
+oboInOwl:SynonymType a owl:Class .
 
-###  http://www.geneontology.org/formats/oboInOwl#hasDefinition
+PATO:PATO_0000001 a owl:Class ;
+    rdfs:subClassOf snap:Quality ;
+    oboInOwl:hasOBONamespace "quality" .
 
-oboInOwl:hasDefinition rdf:type owl:AnnotationProperty .
+PATO:PATO_0001236 a owl:Class ;
+    oboInOwl:hasOBONamespace "quality" .
 
+PATO:PATO_0001238 a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty obo:towards ;
+            owl:someValuesFrom bfo:Entity ] ;
+    oboInOwl:hasOBONamespace "quality" .
 
+PATO:PATO_0001240 a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty obo:towards ;
+            owl:someValuesFrom bfo:Entity ] ;
+    oboInOwl:hasOBONamespace "quality" .
 
-###  http://www.geneontology.org/formats/oboInOwl#hasExactSynonym
+PATO:PATO_0001241 a owl:Class ;
+    oboInOwl:hasOBONamespace "quality" .
 
-oboInOwl:hasExactSynonym rdf:type owl:AnnotationProperty .
+snap:Continuant a owl:Class .
 
+snap:Quality a owl:Class .
 
+span:Occurrent a owl:Class .
 
-###  http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym
-
-oboInOwl:hasNarrowSynonym rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#hasOBONamespace
-
-oboInOwl:hasOBONamespace rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym
-
-oboInOwl:hasRelatedSynonym rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#hasSubset
-
-oboInOwl:hasSubset rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#hasSynonym
-
-oboInOwl:hasSynonym rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#hasSynonymType
-
-oboInOwl:hasSynonymType rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#hasURI
-
-oboInOwl:hasURI rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#hasVersion
-
-oboInOwl:hasVersion rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#inSubset
-
-oboInOwl:inSubset rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#isCyclic
-
-oboInOwl:isCyclic rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#replacedBy
-
-oboInOwl:replacedBy rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#savedBy
-
-oboInOwl:savedBy rdf:type owl:AnnotationProperty .
-
-
-
-
-
-#################################################################
-#
-#    Object Properties
-#
-#################################################################
-
-
-###  http://purl.org/obo/owl/obo#inheres_in
-
-obo:inheres_in rdf:type owl:ObjectProperty ,
-                        owl:FunctionalProperty ;
-               
-               oboInOwl:hasOBONamespace "quality" ;
-               
-               rdfs:comment "Examples: the redness inhering in an eye of a wild-type fruitfly"^^xsd:string ;
-               
-               rdfs:label "inheres_in"@en .
-
-
-
-###  http://purl.org/obo/owl/obo#towards
-
-obo:towards rdf:type owl:ObjectProperty ;
-            
-            oboInOwl:hasOBONamespace "quality" ;
-            
-            rdfs:comment "Examples: sensitivity towards chlorine."^^xsd:string ;
-            
-            rdfs:label "towards"@en .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#ObsoleteProperty
-
-oboInOwl:ObsoleteProperty rdf:type owl:ObjectProperty .
-
-
-
-
-
-#################################################################
-#
-#    Classes
-#
-#################################################################
-
-
-###  http://purl.obolibrary.org/obo/PATO_0000001
-
-PATO:PATO_0000001 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf snap:Quality ;
-                  
-                  oboInOwl:hasOBONamespace "quality" .
-
-
-
-###  http://purl.obolibrary.org/obo/PATO_0001236
-
-PATO:PATO_0001236 rdf:type owl:Class ;
-                  
-                  oboInOwl:hasOBONamespace "quality" .
-
-
-
-###  http://purl.obolibrary.org/obo/PATO_0001238
-
-PATO:PATO_0001238 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                    owl:onProperty obo:towards ;
-                                    owl:someValuesFrom bfo:Entity
-                                  ] ;
-                  
-                  oboInOwl:hasOBONamespace "quality" .
-
-
-
-###  http://purl.obolibrary.org/obo/PATO_0001240
-
-PATO:PATO_0001240 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                    owl:onProperty obo:towards ;
-                                    owl:someValuesFrom bfo:Entity
-                                  ] ;
-                  
-                  oboInOwl:hasOBONamespace "quality" .
-
-
-
-###  http://purl.obolibrary.org/obo/PATO_0001241
-
-PATO:PATO_0001241 rdf:type owl:Class ;
-                  
-                  oboInOwl:hasOBONamespace "quality" .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#DbXref
-
-oboInOwl:DbXref rdf:type owl:Class .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#Definition
-
-oboInOwl:Definition rdf:type owl:Class .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#ObsoleteClass
-
-oboInOwl:ObsoleteClass rdf:type owl:Class .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#Subset
-
-oboInOwl:Subset rdf:type owl:Class .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#Synonym
-
-oboInOwl:Synonym rdf:type owl:Class .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#SynonymType
-
-oboInOwl:SynonymType rdf:type owl:Class .
-
-
-
-###  http://www.ifomis.org/bfo/1.1#Entity
-
-bfo:Entity rdf:type owl:Class .
-
-
-
-###  http://www.ifomis.org/bfo/1.1/snap#Continuant
-
-snap:Continuant rdf:type owl:Class .
-
-
-
-###  http://www.ifomis.org/bfo/1.1/snap#Quality
-
-snap:Quality rdf:type owl:Class .
-
-
-
-###  http://www.ifomis.org/bfo/1.1/span#Occurrent
-
-span:Occurrent rdf:type owl:Class .
-
-
-
-
-###  Generated by the OWL API (version 4.1.4) https://github.com/owlcs/owlapi
-
+### Serialized using the nifstd custom serializer v1.0.5

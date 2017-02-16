@@ -1,735 +1,333 @@
 @prefix : <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#> .
 @prefix core: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix obo_annot: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix protege: <http://protege.stanford.edu/plugins/owl/protege#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix swrl: <http://www.w3.org/2003/11/swrl#> .
 @prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
-@prefix protege: <http://protege.stanford.edu/plugins/owl/protege#> .
-@prefix obo_annot: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
-@base <http://ontology.neuinfo.org/NIF/ttl/OBO_annotation_properties.ttl> .
-
-<http://ontology.neuinfo.org/NIF/ttl/OBO_annotation_properties.ttl> rdf:type owl:Ontology ;
-                                                                        
-                                                                        dc:date "2006-10-07 (createdDate)"^^xsd:string ;
-                                                                        
-                                                                        core:changeNote " (2008-03-13) - finally added annotation prop for GO ID."@en ,
-                                                                                        "Now using a specific set of AnnotationProperties that link to specific Enumeration classes to specify annotations from a fixed list of values - e.g., ExternalSource, DefinitionSource.  This is the second iteration of this mechanism (first was put in v1.2.2).  This second version follows a patter recommended by Alan Ruttenberg which avoids using ObjectProperties as the Manchester design pattern for Value Partitions recommends, and instead sticks to AnnotationProperties only.  Note this version of OBO_annotation_properties uses the same EnumerationClasses from v1.2.2, and still includes the related ObjectProperties, so as to be able to support XSLT-based translation of the BIRNLex files that used the v1.2.2 pattern.  The next version of this file will eliminate the ObjectProperties and will rename the equivalent AnnotationProperties to remove the trailing '2' put in there to provide a unique name."@en ,
-                                                                                        "Have 'cleansed' the file to be OWL-DL."@en ;
-                                                                        
-                                                                        dc:date "2008-03-13 (modifiedDate)"^^xsd:string ;
-                                                                        
-                                                                        dc:creator "The BIRN Ontology Task Force"^^xsd:string ;
-                                                                        
-                                                                        rdfs:comment "These are annotation properties the BIRN OTF expects will be shared by the community, not limited to the specific ontology development needs of BIRN.  This current ontology is a proposal to be reviewed by the OBO Foundry participants and developers of other OBO Foundry ontologies - e.g., OBI, PaTO, GO, etc.."@en ;
-                                                                        
-                                                                        owl:versionInfo "1.3.0"^^xsd:string ;
-                                                                        
-                                                                        core:changeNote "v1.3.0 (2007-08-03) - Changed many things, but primarily: (1) removed rdf:datatype xsd:string specs for all AnnotationProperties, since they are now all untyped and should assume STRING as a the default; (2) added the typing of AnnotationProperties using annotationType which should aid in algorithmically processing."@en ;
-                                                                        
-                                                                        dc:title "OBO Annotation Properties (BIRN derived)"@en ;
-                                                                        
-                                                                        core:changeNote "Explicitly removed ALL rdfs:type=DatatypeProperty declarations automatigically added to these AnnotationProperties by Protege-OWL v3.3beta"@en ,
-                                                                                        " (2008-01-28) - fixed and annotationType that was missing the namespace prefix obo_annot."@en .
-
-
-#################################################################
-#
-#    Annotation properties
-#
-#################################################################
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GOid
-
-obo_annot:GOid rdf:type owl:AnnotationProperty ;
-               
-               obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
-               
-               core:definition "This is the Gene Ontology ID for the concept associated with this class."@en ;
-               
-               core:editorialNote "Is a type of obo_annot:obo_external_source_ID."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UmlsCui
-
-obo_annot:UmlsCui rdf:type owl:AnnotationProperty ;
-                  
-                  obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
-                  
-                  core:definition "This is the UMLS CUI ID for the concept associated with this class."@en ;
-                  
-                  core:editorialNote "Is a type of obo_annot:obo_external_source_ID."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#abbrev
-
-obo_annot:abbrev rdf:type owl:AnnotationProperty ;
-                 
-                 obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string ;
-                 
-                 core:definition "A lexical variant carrying the same latent semantic value."@en ,
-                                 "A synonym that is a shortened version of either the preferred lexical label of one of its synonyms"@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#acronym
-
-obo_annot:acronym rdf:type owl:AnnotationProperty ;
-                  
-                  obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string ;
-                  
-                  core:definition "A synonym consisting of a sequence of letters typically taken from the beginning of words of which either the preferred label or another synonym are composed."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#annotationPropertyDomain
-
-obo_annot:annotationPropertyDomain rdf:type owl:AnnotationProperty .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#annotationPropertyRange
-
-obo_annot:annotationPropertyRange rdf:type owl:AnnotationProperty .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#annotationType
-
-obo_annot:annotationType rdf:type owl:AnnotationProperty ;
-                         
-                         obo_annot:usageNote "The legal cardinality range for annotationType applied to AnnotationProperties = 0...n - i.e., it is neither required, nor is it limited to a cardinality of 1, though it is recommend there be at least one annotationType for each AnnotationProperty, whenever there is an appropriate super-class available.."@en ;
-                         
-                         core:definition "A category designed to help data processing systems automatically determine how to process a given annotation."@en ;
-                         
-                         core:editorialNote "The current use of this meta-property is to identify types of definitions (core:definition) and types of external source ID (dc:identifier) (BB: 2007-08-03."@en ,
-                                            "This is required, since sub-classing AnnotationProperties is not allowed in OWL-DL.  Using this descriptive metadata AnnotationProperties, we can construct a chained code representation of a classification graph for AnnotationProperities very likely to be useful for information systems built to parse and process OWL content."@en ;
-                         
-                         core:scopeNote "The only valid values for this property are DC, SKOS, or BIRN AnnotationProperty URIs."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#antiquated
-
-obo_annot:antiquated rdf:type owl:AnnotationProperty ;
-                     
-                     obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string ;
-                     
-                     core:definition "A lexical variant carrying the same latent semantic value."@en ,
-                                     "A synonym no longer in common use."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#createdDate
-
-obo_annot:createdDate rdf:type owl:AnnotationProperty ;
-                      
-                      obo_annot:annotationType "http://purl.org/dc/elements/1.1/date"^^xsd:string ;
-                      
-                      core:definition "The date when a class was added to the file."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#curator
-
-obo_annot:curator rdf:type owl:AnnotationProperty ;
-                  
-                  obo_annot:annotationType "http://purl.org/dc/elements/1.1/contributor"^^xsd:string ;
-                  
-                  core:definition "contributed to the properties, assertions, and other content associated with this class."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#definingCitation
-
-obo_annot:definingCitation rdf:type owl:AnnotationProperty ;
-                           
-                           obo_annot:usageNote "This AnnotationProperty should only be used whether there is neither a publicly accessible URI nor a namespace-qualified ID which can be used to algorithmically construct a complete citation for use in a user interface or search system (e.g., the way one can use PMID and the NCBI PublMed webservices or HTTP services to automatically access citation information)."@en ;
-                           
-                           core:definition "A literature a citation providing information fundamental to the definition of an ontology class."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#definingCitationID
-
-obo_annot:definingCitationID rdf:type owl:AnnotationProperty ;
-                             
-                             obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
-                             
-                             core:definition "A namespace-specified ID for a record in a citation database providing information fundamental to the definition of an ontology class."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#definingCitationURI
-
-obo_annot:definingCitationURI rdf:type owl:AnnotationProperty ;
-                              
-                              obo_annot:annotationType "http://purl.org/dc/elements/1.1/relation"^^xsd:string ;
-                              
-                              core:definition "A publically accessible URI for a record in a citation database providing information fundamental to the definition of an ontology class."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId
-
-obo_annot:externalSourceId rdf:type owl:AnnotationProperty ;
-                           
-                           obo_annot:annotationType "http://purl.org/dc/elements/1.1/identifier"^^xsd:string ;
-                           
-                           core:definition "This field is to maintain the link back to an external source (see the externalSource property)."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceURI
-
-obo_annot:externalSourceURI rdf:type owl:AnnotationProperty ;
-                            
-                            obo_annot:annotationType "http://purl.org/dc/elements/1.1/relation"^^xsd:string ;
-                            
-                            core:definition "A publically accessible URI other than a standard bibliographic citation to the specific external source from which the content of an ontology Class was derived."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externallySourcedDefinition
-
-obo_annot:externallySourcedDefinition rdf:type owl:AnnotationProperty ;
-                                      
-                                      obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#definition"^^xsd:string ;
-                                      
-                                      core:definition "This is a class definition derived AS IS from an external, community knowledge resource."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#hasAbbrevSource
-
-obo_annot:hasAbbrevSource rdf:type owl:AnnotationProperty ;
-                          
-                          obo_annot:annotationPropertyDomain "owl:Class"^^xsd:string ;
-                          
-                          obo_annot:annotationPropertyRange "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"^^xsd:string ;
-                          
-                          obo_annot:annotationType "http://purl.org/dc/elements/1.1/relation"^^xsd:string ;
-                          
-                          obo_annot:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#hasDefinitionSource
-
-obo_annot:hasDefinitionSource rdf:type owl:AnnotationProperty ;
-                              
-                              obo_annot:annotationPropertyDomain "owl:Class"^^xsd:string ;
-                              
-                              obo_annot:annotationPropertyRange "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"^^xsd:string ;
-                              
-                              obo_annot:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#hasExternalSource
-
-obo_annot:hasExternalSource rdf:type owl:AnnotationProperty ;
-                            
-                            obo_annot:annotationPropertyDomain "owl:Class"^^xsd:string ;
-                            
-                            obo_annot:annotationPropertyRange "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"^^xsd:string ;
-                            
-                            obo_annot:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#hasValidationMethod
-
-obo_annot:hasValidationMethod rdf:type owl:AnnotationProperty .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#misnomer
-
-obo_annot:misnomer rdf:type owl:AnnotationProperty ;
-                   
-                   obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#hiddenLabel"^^xsd:string ;
-                   
-                   core:definition "incorrect term often found mistakenly used to refer to this class."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#misspelling
-
-obo_annot:misspelling rdf:type owl:AnnotationProperty ;
-                      
-                      obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#hiddenLabel"^^xsd:string ;
-                      
-                      core:definition "an incorrect spelling of either the preferred label or a synonym."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#modifiedDate
-
-obo_annot:modifiedDate rdf:type owl:AnnotationProperty ;
-                       
-                       obo_annot:annotationType "http://purl.org/dc/elements/1.1/date"^^xsd:string ;
-                       
-                       core:definition "the date when a class was last altered."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#nifID
-
-obo_annot:nifID rdf:type owl:AnnotationProperty ;
-                
-                obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
-                
-                core:definition "The ad-hoc ID created for entries in the Neuroscience Informatics Framework terminologies."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#oboDefinition
-
-obo_annot:oboDefinition rdf:type owl:AnnotationProperty ;
-                        
-                        obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#definition"^^xsd:string ;
-                        
-                        core:definition "This is a class definition meeting the non-circular and Aristotelean requirements given by the OBO Foundry principles."@en ;
-                        
-                        core:editorialNote "It also will likely include the related Aristotelean genus-differentia approach to applying this manner of definition construction as used now (as of 2006) in The Gene Ontology."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote
-
-obo_annot:pendingActionNote rdf:type owl:AnnotationProperty ;
-                            
-                            obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#editorialNote"^^xsd:string ;
-                            
-                            core:altLabel "TODO"^^xsd:string ;
-                            
-                            core:definition "A note describing known tasks associate with a class that remain to be performed. This property should include a date in parenthesis to record when this pending action was first recognized as necessary."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingFunctionalRelationNote
-
-obo_annot:pendingFunctionalRelationNote rdf:type owl:AnnotationProperty ;
-                                        
-                                        obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote"^^xsd:string ;
-                                        
-                                        core:definition "A note describing a known functional/process/occurant relation in which this class participates that is beyond pure subsumptive is_a relation.  Is a type of pending_object_relation_note."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingObjectRelationNote
-
-obo_annot:pendingObjectRelationNote rdf:type owl:AnnotationProperty ;
-                                    
-                                    obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote"^^xsd:string ;
-                                    
-                                    core:definition "A note describing a known relation in which this class participates that is beyond pure subsumptive is_a relations."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#sourceIndirection
-
-obo_annot:sourceIndirection rdf:type owl:AnnotationProperty ;
-                            
-                            obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#editorialNote"^^xsd:string ;
-                            
-                            core:definition "An indication of an external source from which this class is a direct subclass."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#synonym
-
-obo_annot:synonym rdf:type owl:AnnotationProperty ;
-                  
-                  obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string ;
-                  
-                  core:definition "A lexical variant carrying the same latent semantic value."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#taxonomicCommonName
-
-obo_annot:taxonomicCommonName rdf:type owl:AnnotationProperty ;
-                              
-                              obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string ;
-                              
-                              core:definition """The “common name” nametype is used for vernacular names associated with a particular taxon. These may be found at any level in the hierarchy; for example, “human”, “reptiles”, and “pale devil's-claw” are all used. Common names should be in lowercase letters, except where part of the name is derived from a proper noun, for example, “American butterfish” and “Robert's arbo- real rice rat”.
-      The use of common names is inherently variable, regional, and often inconsistent. There is generally no authoritative reference that regulates the use of common names, and there is often not perfect correspondence between common names and formally described scientific taxa; therefore, there are some caveats to their use. For scientific discourse, there is no substitute for formal scientific names. Nevertheless, common names are invaluable for many indexing, retrieval, and display purposes. The combination “Oecomys roberti (Robert's arboreal rice rat)” conveys much more information than either name by itself. Issues raised by the variable, regional, and inexact use of common names are partly addressed by the “genbank common name” nametype (below) and the ability to customize names in the GenBank flatfile. (NCBI doc on NCBI Taxonomy, 2003)."""@en ,
-                                              "This is the common name label frequently used to indicate a particular, species-level taxonomic group."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#tempDefinition
-
-obo_annot:tempDefinition rdf:type owl:AnnotationProperty ;
-                         
-                         obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#definition"^^xsd:string ;
-                         
-                         core:definition "a definition specifically declared to be temporary and in the midst of more detailed curation efforts."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#termDerviedFrom
-
-obo_annot:termDerviedFrom rdf:type owl:AnnotationProperty ;
-                          
-                          obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#historyNote"^^xsd:string ;
-                          
-                          core:definition "Indicates a term derives from an external source but has been substantially altered from that source.  Is a type of skos_history_note."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#usageNote
-
-obo_annot:usageNote rdf:type owl:AnnotationProperty ;
-                    
-                    core:definition "A note providing guidance on the expected and appropriate usage of a given ontology class or relation.  Note that a core:scopeNote is a type of usageNote where the specific range of classes, instances, or relations to which a given class or relation applies is constrained or scoped."@en .
-
-
-
-###  http://purl.org/dc/elements/1.1/date
-
-dc:date rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.w3.org/2004/02/skos/core#altLabel
-
-core:altLabel rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.w3.org/2004/02/skos/core#definition
-
-core:definition rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.w3.org/2004/02/skos/core#editorialNote
-
-core:editorialNote rdf:type owl:AnnotationProperty .
-
-
-
-###  http://www.w3.org/2004/02/skos/core#scopeNote
-
-core:scopeNote rdf:type owl:AnnotationProperty .
-
-
-
-
-
-#################################################################
-#
-#    Classes
-#
-#################################################################
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#AbbrevSource
-
-obo_annot:AbbrevSource rdf:type owl:Class ;
-                       
-                       rdfs:subClassOf obo_annot:EnumerationClass ;
-                       
-                       core:definition "The source authority for an externally derived class term abbreviation"@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#DefinitionSource
-
-obo_annot:DefinitionSource rdf:type owl:Class ;
-                           
-                           owl:equivalentClass [ rdf:type owl:Class ;
-                                                 owl:oneOf ( obo_annot:American_Heritage_Dictionary_4th_ed_defSource
-                                                             obo_annot:FMA_defSource
-                                                             obo_annot:GO_defSource
-                                                             obo_annot:MeSH_defSource
-                                                             obo_annot:Meriam_Websters_Dictionary_online_ed_2006_defSource
-                                                             obo_annot:OBI_defSource
-                                                             obo_annot:Stanord_Encyclopedia_of_Philosophy_defSource
-                                                             obo_annot:UMLS_defSource
-                                                             obo_annot:Wikipedia_defSource
-                                                           )
-                                               ] ;
-                           
-                           rdfs:subClassOf obo_annot:EnumerationClass ;
-                           
-                           core:definition "The source authority for an externally derived definition"@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass
-
-obo_annot:EnumerationClass rdf:type owl:Class ;
-                           
-                           dc:date "2007-05-04 (createdDate)"^^xsd:string ,
-                                   "2007-05-04 (modifedDate)"^^xsd:string ;
-                           
-                           core:scopeNote "A parent class for all enumerations used for class annotation."@en .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#ExternalSource
-
-obo_annot:ExternalSource rdf:type owl:Class ;
-                         
-                         owl:equivalentClass [ rdf:type owl:Class ;
-                                               owl:oneOf ( obo_annot:Biodynamic_Ontology
-                                                           obo_annot:FMA
-                                                           obo_annot:GBIF
-                                                           obo_annot:MeSH
-                                                           obo_annot:MeSH-UMLS
-                                                           obo_annot:NCBI_Taxonomy
-                                                           obo_annot:NLM
-                                                           obo_annot:OBR
-                                                           obo_annot:SNOMED
-                                                           obo_annot:Simple_Bio_Upper_Ontology
-                                                           obo_annot:UMLS
-                                                         )
-                                             ] ;
-                         
-                         rdfs:subClassOf obo_annot:EnumerationClass ;
-                         
-                         core:definition "Class derived from an external knowledge source"@en .
-
-
-
-###  http://www.w3.org/1999/02/22-rdf-syntax-ns#List
-
-rdf:List rdf:type owl:Class .
-
-
-
-
-
-#################################################################
-#
-#    Individuals
-#
-#################################################################
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#American_Heritage_Dictionary_4th_ed_defSource
-
-obo_annot:American_Heritage_Dictionary_4th_ed_defSource rdf:type owl:NamedIndividual ,
-                                                                 obo_annot:DefinitionSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#Biodynamic_Ontology
-
-obo_annot:Biodynamic_Ontology rdf:type owl:NamedIndividual ,
-                                       obo_annot:ExternalSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#FMA
-
-obo_annot:FMA rdf:type owl:NamedIndividual ,
-                       obo_annot:ExternalSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#FMA_defSource
-
-obo_annot:FMA_defSource rdf:type owl:NamedIndividual ,
-                                 obo_annot:DefinitionSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GBIF
-
-obo_annot:GBIF rdf:type owl:NamedIndividual ,
-                        obo_annot:ExternalSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#GO_defSource
-
-obo_annot:GO_defSource rdf:type owl:NamedIndividual ,
-                                obo_annot:DefinitionSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#MeSH
-
-obo_annot:MeSH rdf:type owl:NamedIndividual ,
-                        obo_annot:ExternalSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#MeSH-UMLS
-
-obo_annot:MeSH-UMLS rdf:type owl:NamedIndividual ,
-                             obo_annot:ExternalSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#MeSH_defSource
-
-obo_annot:MeSH_defSource rdf:type owl:NamedIndividual ,
-                                  obo_annot:DefinitionSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#Meriam_Websters_Dictionary_online_ed_2006_defSource
-
-obo_annot:Meriam_Websters_Dictionary_online_ed_2006_defSource rdf:type owl:NamedIndividual ,
-                                                                       obo_annot:DefinitionSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NCBI_Taxonomy
-
-obo_annot:NCBI_Taxonomy rdf:type owl:NamedIndividual ,
-                                 obo_annot:ExternalSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#NLM
-
-obo_annot:NLM rdf:type owl:NamedIndividual ,
-                       obo_annot:ExternalSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#OBI_defSource
-
-obo_annot:OBI_defSource rdf:type owl:NamedIndividual ,
-                                 obo_annot:DefinitionSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#OBR
-
-obo_annot:OBR rdf:type owl:NamedIndividual ,
-                       obo_annot:ExternalSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#SNOMED
-
-obo_annot:SNOMED rdf:type owl:NamedIndividual ,
-                          obo_annot:ExternalSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#Simple_Bio_Upper_Ontology
-
-obo_annot:Simple_Bio_Upper_Ontology rdf:type owl:NamedIndividual ,
-                                             obo_annot:ExternalSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#Stanord_Encyclopedia_of_Philosophy_defSource
-
-obo_annot:Stanord_Encyclopedia_of_Philosophy_defSource rdf:type owl:NamedIndividual ,
-                                                                obo_annot:DefinitionSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS
-
-obo_annot:UMLS rdf:type owl:NamedIndividual ,
-                        obo_annot:ExternalSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#UMLS_defSource
-
-obo_annot:UMLS_defSource rdf:type owl:NamedIndividual ,
-                                  obo_annot:DefinitionSource .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#Wikipedia_defSource
-
-obo_annot:Wikipedia_defSource rdf:type owl:NamedIndividual ,
-                                       obo_annot:DefinitionSource .
-
-
-
-
-
-#################################################################
-#
-#    Annotations
-#
-#################################################################
-
-
-obo_annot:MeshUid obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string ;
-                  
-                  core:definition "This is the Medical Subject Headings Unique ID for the concept associated with this class."@en ;
-                  
-                  core:editorialNote "Is a type of obo_annot:obo_external_source_ID."@en .
-
-
-
-obo_annot:altDefinition core:editorialNote "use of this property is discouraged.  A well defined ontology class cannot allow for alternative definitions.  This temporary_definition field should be used, when a definition is still pending full OBO definition status."@en ;
-                        
-                        core:definition "an additional, non-normative definition included while the curation status of a class is still pending."@en ;
-                        
-                        obo_annot:annotationType "http://www.w3.org/2004/02/skos/core#definition"^^xsd:string .
-
-
-
-obo_annot:pendingMereotopologicalRelationNote obo_annot:annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote"^^xsd:string ;
-                                              
-                                              core:definition "A note describing a known mereotopological spatial relation in which this class participates that is beyond pure subsumptive is_a relation.  Is a type of pending_object_relation_note."@en .
-
-
-
-
-
-#################################################################
-#
-#    General axioms
-#
-#################################################################
-
-
-[ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( obo_annot:American_Heritage_Dictionary_4th_ed_defSource
-                        obo_annot:FMA_defSource
-                        obo_annot:GO_defSource
-                        obo_annot:MeSH_defSource
-                        obo_annot:Meriam_Websters_Dictionary_online_ed_2006_defSource
-                        obo_annot:OBI_defSource
-                        obo_annot:Stanord_Encyclopedia_of_Philosophy_defSource
-                        obo_annot:UMLS_defSource
-                        obo_annot:Wikipedia_defSource
-                      )
-] .
-
-
-
-[ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( obo_annot:Biodynamic_Ontology
-                        obo_annot:FMA
-                        obo_annot:GBIF
-                        obo_annot:MeSH
-                        obo_annot:MeSH-UMLS
-                        obo_annot:NCBI_Taxonomy
-                        obo_annot:NLM
-                        obo_annot:OBR
-                        obo_annot:SNOMED
-                        obo_annot:Simple_Bio_Upper_Ontology
-                        obo_annot:UMLS
-                      )
-] .
-
-
-
-
-###  Generated by the OWL API (version 4.1.4) https://github.com/owlcs/owlapi
-
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#> .
+
+<http://ontology.neuinfo.org/NIF/ttl/OBO_annotation_properties.ttl> a owl:Ontology ;
+    dc:title "OBO Annotation Properties (BIRN derived)"@en ;
+    rdfs:comment "These are annotation properties the BIRN OTF expects will be shared by the community, not limited to the specific ontology development needs of BIRN.  This current ontology is a proposal to be reviewed by the OBO Foundry participants and developers of other OBO Foundry ontologies - e.g., OBI, PaTO, GO, etc.."@en ;
+    core:changeNote " (2008-01-28) - fixed and annotationType that was missing the namespace prefix obo_annot."@en,
+        " (2008-03-13) - finally added annotation prop for GO ID."@en,
+        "Explicitly removed ALL rdfs:type=DatatypeProperty declarations automatigically added to these AnnotationProperties by Protege-OWL v3.3beta"@en,
+        "Have 'cleansed' the file to be OWL-DL."@en,
+        "Now using a specific set of AnnotationProperties that link to specific Enumeration classes to specify annotations from a fixed list of values - e.g., ExternalSource, DefinitionSource.  This is the second iteration of this mechanism (first was put in v1.2.2).  This second version follows a patter recommended by Alan Ruttenberg which avoids using ObjectProperties as the Manchester design pattern for Value Partitions recommends, and instead sticks to AnnotationProperties only.  Note this version of OBO_annotation_properties uses the same EnumerationClasses from v1.2.2, and still includes the related ObjectProperties, so as to be able to support XSLT-based translation of the BIRNLex files that used the v1.2.2 pattern.  The next version of this file will eliminate the ObjectProperties and will rename the equivalent AnnotationProperties to remove the trailing '2' put in there to provide a unique name."@en,
+        "v1.3.0 (2007-08-03) - Changed many things, but primarily: (1) removed rdf:datatype xsd:string specs for all AnnotationProperties, since they are now all untyped and should assume STRING as a the default; (2) added the typing of AnnotationProperties using annotationType which should aid in algorithmically processing."@en ;
+    owl:versionInfo "1.3.0"^^xsd:string ;
+    dc:creator "The BIRN Ontology Task Force"^^xsd:string ;
+    dc:date "2006-10-07 (createdDate)"^^xsd:string,
+        "2008-03-13 (modifiedDate)"^^xsd:string .
+
+### Annotation Properties
+
+:abbrev a owl:AnnotationProperty ;
+    core:definition "A lexical variant carrying the same latent semantic value."@en,
+        "A synonym that is a shortened version of either the preferred lexical label of one of its synonyms"@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string .
+
+:acronym a owl:AnnotationProperty ;
+    core:definition "A synonym consisting of a sequence of letters typically taken from the beginning of words of which either the preferred label or another synonym are composed."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string .
+
+:annotationPropertyDomain a owl:AnnotationProperty .
+
+:annotationPropertyRange a owl:AnnotationProperty .
+
+:annotationType a owl:AnnotationProperty ;
+    core:definition "A category designed to help data processing systems automatically determine how to process a given annotation."@en ;
+    core:editorialNote "The current use of this meta-property is to identify types of definitions (core:definition) and types of external source ID (dc:identifier) (BB: 2007-08-03."@en,
+        "This is required, since sub-classing AnnotationProperties is not allowed in OWL-DL.  Using this descriptive metadata AnnotationProperties, we can construct a chained code representation of a classification graph for AnnotationProperities very likely to be useful for information systems built to parse and process OWL content."@en ;
+    :usageNote "The legal cardinality range for annotationType applied to AnnotationProperties = 0...n - i.e., it is neither required, nor is it limited to a cardinality of 1, though it is recommend there be at least one annotationType for each AnnotationProperty, whenever there is an appropriate super-class available.."@en ;
+    core:scopeNote "The only valid values for this property are DC, SKOS, or BIRN AnnotationProperty URIs."@en .
+
+:antiquated a owl:AnnotationProperty ;
+    core:definition "A lexical variant carrying the same latent semantic value."@en,
+        "A synonym no longer in common use."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string .
+
+core:altLabel a owl:AnnotationProperty .
+
+core:definition a owl:AnnotationProperty .
+
+core:editorialNote a owl:AnnotationProperty .
+
+core:scopeNote a owl:AnnotationProperty .
+
+:createdDate a owl:AnnotationProperty ;
+    core:definition "The date when a class was added to the file."@en ;
+    :annotationType "http://purl.org/dc/elements/1.1/date"^^xsd:string .
+
+:curator a owl:AnnotationProperty ;
+    core:definition "contributed to the properties, assertions, and other content associated with this class."@en ;
+    :annotationType "http://purl.org/dc/elements/1.1/contributor"^^xsd:string .
+
+dc:date a owl:AnnotationProperty .
+
+:definingCitation a owl:AnnotationProperty ;
+    core:definition "A literature a citation providing information fundamental to the definition of an ontology class."@en ;
+    :usageNote "This AnnotationProperty should only be used whether there is neither a publicly accessible URI nor a namespace-qualified ID which can be used to algorithmically construct a complete citation for use in a user interface or search system (e.g., the way one can use PMID and the NCBI PublMed webservices or HTTP services to automatically access citation information)."@en .
+
+:definingCitationID a owl:AnnotationProperty ;
+    core:definition "A namespace-specified ID for a record in a citation database providing information fundamental to the definition of an ontology class."@en ;
+    :annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string .
+
+:definingCitationURI a owl:AnnotationProperty ;
+    core:definition "A publically accessible URI for a record in a citation database providing information fundamental to the definition of an ontology class."@en ;
+    :annotationType "http://purl.org/dc/elements/1.1/relation"^^xsd:string .
+
+:externallySourcedDefinition a owl:AnnotationProperty ;
+    core:definition "This is a class definition derived AS IS from an external, community knowledge resource."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#definition"^^xsd:string .
+
+:externalSourceId a owl:AnnotationProperty ;
+    core:definition "This field is to maintain the link back to an external source (see the externalSource property)."@en ;
+    :annotationType "http://purl.org/dc/elements/1.1/identifier"^^xsd:string .
+
+:externalSourceURI a owl:AnnotationProperty ;
+    core:definition "A publically accessible URI other than a standard bibliographic citation to the specific external source from which the content of an ontology Class was derived."@en ;
+    :annotationType "http://purl.org/dc/elements/1.1/relation"^^xsd:string .
+
+:GOid a owl:AnnotationProperty ;
+    core:definition "This is the Gene Ontology ID for the concept associated with this class."@en ;
+    core:editorialNote "Is a type of obo_annot:obo_external_source_ID."@en ;
+    :annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string .
+
+:hasAbbrevSource a owl:AnnotationProperty ;
+    :annotationPropertyDomain "owl:Class"^^xsd:string ;
+    :annotationPropertyRange "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"^^xsd:string ;
+    :annotationType "http://purl.org/dc/elements/1.1/relation"^^xsd:string ;
+    :hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
+
+:hasDefinitionSource a owl:AnnotationProperty ;
+    :annotationPropertyDomain "owl:Class"^^xsd:string ;
+    :annotationPropertyRange "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"^^xsd:string ;
+    :hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
+
+:hasExternalSource a owl:AnnotationProperty ;
+    :annotationPropertyDomain "owl:Class"^^xsd:string ;
+    :annotationPropertyRange "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#EnumerationClass"^^xsd:string ;
+    :hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
+
+:hasValidationMethod a owl:AnnotationProperty .
+
+:misnomer a owl:AnnotationProperty ;
+    core:definition "incorrect term often found mistakenly used to refer to this class."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#hiddenLabel"^^xsd:string .
+
+:misspelling a owl:AnnotationProperty ;
+    core:definition "an incorrect spelling of either the preferred label or a synonym."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#hiddenLabel"^^xsd:string .
+
+:modifiedDate a owl:AnnotationProperty ;
+    core:definition "the date when a class was last altered."@en ;
+    :annotationType "http://purl.org/dc/elements/1.1/date"^^xsd:string .
+
+:nifID a owl:AnnotationProperty ;
+    core:definition "The ad-hoc ID created for entries in the Neuroscience Informatics Framework terminologies."@en ;
+    :annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string .
+
+:oboDefinition a owl:AnnotationProperty ;
+    core:definition "This is a class definition meeting the non-circular and Aristotelean requirements given by the OBO Foundry principles."@en ;
+    core:editorialNote "It also will likely include the related Aristotelean genus-differentia approach to applying this manner of definition construction as used now (as of 2006) in The Gene Ontology."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#definition"^^xsd:string .
+
+:pendingActionNote a owl:AnnotationProperty ;
+    core:definition "A note describing known tasks associate with a class that remain to be performed. This property should include a date in parenthesis to record when this pending action was first recognized as necessary."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#editorialNote"^^xsd:string ;
+    core:altLabel "TODO"^^xsd:string .
+
+:pendingFunctionalRelationNote a owl:AnnotationProperty ;
+    core:definition "A note describing a known functional/process/occurant relation in which this class participates that is beyond pure subsumptive is_a relation.  Is a type of pending_object_relation_note."@en ;
+    :annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote"^^xsd:string .
+
+:pendingObjectRelationNote a owl:AnnotationProperty ;
+    core:definition "A note describing a known relation in which this class participates that is beyond pure subsumptive is_a relations."@en ;
+    :annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote"^^xsd:string .
+
+:sourceIndirection a owl:AnnotationProperty ;
+    core:definition "An indication of an external source from which this class is a direct subclass."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#editorialNote"^^xsd:string .
+
+:synonym a owl:AnnotationProperty ;
+    core:definition "A lexical variant carrying the same latent semantic value."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string .
+
+:taxonomicCommonName a owl:AnnotationProperty ;
+    core:definition """The “common name” nametype is used for vernacular names associated with a particular taxon. These may be found at any level in the hierarchy; for example, “human”, “reptiles”, and “pale devil's-claw” are all used. Common names should be in lowercase letters, except where part of the name is derived from a proper noun, for example, “American butterfish” and “Robert's arbo- real rice rat”.
+      The use of common names is inherently variable, regional, and often inconsistent. There is generally no authoritative reference that regulates the use of common names, and there is often not perfect correspondence between common names and formally described scientific taxa; therefore, there are some caveats to their use. For scientific discourse, there is no substitute for formal scientific names. Nevertheless, common names are invaluable for many indexing, retrieval, and display purposes. The combination “Oecomys roberti (Robert's arboreal rice rat)” conveys much more information than either name by itself. Issues raised by the variable, regional, and inexact use of common names are partly addressed by the “genbank common name” nametype (below) and the ability to customize names in the GenBank flatfile. (NCBI doc on NCBI Taxonomy, 2003)."""@en,
+        "This is the common name label frequently used to indicate a particular, species-level taxonomic group."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#altLabel"^^xsd:string .
+
+:tempDefinition a owl:AnnotationProperty ;
+    core:definition "a definition specifically declared to be temporary and in the midst of more detailed curation efforts."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#definition"^^xsd:string .
+
+:termDerviedFrom a owl:AnnotationProperty ;
+    core:definition "Indicates a term derives from an external source but has been substantially altered from that source.  Is a type of skos_history_note."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#historyNote"^^xsd:string .
+
+:UmlsCui a owl:AnnotationProperty ;
+    core:definition "This is the UMLS CUI ID for the concept associated with this class."@en ;
+    core:editorialNote "Is a type of obo_annot:obo_external_source_ID."@en ;
+    :annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string .
+
+:usageNote a owl:AnnotationProperty ;
+    core:definition "A note providing guidance on the expected and appropriate usage of a given ontology class or relation.  Note that a core:scopeNote is a type of usageNote where the specific range of classes, instances, or relations to which a given class or relation applies is constrained or scoped."@en .
+
+### Classes
+
+:AbbrevSource a owl:Class ;
+    core:definition "The source authority for an externally derived class term abbreviation"@en ;
+    rdfs:subClassOf :EnumerationClass .
+
+:DefinitionSource a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:oneOf (
+                    :American_Heritage_Dictionary_4th_ed_defSource
+                    :FMA_defSource
+                    :GO_defSource
+                    :Meriam_Websters_Dictionary_online_ed_2006_defSource
+                    :MeSH_defSource
+                    :OBI_defSource
+                    :Stanord_Encyclopedia_of_Philosophy_defSource
+                    :UMLS_defSource
+                    :Wikipedia_defSource ) ] ;
+    core:definition "The source authority for an externally derived definition"@en ;
+    rdfs:subClassOf :EnumerationClass .
+
+:EnumerationClass a owl:Class ;
+    dc:date "2007-05-04 (createdDate)"^^xsd:string,
+        "2007-05-04 (modifedDate)"^^xsd:string ;
+    core:scopeNote "A parent class for all enumerations used for class annotation."@en .
+
+:ExternalSource a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:oneOf (
+                    :Biodynamic_Ontology
+                    :FMA
+                    :GBIF
+                    :MeSH
+                    :MeSH-UMLS
+                    :NCBI_Taxonomy
+                    :NLM
+                    :OBR
+                    :Simple_Bio_Upper_Ontology
+                    :SNOMED
+                    :UMLS ) ] ;
+    core:definition "Class derived from an external knowledge source"@en ;
+    rdfs:subClassOf :EnumerationClass .
+
+rdf:List a owl:Class .
+
+### Individuals
+
+:American_Heritage_Dictionary_4th_ed_defSource a :DefinitionSource,
+        owl:NamedIndividual .
+
+:Biodynamic_Ontology a :ExternalSource,
+        owl:NamedIndividual .
+
+:FMA a :ExternalSource,
+        owl:NamedIndividual .
+
+:FMA_defSource a :DefinitionSource,
+        owl:NamedIndividual .
+
+:GBIF a :ExternalSource,
+        owl:NamedIndividual .
+
+:GO_defSource a :DefinitionSource,
+        owl:NamedIndividual .
+
+:Meriam_Websters_Dictionary_online_ed_2006_defSource a :DefinitionSource,
+        owl:NamedIndividual .
+
+:MeSH a :ExternalSource,
+        owl:NamedIndividual .
+
+:MeSH-UMLS a :ExternalSource,
+        owl:NamedIndividual .
+
+:MeSH_defSource a :DefinitionSource,
+        owl:NamedIndividual .
+
+:NCBI_Taxonomy a :ExternalSource,
+        owl:NamedIndividual .
+
+:NLM a :ExternalSource,
+        owl:NamedIndividual .
+
+:OBI_defSource a :DefinitionSource,
+        owl:NamedIndividual .
+
+:OBR a :ExternalSource,
+        owl:NamedIndividual .
+
+:Simple_Bio_Upper_Ontology a :ExternalSource,
+        owl:NamedIndividual .
+
+:SNOMED a :ExternalSource,
+        owl:NamedIndividual .
+
+:Stanord_Encyclopedia_of_Philosophy_defSource a :DefinitionSource,
+        owl:NamedIndividual .
+
+:UMLS a :ExternalSource,
+        owl:NamedIndividual .
+
+:UMLS_defSource a :DefinitionSource,
+        owl:NamedIndividual .
+
+:Wikipedia_defSource a :DefinitionSource,
+        owl:NamedIndividual .
+
+### Axioms
+
+[ a owl:AllDifferent ;
+    owl:distinctMembers (
+            :American_Heritage_Dictionary_4th_ed_defSource
+            :FMA_defSource
+            :GO_defSource
+            :Meriam_Websters_Dictionary_online_ed_2006_defSource
+            :MeSH_defSource
+            :OBI_defSource
+            :Stanord_Encyclopedia_of_Philosophy_defSource
+            :UMLS_defSource
+            :Wikipedia_defSource ) ] .
+
+[ a owl:AllDifferent ;
+    owl:distinctMembers (
+            :Biodynamic_Ontology
+            :FMA
+            :GBIF
+            :MeSH
+            :MeSH-UMLS
+            :NCBI_Taxonomy
+            :NLM
+            :OBR
+            :Simple_Bio_Upper_Ontology
+            :SNOMED
+            :UMLS ) ] .
+
+### Annotations
+
+:altDefinition core:definition "an additional, non-normative definition included while the curation status of a class is still pending."@en ;
+    core:editorialNote "use of this property is discouraged.  A well defined ontology class cannot allow for alternative definitions.  This temporary_definition field should be used, when a definition is still pending full OBO definition status."@en ;
+    :annotationType "http://www.w3.org/2004/02/skos/core#definition"^^xsd:string .
+
+:MeshUid core:definition "This is the Medical Subject Headings Unique ID for the concept associated with this class."@en ;
+    core:editorialNote "Is a type of obo_annot:obo_external_source_ID."@en ;
+    :annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceId"^^xsd:string .
+
+:pendingMereotopologicalRelationNote core:definition "A note describing a known mereotopological spatial relation in which this class participates that is beyond pure subsumptive is_a relation.  Is a type of pending_object_relation_note."@en ;
+    :annotationType "http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#pendingActionNote"^^xsd:string .
+
+### Serialized using the nifstd custom serializer v1.0.5

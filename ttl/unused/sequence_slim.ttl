@@ -1,167 +1,79 @@
 @prefix : <http://ontology.neuinfo.org/NIF/BiomaterialEntities/sequence-slim.owl#> .
-@prefix SO: <http://purl.obolibrary.org/obo/SO#SO_> .
+@prefix biosapiens: <http://purl.obolibrary.org/obo/obo#biosapiens> .
 @prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix SO: <http://purl.obolibrary.org/obo/SO#SO_> .
 @prefix SOFA: <http://purl.obolibrary.org/obo/obo#SOFA> .
-@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
-@prefix biosapiens: <http://purl.obolibrary.org/obo/obo#biosapiens> .
-@base <http://ontology.neuinfo.org/NIF/ttl/sequence-slim.ttl> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://ontology.neuinfo.org/NIF/ttl/sequence-slim.ttl> rdf:type owl:Ontology ;
-                                                                        
-                                                                        owl:imports <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> .
+<http://ontology.neuinfo.org/NIF/ttl/sequence-slim.ttl> a owl:Ontology ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> .
 
+### Annotation Properties
 
-#################################################################
-#
-#    Annotation properties
-#
-#################################################################
+obo:IAO_0000412 a owl:AnnotationProperty ;
+    rdfs:label "imported from"@en .
 
+### Classes
 
-###  http://purl.obolibrary.org/obo/IAO_0000412
+SO:0000087 a owl:Class ;
+    rdfs:label "nuclear_gene"@en ;
+    skos:definition "A gene from nuclear sequence."@en ;
+    rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
+    obo:IAO_0000412 obo:sequence ;
+    oboInOwl:hasOBONamespace "sequence" .
 
-obo:IAO_0000412 rdf:type owl:AnnotationProperty ;
-                
-                rdfs:label "imported from"@en .
+SO:0000234 a owl:Class ;
+    rdfs:label "mRNA"@en ;
+    skos:definition "Messenger RNA is the intermediate molecule between DNA and protein. It includes UTR and coding sequences. It does not contain introns."@en ;
+    rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
+    obo:IAO_0000412 obo:sequence ;
+    oboInOwl:hasOBONamespace "sequence" ;
+    oboInOwl:inSubset :SOFA .
 
+SO:0000419 a owl:Class ;
+    rdfs:label "mature_protein_region"@en ;
+    rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
+    obo:IAO_0000412 obo:sequence ;
+    oboInOwl:hasAlternativeId "BS:00149" ;
+    oboInOwl:hasOBONamespace "sequence" ;
+    oboInOwl:inSubset :biosapiens,
+        :SOFA .
 
+SO:0000673 a owl:Class ;
+    rdfs:label "transcript"@en ;
+    skos:definition "An RNA synthesized on a DNA or RNA template by an RNA polymerase."@en ;
+    rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
+    obo:IAO_0000412 obo:sequence ;
+    oboInOwl:hasOBONamespace "sequence" ;
+    oboInOwl:inSubset :SOFA .
 
-###  http://www.w3.org/2004/02/skos/core#definition
+SO:0000690 a owl:Class ;
+    rdfs:label "gene_with_polycistronic_transcript"@en ;
+    rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
+    obo:IAO_0000412 obo:sequence ;
+    oboInOwl:hasOBONamespace "sequence" .
+
+SO:0000828 a owl:Class ;
+    rdfs:label "nuclear_chromosome"@en ;
+    rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
+    obo:IAO_0000412 obo:sequence ;
+    oboInOwl:hasOBONamespace "sequence" .
+
+SO:0001026 a owl:Class ;
+    rdfs:label "genome"@en ;
+    skos:definition "A genome is the sum of genetic material within a cell or virion."@en ;
+    rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
+    obo:IAO_0000412 obo:sequence ;
+    oboInOwl:hasOBONamespace "sequence" .
+
+### Annotations
 
 skos:definition rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
 
-
-
-
-
-#################################################################
-#
-#    Classes
-#
-#################################################################
-
-
-###  http://purl.obolibrary.org/obo/SO#SO_0000087
-
-SO:0000087 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
-                  
-                  obo:IAO_0000412 obo:sequence ;
-                  
-                  oboInOwl:hasOBONamespace "sequence" ;
-                  
-                  rdfs:label "nuclear_gene"@en ;
-                  
-                  skos:definition "A gene from nuclear sequence."@en .
-
-
-
-###  http://purl.obolibrary.org/obo/SO#SO_0000234
-
-SO:0000234 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
-                  
-                  obo:IAO_0000412 obo:sequence ;
-                  
-                  oboInOwl:hasOBONamespace "sequence" ;
-                  
-                  oboInOwl:inSubset :SOFA ;
-                  
-                  rdfs:label "mRNA"@en ;
-                  
-                  skos:definition "Messenger RNA is the intermediate molecule between DNA and protein. It includes UTR and coding sequences. It does not contain introns."@en .
-
-
-
-###  http://purl.obolibrary.org/obo/SO#SO_0000419
-
-SO:0000419 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
-                  
-                  obo:IAO_0000412 obo:sequence ;
-                  
-                  oboInOwl:hasAlternativeId "BS:00149" ;
-                  
-                  oboInOwl:hasOBONamespace "sequence" ;
-                  
-                  oboInOwl:inSubset :SOFA ,
-                                    :biosapiens ;
-                  
-                  rdfs:label "mature_protein_region"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/SO#SO_0000673
-
-SO:0000673 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
-                  
-                  obo:IAO_0000412 obo:sequence ;
-                  
-                  oboInOwl:hasOBONamespace "sequence" ;
-                  
-                  oboInOwl:inSubset :SOFA ;
-                  
-                  rdfs:label "transcript"@en ;
-                  
-                  skos:definition "An RNA synthesized on a DNA or RNA template by an RNA polymerase."@en .
-
-
-
-###  http://purl.obolibrary.org/obo/SO#SO_0000690
-
-SO:0000690 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
-                  
-                  obo:IAO_0000412 obo:sequence ;
-                  
-                  oboInOwl:hasOBONamespace "sequence" ;
-                  
-                  rdfs:label "gene_with_polycistronic_transcript"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/SO#SO_0000828
-
-SO:0000828 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
-                  
-                  obo:IAO_0000412 obo:sequence ;
-                  
-                  oboInOwl:hasOBONamespace "sequence" ;
-                  
-                  rdfs:label "nuclear_chromosome"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/SO#SO_0001026
-
-SO:0001026 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#GenericallyDependentContinuant> ;
-                  
-                  obo:IAO_0000412 obo:sequence ;
-                  
-                  oboInOwl:hasOBONamespace "sequence" ;
-                  
-                  rdfs:label "genome"@en ;
-                  
-                  skos:definition "A genome is the sum of genetic material within a cell or virion."@en .
-
-
-
-
-###  Generated by the OWL API (version 4.1.4) https://github.com/owlcs/owlapi
-
+### Serialized using the nifstd custom serializer v1.0.5

@@ -1,2609 +1,955 @@
 @prefix : <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Eagle-I-Bridge.owl#> .
-@prefix GO: <http://purl.obolibrary.org/obo/GO_> .
-@prefix SO: <http://purl.obolibrary.org/obo/SO_> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix BiomedicalResourceOntology: <http://bioontology.org/ontologies/BiomedicalResourceOntology.owl#> .
+@prefix BIRNLex-OBI-proxy: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#> .
+@prefix BIRNLex-OBO-UBO: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#> .
+@prefix cogat: <http://www.cognitiveatlas.org/ontology/cogat.owl#> .
+@prefix core: <http://vivoweb.org/ontology/core#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+@prefix DOID: <http://purl.obolibrary.org/obo/DOID_> .
 @prefix ERO: <http://purl.obolibrary.org/obo/ERO_> .
+@prefix GO: <http://purl.obolibrary.org/obo/GO_> .
 @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix license: <http://www.ebi.ac.uk/swo/license/> .
+@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@prefix NIF-Chemical: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Chemical.owl#> .
+@prefix NIF-GrossAnatomy: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#> .
+@prefix NIF-Investigation: <http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#> .
+@prefix NIF-Molecule: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
+@prefix NIF-NCBITaxonomy-Slim: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-Slim.owl#> .
+@prefix NIF-Organism: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#> .
+@prefix NIF-Quality: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Quality.owl#> .
+@prefix NIF-Resource: <http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#> .
+@prefix NIF-Scientific-Discipline: <http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Scientific-Discipline.owl#> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix SO: <http://purl.obolibrary.org/obo/SO_> .
+@prefix study_design: <http://purl.org/net/OCRe/study_design.owl#> .
 @prefix swo: <http://www.ebi.ac.uk/efo/swo/> .
+@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix DOID: <http://purl.obolibrary.org/obo/DOID_> .
-@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
-@prefix bibo: <http://purl.org/ontology/bibo/> .
-@prefix core: <http://vivoweb.org/ontology/core#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix cogat: <http://www.cognitiveatlas.org/ontology/cogat.owl#> .
-@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
-@prefix license: <http://www.ebi.ac.uk/swo/license/> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
-@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
-@prefix NIF-Quality: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Quality.owl#> .
-@prefix NIF-Chemical: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Chemical.owl#> .
-@prefix NIF-Molecule: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
-@prefix NIF-Organism: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#> .
-@prefix NIF-Resource: <http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#> .
-@prefix study_design: <http://purl.org/net/OCRe/study_design.owl#> .
-@prefix BIRNLex-OBO-UBO: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#> .
-@prefix NIF-GrossAnatomy: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#> .
-@prefix BIRNLex-OBI-proxy: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#> .
-@prefix NIF-Investigation: <http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#> .
-@prefix NIF-NCBITaxonomy-Slim: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-Slim.owl#> .
-@prefix NIF-Scientific-Discipline: <http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Scientific-Discipline.owl#> .
-@prefix BiomedicalResourceOntology: <http://bioontology.org/ontologies/BiomedicalResourceOntology.owl#> .
-@base <http://ontology.neuinfo.org/NIF/ttl/NIF-Eagle-I-Bridge.ttl> .
 
-<http://ontology.neuinfo.org/NIF/ttl/NIF-Eagle-I-Bridge.ttl> rdf:type owl:Ontology ;
-                                                             
-                                                             rdfs:comment "This file contains the equivalent axioms between Eagle-I and NIF Classes. The equivalencies are based on the LOOM mapping of Bioportal.  "@en ;
-                                                             
-                                                             owl:versionInfo "July 16, 2013"@en ;
-                                                             
-                                                             rdfs:label "NIF-Eagle-I-Bridge"@en .
+<http://ontology.neuinfo.org/NIF/ttl/NIF-Eagle-I-Bridge.ttl> a owl:Ontology ;
+    rdfs:label "NIF-Eagle-I-Bridge"@en ;
+    rdfs:comment "This file contains the equivalent axioms between Eagle-I and NIF Classes. The equivalencies are based on the LOOM mapping of Bioportal.  "@en ;
+    owl:versionInfo "July 16, 2013"@en .
 
+### Classes
 
-#################################################################
-#
-#    Classes
-#
-#################################################################
+bibo:Patent a owl:Class .
 
+BiomedicalResourceOntology:Journal_Article a owl:Class ;
+    owl:equivalentClass IAO:0000013 .
 
-###  http://bioontology.org/ontologies/BiomedicalResourceOntology.owl#Journal_Article
+BiomedicalResourceOntology:MRI_Scanner a owl:Class ;
+    owl:equivalentClass NIF-Investigation:birnlex_2100 .
 
-BiomedicalResourceOntology:Journal_Article rdf:type owl:Class ;
-                                           
-                                           owl:equivalentClass IAO:0000013 .
+BIRNLex-OBI-proxy:birnlex_11001 a owl:Class ;
+    owl:equivalentClass IAO:0000030 .
 
+BIRNLex-OBI-proxy:birnlex_11005 a owl:Class ;
+    owl:equivalentClass swo:SWO_0000580 .
 
+BIRNLex-OBI-proxy:birnlex_11009 a owl:Class ;
+    owl:equivalentClass IAO:0000064 .
 
-###  http://bioontology.org/ontologies/BiomedicalResourceOntology.owl#MRI_Scanner
+BIRNLex-OBI-proxy:birnlex_11010 a owl:Class ;
+    owl:equivalentClass OBI:0000272 .
 
-BiomedicalResourceOntology:MRI_Scanner rdf:type owl:Class ;
-                                       
-                                       owl:equivalentClass NIF-Investigation:birnlex_2100 .
+BIRNLex-OBI-proxy:birnlex_11012 a owl:Class ;
+    owl:equivalentClass core:Program .
 
+BIRNLex-OBI-proxy:birnlex_11013 a owl:Class ;
+    owl:equivalentClass OBI:1110055 .
 
+BIRNLex-OBI-proxy:birnlex_11019 a owl:Class ;
+    owl:equivalentClass OBI:0000086 .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11001
+BIRNLex-OBI-proxy:birnlex_11021 a owl:Class ;
+    owl:equivalentClass OBI:0000011 .
 
-BIRNLex-OBI-proxy:birnlex_11001 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass IAO:0000030 .
+BIRNLex-OBI-proxy:birnlex_11023 a owl:Class ;
+    owl:equivalentClass OBI:0000094 .
 
+BIRNLex-OBI-proxy:birnlex_11024 a owl:Class ;
+    owl:equivalentClass OBI:0200000 .
 
+BIRNLex-OBI-proxy:birnlex_11025 a owl:Class ;
+    owl:equivalentClass OBI:0000070 .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11005
+BIRNLex-OBI-proxy:birnlex_11026 a owl:Class ;
+    owl:equivalentClass OBI:0000185 .
 
-BIRNLex-OBI-proxy:birnlex_11005 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass swo:SWO_0000580 .
+BIRNLex-OBI-proxy:birnlex_11031 a owl:Class ;
+    owl:equivalentClass OBI:0000052 .
 
+BIRNLex-OBI-proxy:birnlex_11032 a owl:Class ;
+    owl:equivalentClass OBI:0000051 .
 
+BIRNLex-OBI-proxy:birnlex_11035 a owl:Class ;
+    owl:equivalentClass ERO:0000004 .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11009
+BIRNLex-OBI-proxy:birnlex_11036 a owl:Class ;
+    owl:equivalentClass ERO:0000009 .
 
-BIRNLex-OBI-proxy:birnlex_11009 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass IAO:0000064 .
+BIRNLex-OBI-proxy:birnlex_11037 a owl:Class ;
+    owl:equivalentClass IAO:0000013 .
 
+BIRNLex-OBO-UBO:birnlex_19 a owl:Class ;
+    owl:equivalentClass UBERON:0000479 .
 
+cogat:CAO_00139 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11010
+cogat:CAO_00305 a owl:Class .
 
-BIRNLex-OBI-proxy:birnlex_11010 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass OBI:0000272 .
+core:Association a owl:Class ;
+    owl:equivalentClass cogat:CAO_00139 .
 
+core:Company a owl:Class .
 
+core:Program a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11012
+core:University a owl:Class .
 
-BIRNLex-OBI-proxy:birnlex_11012 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass core:Program .
+dcmitype:Image a owl:Class ;
+    owl:equivalentClass swo:SWO_0000580 .
 
+DOID:4 a owl:Class .
 
+ERO:0000004 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11013
+ERO:0000006 a owl:Class .
 
-BIRNLex-OBI-proxy:birnlex_11013 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass OBI:1110055 .
+ERO:0000009 a owl:Class .
 
+ERO:0000019 a owl:Class .
 
+ERO:0000071 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11019
+ERO:0000200 a owl:Class .
 
-BIRNLex-OBI-proxy:birnlex_11019 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass OBI:0000086 .
+ERO:0000248 a owl:Class .
 
+ERO:0000285 a owl:Class .
 
+ERO:0000289 a owl:Class ;
+    owl:equivalentClass SO:0000156 .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11021
+ERO:0000290 a owl:Class ;
+    owl:equivalentClass SO:0000158 .
 
-BIRNLex-OBI-proxy:birnlex_11021 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass OBI:0000011 .
+ERO:0000330 a owl:Class .
 
+ERO:0000393 a owl:Class .
 
+ERO:0000395 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11023
+ERO:0000491 a owl:Class .
 
-BIRNLex-OBI-proxy:birnlex_11023 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass OBI:0000094 .
+ERO:0000499 a owl:Class .
 
+ERO:0000521 a owl:Class .
 
+ERO:0000631 a owl:Class ;
+    owl:equivalentClass SO:0000112 .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11024
+ERO:0000632 a owl:Class ;
+    owl:equivalentClass SO:0001183 .
 
-BIRNLex-OBI-proxy:birnlex_11024 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass OBI:0200000 .
+ERO:0000640 a owl:Class .
 
+ERO:0000729 a owl:Class ;
+    owl:equivalentClass GO:0009293 .
 
+ERO:0000771 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11025
+ERO:0000870 a owl:Class .
 
-BIRNLex-OBI-proxy:birnlex_11025 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass OBI:0000070 .
+ERO:0000926 a owl:Class .
 
+ERO:0001135 a owl:Class ;
+    owl:equivalentClass SO:0000157 .
 
+ERO:0001181 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11026
+ERO:0001210 a owl:Class ;
+    owl:equivalentClass SO:0000337 .
 
-BIRNLex-OBI-proxy:birnlex_11026 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass OBI:0000185 .
+ERO:0001235 a owl:Class .
 
+ERO:0001240 a owl:Class .
 
+ERO:0001242 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11031
+ERO:0001257 a owl:Class .
 
-BIRNLex-OBI-proxy:birnlex_11031 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass OBI:0000052 .
+ERO:0001262 a owl:Class .
 
+ERO:0001300 a owl:Class ;
+    owl:equivalentClass cogat:CAO_00305 .
 
+ERO:0001325 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11032
+ERO:0001344 a owl:Class ;
+    owl:equivalentClass GO:0046959 .
 
-BIRNLex-OBI-proxy:birnlex_11032 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass OBI:0000051 .
+ERO:0001369 a owl:Class .
 
+ERO:0001432 a owl:Class .
 
+ERO:0001479 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11035
+ERO:0001554 a owl:Class ;
+    owl:equivalentClass IAO:0000027 .
 
-BIRNLex-OBI-proxy:birnlex_11035 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass ERO:0000004 .
+ERO:0001562 a owl:Class ;
+    owl:equivalentClass GO:0006113 .
 
+ERO:0001590 a owl:Class .
 
+ERO:0001610 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11036
+ERO:0001636 a owl:Class .
 
-BIRNLex-OBI-proxy:birnlex_11036 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass ERO:0000009 .
+ERO:0001637 a owl:Class .
 
+ERO:0001640 a owl:Class .
 
+ERO:0001716 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#birnlex_11037
+ERO:0001772 a owl:Class .
 
-BIRNLex-OBI-proxy:birnlex_11037 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass IAO:0000013 .
+ERO:0001805 a owl:Class .
 
+GO:0006113 a owl:Class .
 
+GO:0008150 a owl:Class ;
+    rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/span#Process> .
 
-###  http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#birnlex_19
+GO:0009293 a owl:Class .
 
-BIRNLex-OBO-UBO:birnlex_19 rdf:type owl:Class ;
-                           
-                           owl:equivalentClass UBERON:0000479 .
+GO:0046959 a owl:Class .
 
+<http://www.ifomis.org/bfo/1.1/snap#IndependentContinuant> a owl:Class .
 
+<http://www.ifomis.org/bfo/1.1/span#Process> a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Chemical.owl#nlx_chem_100306
+<http://www.ifomis.org/bfo/1.1/span#ProcessualEntity> a owl:Class .
 
-NIF-Chemical:nlx_chem_100306 rdf:type owl:Class ;
-                             
-                             owl:equivalentClass NCBITaxon:3483 .
+IAO:0000013 a owl:Class .
 
+IAO:0000027 a owl:Class ;
+    owl:equivalentClass swo:SWO_0000516 .
 
+IAO:0000030 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#birnlex_6
+IAO:0000064 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_6 rdf:type owl:Class .
+IAO:0000101 a owl:Class ;
+    owl:equivalentClass swo:SWO_0000580 .
 
+license:SWO_1000004 a owl:Class .
 
+license:SWO_9000074 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#DB00668
+license:SWO_9000088 a owl:Class .
 
-NIF-Molecule:DB00668 rdf:type owl:Class ;
-                     
-                     owl:equivalentClass OBI:0000610 .
+NCBITaxon:3483 a owl:Class .
 
+NCBITaxon:6178 a owl:Class .
 
+NCBITaxon:6231 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-Slim.owl#nlx_organ_110506
+NCBITaxon:6239 a owl:Class .
 
-NIF-NCBITaxonomy-Slim:nlx_organ_110506 rdf:type owl:Class .
+NCBITaxon:6251 a owl:Class .
 
+NCBITaxon:6340 a owl:Class .
 
+NCBITaxon:6499 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_101
+NCBITaxon:6535 a owl:Class .
 
-NIF-Organism:birnlex_101 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9681 .
+NCBITaxon:6605 a owl:Class .
 
+NCBITaxon:6656 a owl:Class .
 
+NCBITaxon:6657 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_103
+NCBITaxon:6693 a owl:Class .
 
-NIF-Organism:birnlex_103 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9544 .
+NCBITaxon:6704 a owl:Class .
 
+NCBITaxon:6724 a owl:Class .
 
+NCBITaxon:6752 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_112
+NCBITaxon:6762 a owl:Class .
 
-NIF-Organism:birnlex_112 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7091 .
+NCBITaxon:6993 a owl:Class .
 
+NCBITaxon:6995 a owl:Class .
 
+NCBITaxon:7088 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_113
+NCBITaxon:7091 a owl:Class .
 
-NIF-Organism:birnlex_113 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9685 .
+NCBITaxon:7129 a owl:Class .
 
+NCBITaxon:7130 a owl:Class .
 
+NCBITaxon:7147 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_115
+NCBITaxon:7215 a owl:Class .
 
-NIF-Organism:birnlex_115 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:10117 .
+NCBITaxon:7227 a owl:Class .
 
+NCBITaxon:7370 a owl:Class .
 
+NCBITaxon:7399 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_120
+NCBITaxon:7460 a owl:Class .
 
-NIF-Organism:birnlex_120 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9555 .
+NCBITaxon:7711 a owl:Class .
 
+NCBITaxon:7742 a owl:Class .
 
+NCBITaxon:7955 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_121
+NCBITaxon:8292 a owl:Class .
 
-NIF-Organism:birnlex_121 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:10114 .
+NCBITaxon:8342 a owl:Class .
 
+NCBITaxon:8353 a owl:Class .
 
+NCBITaxon:8355 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_123
+NCBITaxon:8399 a owl:Class .
 
-NIF-Organism:birnlex_123 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9520 .
+NCBITaxon:8404 a owl:Class .
 
+NCBITaxon:8782 a owl:Class .
 
+NCBITaxon:9005 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_127
+NCBITaxon:9031 a owl:Class .
 
-NIF-Organism:birnlex_127 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9479 .
+NCBITaxon:9397 a owl:Class .
 
+NCBITaxon:9443 a owl:Class .
 
+NCBITaxon:9479 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_128
+NCBITaxon:9505 a owl:Class .
 
-NIF-Organism:birnlex_128 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9515 .
+NCBITaxon:9513 a owl:Class .
 
+NCBITaxon:9515 a owl:Class .
 
+NCBITaxon:9520 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_142
+NCBITaxon:9522 a owl:Class .
 
-NIF-Organism:birnlex_142 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:8782 .
+NCBITaxon:9527 a owl:Class .
 
+NCBITaxon:9538 a owl:Class .
 
+NCBITaxon:9541 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_147
+NCBITaxon:9542 a owl:Class .
 
-NIF-Organism:birnlex_147 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7215 .
+NCBITaxon:9544 a owl:Class .
 
+NCBITaxon:9555 a owl:Class .
 
+NCBITaxon:9598 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_157
+NCBITaxon:9606 a owl:Class .
 
-NIF-Organism:birnlex_157 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7088 .
+NCBITaxon:9615 a owl:Class .
 
+NCBITaxon:9681 a owl:Class .
 
+NCBITaxon:9685 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_167
+NCBITaxon:9845 a owl:Class .
 
-NIF-Organism:birnlex_167 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:10090 .
+NCBITaxon:9913 a owl:Class .
 
+NCBITaxon:9940 a owl:Class .
 
+NCBITaxon:9986 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_169
+NCBITaxon:9989 a owl:Class .
 
-NIF-Organism:birnlex_169 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6704 .
+NCBITaxon:10026 a owl:Class .
 
+NCBITaxon:10028 a owl:Class .
 
+NCBITaxon:10029 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_178
+NCBITaxon:10036 a owl:Class .
 
-NIF-Organism:birnlex_178 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7129 .
+NCBITaxon:10045 a owl:Class .
 
+NCBITaxon:10090 a owl:Class .
 
+NCBITaxon:10114 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_183
+NCBITaxon:10117 a owl:Class .
 
-NIF-Organism:birnlex_183 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7130 .
+NCBITaxon:10141 a owl:Class .
 
+NCBITaxon:11646 a owl:Class .
 
+NCBITaxon:31033 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_2
+NCBITaxon:32443 a owl:Class .
 
-NIF-Organism:birnlex_2 rdf:type owl:Class .
+NCBITaxon:33554 a owl:Class .
 
+NCBITaxon:40674 a owl:Class .
 
+NCBITaxon:50557 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_212
+NCBITaxon:55824 a owl:Class .
 
-NIF-Organism:birnlex_212 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7742 .
+NCBITaxon:59729 a owl:Class .
 
+NCBITaxon:70853 a owl:Class .
 
+NCBITaxon:85823 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_217
+NCBITaxon:93934 a owl:Class .
 
-NIF-Organism:birnlex_217 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9397 .
+NCBITaxon:314147 a owl:Class .
 
+NCBITaxon:314293 a owl:Class .
 
+NCBITaxon:314295 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_220
+NIF-Chemical:nlx_chem_100306 a owl:Class ;
+    owl:equivalentClass NCBITaxon:3483 .
 
-NIF-Organism:birnlex_220 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6762 .
+NIF-GrossAnatomy:birnlex_6 a owl:Class .
 
+NIF-Investigation:birnlex_2029 a owl:Class ;
+    owl:equivalentClass OBI:0001079 .
 
+NIF-Investigation:birnlex_2035 a owl:Class ;
+    owl:equivalentClass OBI:0001125 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_226
+NIF-Investigation:birnlex_2041 a owl:Class ;
+    owl:equivalentClass OBI:0000990 .
 
-NIF-Organism:birnlex_226 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9986 .
+NIF-Investigation:birnlex_2044 a owl:Class ;
+    owl:equivalentClass ERO:0000521 .
 
+NIF-Investigation:birnlex_2048 a owl:Class ;
+    owl:equivalentClass ERO:0000248 .
 
+NIF-Investigation:birnlex_2077 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_227
+NIF-Investigation:birnlex_2080 a owl:Class ;
+    owl:equivalentClass ERO:0000285 .
 
-NIF-Organism:birnlex_227 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9443 .
+NIF-Investigation:birnlex_2084 a owl:Class .
 
+NIF-Investigation:birnlex_2100 a owl:Class .
 
+NIF-Investigation:birnlex_2106 a owl:Class ;
+    owl:equivalentClass OBI:0400169 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_233
+NIF-Investigation:birnlex_2107 a owl:Class ;
+    owl:equivalentClass OBI:0302887 .
 
-NIF-Organism:birnlex_233 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:314147 .
+NIF-Investigation:birnlex_2112 a owl:Class ;
+    owl:equivalentClass OBI:0000940 .
 
+NIF-Investigation:birnlex_2135 a owl:Class ;
+    owl:equivalentClass ERO:0000640 .
 
+NIF-Investigation:birnlex_2156 a owl:Class ;
+    owl:equivalentClass ERO:0000491 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_235
+NIF-Investigation:birnlex_2163 a owl:Class ;
+    owl:equivalentClass ERO:0001181,
+        ERO:0001242 .
 
-NIF-Organism:birnlex_235 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:8353 ;
-                         
-                         rdfs:subClassOf NIF-Organism:birnlex_2 .
+NIF-Investigation:birnlex_2257 a owl:Class ;
+    owl:equivalentClass ERO:0001640 .
 
+NIF-Investigation:birnlex_2258 a owl:Class ;
+    owl:equivalentClass ERO:0000200 .
 
+NIF-Investigation:birnlex_2261 a owl:Class ;
+    owl:equivalentClass ERO:0001637 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_239
+NIF-Investigation:birnlex_2262 a owl:Class ;
+    owl:equivalentClass ERO:0001636 .
 
-NIF-Organism:birnlex_239 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9005 .
+NIF-Investigation:birnlex_2267 a owl:Class ;
+    owl:equivalentClass ERO:0001772 .
 
+NIF-Investigation:birnlex_2344 a owl:Class ;
+    owl:equivalentClass license:SWO_1000004 .
 
+NIF-Investigation:birnlex_2348 a owl:Class ;
+    owl:equivalentClass license:SWO_9000088 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_241
+NIF-Investigation:birnlex_2351 a owl:Class ;
+    owl:equivalentClass license:SWO_9000074 .
 
-NIF-Organism:birnlex_241 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:8355 .
+NIF-Investigation:birnlex_2364 a owl:Class ;
+    owl:equivalentClass bibo:Patent .
 
+NIF-Investigation:birnlex_2419 a owl:Class ;
+    owl:equivalentClass OBI:0000566 .
 
+NIF-Investigation:birnlex_2421 a owl:Class ;
+    owl:equivalentClass OBI:0000930 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_252
+NIF-Investigation:birnlex_2426 a owl:Class ;
+    owl:equivalentClass ERO:0001805 .
 
-NIF-Organism:birnlex_252 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:40674 .
+NIF-Investigation:birnlex_2427 a owl:Class ;
+    owl:equivalentClass ERO:0001590 .
 
+NIF-Investigation:birnlex_2453 a owl:Class ;
+    owl:equivalentClass OBI:0001070 .
 
+NIF-Investigation:birnlex_2482 a owl:Class ;
+    owl:equivalentClass ERO:0001325 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_256
+NIF-Investigation:nlx_82779 a owl:Class ;
+    owl:equivalentClass ERO:0000330 .
 
-NIF-Organism:birnlex_256 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:314293 .
+NIF-Investigation:nlx_inv_090912 a owl:Class ;
+    owl:equivalentClass ERO:0001235 .
 
+NIF-Investigation:nlx_inv_20090241 a owl:Class .
 
+NIF-Investigation:nlx_inv_20090407 a owl:Class ;
+    owl:equivalentClass ERO:0000019 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_257
+NIF-Investigation:nlx_inv_20090501 a owl:Class ;
+    owl:equivalentClass ERO:0000499 .
 
-NIF-Organism:birnlex_257 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:93934 .
+NIF-Investigation:nlx_inv_20090602 a owl:Class ;
+    owl:equivalentClass ERO:0001369 .
 
+NIF-Investigation:nlx_inv_20090608 a owl:Class ;
+    owl:equivalentClass ERO:0001240 .
 
+NIF-Investigation:nlx_inv_20090610 a owl:Class ;
+    owl:equivalentClass ERO:0000771 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_263
+NIF-Investigation:OBI_0000470 a owl:Class ;
+    owl:equivalentClass OBI:0000470 .
 
-NIF-Organism:birnlex_263 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9989 .
+NIF-Investigation:OBI_0000690 a owl:Class ;
+    owl:equivalentClass OBI:0000690 .
 
+NIF-Investigation:OBI_0000716 a owl:Class ;
+    owl:equivalentClass ERO:0000926 .
 
+NIF-Molecule:DB00668 a owl:Class ;
+    owl:equivalentClass OBI:0000610 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_267
+NIF-NCBITaxonomy-Slim:nlx_organ_110506 a owl:Class .
 
-NIF-Organism:birnlex_267 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9031 .
+NIF-Organism:birnlex_2 a owl:Class .
 
+NIF-Organism:birnlex_101 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9681 .
 
+NIF-Organism:birnlex_103 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9544 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_275
+NIF-Organism:birnlex_112 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7091 .
 
-NIF-Organism:birnlex_275 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:50557 .
+NIF-Organism:birnlex_113 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9685 .
 
+NIF-Organism:birnlex_115 a owl:Class ;
+    owl:equivalentClass NCBITaxon:10117 .
 
+NIF-Organism:birnlex_120 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9555 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_278
+NIF-Organism:birnlex_121 a owl:Class ;
+    owl:equivalentClass NCBITaxon:10114 .
 
-NIF-Organism:birnlex_278 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6657 .
+NIF-Organism:birnlex_123 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9520 .
 
+NIF-Organism:birnlex_127 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9479 .
 
+NIF-Organism:birnlex_128 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9515 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_282
+NIF-Organism:birnlex_142 a owl:Class ;
+    owl:equivalentClass NCBITaxon:8782 .
 
-NIF-Organism:birnlex_282 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7147 .
+NIF-Organism:birnlex_147 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7215 .
 
+NIF-Organism:birnlex_157 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7088 .
 
+NIF-Organism:birnlex_167 a owl:Class ;
+    owl:equivalentClass NCBITaxon:10090 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_291
+NIF-Organism:birnlex_169 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6704 .
 
-NIF-Organism:birnlex_291 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9541 .
+NIF-Organism:birnlex_178 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7129 .
 
+NIF-Organism:birnlex_183 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7130 .
 
+NIF-Organism:birnlex_212 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7742 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_297
+NIF-Organism:birnlex_217 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9397 .
 
-NIF-Organism:birnlex_297 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:10141 .
+NIF-Organism:birnlex_220 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6762 .
 
+NIF-Organism:birnlex_226 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9986 .
 
+NIF-Organism:birnlex_227 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9443 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_300
+NIF-Organism:birnlex_233 a owl:Class ;
+    owl:equivalentClass NCBITaxon:314147 .
 
-NIF-Organism:birnlex_300 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9598 .
+NIF-Organism:birnlex_235 a owl:Class ;
+    owl:equivalentClass NCBITaxon:8353 ;
+    rdfs:subClassOf NIF-Organism:birnlex_2 .
 
+NIF-Organism:birnlex_239 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9005 .
 
+NIF-Organism:birnlex_241 a owl:Class ;
+    owl:equivalentClass NCBITaxon:8355 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_360
+NIF-Organism:birnlex_252 a owl:Class ;
+    owl:equivalentClass NCBITaxon:40674 .
 
-NIF-Organism:birnlex_360 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9505 .
+NIF-Organism:birnlex_256 a owl:Class ;
+    owl:equivalentClass NCBITaxon:314293 .
 
+NIF-Organism:birnlex_257 a owl:Class ;
+    owl:equivalentClass NCBITaxon:93934 .
 
+NIF-Organism:birnlex_263 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9989 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_363
+NIF-Organism:birnlex_267 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9031 .
 
-NIF-Organism:birnlex_363 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7955 .
+NIF-Organism:birnlex_275 a owl:Class ;
+    owl:equivalentClass NCBITaxon:50557 .
 
+NIF-Organism:birnlex_278 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6657 .
 
+NIF-Organism:birnlex_282 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7147 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_374
+NIF-Organism:birnlex_291 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9541 .
 
-NIF-Organism:birnlex_374 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:55824 .
+NIF-Organism:birnlex_297 a owl:Class ;
+    owl:equivalentClass NCBITaxon:10141 .
 
+NIF-Organism:birnlex_300 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9598 .
 
+NIF-Organism:birnlex_360 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9505 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_392
+NIF-Organism:birnlex_363 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7955 .
 
-NIF-Organism:birnlex_392 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9522 .
+NIF-Organism:birnlex_374 a owl:Class ;
+    owl:equivalentClass NCBITaxon:55824 .
 
+NIF-Organism:birnlex_392 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9522 .
 
+NIF-Organism:birnlex_394 a owl:Class ;
+    owl:equivalentClass NCBITaxon:8292 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_394
+NIF-Organism:birnlex_396 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6752 .
 
-NIF-Organism:birnlex_394 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:8292 .
+NIF-Organism:birnlex_407 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9542 .
 
+NIF-Organism:birnlex_409 a owl:Class ;
+    owl:equivalentClass NCBITaxon:85823 .
 
+NIF-Organism:birnlex_416 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6724 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_396
+NIF-Organism:birnlex_420 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6239 .
 
-NIF-Organism:birnlex_396 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6752 .
+NIF-Organism:birnlex_434 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6993 .
 
+NIF-Organism:birnlex_447 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7460 .
 
+NIF-Organism:birnlex_451 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6995 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_407
+NIF-Organism:birnlex_456 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9940 .
 
-NIF-Organism:birnlex_407 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9542 .
+NIF-Organism:birnlex_464 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6499 .
 
+NIF-Organism:birnlex_476 a owl:Class ;
+    owl:equivalentClass NCBITaxon:59729 .
 
+NIF-Organism:birnlex_491 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7399 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_409
+NIF-Organism:birnlex_495 a owl:Class ;
+    owl:equivalentClass NCBITaxon:32443 .
 
-NIF-Organism:birnlex_409 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:85823 .
+NIF-Organism:birnlex_502 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7370 .
 
+NIF-Organism:birnlex_510 a owl:Class ;
+    owl:equivalentClass NCBITaxon:33554 .
 
+NIF-Organism:birnlex_516 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9606 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_416
+NIF-Organism:birnlex_519 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6605 .
 
-NIF-Organism:birnlex_416 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6724 .
+NIF-Organism:birnlex_520 a owl:Class ;
+    owl:equivalentClass NCBITaxon:8399 .
 
+NIF-Organism:birnlex_523 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9845 .
 
+NIF-Organism:birnlex_528 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9845 ;
+    rdfs:subClassOf NIF-Organism:birnlex_2 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_420
+NIF-Organism:birnlex_529 a owl:Class ;
+    owl:equivalentClass NCBITaxon:314295 .
 
-NIF-Organism:birnlex_420 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6239 .
+NIF-Organism:birnlex_532 a owl:Class ;
+    owl:equivalentClass NCBITaxon:8404 .
 
+NIF-Organism:birnlex_535 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7227 .
 
+NIF-Organism:birnlex_541 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6656 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_434
+NIF-Organism:birnlex_578 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6231 .
 
-NIF-Organism:birnlex_434 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6993 .
+NIF-Organism:birnlex_585 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6693 .
 
+NIF-Organism:birnlex_588 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9513 .
 
+NIF-Organism:birnlex_589 a owl:Class ;
+    owl:equivalentClass NCBITaxon:7711 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_447
+NIF-Organism:birnlex_601 a owl:Class ;
+    owl:equivalentClass NCBITaxon:8342 .
 
-NIF-Organism:birnlex_447 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7460 .
+NIF-Organism:birnlex_609 a owl:Class ;
+    owl:equivalentClass NCBITaxon:31033 .
 
+NIF-Organism:birnlex_632 a owl:Class ;
+    owl:equivalentClass NCBITaxon:8353 .
 
+NIF-Organism:birnlex_635 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9538 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_451
+NIF-Organism:birnlex_664 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6251 .
 
-NIF-Organism:birnlex_451 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6995 .
+NIF-Organism:birnlex_670 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9615 .
 
+NIF-Organism:birnlex_673 a owl:Class ;
+    owl:equivalentClass NCBITaxon:9913 .
 
+NIF-Organism:birnlex_676 a owl:Class ;
+    owl:equivalentClass NCBITaxon:10026 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_456
+NIF-Organism:birnlex_678 a owl:Class ;
+    owl:equivalentClass NCBITaxon:10036 .
 
-NIF-Organism:birnlex_456 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9940 .
+NIF-Organism:birnlex_679 a owl:Class ;
+    owl:equivalentClass NCBITaxon:10028 .
 
+NIF-Organism:birnlex_680 a owl:Class ;
+    owl:equivalentClass NCBITaxon:10029 .
 
+NIF-Organism:birnlex_7201 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6178 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_464
+NIF-Organism:birnlex_7241 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6535 .
 
-NIF-Organism:birnlex_464 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6499 .
+NIF-Organism:birnlex_7266 a owl:Class ;
+    owl:equivalentClass NCBITaxon:70853 .
 
+NIF-Organism:birnlex_7292 a owl:Class ;
+    owl:equivalentClass NCBITaxon:6535 .
 
+NIF-Organism:nlx_organ_090808 a owl:Class ;
+    owl:equivalentClass NCBITaxon:11646 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_476
+NIF-Organism:nlx_organ_20090401 a owl:Class ;
+    owl:equivalentClass NCBITaxon:10045 .
 
-NIF-Organism:birnlex_476 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:59729 .
+NIF-Quality:birnlex_2107 a owl:Class ;
+    owl:equivalentClass OBI:0302887 .
 
+NIF-Resource:nlx_res_20090102 a owl:Class ;
+    owl:equivalentClass ERO:0001554,
+        swo:SWO_0000516 .
 
+NIF-Resource:nlx_res_20090103 a owl:Class ;
+    owl:equivalentClass ERO:0000071 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_491
+NIF-Resource:nlx_res_20090405 a owl:Class ;
+    owl:equivalentClass ERO:0001716 .
 
-NIF-Organism:birnlex_491 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7399 .
+NIF-Resource:nlx_res_20090412 a owl:Class ;
+    owl:equivalentClass OBI:0000272 .
 
+NIF-Resource:nlx_res_20090415 a owl:Class .
 
+NIF-Resource:nlx_res_20090423 a owl:Class ;
+    owl:equivalentClass ERO:0001262 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_495
+NIF-Resource:nlx_res_20090424 a owl:Class ;
+    owl:equivalentClass ERO:0000395 .
 
-NIF-Organism:birnlex_495 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:32443 .
+NIF-Resource:nlx_res_20090428 a owl:Class ;
+    owl:equivalentClass ERO:0001257 .
 
+NIF-Resource:nlx_res_20090444 a owl:Class ;
+    owl:equivalentClass ERO:0000393 .
 
+NIF-Scientific-Discipline:nlx_inv_100615 a owl:Class ;
+    owl:equivalentClass ERO:0001610 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_502
+OBI:0000011 a owl:Class .
 
-NIF-Organism:birnlex_502 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7370 .
+OBI:0000051 a owl:Class .
 
+OBI:0000052 a owl:Class .
 
+OBI:0000070 a owl:Class ;
+    owl:equivalentClass PATO:0000003 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_510
+OBI:0000086 a owl:Class .
 
-NIF-Organism:birnlex_510 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:33554 .
+OBI:0000094 a owl:Class .
 
+OBI:0000185 a owl:Class .
 
+OBI:0000272 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_516
+OBI:0000470 a owl:Class .
 
-NIF-Organism:birnlex_516 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9606 .
+OBI:0000566 a owl:Class .
 
+OBI:0000610 a owl:Class .
 
+OBI:0000690 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_519
+OBI:0000816 a owl:Class .
 
-NIF-Organism:birnlex_519 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6605 .
+OBI:0000930 a owl:Class .
 
+OBI:0000940 a owl:Class .
 
+OBI:0000990 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_520
+OBI:0001070 a owl:Class .
 
-NIF-Organism:birnlex_520 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:8399 .
+OBI:0001079 a owl:Class .
 
+OBI:0001125 a owl:Class .
 
+OBI:0001135 a owl:Class ;
+    owl:equivalentClass PATO:0000185 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_523
+OBI:0100026 a owl:Class .
 
-NIF-Organism:birnlex_523 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9845 .
+OBI:0200000 a owl:Class .
 
+OBI:0302887 a owl:Class .
 
+OBI:0400013 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_528
+OBI:0400169 a owl:Class .
 
-NIF-Organism:birnlex_528 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9845 ;
-                         
-                         rdfs:subClassOf NIF-Organism:birnlex_2 .
+OBI:1110055 a owl:Class .
 
+PATO:0000001 a owl:Class .
 
+PATO:0000003 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_529
+PATO:0000083 a owl:Class ;
+    owl:equivalentClass study_design:OCRE100038 .
 
-NIF-Organism:birnlex_529 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:314295 .
+PATO:0000185 a owl:Class .
 
+SO:0000112 a owl:Class .
 
+SO:0000156 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_532
+SO:0000157 a owl:Class .
 
-NIF-Organism:birnlex_532 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:8404 .
+SO:0000158 a owl:Class .
 
+SO:0000337 a owl:Class .
 
+SO:0000695 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_535
+SO:0001183 a owl:Class .
 
-NIF-Organism:birnlex_535 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7227 .
+study_design:OCRE100038 a owl:Class .
 
+swo:SWO_0000516 a owl:Class .
 
+swo:SWO_0000580 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_541
+UBERON:0000061 a owl:Class .
 
-NIF-Organism:birnlex_541 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6656 .
+UBERON:0000465 a owl:Class ;
+    rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#IndependentContinuant> .
 
+UBERON:0000479 a owl:Class .
 
+UBERON:0001062 a owl:Class .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_578
-
-NIF-Organism:birnlex_578 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6231 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_585
-
-NIF-Organism:birnlex_585 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6693 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_588
-
-NIF-Organism:birnlex_588 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9513 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_589
-
-NIF-Organism:birnlex_589 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:7711 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_601
-
-NIF-Organism:birnlex_601 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:8342 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_609
-
-NIF-Organism:birnlex_609 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:31033 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_632
-
-NIF-Organism:birnlex_632 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:8353 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_635
-
-NIF-Organism:birnlex_635 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9538 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_664
-
-NIF-Organism:birnlex_664 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:6251 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_670
-
-NIF-Organism:birnlex_670 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9615 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_673
-
-NIF-Organism:birnlex_673 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:9913 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_676
-
-NIF-Organism:birnlex_676 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:10026 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_678
-
-NIF-Organism:birnlex_678 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:10036 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_679
-
-NIF-Organism:birnlex_679 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:10028 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_680
-
-NIF-Organism:birnlex_680 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass NCBITaxon:10029 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_7201
-
-NIF-Organism:birnlex_7201 rdf:type owl:Class ;
-                          
-                          owl:equivalentClass NCBITaxon:6178 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_7241
-
-NIF-Organism:birnlex_7241 rdf:type owl:Class ;
-                          
-                          owl:equivalentClass NCBITaxon:6535 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_7266
-
-NIF-Organism:birnlex_7266 rdf:type owl:Class ;
-                          
-                          owl:equivalentClass NCBITaxon:70853 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#birnlex_7292
-
-NIF-Organism:birnlex_7292 rdf:type owl:Class ;
-                          
-                          owl:equivalentClass NCBITaxon:6535 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#nlx_organ_090808
-
-NIF-Organism:nlx_organ_090808 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass NCBITaxon:11646 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Organism.owl#nlx_organ_20090401
-
-NIF-Organism:nlx_organ_20090401 rdf:type owl:Class ;
-                                
-                                owl:equivalentClass NCBITaxon:10045 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Quality.owl#birnlex_2107
-
-NIF-Quality:birnlex_2107 rdf:type owl:Class ;
-                         
-                         owl:equivalentClass OBI:0302887 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#OBI_0000470
-
-NIF-Investigation:OBI_0000470 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass OBI:0000470 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#OBI_0000690
-
-NIF-Investigation:OBI_0000690 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass OBI:0000690 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#OBI_0000716
-
-NIF-Investigation:OBI_0000716 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass ERO:0000926 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2029
-
-NIF-Investigation:birnlex_2029 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass OBI:0001079 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2035
-
-NIF-Investigation:birnlex_2035 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass OBI:0001125 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2041
-
-NIF-Investigation:birnlex_2041 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass OBI:0000990 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2044
-
-NIF-Investigation:birnlex_2044 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0000521 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2048
-
-NIF-Investigation:birnlex_2048 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0000248 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2077
-
-NIF-Investigation:birnlex_2077 rdf:type owl:Class .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2080
-
-NIF-Investigation:birnlex_2080 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0000285 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2084
-
-NIF-Investigation:birnlex_2084 rdf:type owl:Class .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2100
-
-NIF-Investigation:birnlex_2100 rdf:type owl:Class .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2106
-
-NIF-Investigation:birnlex_2106 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass OBI:0400169 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2107
-
-NIF-Investigation:birnlex_2107 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass OBI:0302887 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2112
-
-NIF-Investigation:birnlex_2112 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass OBI:0000940 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2135
-
-NIF-Investigation:birnlex_2135 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0000640 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2156
-
-NIF-Investigation:birnlex_2156 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0000491 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2163
-
-NIF-Investigation:birnlex_2163 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0001181 ,
-                                                   ERO:0001242 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2257
-
-NIF-Investigation:birnlex_2257 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0001640 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2258
-
-NIF-Investigation:birnlex_2258 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0000200 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2261
-
-NIF-Investigation:birnlex_2261 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0001637 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2262
-
-NIF-Investigation:birnlex_2262 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0001636 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2267
-
-NIF-Investigation:birnlex_2267 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0001772 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2344
-
-NIF-Investigation:birnlex_2344 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass license:SWO_1000004 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2348
-
-NIF-Investigation:birnlex_2348 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass license:SWO_9000088 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2351
-
-NIF-Investigation:birnlex_2351 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass license:SWO_9000074 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2364
-
-NIF-Investigation:birnlex_2364 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass bibo:Patent .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2419
-
-NIF-Investigation:birnlex_2419 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass OBI:0000566 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2421
-
-NIF-Investigation:birnlex_2421 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass OBI:0000930 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2426
-
-NIF-Investigation:birnlex_2426 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0001805 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2427
-
-NIF-Investigation:birnlex_2427 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0001590 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2453
-
-NIF-Investigation:birnlex_2453 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass OBI:0001070 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#birnlex_2482
-
-NIF-Investigation:birnlex_2482 rdf:type owl:Class ;
-                               
-                               owl:equivalentClass ERO:0001325 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#nlx_82779
-
-NIF-Investigation:nlx_82779 rdf:type owl:Class ;
-                            
-                            owl:equivalentClass ERO:0000330 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#nlx_inv_090912
-
-NIF-Investigation:nlx_inv_090912 rdf:type owl:Class ;
-                                 
-                                 owl:equivalentClass ERO:0001235 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#nlx_inv_20090241
-
-NIF-Investigation:nlx_inv_20090241 rdf:type owl:Class .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#nlx_inv_20090407
-
-NIF-Investigation:nlx_inv_20090407 rdf:type owl:Class ;
-                                   
-                                   owl:equivalentClass ERO:0000019 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#nlx_inv_20090501
-
-NIF-Investigation:nlx_inv_20090501 rdf:type owl:Class ;
-                                   
-                                   owl:equivalentClass ERO:0000499 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#nlx_inv_20090602
-
-NIF-Investigation:nlx_inv_20090602 rdf:type owl:Class ;
-                                   
-                                   owl:equivalentClass ERO:0001369 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#nlx_inv_20090608
-
-NIF-Investigation:nlx_inv_20090608 rdf:type owl:Class ;
-                                   
-                                   owl:equivalentClass ERO:0001240 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#nlx_inv_20090610
-
-NIF-Investigation:nlx_inv_20090610 rdf:type owl:Class ;
-                                   
-                                   owl:equivalentClass ERO:0000771 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#nlx_res_20090102
-
-NIF-Resource:nlx_res_20090102 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass ERO:0001554 ,
-                                                  swo:SWO_0000516 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#nlx_res_20090103
-
-NIF-Resource:nlx_res_20090103 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass ERO:0000071 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#nlx_res_20090405
-
-NIF-Resource:nlx_res_20090405 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass ERO:0001716 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#nlx_res_20090412
-
-NIF-Resource:nlx_res_20090412 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass OBI:0000272 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#nlx_res_20090415
-
-NIF-Resource:nlx_res_20090415 rdf:type owl:Class .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#nlx_res_20090423
-
-NIF-Resource:nlx_res_20090423 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass ERO:0001262 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#nlx_res_20090424
-
-NIF-Resource:nlx_res_20090424 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass ERO:0000395 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#nlx_res_20090428
-
-NIF-Resource:nlx_res_20090428 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass ERO:0001257 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#nlx_res_20090444
-
-NIF-Resource:nlx_res_20090444 rdf:type owl:Class ;
-                              
-                              owl:equivalentClass ERO:0000393 .
-
-
-
-###  http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Scientific-Discipline.owl#nlx_inv_100615
-
-NIF-Scientific-Discipline:nlx_inv_100615 rdf:type owl:Class ;
-                                         
-                                         owl:equivalentClass ERO:0001610 .
-
-
-
-###  http://purl.obolibrary.org/obo/DOID_4
-
-DOID:4 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000004
-
-ERO:0000004 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000006
-
-ERO:0000006 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000009
-
-ERO:0000009 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000019
-
-ERO:0000019 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000071
-
-ERO:0000071 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000200
-
-ERO:0000200 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000248
-
-ERO:0000248 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000285
-
-ERO:0000285 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000289
-
-ERO:0000289 rdf:type owl:Class ;
-            
-            owl:equivalentClass SO:0000156 .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000290
-
-ERO:0000290 rdf:type owl:Class ;
-            
-            owl:equivalentClass SO:0000158 .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000330
-
-ERO:0000330 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000393
-
-ERO:0000393 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000395
-
-ERO:0000395 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000491
-
-ERO:0000491 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000499
-
-ERO:0000499 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000521
-
-ERO:0000521 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000631
-
-ERO:0000631 rdf:type owl:Class ;
-            
-            owl:equivalentClass SO:0000112 .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000632
-
-ERO:0000632 rdf:type owl:Class ;
-            
-            owl:equivalentClass SO:0001183 .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000640
-
-ERO:0000640 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000729
-
-ERO:0000729 rdf:type owl:Class ;
-            
-            owl:equivalentClass GO:0009293 .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000771
-
-ERO:0000771 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000870
-
-ERO:0000870 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0000926
-
-ERO:0000926 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001135
-
-ERO:0001135 rdf:type owl:Class ;
-            
-            owl:equivalentClass SO:0000157 .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001181
-
-ERO:0001181 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001210
-
-ERO:0001210 rdf:type owl:Class ;
-            
-            owl:equivalentClass SO:0000337 .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001235
-
-ERO:0001235 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001240
-
-ERO:0001240 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001242
-
-ERO:0001242 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001257
-
-ERO:0001257 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001262
-
-ERO:0001262 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001300
-
-ERO:0001300 rdf:type owl:Class ;
-            
-            owl:equivalentClass cogat:CAO_00305 .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001325
-
-ERO:0001325 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001344
-
-ERO:0001344 rdf:type owl:Class ;
-            
-            owl:equivalentClass GO:0046959 .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001369
-
-ERO:0001369 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001432
-
-ERO:0001432 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001479
-
-ERO:0001479 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001554
-
-ERO:0001554 rdf:type owl:Class ;
-            
-            owl:equivalentClass IAO:0000027 .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001562
-
-ERO:0001562 rdf:type owl:Class ;
-            
-            owl:equivalentClass GO:0006113 .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001590
-
-ERO:0001590 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001610
-
-ERO:0001610 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001636
-
-ERO:0001636 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001637
-
-ERO:0001637 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001640
-
-ERO:0001640 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001716
-
-ERO:0001716 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001772
-
-ERO:0001772 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/ERO_0001805
-
-ERO:0001805 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/GO_0006113
-
-GO:0006113 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/GO_0008150
-
-GO:0008150 rdf:type owl:Class ;
-           
-           rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/span#Process> .
-
-
-
-###  http://purl.obolibrary.org/obo/GO_0009293
-
-GO:0009293 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/GO_0046959
-
-GO:0046959 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/IAO_0000013
-
-IAO:0000013 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/IAO_0000027
-
-IAO:0000027 rdf:type owl:Class ;
-            
-            owl:equivalentClass swo:SWO_0000516 .
-
-
-
-###  http://purl.obolibrary.org/obo/IAO_0000030
-
-IAO:0000030 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/IAO_0000064
-
-IAO:0000064 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/IAO_0000101
-
-IAO:0000101 rdf:type owl:Class ;
-            
-            owl:equivalentClass swo:SWO_0000580 .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_10026
-
-NCBITaxon:10026 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_10028
-
-NCBITaxon:10028 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_10029
-
-NCBITaxon:10029 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_10036
-
-NCBITaxon:10036 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_10045
-
-NCBITaxon:10045 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_10090
-
-NCBITaxon:10090 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_10114
-
-NCBITaxon:10114 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_10117
-
-NCBITaxon:10117 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_10141
-
-NCBITaxon:10141 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_11646
-
-NCBITaxon:11646 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_31033
-
-NCBITaxon:31033 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_314147
-
-NCBITaxon:314147 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_314293
-
-NCBITaxon:314293 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_314295
-
-NCBITaxon:314295 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_32443
-
-NCBITaxon:32443 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_33554
-
-NCBITaxon:33554 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_3483
-
-NCBITaxon:3483 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_40674
-
-NCBITaxon:40674 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_50557
-
-NCBITaxon:50557 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_55824
-
-NCBITaxon:55824 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_59729
-
-NCBITaxon:59729 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6178
-
-NCBITaxon:6178 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6231
-
-NCBITaxon:6231 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6239
-
-NCBITaxon:6239 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6251
-
-NCBITaxon:6251 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6340
-
-NCBITaxon:6340 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6499
-
-NCBITaxon:6499 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6535
-
-NCBITaxon:6535 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6605
-
-NCBITaxon:6605 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6656
-
-NCBITaxon:6656 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6657
-
-NCBITaxon:6657 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6693
-
-NCBITaxon:6693 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6704
-
-NCBITaxon:6704 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6724
-
-NCBITaxon:6724 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6752
-
-NCBITaxon:6752 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6762
-
-NCBITaxon:6762 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6993
-
-NCBITaxon:6993 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_6995
-
-NCBITaxon:6995 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_70853
-
-NCBITaxon:70853 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7088
-
-NCBITaxon:7088 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7091
-
-NCBITaxon:7091 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7129
-
-NCBITaxon:7129 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7130
-
-NCBITaxon:7130 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7147
-
-NCBITaxon:7147 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7215
-
-NCBITaxon:7215 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7227
-
-NCBITaxon:7227 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7370
-
-NCBITaxon:7370 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7399
-
-NCBITaxon:7399 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7460
-
-NCBITaxon:7460 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7711
-
-NCBITaxon:7711 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7742
-
-NCBITaxon:7742 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_7955
-
-NCBITaxon:7955 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_8292
-
-NCBITaxon:8292 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_8342
-
-NCBITaxon:8342 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_8353
-
-NCBITaxon:8353 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_8355
-
-NCBITaxon:8355 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_8399
-
-NCBITaxon:8399 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_8404
-
-NCBITaxon:8404 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_85823
-
-NCBITaxon:85823 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_8782
-
-NCBITaxon:8782 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9005
-
-NCBITaxon:9005 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9031
-
-NCBITaxon:9031 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_93934
-
-NCBITaxon:93934 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9397
-
-NCBITaxon:9397 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9443
-
-NCBITaxon:9443 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9479
-
-NCBITaxon:9479 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9505
-
-NCBITaxon:9505 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9513
-
-NCBITaxon:9513 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9515
-
-NCBITaxon:9515 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9520
-
-NCBITaxon:9520 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9522
-
-NCBITaxon:9522 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9527
-
-NCBITaxon:9527 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9538
-
-NCBITaxon:9538 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9541
-
-NCBITaxon:9541 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9542
-
-NCBITaxon:9542 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9544
-
-NCBITaxon:9544 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9555
-
-NCBITaxon:9555 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9598
-
-NCBITaxon:9598 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9606
-
-NCBITaxon:9606 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9615
-
-NCBITaxon:9615 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9681
-
-NCBITaxon:9681 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9685
-
-NCBITaxon:9685 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9845
-
-NCBITaxon:9845 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9913
-
-NCBITaxon:9913 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9940
-
-NCBITaxon:9940 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9986
-
-NCBITaxon:9986 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9989
-
-NCBITaxon:9989 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000011
-
-OBI:0000011 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000051
-
-OBI:0000051 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000052
-
-OBI:0000052 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000070
-
-OBI:0000070 rdf:type owl:Class ;
-            
-            owl:equivalentClass PATO:0000003 .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000086
-
-OBI:0000086 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000094
-
-OBI:0000094 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000185
-
-OBI:0000185 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000272
-
-OBI:0000272 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000470
-
-OBI:0000470 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000566
-
-OBI:0000566 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000610
-
-OBI:0000610 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000690
-
-OBI:0000690 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000816
-
-OBI:0000816 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000930
-
-OBI:0000930 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000940
-
-OBI:0000940 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0000990
-
-OBI:0000990 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0001070
-
-OBI:0001070 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0001079
-
-OBI:0001079 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0001125
-
-OBI:0001125 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0001135
-
-OBI:0001135 rdf:type owl:Class ;
-            
-            owl:equivalentClass PATO:0000185 .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0100026
-
-OBI:0100026 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0200000
-
-OBI:0200000 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0302887
-
-OBI:0302887 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0400013
-
-OBI:0400013 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_0400169
-
-OBI:0400169 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/OBI_1110055
-
-OBI:1110055 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/PATO_0000001
-
-PATO:0000001 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/PATO_0000003
-
-PATO:0000003 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/PATO_0000083
-
-PATO:0000083 rdf:type owl:Class ;
-             
-             owl:equivalentClass study_design:OCRE100038 .
-
-
-
-###  http://purl.obolibrary.org/obo/PATO_0000185
-
-PATO:0000185 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/SO_0000112
-
-SO:0000112 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/SO_0000156
-
-SO:0000156 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/SO_0000157
-
-SO:0000157 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/SO_0000158
-
-SO:0000158 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/SO_0000337
-
-SO:0000337 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/SO_0000695
-
-SO:0000695 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/SO_0001183
-
-SO:0001183 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/UBERON_0000061
-
-UBERON:0000061 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/UBERON_0000465
-
-UBERON:0000465 rdf:type owl:Class ;
-               
-               rdfs:subClassOf <http://www.ifomis.org/bfo/1.1/snap#IndependentContinuant> .
-
-
-
-###  http://purl.obolibrary.org/obo/UBERON_0000479
-
-UBERON:0000479 rdf:type owl:Class .
-
-
-
-###  http://purl.obolibrary.org/obo/UBERON_0001062
-
-UBERON:0001062 rdf:type owl:Class .
-
-
-
-###  http://purl.org/dc/dcmitype/Image
-
-dcmitype:Image rdf:type owl:Class ;
-               
-               owl:equivalentClass swo:SWO_0000580 .
-
-
-
-###  http://purl.org/net/OCRe/study_design.owl#OCRE100038
-
-study_design:OCRE100038 rdf:type owl:Class .
-
-
-
-###  http://purl.org/ontology/bibo/Patent
-
-bibo:Patent rdf:type owl:Class .
-
-
-
-###  http://vivoweb.org/ontology/core#Association
-
-core:Association rdf:type owl:Class ;
-                 
-                 owl:equivalentClass cogat:CAO_00139 .
-
-
-
-###  http://vivoweb.org/ontology/core#Company
-
-core:Company rdf:type owl:Class .
-
-
-
-###  http://vivoweb.org/ontology/core#Program
-
-core:Program rdf:type owl:Class .
-
-
-
-###  http://vivoweb.org/ontology/core#University
-
-core:University rdf:type owl:Class .
-
-
-
-###  http://www.cognitiveatlas.org/ontology/cogat.owl#CAO_00139
-
-cogat:CAO_00139 rdf:type owl:Class .
-
-
-
-###  http://www.cognitiveatlas.org/ontology/cogat.owl#CAO_00305
-
-cogat:CAO_00305 rdf:type owl:Class .
-
-
-
-###  http://www.ebi.ac.uk/efo/swo/SWO_0000516
-
-swo:SWO_0000516 rdf:type owl:Class .
-
-
-
-###  http://www.ebi.ac.uk/efo/swo/SWO_0000580
-
-swo:SWO_0000580 rdf:type owl:Class .
-
-
-
-###  http://www.ebi.ac.uk/swo/license/SWO_1000004
-
-license:SWO_1000004 rdf:type owl:Class .
-
-
-
-###  http://www.ebi.ac.uk/swo/license/SWO_9000074
-
-license:SWO_9000074 rdf:type owl:Class .
-
-
-
-###  http://www.ebi.ac.uk/swo/license/SWO_9000088
-
-license:SWO_9000088 rdf:type owl:Class .
-
-
-
-###  http://www.ifomis.org/bfo/1.1/snap#IndependentContinuant
-
-<http://www.ifomis.org/bfo/1.1/snap#IndependentContinuant> rdf:type owl:Class .
-
-
-
-###  http://www.ifomis.org/bfo/1.1/span#Process
-
-<http://www.ifomis.org/bfo/1.1/span#Process> rdf:type owl:Class .
-
-
-
-###  http://www.ifomis.org/bfo/1.1/span#ProcessualEntity
-
-<http://www.ifomis.org/bfo/1.1/span#ProcessualEntity> rdf:type owl:Class .
-
-
-
-
-###  Generated by the OWL API (version 4.1.4) https://github.com/owlcs/owlapi
-
+### Serialized using the nifstd custom serializer v1.0.5
