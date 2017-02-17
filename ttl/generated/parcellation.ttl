@@ -1,470 +1,207 @@
-@prefix : <http://www.semanticweb.org/owl/owlapi/turtle#> .
 @prefix ilx: <http://uri.interlex.org/base/> .
+@prefix ILXREPLACE: <http://ILXREPLACE.org/> .
+@prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
-@base <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation.ttl> .
-
-<http://ontology.neuinfo.org/NIF/ttl/generated/parcellation.ttl> rdf:type owl:Ontology ;
-                                                                 
-                                                                 owl:imports <http://ontology.neuinfo.org/NIF/ttl/generated/Talairach.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/mbaslim.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/whs_sd_2.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/Juelich.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/MarsTPJParcellation.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/MarsParietalParcellation.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/Thalamus.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/Cerebellum_MNIfnirt.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/STN.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/Cerebellum_MNIflirt.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/paxinos_r_s_6.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/HarvardOxford-Subcortical.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/Striatum-Structural.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/Striatum-Connectivity-3sub.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/JHU-labels.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/SalletDorsalFrontalParcellation.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/HarvardOxford-Cortical.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/Striatum-Connectivity-7sub.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/NeubertVentralFrontalParcellation.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/MNI.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/cocomacslim.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/hbaslim.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/JHU-tracts.ttl> ,
-                                                                             <http://ontology.neuinfo.org/NIF/ttl/generated/hcp_parcellation.ttl> ;
-                                                                 
-                                                                 rdfs:label "NIF collected parcellation schemes ontology" ;
-                                                                 
-                                                                 rdfs:comment "Brain parcellation schemes as represented by root concepts." ;
-                                                                 
-                                                                 owl:versionInfo "2016-10-31" ;
-                                                                 
-                                                                 skos:altLabel "NIF Parcellations" .
-
-
-#################################################################
-#
-#    Annotation properties
-#
-#################################################################
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#definingCitation
-
-OBOANN:definingCitation rdf:type owl:AnnotationProperty .
-
-
-
-###  http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#externalSourceURI
-
-OBOANN:externalSourceURI rdf:type owl:AnnotationProperty .
-
-
-
-###  http://uri.interlex.org/base/atlasDate
-
-ilx:atlasDate rdf:type owl:AnnotationProperty .
-
-
-
-###  http://uri.interlex.org/base/atlasVersion
-
-ilx:atlasVersion rdf:type owl:AnnotationProperty .
-
-
-
-
-
-#################################################################
-#
-#    Classes
-#
-#################################################################
-
-
-###  http://uri.interlex.org/base/allen_human_atlas
-
-ilx:allen_human_atlas rdf:type owl:Class ;
-                      
-                      rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                      
-                      OBOANN:definingCitation <http://help.brain-map.org/download/attachments/2818165/HBA_Ontology-and-Nomenclature.pdf?version=1&modificationDate=1382051847989> ;
-                      
-                      OBOANN:externalSourceURI <http://human.brain-map.org/> ;
-                      
-                      ilx:atlasDate "October 2013" ;
-                      
-                      ilx:atlasVersion "2013 v2" ;
-                      
-                      rdfs:label "Allen Human Brain Atlas v2" .
-
-
-
-###  http://uri.interlex.org/base/allen_mouse_atlas
-
-ilx:allen_mouse_atlas rdf:type owl:Class ;
-                      
-                      rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                      
-                      OBOANN:definingCitation <http://help.brain-map.org/download/attachments/2818169/AllenReferenceAtlas_v2_2011.pdf?version=1&modificationDate=1319667383440> ;
-                      
-                      OBOANN:externalSourceURI <http://mouse.brain-map.org/static/atlas> ;
-                      
-                      ilx:atlasDate "November 2011" ;
-                      
-                      ilx:atlasVersion "2011 v2" ;
-                      
-                      rdfs:label "Allen Mouse Brain Atlas v2" .
-
-
-
-###  http://uri.interlex.org/base/cocomac_terminology
-
-ilx:cocomac_terminology rdf:type owl:Class ;
-                        
-                        rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                        
-                        OBOANN:definingCitation "scholarly things" ;
-                        
-                        OBOANN:externalSourceURI <http://cocomac.g-node.org> ;
-                        
-                        rdfs:label "CoCoMac terminology" .
-
-
-
-###  http://uri.interlex.org/base/hcp_2016_atlas
-
-ilx:hcp_2016_atlas rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                   
-                   OBOANN:acronym "HCP-MMP1.0" ,
-                                  "HCP_MMP" ;
-                   
-                   OBOANN:definingCitation "doi:10.1038/nature18933" ;
-                   
-                   OBOANN:externalSourceURI "awaiting..." ;
-                   
-                   OBOANN:synonym "HCP Multi-Modal Parcellation" ,
-                                  "Human Connectome Project Multi-Modal Parcellation" ,
-                                  "Human Connectome Project Multi-Modal Parcellation version 1.0" ;
-                   
-                   ilx:atlasDate "20-07-2016" ;
-                   
-                   ilx:atlasVersion "1.0" ;
-                   
-                   rdfs:label "Human Connectome Project Multi-Modal human cortical parcellation" .
-
-
-
-###  http://uri.interlex.org/base/ilx_brain_parcellation_scheme_concept
-
-ilx:ilx_brain_parcellation_scheme_concept rdf:type owl:Class ;
-                                          
-                                          rdfs:label "Brain parcellation scheme concept" .
-
-
-
-###  http://uri.interlex.org/base/parcellation_scheme_artifact
-
-ilx:parcellation_scheme_artifact rdf:type owl:Class .
-
-
-
-###  http://uri.interlex.org/base/pax_rat_ster6_atlas
-
-ilx:pax_rat_ster6_atlas rdf:type owl:Class ;
-                        
-                        rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                        
-                        OBOANN:definingCitation "Paxinos, George, Charles RR Watson, and Piers C. Emson. \"AChE-stained horizontal sections of the rat brain in stereotaxic coordinates.\" Journal of neuroscience methods 3, no. 2 (1980): 129-149." ;
-                        
-                        OBOANN:synonym "Paxinos Rat 6th" ;
-                        
-                        ilx:atlasDate "02-11-2006" ;
-                        
-                        ilx:atlasVersion "6th" ;
-                        
-                        rdfs:label "The Rat Brain in Stereotaxic Coordinates 6th Edition" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Cerebellar_Atlas_in_MNI152_space_after_normalization_with_FLIRT_atlas
-
-ilx:placeholder_Cerebellar_Atlas_in_MNI152_space_after_normalization_with_FLIRT_atlas rdf:type owl:Class ;
-                                                                                      
-                                                                                      rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                                                      
-                                                                                      OBOANN:acronym "Cerebellum_MNI_flirt" ;
-                                                                                      
-                                                                                      OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                                                      
-                                                                                      rdfs:label "Cerebellar Atlas in MNI152 space after normalization with FLIRT" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Cerebellar_Atlas_in_MNI152_space_after_normalization_with_FNIRT_atlas
-
-ilx:placeholder_Cerebellar_Atlas_in_MNI152_space_after_normalization_with_FNIRT_atlas rdf:type owl:Class ;
-                                                                                      
-                                                                                      rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                                                      
-                                                                                      OBOANN:acronym "Cerebellum_MNI_fnirt" ;
-                                                                                      
-                                                                                      OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                                                      
-                                                                                      rdfs:label "Cerebellar Atlas in MNI152 space after normalization with FNIRT" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Harvard-Oxford_Cortical_Structural_Atlas_atlas
-
-ilx:placeholder_Harvard-Oxford_Cortical_Structural_Atlas_atlas rdf:type owl:Class ;
-                                                               
-                                                               rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                               
-                                                               OBOANN:acronym "HOCPA" ;
-                                                               
-                                                               OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                               
-                                                               rdfs:label "Harvard-Oxford Cortical Structural Atlas" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Harvard-Oxford_Subcortical_Structural_Atlas_atlas
-
-ilx:placeholder_Harvard-Oxford_Subcortical_Structural_Atlas_atlas rdf:type owl:Class ;
-                                                                  
-                                                                  rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                                  
-                                                                  OBOANN:acronym "HOSPA" ;
-                                                                  
-                                                                  OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                                  
-                                                                  rdfs:label "Harvard-Oxford Subcortical Structural Atlas" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_JHU_ICBM-DTI-81_White-Matter_Labels_atlas
-
-ilx:placeholder_JHU_ICBM-DTI-81_White-Matter_Labels_atlas rdf:type owl:Class ;
-                                                          
-                                                          rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                          
-                                                          OBOANN:acronym "JHU ICBM WM" ;
-                                                          
-                                                          OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                          
-                                                          rdfs:label "JHU ICBM-DTI-81 White-Matter Labels" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_JHU_White-Matter_Tractography_Atlas_atlas
-
-ilx:placeholder_JHU_White-Matter_Tractography_Atlas_atlas rdf:type owl:Class ;
-                                                          
-                                                          rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                          
-                                                          OBOANN:acronym "JHU WM" ;
-                                                          
-                                                          OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                          
-                                                          rdfs:label "JHU White-Matter Tractography Atlas" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Juelich_Histological_Atlas_atlas
-
-ilx:placeholder_Juelich_Histological_Atlas_atlas rdf:type owl:Class ;
-                                                 
-                                                 rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                 
-                                                 OBOANN:acronym "Juelich" ;
-                                                 
-                                                 OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                 
-                                                 rdfs:label "Juelich Histological Atlas" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_MNI_Structural_Atlas_atlas
-
-ilx:placeholder_MNI_Structural_Atlas_atlas rdf:type owl:Class ;
-                                           
-                                           rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                           
-                                           OBOANN:acronym "MNI Struct" ;
-                                           
-                                           OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                           
-                                           rdfs:label "MNI Structural Atlas" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Mars_Parietal_connectivity-based_parcellation_atlas
-
-ilx:placeholder_Mars_Parietal_connectivity-based_parcellation_atlas rdf:type owl:Class ;
-                                                                    
-                                                                    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                                    
-                                                                    OBOANN:acronym "Parietal CBP" ;
-                                                                    
-                                                                    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                                    
-                                                                    rdfs:label "Mars Parietal connectivity-based parcellation" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Mars_TPJ_connectivity-based_parcellation_atlas
-
-ilx:placeholder_Mars_TPJ_connectivity-based_parcellation_atlas rdf:type owl:Class ;
-                                                               
-                                                               rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                               
-                                                               OBOANN:acronym "TPJ CBP" ;
-                                                               
-                                                               OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                               
-                                                               rdfs:label "Mars TPJ connectivity-based parcellation" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Neubert_Ventral_Frontal_connectivity-based_parcellation_atlas
-
-ilx:placeholder_Neubert_Ventral_Frontal_connectivity-based_parcellation_atlas rdf:type owl:Class ;
-                                                                              
-                                                                              rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                                              
-                                                                              OBOANN:acronym "Ventral Frontal CBP" ;
-                                                                              
-                                                                              OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                                              
-                                                                              rdfs:label "Neubert Ventral Frontal connectivity-based parcellation" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Oxford-Imanova_Striatal_Connectivity_Atlas_3_sub-regions_atlas
-
-ilx:placeholder_Oxford-Imanova_Striatal_Connectivity_Atlas_3_sub-regions_atlas rdf:type owl:Class ;
-                                                                               
-                                                                               rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                                               
-                                                                               OBOANN:acronym "OISCA3" ;
-                                                                               
-                                                                               OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                                               
-                                                                               rdfs:label "Oxford-Imanova Striatal Connectivity Atlas 3 sub-regions" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Oxford-Imanova_Striatal_Connectivity_Atlas_7_sub-regions_atlas
-
-ilx:placeholder_Oxford-Imanova_Striatal_Connectivity_Atlas_7_sub-regions_atlas rdf:type owl:Class ;
-                                                                               
-                                                                               rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                                               
-                                                                               OBOANN:acronym "OISCA7" ;
-                                                                               
-                                                                               OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                                               
-                                                                               rdfs:label "Oxford-Imanova Striatal Connectivity Atlas 7 sub-regions" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Oxford-Imanova_Striatal_Structural_Atlas_atlas
-
-ilx:placeholder_Oxford-Imanova_Striatal_Structural_Atlas_atlas rdf:type owl:Class ;
-                                                               
-                                                               rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                               
-                                                               OBOANN:acronym "OISS" ;
-                                                               
-                                                               OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                               
-                                                               rdfs:label "Oxford-Imanova Striatal Structural Atlas" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Oxford_Thalamic_Connectivity_Probability_Atlas_atlas
-
-ilx:placeholder_Oxford_Thalamic_Connectivity_Probability_Atlas_atlas rdf:type owl:Class ;
-                                                                     
-                                                                     rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                                     
-                                                                     OBOANN:acronym "OTCPA" ;
-                                                                     
-                                                                     OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                                     
-                                                                     rdfs:label "Oxford Thalamic Connectivity Probability Atlas" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Sallet_Dorsal_Frontal_connectivity-based_parcellation_atlas
-
-ilx:placeholder_Sallet_Dorsal_Frontal_connectivity-based_parcellation_atlas rdf:type owl:Class ;
-                                                                            
-                                                                            rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                                            
-                                                                            OBOANN:acronym "Dorsal Frontal CBP" ;
-                                                                            
-                                                                            OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                                            
-                                                                            rdfs:label "Sallet Dorsal Frontal connectivity-based parcellation" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Subthalamic_Nucleus_Atlas_atlas
-
-ilx:placeholder_Subthalamic_Nucleus_Atlas_atlas rdf:type owl:Class ;
-                                                
-                                                rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                                
-                                                OBOANN:acronym "SNA" ;
-                                                
-                                                OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                                
-                                                rdfs:label "Subthalamic Nucleus Atlas" .
-
-
-
-###  http://uri.interlex.org/base/placeholder_Talairach_Daemon_Labels_atlas
-
-ilx:placeholder_Talairach_Daemon_Labels_atlas rdf:type owl:Class ;
-                                              
-                                              rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                                              
-                                              OBOANN:acronym "Talairach" ;
-                                              
-                                              OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> ;
-                                              
-                                              rdfs:label "Talairach Daemon Labels" .
-
-
-
-###  http://uri.interlex.org/base/whs_sd_v2_atlas
-
-ilx:whs_sd_v2_atlas rdf:type owl:Class ;
-                    
-                    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
-                    
-                    OBOANN:definingCitation "halp!" ;
-                    
-                    OBOANN:externalSourceURI <https://scalablebrainatlas.incf.org/rat/PLCJB14> ;
-                    
-                    OBOANN:synonym "WHS SD" ,
-                                   "WHS SD v2" ;
-                    
-                    ilx:atlasDate "02-02-2015" ;
-                    
-                    ilx:atlasVersion "v2" ;
-                    
-                    rdfs:label "Sprague Dawley Atlas v2" .
-
-
-
-
-###  Generated by the OWL API (version 4.1.4) https://github.com/owlcs/owlapi
-
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://ontology.neuinfo.org/NIF/ttl/generated/parcellation.ttl> a owl:Ontology ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/generated/Cerebellum_MNIflirt.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/Cerebellum_MNIfnirt.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/cocomacslim.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/HarvardOxford-Cortical.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/HarvardOxford-Subcortical.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/hbaslim.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/hcp_parcellation.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/JHU-labels.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/JHU-tracts.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/Juelich.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/MarsParietalParcellation.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/MarsTPJParcellation.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/mbaslim.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/MNI.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/NeubertVentralFrontalParcellation.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/paxinos_r_s_6.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/SalletDorsalFrontalParcellation.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/STN.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/Striatum-Connectivity-3sub.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/Striatum-Connectivity-7sub.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/Striatum-Structural.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/Talairach.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/Thalamus.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/generated/whs_sd_2.ttl> ;
+    rdfs:label "NIF collected parcellation schemes ontology" ;
+    rdfs:comment "Brain parcellation schemes as represented by root concepts." ;
+    owl:versionInfo "2017-02-16" ;
+    skos:altLabel "NIF Parcellations" .
+
+### Classes
+
+ILXREPLACE:0e0fe6e8b3a1564193650f297fef8c41 a owl:Class ;
+    rdfs:label "Neubert Ventral Frontal connectivity-based parcellation" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "Ventral Frontal CBP" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:1a1b99b3d4ddba1fe091f2c68146f51a a owl:Class ;
+    rdfs:label "JHU ICBM-DTI-81 White-Matter Labels" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "JHU ICBM WM" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:1db4dac6e37e945255aa07e03a6712d9 a owl:Class ;
+    rdfs:label "MNI Structural Atlas" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "MNI Struct" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:3db0e74951f6a82700dc3e785eff4d20 a owl:Class ;
+    rdfs:label "Allen Mouse Brain Atlas v2" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:definingCitation <http://help.brain-map.org/download/attachments/2818169/AllenReferenceAtlas_v2_2011.pdf?version=1&modificationDate=1319667383440> ;
+    OBOANN:externalSourceURI <http://mouse.brain-map.org/static/atlas> ;
+    ilx:atlasDate "November 2011" ;
+    ilx:atlasVersion "2011 v2" .
+
+ILXREPLACE:4bedd7649c36c0e6a06940d64a3d9000 a owl:Class ;
+    rdfs:label "JHU White-Matter Tractography Atlas" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "JHU WM" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:5b7a9991df2fc7efe1c3c345b34b0777 a owl:Class ;
+    rdfs:label "The Rat Brain in Stereotaxic Coordinates 6th Edition" ;
+    OBOANN:synonym "Paxinos Rat 6th" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:definingCitation "Paxinos, George, Charles RR Watson, and Piers C. Emson. \"AChE-stained horizontal sections of the rat brain in stereotaxic coordinates.\" Journal of neuroscience methods 3, no. 2 (1980): 129-149." ;
+    ilx:atlasDate "02-11-2006" ;
+    ilx:atlasVersion "6th" .
+
+ILXREPLACE:6f7ab662365bd853aeda05412a1ab346 a owl:Class ;
+    rdfs:label "Mars TPJ connectivity-based parcellation" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "TPJ CBP" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:7b1a32e7b73a570b14e3295ed42cefca a owl:Class ;
+    rdfs:label "Oxford-Imanova Striatal Connectivity Atlas 7 sub-regions" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "OISCA7" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:8f41f6a1fd916d19abe99629609f0403 a owl:Class ;
+    rdfs:label "Harvard-Oxford Cortical Structural Atlas" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "HOCPA" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:43e507e85578fd2ac6eede180d7ff002 a owl:Class ;
+    rdfs:label "Oxford-Imanova Striatal Structural Atlas" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "OISS" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:48efedc2553a7c74b1772281f53b643a a owl:Class ;
+    rdfs:label "Cerebellar Atlas in MNI152 space after normalization with FLIRT" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "Cerebellum_MNI_flirt" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:0125beaf0f86822e1a3692bdfa9d942b a owl:Class ;
+    rdfs:label "Sallet Dorsal Frontal connectivity-based parcellation" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "Dorsal Frontal CBP" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:458a2df51d75c23e131b85156d25f451 a owl:Class ;
+    rdfs:label "Subthalamic Nucleus Atlas" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "SNA" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:6690fcd1bad8b3952b9b625f6cb2dfeb a owl:Class ;
+    rdfs:label "Oxford Thalamic Connectivity Probability Atlas" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "OTCPA" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:8293d7cb9cf66e36a194df6dfaf3128d a owl:Class ;
+    rdfs:label "Harvard-Oxford Subcortical Structural Atlas" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "HOSPA" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:16755bc85d9c658387979844d99308ba a owl:Class ;
+    rdfs:label "Mars Parietal connectivity-based parcellation" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "Parietal CBP" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:19888c54a76e3fe9ac03d18a01382e65 a owl:Class ;
+    rdfs:label "Juelich Histological Atlas" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "Juelich" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:708751fc6584f981ddaf79d123e51d77 a owl:Class ;
+    rdfs:label "Human Connectome Project Multi-Modal human cortical parcellation" ;
+    OBOANN:synonym "HCP Multi-Modal Parcellation",
+        "Human Connectome Project Multi-Modal Parcellation",
+        "Human Connectome Project Multi-Modal Parcellation version 1.0" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "HCP-MMP1.0",
+        "HCP_MMP" ;
+    OBOANN:definingCitation "doi:10.1038/nature18933" ;
+    OBOANN:externalSourceURI "awaiting..." ;
+    ilx:atlasDate "20-07-2016" ;
+    ilx:atlasVersion "1.0" .
+
+ILXREPLACE:b2ed3bc6b999c0d95010039215a366a6 a owl:Class ;
+    rdfs:label "Sprague Dawley Atlas v2" ;
+    OBOANN:synonym "WHS SD",
+        "WHS SD v2" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:definingCitation "halp!" ;
+    OBOANN:externalSourceURI <https://scalablebrainatlas.incf.org/rat/PLCJB14> ;
+    ilx:atlasDate "02-02-2015" ;
+    ilx:atlasVersion "v2" .
+
+ILXREPLACE:bc9a24820fdf62c96debcff112f77917 a owl:Class ;
+    rdfs:label "Cerebellar Atlas in MNI152 space after normalization with FNIRT" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "Cerebellum_MNI_fnirt" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:d7e311ccd87d255277d8822eb1658cd3 a owl:Class ;
+    rdfs:label "CoCoMac terminology" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:definingCitation "scholarly things" ;
+    OBOANN:externalSourceURI <http://cocomac.g-node.org> .
+
+ILXREPLACE:ded027f50ea3c9f408c00c8db7ed2df8 a owl:Class ;
+    rdfs:label "Talairach Daemon Labels" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "Talairach" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+ILXREPLACE:eace57e58f66381d9c18e26b3fcdecbb a owl:Class ;
+    rdfs:label "Allen Human Brain Atlas v2" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:definingCitation <http://help.brain-map.org/download/attachments/2818165/HBA_Ontology-and-Nomenclature.pdf?version=1&modificationDate=1382051847989> ;
+    OBOANN:externalSourceURI <http://human.brain-map.org/> ;
+    ilx:atlasDate "October 2013" ;
+    ilx:atlasVersion "2013 v2" .
+
+ILXREPLACE:f0abc840e92a7e2872c8ee89827b6d23 a owl:Class ;
+    rdfs:label "Brain parcellation scheme concept" .
+
+ILXREPLACE:f6319010864f4cbc36d04e81e7f1a76a a owl:Class ;
+    rdfs:label "Oxford-Imanova Striatal Connectivity Atlas 3 sub-regions" ;
+    rdfs:subClassOf ilx:parcellation_scheme_artifact ;
+    OBOANN:acronym "OISCA3" ;
+    OBOANN:externalSourceURI <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+### Serialized using the nifstd custom serializer v1.0.5
