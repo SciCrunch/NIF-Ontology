@@ -6,7 +6,8 @@ At the moment if you see an `ILX:` identifier in one of the ontology files that 
 # Phenotypes
 In our model phenotypes are the outputs of some measurement or set of measurements and computations/classifications. Ideally the process for documenting exactly how each phenotype was measured would be included as well, but that is currently outside the scope of this project. The current major categories of phenotypes (with example identifiers are):
   * species [NCBITaxon:10116]
-  * developmental stage [EFO:0001272]
+  * strain [???]
+  * developmental stage [uberon developmental stage?]
   * brain region [UBERON:0000955]
   * morphology [ilx:]
   * electrophysiology [ilx:]
