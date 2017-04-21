@@ -1,0 +1,673 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix ilx: <http://uri.interlex.org/base/> .
+@prefix ILX: <http://uri.interlex.org/base/ilx_> .
+@prefix ILXREPLACE: <http://ILXREPLACE.org/> .
+@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@prefix NIFCELL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#> .
+@prefix NIFMOL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
+@prefix NIFQUAL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Quality.owl#> .
+@prefix nsu: <http://www.FIXME.org/nsupper#> .
+@prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix PR: <http://purl.obolibrary.org/obo/PR_> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/NIF-Phenotypes.ttl> a owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/NIF-Phenotype-Core.ttl> ;
+    rdfs:label "NIF Phenotypes" ;
+    rdfs:comment "A taxonomy of phenotypes used to model biological types as collections of measurements." .
+
+### Classes
+
+ilx:AccomodatingSpikingPhenotype a owl:Class ;
+    rdfs:label "Accomodating Spiking Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    owl:disjointWith ilx:NonAccomodatingSpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Accomodating Spiking" .
+
+ilx:AxonMorphologicalPhenotype a owl:Class ;
+    rdfs:label "Axon Morphological Phenotype" ;
+    rdfs:subClassOf ilx:AxonPhenotype .
+
+ilx:AxonPhenotype a owl:Class ;
+    rdfs:label "Axon Phenotype" ;
+    rdfs:subClassOf ilx:Phenotype .
+
+ilx:BasketPhenotype a owl:Class ;
+    rdfs:label "Basket Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:IvyPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SmallAxonPhenotype,
+        ilx:SpinyStellatePhenotype,
+        ilx:UntuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Basket" .
+
+ilx:BiopolarPyramidalPhenotype a owl:Class ;
+    rdfs:label "Biopolar Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:PyramidalPhenotype ;
+    owl:disjointWith ilx:StarPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Biopolar Pyramidal" .
+
+ilx:BipolarPhenotype a owl:Class ;
+    rdfs:label "Bipolar Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BasketPhenotype,
+        ilx:BituftedPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:GranulePhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:IvyPhenotype,
+        ilx:LargeAxonPhenotype,
+        ilx:MartinottiPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SmallAxonPhenotype,
+        ilx:SpinyStellatePhenotype,
+        ilx:TrilaminarPhenotype,
+        ilx:UntuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Bipolar" .
+
+ilx:BistratifiedPhenotype a owl:Class ;
+    rdfs:label "Bistratified Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BasketPhenotype,
+        ilx:BipolarPhenotype,
+        ilx:BituftedPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:GranulePhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:IvyPhenotype,
+        ilx:LargeAxonPhenotype,
+        ilx:MartinottiPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SmallAxonPhenotype,
+        ilx:SpinyStellatePhenotype,
+        ilx:TrilaminarPhenotype,
+        ilx:UntuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Bistratified" .
+
+ilx:BituftedPhenotype a owl:Class ;
+    rdfs:label "Bitufted Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BasketPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:IvyPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SmallAxonPhenotype,
+        ilx:SpinyStellatePhenotype,
+        ilx:UntuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Bitufted" .
+
+ilx:BranchingPhenotype a owl:Class ;
+    rdfs:label "Branching Phenotype" ;
+    rdfs:subClassOf ilx:DendritePhenotype ;
+    ilx:useObjectProperty ilx:hasDendriteMorphologicalPhenotype ;
+    skos:hiddenLabel "Branching" .
+
+ilx:CellPhenotype a owl:Class ;
+    rdfs:label "Cell Phenotype" ;
+    rdfs:subClassOf ilx:Phenotype .
+
+ilx:ChandelierPhenotype a owl:Class ;
+    rdfs:label "Chandelier Phenotype" ;
+    OBOANN:synonym "AxoAxonicPhenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Chandelier" .
+
+ilx:DendriteMorphologicalPhenotype a owl:Class ;
+    rdfs:label "Dendrite Morphological Phenotype" ;
+    rdfs:subClassOf ilx:DendritePhenotype .
+
+ilx:DendritePhenotype a owl:Class ;
+    rdfs:label "Dendrite Phenotype" ;
+    rdfs:subClassOf ilx:Phenotype ;
+    ilx:useObjectProperty ilx:hasDendriteMorphologicalPhenotype .
+
+ilx:DescendingAxonPhenotype a owl:Class ;
+    rdfs:label "Descending Axon Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:ChandelierPhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Descending Axon" .
+
+ilx:DirectPathway a owl:Class ;
+    rdfs:label "Direct Pathway" ;
+    skos:hiddenLabel "Direct Pathway" .
+
+ilx:DoubleBouquetPhenotype a owl:Class ;
+    rdfs:label "Double Bouquet Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SpinyStellatePhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Double Bouquet" .
+
+ilx:EarlyBifurcatingPhenotype a owl:Class ;
+    rdfs:label "Early Bifurcating Phenotype" ;
+    rdfs:subClassOf ilx:BranchingPhenotype ;
+    ilx:useObjectProperty ilx:hasDendriteMorphologicalPhenotype ;
+    skos:hiddenLabel "Early Bifurcating" .
+
+ilx:EarlyBifurcatingThickTuftedPyramidalPhenotype a owl:Class ;
+    rdfs:label "Early Bifurcating Thick Tufted Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:ThickTuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Early Bifurcating Thick Tufted Pyramidal" .
+
+ilx:EarlyBifurcatingTuftedPyramidalPhenotype a owl:Class ;
+    rdfs:label "Early Bifurcating Tufted Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:TuftedPyramidalPhenotype ;
+    owl:disjointWith ilx:LateBifurcatingTuftedPyramidalPhenotype,
+        ilx:NarrowTuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Early Bifurcating Tufted Pyramidal" .
+
+ilx:ElectrophysiologicalPhenotype a owl:Class ;
+    rdfs:label "Electrophysiological Phenotype" ;
+    rdfs:subClassOf ilx:NeuronPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Electrophysiological" .
+
+ilx:FastSpikingPhenotype a owl:Class ;
+    rdfs:label "Fast Spiking Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    owl:disjointWith ilx:RegularSpikingNonPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Fast Spiking" .
+
+ilx:GranulePhenotype a owl:Class ;
+    rdfs:label "Granule Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BasketPhenotype,
+        ilx:BituftedPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:IvyPhenotype,
+        ilx:LargeAxonPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SmallAxonPhenotype,
+        ilx:SpinyStellatePhenotype,
+        ilx:UntuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Granule" .
+
+ilx:HorizontalAxonPhenotype a owl:Class ;
+    rdfs:label "Horizontal Axon Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:ChandelierPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Horizontal Axon" .
+
+ilx:HorizontalPyramidalPhenotype a owl:Class ;
+    rdfs:label "Horizontal Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:PyramidalPhenotype ;
+    owl:disjointWith ilx:BiopolarPyramidalPhenotype,
+        ilx:InvertedPyramidalPhenotype,
+        ilx:StarPyramidalPhenotype,
+        ilx:TuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Horizontal Pyramidal" .
+
+ilx:InterneuronPhenotype a owl:Class ;
+    rdfs:label "Interneuron Phenotype" ;
+    rdfs:subClassOf ilx:NeuronPhenotype ;
+    skos:hiddenLabel "Interneuron" .
+
+ilx:InvertedPyramidalPhenotype a owl:Class ;
+    rdfs:label "Inverted Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:PyramidalPhenotype ;
+    owl:disjointWith ilx:BiopolarPyramidalPhenotype,
+        ilx:StarPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Inverted Pyramidal" .
+
+ilx:IvyPhenotype a owl:Class ;
+    rdfs:label "Ivy Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SmallAxonPhenotype,
+        ilx:SpinyStellatePhenotype,
+        ilx:UntuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Ivy" .
+
+ilx:LargeAxonPhenotype a owl:Class ;
+    rdfs:label "Large Axon Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BasketPhenotype,
+        ilx:BituftedPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:IvyPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SmallAxonPhenotype,
+        ilx:SpinyStellatePhenotype,
+        ilx:UntuftedPyramidalPhenotype ;
+    skos:hiddenLabel "Large Axon" .
+
+ilx:LargeBasketPhenotype a owl:Class ;
+    rdfs:label "Large Basket Phenotype" ;
+    rdfs:subClassOf ilx:BasketPhenotype ;
+    owl:disjointWith ilx:SmallBasketPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Large Basket" .
+
+ilx:LateBifurcatingPhenotype a owl:Class ;
+    rdfs:label "Late Bifurcating Phenotype" ;
+    rdfs:subClassOf ilx:BranchingPhenotype ;
+    owl:disjointWith ilx:EarlyBifurcatingPhenotype ;
+    ilx:useObjectProperty ilx:hasDendriteMorphologicalPhenotype ;
+    skos:hiddenLabel "Late Bifurcating" .
+
+ilx:LateBifurcatingThickTuftedPyramidalPhenotype a owl:Class ;
+    rdfs:label "Late Bifurcating Thick Tufted Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:ThickTuftedPyramidalPhenotype ;
+    owl:disjointWith ilx:EarlyBifurcatingThickTuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Late Bifurcating Thick Tufted Pyramidal" .
+
+ilx:LateBifurcatingTuftedPyramidalPhenotype a owl:Class ;
+    rdfs:label "Late Bifurcating Tufted Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:TuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Late Bifurcating Tufted Pyramidal" .
+
+ilx:MartinottiPhenotype a owl:Class ;
+    rdfs:label "Martinotti Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BasketPhenotype,
+        ilx:BituftedPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:GranulePhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:IvyPhenotype,
+        ilx:LargeAxonPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SmallAxonPhenotype,
+        ilx:SpinyStellatePhenotype,
+        ilx:UntuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Martinotti" .
+
+ilx:MediumSpinyPhenotype a owl:Class ;
+    rdfs:label "Medium Spiny Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Medium Spiny" .
+
+ilx:MorphologicalPhenotype a owl:Class ;
+    rdfs:label "Morphological Phenotype" ;
+    rdfs:subClassOf ilx:NeuronPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Morphological" .
+
+ilx:NarrowPhenotype a owl:Class ;
+    rdfs:label "Narrow Phenotype" ;
+    rdfs:subClassOf ilx:TrunkPhenotype ;
+    ilx:useObjectProperty ilx:hasDendriteMorphologicalPhenotype ;
+    skos:hiddenLabel "Narrow" .
+
+ilx:NarrowPyramidalPhenotype a owl:Class ;
+    rdfs:label "Narrow Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:PyramidalPhenotype ;
+    owl:disjointWith ilx:BiopolarPyramidalPhenotype,
+        ilx:HorizontalPyramidalPhenotype,
+        ilx:InvertedPyramidalPhenotype,
+        ilx:StarPyramidalPhenotype,
+        ilx:TuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Narrow Pyramidal" .
+
+ilx:NarrowTuftedPyramidalPhenotype a owl:Class ;
+    rdfs:label "Narrow Tufted Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:TuftedPyramidalPhenotype ;
+    owl:disjointWith ilx:LateBifurcatingTuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Narrow Tufted Pyramidal" .
+
+ilx:NestBasketPhenotype a owl:Class ;
+    rdfs:label "Nest Basket Phenotype" ;
+    rdfs:subClassOf ilx:BasketPhenotype ;
+    owl:disjointWith ilx:LargeBasketPhenotype,
+        ilx:SmallBasketPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Nest Basket" .
+
+ilx:NeurogliaformDenseAxonPhenotype a owl:Class ;
+    rdfs:label "Neurogliaform Dense Axon Phenotype" ;
+    rdfs:subClassOf ilx:NeurogliaformPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Neurogliaform Dense Axon" .
+
+ilx:NeurogliaformPhenotype a owl:Class ;
+    rdfs:label "Neurogliaform Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:MediumSpinyPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Neurogliaform" .
+
+ilx:NeurogliaformSparseAxonPhenotype a owl:Class ;
+    rdfs:label "Neurogliaform Sparse Axon Phenotype" ;
+    rdfs:subClassOf ilx:NeurogliaformPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Neurogliaform Sparse Axon" .
+
+ilx:NeuronPhenotype a owl:Class ;
+    rdfs:label "Neuron Phenotype" ;
+    rdfs:subClassOf ilx:CellPhenotype ;
+    ilx:useObjectProperty ilx:hasPhenotype .
+
+ilx:NonAccomodatingSpikingPhenotype a owl:Class ;
+    rdfs:label "Non Accomodating Spiking Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Non Accomodating Spiking" .
+
+ilx:PerforantPathwayAssociated a owl:Class ;
+    rdfs:label "Perforant Pathway Associated" ;
+    skos:hiddenLabel "Perforant Pathway Associated" .
+
+ilx:PetillaInitialBurstSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Burst Spiking Phenotype" ;
+    OBOANN:synonym "petilla b" ;
+    rdfs:subClassOf ilx:PetillaInitialSpikingPhenotype ;
+    owl:disjointWith ilx:PetillaInitialDelayedSpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Burst Spiking" .
+
+ilx:PetillaInitialClassicalSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Classical Spiking Phenotype" ;
+    OBOANN:synonym "petilla c" ;
+    rdfs:subClassOf ilx:PetillaInitialSpikingPhenotype ;
+    owl:disjointWith ilx:PetillaInitialBurstSpikingPhenotype,
+        ilx:PetillaInitialDelayedSpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Classical Spiking" .
+
+ilx:PetillaInitialDelayedSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Delayed Spiking Phenotype" ;
+    OBOANN:synonym "petilla d" ;
+    rdfs:subClassOf ilx:PetillaInitialSpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Delayed Spiking" .
+
+ilx:PetillaInitialSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Spiking Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Spiking" .
+
+ilx:PetillaSustainedAccomodatingPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Accomodating Phenotype" ;
+    OBOANN:synonym "petilla ac" ;
+    rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
+    owl:disjointWith ilx:PetillaSustainedIrregularPhenotype,
+        ilx:PetillaSustainedNonAccomodatingPhenotype,
+        ilx:PetillaSustainedStutteringPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Accomodating" .
+
+ilx:PetillaSustainedIrregularPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Irregular Phenotype" ;
+    OBOANN:synonym "petilla ir" ;
+    rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
+    owl:disjointWith ilx:PetillaSustainedStutteringPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Irregular" .
+
+ilx:PetillaSustainedNonAccomodatingPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Non Accomodating Phenotype" ;
+    OBOANN:synonym "petilla nac" ;
+    rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
+    owl:disjointWith ilx:PetillaSustainedIrregularPhenotype,
+        ilx:PetillaSustainedStutteringPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Non Accomodating" .
+
+ilx:PetillaSustainedSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Spiking Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Spiking" .
+
+ilx:PetillaSustainedStutteringPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Stuttering Phenotype" ;
+    OBOANN:synonym "petilla stut" ;
+    rdfs:subClassOf ilx:PetillaSustainedSpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Stuttering" .
+
+ilx:ProjectionPhenotype a owl:Class ;
+    rdfs:label "Projection Phenotype" ;
+    rdfs:subClassOf ilx:NeuronPhenotype ;
+    skos:hiddenLabel "Projection" .
+
+ilx:PyramidalPhenotype a owl:Class ;
+    rdfs:label "Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Pyramidal" .
+
+ilx:RegularSpikingNonPyramidalPhenotype a owl:Class ;
+    rdfs:label "Regular Spiking Non Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:SpikingPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Regular Spiking Non Pyramidal" .
+
+ilx:SlenderPhenotype a owl:Class ;
+    rdfs:label "Slender Phenotype" ;
+    rdfs:subClassOf ilx:TrunkPhenotype ;
+    owl:disjointWith ilx:NarrowPhenotype ;
+    ilx:useObjectProperty ilx:hasDendriteMorphologicalPhenotype ;
+    skos:hiddenLabel "Slender" .
+
+ilx:SlenderTuftedPyramidalPhenotype a owl:Class ;
+    rdfs:label "Slender Tufted Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:TuftedPyramidalPhenotype ;
+    owl:disjointWith ilx:EarlyBifurcatingTuftedPyramidalPhenotype,
+        ilx:LateBifurcatingTuftedPyramidalPhenotype,
+        ilx:NarrowTuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Slender Tufted Pyramidal" .
+
+ilx:SmallAxonPhenotype a owl:Class ;
+    rdfs:label "Small Axon Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SpinyStellatePhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Small Axon" .
+
+ilx:SmallBasketPhenotype a owl:Class ;
+    rdfs:label "Small Basket Phenotype" ;
+    rdfs:subClassOf ilx:BasketPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Small Basket" .
+
+ilx:SomaMorphologicalPhenotype a owl:Class ;
+    rdfs:label "Soma Morphological Phenotype" ;
+    rdfs:subClassOf ilx:SomaPhenotype .
+
+ilx:SomaPhenotype a owl:Class ;
+    rdfs:label "Soma Phenotype" ;
+    rdfs:subClassOf ilx:Phenotype .
+
+ilx:SpikingPhenotype a owl:Class ;
+    rdfs:label "Spiking Phenotype" ;
+    rdfs:subClassOf ilx:ElectrophysiologicalPhenotype ;
+    ilx:useObjectProperty ilx:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Spiking" .
+
+ilx:SpinyPhenotype a owl:Class ;
+    rdfs:label "Spiny Phenotype" ;
+    rdfs:subClassOf ilx:DendritePhenotype ;
+    ilx:useObjectProperty ilx:hasDendriteMorphologicalPhenotype ;
+    skos:hiddenLabel "Spiny" .
+
+ilx:SpinyStellatePhenotype a owl:Class ;
+    rdfs:label "Spiny Stellate Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Spiny Stellate" .
+
+ilx:StarPyramidalPhenotype a owl:Class ;
+    rdfs:label "Star Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:PyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Star Pyramidal" .
+
+ilx:ThickPhenotype a owl:Class ;
+    rdfs:label "Thick Phenotype" ;
+    rdfs:subClassOf ilx:TrunkPhenotype ;
+    owl:disjointWith ilx:NarrowPhenotype,
+        ilx:SlenderPhenotype ;
+    ilx:useObjectProperty ilx:hasDendriteMorphologicalPhenotype ;
+    skos:hiddenLabel "Thick" .
+
+ilx:ThickTuftedPyramidalPhenotype a owl:Class ;
+    rdfs:label "Thick Tufted Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:TuftedPyramidalPhenotype ;
+    owl:disjointWith ilx:EarlyBifurcatingTuftedPyramidalPhenotype,
+        ilx:LateBifurcatingTuftedPyramidalPhenotype,
+        ilx:NarrowTuftedPyramidalPhenotype,
+        ilx:SlenderTuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Thick Tufted Pyramidal" .
+
+ilx:TrilaminarPhenotype a owl:Class ;
+    rdfs:label "Trilaminar Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:BasketPhenotype,
+        ilx:BituftedPhenotype,
+        ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:GranulePhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:IvyPhenotype,
+        ilx:LargeAxonPhenotype,
+        ilx:MartinottiPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SmallAxonPhenotype,
+        ilx:SpinyStellatePhenotype,
+        ilx:UntuftedPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Trilaminar" .
+
+ilx:TrunkPhenotype a owl:Class ;
+    rdfs:label "Trunk Phenotype" ;
+    rdfs:subClassOf ilx:DendritePhenotype ;
+    ilx:useObjectProperty ilx:hasDendriteMorphologicalPhenotype ;
+    skos:hiddenLabel "Trunk" .
+
+ilx:TuftedPhenotype a owl:Class ;
+    rdfs:label "Tufted Phenotype" ;
+    rdfs:subClassOf ilx:DendritePhenotype ;
+    ilx:useObjectProperty ilx:hasDendriteMorphologicalPhenotype ;
+    skos:hiddenLabel "Tufted" .
+
+ilx:TuftedPyramidalPhenotype a owl:Class ;
+    rdfs:label "Tufted Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:PyramidalPhenotype ;
+    owl:disjointWith ilx:BiopolarPyramidalPhenotype,
+        ilx:InvertedPyramidalPhenotype,
+        ilx:StarPyramidalPhenotype ;
+    ilx:useObjectProperty ilx:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Tufted Pyramidal" .
+
+ilx:UntuftedPyramidalPhenotype a owl:Class ;
+    rdfs:label "Untufted Pyramidal Phenotype" ;
+    rdfs:subClassOf ilx:MorphologicalPhenotype ;
+    owl:disjointWith ilx:ChandelierPhenotype,
+        ilx:DescendingAxonPhenotype,
+        ilx:DoubleBouquetPhenotype,
+        ilx:HorizontalAxonPhenotype,
+        ilx:MediumSpinyPhenotype,
+        ilx:NeurogliaformPhenotype,
+        ilx:PyramidalPhenotype,
+        ilx:SmallAxonPhenotype,
+        ilx:SpinyStellatePhenotype ;
+    skos:hiddenLabel "Untufted Pyramidal" .
+
+### Serialized using the nifstd custom serializer v1.0.5
