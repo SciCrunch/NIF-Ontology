@@ -14,7 +14,6 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix p1: <http://ontology.neuinfo.org/NIF/Backend/obo-foundry-core.owl#> .
 @prefix p2: <http://ontology.neuinfo.org/NIF/Backend/nif_backend.owl#> .
-@prefix protege: <http://protege.stanford.edu/plugins/owl/protege#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ro: <http://www.obofoundry.org/ro/ro.owl#> .
@@ -56,10 +55,6 @@ ro:has_proper_part a owl:ObjectProperty .
 
 ro:proper_part_of a owl:ObjectProperty .
 
-### Datatypes
-
-xsd:date a rdfs:Datatype .
-
 ### Annotation Properties
 
 birn_annot:bonfire_ID a owl:AnnotationProperty .
@@ -79,8 +74,6 @@ oboInOwl:hasDefinition a owl:AnnotationProperty .
 oboInOwl:hasSubset a owl:AnnotationProperty .
 
 oboInOwl:replacedBy a owl:AnnotationProperty .
-
-protege:subclassesDisjoint a owl:AnnotationProperty .
 
 ### Classes
 
@@ -857,8 +850,7 @@ NIF-Molecule:sao1246280606 a owl:Class ;
     birn_annot:curationStatus "graph position temporary"^^xsd:string ;
     birn_annot:gene_Ontology_ID "0005758"^^xsd:string ;
     birn_annot:sao_ID "sao118944228"^^xsd:string ;
-    birn_annot:umls_ID "C1166886"^^xsd:string ;
-    protege:subclassesDisjoint true .
+    birn_annot:umls_ID "C1166886"^^xsd:string .
 
 :sao120573470 a owl:Class ;
     rdfs:label "Cellular Inclusion"^^xsd:string ;
@@ -1335,8 +1327,7 @@ NIF-Molecule:sao1246280606 a owl:Class ;
     core:definition "The space bounded by the cristae membrane"^^xsd:string ;
     rdfs:subClassOf :sao-343550527 ;
     birn_annot:curationStatus "uncurated"^^xsd:string ;
-    birn_annot:sao_ID "sao508958414"^^xsd:string ;
-    protege:subclassesDisjoint true .
+    birn_annot:sao_ID "sao508958414"^^xsd:string .
 
 :sao517367952 a owl:Class ;
     rdfs:label "Endocytic Zone"^^xsd:string ;
@@ -3301,7 +3292,7 @@ NIF-Molecule:sao1246280606 a owl:Class ;
         :sao787716553,
         :sao830981606,
         :sao1969557946 ;
-    obo_annot:modifiedDate "2007-02-23"^^xsd:date ;
+    obo_annot:modifiedDate "2007-02-23"^^xsd:string ;
     birn_annot:curationStatus "core:definition incomplete"^^xsd:string ;
     birn_annot:sao_ID "sao1938587839"^^xsd:string .
 
@@ -3519,7 +3510,7 @@ NIF-Molecule:sao1246280606 a owl:Class ;
     core:prefLabel "Spine Mat"^^xsd:string ;
     core:definition "A configuration of somatic spines found on ciliary ganglion neurons in the embryonic and adult brain consisting of patches of closely spaced spines lying flat against the soma.  (Shoop et al., 2000)."^^xsd:string ;
     rdfs:subClassOf :sao1970895398 ;
-    obo_annot:createdDate "2007-02-09"^^xsd:date ;
+    obo_annot:createdDate "2007-02-09"^^xsd:string ;
     birn_annot:sao_ID "sao2128156969"^^xsd:string ;
     dc:contributor "Maryann Martone"^^xsd:string .
 
@@ -3812,8 +3803,11 @@ NIF-Molecule:sao1246280606 a owl:Class ;
         :sao1819509473,
         :sao1908934319,
         :sao1956231674 ;
-    birn_annot:sao_ID "sao-343550527"^^xsd:string ;
-    protege:subclassesDisjoint true .
+    owl:disjointUnionOf (
+            :sao118944228
+            :sao508958414
+            :sao-1899375636 ) ;
+    birn_annot:sao_ID "sao-343550527"^^xsd:string .
 
 :sao-420949334 a owl:Class ;
     rdfs:label "Regional Part Of Neuron Process"^^xsd:string ;
@@ -4033,8 +4027,7 @@ NIF-Molecule:sao1246280606 a owl:Class ;
         :sao508958414 ;
     birn_annot:curationStatus "uncurated"^^xsd:string ;
     birn_annot:gene_Ontology_ID "0031980"^^xsd:string ;
-    birn_annot:sao_ID "sao-1899375636"^^xsd:string ;
-    protege:subclassesDisjoint true .
+    birn_annot:sao_ID "sao-1899375636"^^xsd:string .
 
 :sao-3012335077 a owl:Class ;
     rdfs:label "Junction Complex"^^xsd:string ;
