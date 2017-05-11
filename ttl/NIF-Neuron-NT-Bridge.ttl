@@ -1,25 +1,16 @@
-@prefix : <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Neuron-NT-Bridge.owl#> .
-@prefix BIRNLex_annotation_properties: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#> .
+@prefix BIRNANN: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#> .
 @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
-@prefix core: <http://www.w3.org/2004/02/skos/core#> .
-@prefix NIF-Cell: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#> .
-@prefix NIF-Molecule: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
-@prefix nif_neuron_nt: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Neuron-NT-Bridge.owl#> .
-@prefix obo_annot: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
+@prefix NIFCELL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#> .
+@prefix NIFMOL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
+@prefix NIFNEURNT: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Neuron-NT-Bridge.owl#> .
+@prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix p1: <http://purl.org/obo/owl/> .
-@prefix p2: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBO-UBO.owl#> .
-@prefix p3: <http://ontology.neuinfo.org/NIF/Backend/nif_backend.owl#> .
-@prefix p4: <http://ontology.neuinfo.org/NIF/nif.owl#> .
-@prefix protege: <http://protege.stanford.edu/plugins/owl/protege#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ro: <http://www.obofoundry.org/ro/ro.owl#> .
-@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
-@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#> .
 
 <http://ontology.neuinfo.org/NIF/ttl/NIF-Neuron-NT-Bridge.ttl> a owl:Ontology ;
     rdfs:comment "This is a bridge file that specifies relations between NIF Neurons and their Neurotransmitters. Also, it specifies relations between neurons and their cell soma location in different brain regions."^^xsd:string ;
@@ -27,23 +18,33 @@
 
 ### Object Properties
 
-:has_molecular_constituent a owl:ObjectProperty,
+NIFNEURNT:has_molecular_constituent a owl:ObjectProperty,
         owl:TransitiveProperty ;
-    owl:inverseOf :molecular_constituent_of ;
+    owl:inverseOf NIFNEURNT:molecular_constituent_of ;
     rdfs:subPropertyOf ro:has_proper_part .
 
-:has_neurotransmitter a owl:ObjectProperty,
+NIFNEURNT:has_neurotransmitter a owl:ObjectProperty,
         owl:TransitiveProperty ;
-    owl:inverseOf :neurotransmitter_of ;
-    rdfs:subPropertyOf :has_molecular_constituent .
+    owl:inverseOf NIFNEURNT:neurotransmitter_of ;
+    rdfs:subPropertyOf NIFNEURNT:has_molecular_constituent .
 
-:molecular_constituent_of a owl:ObjectProperty,
+NIFNEURNT:molecular_constituent_of a owl:ObjectProperty,
         owl:TransitiveProperty ;
     rdfs:subPropertyOf ro:proper_part_of .
 
-:neurotransmitter_of a owl:ObjectProperty,
+NIFNEURNT:neurotransmitter_of a owl:ObjectProperty,
         owl:TransitiveProperty ;
-    rdfs:subPropertyOf :molecular_constituent_of .
+    rdfs:subPropertyOf NIFNEURNT:molecular_constituent_of .
+
+NIFNEURNT:soma_located_in a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    owl:inverseOf NIFNEURNT:soma_location_of ;
+    rdfs:comment "This is a temporary property to specify soma location of a cell/neuron. It will be modified to have property chain like cell1 has_part soma which is a part of brain region1"^^xsd:string ;
+    rdfs:subPropertyOf ro:has_part .
+
+NIFNEURNT:soma_location_of a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:subPropertyOf ro:part_of .
 
 ro:has_part a owl:ObjectProperty .
 
@@ -53,415 +54,405 @@ ro:part_of a owl:ObjectProperty .
 
 ro:proper_part_of a owl:ObjectProperty .
 
-:soma_located_in a owl:ObjectProperty,
-        owl:TransitiveProperty ;
-    owl:inverseOf :soma_location_of ;
-    rdfs:comment "This is a temporary property to specify soma location of a cell/neuron. It will be modified to have property chain like cell1 has_part soma which is a part of brain region1"^^xsd:string ;
-    rdfs:subPropertyOf ro:has_part .
-
-:soma_location_of a owl:ObjectProperty,
-        owl:TransitiveProperty ;
-    rdfs:subPropertyOf ro:part_of .
-
 ### Annotation Properties
 
-core:definition a owl:AnnotationProperty .
+OBOANN:modifiedDate a owl:AnnotationProperty .
 
-obo_annot:modifiedDate a owl:AnnotationProperty .
+OBOANN:synonym a owl:AnnotationProperty .
 
-obo_annot:synonym a owl:AnnotationProperty .
+skos:definition a owl:AnnotationProperty .
 
 ### Classes
 
-BIRNLex_annotation_properties:_birnlex_retired_class a owl:Class .
+BIRNANN:_birnlex_retired_class a owl:Class .
 
 CHEBI:18243 a owl:Class .
 
-NIF-Cell:nifext_17 a owl:Class ;
+NIFCELL:nifext_17 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nifext_45 a owl:Class ;
+NIFCELL:nifext_45 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_48 a owl:Class ;
+NIFCELL:nifext_48 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nifext_66 a owl:Class ;
+NIFCELL:nifext_66 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nifext_76 a owl:Class ;
+NIFCELL:nifext_76 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_84 a owl:Class ;
+NIFCELL:nifext_84 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nifext_94 a owl:Class ;
+NIFCELL:nifext_94 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nifext_95 a owl:Class ;
+NIFCELL:nifext_95 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_103 a owl:Class ;
-    rdfs:subClassOf :nlx_neuron_nt_090802,
+NIFCELL:nifext_103 a owl:Class ;
+    rdfs:subClassOf NIFNEURNT:nlx_neuron_nt_090802,
         [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao185580330 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao185580330 ] .
 
-NIF-Cell:nifext_106 a owl:Class ;
-    rdfs:subClassOf :nlx_neuron_nt_090802,
+NIFCELL:nifext_106 a owl:Class ;
+    rdfs:subClassOf NIFNEURNT:nlx_neuron_nt_090802,
         [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao185580330 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao185580330 ] .
 
-NIF-Cell:nifext_107 a owl:Class ;
-    rdfs:subClassOf :nlx_neuron_nt_090802,
+NIFCELL:nifext_107 a owl:Class ;
+    rdfs:subClassOf NIFNEURNT:nlx_neuron_nt_090802,
         [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao185580330 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao185580330 ] .
 
-NIF-Cell:nifext_109 a owl:Class ;
-    rdfs:subClassOf :nlx_neuron_nt_090802,
+NIFCELL:nifext_109 a owl:Class ;
+    rdfs:subClassOf NIFNEURNT:nlx_neuron_nt_090802,
         [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao185580330 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao185580330 ] .
 
-NIF-Cell:nifext_113 a owl:Class ;
+NIFCELL:nifext_113 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao968946794 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao968946794 ] .
 
-NIF-Cell:nifext_116 a owl:Class ;
+NIFCELL:nifext_116 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nifext_120 a owl:Class ;
+NIFCELL:nifext_120 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nifext_121 a owl:Class ;
+NIFCELL:nifext_121 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nifext_123 a owl:Class ;
+NIFCELL:nifext_123 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_124 a owl:Class ;
+NIFCELL:nifext_124 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_128 a owl:Class ;
+NIFCELL:nifext_128 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nifext_130 a owl:Class ;
+NIFCELL:nifext_130 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_132 a owl:Class ;
+NIFCELL:nifext_132 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nifext_133 a owl:Class ;
+NIFCELL:nifext_133 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_136 a owl:Class ;
+NIFCELL:nifext_136 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_141 a owl:Class ;
+NIFCELL:nifext_141 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_143 a owl:Class ;
+NIFCELL:nifext_143 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_144 a owl:Class ;
+NIFCELL:nifext_144 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_145 a owl:Class ;
+NIFCELL:nifext_145 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
             owl:someValuesFrom CHEBI:18243 ] .
 
-NIF-Cell:nifext_147 a owl:Class ;
+NIFCELL:nifext_147 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_148 a owl:Class ;
+NIFCELL:nifext_148 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_149 a owl:Class ;
+NIFCELL:nifext_149 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_153 a owl:Class ;
+NIFCELL:nifext_153 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nifext_154 a owl:Class ;
+NIFCELL:nifext_154 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nifext_160 a owl:Class ;
+NIFCELL:nifext_160 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nlx_cell_100202 a owl:Class ;
+NIFCELL:nlx_cell_100202 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nlx_cell_100208 a owl:Class ;
+NIFCELL:nlx_cell_100208 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nlx_cell_100310 a owl:Class ;
+NIFCELL:nlx_cell_100310 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:nifext_5016 ],
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:nifext_5016 ],
         [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nlx_cell_100311 a owl:Class ;
-    rdfs:subClassOf :nlx_neuron_nt_090802,
+NIFCELL:nlx_cell_100311 a owl:Class ;
+    rdfs:subClassOf NIFNEURNT:nlx_neuron_nt_090802,
         [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao185580330 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao185580330 ] .
 
-NIF-Cell:nlx_cell_1005003 a owl:Class ;
+NIFCELL:nlx_cell_1005003 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nlx_cell_1006009 a owl:Class ;
+NIFCELL:nlx_cell_1006009 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nlx_cell_1006021 a owl:Class ;
+NIFCELL:nlx_cell_1006021 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao185580330 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao185580330 ] .
 
-NIF-Cell:nlx_cell_20081203 a owl:Class ;
+NIFCELL:nlx_cell_20081203 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nlx_cell_20090202 a owl:Class ;
+NIFCELL:nlx_cell_20090202 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:nifext_5013 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:nifext_5013 ] .
 
-NIF-Cell:nlx_cell_20090203 a owl:Class ;
+NIFCELL:nlx_cell_20090203 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao185580330 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao185580330 ] .
 
-NIF-Cell:nlx_cell_20090302 a owl:Class ;
+NIFCELL:nlx_cell_20090302 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nlx_cell_20090304 a owl:Class ;
+NIFCELL:nlx_cell_20090304 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:nlx_cell_20090305 a owl:Class ;
+NIFCELL:nlx_cell_20090305 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
             owl:someValuesFrom CHEBI:18243 ] .
 
-NIF-Cell:nlx_cell_20090306 a owl:Class ;
+NIFCELL:nlx_cell_20090306 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nlx_cell_20090307 a owl:Class ;
+NIFCELL:nlx_cell_20090307 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nlx_cell_20090313 a owl:Class ;
+NIFCELL:nlx_cell_20090313 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao711465902 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao711465902 ] .
 
-NIF-Cell:nlx_cell_20090401 a owl:Class ;
+NIFCELL:nlx_cell_20090401 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:nlx_cell_20090727 a owl:Class ;
+NIFCELL:nlx_cell_20090727 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:sao383526650 a owl:Class ;
+NIFCELL:sao383526650 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:sao471801888 a owl:Class ;
+NIFCELL:sao471801888 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:sao666951243 a owl:Class ;
+NIFCELL:sao666951243 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:sao830368389 a owl:Class ;
+NIFCELL:sao830368389 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao1744435799 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao1744435799 ] .
 
-NIF-Cell:sao1366775348 a owl:Class ;
+NIFCELL:sao1366775348 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao185580330 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao185580330 ] .
 
-NIF-Cell:sao1415726815 a owl:Class ;
+NIFCELL:sao1415726815 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao229636300 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao229636300 ] .
 
-NIF-Cell:sao1417703748 a owl:Class .
+NIFCELL:sao1417703748 a owl:Class .
 
-NIF-Cell:sao1866881837 a owl:Class ;
+NIFCELL:sao1866881837 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty :has_neurotransmitter ;
-            owl:someValuesFrom NIF-Molecule:sao185580330 ] .
+            owl:onProperty NIFNEURNT:has_neurotransmitter ;
+            owl:someValuesFrom NIFMOL:sao185580330 ] .
 
-NIF-Molecule:nifext_5013 a owl:Class .
+NIFMOL:nifext_5013 a owl:Class .
 
-NIF-Molecule:nifext_5016 a owl:Class .
+NIFMOL:nifext_5016 a owl:Class .
 
-NIF-Molecule:sao185580330 a owl:Class .
+NIFMOL:sao185580330 a owl:Class .
 
-NIF-Molecule:sao229636300 a owl:Class .
+NIFMOL:sao229636300 a owl:Class .
 
-NIF-Molecule:sao711465902 a owl:Class .
+NIFMOL:sao711465902 a owl:Class .
 
-NIF-Molecule:sao968946794 a owl:Class .
+NIFMOL:sao968946794 a owl:Class .
 
-NIF-Molecule:sao1744435799 a owl:Class .
+NIFMOL:sao1744435799 a owl:Class .
 
-:nlx_neuron_nt_090801 a owl:Class ;
+NIFNEURNT:nlx_neuron_nt_090801 a owl:Class ;
     owl:deprecated true ;
     rdfs:label "Neuron with neurotransmitter"^^xsd:string ;
-    rdfs:subClassOf BIRNLex_annotation_properties:_birnlex_retired_class ;
+    rdfs:subClassOf BIRNANN:_birnlex_retired_class ;
     rdfs:comment "This class has been retired"^^xsd:string .
 
-:nlx_neuron_nt_090802 a owl:Class ;
+NIFNEURNT:nlx_neuron_nt_090802 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
-                        owl:onProperty :has_neurotransmitter ;
-                        owl:someValuesFrom NIF-Molecule:sao185580330 ] ) ] ;
+                        owl:onProperty NIFNEURNT:has_neurotransmitter ;
+                        owl:someValuesFrom NIFMOL:sao185580330 ] ) ] ;
     rdfs:label "Cholinergic neuron"^^xsd:string ;
     rdfs:comment "This is a defined class to classify all neurons that have been indicated as using the neurotransmitter \" Acetylcholine\"."^^xsd:string .
 
-:nlx_neuron_nt_090803 a owl:Class ;
+NIFNEURNT:nlx_neuron_nt_090803 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
-                        owl:onProperty :has_neurotransmitter ;
-                        owl:someValuesFrom NIF-Molecule:sao229636300 ] ) ] ;
+                        owl:onProperty NIFNEURNT:has_neurotransmitter ;
+                        owl:someValuesFrom NIFMOL:sao229636300 ] ) ] ;
     rdfs:label "GABAergic neuron"^^xsd:string ;
-    core:definition "A neuron that uses GABA as a neurotransmitter"^^xsd:string ;
+    skos:definition "A neuron that uses GABA as a neurotransmitter"^^xsd:string ;
     rdfs:comment "This is a defined class to classify all neurons that have been indicated as using the neurotransmitter \"GABA\"."^^xsd:string ;
-    obo_annot:modifiedDate "March 31, 2010"^^xsd:string .
+    OBOANN:modifiedDate "March 31, 2010"^^xsd:string .
 
-:nlx_neuron_nt_090804 a owl:Class ;
+NIFNEURNT:nlx_neuron_nt_090804 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
-                        owl:onProperty :has_neurotransmitter ;
-                        owl:someValuesFrom NIF-Molecule:sao1744435799 ] ) ] ;
+                        owl:onProperty NIFNEURNT:has_neurotransmitter ;
+                        owl:someValuesFrom NIFMOL:sao1744435799 ] ) ] ;
     rdfs:label "Glutamatergic neuron"^^xsd:string ;
     rdfs:comment "This is a defined class to classify neurons that have been indicated as using the neurotransmitter \"Glutamate\"."^^xsd:string .
 
-:nlx_neuron_nt_090805 a owl:Class ;
+NIFNEURNT:nlx_neuron_nt_090805 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
-                        owl:onProperty :has_neurotransmitter ;
-                        owl:someValuesFrom NIF-Molecule:nifext_5013 ] ) ] ;
+                        owl:onProperty NIFNEURNT:has_neurotransmitter ;
+                        owl:someValuesFrom NIFMOL:nifext_5013 ] ) ] ;
     rdfs:label "Norepinephrine neuron"^^xsd:string ;
     rdfs:comment "This is a defined class to classify neurons that have been indicated as using the neurotransmitter \" Norepinephrine\"."^^xsd:string .
 
-:nlx_neuron_nt_090806 a owl:Class ;
+NIFNEURNT:nlx_neuron_nt_090806 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
-                        owl:onProperty :has_neurotransmitter ;
+                        owl:onProperty NIFNEURNT:has_neurotransmitter ;
                         owl:someValuesFrom CHEBI:18243 ] ) ] ;
     rdfs:label "Dopaminergic neuron"^^xsd:string ;
     rdfs:comment "This is a defined class to classify all neurons that have been indicated as using the neurotransmitter \"Dopamine\"."^^xsd:string .
 
-:nlx_neuron_nt_090807 a owl:Class ;
+NIFNEURNT:nlx_neuron_nt_090807 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
-                        owl:onProperty :has_neurotransmitter ;
-                        owl:someValuesFrom NIF-Molecule:sao711465902 ] ) ] ;
+                        owl:onProperty NIFNEURNT:has_neurotransmitter ;
+                        owl:someValuesFrom NIFMOL:sao711465902 ] ) ] ;
     rdfs:label "Serotonergic neuron"^^xsd:string ;
     rdfs:comment "This is a defined class to classify all neurons that have been indicated as using the neurotransmitter \" Serotonin\"."^^xsd:string .
 
 ### Annotations
 
-NIF-Molecule:sao1700719022 obo_annot:synonym "AChR"^^xsd:string ;
-    core:definition "Cell surface proteins that bind acetylcholine with high affinity and trigger intracellular changes influencing the behavior of cells. Cholinergic receptors are divided into two major classes, muscarinic and nicotinic, based originally on their affinity for nicotine and muscarine. Each group is further subdivided based on pharmacology, location, mode of action, and/or molecular biology (MSH)."^^xsd:string .
+NIFMOL:sao1700719022 OBOANN:synonym "AChR"^^xsd:string ;
+    skos:definition "Cell surface proteins that bind acetylcholine with high affinity and trigger intracellular changes influencing the behavior of cells. Cholinergic receptors are divided into two major classes, muscarinic and nicotinic, based originally on their affinity for nicotine and muscarine. Each group is further subdivided based on pharmacology, location, mode of action, and/or molecular biology (MSH)."^^xsd:string .
 
 ### Serialized using the nifstd custom serializer v1.0.5

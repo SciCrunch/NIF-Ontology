@@ -1,38 +1,32 @@
-@prefix : <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Neuron-Brain-Bridge.owl#> .
-@prefix BIRNLex_annotation_properties: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#> .
-@prefix j.0: <http://www.w3.org/2004/02/skos/core#> .
-@prefix j.1: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
-@prefix NIF-Cell: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#> .
-@prefix NIF-GrossAnatomy: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#> .
-@prefix NIF-Molecule: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
-@prefix NIF-Neuron-NT-Bridge: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Neuron-NT-Bridge.owl#> .
-@prefix NIF-Subcellular: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#> .
-@prefix obo: <http://purl.org/obo/owl/obo#> .
+@prefix BIRNANN: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#> .
+@prefix NIFCELL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#> .
+@prefix NIFGA: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#> .
+@prefix NIFMOL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
+@prefix NIFNEURBR: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Neuron-BrainRegion-Bridge.owl#> .
+@prefix NIFNEURBR2: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Neuron-Brain-Bridge.owl#> .
+@prefix NIFNEURNT: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Neuron-NT-Bridge.owl#> .
+@prefix NIFSUB: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl#> .
+@prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix p3: <http://ontology.neuinfo.org/NIF/Backend/nif_backend.owl#> .
-@prefix p4: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Neuron-BrainRegion-Bridge.owl#> .
-@prefix protege: <http://protege.stanford.edu/plugins/owl/protege#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ro: <http://www.obofoundry.org/ro/ro.owl#> .
-@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
-@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#> .
 
 <http://ontology.neuinfo.org/NIF/ttl/NIF-Neuron-BrainRegion-Bridge.ttl> a owl:Ontology ;
     rdfs:label "NIF-Neuron-BrainRegion-Bridge"^^xsd:string ;
     rdfs:comment "This bridge file contains logical restrictions to associate different neuron types with their somatic portion in different brain regions. The bridge is between three modules: NIF-Cell, NIF-Subcell, and NIF-Antomy. It also includes defined neuron types (with precomposed brain region names)  that can classify different neurons based on their soma location in brain."^^xsd:string ;
-    j.1:createdDate "December 15, 2009"^^xsd:string ;
-    j.1:modifiedDate "September 3, 2013" .
+    OBOANN:createdDate "December 15, 2009"^^xsd:string ;
+    OBOANN:modifiedDate "September 3, 2013" .
 
 ### Object Properties
 
-NIF-Neuron-NT-Bridge:soma_located_in a owl:ObjectProperty,
-        owl:TransitiveProperty .
+<http://purl.org/obo/owl/obo#adjacent_to> a owl:ObjectProperty .
 
-obo:adjacent_to a owl:ObjectProperty .
+NIFNEURNT:soma_located_in a owl:ObjectProperty,
+        owl:TransitiveProperty .
 
 ro:has_proper_part a owl:ObjectProperty,
         owl:TransitiveProperty .
@@ -42,2296 +36,2295 @@ ro:proper_part_of a owl:ObjectProperty,
 
 ### Annotation Properties
 
-j.0:definition a owl:AnnotationProperty .
+OBOANN:createdDate a owl:AnnotationProperty .
 
-j.1:createdDate a owl:AnnotationProperty .
+OBOANN:modifiedDate a owl:AnnotationProperty .
 
-j.1:modifiedDate a owl:AnnotationProperty .
+OBOANN:synonym a owl:AnnotationProperty .
 
-j.1:synonym a owl:AnnotationProperty .
+skos:definition a owl:AnnotationProperty .
 
 ### Classes
 
-BIRNLex_annotation_properties:_birnlex_retired_class a owl:Class .
+BIRNANN:_birnlex_retired_class a owl:Class .
 
-NIF-Cell:nifext_17 a owl:Class ;
+NIFCELL:nifext_17 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_19 a owl:Class ;
+NIFCELL:nifext_19 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_20 a owl:Class ;
+NIFCELL:nifext_20 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_21 a owl:Class ;
+NIFCELL:nifext_21 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_22 a owl:Class ;
+NIFCELL:nifext_22 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_27 a owl:Class ;
+NIFCELL:nifext_27 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_31 a owl:Class ;
+NIFCELL:nifext_31 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_32 a owl:Class ;
+NIFCELL:nifext_32 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_33 a owl:Class ;
+NIFCELL:nifext_33 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_34 a owl:Class ;
+NIFCELL:nifext_34 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_35 a owl:Class ;
+NIFCELL:nifext_35 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_36 a owl:Class ;
+NIFCELL:nifext_36 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_37 a owl:Class ;
+NIFCELL:nifext_37 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_38 a owl:Class ;
+NIFCELL:nifext_38 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_39 a owl:Class ;
+NIFCELL:nifext_39 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_40 a owl:Class ;
+NIFCELL:nifext_40 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_45 a owl:Class ;
+NIFCELL:nifext_45 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1721 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1721 ] ) ] ] .
 
-NIF-Cell:nifext_46 a owl:Class ;
+NIFCELL:nifext_46 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_954 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_954 ] ) ] ] .
 
-NIF-Cell:nifext_47 a owl:Class ;
+NIFCELL:nifext_47 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_954 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_954 ] ) ] ] .
 
-NIF-Cell:nifext_49 a owl:Class ;
+NIFCELL:nifext_49 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_50 a owl:Class ;
+NIFCELL:nifext_50 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_51 a owl:Class ;
+NIFCELL:nifext_51 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_52 a owl:Class ;
+NIFCELL:nifext_52 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_53 a owl:Class ;
+NIFCELL:nifext_53 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_090810 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_090810 ] ) ] ] .
 
-NIF-Cell:nifext_54 a owl:Class ;
+NIFCELL:nifext_54 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:nifext_55 a owl:Class ;
+NIFCELL:nifext_55 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_56 a owl:Class ;
+NIFCELL:nifext_56 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_57 a owl:Class ;
+NIFCELL:nifext_57 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_58 a owl:Class ;
+NIFCELL:nifext_58 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_779 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_779 ] ) ] ] .
 
-NIF-Cell:nifext_59 a owl:Class ;
+NIFCELL:nifext_59 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_60 a owl:Class ;
+NIFCELL:nifext_60 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1197 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1197 ] ) ] ] .
 
-NIF-Cell:nifext_62 a owl:Class ;
+NIFCELL:nifext_62 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2540 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2540 ] ) ] ] .
 
-NIF-Cell:nifext_64 a owl:Class ;
+NIFCELL:nifext_64 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2526 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2526 ] ) ] ] .
 
-NIF-Cell:nifext_65 a owl:Class ;
+NIFCELL:nifext_65 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2526 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2526 ] ) ] ] .
 
-NIF-Cell:nifext_66 a owl:Class ;
+NIFCELL:nifext_66 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2549 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2549 ] ) ] ] .
 
-NIF-Cell:nifext_67 a owl:Class ;
+NIFCELL:nifext_67 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2549 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2549 ] ) ] ] .
 
-NIF-Cell:nifext_68 a owl:Class ;
+NIFCELL:nifext_68 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ] .
 
-NIF-Cell:nifext_69 a owl:Class ;
+NIFCELL:nifext_69 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ] .
 
-NIF-Cell:nifext_71 a owl:Class ;
+NIFCELL:nifext_71 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ] .
 
-NIF-Cell:nifext_72 a owl:Class ;
+NIFCELL:nifext_72 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2567 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2567 ] ) ] ] .
 
-NIF-Cell:nifext_73 a owl:Class ;
+NIFCELL:nifext_73 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2569 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2569 ] ) ] ] .
 
-NIF-Cell:nifext_74 a owl:Class ;
+NIFCELL:nifext_74 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ] .
 
-NIF-Cell:nifext_75 a owl:Class ;
+NIFCELL:nifext_75 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ] .
 
-NIF-Cell:nifext_77 a owl:Class ;
+NIFCELL:nifext_77 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2569 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2569 ] ) ] ] .
 
-NIF-Cell:nifext_78 a owl:Class ;
+NIFCELL:nifext_78 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_707 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_707 ] ) ] ] .
 
-NIF-Cell:nifext_79 a owl:Class ;
+NIFCELL:nifext_79 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_707 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_707 ] ) ] ] .
 
-NIF-Cell:nifext_80 a owl:Class ;
+NIFCELL:nifext_80 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_707 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_707 ] ) ] ] .
 
-NIF-Cell:nifext_81 a owl:Class ;
+NIFCELL:nifext_81 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_82 a owl:Class ;
+NIFCELL:nifext_82 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_806 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_806 ] ) ] ] .
 
-NIF-Cell:nifext_83 a owl:Class ;
+NIFCELL:nifext_83 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_806 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_806 ] ) ] ] .
 
-NIF-Cell:nifext_84 a owl:Class ;
+NIFCELL:nifext_84 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2596 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2596 ] ) ] ] .
 
-NIF-Cell:nifext_85 a owl:Class ;
+NIFCELL:nifext_85 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2596 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2596 ] ) ] ] .
 
-NIF-Cell:nifext_86 a owl:Class ;
+NIFCELL:nifext_86 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2596 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2596 ] ) ] ] .
 
-NIF-Cell:nifext_87 a owl:Class ;
+NIFCELL:nifext_87 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2596 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2596 ] ) ] ] .
 
-NIF-Cell:nifext_88 a owl:Class ;
+NIFCELL:nifext_88 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2596 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2596 ] ) ] ] .
 
-NIF-Cell:nifext_89 a owl:Class ;
+NIFCELL:nifext_89 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2596 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2596 ] ) ] ] .
 
-NIF-Cell:nifext_90 a owl:Class ;
+NIFCELL:nifext_90 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2596 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2596 ] ) ] ] .
 
-NIF-Cell:nifext_91 a owl:Class ;
+NIFCELL:nifext_91 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2596 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2596 ] ) ] ] .
 
-NIF-Cell:nifext_92 a owl:Class ;
+NIFCELL:nifext_92 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2596 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2596 ] ) ] ] .
 
-NIF-Cell:nifext_93 a owl:Class ;
+NIFCELL:nifext_93 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2596 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2596 ] ) ] ] .
 
-NIF-Cell:nifext_94 a owl:Class ;
+NIFCELL:nifext_94 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2643 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2643 ] ) ] ] .
 
-NIF-Cell:nifext_95 a owl:Class ;
+NIFCELL:nifext_95 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2643 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2643 ] ) ] ] .
 
-NIF-Cell:nifext_96 a owl:Class ;
+NIFCELL:nifext_96 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nifext_11 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nifext_11 ] ) ] ] .
 
-NIF-Cell:nifext_97 a owl:Class ;
+NIFCELL:nifext_97 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nifext_11 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nifext_11 ] ) ] ] .
 
-NIF-Cell:nifext_100 a owl:Class ;
+NIFCELL:nifext_100 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1483 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1483 ] ) ] ] .
 
-NIF-Cell:nifext_101 a owl:Class ;
+NIFCELL:nifext_101 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1483 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1483 ] ) ] ] .
 
-NIF-Cell:nifext_103 a owl:Class ;
+NIFCELL:nifext_103 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2668 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2668 ] ) ] ] .
 
-NIF-Cell:nifext_108 a owl:Class ;
+NIFCELL:nifext_108 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2668 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2668 ] ) ] ] .
 
-NIF-Cell:nifext_109 a owl:Class ;
+NIFCELL:nifext_109 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1709 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1709 ] ) ] ] .
 
-NIF-Cell:nifext_110 a owl:Class ;
+NIFCELL:nifext_110 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2668 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2668 ] ) ] ] .
 
-NIF-Cell:nifext_111 a owl:Class ;
+NIFCELL:nifext_111 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2668 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2668 ] ) ] ] .
 
-NIF-Cell:nifext_112 a owl:Class ;
+NIFCELL:nifext_112 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2668 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2668 ] ) ] ] .
 
-NIF-Cell:nifext_113 a owl:Class ;
+NIFCELL:nifext_113 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2668 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2668 ] ) ] ] .
 
-NIF-Cell:nifext_114 a owl:Class ;
+NIFCELL:nifext_114 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2668 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2668 ] ) ] ] .
 
-NIF-Cell:nifext_116 a owl:Class ;
+NIFCELL:nifext_116 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2703 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2703 ] ) ] ] .
 
-NIF-Cell:nifext_118 a owl:Class ;
+NIFCELL:nifext_118 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_091003 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_091003 ] ) ] ] .
 
-NIF-Cell:nifext_119 a owl:Class ;
+NIFCELL:nifext_119 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2703 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2703 ] ) ] ] .
 
-NIF-Cell:nifext_120 a owl:Class ;
+NIFCELL:nifext_120 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1137 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1137 ] ) ] ] .
 
-NIF-Cell:nifext_121 a owl:Class ;
+NIFCELL:nifext_121 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1137 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_1137 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_20090405 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_20090405 ] ) ] ] .
 
-NIF-Cell:nifext_122 a owl:Class ;
+NIFCELL:nifext_122 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1137 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1137 ] ) ] ] .
 
-NIF-Cell:nifext_123 a owl:Class ;
+NIFCELL:nifext_123 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_20090404 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_20090404 ] ) ] ] .
 
-NIF-Cell:nifext_124 a owl:Class ;
+NIFCELL:nifext_124 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_20090404 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_20090404 ] ) ] ] .
 
-NIF-Cell:nifext_126 a owl:Class ;
+NIFCELL:nifext_126 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_128 a owl:Class ;
+NIFCELL:nifext_128 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_779 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_779 ] ) ] ] .
 
-NIF-Cell:nifext_130 a owl:Class ;
+NIFCELL:nifext_130 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_810 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_810 ] ) ] ] .
 
-NIF-Cell:nifext_132 a owl:Class ;
+NIFCELL:nifext_132 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_779 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_779 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2569 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2569 ] ) ] ] .
 
-NIF-Cell:nifext_133 a owl:Class ;
+NIFCELL:nifext_133 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_779 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_779 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_818 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_818 ] ) ] ] .
 
-NIF-Cell:nifext_134 a owl:Class ;
+NIFCELL:nifext_134 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_135 a owl:Class ;
+NIFCELL:nifext_135 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ] .
 
-NIF-Cell:nifext_136 a owl:Class ;
+NIFCELL:nifext_136 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ] .
 
-NIF-Cell:nifext_139 a owl:Class ;
+NIFCELL:nifext_139 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2707 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2707 ] ) ] ] .
 
-NIF-Cell:nifext_141 a owl:Class ;
+NIFCELL:nifext_141 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1672 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1672 ] ) ] ] .
 
-NIF-Cell:nifext_143 a owl:Class ;
+NIFCELL:nifext_143 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1672 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1672 ] ) ] ] .
 
-NIF-Cell:nifext_144 a owl:Class ;
+NIFCELL:nifext_144 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1672 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1672 ] ) ] ] .
 
-NIF-Cell:nifext_145 a owl:Class ;
+NIFCELL:nifext_145 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_968 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_968 ] ) ] ] .
 
-NIF-Cell:nifext_147 a owl:Class ;
+NIFCELL:nifext_147 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_968 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_968 ] ) ] ] .
 
-NIF-Cell:nifext_148 a owl:Class ;
+NIFCELL:nifext_148 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_968 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_968 ] ) ] ] .
 
-NIF-Cell:nifext_149 a owl:Class ;
+NIFCELL:nifext_149 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1234 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1234 ] ) ] ] .
 
-NIF-Cell:nifext_150 a owl:Class ;
+NIFCELL:nifext_150 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1234 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1234 ] ) ] ] .
 
-NIF-Cell:nifext_151 a owl:Class ;
+NIFCELL:nifext_151 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2700 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2700 ] ) ] ] .
 
-NIF-Cell:nifext_152 a owl:Class ;
+NIFCELL:nifext_152 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2692 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2692 ] ) ] ] .
 
-NIF-Cell:nifext_153 a owl:Class ;
+NIFCELL:nifext_153 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1178 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1178 ] ) ] ] .
 
-NIF-Cell:nifext_154 a owl:Class ;
+NIFCELL:nifext_154 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1137 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1137 ] ) ] ] .
 
-NIF-Cell:nifext_155 a owl:Class ;
+NIFCELL:nifext_155 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1137 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1137 ] ) ] ] .
 
-NIF-Cell:nifext_159 a owl:Class ;
+NIFCELL:nifext_159 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1305 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1305 ] ) ] ] .
 
-NIF-Cell:nifext_161 a owl:Class ;
+NIFCELL:nifext_161 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:nifext_163 a owl:Class ;
+NIFCELL:nifext_163 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1097 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1097 ] ) ] ] .
 
-NIF-Cell:nlx_cell_090807 a owl:Class ;
+NIFCELL:nlx_cell_090807 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4116 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4116 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091001 a owl:Class ;
+NIFCELL:nlx_cell_091001 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2707 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2707 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091002 a owl:Class ;
+NIFCELL:nlx_cell_091002 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2707 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2707 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091003 a owl:Class ;
+NIFCELL:nlx_cell_091003 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4127 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4127 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091004 a owl:Class ;
+NIFCELL:nlx_cell_091004 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4111 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4111 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091005 a owl:Class ;
+NIFCELL:nlx_cell_091005 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_091006 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_091006 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091201 a owl:Class ;
+NIFCELL:nlx_cell_091201 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1482 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1482 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091202 a owl:Class ;
+NIFCELL:nlx_cell_091202 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1137 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1137 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091203 a owl:Class ;
+NIFCELL:nlx_cell_091203 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4127 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4127 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091204 a owl:Class ;
+NIFCELL:nlx_cell_091204 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4127 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4127 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091205 a owl:Class ;
+NIFCELL:nlx_cell_091205 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4116 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4116 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091206 a owl:Class ;
+NIFCELL:nlx_cell_091206 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4115 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4115 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091207 a owl:Class ;
+NIFCELL:nlx_cell_091207 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4111 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4111 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091208 a owl:Class ;
+NIFCELL:nlx_cell_091208 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4111 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4111 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091209 a owl:Class ;
+NIFCELL:nlx_cell_091209 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4111 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4111 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091210 a owl:Class ;
+NIFCELL:nlx_cell_091210 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4112 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_4112 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4117 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_4117 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4121 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4121 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091211 a owl:Class ;
+NIFCELL:nlx_cell_091211 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4121 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4121 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091212 a owl:Class ;
+NIFCELL:nlx_cell_091212 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4112 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4112 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091213 a owl:Class ;
+NIFCELL:nlx_cell_091213 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4112 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4112 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091214 a owl:Class ;
+NIFCELL:nlx_cell_091214 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4125 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4125 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091216 a owl:Class ;
+NIFCELL:nlx_cell_091216 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4117 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4117 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091217 a owl:Class ;
+NIFCELL:nlx_cell_091217 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4121 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4121 ] ) ] ] .
 
-NIF-Cell:nlx_cell_091218 a owl:Class ;
+NIFCELL:nlx_cell_091218 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4121 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4121 ] ) ] ] .
 
-NIF-Cell:nlx_cell_100201 a owl:Class ;
+NIFCELL:nlx_cell_100201 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1178 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1178 ] ) ] ] .
 
-NIF-Cell:nlx_cell_100202 a owl:Class ;
+NIFCELL:nlx_cell_100202 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2683 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2683 ] ) ] ] .
 
-NIF-Cell:nlx_cell_100204 a owl:Class ;
+NIFCELL:nlx_cell_100204 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1482 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1482 ] ) ] ] .
 
-NIF-Cell:nlx_cell_100209 a owl:Class ;
+NIFCELL:nlx_cell_100209 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty NIF-Neuron-NT-Bridge:soma_located_in ;
+            owl:onProperty NIFNEURNT:soma_located_in ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:unionOf (
-                            NIF-GrossAnatomy:birnlex_4110
-                            NIF-GrossAnatomy:birnlex_4119 ) ] ] .
+                            NIFGA:birnlex_4110
+                            NIFGA:birnlex_4119 ) ] ] .
 
-NIF-Cell:nlx_cell_100301 a owl:Class ;
+NIFCELL:nlx_cell_100301 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4127 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4127 ] ) ] ] .
 
-NIF-Cell:nlx_cell_100302 a owl:Class ;
+NIFCELL:nlx_cell_100302 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1482 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1482 ] ) ] ] .
 
-NIF-Cell:nlx_cell_100311 a owl:Class ;
+NIFCELL:nlx_cell_100311 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2644 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2644 ] ) ] ] .
 
-NIF-Cell:nlx_cell_1005002 a owl:Class ;
+NIFCELL:nlx_cell_1005002 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_1005001 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_1005001 ] ) ] ] .
 
-NIF-Cell:nlx_cell_1006006 a owl:Class ;
+NIFCELL:nlx_cell_1006006 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_806 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_806 ] ) ] ] .
 
-NIF-Cell:nlx_cell_1006009 a owl:Class ;
+NIFCELL:nlx_cell_1006009 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2644 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2644 ] ) ] ] .
 
-NIF-Cell:nlx_cell_1006026 a owl:Class ;
+NIFCELL:nlx_cell_1006026 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1429 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1429 ] ) ] ] .
 
-NIF-Cell:nlx_cell_1008001 a owl:Class ;
+NIFCELL:nlx_cell_1008001 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1488 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1488 ] ) ] ] .
 
-NIF-Cell:nlx_cell_1008002 a owl:Class ;
+NIFCELL:nlx_cell_1008002 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1222 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1222 ] ) ] ] .
 
-NIF-Cell:nlx_cell_1008003 a owl:Class ;
+NIFCELL:nlx_cell_1008003 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1366 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1366 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20081201 a owl:Class ;
+NIFCELL:nlx_cell_20081201 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2567 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2567 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20081202 a owl:Class ;
+NIFCELL:nlx_cell_20081202 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2567 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2567 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20081203 a owl:Class ;
+NIFCELL:nlx_cell_20081203 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_954 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_954 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20081204 a owl:Class ;
+NIFCELL:nlx_cell_20081204 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4111 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4111 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20090203 a owl:Class ;
+NIFCELL:nlx_cell_20090203 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1107 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1107 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20090304 a owl:Class ;
+NIFCELL:nlx_cell_20090304 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_20090453 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_20090453 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20090305 a owl:Class ;
+NIFCELL:nlx_cell_20090305 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1415 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1415 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20090306 a owl:Class ;
+NIFCELL:nlx_cell_20090306 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_20090503 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_20090503 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20090307 a owl:Class ;
+NIFCELL:nlx_cell_20090307 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_20090504 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_20090504 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20090308 a owl:Class ;
+NIFCELL:nlx_cell_20090308 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_20090505 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_20090505 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20090401 a owl:Class ;
+NIFCELL:nlx_cell_20090401 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_20090453 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_20090453 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20090402 a owl:Class ;
+NIFCELL:nlx_cell_20090402 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_20090407 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_20090407 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20090403 a owl:Class ;
+NIFCELL:nlx_cell_20090403 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_20090408 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_20090408 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20090501 a owl:Class ;
+NIFCELL:nlx_cell_20090501 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1407 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1407 ] ) ] ] .
 
-NIF-Cell:nlx_cell_20090727 a owl:Class ;
+NIFCELL:nlx_cell_20090727 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1482 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1482 ] ) ] ] .
 
-NIF-Cell:nlx_cell_200903010 a owl:Class ;
+NIFCELL:nlx_cell_200903010 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_20090512 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_20090512 ] ) ] ] .
 
-NIF-Cell:sao131261273 a owl:Class ;
+NIFCELL:sao131261273 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_721 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_721 ] ) ] ] .
 
-NIF-Cell:sao383526650 a owl:Class ;
+NIFCELL:sao383526650 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4112 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4112 ] ) ] ] .
 
-NIF-Cell:sao436474611 a owl:Class ;
+NIFCELL:sao436474611 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] .
 
-NIF-Cell:sao471801888 a owl:Class ;
+NIFCELL:sao471801888 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_818 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_818 ] ) ] ] .
 
-NIF-Cell:sao538050329 a owl:Class ;
+NIFCELL:sao538050329 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ] .
 
-NIF-Cell:sao630986029 a owl:Class ;
+NIFCELL:sao630986029 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2526 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2526 ] ) ] ] .
 
-NIF-Cell:sao666951243 a owl:Class ;
+NIFCELL:sao666951243 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_810 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_810 ] ) ] ] .
 
-NIF-Cell:sao770302354 a owl:Class ;
+NIFCELL:sao770302354 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_090810 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_090810 ] ) ] ] .
 
-NIF-Cell:sao830368389 a owl:Class ;
+NIFCELL:sao830368389 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_4110 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_4110 ] ) ] ] .
 
-NIF-Cell:sao862606388 a owl:Class ;
+NIFCELL:sao862606388 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_715 ] ) ] ],
+                                owl:someValuesFrom NIFGA:birnlex_715 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1494 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1494 ] ) ] ] .
 
-NIF-Cell:sao1233810115 a owl:Class ;
+NIFCELL:sao1233810115 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] .
 
-NIF-Cell:sao1236796660 a owl:Class ;
+NIFCELL:sao1236796660 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:nlx_anat_090810 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:nlx_anat_090810 ] ) ] ] .
 
-NIF-Cell:sao1366775348 a owl:Class ;
+NIFCELL:sao1366775348 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1054 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1054 ] ) ] ] .
 
-NIF-Cell:sao1415726815 a owl:Class ;
+NIFCELL:sao1415726815 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_779 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_779 ] ) ] ] .
 
-NIF-Cell:sao1417703748 a owl:Class .
+NIFCELL:sao1417703748 a owl:Class .
 
-NIF-Cell:sao1582628662 a owl:Class ;
+NIFCELL:sao1582628662 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2526 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2526 ] ) ] ] .
 
-NIF-Cell:sao1866881837 a owl:Class ;
+NIFCELL:sao1866881837 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_1672 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_1672 ] ) ] ] .
 
-NIF-Cell:sao2046464388 a owl:Class ;
+NIFCELL:sao2046464388 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
-                            NIF-Subcellular:sao401910342
+                            NIFSUB:sao401910342
                             [ a owl:Restriction ;
                                 owl:onProperty ro:proper_part_of ;
-                                owl:someValuesFrom NIF-GrossAnatomy:birnlex_2526 ] ) ] ] .
+                                owl:someValuesFrom NIFGA:birnlex_2526 ] ) ] ] .
 
-NIF-GrossAnatomy:birnlex_707 a owl:Class .
+NIFGA:birnlex_707 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_715 a owl:Class .
+NIFGA:birnlex_715 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_721 a owl:Class .
+NIFGA:birnlex_721 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_733 a owl:Class .
+NIFGA:birnlex_733 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_748 a owl:Class .
+NIFGA:birnlex_748 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_757 a owl:Class .
+NIFGA:birnlex_757 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_779 a owl:Class .
+NIFGA:birnlex_779 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_806 a owl:Class .
+NIFGA:birnlex_806 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_810 a owl:Class .
+NIFGA:birnlex_810 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_818 a owl:Class .
+NIFGA:birnlex_818 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_923 a owl:Class .
+NIFGA:birnlex_923 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_954 a owl:Class .
+NIFGA:birnlex_954 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_957 a owl:Class .
+NIFGA:birnlex_957 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_968 a owl:Class .
+NIFGA:birnlex_968 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1054 a owl:Class .
+NIFGA:birnlex_1054 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1097 a owl:Class .
+NIFGA:birnlex_1097 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1107 a owl:Class .
+NIFGA:birnlex_1107 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1114 a owl:Class .
+NIFGA:birnlex_1114 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1137 a owl:Class .
+NIFGA:birnlex_1137 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1147 a owl:Class .
+NIFGA:birnlex_1147 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1151 a owl:Class .
+NIFGA:birnlex_1151 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1153 a owl:Class ;
+NIFGA:birnlex_1153 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom NIF-GrossAnatomy:birnlex_1793 ] .
+            owl:someValuesFrom NIFGA:birnlex_1793 ] .
 
-NIF-GrossAnatomy:birnlex_1178 a owl:Class .
+NIFGA:birnlex_1178 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1186 a owl:Class .
+NIFGA:birnlex_1186 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1195 a owl:Class .
+NIFGA:birnlex_1195 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1197 a owl:Class .
+NIFGA:birnlex_1197 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1222 a owl:Class .
+NIFGA:birnlex_1222 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1234 a owl:Class .
+NIFGA:birnlex_1234 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1305 a owl:Class .
+NIFGA:birnlex_1305 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1366 a owl:Class ;
+NIFGA:birnlex_1366 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:proper_part_of ;
-            owl:someValuesFrom NIF-GrossAnatomy:birnlex_923 ] .
+            owl:someValuesFrom NIFGA:birnlex_923 ] .
 
-NIF-GrossAnatomy:birnlex_1407 a owl:Class .
+NIFGA:birnlex_1407 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1415 a owl:Class .
+NIFGA:birnlex_1415 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1429 a owl:Class .
+NIFGA:birnlex_1429 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1482 a owl:Class .
+NIFGA:birnlex_1482 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1483 a owl:Class .
+NIFGA:birnlex_1483 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1488 a owl:Class .
+NIFGA:birnlex_1488 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1489 a owl:Class .
+NIFGA:birnlex_1489 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1494 a owl:Class .
+NIFGA:birnlex_1494 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1496 a owl:Class .
+NIFGA:birnlex_1496 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1517 a owl:Class .
+NIFGA:birnlex_1517 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1565 a owl:Class .
+NIFGA:birnlex_1565 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1566 a owl:Class .
+NIFGA:birnlex_1566 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1568 a owl:Class .
+NIFGA:birnlex_1568 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1571 a owl:Class .
+NIFGA:birnlex_1571 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1667 a owl:Class .
+NIFGA:birnlex_1667 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1672 a owl:Class .
+NIFGA:birnlex_1672 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1709 a owl:Class .
+NIFGA:birnlex_1709 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1721 a owl:Class .
+NIFGA:birnlex_1721 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_1793 a owl:Class .
+NIFGA:birnlex_1793 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2526 a owl:Class .
+NIFGA:birnlex_2526 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2540 a owl:Class .
+NIFGA:birnlex_2540 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2547 a owl:Class .
+NIFGA:birnlex_2547 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2549 a owl:Class .
+NIFGA:birnlex_2549 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2567 a owl:Class .
+NIFGA:birnlex_2567 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2569 a owl:Class .
+NIFGA:birnlex_2569 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2596 a owl:Class .
+NIFGA:birnlex_2596 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2643 a owl:Class .
+NIFGA:birnlex_2643 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2644 a owl:Class .
+NIFGA:birnlex_2644 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2668 a owl:Class .
+NIFGA:birnlex_2668 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2683 a owl:Class .
+NIFGA:birnlex_2683 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2692 a owl:Class .
+NIFGA:birnlex_2692 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2700 a owl:Class .
+NIFGA:birnlex_2700 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2703 a owl:Class .
+NIFGA:birnlex_2703 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2707 a owl:Class .
+NIFGA:birnlex_2707 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_2708 a owl:Class .
+NIFGA:birnlex_2708 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_4110 a owl:Class .
+NIFGA:birnlex_4110 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_4111 a owl:Class .
+NIFGA:birnlex_4111 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_4112 a owl:Class .
+NIFGA:birnlex_4112 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_4115 a owl:Class .
+NIFGA:birnlex_4115 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_4116 a owl:Class .
+NIFGA:birnlex_4116 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_4117 a owl:Class .
+NIFGA:birnlex_4117 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_4119 a owl:Class .
+NIFGA:birnlex_4119 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_4121 a owl:Class .
+NIFGA:birnlex_4121 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_4125 a owl:Class .
+NIFGA:birnlex_4125 a owl:Class .
 
-NIF-GrossAnatomy:birnlex_4127 a owl:Class .
+NIFGA:birnlex_4127 a owl:Class .
 
-NIF-GrossAnatomy:nifext_11 a owl:Class .
+NIFGA:nifext_11 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_090810 a owl:Class .
+NIFGA:nlx_anat_090810 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_091003 a owl:Class .
+NIFGA:nlx_anat_091003 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_091006 a owl:Class .
+NIFGA:nlx_anat_091006 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_1005001 a owl:Class .
+NIFGA:nlx_anat_1005001 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_20090404 a owl:Class .
+NIFGA:nlx_anat_20090404 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_20090405 a owl:Class .
+NIFGA:nlx_anat_20090405 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_20090407 a owl:Class .
+NIFGA:nlx_anat_20090407 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_20090408 a owl:Class .
+NIFGA:nlx_anat_20090408 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_20090453 a owl:Class .
+NIFGA:nlx_anat_20090453 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_20090503 a owl:Class .
+NIFGA:nlx_anat_20090503 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_20090504 a owl:Class .
+NIFGA:nlx_anat_20090504 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_20090505 a owl:Class .
+NIFGA:nlx_anat_20090505 a owl:Class .
 
-NIF-GrossAnatomy:nlx_anat_20090512 a owl:Class .
+NIFGA:nlx_anat_20090512 a owl:Class .
 
-NIF-Molecule:sao1231384859 a owl:Class .
+NIFMOL:sao1231384859 a owl:Class .
 
-NIF-Subcellular:sao401910342 a owl:Class .
-
-:nlx_cell_100377 a owl:Class ;
+NIFNEURBR2:nlx_cell_100377 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
-                                            owl:someValuesFrom NIF-GrossAnatomy:birnlex_1178 ] ) ] ] ) ] ;
+                                            owl:someValuesFrom NIFGA:birnlex_1178 ] ) ] ] ) ] ;
     rdfs:label "Dentate gyrus neuron"^^xsd:string ;
-    j.0:definition "Neuron with cell soma located in any part of Dentate gyrus."^^xsd:string ;
-    j.1:createdDate "March 19, 2010"^^xsd:string .
+    skos:definition "Neuron with cell soma located in any part of Dentate gyrus."^^xsd:string ;
+    OBOANN:createdDate "March 19, 2010"^^xsd:string .
 
-:nlx_cell_111001 a owl:Class ;
+NIFNEURBR2:nlx_cell_111001 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
                                             owl:someValuesFrom [ a owl:Class ;
                                                     owl:unionOf (
-                                                            NIF-GrossAnatomy:birnlex_733
-                                                            NIF-GrossAnatomy:birnlex_957
-                                                            NIF-GrossAnatomy:birnlex_1565
-                                                            NIF-GrossAnatomy:birnlex_1667 ) ] ] ) ] ] ) ] ;
+                                                            NIFGA:birnlex_733
+                                                            NIFGA:birnlex_957
+                                                            NIFGA:birnlex_1565
+                                                            NIFGA:birnlex_1667 ) ] ] ) ] ] ) ] ;
     rdfs:label "Brainstem neuron"^^xsd:string ;
-    j.0:definition "Neuron whose soma is located in any part of the brainstem (midbrain, pons and medulla, excluding cerebellum)"^^xsd:string ;
+    skos:definition "Neuron whose soma is located in any part of the brainstem (midbrain, pons and medulla, excluding cerebellum)"^^xsd:string ;
     owl:versionInfo "136032"^^xsd:string ;
-    j.1:createdDate "October 1, 2011"^^xsd:string .
+    OBOANN:createdDate "October 1, 2011"^^xsd:string .
 
-:nlx_cell_10061313 a owl:Class ;
+NIFNEURBR2:nlx_cell_10061313 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
                                             owl:someValuesFrom [ a owl:Class ;
                                                     owl:unionOf (
-                                                            NIF-GrossAnatomy:birnlex_1114
-                                                            NIF-GrossAnatomy:birnlex_1568 ) ] ] ) ] ] ) ] ;
+                                                            NIFGA:birnlex_1114
+                                                            NIFGA:birnlex_1568 ) ] ] ) ] ] ) ] ;
     rdfs:label "Cerebellar nucleus neuron"^^xsd:string ;
-    j.1:synonym "Cerebellum nucleus neuron"^^xsd:string ;
-    j.0:definition "Neuron whose soma lies in any part of the Cerebellar nucleus."^^xsd:string ;
-    j.1:createdDate "June 10, 2010"^^xsd:string .
+    OBOANN:synonym "Cerebellum nucleus neuron"^^xsd:string ;
+    skos:definition "Neuron whose soma lies in any part of the Cerebellar nucleus."^^xsd:string ;
+    OBOANN:createdDate "June 10, 2010"^^xsd:string .
 
-:nlx_cell_10061414 a owl:Class ;
+NIFNEURBR2:nlx_cell_10061414 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
                                             owl:someValuesFrom [ a owl:Class ;
                                                     owl:unionOf (
-                                                            NIF-GrossAnatomy:birnlex_1566
-                                                            NIF-GrossAnatomy:birnlex_1571 ) ] ] ) ] ] ) ] ;
+                                                            NIFGA:birnlex_1566
+                                                            NIFGA:birnlex_1571 ) ] ] ) ] ] ) ] ;
     rdfs:label "Cerebellar cortex neuron"^^xsd:string ;
-    j.0:definition "Neuron whose soma lies in any part of the Cerebellar cortex."^^xsd:string ;
-    rdfs:comment ""^^xsd:string ;
-    j.1:createdDate "June 10, 2010"^^xsd:string ;
-    j.1:modifiedDate "September 3, 2013" .
+    skos:definition "Neuron whose soma lies in any part of the Cerebellar cortex."^^xsd:string ;
+    OBOANN:createdDate "June 10, 2010"^^xsd:string ;
+    OBOANN:modifiedDate "September 3, 2013" .
 
-p4:nlx_cell_0912001 a owl:Class ;
+NIFNEURBR:nlx_cell_0912001 a owl:Class ;
     owl:deprecated true ;
     rdfs:label "Neuron by brain region"^^xsd:string ;
-    rdfs:subClassOf BIRNLex_annotation_properties:_birnlex_retired_class .
+    rdfs:subClassOf BIRNANN:_birnlex_retired_class .
 
-p4:nlx_cell_0912002 a owl:Class ;
+NIFNEURBR:nlx_cell_0912002 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
                                             owl:someValuesFrom [ a owl:Class ;
                                                     owl:unionOf (
-                                                            NIF-GrossAnatomy:birnlex_748
-                                                            NIF-GrossAnatomy:birnlex_1489 ) ] ] ) ] ] ) ] ;
+                                                            NIFGA:birnlex_748
+                                                            NIFGA:birnlex_1489 ) ] ] ) ] ] ) ] ;
     rdfs:label "Cerebellum neuron"^^xsd:string ;
-    j.1:synonym "Cerebellar neuron"^^xsd:string ;
-    j.0:definition "Neuron whose soma lies in any part of the Cerebellum or Cerebellar cortex"^^xsd:string ;
-    j.1:modifiedDate "December 17, 2010"^^xsd:string .
+    OBOANN:synonym "Cerebellar neuron"^^xsd:string ;
+    skos:definition "Neuron whose soma lies in any part of the Cerebellum or Cerebellar cortex"^^xsd:string ;
+    OBOANN:modifiedDate "December 17, 2010"^^xsd:string .
 
-p4:nlx_cell_0912003 a owl:Class ;
+NIFNEURBR:nlx_cell_0912003 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
-                                            owl:someValuesFrom NIF-GrossAnatomy:birnlex_721 ] ) ] ] ) ] ;
+                                            owl:someValuesFrom NIFGA:birnlex_721 ] ) ] ] ) ] ;
     rdfs:label "Hippocampal neuron"^^xsd:string ;
-    j.0:definition "Neuron whose soma lies in any part of the hippocampal formation"^^xsd:string .
+    skos:definition "Neuron whose soma lies in any part of the hippocampal formation"^^xsd:string .
 
-p4:nlx_cell_0912004 a owl:Class ;
+NIFNEURBR:nlx_cell_0912004 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
-                                            owl:someValuesFrom NIF-GrossAnatomy:birnlex_2547 ] ) ] ] ) ] ;
+                                            owl:someValuesFrom NIFGA:birnlex_2547 ] ) ] ] ) ] ;
     rdfs:label "Neocortical neuron"^^xsd:string ;
-    j.0:definition "Neuron whose soma lies in any part of the Neocortex"^^xsd:string .
+    skos:definition "Neuron whose soma lies in any part of the Neocortex"^^xsd:string .
 
-p4:nlx_cell_0912005 a owl:Class ;
+NIFNEURBR:nlx_cell_0912005 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
-                                            owl:someValuesFrom NIF-GrossAnatomy:birnlex_1137 ] ) ] ] ) ] ;
+                                            owl:someValuesFrom NIFGA:birnlex_1137 ] ) ] ] ) ] ;
     rdfs:label "Olfactory bulb neuron"^^xsd:string .
 
-p4:nlx_cell_0912006 a owl:Class ;
+NIFNEURBR:nlx_cell_0912006 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
-                                            owl:someValuesFrom NIF-GrossAnatomy:birnlex_2707 ] ) ] ] ) ] ;
+                                            owl:someValuesFrom NIFGA:birnlex_2707 ] ) ] ] ) ] ;
     rdfs:label "Olfactory cortex neuron"^^xsd:string .
 
-p4:nlx_cell_0912008 a owl:Class ;
+NIFNEURBR:nlx_cell_0912008 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
-                                            owl:someValuesFrom NIF-GrossAnatomy:birnlex_1153 ] ) ] ] ) ] ;
+                                            owl:someValuesFrom NIFGA:birnlex_1153 ] ) ] ] ) ] ;
     rdfs:label "Retinal neuron"^^xsd:string ;
-    j.0:definition "Neuron whose soma lies in any part of the Retina"^^xsd:string .
+    skos:definition "Neuron whose soma lies in any part of the Retina"^^xsd:string .
 
-p4:nlx_cell_0912009 a owl:Class ;
+NIFNEURBR:nlx_cell_0912009 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
                                             owl:someValuesFrom [ a owl:Class ;
                                                     owl:unionOf (
-                                                            NIF-GrossAnatomy:birnlex_1496
-                                                            NIF-GrossAnatomy:birnlex_1709 ) ] ] ) ] ] ) ] ;
+                                                            NIFGA:birnlex_1496
+                                                            NIFGA:birnlex_1709 ) ] ] ) ] ] ) ] ;
     rdfs:label "Spinal cord neuron"^^xsd:string ;
-    j.0:definition "Neuron whose soma lies in any part of the Spinal cord"^^xsd:string .
+    skos:definition "Neuron whose soma lies in any part of the Spinal cord"^^xsd:string .
 
-p4:nlx_cell_0912010 a owl:Class ;
+NIFNEURBR:nlx_cell_0912010 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
-                                            owl:someValuesFrom NIF-GrossAnatomy:birnlex_954 ] ) ] ] ) ] ;
+                                            owl:someValuesFrom NIFGA:birnlex_954 ] ) ] ] ) ] ;
     rdfs:label "Thalamic neuron"^^xsd:string ;
-    j.0:definition "Neuron"^^xsd:string .
+    skos:definition "Neuron"^^xsd:string .
 
-p4:nlx_cell_09120101 a owl:Class ;
+NIFNEURBR:nlx_cell_09120101 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    NIF-Cell:sao1417703748
+                    NIFCELL:sao1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ro:has_proper_part ;
                         owl:someValuesFrom [ a owl:Class ;
                                 owl:intersectionOf (
-                                        NIF-Subcellular:sao401910342
+                                        NIFSUB:sao401910342
                                         [ a owl:Restriction ;
                                             owl:onProperty ro:proper_part_of ;
-                                            owl:someValuesFrom NIF-GrossAnatomy:birnlex_1151 ] ) ] ] ) ] ;
+                                            owl:someValuesFrom NIFGA:birnlex_1151 ] ) ] ] ) ] ;
     rdfs:label "Cochlear nucleus neuron"^^xsd:string ;
-    j.1:synonym "cochlear neuron"^^xsd:string ;
-    j.0:definition "A neuron with cell soma located in the cochlear nuclear complex or any part of the cochlear nuclear complex"^^xsd:string .
+    OBOANN:synonym "cochlear neuron"^^xsd:string ;
+    skos:definition "A neuron with cell soma located in the cochlear nuclear complex or any part of the cochlear nuclear complex"^^xsd:string .
+
+NIFSUB:sao401910342 a owl:Class .
 
 ### Serialized using the nifstd custom serializer v1.0.5
