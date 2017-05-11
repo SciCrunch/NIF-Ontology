@@ -1,13 +1,11 @@
-@prefix : <http://ontology.neuinfo.org/NIF/Backend/quality_bfo_bridge.owl#> .
-@prefix bfo: <http://www.ifomis.org/bfo/1.1#> .
-@prefix obo: <http://purl.org/obo/owl/obo#> .
+@prefix BFO1: <http://www.ifomis.org/bfo/1.1#> .
+@prefix BFO1SNAP: <http://www.ifomis.org/bfo/1.1/snap#> .
+@prefix BFO1SPAN: <http://www.ifomis.org/bfo/1.1/span#> .
 @prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix PATO: <http://purl.obolibrary.org/obo/> .
+@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix snap: <http://www.ifomis.org/bfo/1.1/snap#> .
-@prefix span: <http://www.ifomis.org/bfo/1.1/span#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
@@ -15,13 +13,13 @@
 
 ### Object Properties
 
-obo:inheres_in a owl:FunctionalProperty,
+<http://purl.org/obo/owl/obo#inheres_in> a owl:FunctionalProperty,
         owl:ObjectProperty ;
     rdfs:label "inheres_in"@en ;
     rdfs:comment "Examples: the redness inhering in an eye of a wild-type fruitfly"^^xsd:string ;
     oboInOwl:hasOBONamespace "quality" .
 
-obo:towards a owl:ObjectProperty ;
+<http://purl.org/obo/owl/obo#towards> a owl:ObjectProperty ;
     rdfs:label "towards"@en ;
     rdfs:comment "Examples: sensitivity towards chlorine."^^xsd:string ;
     oboInOwl:hasOBONamespace "quality" .
@@ -76,7 +74,13 @@ oboInOwl:savedBy a owl:AnnotationProperty .
 
 ### Classes
 
-bfo:Entity a owl:Class .
+BFO1:Entity a owl:Class .
+
+BFO1SNAP:Continuant a owl:Class .
+
+BFO1SNAP:Quality a owl:Class .
+
+BFO1SPAN:Occurrent a owl:Class .
 
 oboInOwl:DbXref a owl:Class .
 
@@ -90,32 +94,26 @@ oboInOwl:Synonym a owl:Class .
 
 oboInOwl:SynonymType a owl:Class .
 
-PATO:PATO_0000001 a owl:Class ;
-    rdfs:subClassOf snap:Quality ;
+PATO:0000001 a owl:Class ;
+    rdfs:subClassOf BFO1SNAP:Quality ;
     oboInOwl:hasOBONamespace "quality" .
 
-PATO:PATO_0001236 a owl:Class ;
+PATO:0001236 a owl:Class ;
     oboInOwl:hasOBONamespace "quality" .
 
-PATO:PATO_0001238 a owl:Class ;
+PATO:0001238 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty obo:towards ;
-            owl:someValuesFrom bfo:Entity ] ;
+            owl:onProperty <http://purl.org/obo/owl/obo#towards> ;
+            owl:someValuesFrom BFO1:Entity ] ;
     oboInOwl:hasOBONamespace "quality" .
 
-PATO:PATO_0001240 a owl:Class ;
+PATO:0001240 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty obo:towards ;
-            owl:someValuesFrom bfo:Entity ] ;
+            owl:onProperty <http://purl.org/obo/owl/obo#towards> ;
+            owl:someValuesFrom BFO1:Entity ] ;
     oboInOwl:hasOBONamespace "quality" .
 
-PATO:PATO_0001241 a owl:Class ;
+PATO:0001241 a owl:Class ;
     oboInOwl:hasOBONamespace "quality" .
-
-snap:Continuant a owl:Class .
-
-snap:Quality a owl:Class .
-
-span:Occurrent a owl:Class .
 
 ### Serialized using the nifstd custom serializer v1.0.5
