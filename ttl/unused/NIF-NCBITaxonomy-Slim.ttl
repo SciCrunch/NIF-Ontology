@@ -1,787 +1,447 @@
-@prefix : <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-Slim.owl#> .
-@prefix p1: <http://ontology.neuinfo.org/NIF/Backend/obo-foundry-core.owl#> .
-@prefix p2: <http://ontology.neuinfo.org/NIF/Backend/nif_backend.owl#> .
-@prefix p3: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-EnglishNames.owl#> .
-@prefix j.0: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
-@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix BFO1SNAP: <http://www.ifomis.org/bfo/1.1/snap#> .
+@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@prefix NIFNCBISLIM: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-Slim.owl#> .
+@prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix snap: <http://www.ifomis.org/bfo/1.1/snap#> .
-@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
-@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
-@prefix protege: <http://protege.stanford.edu/plugins/owl/protege#> .
-@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
-@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
-@base <http://ontology.neuinfo.org/NIF/ttl/unused/NIF-NCBITaxonomy-Slim.ttl> .
 
-<http://ontology.neuinfo.org/NIF/ttl/unused/NIF-NCBITaxonomy-Slim.ttl> rdf:type owl:Ontology ;
-                                                                                
-                                                                                owl:imports <http://ontology.neuinfo.org/NIF/ttl/unused/NIF-NCBITax-Slim-Inferred.ttl> ,
-                                                                                            <http://ontology.neuinfo.org/NIF/ttl/unused/NIF-NCBITaxonomy-EnglishNames.ttl> ,
-                                                                                            <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> ;
-                                                                                
-                                                                                rdfs:label "NIF-NCBITaxonomy-Slim.owl"^^xsd:string ;
-                                                                                
-                                                                                rdfs:comment """This module contains MIREOTED slim version of NCBI Taxonomy.
+<http://ontology.neuinfo.org/NIF/ttl/unused/NIF-NCBITaxonomy-Slim.ttl> a owl:Ontology ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/unused/NIF-NCBITax-Slim-Inferred.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/unused/NIF-NCBITaxonomy-EnglishNames.ttl> ;
+    rdfs:label "NIF-NCBITaxonomy-Slim.owl"^^xsd:string ;
+    rdfs:comment """This module contains MIREOTED slim version of NCBI Taxonomy.
 Updated the PURL links into the new ones. FI: July 15th, 2013"""^^xsd:string ;
-                                                                                
-                                                                                owl:versionInfo "v.1.1, July 15, 2013"^^xsd:string .
+    owl:versionInfo "v.1.1, July 15, 2013"^^xsd:string .
 
+### Annotation Properties
 
-#################################################################
-#
-#    Annotation properties
-#
-#################################################################
+IAO:0000412 a owl:AnnotationProperty ;
+    rdfs:label "imported from"@en .
 
+### Classes
 
-###  http://purl.obolibrary.org/obo/IAO_0000412
+<http://purl.org/dc/dcmitype/Image> a owl:Class .
 
-obo:IAO_0000412 rdf:type owl:AnnotationProperty ;
-                
-                rdfs:label "imported from"@en .
+<http://xmlns.com/foaf/0.1/Document> a owl:Class .
 
+NCBITaxon:6231 a owl:Class ;
+    rdfs:label "Nematoda"@en ;
+    rdfs:subClassOf NIFNCBISLIM:nif_organ_110519 .
 
+NCBITaxon:6239 a owl:Class ;
+    rdfs:label "Caenorhabditis elegans"@en ;
+    rdfs:subClassOf NCBITaxon:6231 .
 
+NCBITaxon:6340 a owl:Class ;
+    rdfs:label "Annelida"@en ;
+    rdfs:subClassOf NIFNCBISLIM:nif_organ_110519 .
 
+NCBITaxon:6447 a owl:Class ;
+    rdfs:label "Mollusca"@en ;
+    rdfs:subClassOf NIFNCBISLIM:nif_organ_110519 .
 
-#################################################################
-#
-#    Classes
-#
-#################################################################
+NCBITaxon:6499 a owl:Class ;
+    rdfs:label "Aplysia"@en ;
+    rdfs:subClassOf NCBITaxon:6447 .
 
+NCBITaxon:6534 a owl:Class ;
+    rdfs:label "Helix"@en ;
+    rdfs:subClassOf NCBITaxon:6447 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-Slim.owl#nif_organ_110519
+NCBITaxon:6656 a owl:Class ;
+    rdfs:label "Arthropoda"@en ;
+    rdfs:subClassOf NIFNCBISLIM:nif_organ_110519 .
 
-:nif_organ_110519 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf :nlx_organ_110506 ;
-                  
-                  owl:disjointWith obo:NCBITaxon_7742 ;
-                  
-                  rdfs:label "Invertebrate"^^xsd:string .
+NCBITaxon:6657 a owl:Class ;
+    rdfs:label "Crustacea"@en ;
+    rdfs:subClassOf NCBITaxon:6656 .
 
+NCBITaxon:6693 a owl:Class ;
+    rdfs:label "lobster"@en ;
+    rdfs:subClassOf NCBITaxon:6657 .
 
+NCBITaxon:6762 a owl:Class ;
+    rdfs:label "Callinectes"@en ;
+    rdfs:subClassOf NCBITaxon:6657 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-Slim.owl#nlx_organ_110501
+NCBITaxon:6995 a owl:Class ;
+    rdfs:label "Gryllidae"@en ;
+    rdfs:subClassOf NCBITaxon:50557 .
 
-:nlx_organ_110501 rdf:type owl:Class ;
-                  
-                  owl:equivalentClass [ owl:intersectionOf ( obo:NCBITaxon_9443
-                                                             [ rdf:type owl:Class ;
-                                                               owl:complementOf obo:NCBITaxon_9606
-                                                             ]
-                                                           ) ;
-                                        rdf:type owl:Class
-                                      ] ;
-                  
-                  j.0:synonym "non human primate"^^xsd:string ,
-                              "non-human primate"^^xsd:string ;
-                  
-                  rdfs:label "Nonhuman primate"^^xsd:string .
+NCBITaxon:7215 a owl:Class ;
+    rdfs:label "Drosophila"@en ;
+    rdfs:subClassOf NCBITaxon:50557 .
 
+NCBITaxon:7460 a owl:Class ;
+    rdfs:label "Apis mellifera"@en ;
+    rdfs:subClassOf NCBITaxon:50557 .
 
+NCBITaxon:7742 a owl:Class ;
+    rdfs:label "Vertebrata"@en ;
+    rdfs:subClassOf NIFNCBISLIM:nlx_organ_110506 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-Slim.owl#nlx_organ_110503
+NCBITaxon:7955 a owl:Class ;
+    rdfs:label "Danio rerio"@en ;
+    rdfs:subClassOf NCBITaxon:117569 .
 
-:nlx_organ_110503 rdf:type owl:Class ;
-                  
-                  owl:equivalentClass [ owl:intersectionOf ( obo:NCBITaxon_7742
-                                                             [ rdf:type owl:Class ;
-                                                               owl:complementOf obo:NCBITaxon_9606
-                                                             ]
-                                                           ) ;
-                                        rdf:type owl:Class
-                                      ] ;
-                  
-                  rdfs:label "Nonhuman vertebrate"^^xsd:string .
+NCBITaxon:8292 a owl:Class ;
+    rdfs:label "Amphibia"@en ;
+    rdfs:subClassOf NCBITaxon:7742 ;
+    owl:disjointWith NCBITaxon:8459,
+        NCBITaxon:8782 .
 
+NCBITaxon:8459 a owl:Class ;
+    rdfs:label "Testudines"@en ;
+    rdfs:subClassOf NCBITaxon:7742 ;
+    owl:disjointWith NCBITaxon:8782 .
 
+NCBITaxon:8782 a owl:Class ;
+    rdfs:label "Aves"@en ;
+    rdfs:subClassOf NCBITaxon:7742 .
+
+NCBITaxon:9031 a owl:Class ;
+    rdfs:label "Gallus gallus"@en ;
+    rdfs:subClassOf NCBITaxon:8782 .
+
+NCBITaxon:9443 a owl:Class ;
+    rdfs:label "Primates"@en ;
+    rdfs:subClassOf NCBITaxon:40674 .
+
+NCBITaxon:9479 a owl:Class ;
+    rdfs:label "Platyrrhini"@en ;
+    rdfs:subClassOf NCBITaxon:9443 ;
+    owl:disjointWith NCBITaxon:9606 .
+
+NCBITaxon:9504 a owl:Class ;
+    rdfs:label "Aotus"@en ;
+    rdfs:subClassOf NCBITaxon:9479 .
+
+NCBITaxon:9513 a owl:Class ;
+    rdfs:label "Cebus"@en ;
+    rdfs:subClassOf NCBITaxon:9479 .
+
+NCBITaxon:9520 a owl:Class ;
+    rdfs:label "Saimiri"@en ;
+    rdfs:subClassOf NCBITaxon:9479 .
+
+NCBITaxon:9527 a owl:Class ;
+    rdfs:label "Cercopithecidae"@en ;
+    rdfs:subClassOf NCBITaxon:9443 ;
+    owl:disjointWith NCBITaxon:9606 .
+
+NCBITaxon:9539 a owl:Class ;
+    rdfs:label "Macaca"@en ;
+    rdfs:subClassOf NCBITaxon:9527 .
+
+NCBITaxon:9554 a owl:Class ;
+    rdfs:label "Papio"@en ;
+    rdfs:subClassOf NCBITaxon:9443 ;
+    owl:disjointWith NCBITaxon:9606 .
+
+NCBITaxon:9606 a owl:Class ;
+    rdfs:label "Homo sapiens"@en ;
+    rdfs:subClassOf NCBITaxon:9443 .
+
+NCBITaxon:9615 a owl:Class ;
+    rdfs:label "Canis familiaris"@en ;
+    rdfs:subClassOf NCBITaxon:40674 .
+
+NCBITaxon:9685 a owl:Class ;
+    rdfs:label "Felis catus"@en ;
+    rdfs:subClassOf NCBITaxon:40674 .
+
+NCBITaxon:9940 a owl:Class ;
+    rdfs:label "Ovis aries"@en ;
+    rdfs:subClassOf NCBITaxon:40674 .
+
+NCBITaxon:9986 a owl:Class ;
+    rdfs:label "Oryctolagus cuniculus"@en ;
+    rdfs:subClassOf NCBITaxon:40674 .
+
+NCBITaxon:9989 a owl:Class ;
+    rdfs:label "Rodentia"@en ;
+    rdfs:subClassOf NCBITaxon:40674 .
 
-###  http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-Slim.owl#nlx_organ_110506
+NCBITaxon:10090 a owl:Class ;
+    rdfs:label "Mus musculus"@en ;
+    rdfs:subClassOf NCBITaxon:9989 .
 
-:nlx_organ_110506 rdf:type owl:Class ;
-                  
-                  rdfs:subClassOf snap:MaterialEntity ;
-                  
-                  j.0:synonym "Organism"^^xsd:string ;
-                  
-                  rdfs:comment "A biomaterial object capable of reproduction and harvesting energy from some biomaterial source in order to sustain its existance."^^xsd:string ;
-                  
-                  rdfs:label "Organism (NCBI Taxonomy Slim)"^^xsd:string .
+NCBITaxon:10114 a owl:Class ;
+    rdfs:label "Rattus"@en ;
+    rdfs:subClassOf NCBITaxon:9989 .
 
+NCBITaxon:40674 a owl:Class ;
+    rdfs:label "Mammalia"@en ;
+    rdfs:subClassOf NCBITaxon:7742 ;
+    owl:disjointWith NCBITaxon:8292,
+        NCBITaxon:8459,
+        NCBITaxon:8782 .
 
+NCBITaxon:50557 a owl:Class ;
+    rdfs:label "Insecta"@en ;
+    rdfs:subClassOf NCBITaxon:6656 .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_10090
+NCBITaxon:55824 a owl:Class ;
+    rdfs:label "Hirudinida"@en ;
+    rdfs:subClassOf NCBITaxon:6340 .
 
-obo:NCBITaxon_10090 rdf:type owl:Class ;
-                    
-                    rdfs:subClassOf obo:NCBITaxon_9989 ;
-                    
-                    rdfs:label "Mus musculus"@en .
+NCBITaxon:70852 a owl:Class ;
+    rdfs:label "Tritonia"@en ;
+    rdfs:subClassOf NCBITaxon:6447 .
 
+NCBITaxon:85823 a owl:Class ;
+    rdfs:label "Blattaria"@en ;
+    rdfs:subClassOf NCBITaxon:50557 .
 
+NCBITaxon:117569 a owl:Class ;
+    rdfs:label "Hyperoartia"@en ;
+    rdfs:subClassOf NCBITaxon:7742 ;
+    owl:disjointWith NCBITaxon:8292,
+        NCBITaxon:8459,
+        NCBITaxon:8782,
+        NCBITaxon:40674 .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_10114
+NCBITaxon:205592 a owl:Class ;
+    rdfs:label "Hermissenda"@en ;
+    rdfs:subClassOf NCBITaxon:6447 .
 
-obo:NCBITaxon_10114 rdf:type owl:Class ;
-                    
-                    rdfs:subClassOf obo:NCBITaxon_9989 ;
-                    
-                    rdfs:label "Rattus"@en .
+NCBITaxon:216331 a owl:Class ;
+    rdfs:label "Doridina"@en ;
+    rdfs:subClassOf NCBITaxon:6447 .
 
+NIFNCBISLIM:nif_organ_110519 a owl:Class ;
+    rdfs:label "Invertebrate"^^xsd:string ;
+    rdfs:subClassOf NIFNCBISLIM:nlx_organ_110506 ;
+    owl:disjointWith NCBITaxon:7742 .
 
+NIFNCBISLIM:nlx_organ_110501 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    NCBITaxon:9443
+                    [ a owl:Class ;
+                        owl:complementOf NCBITaxon:9606 ] ) ] ;
+    rdfs:label "Nonhuman primate"^^xsd:string ;
+    OBOANN:synonym "non human primate"^^xsd:string,
+        "non-human primate"^^xsd:string .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_117569
+NIFNCBISLIM:nlx_organ_110503 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    NCBITaxon:7742
+                    [ a owl:Class ;
+                        owl:complementOf NCBITaxon:9606 ] ) ] ;
+    rdfs:label "Nonhuman vertebrate"^^xsd:string .
 
-obo:NCBITaxon_117569 rdf:type owl:Class ;
-                     
-                     rdfs:subClassOf obo:NCBITaxon_7742 ;
-                     
-                     owl:disjointWith obo:NCBITaxon_40674 ,
-                                      obo:NCBITaxon_8292 ,
-                                      obo:NCBITaxon_8459 ,
-                                      obo:NCBITaxon_8782 ;
-                     
-                     rdfs:label "Hyperoartia"@en .
+NIFNCBISLIM:nlx_organ_110506 a owl:Class ;
+    rdfs:label "Organism (NCBI Taxonomy Slim)"^^xsd:string ;
+    OBOANN:synonym "Organism"^^xsd:string ;
+    rdfs:subClassOf BFO1SNAP:MaterialEntity ;
+    rdfs:comment "A biomaterial object capable of reproduction and harvesting energy from some biomaterial source in order to sustain its existance."^^xsd:string .
 
+oboInOwl:Synonym a owl:Class .
 
+### Axioms
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_205592
+[ oboInOwl:hasDbXref [ ] ] .
 
-obo:NCBITaxon_205592 rdf:type owl:Class ;
-                     
-                     rdfs:subClassOf obo:NCBITaxon_6447 ;
-                     
-                     rdfs:label "Hermissenda"@en .
+[ oboInOwl:hasDbXref [ ] ] .
 
+[ rdfs:label "Agnatha"@en ] .
 
+[ rdfs:label "amphibians"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_216331
+[ rdfs:label "anapsid reptiles"@en ] .
 
-obo:NCBITaxon_216331 rdf:type owl:Class ;
-                     
-                     rdfs:subClassOf obo:NCBITaxon_6447 ;
-                     
-                     rdfs:label "Doridina"@en .
+[ rdfs:label "Anapsida"@en ] .
 
+[ rdfs:label "annelid worms"@en ] .
 
+[ rdfs:label "Apis mellifica"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_40674
+[ rdfs:label "arthropods"@en ] .
 
-obo:NCBITaxon_40674 rdf:type owl:Class ;
-                    
-                    rdfs:subClassOf obo:NCBITaxon_7742 ;
-                    
-                    owl:disjointWith obo:NCBITaxon_8292 ,
-                                     obo:NCBITaxon_8459 ,
-                                     obo:NCBITaxon_8782 ;
-                    
-                    rdfs:label "Mammalia"@en .
+[ rdfs:label "baboons"@en ] .
 
+[ rdfs:label "bantam"@en ] .
 
+[ rdfs:label "birds"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_50557
+[ rdfs:label "Blattoptera"@en ] .
 
-obo:NCBITaxon_50557 rdf:type owl:Class ;
-                    
-                    rdfs:subClassOf obo:NCBITaxon_6656 ;
-                    
-                    rdfs:label "Insecta"@en .
+[ rdfs:label "Brachidanio rerio"@en ] .
 
+[ rdfs:label "Brachydanio rerio"@en ] .
 
+[ rdfs:label "Canis canis"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_55824
+[ rdfs:label "Canis domesticus"@en ] .
 
-obo:NCBITaxon_55824 rdf:type owl:Class ;
-                    
-                    rdfs:subClassOf obo:NCBITaxon_6340 ;
-                    
-                    rdfs:label "Hirudinida"@en .
+[ rdfs:label "Canis lupus familiaris"@en ] .
 
+[ rdfs:label "capuchin monkeys"@en ] .
 
+[ rdfs:label "cat"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_6231
+[ rdfs:label "cats"@en ] .
 
-obo:NCBITaxon_6231 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf :nif_organ_110519 ;
-                   
-                   rdfs:label "Nematoda"@en .
+[ rdfs:label "Cephalaspidomorphi"@en ] .
 
+[ rdfs:label "chicken"@en ] .
 
+[ rdfs:label "chickens"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_6239
+[ rdfs:label "cockroaches"@en ] .
 
-obo:NCBITaxon_6239 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_6231 ;
-                   
-                   rdfs:label "Caenorhabditis elegans"@en .
+[ rdfs:label "crickets"@en ] .
 
+[ rdfs:label "crustaceans"@en ] .
 
+[ rdfs:label "dog"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_6340
+[ rdfs:label "dogs"@en ] .
 
-obo:NCBITaxon_6340 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf :nif_organ_110519 ;
-                   
-                   rdfs:label "Annelida"@en .
+[ rdfs:label "domestic cat"@en ] .
 
+[ rdfs:label "domestic rabbit"@en ] .
 
+[ rdfs:label "domestic sheep"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_6447
+[ rdfs:label "Drosophila Fallen, 1823"@en ] .
 
-obo:NCBITaxon_6447 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf :nif_organ_110519 ;
-                   
-                   rdfs:label "Mollusca"@en .
+[ rdfs:label "European rabbit"@en ] .
 
+[ rdfs:label "Felis domesticus"@en ] .
 
+[ rdfs:label "Felis silvestris catus"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_6499
+[ rdfs:label "fishes"@en ] .
 
-obo:NCBITaxon_6499 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_6447 ;
-                   
-                   rdfs:label "Aplysia"@en .
+[ rdfs:label "fruit flies"@en ] .
 
+[ rdfs:label "Gallus domesticus"@en ] .
 
+[ rdfs:label "Gallus gallus domesticus"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_6534
+[ rdfs:label "honeybee"@en ] .
 
-obo:NCBITaxon_6534 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_6447 ;
-                   
-                   rdfs:label "Helix"@en .
+[ rdfs:label "house mouse"@en ] .
 
+[ rdfs:label "human"@en ] .
 
+[ rdfs:label "Japanese white rabbit"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_6656
+[ rdfs:label "lambs"@en ] .
 
-obo:NCBITaxon_6656 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf :nif_organ_110519 ;
-                   
-                   rdfs:label "Arthropoda"@en .
+[ rdfs:label "leeches"@en ] .
 
+[ rdfs:label "Lepus cuniculus"@en ] .
 
+[ rdfs:label "lobsters"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_6657
+[ rdfs:label "macaques"@en ] .
 
-obo:NCBITaxon_6657 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_6656 ;
-                   
-                   rdfs:label "Crustacea"@en .
+[ rdfs:label "mammals"@en ] .
 
+[ rdfs:label "man"@en ] .
 
+[ rdfs:label "mice C57BL/6xCBA/CaJ hybrid"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_6693
+[ rdfs:label "molluscs"@en ] .
 
-obo:NCBITaxon_6693 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_6657 ;
-                   
-                   rdfs:label "lobster"@en .
+[ rdfs:label "mollusks"@en ] .
 
+[ rdfs:label "monkey"@en ] .
 
+[ rdfs:label "monkeys"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_6762
+[ rdfs:label "Monorhina"@en ] .
 
-obo:NCBITaxon_6762 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_6657 ;
-                   
-                   rdfs:label "Callinectes"@en .
+[ rdfs:label "mouse"@en ] .
 
+[ rdfs:label "Mus muscaris"@en ] .
 
+[ rdfs:label "Nemata"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_6995
+[ rdfs:label "nematode"@en ] .
 
-obo:NCBITaxon_6995 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_50557 ;
-                   
-                   rdfs:label "Gryllidae"@en .
+[ rdfs:label "nematode"@en ] .
 
+[ rdfs:label "nematode"@en ] .
 
+[ rdfs:label "nematodes"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_70852
+[ rdfs:label "New World monkeys"@en ] .
 
-obo:NCBITaxon_70852 rdf:type owl:Class ;
-                    
-                    rdfs:subClassOf obo:NCBITaxon_6447 ;
-                    
-                    rdfs:label "Tritonia"@en .
+[ rdfs:label "night monkeys"@en ] .
 
+[ rdfs:label "Old World monkeys"@en ] .
 
+[ rdfs:label "Ovis ammon aries"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_7215
+[ rdfs:label "Ovis orientalis"@en ] .
 
-obo:NCBITaxon_7215 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_50557 ;
-                   
-                   rdfs:label "Drosophila"@en .
+[ rdfs:label "Ovis orientalis aries"@en ] .
 
+[ rdfs:label "Ovis ovis"@en ] .
 
+[ rdfs:label "Pleocyemata fam. gen. sp."@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_7460
+[ rdfs:label "Pleocyemata gen. sp."@en ] .
 
-obo:NCBITaxon_7460 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_50557 ;
-                   
-                   rdfs:label "Apis mellifera"@en .
+[ rdfs:label "Primata"@en ] .
 
+[ rdfs:label "primate"@en ] .
 
+[ rdfs:label "primates"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_7742
+[ rdfs:label "rabbit"@en ] .
 
-obo:NCBITaxon_7742 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf :nlx_organ_110506 ;
-                   
-                   rdfs:label "Vertebrata"@en .
+[ rdfs:label "rabbits"@en ] .
 
+[ rdfs:label "rat"@en ] .
 
+[ rdfs:label "rats"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_7955
+[ rdfs:label "reptiles"@en ] .
 
-obo:NCBITaxon_7955 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_117569 ;
-                   
-                   rdfs:label "Danio rerio"@en .
+[ rdfs:label "Reptilia"@en ] .
 
+[ rdfs:label "roaches"@en ] .
 
+[ rdfs:label "rodents"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_8292
+[ rdfs:label "roundworm"@en ] .
 
-obo:NCBITaxon_8292 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_7742 ;
-                   
-                   owl:disjointWith obo:NCBITaxon_8459 ,
-                                    obo:NCBITaxon_8782 ;
-                   
-                   rdfs:label "Amphibia"@en .
+[ rdfs:label "roundworms"@en ] .
 
+[ rdfs:label "segmented worms"@en ] .
 
+[ rdfs:label "sheep"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_8459
+[ rdfs:label "Siamiri"@en ] .
 
-obo:NCBITaxon_8459 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_7742 ;
-                   
-                   owl:disjointWith obo:NCBITaxon_8782 ;
-                   
-                   rdfs:label "Testudines"@en .
+[ rdfs:label "squirrel monkeys"@en ] .
 
+[ rdfs:label "Testudinata"@en ] .
 
+[ rdfs:label "true insects"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_85823
+[ rdfs:label "turtles"@en ] .
 
-obo:NCBITaxon_85823 rdf:type owl:Class ;
-                    
-                    rdfs:subClassOf obo:NCBITaxon_50557 ;
-                    
-                    rdfs:label "Blattaria"@en .
+[ rdfs:label "vertebrates"@en ] .
 
+[ rdfs:label "wild sheep"@en ] .
 
+[ rdfs:label "zebra danio"@en ] .
 
-###  http://purl.obolibrary.org/obo/NCBITaxon_8782
+[ rdfs:label "zebra fish"@en ] .
 
-obo:NCBITaxon_8782 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_7742 ;
-                   
-                   rdfs:label "Aves"@en .
+[ rdfs:label "zebrafish"@en ] .
 
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9031
-
-obo:NCBITaxon_9031 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_8782 ;
-                   
-                   rdfs:label "Gallus gallus"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9443
-
-obo:NCBITaxon_9443 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_40674 ;
-                   
-                   rdfs:label "Primates"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9479
-
-obo:NCBITaxon_9479 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_9443 ;
-                   
-                   owl:disjointWith obo:NCBITaxon_9606 ;
-                   
-                   rdfs:label "Platyrrhini"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9504
-
-obo:NCBITaxon_9504 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_9479 ;
-                   
-                   rdfs:label "Aotus"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9513
-
-obo:NCBITaxon_9513 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_9479 ;
-                   
-                   rdfs:label "Cebus"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9520
-
-obo:NCBITaxon_9520 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_9479 ;
-                   
-                   rdfs:label "Saimiri"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9527
-
-obo:NCBITaxon_9527 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_9443 ;
-                   
-                   owl:disjointWith obo:NCBITaxon_9606 ;
-                   
-                   rdfs:label "Cercopithecidae"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9539
-
-obo:NCBITaxon_9539 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_9527 ;
-                   
-                   rdfs:label "Macaca"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9554
-
-obo:NCBITaxon_9554 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_9443 ;
-                   
-                   owl:disjointWith obo:NCBITaxon_9606 ;
-                   
-                   rdfs:label "Papio"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9606
-
-obo:NCBITaxon_9606 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_9443 ;
-                   
-                   rdfs:label "Homo sapiens"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9615
-
-obo:NCBITaxon_9615 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_40674 ;
-                   
-                   rdfs:label "Canis familiaris"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9685
-
-obo:NCBITaxon_9685 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_40674 ;
-                   
-                   rdfs:label "Felis catus"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9940
-
-obo:NCBITaxon_9940 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_40674 ;
-                   
-                   rdfs:label "Ovis aries"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9986
-
-obo:NCBITaxon_9986 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_40674 ;
-                   
-                   rdfs:label "Oryctolagus cuniculus"@en .
-
-
-
-###  http://purl.obolibrary.org/obo/NCBITaxon_9989
-
-obo:NCBITaxon_9989 rdf:type owl:Class ;
-                   
-                   rdfs:subClassOf obo:NCBITaxon_40674 ;
-                   
-                   rdfs:label "Rodentia"@en .
-
-
-
-###  http://purl.org/dc/dcmitype/Image
-
-dcmitype:Image rdf:type owl:Class .
-
-
-
-###  http://www.geneontology.org/formats/oboInOwl#Synonym
-
-oboInOwl:Synonym rdf:type owl:Class .
-
-
-
-###  http://xmlns.com/foaf/0.1/Document
-
-foaf:Document rdf:type owl:Class .
-
-
-
-[ oboInOwl:hasDbXref [ ]
-] .
-[ oboInOwl:hasDbXref [ ]
-] .
-[ rdfs:label "nematodes"@en
-] .
-[ rdfs:label "molluscs"@en
-] .
-[ rdfs:label "house mouse"@en
-] .
-[ rdfs:label "domestic rabbit"@en
-] .
-[ rdfs:label "Ovis ovis"@en
-] .
-[ rdfs:label "zebra fish"@en
-] .
-[ rdfs:label "zebra danio"@en
-] .
-[ rdfs:label "Ovis ammon aries"@en
-] .
-[ rdfs:label "anapsid reptiles"@en
-] .
-[ rdfs:label "primates"@en
-] .
-[ rdfs:label "monkeys"@en
-] .
-[ rdfs:label "cats"@en
-] .
-[ rdfs:label "crickets"@en
-] .
-[ rdfs:label "leeches"@en
-] .
-[ rdfs:label "wild sheep"@en
-] .
-[ rdfs:label "Nemata"@en
-] .
-[ rdfs:label "Mus muscaris"@en
-] .
-[ rdfs:label "human"@en
-] .
-[ rdfs:label "Japanese white rabbit"@en
-] .
-[ rdfs:label "Ovis orientalis"@en
-] .
-[ rdfs:label "birds"@en
-] .
-[ rdfs:label "rats"@en
-] .
-[ rdfs:label "Canis domesticus"@en
-] .
-[ rdfs:label "chickens"@en
-] .
-[ rdfs:label "nematode"@en
-] .
-[ rdfs:label "rodents"@en
-] .
-[ rdfs:label "Brachydanio rerio"@en
-] .
-[ rdfs:label "Reptilia"@en
-] .
-[ rdfs:label "Pleocyemata fam. gen. sp."@en
-] .
-[ rdfs:label "Gallus gallus domesticus"@en
-] .
-[ rdfs:label "true insects"@en
-] .
-[ rdfs:label "Felis silvestris catus"@en
-] .
-[ rdfs:label "nematode"@en
-] .
-[ rdfs:label "Drosophila Fallen, 1823"@en
-] .
-[ rdfs:label "domestic sheep"@en
-] .
-[ rdfs:label "mouse"@en
-] .
-[ rdfs:label "cockroaches"@en
-] .
-[ rdfs:label "crustaceans"@en
-] .
-[ rdfs:label "mammals"@en
-] .
-[ rdfs:label "Canis canis"@en
-] .
-[ rdfs:label "roundworms"@en
-] .
-[ rdfs:label "Lepus cuniculus"@en
-] .
-[ rdfs:label "rabbit"@en
-] .
-[ rdfs:label "vertebrates"@en
-] .
-[ rdfs:label "mollusks"@en
-] .
-[ rdfs:label "Old World monkeys"@en
-] .
-[ rdfs:label "amphibians"@en
-] .
-[ rdfs:label "Gallus domesticus"@en
-] .
-[ rdfs:label "reptiles"@en
-] .
-[ rdfs:label "Anapsida"@en
-] .
-[ rdfs:label "Agnatha"@en
-] .
-[ rdfs:label "monkey"@en
-] .
-[ rdfs:label "arthropods"@en
-] .
-[ rdfs:label "night monkeys"@en
-] .
-[ rdfs:label "European rabbit"@en
-] .
-[ rdfs:label "fruit flies"@en
-] .
-[ rdfs:label "dogs"@en
-] .
-[ rdfs:label "chicken"@en
-] .
-[ rdfs:label "Monorhina"@en
-] .
-[ rdfs:label "baboons"@en
-] .
-[ rdfs:label "man"@en
-] .
-[ rdfs:label "Pleocyemata gen. sp."@en
-] .
-[ rdfs:label "squirrel monkeys"@en
-] .
-[ rdfs:label "Cephalaspidomorphi"@en
-] .
-[ rdfs:label "mice C57BL/6xCBA/CaJ hybrid"@en
-] .
-[ rdfs:label "dog"@en
-] .
-[ rdfs:label "turtles"@en
-] .
-[ rdfs:label "Felis domesticus"@en
-] .
-[ rdfs:label "capuchin monkeys"@en
-] .
-[ rdfs:label "cat"@en
-] .
-[ rdfs:label "Testudinata"@en
-] .
-[ rdfs:label "nematode"@en
-] .
-[ rdfs:label "sheep"@en
-] .
-[ rdfs:label "Apis mellifica"@en
-] .
-[ rdfs:label "honeybee"@en
-] .
-[ rdfs:label "Brachidanio rerio"@en
-] .
-[ rdfs:label "Blattoptera"@en
-] .
-[ rdfs:label "Ovis orientalis aries"@en
-] .
-[ rdfs:label "Siamiri"@en
-] .
-[ rdfs:label "rat"@en
-] .
-[ rdfs:label "segmented worms"@en
-] .
-[ rdfs:label "annelid worms"@en
-] .
-[ rdfs:label "New World monkeys"@en
-] .
-[ rdfs:label "macaques"@en
-] .
-[ rdfs:label "zebrafish"@en
-] .
-[ rdfs:label "fishes"@en
-] .
-[ rdfs:label "lobsters"@en
-] .
-[ rdfs:label "rabbits"@en
-] .
-[ rdfs:label "bantam"@en
-] .
-[ rdfs:label "Primata"@en
-] .
-[ rdfs:label "roundworm"@en
-] .
-[ rdfs:label "domestic cat"@en
-] .
-[ rdfs:label "roaches"@en
-] .
-[ rdfs:label "primate"@en
-] .
-[ rdfs:label "lambs"@en
-] .
-[ rdfs:label "Canis lupus familiaris"@en
-] .
-
-###  Generated by the OWL API (version 4.1.4) https://github.com/owlcs/owlapi
-
+### Serialized using the nifstd custom serializer v1.0.5
