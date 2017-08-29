@@ -45,7 +45,9 @@ One of the advantages of using a phenotype based approach is that when there are
 
 1. Mappings between hbp-cell and the new interlex identifiers.
 
-2. Python code that generates the new neuron ttl files
+2. The neurons branch https://github.com/SciCrunch/NIF-Ontology/tree/neurons/ttl
+
+3. Python code that generates the new neuron ttl files
 
 https://github.com/tgbugs/pyontutils/blob/master/pyontutils/neuron_lang.py
 
