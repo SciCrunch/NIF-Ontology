@@ -40,6 +40,28 @@ BIRNANN:bamsID a owl:AnnotationProperty ;
     skos:definition "The \"aidi\" ID from the Brain Architecture Management System (BAMS) corresponding to this class."@en ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
+BIRNANN:birnlexComment a owl:AnnotationProperty ;
+    skos:editorialNote "Is there a use for a BIRN-specific comment independent of rdfs:comment?"@en ;
+    OBOANN:annotationType skos:editorialNote ;
+    rdfs:subPropertyOf skos:editorialNote .
+
+BIRNANN:birnlexDefinition a owl:AnnotationProperty ;
+    skos:definition "This is a type of OBO_definition that includes additional requirements specified by the BIRN OTF (additional requirements pending as of 2006-10-02)."@en ;
+    OBOANN:annotationType OBOANN:oboDefinition .
+
+BIRNANN:birnlexPendingDifferentiaNote a owl:AnnotationProperty ;
+    skos:definition "This is a note describing a pending class sub-genera."@en ;
+    OBOANN:annotationType OBOANN:pendingActionNote,
+        skos:scopeNote ;
+    rdfs:subPropertyOf OBOANN:pendingActionNote,
+        skos:scopeNote ;
+    skos:example "\"Basal nucleus of Meynert\" is used for labeling the Basal nucleus in humans.  In a human specific neuroanatomical ontology layer, basal nucleus will receive the prefered lable \"Basal nucleus of Meynert\"."@en .
+
+BIRNANN:birnlexRetiredDefinition a owl:AnnotationProperty ;
+    skos:definition "A former definition for a class.  It is kept for the purposes of interpreting annotations made when this definition was in effect and to monitor the evolution of class definitions.  Given this requirement, a \"retiredDate\" is added to the definition on the date of retirement."@en ;
+    OBOANN:annotationType skos:definition ;
+    rdfs:subPropertyOf skos:definition .
+
 BIRNANN:bonfireID a owl:AnnotationProperty ;
     skos:definition "This ID is derived from the BIRN BONFIRE vocubulary management system"@en ;
     OBOANN:annotationType OBOANN:externalSourceId .
@@ -70,6 +92,18 @@ BIRNANN:gbifTaxonKeyID a owl:AnnotationProperty ;
 BIRNANN:gene_Ontology_ID a owl:AnnotationProperty ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
+BIRNANN:hasBirnlexCurator a owl:AnnotationProperty ;
+    OBOANN:annotationPropertyDomain owl:Class ;
+    OBOANN:annotationPropertyRange BIRNANN:BirnlexCurator ;
+    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
+
+BIRNANN:hasCurationStatus a owl:AnnotationProperty ;
+    OBOANN:annotationPropertyDomain owl:Class ;
+    OBOANN:annotationPropertyRange BIRNANN:CurationStatus ;
+    OBOANN:annotationType skos:editorialNote ;
+    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string ;
+    rdfs:subPropertyOf skos:editorialNote .
+
 BIRNANN:hasFormerChildClass a owl:AnnotationProperty ;
     skos:definition "This annotation property is used to link back to an original child class for an obsoleted term.  The value of this property will simply be the ontology ID for the child class.  An obsoleted class can have greater than one former children.."@en ;
     OBOANN:annotationType dc:identifier,
@@ -79,6 +113,11 @@ BIRNANN:hasFormerParentClass a owl:AnnotationProperty ;
     skos:definition "This annotation property is used to link back to the original parent class for an obsoleted term.  The value of this property will simply be the ontology ID for the parent class.  An obsoleted asserted class should have one and only one former parent class."@en ;
     OBOANN:annotationType dc:identifier,
         skos:historyNote .
+
+BIRNANN:hasKnownApplicationUses a owl:AnnotationProperty ;
+    OBOANN:annotationPropertyDomain owl:Class ;
+    OBOANN:annotationPropertyRange BIRNANN:KnownApplicationUses ;
+    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
 
 BIRNANN:hasReferenceURLTemplate a owl:AnnotationProperty ;
     OBOANN:annotationPropertyDomain owl:Class ;
@@ -764,33 +803,6 @@ BIRNANN:uncurated a BIRNANN:CurationStatus,
             BIRNANN:Rob_Williams ) ] .
 
 ### Annotations
-
-BIRNANN:birnlexComment skos:editorialNote "Is there a use for a BIRN-specific comment independent of rdfs:comment?"@en ;
-    OBOANN:annotationType skos:editorialNote .
-
-BIRNANN:birnlexDefinition skos:definition "This is a type of OBO_definition that includes additional requirements specified by the BIRN OTF (additional requirements pending as of 2006-10-02)."@en ;
-    OBOANN:annotationType OBOANN:oboDefinition .
-
-BIRNANN:birnlexPendingDifferentiaNote skos:definition "This is a note describing a pending class sub-genera."@en ;
-    OBOANN:annotationType OBOANN:pendingActionNote,
-        skos:scopeNote ;
-    skos:example "\"Basal nucleus of Meynert\" is used for labeling the Basal nucleus in humans.  In a human specific neuroanatomical ontology layer, basal nucleus will receive the prefered lable \"Basal nucleus of Meynert\"."@en .
-
-BIRNANN:birnlexRetiredDefinition skos:definition "A former definition for a class.  It is kept for the purposes of interpreting annotations made when this definition was in effect and to monitor the evolution of class definitions.  Given this requirement, a \"retiredDate\" is added to the definition on the date of retirement."@en ;
-    OBOANN:annotationType skos:definition .
-
-BIRNANN:hasBirnlexCurator OBOANN:annotationPropertyDomain owl:Class ;
-    OBOANN:annotationPropertyRange BIRNANN:BirnlexCurator ;
-    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
-
-BIRNANN:hasCurationStatus OBOANN:annotationPropertyDomain owl:Class ;
-    OBOANN:annotationPropertyRange BIRNANN:CurationStatus ;
-    OBOANN:annotationType skos:editorialNote ;
-    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
-
-BIRNANN:hasKnownApplicationUses OBOANN:annotationPropertyDomain owl:Class ;
-    OBOANN:annotationPropertyRange BIRNANN:KnownApplicationUses ;
-    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
 
 OBOANN:EnumerationClass rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> .
 
