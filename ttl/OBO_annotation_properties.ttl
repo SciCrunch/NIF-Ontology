@@ -34,6 +34,12 @@ OBOANN:acronym a owl:AnnotationProperty ;
     skos:definition "A synonym consisting of a sequence of letters typically taken from the beginning of words of which either the preferred label or another synonym are composed."@en ;
     OBOANN:annotationType skos:altLabel .
 
+OBOANN:altDefinition a owl:AnnotationProperty ;
+    skos:definition "an additional, non-normative definition included while the curation status of a class is still pending."@en ;
+    skos:editorialNote "use of this property is discouraged.  A well defined ontology class cannot allow for alternative definitions.  This temporary_definition field should be used, when a definition is still pending full OBO definition status."@en ;
+    OBOANN:annotationType skos:definition ;
+    rdfs:subPropertyOf skos:definition .
+
 OBOANN:annotationPropertyDomain a owl:AnnotationProperty .
 
 OBOANN:annotationPropertyRange a owl:AnnotationProperty .
@@ -64,7 +70,8 @@ OBOANN:definingCitation a owl:AnnotationProperty ;
 
 OBOANN:definingCitationID a owl:AnnotationProperty ;
     skos:definition "A namespace-specified ID for a record in a citation database providing information fundamental to the definition of an ontology class."@en ;
-    OBOANN:annotationType OBOANN:externalSourceId .
+    OBOANN:annotationType OBOANN:externalSourceId ;
+    rdfs:subPropertyOf OBOANN:externalSourceId .
 
 OBOANN:definingCitationURI a owl:AnnotationProperty ;
     skos:definition "A publically accessible URI for a record in a citation database providing information fundamental to the definition of an ontology class."@en ;
@@ -76,7 +83,8 @@ OBOANN:externallySourcedDefinition a owl:AnnotationProperty ;
 
 OBOANN:externalSourceId a owl:AnnotationProperty ;
     skos:definition "This field is to maintain the link back to an external source (see the externalSource property)."@en ;
-    OBOANN:annotationType dc:identifier .
+    OBOANN:annotationType dc:identifier ;
+    rdfs:subPropertyOf dc:identifier .
 
 OBOANN:externalSourceURI a owl:AnnotationProperty ;
     skos:definition "A publically accessible URI other than a standard bibliographic citation to the specific external source from which the content of an ontology Class was derived."@en ;
@@ -85,7 +93,8 @@ OBOANN:externalSourceURI a owl:AnnotationProperty ;
 OBOANN:GOid a owl:AnnotationProperty ;
     skos:definition "This is the Gene Ontology ID for the concept associated with this class."@en ;
     skos:editorialNote "Is a type of obo_annot:obo_external_source_ID."@en ;
-    OBOANN:annotationType OBOANN:externalSourceId .
+    OBOANN:annotationType OBOANN:externalSourceId ;
+    rdfs:subPropertyOf OBOANN:externalSourceId .
 
 OBOANN:hasAbbrevSource a owl:AnnotationProperty ;
     OBOANN:annotationPropertyDomain owl:Class ;
@@ -105,6 +114,12 @@ OBOANN:hasExternalSource a owl:AnnotationProperty ;
 
 OBOANN:hasValidationMethod a owl:AnnotationProperty .
 
+OBOANN:MeshUid a owl:AnnotationProperty ;
+    skos:definition "This is the Medical Subject Headings Unique ID for the concept associated with this class."@en ;
+    skos:editorialNote "Is a type of obo_annot:obo_external_source_ID."@en ;
+    OBOANN:annotationType OBOANN:externalSourceId ;
+    rdfs:subPropertyOf OBOANN:externalSourceId .
+
 OBOANN:misnomer a owl:AnnotationProperty ;
     skos:definition "incorrect term often found mistakenly used to refer to this class."@en ;
     OBOANN:annotationType skos:hiddenLabel .
@@ -119,7 +134,8 @@ OBOANN:modifiedDate a owl:AnnotationProperty ;
 
 OBOANN:nifID a owl:AnnotationProperty ;
     skos:definition "The ad-hoc ID created for entries in the Neuroscience Informatics Framework terminologies."@en ;
-    OBOANN:annotationType OBOANN:externalSourceId .
+    OBOANN:annotationType OBOANN:externalSourceId ;
+    rdfs:subPropertyOf OBOANN:externalSourceId .
 
 OBOANN:oboDefinition a owl:AnnotationProperty ;
     skos:definition "This is a class definition meeting the non-circular and Aristotelean requirements given by the OBO Foundry principles."@en ;
@@ -129,15 +145,23 @@ OBOANN:oboDefinition a owl:AnnotationProperty ;
 OBOANN:pendingActionNote a owl:AnnotationProperty ;
     skos:definition "A note describing known tasks associate with a class that remain to be performed. This property should include a date in parenthesis to record when this pending action was first recognized as necessary."@en ;
     OBOANN:annotationType skos:editorialNote ;
+    rdfs:subPropertyOf skos:editorialNote ;
     skos:altLabel "TODO"^^xsd:string .
 
 OBOANN:pendingFunctionalRelationNote a owl:AnnotationProperty ;
     skos:definition "A note describing a known functional/process/occurant relation in which this class participates that is beyond pure subsumptive is_a relation.  Is a type of pending_object_relation_note."@en ;
-    OBOANN:annotationType OBOANN:pendingActionNote .
+    OBOANN:annotationType OBOANN:pendingActionNote ;
+    rdfs:subPropertyOf OBOANN:pendingActionNote .
+
+OBOANN:pendingMereotopologicalRelationNote a owl:AnnotationProperty ;
+    skos:definition "A note describing a known mereotopological spatial relation in which this class participates that is beyond pure subsumptive is_a relation.  Is a type of pending_object_relation_note."@en ;
+    OBOANN:annotationType OBOANN:pendingActionNote ;
+    rdfs:subPropertyOf OBOANN:pendingActionNote .
 
 OBOANN:pendingObjectRelationNote a owl:AnnotationProperty ;
     skos:definition "A note describing a known relation in which this class participates that is beyond pure subsumptive is_a relations."@en ;
-    OBOANN:annotationType OBOANN:pendingActionNote .
+    OBOANN:annotationType OBOANN:pendingActionNote ;
+    rdfs:subPropertyOf OBOANN:pendingActionNote .
 
 OBOANN:sourceIndirection a owl:AnnotationProperty ;
     skos:definition "An indication of an external source from which this class is a direct subclass."@en ;
@@ -164,7 +188,8 @@ OBOANN:termDerviedFrom a owl:AnnotationProperty ;
 OBOANN:UmlsCui a owl:AnnotationProperty ;
     skos:definition "This is the UMLS CUI ID for the concept associated with this class."@en ;
     skos:editorialNote "Is a type of obo_annot:obo_external_source_ID."@en ;
-    OBOANN:annotationType OBOANN:externalSourceId .
+    OBOANN:annotationType OBOANN:externalSourceId ;
+    rdfs:subPropertyOf OBOANN:externalSourceId .
 
 OBOANN:usageNote a owl:AnnotationProperty ;
     skos:definition "A note providing guidance on the expected and appropriate usage of a given ontology class or relation.  Note that a core:scopeNote is a type of usageNote where the specific range of classes, instances, or relations to which a given class or relation applies is constrained or scoped."@en .
@@ -316,18 +341,5 @@ OBOANN:Wikipedia_defSource a OBOANN:DefinitionSource,
             OBOANN:SNOMED
             OBOANN:UMLS
             OBOANN:Wikipedia ) ] .
-
-### Annotations
-
-OBOANN:altDefinition skos:definition "an additional, non-normative definition included while the curation status of a class is still pending."@en ;
-    skos:editorialNote "use of this property is discouraged.  A well defined ontology class cannot allow for alternative definitions.  This temporary_definition field should be used, when a definition is still pending full OBO definition status."@en ;
-    OBOANN:annotationType skos:definition .
-
-OBOANN:MeshUid skos:definition "This is the Medical Subject Headings Unique ID for the concept associated with this class."@en ;
-    skos:editorialNote "Is a type of obo_annot:obo_external_source_ID."@en ;
-    OBOANN:annotationType OBOANN:externalSourceId .
-
-OBOANN:pendingMereotopologicalRelationNote skos:definition "A note describing a known mereotopological spatial relation in which this class participates that is beyond pure subsumptive is_a relation.  Is a type of pending_object_relation_note."@en ;
-    OBOANN:annotationType OBOANN:pendingActionNote .
 
 ### Serialized using the nifstd custom serializer v1.0.6
