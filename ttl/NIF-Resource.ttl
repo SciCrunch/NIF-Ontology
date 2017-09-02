@@ -2,7 +2,6 @@
 @prefix BIRNANN: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#> .
 @prefix BIRNOBI: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix NIFDYS: <http://ontology.neuinfo.org/NIF/Dysfunction/NIF-Dysfunction.owl#> .
 @prefix NIFINV: <http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Investigation.owl#> .
 @prefix NIFRES: <http://ontology.neuinfo.org/NIF/DigitalEntities/NIF-Resource.owl#> .
 @prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
@@ -15,59 +14,12 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://ontology.neuinfo.org/NIF/ttl/NIF-Resource.ttl> a owl:Ontology ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/BIRNLex-OBI-proxy.ttl> ;
     dc:title "NIF-Resource: This module contains the classes covering NIF resource descriptors."^^xsd:string ;
     rdfs:comment "NIFSTD currently lists resource descriptors, e.g., software etc., under NIF Investigation. For the next release of NIFSTD, we created this separate module, the NIF Resource module, to cover those concepts. This module will fix the set of high level descriptors, adding classes like \"service\", and also attempt to harmonize the Biomedical Resource Ontology (BRO), NITRC resource descriptors and OBI classes."^^xsd:string ;
     owl:versionInfo "v 1.2 (September 21, 2009)"^^xsd:string .
 
-### Annotation Properties
-
-BIRNANN:hasBirnlexCurator a owl:AnnotationProperty .
-
-BIRNANN:hasCurationStatus a owl:AnnotationProperty .
-
-BIRNANN:hasFormerParentClass a owl:AnnotationProperty .
-
-BIRNANN:isReplacedByClass a owl:AnnotationProperty .
-
-BIRNANN:nitrc_ID a owl:AnnotationProperty .
-
-dc:contributor a owl:AnnotationProperty .
-
-dc:description a owl:AnnotationProperty .
-
-OBOANN:abbrev a owl:AnnotationProperty .
-
-OBOANN:createdDate a owl:AnnotationProperty .
-
-OBOANN:externalSourceURI a owl:AnnotationProperty .
-
-OBOANN:modifiedDate a owl:AnnotationProperty .
-
-OBOANN:nifID a owl:AnnotationProperty .
-
-OBOANN:synonym a owl:AnnotationProperty .
-
-OBOANN:tempDefinition a owl:AnnotationProperty .
-
-skos:altLabel a owl:AnnotationProperty .
-
-skos:changeNote a owl:AnnotationProperty .
-
-skos:definition a owl:AnnotationProperty .
-
-skos:editorialNote a owl:AnnotationProperty .
-
-skos:example a owl:AnnotationProperty .
-
-skos:note a owl:AnnotationProperty .
-
-skos:prefLabel a owl:AnnotationProperty .
-
 ### Classes
-
-BFO1SNAP:Continuant a owl:Class .
-
-BIRNANN:_birnlex_retired_class a owl:Class .
 
 BIRNOBI:birnlex_11002 a owl:Class .
 
@@ -437,6 +389,8 @@ NIFRES:nlx_res_20090101 a owl:Class ;
     rdfs:label "Resource"^^xsd:string ;
     skos:prefLabel "Resource"^^xsd:string ;
     OBOANN:synonym "Resource Descriptor"^^xsd:string ;
+    skos:definition "Any class that describes a resource." ;
+    rdfs:subClassOf BFO1SNAP:GenericallyDependentContinuant ;
     OBOANN:createdDate "January 12, 2009"^^xsd:string ;
     OBOANN:modifiedDate "April 27, 2010"^^xsd:string ;
     skos:altLabel "Resource"^^xsd:string .
@@ -941,164 +895,4 @@ NIFRES:nlx_res_20090448 a owl:Class ;
     OBOANN:modifiedDate "September 17, 2009"^^xsd:string ;
     skos:altLabel "Instrument supplier"^^xsd:string .
 
-### Annotations
-
-NIFDYS:birnlex_12698 OBOANN:synonym "drug use"^^xsd:string,
-        "Substance use"^^xsd:string .
-
-NIFINV:birnlex_2028 skos:altLabel "2D spatial image"^^xsd:string .
-
-NIFINV:birnlex_2033 skos:altLabel "MRI 3D image"^^xsd:string .
-
-NIFINV:birnlex_2040 skos:altLabel "MRI 2D image"^^xsd:string .
-
-NIFINV:birnlex_2067 skos:altLabel "FMRIB Software Library"^^xsd:string .
-
-NIFINV:birnlex_2079 skos:altLabel "AFNI"^^xsd:string .
-
-NIFINV:birnlex_2114 owl:deprecated true .
-
-NIFINV:birnlex_2118 skos:altLabel "T2 weighted 2D image"^^xsd:string .
-
-NIFINV:birnlex_2165 skos:altLabel "3D spatial image"^^xsd:string .
-
-NIFINV:birnlex_2170 skos:altLabel "T1 weighted 2D image"^^xsd:string .
-
-NIFINV:birnlex_2186 skos:altLabel "Image reconstruction software"^^xsd:string .
-
-NIFINV:birnlex_2191 skos:altLabel "Image processing software"^^xsd:string .
-
-NIFINV:birnlex_2195 skos:altLabel "Image analysis software"^^xsd:string .
-
-NIFINV:birnlex_2196 skos:altLabel "Electron tomography software"^^xsd:string .
-
-NIFINV:birnlex_2208 skos:altLabel "Data acquisition software"^^xsd:string .
-
-NIFINV:birnlex_2209 skos:altLabel "Documentation generation software"^^xsd:string .
-
-NIFINV:birnlex_2210 OBOANN:synonym "Data operations software"^^xsd:string ;
-    skos:altLabel "Data processing software"^^xsd:string .
-
-NIFINV:birnlex_2211 skos:altLabel "Data analysis software"^^xsd:string .
-
-NIFINV:birnlex_2212 skos:altLabel "Image acquisition software"^^xsd:string .
-
-NIFINV:birnlex_2213 skos:altLabel "Data visualization software"^^xsd:string .
-
-NIFINV:birnlex_2214 skos:altLabel "Sequence analysis software"^^xsd:string .
-
-NIFINV:birnlex_2215 skos:altLabel "Time-series analysis software"^^xsd:string .
-
-NIFINV:birnlex_2216 skos:altLabel "1D Time-series analysis software"^^xsd:string .
-
-NIFINV:birnlex_2217 skos:altLabel "2D Time-series analysis software"^^xsd:string .
-
-NIFINV:birnlex_2218 skos:altLabel "3D Time-series analysis software"^^xsd:string .
-
-NIFINV:birnlex_2219 skos:altLabel "Network analysis software"^^xsd:string .
-
-NIFINV:birnlex_2220 skos:altLabel "3D visualization software"^^xsd:string .
-
-NIFINV:birnlex_2221 skos:altLabel "4D visualization software"^^xsd:string .
-
-NIFINV:birnlex_2222 skos:altLabel "Software development tool"^^xsd:string .
-
-NIFINV:birnlex_2223 skos:altLabel "Data compression software"^^xsd:string .
-
-NIFINV:birnlex_2224 skos:altLabel "Software development environment"^^xsd:string .
-
-NIFINV:birnlex_2225 skos:altLabel "Compiler"^^xsd:string .
-
-NIFINV:birnlex_2226 skos:altLabel "Code profiler"^^xsd:string .
-
-NIFINV:birnlex_2227 skos:altLabel "Code testing framework"^^xsd:string .
-
-NIFINV:birnlex_2228 skos:altLabel "Segmentation software"^^xsd:string .
-
-NIFINV:birnlex_2230 skos:altLabel "Registration software"^^xsd:string .
-
-NIFINV:birnlex_2232 skos:altLabel "Static HTML document"^^xsd:string .
-
-NIFINV:birnlex_2233 skos:altLabel "Dynamic HTML document"^^xsd:string .
-
-NIFINV:birnlex_2234 skos:altLabel "Web service"^^xsd:string .
-
-NIFINV:birnlex_2235 skos:altLabel "Application programming interface"^^xsd:string .
-
-NIFINV:birnlex_2245 skos:altLabel "network graph visualization software"^^xsd:string .
-
-NIFINV:birnlex_2246 skos:altLabel "Version source control system"^^xsd:string .
-
-NIFINV:birnlex_2319 skos:altLabel "Signal processing software"^^xsd:string .
-
-NIFINV:birnlex_2321 skos:altLabel "Pipeline processing software"^^xsd:string .
-
-NIFINV:birnlex_2322 skos:altLabel "Graphical pipeline construction software"^^xsd:string .
-
-NIFINV:birnlex_2323 skos:altLabel "Systems interoperability software"^^xsd:string .
-
-NIFINV:birnlex_2324 skos:altLabel "GRID computing software"^^xsd:string .
-
-NIFINV:birnlex_2325 skos:altLabel "Portlet component"^^xsd:string .
-
-NIFINV:birnlex_2343 skos:altLabel "Open source license"^^xsd:string .
-
-NIFINV:birnlex_2344 skos:altLabel "GNU General Public License"^^xsd:string .
-
-NIFINV:birnlex_2345 skos:altLabel "GNU Lesser General Public License"^^xsd:string .
-
-NIFINV:birnlex_2346 skos:altLabel "Simulation software"^^xsd:string .
-
-NIFINV:birnlex_2347 skos:altLabel "Text-mining software"^^xsd:string .
-
-NIFINV:birnlex_2348 skos:altLabel "Mozilla Public License"^^xsd:string .
-
-NIFINV:birnlex_2349 skos:altLabel "Apache License"^^xsd:string .
-
-NIFINV:birnlex_2350 skos:altLabel "BSD License"^^xsd:string .
-
-NIFINV:birnlex_2351 skos:altLabel "MIT License"^^xsd:string .
-
-NIFINV:birnlex_2352 skos:altLabel "Closed source license"^^xsd:string .
-
-NIFINV:birnlex_2353 skos:altLabel "Commercial license"^^xsd:string .
-
-NIFINV:birnlex_2361 skos:altLabel "National standard specification"^^xsd:string .
-
-NIFINV:birnlex_2362 skos:altLabel "International standard specification"^^xsd:string .
-
-NIFINV:birnlex_2368 OBOANN:synonym "Institutional portal"^^xsd:string,
-        "Organizational portal"^^xsd:string ;
-    skos:altLabel "Organization portal"^^xsd:string .
-
-NIFINV:birnlex_2369 skos:altLabel "Department portal"^^xsd:string .
-
-NIFINV:birnlex_2370 skos:altLabel "Laboratory portal"^^xsd:string .
-
-NIFINV:birnlex_2371 skos:altLabel "Topical portal"^^xsd:string .
-
-NIFINV:birnlex_2372 skos:altLabel "Disease-related portal"^^xsd:string .
-
-NIFINV:birnlex_2373 skos:altLabel "Patient-support portal"^^xsd:string .
-
-NIFINV:birnlex_2374 skos:altLabel "Research forum portal"^^xsd:string .
-
-NIFINV:birnlex_2825 skos:altLabel "Client program"^^xsd:string .
-
-NIFINV:nlx_inv_090901 skos:altLabel "Animation software"^^xsd:string .
-
-NIFINV:nlx_inv_090902 skos:altLabel "Data compression software"^^xsd:string .
-
-NIFINV:nlx_inv_090903 skos:altLabel "Data storage software"^^xsd:string .
-
-NIFINV:nlx_inv_090904 skos:altLabel "Data transfer software"^^xsd:string .
-
-NIFINV:nlx_inv_090905 skos:altLabel "Community building portal"^^xsd:string .
-
-NIFINV:nlx_inv_090906 skos:altLabel "Rendering software"^^xsd:string .
-
-NIFINV:nlx_inv_090907 skos:altLabel "Software library"^^xsd:string .
-
-NIFINV:nlx_inv_20090404 skos:altLabel "Electronic laboratory notebook"^^xsd:string .
-
-### Serialized using the nifstd custom serializer v1.0.5
+### Serialized using the nifstd custom serializer v1.0.6
