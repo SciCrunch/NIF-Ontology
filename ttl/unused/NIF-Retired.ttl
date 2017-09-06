@@ -15,71 +15,10 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://ontology.neuinfo.org/NIF/ttl/unused/NIF-Retired.ttl> a owl:Ontology ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> ;
     dc:title "NIF-Retired"^^xsd:string .
 
-### Annotation Properties
-
-BIRNANN:birnlexDefinition a owl:AnnotationProperty .
-
-BIRNANN:birnlexDefinitionSource a owl:AnnotationProperty .
-
-BIRNANN:birnlexExternalSource a owl:AnnotationProperty .
-
-BIRNANN:bonfireID a owl:AnnotationProperty .
-
-BIRNANN:hasBirnlexCurator a owl:AnnotationProperty .
-
-BIRNANN:hasCurationStatus a owl:AnnotationProperty .
-
-BIRNANN:hasFormerParentClass a owl:AnnotationProperty .
-
-BIRNANN:isReplacedByClass a owl:AnnotationProperty .
-
-BIRNANN:sao_ID a owl:AnnotationProperty .
-
-BIRNANN:umls_ID a owl:AnnotationProperty .
-
-dc:source a owl:AnnotationProperty .
-
-OBOANN:createdDate a owl:AnnotationProperty .
-
-OBOANN:externallySourcedDefinition a owl:AnnotationProperty .
-
-OBOANN:hasDefinitionSource a owl:AnnotationProperty .
-
-OBOANN:hasExternalSource a owl:AnnotationProperty .
-
-OBOANN:modifiedDate a owl:AnnotationProperty .
-
-OBOANN:nifID a owl:AnnotationProperty .
-
-OBOANN:pendingActionNote a owl:AnnotationProperty .
-
-OBOANN:pendingMereotopologicalRelationNote a owl:AnnotationProperty .
-
-OBOANN:synonym a owl:AnnotationProperty .
-
-OBOANN:tempDefinition a owl:AnnotationProperty .
-
-OBOANN:UmlsCui a owl:AnnotationProperty .
-
-skos:changeNote a owl:AnnotationProperty .
-
-skos:definition a owl:AnnotationProperty .
-
-skos:editorialNote a owl:AnnotationProperty .
-
-skos:example a owl:AnnotationProperty .
-
-skos:historyNote a owl:AnnotationProperty .
-
-skos:prefLabel a owl:AnnotationProperty .
-
-skos:scopeNote a owl:AnnotationProperty .
-
 ### Classes
-
-BIRNANN:_birnlex_retired_class a owl:Class .
 
 NIFMOL:sao225178797 a owl:Class ;
     owl:deprecated true ;
@@ -101,8 +40,7 @@ NIFQUAL:sao-943768255 a owl:Class ;
         "Obsolete class"^^xsd:string ;
     skos:prefLabel "Obsolete Class"^^xsd:string,
         "Obsolete class"^^xsd:string ;
-    rdfs:subClassOf BIRNANN:_birnlex_retired_class,
-        owl:DeprecatedClass ;
+    rdfs:subClassOf BIRNANN:_birnlex_retired_class ;
     BIRNANN:sao_ID "sao-943768255"^^xsd:string .
 
 NIFRET:birnlex_756 a owl:Class ;
@@ -883,11 +821,11 @@ NIFRET:sao1184653804 a owl:Class ;
     skos:prefLabel "Anatomical Relationship"^^xsd:string ;
     skos:definition "Conceptual anatomical entity which describes the structural and transformation relationships between physical anatomical entities.  Example: class subsumption relationship, structural relationship, anatomical tranformation relationship (FMA)."^^xsd:string ;
     rdfs:subClassOf NIFQUAL:sao-943768255 ;
-    BIRNANN:birnlexDefinitionSource "FMA"^^xsd:string ;
-    BIRNANN:birnlexExternalSource "FMA"^^xsd:string ;
     BIRNANN:hasCurationStatus BIRNANN:uncurated ;
     BIRNANN:sao_ID "sao1184653804"^^xsd:string ;
-    OBOANN:externallySourcedDefinition "FMAID:54723"^^xsd:string .
+    OBOANN:externallySourcedDefinition "FMAID:54723"^^xsd:string ;
+    OBOANN:hasDefinitionSource OBOANN:FMA_defSource ;
+    OBOANN:hasExternalSource OBOANN:FMA .
 
 NIFRET:sao1202737159 a owl:Class ;
     rdfs:label "Phosphatase"^^xsd:string ;
@@ -1167,10 +1105,10 @@ NIFRET:sao-843826795 a owl:Class ;
     skos:prefLabel "Anatomical Coordinate"^^xsd:string ;
     skos:definition "Anatomical location which specifies the relationship between one or more physical anatomical entities in terms of..."^^xsd:string ;
     rdfs:subClassOf NIFQUAL:sao-943768255 ;
-    BIRNANN:birnlexDefinitionSource "FMA"^^xsd:string ;
-    BIRNANN:birnlexExternalSource "FMA"^^xsd:string ;
     BIRNANN:hasCurationStatus BIRNANN:uncurated ;
-    BIRNANN:sao_ID "sao-843826795"^^xsd:string .
+    BIRNANN:sao_ID "sao-843826795"^^xsd:string ;
+    OBOANN:hasDefinitionSource OBOANN:FMA_defSource ;
+    OBOANN:hasExternalSource OBOANN:FMA .
 
 NIFSUB:sao452970150 a owl:Class ;
     rdfs:label "Membrane Receptor"^^xsd:string ;
@@ -1182,6 +1120,4 @@ NIFSUB:sao452970150 a owl:Class ;
     BIRNANN:sao_ID "sao452970150"^^xsd:string ;
     BIRNANN:umls_ID "C0230664"^^xsd:string .
 
-owl:DeprecatedClass a owl:Class .
-
-### Serialized using the nifstd custom serializer v1.0.6
+### Serialized using the nifstd custom serializer v1.0.7
