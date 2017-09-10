@@ -1,5 +1,7 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix BIRNANN: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -9,9 +11,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://ontology.neuinfo.org/NIF/ttl/BIRNLex_annotation_properties.ttl> a owl:Ontology ;
-    owl:imports <http://ontology.neuinfo.org/NIF/ttl/OBO_annotation_properties.ttl>,
-        <http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl>,
-        <http://www.w3.org/2004/02/skos/core> ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/OBO_annotation_properties.ttl> ;
     dc:title "BIRNLex_annotation_properties"@en ;
     rdfs:comment "These are OWL Annotation Properties created by the BIRN OTF for the purposes of better managing the curation of the BIRNLex ontology."@en ;
     skos:changeNote " (2008-03-13) - finally added Template URLs for GO ID."@en,
@@ -34,38 +34,86 @@ BIRNANN:animalModel a owl:AnnotationProperty ;
 
 BIRNANN:atccID a owl:AnnotationProperty ;
     skos:definition "The unique ID for a biological material - typically a cell line - from the American Type Culture Collection database."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:bamsID a owl:AnnotationProperty ;
     skos:definition "The \"aidi\" ID from the Brain Architecture Management System (BAMS) corresponding to this class."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
+
+BIRNANN:birnlexComment a owl:AnnotationProperty ;
+    rdfs:subPropertyOf skos:editorialNote ;
+    skos:editorialNote "Is there a use for a BIRN-specific comment independent of rdfs:comment?"@en ;
+    OBOANN:annotationType skos:editorialNote .
+
+BIRNANN:birnlexDefinition a owl:AnnotationProperty ;
+    skos:definition "This is a type of OBO_definition that includes additional requirements specified by the BIRN OTF (additional requirements pending as of 2006-10-02)."@en ;
+    rdfs:subPropertyOf OBOANN:oboDefinition ;
+    OBOANN:annotationType OBOANN:oboDefinition .
+
+BIRNANN:birnlexPendingDifferentiaNote a owl:AnnotationProperty ;
+    skos:definition "This is a note describing a pending class sub-genera."@en ;
+    rdfs:subPropertyOf OBOANN:pendingActionNote,
+        skos:scopeNote ;
+    OBOANN:annotationType OBOANN:pendingActionNote,
+        skos:scopeNote ;
+    skos:example "\"Basal nucleus of Meynert\" is used for labeling the Basal nucleus in humans.  In a human specific neuroanatomical ontology layer, basal nucleus will receive the prefered lable \"Basal nucleus of Meynert\"."@en .
+
+BIRNANN:birnlexRetiredDefinition a owl:AnnotationProperty ;
+    skos:definition "A former definition for a class.  It is kept for the purposes of interpreting annotations made when this definition was in effect and to monitor the evolution of class definitions.  Given this requirement, a \"retiredDate\" is added to the definition on the date of retirement."@en ;
+    rdfs:subPropertyOf skos:definition ;
+    OBOANN:annotationType skos:definition .
 
 BIRNANN:bonfireID a owl:AnnotationProperty ;
     skos:definition "This ID is derived from the BIRN BONFIRE vocubulary management system"@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
+    OBOANN:annotationType OBOANN:externalSourceId .
+
+BIRNANN:cell_ontology_ID a owl:AnnotationProperty ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:ChEBIid a owl:AnnotationProperty ;
     skos:definition "The ID from the Chemical Entities of Biological Interest (ChEBI) chemical taxonomy corresponding to this class."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:emapMouseStageDataID a owl:AnnotationProperty ;
     skos:definition "The unique ID for a Theiler mouse prenatal development stage as given by the EMAP Project."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:emapMouseStageDiagramID a owl:AnnotationProperty ;
     skos:definition "The unique ID type linked to a partiular URL Template.  An instance of this ID type can be combined algorithmically with a URL template ('$$ID$$') placeholder literal is replaced by an ID value to create a URL that links to the curated info associated with that ID."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:gbifID a owl:AnnotationProperty ;
     skos:definition "The unique ID for this taxonomic category in Global Biodiversity Information Facility taxonomic ,knowledgebase"@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:gbifTaxonKeyID a owl:AnnotationProperty ;
     skos:definition "The unique ID for this taxonomy key in Global Biodiversity Information Facility taxonomic ,knowledgebase"@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:gene_Ontology_ID a owl:AnnotationProperty ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
+
+BIRNANN:hasBirnlexCurator a owl:AnnotationProperty ;
+    OBOANN:annotationPropertyDomain owl:Class ;
+    OBOANN:annotationPropertyRange BIRNANN:BirnlexCurator ;
+    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
+
+BIRNANN:hasCurationStatus a owl:AnnotationProperty ;
+    rdfs:subPropertyOf skos:editorialNote ;
+    OBOANN:annotationPropertyDomain owl:Class ;
+    OBOANN:annotationPropertyRange BIRNANN:CurationStatus ;
+    OBOANN:annotationType skos:editorialNote ;
+    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
 
 BIRNANN:hasFormerChildClass a owl:AnnotationProperty ;
     skos:definition "This annotation property is used to link back to an original child class for an obsoleted term.  The value of this property will simply be the ontology ID for the child class.  An obsoleted class can have greater than one former children.."@en ;
@@ -76,6 +124,11 @@ BIRNANN:hasFormerParentClass a owl:AnnotationProperty ;
     skos:definition "This annotation property is used to link back to the original parent class for an obsoleted term.  The value of this property will simply be the ontology ID for the parent class.  An obsoleted asserted class should have one and only one former parent class."@en ;
     OBOANN:annotationType dc:identifier,
         skos:historyNote .
+
+BIRNANN:hasKnownApplicationUses a owl:AnnotationProperty ;
+    OBOANN:annotationPropertyDomain owl:Class ;
+    OBOANN:annotationPropertyRange BIRNANN:KnownApplicationUses ;
+    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
 
 BIRNANN:hasReferenceURLTemplate a owl:AnnotationProperty ;
     OBOANN:annotationPropertyDomain owl:Class ;
@@ -101,10 +154,12 @@ BIRNANN:isReplacedByClass a owl:AnnotationProperty ;
 
 BIRNANN:itisID a owl:AnnotationProperty ;
     skos:definition "The unique ID for this taxonomic category in the North American Integrated Taxonomic Information System (ITIS) taxonomic ,knowledgebase"@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:jaxMiceID a owl:AnnotationProperty ;
     skos:definition "The unique ID for a mouse strain distributed by and tracked in the Jackson Laboratory Mouse database."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:ncbiIncludesName a owl:AnnotationProperty ;
@@ -130,6 +185,7 @@ BIRNANN:ncbiTaxGenbankCommonName a owl:AnnotationProperty ;
 
 BIRNANN:ncbiTaxID a owl:AnnotationProperty ;
     skos:definition "The unique ID for this taxonomic category in the NCBI Taxonomy database"@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:ncbiTaxScientificName a owl:AnnotationProperty ;
@@ -142,17 +198,26 @@ BIRNANN:neuroNamesAncillaryTerm a owl:AnnotationProperty ;
 
 BIRNANN:neuronamesID a owl:AnnotationProperty ;
     skos:definition "The ID from the NeuroNames neuroanatomical thesaurus corresponding to this class."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:nitrc_ID a owl:AnnotationProperty ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:PMID a owl:AnnotationProperty ;
     skos:definition "A PMID (PubMed Identifier or PubMed Unique Identifier) is a unique number assigned to each PubMed citation of life sciences and biomedical scientific journal articles."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
+    OBOANN:annotationType OBOANN:externalSourceId .
+
+BIRNANN:PubChemCID a owl:AnnotationProperty ;
+    skos:definition "The ID from the NIH/NLM/NCBI PubChem chemical taxonomy corresponding to this class."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:PubMedID a owl:AnnotationProperty ;
-    skos:definition "The ID from the NIH/NLM/NCBI PubChem chemical taxonomy corresponding to this class."@en ;
+    skos:definition "The ID from the NIH/NLM/NCBI PubMed literature related to this class."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:putativeClassExtension a owl:AnnotationProperty ;
@@ -161,17 +226,21 @@ BIRNANN:putativeClassExtension a owl:AnnotationProperty ;
         skos:scopeNote .
 
 BIRNANN:sao_ID a owl:AnnotationProperty ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:tacMiceID a owl:AnnotationProperty ;
     skos:definition "The unique ID for a mouse strain distributed by and tracked in the Taconic Farms Mouse database."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:umls_ID a owl:AnnotationProperty ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId .
 
 BIRNANN:urlTemplateLinkedID a owl:AnnotationProperty ;
     skos:definition "This is a template for constructing an HTTP-based dynamic query using an associated source ID."@en ;
+    rdfs:subPropertyOf OBOANN:externalSourceId ;
     OBOANN:annotationType OBOANN:externalSourceId ;
     OBOANN:usageNote "This URL constructed this way will typically return a well-formed HTML page for viewing in a web browser, so long as the curating authority doesn't changed their HTTP Query template."@en .
 
@@ -325,21 +394,62 @@ BIRNANN:ReferenceURLTemplate a owl:Class ;
     OBOANN:usageNote "Note that each instance of ReferenceURLTemplate will be named using the template name of the matching ID AnnotationProperty.  For example, the ReferenceURLTemplate ncbiTaxURLTemplate is linked to the ncbiTaxID AnnotationProperty, whose value can be combined algorithmically with this URL template to construct a working URL to the specific class reference.  This is a far from perfect solution to some of the limitations of imposed on the use of AnnotationProperties - in particular, the inability to explicitly link one annotation property to another (e.g., explicitly relating ncbiTaxID ncbiTaxURLTemplate as applied to a specific owl:Class).  However, this mechanism should suffice for now.  It will not only support more complete automatic processing of this critical information, but can also be algorithmically translated to whatever better mechanims may become available in future versions of OWL."@en,
         "The URL reference template is given exactly as posted in the form of a HTTP query, with the unique ID represented with the symbol '$$ID$$'"@en .
 
+dcterms:DateScheme a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/DC_Term> .
+
+dcterms:DCMIType a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/DC_Term> .
+
+dcterms:FormatScheme a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/DC_Term> .
+
+dcterms:IdentifierScheme a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/DC_Term> .
+
+dcterms:LanguageScheme a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/DC_Term> .
+
+dcterms:RelationScheme a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/DC_Term> .
+
+dcterms:SourceScheme a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/DC_Term> .
+
+dcterms:SpatialScheme a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/DC_Term> .
+
+dcterms:SubjectScheme a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/DC_Term> .
+
+dcterms:TemporalScheme a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/DC_Term> .
+
+dcterms:TypeScheme a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/DC_Term> .
+
 <http://ontology.neuinfo.org/NIF/Backend/_backend_class> a owl:Class ;
     rdfs:label "_backend_entity" ;
     rdfs:comment "Parent class of all the common 'backend' class entities for all the NIFSTD modules. These classes are imported from SKOS, Dublin Core Meta Data, Protege-DC, and 'extra' classes generated by OBO-to-OWL converted ontologies."@en ;
     OBOANN:createdDate "July 15, 2011"@en .
+
+<http://ontology.neuinfo.org/NIF/Backend/DC_Term> a owl:Class ;
+    rdfs:label "Dublin Core Term"@en ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> ;
+    rdfs:comment "Parent class of the class entities imported from DC terms."@en .
 
 <http://ontology.neuinfo.org/NIF/Backend/SKOS_Entity> a owl:Class ;
     rdfs:label "SKOS_Entity"@en ;
     rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> ;
     rdfs:comment "Parent class of the class entities imported from SKOS."@en .
 
-<http://purl.org/dc/dcmitype/Image> a owl:Class ;
+OBOANN:EnumerationClass a owl:Class ;
     rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> .
 
-<http://xmlns.com/foaf/0.1/Document> a owl:Class ;
-    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> .
+skos:Collection a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/SKOS_Entity> .
+
+skos:ConceptScheme a owl:Class ;
+    rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/SKOS_Entity> .
 
 ### Individuals
 
@@ -426,7 +536,7 @@ BIRNANN:ChEBI_defSource a BIRNANN:BirnlexDefinitionSource,
 BIRNANN:chebiURLTemplate a BIRNANN:ReferenceURLTemplate,
         owl:NamedIndividual ;
     BIRNANN:httpQueryUrlTemplate <http://www.ebi.ac.uk/ontology-lookup/?termId=CHEBI%3A$$ID$$> ;
-    BIRNANN:urlTemplateLinkedID OBOANN:ChEBIid ;
+    BIRNANN:urlTemplateLinkedID BIRNANN:ChEBIid ;
     OBOANN:usageNote "The URL reference template for an Ontology Lookup Service Browser page for a given ChEBI term."@en .
 
 BIRNANN:Christine_Fennema-Notestine a BIRNANN:BirnlexCurator,
@@ -611,7 +721,7 @@ BIRNANN:PsychInfo_Thesaurus a BIRNANN:BirnlexExternalSource,
 BIRNANN:pubchemCicURLTemplate a BIRNANN:ReferenceURLTemplate,
         owl:NamedIndividual ;
     BIRNANN:httpQueryUrlTemplate <http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=$$ID$$> ;
-    BIRNANN:urlTemplateLinkedID OBOANN:ChEBIid ;
+    BIRNANN:urlTemplateLinkedID BIRNANN:ChEBIid ;
     OBOANN:usageNote "The URL reference template for an PubChem Browser page for a given PubChem CID term."@en .
 
 BIRNANN:raw_import a BIRNANN:CurationStatus,
@@ -760,41 +870,4 @@ BIRNANN:uncurated a BIRNANN:CurationStatus,
             BIRNANN:Michele_Diaz
             BIRNANN:Rob_Williams ) ] .
 
-### Annotations
-
-BIRNANN:birnlexComment skos:editorialNote "Is there a use for a BIRN-specific comment independent of rdfs:comment?"@en ;
-    OBOANN:annotationType skos:editorialNote .
-
-BIRNANN:birnlexDefinition skos:definition "This is a type of OBO_definition that includes additional requirements specified by the BIRN OTF (additional requirements pending as of 2006-10-02)."@en ;
-    OBOANN:annotationType OBOANN:oboDefinition .
-
-BIRNANN:birnlexPendingDifferentiaNote skos:definition "This is a note describing a pending class sub-genera."@en ;
-    OBOANN:annotationType OBOANN:pendingActionNote,
-        skos:scopeNote ;
-    skos:example "\"Basal nucleus of Meynert\" is used for labeling the Basal nucleus in humans.  In a human specific neuroanatomical ontology layer, basal nucleus will receive the prefered lable \"Basal nucleus of Meynert\"."@en .
-
-BIRNANN:birnlexRetiredDefinition skos:definition "A former definition for a class.  It is kept for the purposes of interpreting annotations made when this definition was in effect and to monitor the evolution of class definitions.  Given this requirement, a \"retiredDate\" is added to the definition on the date of retirement."@en ;
-    OBOANN:annotationType skos:definition .
-
-BIRNANN:hasBirnlexCurator OBOANN:annotationPropertyDomain owl:Class ;
-    OBOANN:annotationPropertyRange BIRNANN:BirnlexCurator ;
-    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
-
-BIRNANN:hasCurationStatus OBOANN:annotationPropertyDomain owl:Class ;
-    OBOANN:annotationPropertyRange BIRNANN:CurationStatus ;
-    OBOANN:annotationType skos:editorialNote ;
-    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
-
-BIRNANN:hasKnownApplicationUses OBOANN:annotationPropertyDomain owl:Class ;
-    OBOANN:annotationPropertyRange BIRNANN:KnownApplicationUses ;
-    OBOANN:hasValidationMethod "sparql_verify_annotation_domain_and_range"^^xsd:string .
-
-OBOANN:EnumerationClass rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> .
-
-rdf:List rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/_backend_class> .
-
-skos:Collection rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/SKOS_Entity> .
-
-skos:ConceptScheme rdfs:subClassOf <http://ontology.neuinfo.org/NIF/Backend/SKOS_Entity> .
-
-### Serialized using the nifstd custom serializer v1.0.5
+### Serialized using the nifstd custom serializer v1.0.7

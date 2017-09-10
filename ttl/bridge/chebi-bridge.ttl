@@ -1,8 +1,8 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix BFO1SNAP: <http://www.ifomis.org/bfo/1.1/snap#> .
 @prefix BIRNANN: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#> .
 @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix hasRole: <http://purl.obolibrary.org/obo/RO_0000087> .
 @prefix NIFCHEM: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Chemical.owl#> .
 @prefix NIFMOL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
 @prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
@@ -16,7 +16,8 @@
 
 <http://ontology.neuinfo.org/NIF/ttl/bridge/chebi-bridge.ttl> a owl:Ontology ;
     owl:imports <http://ontology.neuinfo.org/NIF/ttl/generated/chebi-dead.ttl>,
-        <http://ontology.neuinfo.org/NIF/ttl/generated/chebislim.ttl> ;
+        <http://ontology.neuinfo.org/NIF/ttl/generated/chebislim.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/NIF-Chemical.ttl> ;
     rdfs:label "NIF ChEBI bridge" ;
     rdfs:comment "This bridge file contains additional annotations on top of CHEBI identifiers that were originally included in NIF-Chemical or NIF-Molecule that have not since been added to CHEBI upstream" ;
     owl:versionInfo "2017-07-10" ;
@@ -599,6 +600,9 @@ CHEBI:15765 a owl:Class ;
         "Syndopa"^^xsd:string,
         "Veldopa"^^xsd:string,
         "Weldopa"^^xsd:string ;
+    skos:definition """An amino acid precursor of dopamine with antiparkinsonian properties. L-DOPA is a prodrug that is converted to dopamine by DOPA decarboxylase and can cross the blood-brain barrier. When in the brain, L-DOPA is decarboxylated to dopamine and stimulates the dopaminergic receptors. (Adapted from NCI Thesaurus)
+
+Levodopa is naturally occurring form of dihydroxyphenylalanine and the immediate precursor of dopamine. Unlike dopamine itself, it can be taken orally and crosses the blood-brain barrier. It is rapidly taken up by dopaminergic neurons and converted to dopamine. It is used for the treatment of parkinsonian disorders and is usually given with agents that inhibit its conversion to dopamine outside of the central nervous system. (PubChem) Pharmacology: Levodopa (L-dopa) is used to replace dopamine lost in Parkinson's disease because dopamine itself cannot cross the blood-brain barrier where its precursor can. However, L-DOPA is converted to dopamine in the periphery as well as in the CNS, so it is administered with a peripheral DDC (dopamine decarboxylase) inhibitor such as carbidopa, without which 90% is metabolised in the gut wall, and with a COMT inhibitor if possible; this prevents about a 5% loss. The form given therapeutically is therefore a prodrug which avoids decarboxylation in the stomach and periphery, can cross the blood-brain barrier, and once in the brain is converted to the neurotransmitter dopamine by the enzyme aromatic-L-amino-acid decarboxylase. Mechanism of action: Striatal dopamine levels in symptomatic Parkinson's disease are decreased by 60 to 80%, striatal dopaminergic neurotransmission may be enhanced by exogenous supplementation of dopamine through administration of dopamine's precursor, levodopa. A small percentage of each levodopa dose crosses the blood-brain barrier and is decarboxylated to dopamine. This newly formed dopamine then is available to stimulate dopaminergic receptors, thus compensating for the depleted supply of endogenous dopamine. Drug type: Approved. Small Molecule. Drug category: Antidyskinetics. Antiparkinson Agents. Dopamine Agents"""^^xsd:string ;
     OBOANN:createdDate "August 21, 2009"^^xsd:string .
 
 CHEBI:15843 a owl:Class ;
@@ -944,13 +948,8 @@ CHEBI:22720 a owl:Class ;
     OBOANN:createdDate "March 5, 2010"^^xsd:string ;
     OBOANN:modifiedDate "April 16, 2010"^^xsd:string .
 
-CHEBI:22984 a owl:Class ;
-    OBOANN:createdDate "Spetember 23, 2009"^^xsd:string ;
-    BIRNANN:isReplacedByClass NIFCHEM:CHEBI_29108 .
-
 CHEBI:23367 a owl:Class ;
     rdfs:label "Molecular entity"^^xsd:string ;
-    rdfs:subClassOf BFO1SNAP:MaterialEntity ;
     skos:altLabel "molecule"^^xsd:string .
 
 CHEBI:23447 a owl:Class .
@@ -959,8 +958,7 @@ CHEBI:23888 a owl:Class ;
     rdfs:label "Drug role"^^xsd:string ;
     rdfs:subClassOf NIFMOL:nlx_mol_20090303 ;
     rdfs:comment "CHEBI has its label as 'Drug'. NIF considers this class as a molecule role."^^xsd:string ;
-    OBOANN:modifiedDate "August 5, 2009"^^xsd:string ;
-    BIRNANN:hasFormerParentClass NIFCHEM:CHEBI_33294 .
+    OBOANN:modifiedDate "August 5, 2009"^^xsd:string .
 
 CHEBI:24261 a owl:Class ;
     rdfs:label "Glucocorticoid"^^xsd:string ;
@@ -970,12 +968,18 @@ CHEBI:24261 a owl:Class ;
     dc:contributor "Maryann Martone"^^xsd:string .
 
 CHEBI:24431 a owl:Class ;
-    rdfs:label "molecular structure"^^xsd:string .
+    rdfs:label "molecular structure"^^xsd:string ;
+    rdfs:subClassOf BFO1SNAP:MaterialEntity .
 
 CHEBI:24621 a owl:Class ;
     rdfs:label "Hormone"^^xsd:string ;
     rdfs:subClassOf NIFMOL:nlx_mol_20090303 ;
     OBOANN:modifiedDate "June 22, 2009"^^xsd:string .
+
+CHEBI:24848 a owl:Class ;
+    rdfs:label "Inositol"^^xsd:string ;
+    skos:definition "Is Cyclohexane-1,2,3,4,5,6-hexol, a chemical compound with formula C6H12O6 or (-CHOH-)6, a six-fold alcohol (polyol) of cyclohexane. It exists in nine possible stereoisomers, of which the most prominent form, widely occuring in nature, is cis-1,2,3,5-trans-4,6-cyclohexanehexol, or myo-inositol. Other naturally occurring isomers (though in minimal quantities) are scyllo-, chiro-, muco-, and neo-inositol. The other possible isomers are allo-, epi-, and cis-inositol. (from Wikipedia)"^^xsd:string ;
+    OBOANN:createdDate "August 21, 2009"^^xsd:string .
 
 CHEBI:24870 a owl:Class ;
     OBOANN:synonym "ionen"^^xsd:string ;
@@ -1006,8 +1010,7 @@ CHEBI:27171 a owl:Class .
 
 CHEBI:27363 a owl:Class ;
     rdfs:label "Zinc"^^xsd:string ;
-    OBOANN:createdDate "September 23, 2009"^^xsd:string ;
-    BIRNANN:isReplacedByClass NIFCHEM:CHEBI_29105 .
+    OBOANN:createdDate "September 23, 2009"^^xsd:string .
 
 CHEBI:27732 a owl:Class .
 
@@ -1214,9 +1217,8 @@ CHEBI:35340 a owl:Class ;
     OBOANN:createdDate "March 5, 2010"^^xsd:string .
 
 CHEBI:35341 a owl:Class ;
-    OBOANN:modifiedDate "August 21, 2009"^^xsd:string ;
-    BIRNANN:hasFormerParentClass NIFCHEM:CHEBI_18059 ;
-    BIRNANN:isReplacedByClass NIFMOL:nifext_5011 .
+    oboInOwl:hasDbXref NIFMOL:nifext_5011 ;
+    OBOANN:modifiedDate "August 21, 2009"^^xsd:string .
 
 CHEBI:35470 a owl:Class ;
     rdfs:label "Central nervous system drug"^^xsd:string .
@@ -1225,6 +1227,9 @@ CHEBI:35701 a owl:Class ;
     OBOANN:synonym "Esters"^^xsd:string .
 
 CHEBI:35789 a owl:Class .
+
+CHEBI:36342 a owl:Class ;
+    rdfs:subClassOf BFO1SNAP:MaterialEntity .
 
 CHEBI:36357 a owl:Class ;
     rdfs:label "Polyatomic entity"^^xsd:string .
@@ -1255,6 +1260,14 @@ CHEBI:37930 a owl:Class .
 CHEBI:39123 a owl:Class ;
     rdfs:label "Calcium cation"^^xsd:string ;
     OBOANN:createdDate "August 31, 2009"^^xsd:string .
+
+CHEBI:46643 a owl:Class ;
+    rdfs:label "Isobutyl nitrite"^^xsd:string ;
+    skos:definition "A nitrite ester that has formula C4H9NO2."^^xsd:string ;
+    rdfs:subClassOf NIFCHEM:nlx_chem_100301 ;
+    rdfs:comment "Street name: poppers"^^xsd:string ;
+    OBOANN:modifiedDate "June 30, 2010"^^xsd:string ;
+    NIFCHEM:hasStreetName "poppers"^^xsd:string .
 
 CHEBI:47788 a owl:Class .
 
@@ -1438,4 +1451,4 @@ CHEBI:52993 a owl:Class ;
     OBOANN:createdDate "March 5, 2010"^^xsd:string ;
     OBOANN:modifiedDate "May 21, 2010"^^xsd:string .
 
-### Serialized using the nifstd custom serializer v1.0.5
+### Serialized using the nifstd custom serializer v1.0.7

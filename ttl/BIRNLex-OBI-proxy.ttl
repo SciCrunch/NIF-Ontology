@@ -1,10 +1,11 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix BFO1SNAP: <http://www.ifomis.org/bfo/1.1/snap#> .
 @prefix BFO1SPAN: <http://www.ifomis.org/bfo/1.1/span#> .
 @prefix BIRNANN: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#> .
 @prefix BIRNOBI: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex-OBI-proxy.owl#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
 @prefix NIFGA: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-GrossAnatomy.owl#> .
-@prefix NIFMOL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
 @prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix PROTEGE: <http://protege.stanford.edu/plugins/owl/protege#> .
@@ -15,6 +16,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://ontology.neuinfo.org/NIF/ttl/BIRNLex-OBI-proxy.ttl> a owl:Ontology ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> ;
     dc:title "BIRNLex-OBI-proxy"^^xsd:string ;
     skos:definition "The BIRN Project lexicon uses this file as a temporary proxy for classes from the Ontology of Biomedical Investigation (OBI).  These classes will be replaced by their OBI equivalents, once there is an official release built off BFO v1.1 that can be successfully classified using Pellet v1.5.0 in Protege."^^xsd:string ;
     skos:editorialNote "ID use: 11000 - 11048"^^xsd:string,
@@ -36,57 +38,7 @@
     dc:creator "The BIRN Ontology Task Force"^^xsd:string ;
     dc:subject "The BIRN project lexicon"^^xsd:string .
 
-### Annotation Properties
-
-BIRNANN:birnlexDefinition a owl:AnnotationProperty .
-
-BIRNANN:hasBirnlexCurator a owl:AnnotationProperty .
-
-BIRNANN:hasCurationStatus a owl:AnnotationProperty .
-
-BIRNANN:hasFormerParentClass a owl:AnnotationProperty .
-
-BIRNANN:isReplacedByClass a owl:AnnotationProperty .
-
-OBOANN:abbrev a owl:AnnotationProperty .
-
-OBOANN:createdDate a owl:AnnotationProperty .
-
-OBOANN:externalSourceURI a owl:AnnotationProperty .
-
-OBOANN:hasDefinitionSource a owl:AnnotationProperty .
-
-OBOANN:modifiedDate a owl:AnnotationProperty .
-
-OBOANN:nifID a owl:AnnotationProperty .
-
-OBOANN:synonym a owl:AnnotationProperty .
-
-skos:altLabel a owl:AnnotationProperty .
-
-skos:changeNote a owl:AnnotationProperty .
-
-skos:definition a owl:AnnotationProperty .
-
-skos:editorialNote a owl:AnnotationProperty .
-
-skos:prefLabel a owl:AnnotationProperty .
-
 ### Classes
-
-BFO1SNAP:Disposition a owl:Class .
-
-BFO1SNAP:GenericallyDependentContinuant a owl:Class .
-
-BFO1SNAP:MaterialEntity a owl:Class .
-
-BFO1SNAP:ObjectAggregate a owl:Class .
-
-BFO1SNAP:Role a owl:Class .
-
-BFO1SPAN:Process a owl:Class .
-
-BIRNANN:_birnlex_retired_class a owl:Class .
 
 BIRNOBI:birnlex_11000 a owl:Class ;
     rdfs:label "Non-realizable information entity"^^xsd:string ;
@@ -100,6 +52,7 @@ BIRNOBI:birnlex_11000 a owl:Class ;
     OBOANN:externalSourceURI <http://obi.sourceforge.net/ontology/OBI.owl#OBI_295> .
 
 BIRNOBI:birnlex_11001 a owl:Class ;
+    owl:equivalentClass IAO:0000030 ;
     rdfs:label "Information content entity"^^xsd:string ;
     skos:prefLabel "Information content entity"^^xsd:string ;
     rdfs:subClassOf BIRNOBI:birnlex_11000 ;
@@ -200,7 +153,7 @@ BIRNOBI:birnlex_11009 a owl:Class ;
     BIRNANN:hasBirnlexCurator BIRNANN:Bill_Bug ;
     BIRNANN:hasCurationStatus BIRNANN:graph_position_temporary ;
     OBOANN:externalSourceURI <http://obi.sourceforge.net/ontology/OBI.owl#OBI_270> ;
-    OBOANN:hasDefinitionSource "OBI"^^xsd:string .
+    OBOANN:hasDefinitionSource OBOANN:OBI_defSource .
 
 BIRNOBI:birnlex_11010 a owl:Class ;
     rdfs:label "Protocol"^^xsd:string ;
@@ -677,15 +630,11 @@ BIRNOBI:nlx_inv_20081201 a owl:Class ;
     rdfs:comment "We need to have this in there somewhere, but it looks like OBI has something equivalent \"source code module\"; they have it classified as an information content entity, so I placed it here. (Maryann Martone)"^^xsd:string ;
     OBOANN:createdDate "December 15, 2008"^^xsd:string ;
     OBOANN:externalSourceId "OBI_0000039"^^xsd:string ;
-    OBOANN:hasDefinitionSource "OBI"^^xsd:string .
+    OBOANN:hasDefinitionSource OBOANN:OBI_defSource .
+
+IAO:0000030 a owl:Class ;
+    rdfs:subClassOf BIRNOBI:birnlex_11000 .
 
 NIFGA:birnlex_6 a owl:Class .
 
-### Annotations
-
-NIFMOL:CHEBI_15765 OBOANN:abbrev "L-Dopa"^^xsd:string ;
-    skos:definition """An amino acid precursor of dopamine with antiparkinsonian properties. L-DOPA is a prodrug that is converted to dopamine by DOPA decarboxylase and can cross the blood-brain barrier. When in the brain, L-DOPA is decarboxylated to dopamine and stimulates the dopaminergic receptors. (Adapted from NCI Thesaurus)
-
-Levodopa is naturally occurring form of dihydroxyphenylalanine and the immediate precursor of dopamine. Unlike dopamine itself, it can be taken orally and crosses the blood-brain barrier. It is rapidly taken up by dopaminergic neurons and converted to dopamine. It is used for the treatment of parkinsonian disorders and is usually given with agents that inhibit its conversion to dopamine outside of the central nervous system. (PubChem) Pharmacology: Levodopa (L-dopa) is used to replace dopamine lost in Parkinson's disease because dopamine itself cannot cross the blood-brain barrier where its precursor can. However, L-DOPA is converted to dopamine in the periphery as well as in the CNS, so it is administered with a peripheral DDC (dopamine decarboxylase) inhibitor such as carbidopa, without which 90% is metabolised in the gut wall, and with a COMT inhibitor if possible; this prevents about a 5% loss. The form given therapeutically is therefore a prodrug which avoids decarboxylation in the stomach and periphery, can cross the blood-brain barrier, and once in the brain is converted to the neurotransmitter dopamine by the enzyme aromatic-L-amino-acid decarboxylase. Mechanism of action: Striatal dopamine levels in symptomatic Parkinson's disease are decreased by 60 to 80%, striatal dopaminergic neurotransmission may be enhanced by exogenous supplementation of dopamine through administration of dopamine's precursor, levodopa. A small percentage of each levodopa dose crosses the blood-brain barrier and is decarboxylated to dopamine. This newly formed dopamine then is available to stimulate dopaminergic receptors, thus compensating for the depleted supply of endogenous dopamine. Drug type: Approved. Small Molecule. Drug category: Antidyskinetics. Antiparkinson Agents. Dopamine Agents"""^^xsd:string .
-
-### Serialized using the nifstd custom serializer v1.0.5
+### Serialized using the nifstd custom serializer v1.0.7

@@ -1,3 +1,5 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix BFO1SNAP: <http://www.ifomis.org/bfo/1.1/snap#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -8,6 +10,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://ontology.neuinfo.org/NIF/ttl/bridge/uberon-bridge.ttl> a owl:Ontology ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/external/uberon.owl> ;
     rdfs:label "NIFSTD Uberon Bridge" ;
     rdfs:comment "This is the bridge file that holds local NIFSTD additions to uberon. This is also staging for any changes that we want to push upstream." ;
     owl:versionInfo "2016-11-03" ;
@@ -31,9 +34,6 @@ UBERON:0000007 a owl:Class ;
 
 UBERON:0000010 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom UBERON:0000966 ],
-        [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom UBERON:0001844 ],
         [ a owl:Restriction ;
@@ -117,6 +117,9 @@ UBERON:0000451 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:proper_part_of ;
             owl:someValuesFrom UBERON:0001870 ] .
+
+UBERON:0000465 a owl:Class ;
+    rdfs:subClassOf BFO1SNAP:IndependentContinuant .
 
 UBERON:0000908 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
@@ -1488,6 +1491,16 @@ UBERON:0002206 a owl:Class ;
             owl:onProperty ro:proper_part_of ;
             owl:someValuesFrom UBERON:0002770 ] .
 
+UBERON:0002226 a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ro:proper_part_of ;
+            owl:someValuesFrom UBERON:0028192 ] .
+
+UBERON:0002233 a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ro:proper_part_of ;
+            owl:someValuesFrom UBERON:0028192 ] .
+
 UBERON:0002240 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:proper_part_of ;
@@ -2530,19 +2543,13 @@ UBERON:0002723 a owl:Class ;
 UBERON:0002726 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom UBERON:0002240 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom UBERON:0014613 ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom UBERON:0014614 ],
-        [ a owl:Restriction ;
-            owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom UBERON:0014634 ],
-        [ a owl:Restriction ;
-            owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom UBERON:0014635 ],
-        [ a owl:Restriction ;
-            owl:onProperty ro:proper_part_of ;
-            owl:someValuesFrom UBERON:0002240 ] .
+            owl:someValuesFrom UBERON:0014614 ] .
 
 UBERON:0002727 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
@@ -2804,12 +2811,6 @@ UBERON:0002790 a owl:Class ;
 UBERON:0002792 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom UBERON:0024382 ],
-        [ a owl:Restriction ;
-            owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom UBERON:0026006 ],
-        [ a owl:Restriction ;
-            owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom UBERON:0026386 ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
@@ -2896,6 +2897,11 @@ UBERON:0002817 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:proper_part_of ;
             owl:someValuesFrom UBERON:0002037 ] .
+
+UBERON:0002820 a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ro:proper_part_of ;
+            owl:someValuesFrom UBERON:0029822 ] .
 
 UBERON:0002823 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
@@ -3558,9 +3564,6 @@ UBERON:0003023 a owl:Class ;
             owl:someValuesFrom UBERON:0003011 ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom UBERON:0003041 ],
-        [ a owl:Restriction ;
-            owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom UBERON:0003044 ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
@@ -3625,12 +3628,6 @@ UBERON:0003036 a owl:Class ;
 UBERON:0003038 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom UBERON:0014616 ],
-        [ a owl:Restriction ;
-            owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom UBERON:0014617 ],
-        [ a owl:Restriction ;
-            owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom UBERON:0014636 ],
         [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
@@ -3648,11 +3645,6 @@ UBERON:0003040 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ro:proper_part_of ;
             owl:someValuesFrom UBERON:0001943 ] .
-
-UBERON:0003041 a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ro:proper_part_of ;
-            owl:someValuesFrom UBERON:0003023 ] .
 
 UBERON:0003043 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
@@ -3985,12 +3977,6 @@ UBERON:0005413 a owl:Class ;
 
 UBERON:0005843 a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom UBERON:0022941 ],
-        [ a owl:Restriction ;
-            owl:onProperty ro:has_proper_part ;
-            owl:someValuesFrom UBERON:0023623 ],
-        [ a owl:Restriction ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom UBERON:0026246 ],
         [ a owl:Restriction ;
@@ -5061,4 +5047,4 @@ UBERON:0029636 a owl:Class ;
             owl:onProperty ro:has_proper_part ;
             owl:someValuesFrom UBERON:0033483 ] .
 
-### Serialized using the nifstd custom serializer v1.0.5
+### Serialized using the nifstd custom serializer v1.0.7
