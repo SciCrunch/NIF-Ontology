@@ -6,6 +6,8 @@
 @prefix NLX: <http://uri.neuinfo.org/nif/nifstd/nlx_> .
 @prefix NLXINV: <http://uri.neuinfo.org/nif/nifstd/nlx_inv_> .
 @prefix NLXRES: <http://uri.neuinfo.org/nif/nifstd/nlx_res_> .
+@prefix NLXWIKI: <http://neurolex.org/wiki/> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -212,7 +214,7 @@ BIRNLEX:2325 a owl:Class ;
 
 BIRNLEX:2327 a owl:Class ;
     rdfs:label "subject report" ;
-    rdfs:subClassOf <http://www.semanticweb.org/owl/owlapi/turtle#obi_IAO_0000088> .
+    rdfs:subClassOf IAO:0000088 .
 
 BIRNLEX:2335 a owl:Class ;
     rdfs:label "controlled vocabulary" ;
@@ -368,35 +370,26 @@ BIRNLEX:11012 a owl:Class ;
 
 BIRNLEX:11040 a owl:Class ;
     rdfs:label "investigation record" ;
-    rdfs:subClassOf <http://www.semanticweb.org/owl/owlapi/turtle#obi_IAO_0000088> .
-
-<http://www.semanticweb.org/owl/owlapi/turtle#C19984> a owl:Class ;
-    rdfs:label "common data element" ;
-    rdfs:subClassOf BIRNLEX:2360 .
-
-<http://www.semanticweb.org/owl/owlapi/turtle#C42753> a owl:Class ;
-    rdfs:label "workflow" ;
-    rdfs:subClassOf NLXRES:20090430 .
-
-<http://www.semanticweb.org/owl/owlapi/turtle#Nlx_101055> a owl:Class ;
-    rdfs:label "nif annotation standard" ;
-    rdfs:subClassOf BIRNLEX:2360 .
-
-<http://www.semanticweb.org/owl/owlapi/turtle#obi_IAO_0000088> a owl:Class ;
-    rdfs:label "report" ;
-    rdfs:subClassOf NLXRES:20090410 .
-
-<http://www.semanticweb.org/owl/owlapi/turtle#SIO_000148> a owl:Class ;
-    rdfs:label "document" ;
-    rdfs:subClassOf NLXRES:20090410 .
+    rdfs:subClassOf IAO:0000088 .
 
 IAO:0000025 a owl:Class ;
     rdfs:label "programming language" ;
     rdfs:subClassOf NLXRES:20090103 .
 
+IAO:0000088 a owl:Class ;
+    oboInOwl:hasDbXref <http://neurolex.org/wiki/obi:IAO_0000088> ;
+    rdfs:label "report" ;
+    rdfs:subClassOf NLXRES:20090410 .
+
 IAO:0000185 a owl:Class ;
     rdfs:label "photograph" ;
     rdfs:subClassOf BIRNLEX:11005 .
+
+IAO:0000310 a owl:Class ;
+    oboInOwl:hasDbXref <http://neurolex.org/wiki/SIO:000148> ;
+    rdfs:label "document" ;
+    rdfs:subClassOf NLXRES:20090410 ;
+    rdfs:comment "SIO: does not resolve, suggest switch to IAO in interlex as well" .
 
 IAO:0000584 a owl:Class ;
     rdfs:label "time sampled measurement data set" ;
@@ -406,13 +399,20 @@ ILX:0050113 a owl:Class ;
     rdfs:label "algorithm resource" ;
     rdfs:subClassOf NLXRES:20090103 .
 
-NIFSTD:Nlx_137382 a owl:Class ;
-    rdfs:label "regional funding resource" ;
-    rdfs:subClassOf NLXRES:20090107 .
+ILX:0102410 a owl:Class ;
+    oboInOwl:hasDbXref NLXWIKI:C19984 ;
+    rdfs:label "common data element" ;
+    rdfs:subClassOf BIRNLEX:2360 ;
+    rdfs:comment "Switched to ILX because NLXWIKI:C19984 lands on an empty page despite the fact that it is listed as an identifier on the Category:Common_data_element page." .
 
 NLX:15 a owl:Class ;
     rdfs:label "workflow software" ;
     rdfs:subClassOf BIRNLEX:2210 .
+
+NLX:57 a owl:Class ;
+    rdfs:label "workflow" ;
+    rdfs:subClassOf NLXRES:20090430 ;
+    rdfs:comment "Switched from NLXWIKI:C42753 to simplify the representation here and since NLX:57 resolves properly." .
 
 NLX:208 a owl:Class ;
     rdfs:label "expression atlas" ;
@@ -440,7 +440,7 @@ NLX:21567 a owl:Class ;
 
 NLX:61768 a owl:Class ;
     rdfs:label "nif annotation standard for age classification" ;
-    rdfs:subClassOf <http://www.semanticweb.org/owl/owlapi/turtle#Nlx_101055> .
+    rdfs:subClassOf NLX:101055 .
 
 NLX:94095 a owl:Class ;
     rdfs:label "patient registry" ;
@@ -457,6 +457,14 @@ NLX:97132 a owl:Class ;
 NLX:97896 a owl:Class ;
     rdfs:label "podcast" ;
     rdfs:subClassOf NLXRES:20090410 .
+
+NLX:101055 a owl:Class ;
+    rdfs:label "nif annotation standard" ;
+    rdfs:subClassOf BIRNLEX:2360 .
+
+NLX:137382 a owl:Class ;
+    rdfs:label "regional funding resource" ;
+    rdfs:subClassOf NLXRES:20090107 .
 
 NLX:143623 a owl:Class ;
     rdfs:label "biobank" ;
@@ -632,7 +640,7 @@ NLX:152662 a owl:Class ;
 
 NLX:152763 a owl:Class ;
     rdfs:label "availability annotation standard" ;
-    rdfs:subClassOf <http://www.semanticweb.org/owl/owlapi/turtle#Nlx_101055> .
+    rdfs:subClassOf NLX:101055 .
 
 NLX:152779 a owl:Class ;
     rdfs:label "account required" ;
