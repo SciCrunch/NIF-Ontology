@@ -69,13 +69,7 @@ NIFRID:has_lacking_of a owl:ObjectProperty ;
 
 ro:contained_in a owl:ObjectProperty .
 
-ro:has_integral_part a owl:ObjectProperty .
-
-ro:has_part a owl:ObjectProperty .
-
 ro:has_proper_part a owl:ObjectProperty .
-
-ro:integral_part_of a owl:ObjectProperty .
 
 ro:located_in a owl:ObjectProperty .
 
@@ -3283,15 +3277,21 @@ BIRNLEX:887 a owl:Class ;
     NIFRID:abbrev "ml"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1649,
         [ a owl:Restriction ;
-            owl:onProperty ro:has_integral_part ;
-            owl:allValuesFrom [ a owl:Class ;
-                    owl:unionOf (
-                            BIRNLEX:781
-                            BIRNLEX:1296
-                            BIRNLEX:1570 ) ] ],
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:781 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1296 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1570 ],
         [ a owl:Restriction ;
             owl:onProperty ro:proper_part_of ;
             owl:someValuesFrom NLXANAT:101177 ] ;
+    owl:disjointUnionOf (
+            BIRNLEX:781
+            BIRNLEX:1296
+            BIRNLEX:1570 ) ;
     skos:editorialNote "Note that setting this class equal to the union of the three medial lemnisci from each of the foundational brain regions may not imply the meaning we intend.  To make such an assertion - A + B + C = D - is to say an instance of a Medial lemniscus is fully defined by the union of an instance of each of one of these three classes.  Those three instances combined would fully define in toto a valid instance of medial lemniscus.  Setting a necessary & sufficient (i.e., \"defining\") assertion closes the \"open world\" assumption for this class.  Therefore, no instance that isn't one of those three classes could be a part of a medial lemniscus.  We may also need an existential condition to the effect of, \"For every Medial lemniscus, it will contain one each of an instance of a medial lemniscus of midbrain,  an instance of a medial lemniscus of pons, and  an instance of a medial lemniscus of medulla (BB)."@en,
         "To truly implement these mereotological assertions correctly, we will need to use OWL object properties and OWL versions of the OBO relations such as \"contains/is_contained_by\", \"is_adjacent_to\", \"intersects_with\", etc..  UNION will suffice for now to get the point across, but it's not really establishing a spatial relation per se."^^xsd:string ;
     owl:versionInfo "132370"^^xsd:string ;
@@ -4889,16 +4889,25 @@ BIRNLEX:970 a owl:Class ;
         "cerebellar peduncles and decussations"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:959,
         [ a owl:Restriction ;
-            owl:onProperty ro:has_integral_part ;
-            owl:allValuesFrom [ a owl:Class ;
-                    owl:unionOf (
-                            BIRNLEX:1089
-                            BIRNLEX:1529
-                            BIRNLEX:1691
-                            BIRNLEX:1711 ) ] ],
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1089 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1529 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1691 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1711 ],
         [ a owl:Restriction ;
             owl:onProperty ro:proper_part_of ;
             owl:someValuesFrom NLXANAT:101177 ] ;
+    owl:disjointUnionOf (
+            BIRNLEX:1089
+            BIRNLEX:1529
+            BIRNLEX:1691
+            BIRNLEX:1711 ) ;
     skos:editorialNote "UMLS uses the preferred term \"cerebellar peduncles and decussations\", NeuroNames uses the preferred term \"cerebellar peduncles\", but I'm trying to avoid plurals.  NN & UMLS preferred terms included as a synonym."^^xsd:string ;
     NIFRID:createdDate "2006-10-09"^^xsd:string ;
     NIFRID:modifiedDate "2006-10-09"^^xsd:string ;
@@ -5194,13 +5203,22 @@ BIRNLEX:986 a owl:Class ;
     skos:prefLabel "Dorsal longitudinal fasciculus"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1167,
         [ a owl:Restriction ;
-            owl:onProperty ro:has_integral_part ;
-            owl:allValuesFrom [ a owl:Class ;
-                    owl:unionOf (
-                            BIRNLEX:893
-                            BIRNLEX:898
-                            BIRNLEX:1257
-                            BIRNLEX:1707 ) ] ] ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:893 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:898 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1257 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1707 ] ;
+    owl:disjointUnionOf (
+            BIRNLEX:893
+            BIRNLEX:898
+            BIRNLEX:1257
+            BIRNLEX:1707 ) ;
     skos:editorialNote "This is another example of how the class UNION axion can be used to construct more complex structures."^^xsd:string ;
     NIFRID:createdDate "2006-10-09"^^xsd:string ;
     NIFRID:modifiedDate "2006-10-09"^^xsd:string ;
@@ -5941,11 +5959,14 @@ BIRNLEX:1031 a owl:Class ;
     skos:prefLabel "Tegmentum"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1304,
         [ a owl:Restriction ;
-            owl:onProperty ro:has_part ;
-            owl:allValuesFrom [ a owl:Class ;
-                    owl:unionOf (
-                            BIRNLEX:923
-                            BIRNLEX:1200 ) ] ] ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:923 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1200 ] ;
+    owl:unionOf (
+            BIRNLEX:923
+            BIRNLEX:1200 ) ;
     NIFRID:createdDate "2007-08-20"^^xsd:string ;
     NIFRID:modifiedDate "2007-08-20"^^xsd:string ;
     NIFRID:hasBirnlexCurator NIFRID:Bill_Bug ;
@@ -10978,12 +10999,18 @@ BIRNLEX:1298 a owl:Class ;
     skos:prefLabel "Stratum radiatum"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1192,
         [ a owl:Restriction ;
-            owl:onProperty ro:has_integral_part ;
-            owl:allValuesFrom [ a owl:Class ;
-                    owl:unionOf (
-                            BIRNLEX:4119
-                            BIRNLEX:4120
-                            BIRNLEX:4121 ) ] ] ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4119 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4120 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4121 ] ;
+    owl:disjointUnionOf (
+            BIRNLEX:4119
+            BIRNLEX:4120
+            BIRNLEX:4121 ) ;
     NIFRID:createdDate "2006-07-15"^^xsd:string ;
     NIFRID:modifiedDate "2006-10-07"^^xsd:string ;
     NIFRID:birnlexDefinition "The layer located immediately above the pyramidal cell layer in CA2 and CA1 and suprficial to the stratum lucidum in CA3.  Suprapyramidal region in which CA3 to CA3 associational connections and CA3 to CA1 Schaffer collateral connections are located."^^xsd:string ;
@@ -12056,12 +12083,18 @@ BIRNLEX:1359 a owl:Class ;
     skos:prefLabel "Stratum lacunosum moleculare"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1192,
         [ a owl:Restriction ;
-            owl:onProperty ro:has_integral_part ;
-            owl:allValuesFrom [ a owl:Class ;
-                    owl:unionOf (
-                            BIRNLEX:4123
-                            BIRNLEX:4124
-                            BIRNLEX:4125 ) ] ] ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4123 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4124 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4125 ] ;
+    owl:disjointUnionOf (
+            BIRNLEX:4123
+            BIRNLEX:4124
+            BIRNLEX:4125 ) ;
     NIFRID:createdDate "2006-07-15"^^xsd:string ;
     NIFRID:modifiedDate "2008-03-24"^^xsd:string ;
     NIFRID:bonfireID "BF_C000286"^^xsd:string ;
@@ -13630,12 +13663,18 @@ BIRNLEX:1444 a owl:Class ;
         "stratum pyramidale"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1192,
         [ a owl:Restriction ;
-            owl:onProperty ro:has_integral_part ;
-            owl:someValuesFrom [ a owl:Class ;
-                    owl:unionOf (
-                            BIRNLEX:4110
-                            BIRNLEX:4111
-                            BIRNLEX:4112 ) ] ] ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4110 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4111 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4112 ] ;
+    owl:disjointUnionOf (
+            BIRNLEX:4110
+            BIRNLEX:4111
+            BIRNLEX:4112 ) ;
     NIFRID:createdDate "2006-09-28"^^xsd:string ;
     NIFRID:modifiedDate "2008-03-24"^^xsd:string ;
     NIFRID:externallySourcedDefinition "A cytoarchitectural term denoting the layer of the hippocampus in which pyramidal cells are predominant. Its location is superficial to the Stratum oriens; it is deep to the Stratum radiatum in area CA1 and area CA2 and deep to the Stratum lucidum in area CA3 (Stephan-75) (NeuroNames)."^^xsd:string ;
@@ -18750,11 +18789,14 @@ BIRNLEX:1711 a owl:Class ;
     NIFRID:abbrev "scp"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1167,
         [ a owl:Restriction ;
-            owl:onProperty ro:has_integral_part ;
-            owl:allValuesFrom [ a owl:Class ;
-                    owl:unionOf (
-                            BIRNLEX:1162
-                            BIRNLEX:1726 ) ] ] ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1162 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1726 ] ;
+    owl:disjointUnionOf (
+            BIRNLEX:1162
+            BIRNLEX:1726 ) ;
     NIFRID:createdDate "2006-10-08"^^xsd:string ;
     NIFRID:modifiedDate "2006-10-08"^^xsd:string ;
     NIFRID:birnlexDefinition "A composite structure of the brain stem, which in NeuroNames is subdivided into the superior cerebellar peduncle of pons, the decussation of superior cerebellar peduncle and the superior cerebellar peduncle of midbrain (MM)."^^xsd:string ;
@@ -23747,11 +23789,11 @@ BIRNLEX:4012 a owl:Class ;
     skos:definition "The term angular sulcus (H) refers to a superficial feature of the parietal lobe. It is the portion of the superior temporal sulcus that extends into the angular gyrus (Ono-90). (NN)"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4034,
         [ a owl:Restriction ;
-            owl:onProperty ro:integral_part_of ;
-            owl:someValuesFrom BIRNLEX:1534 ],
-        [ a owl:Restriction ;
             owl:onProperty ro:located_in ;
-            owl:someValuesFrom BIRNLEX:1376 ] ;
+            owl:someValuesFrom BIRNLEX:1376 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:proper_part_of ;
+            owl:someValuesFrom BIRNLEX:1534 ] ;
     NIFRID:createdDate "2008-02-29"^^xsd:string ;
     NIFRID:modifiedDate "2008-02-29"^^xsd:string ;
     NIFRID:hasAbbrevSource NIFRID:SumsDB_abbrevSource ;
@@ -24083,7 +24125,7 @@ BIRNLEX:4028 a owl:Class ;
     NIFRID:abbrev "pals"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4034,
         [ a owl:Restriction ;
-            owl:onProperty ro:integral_part_of ;
+            owl:onProperty ro:proper_part_of ;
             owl:someValuesFrom BIRNLEX:1487 ] ;
     NIFRID:createdDate "2008-02-29"^^xsd:string ;
     NIFRID:modifiedDate "2008-02-29"^^xsd:string ;
@@ -25570,15 +25612,30 @@ BIRNLEX:4096 a owl:Class ;
         "Trigeminal nucleus"^^xsd:string ;
     rdfs:subClassOf NLXANAT:20090509,
         [ a owl:Restriction ;
-            owl:onProperty ro:has_part ;
-            owl:allValuesFrom [ a owl:Class ;
-                    owl:intersectionOf (
-                            BIRNLEX:1010
-                            BIRNLEX:1100
-                            BIRNLEX:1120
-                            BIRNLEX:1222
-                            BIRNLEX:2637
-                            BIRNLEX:2646 ) ] ] ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1010 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1100 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1120 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1222 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:2637 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:2646 ] ;
+    owl:disjointUnionOf (
+            BIRNLEX:1010
+            BIRNLEX:1100
+            BIRNLEX:1120
+            BIRNLEX:1222
+            BIRNLEX:2637
+            BIRNLEX:2646 ) ;
     NIFRID:createdDate "2008-03-22"^^xsd:string ;
     NIFRID:modifiedDate "2008-03-22"^^xsd:string ;
     NIFRID:hasBirnlexCurator NIFRID:Bill_Bug ;
@@ -25593,13 +25650,22 @@ BIRNLEX:4097 a owl:Class ;
     skos:prefLabel "Trigeminal tract"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1649,
         [ a owl:Restriction ;
-            owl:onProperty ro:has_part ;
-            owl:allValuesFrom [ a owl:Class ;
-                    owl:intersectionOf (
-                            BIRNLEX:1001
-                            BIRNLEX:1477
-                            BIRNLEX:1718
-                            BIRNLEX:1725 ) ] ] ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1001 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1477 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1718 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:1725 ] ;
+    owl:disjointUnionOf (
+            BIRNLEX:1001
+            BIRNLEX:1477
+            BIRNLEX:1718
+            BIRNLEX:1725 ) ;
     NIFRID:createdDate "2008-03-22"^^xsd:string ;
     NIFRID:modifiedDate "2008-03-22"^^xsd:string ;
     NIFRID:hasBirnlexCurator NIFRID:Bill_Bug ;
@@ -25852,12 +25918,18 @@ BIRNLEX:4113 a owl:Class ;
         "polymorphic layer of the hippocampus"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1192,
         [ a owl:Restriction ;
-            owl:onProperty ro:has_integral_part ;
-            owl:allValuesFrom [ a owl:Class ;
-                    owl:unionOf (
-                            BIRNLEX:4115
-                            BIRNLEX:4116
-                            BIRNLEX:4117 ) ] ] ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4115 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4116 ],
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_proper_part ;
+            owl:someValuesFrom BIRNLEX:4117 ] ;
+    owl:disjointUnionOf (
+            BIRNLEX:4115
+            BIRNLEX:4116
+            BIRNLEX:4117 ) ;
     NIFRID:createdDate "2008-03-24"^^xsd:string ;
     NIFRID:modifiedDate "2008-03-24"^^xsd:string ;
     NIFRID:bamsID "7619"^^xsd:string ;
