@@ -13,8 +13,8 @@ checks to make sure that the ontology is consistent.
 
 ## Prior to commit
 ```bash
-ttlfmt filename.ttl
-qnamefix filename.ttl
+ttlfmt $(git status -s | grep ttl | grep M | cut -d' ' -f3)
+qnamefix $(git status -s | grep ttl | grep M | cut -d' ' -f3)
 ```
 
 ## Adding a new external import
