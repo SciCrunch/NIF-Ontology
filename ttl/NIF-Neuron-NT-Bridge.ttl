@@ -19,9 +19,13 @@
 
 ### Object Properties
 
+<http://purl.obolibrary.org/obo/BFO_0000050> a owl:ObjectProperty .
+
+<http://purl.obolibrary.org/obo/BFO_0000051> a owl:ObjectProperty .
+
 NIFRID:has_molecular_constituent a owl:ObjectProperty,
         owl:TransitiveProperty ;
-    rdfs:subPropertyOf ro:has_proper_part ;
+    rdfs:subPropertyOf NIFRID:has_proper_part ;
     owl:inverseOf NIFRID:molecular_constituent_of .
 
 NIFRID:has_neurotransmitter a owl:ObjectProperty,
@@ -29,31 +33,27 @@ NIFRID:has_neurotransmitter a owl:ObjectProperty,
     rdfs:subPropertyOf NIFRID:has_molecular_constituent ;
     owl:inverseOf NIFRID:neurotransmitter_of .
 
+NIFRID:has_proper_part a owl:ObjectProperty .
+
 NIFRID:molecular_constituent_of a owl:ObjectProperty,
         owl:TransitiveProperty ;
-    rdfs:subPropertyOf ro:proper_part_of .
+    rdfs:subPropertyOf NIFRID:proper_part_of .
 
 NIFRID:neurotransmitter_of a owl:ObjectProperty,
         owl:TransitiveProperty ;
     rdfs:subPropertyOf NIFRID:molecular_constituent_of .
 
+NIFRID:proper_part_of a owl:ObjectProperty .
+
 NIFRID:soma_located_in a owl:ObjectProperty,
         owl:TransitiveProperty ;
-    rdfs:subPropertyOf ro:has_part ;
+    rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000051> ;
     owl:inverseOf NIFRID:soma_location_of ;
     rdfs:comment "This is a temporary property to specify soma location of a cell/neuron. It will be modified to have property chain like cell1 has_part soma which is a part of brain region1"^^xsd:string .
 
 NIFRID:soma_location_of a owl:ObjectProperty,
         owl:TransitiveProperty ;
-    rdfs:subPropertyOf ro:part_of .
-
-ro:has_part a owl:ObjectProperty .
-
-ro:has_proper_part a owl:ObjectProperty .
-
-ro:part_of a owl:ObjectProperty .
-
-ro:proper_part_of a owl:ObjectProperty .
+    rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000050> .
 
 ### Annotation Properties
 
