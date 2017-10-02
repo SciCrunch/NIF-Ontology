@@ -36,8 +36,11 @@ This file will hold any local additions that we want to make.
 ## Adding a new ontology file
 ```bash
 touch filename.ttl
-make_catalog
+add filename.ttl
+`make_catalog`
 ```
+Before you run `make_catalog` make sure that the import chain is local (unpatched)
+otherwise it will take an extremely long time to fetch files.
 
 ## Running the reasoner
 ```bash
