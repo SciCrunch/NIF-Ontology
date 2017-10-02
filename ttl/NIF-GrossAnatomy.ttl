@@ -1,8 +1,11 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
-@prefix BFO1SNAP: <http://www.ifomis.org/bfo/1.1/snap#> .
+@prefix bearerOf: <http://purl.obolibrary.org/obo/RO_0000053> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix BIRNLEX: <http://uri.neuinfo.org/nif/nifstd/birnlex_> .
+@prefix containedIn: <http://purl.obolibrary.org/obo/RO_0001018> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
+@prefix locatedIn: <http://purl.obolibrary.org/obo/RO_0001025> .
 @prefix NIFEXT: <http://uri.neuinfo.org/nif/nifstd/nifext_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix NIFSTD: <http://uri.neuinfo.org/nif/nifstd/> .
@@ -15,9 +18,9 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix replacedBy: <http://purl.obolibrary.org/obo/IAO_0100001> .
-@prefix ro: <http://www.obofoundry.org/ro/ro.owl#> .
 @prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix toward: <http://purl.obolibrary.org/obo/RO_0002503> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -61,11 +64,9 @@ v. 2.3 (July 15, 2013) - Old PURLs are replaced with the new ones for OBO ontolo
 
 ### Object Properties
 
-<http://purl.obolibrary.org/obo/RO_0001018> a owl:ObjectProperty .
+containedIn: a owl:ObjectProperty .
 
-<http://purl.obolibrary.org/obo/RO_0001025> a owl:ObjectProperty .
-
-<http://purl.obolibrary.org/obo/RO_0002503> a owl:ObjectProperty .
+locatedIn: a owl:ObjectProperty .
 
 NIFRID:has_lacking_of a owl:ObjectProperty ;
     rdfs:comment "This is a temporary property until we find an alternative way to express the idea of 'lacking' through OBO-RO and/or by other means."^^xsd:string ;
@@ -74,6 +75,8 @@ NIFRID:has_lacking_of a owl:ObjectProperty ;
 NIFRID:has_proper_part a owl:ObjectProperty .
 
 NIFRID:proper_part_of a owl:ObjectProperty .
+
+toward: a owl:ObjectProperty .
 
 ### Classes
 
@@ -118,7 +121,7 @@ BIRNLEX:6 a owl:Class ;
         "Supramolecular part of organism"^^xsd:string ;
     skos:definition """* Biomaterial object constituting the structural organization of a biological organism or an attribute of that organization.
 * A biomaterial object constituting a part of a complete organismal object."""^^xsd:string ;
-    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000004> ;
+    rdfs:subClassOf BFO:0000004 ;
     rdfs:comment "Former label was 'Constitutional part of organismal object'"^^xsd:string ;
     NIFRID:createdDate "February 18, 2010"^^xsd:string ;
     skos:altLabel "anatomical_structure"^^xsd:string ;
@@ -140,7 +143,7 @@ BIRNLEX:9 a owl:Class ;
     owl:deprecated true ;
     rdfs:label "Bio physical immaterial entity"^^xsd:string ;
     skos:prefLabel "Bio physical immaterial entity"^^xsd:string ;
-    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000029> ;
+    rdfs:subClassOf BFO:0000029 ;
     NIFRID:createdDate "2006-09-07"^^xsd:string ;
     NIFRID:modifiedDate "2006-10-09"^^xsd:string ;
     NIFRID:hasBirnlexCurator NIFRID:Bill_Bug ;
@@ -479,7 +482,7 @@ BIRNLEX:714 a owl:Class ;
     skos:definition "Part of the ventricular system of the brain, forming a single large cavity in the midline of the diencephalon; it is continuous with the lateral ventricles through the interventricular foramen and the fourth ventricle through the cerebral aqueduct. (Maryann Martone)"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1167,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001018> ;
+            owl:onProperty containedIn: ;
             owl:someValuesFrom BIRNLEX:1503 ],
         [ a owl:Restriction ;
             owl:onProperty NIFRID:proper_part_of ;
@@ -5600,7 +5603,7 @@ BIRNLEX:1011 a owl:Class ;
     replacedBy: UBERON:0002553 ;
     rdfs:label "Anatomical cavity"^^xsd:string ;
     skos:prefLabel "Anatomical cavity"^^xsd:string ;
-    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000004> ;
+    rdfs:subClassOf BFO:0000004 ;
     NIFRID:createdDate "2006-07-15"^^xsd:string ;
     NIFRID:modifiedDate "2006-09-28"^^xsd:string ;
     NIFRID:externallySourcedDefinition "Anatomical space that is bounded by the surface of the wall or walls of organs, organ parts, body parts or body part subdivisions."^^xsd:string ;
@@ -19050,7 +19053,7 @@ BIRNLEX:1728 a owl:Class ;
     skos:prefLabel "Left parietal lobe"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1148,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom BIRNLEX:1795 ],
         [ a owl:Restriction ;
             owl:onProperty NIFRID:proper_part_of ;
@@ -19068,7 +19071,7 @@ BIRNLEX:1729 a owl:Class ;
     skos:prefLabel "Right parietal lobe"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1148,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom BIRNLEX:1797 ],
         [ a owl:Restriction ;
             owl:onProperty NIFRID:proper_part_of ;
@@ -19110,12 +19113,12 @@ BIRNLEX:1732 a owl:Class ;
     NIFRID:abbrev "B09-1"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1728
@@ -19144,12 +19147,12 @@ BIRNLEX:1733 a owl:Class ;
     NIFRID:abbrev "B09-2"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1728
@@ -19177,12 +19180,12 @@ BIRNLEX:1734 a owl:Class ;
     NIFRID:abbrev "B09-3"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1728
@@ -19231,12 +19234,12 @@ BIRNLEX:1735 a owl:Class ;
     NIFRID:abbrev "B09-4"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1728
@@ -19265,12 +19268,12 @@ BIRNLEX:1736 a owl:Class ;
     NIFRID:abbrev "B09-5"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1728
@@ -19299,12 +19302,12 @@ BIRNLEX:1737 a owl:Class ;
     NIFRID:abbrev "B09-6"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1786
@@ -19331,12 +19334,12 @@ BIRNLEX:1738 a owl:Class ;
     NIFRID:abbrev "B09-7"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1728
@@ -19365,12 +19368,12 @@ BIRNLEX:1739 a owl:Class ;
     NIFRID:abbrev "B09-8"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1786
@@ -19397,12 +19400,12 @@ BIRNLEX:1740 a owl:Class ;
     NIFRID:abbrev "B09-9"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -19430,12 +19433,12 @@ BIRNLEX:1741 a owl:Class ;
     NIFRID:abbrev "B09-10"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -19465,12 +19468,12 @@ BIRNLEX:1742 a owl:Class ;
     NIFRID:abbrev "B09-11"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1786
@@ -19515,12 +19518,12 @@ BIRNLEX:1744 a owl:Class ;
     NIFRID:abbrev "B09-13"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1784
@@ -19601,12 +19604,12 @@ BIRNLEX:1748 a owl:Class ;
     NIFRID:abbrev "B09-17"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -19633,12 +19636,12 @@ BIRNLEX:1749 a owl:Class ;
     NIFRID:abbrev "B09-18"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -19666,12 +19669,12 @@ BIRNLEX:1750 a owl:Class ;
     NIFRID:abbrev "B09-19"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1728
@@ -19704,12 +19707,12 @@ BIRNLEX:1751 a owl:Class ;
     NIFRID:abbrev "B09-20"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -19738,12 +19741,12 @@ BIRNLEX:1752 a owl:Class ;
     NIFRID:abbrev "B09-21"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1784
@@ -19770,12 +19773,12 @@ BIRNLEX:1753 a owl:Class ;
     NIFRID:abbrev "B09-22"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -19806,12 +19809,12 @@ BIRNLEX:1754 a owl:Class ;
     NIFRID:abbrev "B09-23"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -19841,12 +19844,12 @@ BIRNLEX:1755 a owl:Class ;
     NIFRID:abbrev "B09-24"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -19874,12 +19877,12 @@ BIRNLEX:1756 a owl:Class ;
     NIFRID:abbrev "B09-25"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -19928,12 +19931,12 @@ BIRNLEX:1758 a owl:Class ;
     NIFRID:abbrev "B09-27"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -19960,12 +19963,12 @@ BIRNLEX:1759 a owl:Class ;
     NIFRID:abbrev "B09-28"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -19992,12 +19995,12 @@ BIRNLEX:1760 a owl:Class ;
     NIFRID:abbrev "B09-32"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -20026,12 +20029,12 @@ BIRNLEX:1761 a owl:Class ;
     NIFRID:abbrev "B09-43"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1728
@@ -20078,12 +20081,12 @@ BIRNLEX:1763 a owl:Class ;
     NIFRID:abbrev "B09-29"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -20107,12 +20110,12 @@ BIRNLEX:1764 a owl:Class ;
     NIFRID:abbrev "B09-30"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -20138,12 +20141,12 @@ BIRNLEX:1765 a owl:Class ;
     NIFRID:abbrev "B09-31"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1728
@@ -20173,12 +20176,12 @@ BIRNLEX:1766 a owl:Class ;
     NIFRID:abbrev "B09-33"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -20202,12 +20205,12 @@ BIRNLEX:1767 a owl:Class ;
     NIFRID:abbrev "B09-34"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -20234,12 +20237,12 @@ BIRNLEX:1768 a owl:Class ;
     NIFRID:abbrev "B09-35"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -20265,12 +20268,12 @@ BIRNLEX:1769 a owl:Class ;
     NIFRID:abbrev "B09-36"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -20296,12 +20299,12 @@ BIRNLEX:1770 a owl:Class ;
     NIFRID:abbrev "B09-37"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -20329,12 +20332,12 @@ BIRNLEX:1771 a owl:Class ;
     NIFRID:abbrev "B09-38"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -20360,12 +20363,12 @@ BIRNLEX:1772 a owl:Class ;
     NIFRID:abbrev "B09-39"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1780
@@ -20392,12 +20395,12 @@ BIRNLEX:1773 a owl:Class ;
     NIFRID:abbrev "B09-40"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1728
@@ -20426,12 +20429,12 @@ BIRNLEX:1774 a owl:Class ;
     NIFRID:abbrev "B09-41"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1784
@@ -20455,12 +20458,12 @@ BIRNLEX:1775 a owl:Class ;
     NIFRID:abbrev "B09-42"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1784
@@ -20484,12 +20487,12 @@ BIRNLEX:1776 a owl:Class ;
     NIFRID:abbrev "B09-44"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1786
@@ -20516,12 +20519,12 @@ BIRNLEX:1777 a owl:Class ;
     skos:definition "Part of the cytoarchitecturally defined frontal region of cerebral cortex. In the human, it occupies the triangular part of the inferior frontal gyrus (human) and, surrounding the anterior horizontal limb of the lateral sulcus (human), a portion of the orbital part of the inferior frontal gyrus (human). Bounded caudally by the anterior ascending limb of the lateral sulcus (human), it borders on the insula in the depth of the lateral sulcus. Cytoarchitectonically it is bounded caudally by the opercular area 44, rostrodorsally by the area 46 of Brodmann (human) and ventrally by the area 47 of Brodmann (human) (Brodmann-1909) (Adapted from Brain Info)"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1786
@@ -20550,12 +20553,12 @@ BIRNLEX:1778 a owl:Class ;
     NIFRID:abbrev "B09-46"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1786
@@ -20579,12 +20582,12 @@ BIRNLEX:1779 a owl:Class ;
     NIFRID:abbrev "B09-47"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1731,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1786
@@ -20606,7 +20609,7 @@ BIRNLEX:1780 a owl:Class ;
     skos:prefLabel "Left limbic lobe"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1128,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom BIRNLEX:1795 ] ;
     owl:disjointWith BIRNLEX:1781 ;
     NIFRID:createdDate "2007-10-02"^^xsd:string ;
@@ -20620,7 +20623,7 @@ BIRNLEX:1781 a owl:Class ;
     skos:prefLabel "Right limbic lobe"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1128,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom BIRNLEX:1797 ] ;
     NIFRID:createdDate "2007-10-02"^^xsd:string ;
     NIFRID:modifiedDate "2007-10-02"^^xsd:string ;
@@ -20633,7 +20636,7 @@ BIRNLEX:1782 a owl:Class ;
     skos:prefLabel "Left occipital lobe"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1136,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom BIRNLEX:1795 ] ;
     owl:disjointWith BIRNLEX:1783 ;
     NIFRID:createdDate "2007-10-02"^^xsd:string ;
@@ -20648,7 +20651,7 @@ BIRNLEX:1783 a owl:Class ;
     skos:prefLabel "Right occipital lobe"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1136,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom BIRNLEX:1797 ] ;
     NIFRID:createdDate "2007-10-02"^^xsd:string ;
     NIFRID:modifiedDate "2007-10-02"^^xsd:string ;
@@ -20662,7 +20665,7 @@ BIRNLEX:1784 a owl:Class ;
     skos:prefLabel "Left temporal lobe"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1160,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom BIRNLEX:1795 ] ;
     owl:disjointWith BIRNLEX:1785 ;
     NIFRID:createdDate "2007-10-02"^^xsd:string ;
@@ -20677,7 +20680,7 @@ BIRNLEX:1785 a owl:Class ;
     skos:prefLabel "Right temporal lobe"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1160,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom BIRNLEX:1797 ] ;
     NIFRID:createdDate "2007-10-02"^^xsd:string ;
     NIFRID:modifiedDate "2007-10-02"^^xsd:string ;
@@ -20741,7 +20744,7 @@ BIRNLEX:1789 a owl:Class ;
     skos:prefLabel "Left sub-lobar region"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1788,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom BIRNLEX:1795 ] ;
     NIFRID:createdDate "2007-10-03"^^xsd:string ;
     NIFRID:modifiedDate "2007-10-03"^^xsd:string ;
@@ -20756,7 +20759,7 @@ BIRNLEX:1790 a owl:Class ;
     skos:prefLabel "Right sub-lobar region"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1788,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom BIRNLEX:1797 ] ;
     NIFRID:createdDate "2007-10-03"^^xsd:string ;
     NIFRID:modifiedDate "2007-10-03"^^xsd:string ;
@@ -20831,12 +20834,12 @@ BIRNLEX:1795 a owl:Class ;
     NIFRID:synonym "Left hemisphere"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1796,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001792
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom BIRNLEX:1494 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty NIFRID:proper_part_of ;
@@ -20867,12 +20870,12 @@ BIRNLEX:1797 a owl:Class ;
     NIFRID:synonym "Right hemisphere"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:1796,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001793
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom BIRNLEX:1494 ] ) ] ],
         [ a owl:Restriction ;
             owl:onProperty NIFRID:proper_part_of ;
@@ -23722,7 +23725,7 @@ BIRNLEX:4009 a owl:Class ;
     skos:definition "The term transverse parietal sulcus (H) refers to a sulcus in the human PARIETAL LOBE that branches dorsally from the intraparietal sulcus (Savel'ev-96). (NN)"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4034,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:unionOf (
                             BIRNLEX:1446
@@ -23744,7 +23747,7 @@ BIRNLEX:4010 a owl:Class ;
     skos:definition "The term superior parietal sulcus (H) refers to a superficial feature of the parietal lobe that extends from the dorsal surface of the superior parietal lobule across the margin of the parietal lobe into the precuneus (Ono-90). (NN)"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4034,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:unionOf (
                             BIRNLEX:1446
@@ -23766,7 +23769,7 @@ BIRNLEX:4011 a owl:Class ;
     skos:definition "The term superior parietal sulcus (H) refers to a superficial feature of the parietal lobe that extends from the dorsal surface of the superior parietal lobule across the margin of the parietal lobe into the precuneus (Ono-90). (NN)"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4034,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:unionOf (
                             BIRNLEX:1446
@@ -23789,7 +23792,7 @@ BIRNLEX:4012 a owl:Class ;
     skos:definition "The term angular sulcus (H) refers to a superficial feature of the parietal lobe. It is the portion of the superior temporal sulcus that extends into the angular gyrus (Ono-90). (NN)"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4034,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:someValuesFrom BIRNLEX:1376 ],
         [ a owl:Restriction ;
             owl:onProperty NIFRID:proper_part_of ;
@@ -24560,12 +24563,12 @@ BIRNLEX:4053 a owl:Class ;
     NIFRID:abbrev "V1d"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4052,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24587,12 +24590,12 @@ BIRNLEX:4054 a owl:Class ;
     NIFRID:abbrev "V1v"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4052,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24613,12 +24616,12 @@ BIRNLEX:4055 a owl:Class ;
     NIFRID:abbrev "V2d"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4052,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24639,12 +24642,12 @@ BIRNLEX:4056 a owl:Class ;
     NIFRID:abbrev "V2v"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4052,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24665,12 +24668,12 @@ BIRNLEX:4057 a owl:Class ;
     NIFRID:abbrev "V3"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4052,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24691,12 +24694,12 @@ BIRNLEX:4058 a owl:Class ;
     NIFRID:abbrev "V3A"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4052,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24717,12 +24720,12 @@ BIRNLEX:4059 a owl:Class ;
     NIFRID:abbrev "VP"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4052,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24743,12 +24746,12 @@ BIRNLEX:4060 a owl:Class ;
     NIFRID:abbrev "V4v"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4052,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24769,12 +24772,12 @@ BIRNLEX:4061 a owl:Class ;
     NIFRID:abbrev "V8"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4052,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24795,12 +24798,12 @@ BIRNLEX:4062 a owl:Class ;
     NIFRID:abbrev "LO"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4065,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24819,12 +24822,12 @@ BIRNLEX:4063 a owl:Class ;
     NIFRID:abbrev "V7"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4065,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24883,12 +24886,12 @@ BIRNLEX:4067 a owl:Class ;
     NIFRID:abbrev "OFP03-10p"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24908,12 +24911,12 @@ BIRNLEX:4068 a owl:Class ;
     NIFRID:abbrev "OFP03-10r"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24933,12 +24936,12 @@ BIRNLEX:4069 a owl:Class ;
     NIFRID:abbrev "OFP03-10o"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24960,12 +24963,12 @@ BIRNLEX:4070 a owl:Class ;
     skos:definition "Area 10m is a cortical area in the frontal lobe defined on multiple architectonic criteria."^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -24985,12 +24988,12 @@ BIRNLEX:4071 a owl:Class ;
     NIFRID:abbrev "OFP03-11m"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25010,12 +25013,12 @@ BIRNLEX:4072 a owl:Class ;
     NIFRID:abbrev "OFP03-47s"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25035,12 +25038,12 @@ BIRNLEX:4073 a owl:Class ;
     NIFRID:abbrev "OFP03-13b"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25060,12 +25063,12 @@ BIRNLEX:4074 a owl:Class ;
     NIFRID:abbrev "OFP03-13a"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25085,12 +25088,12 @@ BIRNLEX:4075 a owl:Class ;
     NIFRID:abbrev "OFP03-14r"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25110,12 +25113,12 @@ BIRNLEX:4076 a owl:Class ;
     NIFRID:abbrev "OFP03-14c"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25135,12 +25138,12 @@ BIRNLEX:4077 a owl:Class ;
     NIFRID:abbrev "OFP03-24"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25160,12 +25163,12 @@ BIRNLEX:4078 a owl:Class ;
     NIFRID:abbrev "OFP03-25"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25185,12 +25188,12 @@ BIRNLEX:4079 a owl:Class ;
     NIFRID:abbrev "OFP03-32"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25210,12 +25213,12 @@ BIRNLEX:4080 a owl:Class ;
     NIFRID:abbrev "OFP03-G"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25235,12 +25238,12 @@ BIRNLEX:4081 a owl:Class ;
     NIFRID:abbrev "OFP03-PrCO"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25260,12 +25263,12 @@ BIRNLEX:4082 a owl:Class ;
     NIFRID:abbrev "OFP03-11l"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25285,12 +25288,12 @@ BIRNLEX:4083 a owl:Class ;
     NIFRID:abbrev "OFP03-13m"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25310,12 +25313,12 @@ BIRNLEX:4084 a owl:Class ;
     NIFRID:abbrev "OFP03-13l"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25335,12 +25338,12 @@ BIRNLEX:4085 a owl:Class ;
     NIFRID:abbrev "OFP03-47l"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25360,12 +25363,12 @@ BIRNLEX:4086 a owl:Class ;
     NIFRID:abbrev "OFP03-47m"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25385,12 +25388,12 @@ BIRNLEX:4087 a owl:Class ;
     NIFRID:abbrev "OFP03-47r"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25410,12 +25413,12 @@ BIRNLEX:4088 a owl:Class ;
     NIFRID:abbrev "OFP03-Iam"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25436,12 +25439,12 @@ BIRNLEX:4089 a owl:Class ;
     skos:definition "Insula agranular lateral area"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25461,12 +25464,12 @@ BIRNLEX:4090 a owl:Class ;
     NIFRID:abbrev "OFP03-Iai"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25486,12 +25489,12 @@ BIRNLEX:4091 a owl:Class ;
     NIFRID:abbrev "OFP03-9"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25511,12 +25514,12 @@ BIRNLEX:4092 a owl:Class ;
     NIFRID:abbrev "OFP03-10l"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25536,12 +25539,12 @@ BIRNLEX:4093 a owl:Class ;
     NIFRID:abbrev "OFP03-PrCo"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25561,12 +25564,12 @@ BIRNLEX:4094 a owl:Class ;
     NIFRID:abbrev "OFP03-Iapm"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25586,12 +25589,12 @@ BIRNLEX:4095 a owl:Class ;
     NIFRID:abbrev "OFP03-AON"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4064,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0000053> ;
+            owl:onProperty bearerOf: ;
             owl:someValuesFrom [ a owl:Class ;
                     owl:intersectionOf (
                             PATO:0001665
                             [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0002503> ;
+                                owl:onProperty toward: ;
                                 owl:allValuesFrom [ a owl:Class ;
                                         owl:unionOf (
                                                 BIRNLEX:1782
@@ -25717,7 +25720,7 @@ BIRNLEX:4101 a owl:Class ;
     skos:prefLabel "Taste bud"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:4100,
         [ a owl:Restriction ;
-            owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+            owl:onProperty locatedIn: ;
             owl:allValuesFrom BIRNLEX:4102 ] ;
     NIFRID:createdDate "2008-03-22"^^xsd:string ;
     NIFRID:modifiedDate "2008-03-22"^^xsd:string ;
@@ -26646,7 +26649,7 @@ NLXANAT:1010 a owl:Class ;
     rdfs:label "Afferent role"^^xsd:string ;
     NIFRID:synonym "Afferent"^^xsd:string ;
     skos:definition "An axon that is incoming into a brain region. Could also refer to the neuron that gives rise to the axon."^^xsd:string ;
-    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000023> ;
+    rdfs:subClassOf BFO:0000023 ;
     owl:versionInfo "88114"^^xsd:string ;
     NIFRID:createdDate "November 23, 2010"^^xsd:string .
 

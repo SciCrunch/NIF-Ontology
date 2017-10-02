@@ -1,8 +1,15 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
-@prefix BFO1: <http://www.ifomis.org/bfo/1.1#> .
-@prefix BFO1SNAP: <http://www.ifomis.org/bfo/1.1/snap#> .
-@prefix BFO1SPAN: <http://www.ifomis.org/bfo/1.1/span#> .
+@prefix adjacentTo: <http://purl.obolibrary.org/obo/RO_0002220> .
+@prefix agentIn: <http://purl.obolibrary.org/obo/RO_0002217> .
+@prefix bearerOf: <http://purl.obolibrary.org/obo/RO_0000053> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix BIRNLEX: <http://uri.neuinfo.org/nif/nifstd/birnlex_> .
+@prefix containedIn: <http://purl.obolibrary.org/obo/RO_0001018> .
+@prefix contains: <http://purl.obolibrary.org/obo/RO_0001019> .
+@prefix derivesFrom: <http://purl.obolibrary.org/obo/RO_0001000> .
+@prefix hasAgent: <http://purl.obolibrary.org/obo/RO_0002218> .
+@prefix locatedIn: <http://purl.obolibrary.org/obo/RO_0001025> .
+@prefix locationOf: <http://purl.obolibrary.org/obo/RO_0001015> .
 @prefix NIFEXT: <http://uri.neuinfo.org/nif/nifstd/nifext_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix NIFSTD: <http://uri.neuinfo.org/nif/nifstd/> .
@@ -15,6 +22,7 @@
 @prefix PROTEGE: <http://protege.stanford.edu/plugins/owl/protege#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
 @prefix ro: <http://www.obofoundry.org/ro/ro.owl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -24,50 +32,43 @@
 
 ### Object Properties
 
-<http://purl.obolibrary.org/obo/BFO_0000050> a owl:ObjectProperty ;
-    owl:inverseOf [ owl:inverseOf <http://purl.obolibrary.org/obo/BFO_0000050> ] .
+adjacentTo: a owl:ObjectProperty ;
+    owl:inverseOf [ owl:inverseOf adjacentTo: ] .
 
-<http://purl.obolibrary.org/obo/BFO_0000051> a owl:ObjectProperty ;
-    owl:inverseOf <http://purl.obolibrary.org/obo/BFO_0000050>,
-        [ owl:inverseOf <http://purl.obolibrary.org/obo/BFO_0000051> ] .
+agentIn: a owl:ObjectProperty ;
+    owl:inverseOf [ owl:inverseOf agentIn: ],
+        hasAgent: .
 
-<http://purl.obolibrary.org/obo/RO_0000053> a owl:ObjectProperty ;
-    owl:inverseOf [ owl:inverseOf <http://purl.obolibrary.org/obo/RO_0000053> ],
+bearerOf: a owl:ObjectProperty ;
+    owl:inverseOf [ owl:inverseOf bearerOf: ],
         <http://purl.org/obo/owl/obo#inheres_in> .
 
-<http://purl.obolibrary.org/obo/RO_0000056> a owl:ObjectProperty ;
-    owl:inverseOf [ owl:inverseOf <http://purl.obolibrary.org/obo/RO_0000056> ] .
+BFO:0000050 a owl:ObjectProperty ;
+    owl:inverseOf [ owl:inverseOf BFO:0000050 ] .
 
-<http://purl.obolibrary.org/obo/RO_0000057> a owl:ObjectProperty ;
-    owl:inverseOf <http://purl.obolibrary.org/obo/RO_0000056>,
-        [ owl:inverseOf <http://purl.obolibrary.org/obo/RO_0000057> ] .
+BFO:0000051 a owl:ObjectProperty ;
+    owl:inverseOf BFO:0000050,
+        [ owl:inverseOf BFO:0000051 ] .
 
-<http://purl.obolibrary.org/obo/RO_0001000> a owl:ObjectProperty ;
-    owl:inverseOf [ owl:inverseOf <http://purl.obolibrary.org/obo/RO_0001000> ] .
+containedIn: a owl:ObjectProperty ;
+    owl:inverseOf [ owl:inverseOf containedIn: ],
+        contains: .
 
-<http://purl.obolibrary.org/obo/RO_0001015> a owl:ObjectProperty ;
-    owl:inverseOf [ owl:inverseOf <http://purl.obolibrary.org/obo/RO_0001015> ] .
+contains: a owl:ObjectProperty ;
+    owl:inverseOf [ owl:inverseOf contains: ] .
 
-<http://purl.obolibrary.org/obo/RO_0001018> a owl:ObjectProperty ;
-    owl:inverseOf [ owl:inverseOf <http://purl.obolibrary.org/obo/RO_0001018> ],
-        <http://purl.obolibrary.org/obo/RO_0001019> .
+derivesFrom: a owl:ObjectProperty ;
+    owl:inverseOf [ owl:inverseOf derivesFrom: ] .
 
-<http://purl.obolibrary.org/obo/RO_0001019> a owl:ObjectProperty ;
-    owl:inverseOf [ owl:inverseOf <http://purl.obolibrary.org/obo/RO_0001019> ] .
+hasAgent: a owl:ObjectProperty ;
+    owl:inverseOf [ owl:inverseOf hasAgent: ] .
 
-<http://purl.obolibrary.org/obo/RO_0001025> a owl:ObjectProperty ;
-    owl:inverseOf <http://purl.obolibrary.org/obo/RO_0001015>,
-        [ owl:inverseOf <http://purl.obolibrary.org/obo/RO_0001025> ] .
+locatedIn: a owl:ObjectProperty ;
+    owl:inverseOf [ owl:inverseOf locatedIn: ],
+        locationOf: .
 
-<http://purl.obolibrary.org/obo/RO_0002217> a owl:ObjectProperty ;
-    owl:inverseOf [ owl:inverseOf <http://purl.obolibrary.org/obo/RO_0002217> ],
-        <http://purl.obolibrary.org/obo/RO_0002218> .
-
-<http://purl.obolibrary.org/obo/RO_0002218> a owl:ObjectProperty ;
-    owl:inverseOf [ owl:inverseOf <http://purl.obolibrary.org/obo/RO_0002218> ] .
-
-<http://purl.obolibrary.org/obo/RO_0002220> a owl:ObjectProperty ;
-    owl:inverseOf [ owl:inverseOf <http://purl.obolibrary.org/obo/RO_0002220> ] .
+locationOf: a owl:ObjectProperty ;
+    owl:inverseOf [ owl:inverseOf locationOf: ] .
 
 NIFRID:has_lacking_of a owl:ObjectProperty ;
     owl:inverseOf [ owl:inverseOf NIFRID:has_lacking_of ] .
@@ -88,8 +89,15 @@ PROTEGE:FROM a owl:ObjectProperty ;
 PROTEGE:TO a owl:ObjectProperty ;
     owl:inverseOf [ owl:inverseOf PROTEGE:TO ] .
 
+RO:0000056 a owl:ObjectProperty ;
+    owl:inverseOf [ owl:inverseOf RO:0000056 ] .
+
+RO:0000057 a owl:ObjectProperty ;
+    owl:inverseOf RO:0000056,
+        [ owl:inverseOf RO:0000057 ] .
+
 ro:derived_into a owl:ObjectProperty ;
-    owl:inverseOf <http://purl.obolibrary.org/obo/RO_0001000>,
+    owl:inverseOf derivesFrom:,
         [ owl:inverseOf ro:derived_into ] .
 
 ro:has_improper_part a owl:ObjectProperty ;
@@ -174,13 +182,13 @@ BIRNLEX:4 a owl:Class ;
     rdfs:subClassOf BIRNLEX:6 .
 
 BIRNLEX:6 a owl:Class ;
-    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000040> .
+    rdfs:subClassOf BFO:0000040 .
 
 BIRNLEX:7 a owl:Class ;
     rdfs:subClassOf BIRNLEX:6 .
 
 BIRNLEX:9 a owl:Class ;
-    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000029> .
+    rdfs:subClassOf BFO:0000029 .
 
 BIRNLEX:11 a owl:Class ;
     rdfs:subClassOf BIRNLEX:6 .
@@ -4459,7 +4467,7 @@ NLX:144319 a owl:Class ;
     rdfs:subClassOf BIRNLEX:1227 .
 
 NLXANAT:1010 a owl:Class ;
-    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000023> .
+    rdfs:subClassOf BFO:0000023 .
 
 NLXANAT:090201 a owl:Class ;
     rdfs:subClassOf BIRNLEX:6 .
@@ -5236,7 +5244,7 @@ PATO:0000000 a owl:Class ;
     rdfs:subClassOf oboInOwl:ObsoleteClass .
 
 PATO:0000001 a owl:Class ;
-    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000019> .
+    rdfs:subClassOf BFO:0000019 .
 
 PATO:0000002 a owl:Class ;
     rdfs:subClassOf oboInOwl:ObsoleteClass .
