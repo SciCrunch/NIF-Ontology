@@ -1,0 +1,1826 @@
+@prefix : <http://www.cogpo.org/ontologies/CogPOver2010.owl#> .
+@prefix CogPOver1: <http://www.cogpo.org/ontologies/CogPOver1.owl#> .
+@prefix Covert: <http://www.cogpo.org/ontologies/CogPOver1.owl#Word_Generation_(Covert)> .
+@prefix Covert2: <http://www.cogpo.org/ontologies/CogPOver1.owl#Word_Stem_Completion_(Covert)> .
+@prefix Covert3: <http://www.cogpo.org/ontologies/CogPOver1.owl#Naming_(Covert)> .
+@prefix Covert4: <http://www.cogpo.org/ontologies/CogPOver1.owl#Reading_(Covert)> .
+@prefix Covert5: <http://www.cogpo.org/ontologies/CogPOver1.owl#Recitation/Repetition_(Covert)> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix Flexion: <http://www.cogpo.org/ontologies/Flexion/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix OBO_REL: <http://purl.org/obo/owl/OBO_REL#> .
+@prefix ontologies: <http://www.cogpo.org/ontologies/> .
+@prefix ontologies2: <http://www.cogpo.org/ontologies/3> .
+@prefix Overt: <http://www.cogpo.org/ontologies/CogPOver1.owl#Naming_(Overt)> .
+@prefix Overt2: <http://www.cogpo.org/ontologies/CogPOver1.owl#Reading_(Overt)> .
+@prefix Overt3: <http://www.cogpo.org/ontologies/CogPOver1.owl#Word_Generation_(Overt)> .
+@prefix Overt4: <http://www.cogpo.org/ontologies/CogPOver1.owl#Word_Stem_Completion_(Overt)> .
+@prefix Overt5: <http://www.cogpo.org/ontologies/CogPOver1.owl#Recitation/Repetition_(Overt)> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix owl2xml: <http://www.w3.org/2006/12/owl2-xml#> .
+@prefix Passive: <http://www.cogpo.org/ontologies/Passive/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ro: <http://www.obofoundry.org/ro/ro.owl#> .
+@prefix snap: <http://www.ifomis.org/bfo/1.1/snap#> .
+@prefix span: <http://www.ifomis.org/bfo/1.1/span#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ontologies:CogPOver2010.owl a owl:Ontology ;
+    owl:imports obo:iao.owl .
+
+### Object Properties
+
+:COGPO_00006 a owl:ObjectProperty ;
+    rdfs:label "has_response_type" ;
+    rdfs:subPropertyOf ro:has_part ;
+    rdfs:domain CogPOver1:COGPO_00109 ;
+    rdfs:range CogPOver1:COGPO_00136 .
+
+:COGPO_00011 a owl:ObjectProperty ;
+    rdfs:label "has_stimulus_modality" ;
+    rdfs:subPropertyOf OBO_REL:bearer_of ;
+    rdfs:domain CogPOver1:COGPO_00122 ;
+    rdfs:range CogPOver1:COGPO_00124 .
+
+:COGPO_00015 a owl:ObjectProperty ;
+    rdfs:label "has_response_modality" ;
+    rdfs:subPropertyOf ro:has_participant ;
+    rdfs:domain CogPOver1:COGPO_00136 ;
+    rdfs:range CogPOver1:COGPO_00119 .
+
+CogPOver1:has_instructions a owl:ObjectProperty ;
+    rdfs:label "has_instructions"^^xsd:string ;
+    rdfs:subPropertyOf ro:has_participant ;
+    rdfs:domain CogPOver1:COGPO_00109 ;
+    rdfs:range CogPOver1:COGPO_00028 .
+
+CogPOver1:has_stimulus a owl:ObjectProperty ;
+    rdfs:label "has_stimulus"^^xsd:string ;
+    rdfs:subPropertyOf ro:has_participant ;
+    rdfs:domain CogPOver1:COGPO_00109 ;
+    rdfs:range CogPOver1:COGPO_00122 .
+
+OBO_REL:bearer_of a owl:ObjectProperty .
+
+OBO_REL:inheres_in a owl:ObjectProperty .
+
+ro:has_part a owl:ObjectProperty .
+
+ro:has_participant a owl:ObjectProperty .
+
+ro:proper_part_of a owl:ObjectProperty .
+
+### Annotation Properties
+
+dc:date a owl:AnnotationProperty .
+
+obo:IAO_0000114 a owl:AnnotationProperty .
+
+obo:IAO_0000115 a owl:AnnotationProperty .
+
+obo:IAO_0000116 a owl:AnnotationProperty .
+
+obo:IAO_0000117 a owl:AnnotationProperty .
+
+obo:IAO_0000119 a owl:AnnotationProperty .
+
+### Classes
+
+:COGPO_00016 a owl:Class ;
+    rdfs:label "Oddball Standard Tones Condition" ;
+    rdfs:subClassOf obo:OBI_0000011,
+        [ a owl:Class ;
+            owl:intersectionOf (
+                    [ a owl:Restriction ;
+                        owl:onProperty :COGPO_00006 ;
+                        owl:someValuesFrom ontologies:COGPO_00151 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty CogPOver1:has_instructions ;
+                        owl:someValuesFrom ontologies:COGPO_00025 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty CogPOver1:has_stimulus ;
+                        owl:someValuesFrom ontologies:COGPO_00164 ] ) ] .
+
+CogPOver1:Action a owl:Class ;
+    rdfs:label "Action"^^xsd:string ;
+    rdfs:subClassOf span:ProcessAggregate ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812 
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00028 a owl:Class ;
+    rdfs:label "Instructions" ;
+    obo:IAO_0000115 """Instructions are the information-bearing entity that sets up the rules for desired behavior from the subjects. An explicit direction that guides the behavior of the subject during the experimental conditions. 
+Instructions serve the function that they lay out what the response behaviors should be for any set of stimuli in the experiment."""@en ;
+    rdfs:subClassOf obo:IAO_0000007 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00035 a owl:Class ;
+    rdfs:label "Cued Explicit Recognition Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00036 a owl:Class ;
+    rdfs:label "Counting or Calculation Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00037 a owl:Class ;
+    rdfs:label "Chewing or Swallowing Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00038 a owl:Class ;
+    rdfs:label "Deductive Reasoning Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00039 a owl:Class ;
+    rdfs:label "Deception Task Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00040 a owl:Class ;
+    rdfs:label "Drawing Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00041 a owl:Class ;
+    rdfs:label "Breath-Holding Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00042 a owl:Class ;
+    rdfs:label "Classical Conditioning Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00043 a owl:Class ;
+    rdfs:label "Divided Auditory Attention Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00044 a owl:Class ;
+    rdfs:label "Action Observation Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00045 a owl:Class ;
+    rdfs:label "Braille Reading Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00046 a owl:Class ;
+    rdfs:label "Delay Discounting Task Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00047 a owl:Class ;
+    rdfs:label "Anti-Saccades Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00048 a owl:Class ;
+    rdfs:label "Acupuncture Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00049 a owl:Class ;
+    rdfs:label "Behavioral Experimental Paradigm" ;
+    obo:IAO_0000115 "Within an Experimental Paradigm, the behavioral paradigm describes the behavioral aspects of the experiment: what stimuli are presented to the subject when, and under what conditions, and what the subject's responses are supposed to be."^^xsd:string ;
+    rdfs:subClassOf obo:OBI_0000011,
+        [ a owl:Restriction ;
+            owl:onProperty ro:has_part ;
+            owl:someValuesFrom CogPOver1:COGPO_00109 ] ;
+    rdfs:comment "Really should be has min 2 conditions, but OWL-DL doesn't allow cardinality restrictions on transitive properties..."^^xsd:string,
+        "should be imported from NeuroLex"^^xsd:string .
+
+CogPOver1:COGPO_00050 a owl:Class ;
+    rdfs:label "Delayed Match To Sample Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00051 a owl:Class ;
+    rdfs:label "Flashing Checkerboard Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00052 a owl:Class ;
+    rdfs:label "Encoding Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00053 a owl:Class ;
+    rdfs:label "Fixation Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00054 a owl:Class ;
+    rdfs:label "Go/No-Go Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00055 a owl:Class ;
+    rdfs:label "Episodic Recall Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00056 a owl:Class ;
+    rdfs:label "Finger Tapping Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00057 a owl:Class ;
+    rdfs:label "Face Monitor or Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00058 a owl:Class ;
+    rdfs:label "Eating or Drinking Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00059 a owl:Class ;
+    rdfs:label "Flanker Task Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00060 a owl:Class ;
+    rdfs:label "Film Viewing Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00061 a owl:Class ;
+    rdfs:label "Free Word List Recall Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00062 a owl:Class ;
+    rdfs:label "Flexion or Extension Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00063 a owl:Class ;
+    rdfs:label "Orthographic Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00064 a owl:Class ;
+    rdfs:label "Visual Oddball Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00071 .
+
+CogPOver1:COGPO_00065 a owl:Class ;
+    rdfs:label "Pain Monitor/Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00066 a owl:Class ;
+    rdfs:label "Isometric Force Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00067 a owl:Class ;
+    rdfs:label "Micturition Task Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00068 a owl:Class ;
+    rdfs:label "Grasping Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00069 a owl:Class ;
+    rdfs:label "Imagined Movement Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00070 a owl:Class ;
+    rdfs:label "Non-Painful Electrical Stimulation Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00071 a owl:Class ;
+    rdfs:label "Oddball Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00072 a owl:Class ;
+    rdfs:label "Auditory Oddball Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00071 .
+
+CogPOver1:COGPO_00073 a owl:Class ;
+    rdfs:label "Olfactory Monitor/Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00074 a owl:Class ;
+    rdfs:label "Music Comprehension or Production Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00075 a owl:Class ;
+    rdfs:label "Non-Painful Thermal Stimulation Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00076 a owl:Class ;
+    rdfs:label "Imagined Objects or Scenes Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00077 a owl:Class ;
+    rdfs:label "Mental Rotation Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00078 a owl:Class ;
+    rdfs:label "Paired Associate Recall Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00079 a owl:Class ;
+    rdfs:label "Pointing Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00080 a owl:Class ;
+    rdfs:label "Phonological Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00081 a owl:Class ;
+    rdfs:label "Reward Task Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00082 a owl:Class ;
+    rdfs:label "Pitch Monitor/Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00083 a owl:Class ;
+    rdfs:label "Posner Task Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00084 a owl:Class ;
+    rdfs:label "Passive Viewing Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00085 a owl:Class ;
+    rdfs:label "Passive Listening Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00086 a owl:Class ;
+    rdfs:label "Rest Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00087 a owl:Class ;
+    rdfs:label "Saccades Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00088 a owl:Class ;
+    rdfs:label "Semantic Monitor/Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00089 a owl:Class ;
+    rdfs:label "Vibrotactile Monitor/Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00090 a owl:Class ;
+    rdfs:label "Tone Monitor/Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00091 a owl:Class ;
+    rdfs:label "Transcranial Magnetic Stimulation Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00092 a owl:Class ;
+    rdfs:label "Stroop Task Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00093 a owl:Class ;
+    rdfs:label "n-back Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00094 a owl:Class ;
+    rdfs:label "Video Games Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00095 a owl:Class ;
+    rdfs:label "Visual Pursuit/Tracking Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00096 a owl:Class ;
+    rdfs:label "Tactile Monitor/Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00097 a owl:Class ;
+    rdfs:label "Simon Task Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00098 a owl:Class ;
+    rdfs:label "Wisconsin Card Sorting Test Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00099 a owl:Class ;
+    rdfs:label "Visual Distractor/Visual Attention Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00100 a owl:Class ;
+    rdfs:label "Writing Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00101 a owl:Class ;
+    rdfs:label "Sternberg Task Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00102 a owl:Class ;
+    rdfs:label "Subjective Emotional Picture Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00103 a owl:Class ;
+    rdfs:label "Whistling Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00104 a owl:Class ;
+    rdfs:label "Theory of Mind Task Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00105 a owl:Class ;
+    rdfs:label "Syntactic Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00106 a owl:Class ;
+    rdfs:label "Sequence Recall/Learning Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00107 a owl:Class ;
+    rdfs:label "Task Switching Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00108 a owl:Class ;
+    rdfs:label "Spatial/Location Discrimination Paradigm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+CogPOver1:COGPO_00109 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    [ a owl:Restriction ;
+                        owl:onProperty :COGPO_00006 ;
+                        owl:someValuesFrom CogPOver1:COGPO_00136 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty CogPOver1:has_instructions ;
+                        owl:someValuesFrom CogPOver1:COGPO_00028 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty CogPOver1:has_stimulus ;
+                        owl:someValuesFrom CogPOver1:COGPO_00122 ] ) ] ;
+    rdfs:label "Behavioral Experimental Paradigm Condition" ;
+    obo:IAO_0000115 "A planned combination of stimuli and instructions regarding responses to the experimental subjects (who are only involved once the process is implemented)."^^xsd:string ;
+    rdfs:subClassOf obo:OBI_0000011,
+        [ a owl:Restriction ;
+            owl:onProperty ro:proper_part_of ;
+            owl:someValuesFrom CogPOver1:COGPO_00049 ] ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00110 a owl:Class ;
+    rdfs:label "Oddball Target Tones Condition" ;
+    rdfs:subClassOf obo:OBI_0000011,
+        [ a owl:Class ;
+            owl:intersectionOf (
+                    [ a owl:Restriction ;
+                        owl:onProperty :COGPO_00006 ;
+                        owl:someValuesFrom <http://www.cogpo.org/ontologies/Button%20Press> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty CogPOver1:has_instructions ;
+                        owl:someValuesFrom ontologies:COGPO_00027 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty CogPOver1:has_stimulus ;
+                        owl:someValuesFrom ontologies:COGPO_00164 ] ) ] .
+
+CogPOver1:COGPO_00111 a owl:Class ;
+    rdfs:label "Shoulder" ;
+    rdfs:subClassOf CogPOver1:COGPO_00119 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00112 a owl:Class ;
+    rdfs:label "Facial" ;
+    rdfs:subClassOf CogPOver1:COGPO_00119 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00113 a owl:Class ;
+    rdfs:label "Foot" ;
+    rdfs:subClassOf CogPOver1:COGPO_00119 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00114 a owl:Class ;
+    rdfs:label "Hand" ;
+    rdfs:subClassOf CogPOver1:COGPO_00119 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00115 a owl:Class ;
+    rdfs:label "Leg" ;
+    rdfs:subClassOf CogPOver1:COGPO_00119 .
+
+CogPOver1:COGPO_00116 a owl:Class ;
+    rdfs:label "Oral" ;
+    rdfs:subClassOf CogPOver1:COGPO_00112 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00117 a owl:Class ;
+    rdfs:label "Ocular" ;
+    rdfs:subClassOf CogPOver1:COGPO_00119 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00118 a owl:Class ;
+    rdfs:label "Torso" ;
+    rdfs:subClassOf CogPOver1:COGPO_00119 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00119 a owl:Class ;
+    rdfs:label "Response Modality" ;
+    obo:IAO_0000115 "Class of body parts used to perform the actions which can play the role of a response"^^xsd:string ;
+    rdfs:subClassOf snap:FiatObjectPart ;
+    rdfs:comment "Need to import these from FMA somehow"^^xsd:string ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00120 a owl:Class ;
+    rdfs:label "Arm" ;
+    rdfs:subClassOf CogPOver1:COGPO_00119 .
+
+CogPOver1:COGPO_00121 a owl:Class ;
+    rdfs:label "Pelvis" ;
+    rdfs:subClassOf CogPOver1:COGPO_00119 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00122 a owl:Class ;
+    rdfs:label "Stimulus Type" ;
+    obo:IAO_0000115 "The class of \"things\" which can play the role of Stimulus"^^xsd:string ;
+    rdfs:subClassOf snap:ObjectAggregate,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:someValuesFrom CogPOver1:COGPO_00124 ] ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00123 a owl:Class ;
+    rdfs:label "Gustatory Modality" ;
+    obo:IAO_0000115 "The gustatory modality is the sensory modality pertaining to the sense of taste or flavor. It usually but not always arises through stimulation of the gustatory system (e.g., tastebuds, nasal receptors)."@en ;
+    rdfs:subClassOf CogPOver1:COGPO_00124 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00124 a owl:Class ;
+    rdfs:label "Stimulus Modality" ;
+    obo:IAO_0000115 "The quality of the sensory perception of a stimulus which can be one or more of the following: auditory, visual, tactile, interoceptive, olfactory, gustatory"^^xsd:string ;
+    rdfs:subClassOf snap:Quality,
+        [ a owl:Restriction ;
+            owl:onProperty OBO_REL:inheres_in ;
+            owl:allValuesFrom CogPOver1:COGPO_00122 ] ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00125 a owl:Class ;
+    rdfs:label "Auditory Modality" ;
+    obo:IAO_0000115 "the sensory modality that pertains to the sense of hearing. It usually arises from an audible stimulation of the auditory (hearing) system, such as from a sound."^^xsd:string ;
+    rdfs:subClassOf CogPOver1:COGPO_00124 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00126 a owl:Class ;
+    rdfs:label "Pain Modality" ;
+    obo:IAO_0000115 "The pain modality is the subtype of tactile modality that pertains to the sense of pain."@en ;
+    rdfs:subClassOf CogPOver1:COGPO_00131 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00127 a owl:Class ;
+    rdfs:label "Electrical modality" ;
+    obo:IAO_0000115 "The electrical sensory modality is the sensory modality that pertains to the sense of electric shock."@en ;
+    rdfs:subClassOf CogPOver1:COGPO_00131 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00128 a owl:Class ;
+    rdfs:label "Interoceptive Modality" ;
+    obo:IAO_0000115 "The interoceptive modality is the sensory modality that pertains to the sense of interoception, or internal sensations."@en ;
+    rdfs:subClassOf CogPOver1:COGPO_00124 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""@en .
+
+CogPOver1:COGPO_00129 a owl:Class ;
+    rdfs:label "Pressure Modality" ;
+    obo:IAO_0000115 "The pressure modality is a Tactile Modality that pertains to the sense of non-painful touch."@en ;
+    rdfs:subClassOf CogPOver1:COGPO_00131 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""@en .
+
+CogPOver1:COGPO_00130 a owl:Class ;
+    rdfs:label "Olfactory Modality" ;
+    obo:IAO_0000115 "The olfactory modality is the sensory modality pertaining to the sense of smell. It usually but not always arises from the stimulation of the olfactory system by chemicals."@en ;
+    rdfs:subClassOf CogPOver1:COGPO_00124 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00131 a owl:Class ;
+    rdfs:label "Tactile Modality" ;
+    obo:IAO_0000115 "The tactile modality is the sensory modality pertaining to the sense of contact via the skin with other, external objects."@en ;
+    rdfs:subClassOf CogPOver1:COGPO_00124 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00132 a owl:Class ;
+    rdfs:label "Visual Modality" ;
+    obo:IAO_0000115 "The visual modality is the sensory modality that pertains to the sense of sight. It usually but not always arises from the stimulation of the visual system with a light source of sufficient brightness to be visible."@en ;
+    rdfs:subClassOf CogPOver1:COGPO_00124 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00133 a owl:Class ;
+    rdfs:label "Thermal Modality" ;
+    obo:IAO_0000115 "The thermal modality is the sensory modality that pertains to the sense of heat applied to the skin."@en ;
+    rdfs:subClassOf CogPOver1:COGPO_00131 ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00134 a owl:Class ;
+    rdfs:label "Response" ;
+    rdfs:subClassOf snap:Role ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00135 a owl:Class ;
+    rdfs:label "Stimulus" ;
+    obo:IAO_0000115 "The role of a stimulus in a behavioral experiment is attributed to the processual entity or continuant which elicits activity from the subject in the context of the experiment."^^xsd:string ;
+    rdfs:subClassOf snap:Role ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+CogPOver1:COGPO_00136 a owl:Class ;
+    rdfs:label "Response Type" ;
+    obo:IAO_0000115 "Class of actions which make up the allowable categories of Response"^^xsd:string ;
+    rdfs:subClassOf CogPOver1:Action ;
+    obo:IAO_0000117 """PERSON: Jessica Turner#funding:NIH1R01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
+    dc:date "April 13 2010"^^xsd:string .
+
+Covert2:_Paradigm a owl:Class ;
+    rdfs:label "Word Stem Completion (Covert) Paradigm"^^xsd:string ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+Covert3:_Paradigm a owl:Class ;
+    rdfs:label "Naming (Covert) Paradigm"^^xsd:string ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+Covert4:_Paradigm a owl:Class ;
+    rdfs:label "Reading (Covert) Paradigm"^^xsd:string ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+Covert5:_Paradigm a owl:Class ;
+    rdfs:label "Recitation/Repetition (Covert) Paradigm"^^xsd:string ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+Covert:_Paradigm a owl:Class ;
+    rdfs:label "Word Generation (Covert) Paradigm"^^xsd:string ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+Flexion:COGPO_00140 a owl:Class ;
+    rdfs:label "Extension" ;
+    obo:IAO_0000115 "repetitive adduction and abduction of a body part other than the fingers and thumbs" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Regional cerebral blood flow during voluntary arm and hand movements in human subjects. Colebatch J G, Deiber M P, Passingham R E, Friston K J, Frackowiak R S J. Journal of Neurophysiology 1991 Jun; 65:1392-1401; PMID = 1875248." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/3D%20Objects> a owl:Class ;
+    rdfs:label "3D Objects"@en ;
+    obo:IAO_0000115 "\"an object with height, width, length, and mass specifically given to the subject to hold\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00131 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Hierarchical processing of tactile shape in the human brain. Bodegard A, Geyer S, Grefkes C, Zilles K, Roland P E. Neuron 2001 Aug; 31:317-328; PMID = 11502261." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Abstract%20Patterns> a owl:Class ;
+    rdfs:label "Abstract Patterns"@en ;
+    obo:IAO_0000115 "\"complex, abstract, geometrical patterns\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "PET reveals occipitotemporal pathway activation during elementary form perception in humans. Beason-Held L L, Purpura K P, Van Meter J W, Azari N P, Mangot D J, Optican L M, Mentis M J, Alexander G E, Grady C L, Horwitz B, Rapoport S I, Schapiro M B. Visual Neuroscience 1998 May; 15:503-510; PMID = 9685203." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Asian%20Characters> a owl:Class ;
+    rdfs:label "Asian Characters"@en ;
+    obo:IAO_0000115 "\"logograms or logographs taken an Asian language, e.g., Chinese, Japanese, or Korean\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"auditory presentation of \"\"Asian Characters\"\" classifies as \"\"Words\"\" or \"\"Syllables\"\"; this class is strictly for the written form\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Example of stimuli in The visual word form area: Evidence from an fMRI study of implicit processing of Chinese characters.  Liu C, Zhang W T, Tang Y Y, Mai X Q, Chen H C, Tardif T, Luo Y J.  NeuroImage 2008 April; 40:1350-1361; PMID = 18272399." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Braille%20Dots> a owl:Class ;
+    rdfs:label "Braille Dots"@en ;
+    obo:IAO_0000115 "\"combinations of tangible dots or points used to represent letters or characters that are read by touch to represent a system of writing or printing, devised by L. Braille for use by the blind \"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf (
+                            CogPOver1:COGPO_00131
+                            CogPOver1:COGPO_00132 ) ] ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"intended for Tactile Stimulus Modality, but may possibly extend to Visual Stimulus Modality in the future\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "braille. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/braille" ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Breathable%20Gas> a owl:Class ;
+    rdfs:label "Breathable Gas"@en ;
+    obo:IAO_0000115 "a stimulus consisting of a gaseous material which is breathable" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00128 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "gas. (n.d.). The American Heritage  Dictionary of the English Language, Fourth Edition. Retrieved April 19, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/gas" ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Button%20Press> a owl:Class ;
+    rdfs:label "Button Press" ;
+    obo:IAO_0000115 "to press a button or buttons with the hand or foot" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf (
+                            CogPOver1:COGPO_00113
+                            CogPOver1:COGPO_00114 ) ] ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Lie detection by functional magnetic resonance imaging. Lee T M C, Liu H L, Tan L H, Chan C C H, Mahankali S, Feng C, Hou J, Fox P T, Gao J H. Human Brain Mapping 2002 Mar; 15:157-164; PMID = 11835606." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Chord%20Sequences> a owl:Class ;
+    rdfs:label "Chord Sequences"@en ;
+    obo:IAO_0000115 "\"a three-note chord accompaniment, which includes major triads, dominant 7ths, 9ths, 11ths, 13ths or flatted 13ths\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00125 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Emotional responses to pleasant and unpleasant music correlate with activity in paralimbic brain regions.  A J Blood, R J Zatorre, P Bermudez, and A C Evans. Nat Neurosci 1999 April; 2(4):382-387; PMID = 10204547." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Electrical%20Stimulation> a owl:Class ;
+    rdfs:label "Electronic Stimulations"@en ;
+    obo:IAO_0000115 "a stimulus applied to the skin or muscle using a current pulse" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00127 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"audiovisual presentation of electrical stimulation events are classified as \"\"Film Clips\"\"\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Example of stimuli used in Event-related fMRI of the somatosensory system using electrical finger stimulation. Deuchert M, Ruben J, Schwiemann J, Meyer R, Thees S, Krause T, Blankenburg F, Villringer K, Kurth R, Curio G, Villringer A. Neuroreport 2002 Mar; 13:365-369; PMID = 11930139." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Eye%20Puffs> a owl:Class ;
+    rdfs:label "Eye Puffs"@en ;
+    obo:IAO_0000115 "a puff of air delivered to the eye" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00131 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Functional mapping of human learning: a positron emission tomography activation study of eyeblink conditioning. T A Blaxton, T A Zeffiro, J D Gabrieli, S Y Bookheimer, M C Carrillo, W H Theodore, and J F Disterhoft. J Neurosci 1996 June 15; 16(12):4032-4040; PMID = 8656296." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/False%20Fonts> a owl:Class ;
+    rdfs:label "False Fonts"@en ;
+    obo:IAO_0000115 "letter-like meaningless signs" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Evidence for compensation for stuttering by the right frontal operculum.  Christine Preibisch, Katrin Neumann, Peter Raab, Harald A Euler, Alexander W von Gudenberg, Heinrich Lanfermann, and Anne-Lise Giraud.  Neuroimage 2003 October; 20(2):13566-1364; PMID = 14568504." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Film%20Clip> a owl:Class ;
+    rdfs:label "Film Clips"@en ;
+    obo:IAO_0000115 "audiovisual presentation of a motion-picture film" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Class ;
+            owl:complementOf [ a owl:Restriction ;
+                    owl:onProperty :COGPO_00011 ;
+                    owl:someValuesFrom [ a owl:Class ;
+                            owl:unionOf (
+                                    CogPOver1:COGPO_00123
+                                    CogPOver1:COGPO_00128
+                                    CogPOver1:COGPO_00131 ) ] ] ],
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:someValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "film clip. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/film clip" ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Finger%20Tapping> a owl:Class ;
+    rdfs:label "Finger Tapping" ;
+    obo:IAO_0000115 "repetitive adduction and abduction of one or more fingers or thumbs" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00114 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Conscious and subconscious sensorimotor synchronization--prefrontal cortex and the influence of awareness. Stephan K M, Thaut M H, Wunderlich G, Schicks W, Tian B, Tellmann L, Schmitz T, Herzog H, McIntosh G C, Seitz R J, Homberg V. Neuroimage 2002 Feb; 15:345-352; PMID = 11798270." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Fixation%20Point> a owl:Class ;
+    rdfs:label "Fixation Point"@en ;
+    obo:IAO_0000115 "a point or crosshair on which to fixate attention" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Neural correlates of visual working memory: fMRI amplitude predicts task performance. Pessoa L, Gutierrez E, Bandettini P, Ungerleider L G. Neuron 2002 Aug; 35:975-987; PMID = 12372290." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Flashing%20Checkerboard> a owl:Class ;
+    rdfs:label "Flashig Checkerboard"@en ;
+    obo:IAO_0000115 "contrast-reversed checkerboards that oscillate at a specified frequency; are generally black and white" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Language-specific tuning of visual cortex? Functional properties of the Visual Word Form Area.  Laurent Cohen, S. Lehericy, Florence Chochon, Cathy Lemer, Sophie Rivaud, and Stanislas Dehaene. Brain 2002 May; 125(Pt 5):1054-1069; PMID = 11960895." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Infrared%20Laser> a owl:Class ;
+    rdfs:label "Infrared Laser"@en ;
+    obo:IAO_0000115 "a laser stimuli, emitting near-infrared radiation" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00131 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Subcortical structures involved in pain processing: evidence from single-trial fMRI. U Bingel, M Quante, R Knab, B Bromm, C Weiller, and C Buchel. Pain 2002 September; 99(1-2):313-321; PMID = 12237210." ;
+    dc:date "1-May-10" .
+
+<http://www.cogpo.org/ontologies/Nonverbal%20Vocal%20Sounds> a owl:Class ;
+    rdfs:label "Nonverbal Vocal Sounds" ;
+    obo:IAO_0000115 "\"non-word human vocalizations, e.g., sighing, crying, screams, laughter\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00125 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Differential sex-independent amygdala response to infant crying and laughing in parents versus nonparents. Seifritz E, Esposito F, Neuhoff J G, Luthi A, Mustovic H, Dammann G, von Bardeleben U, Radue E W, Cirillo S, Tedeschi G, Di Salle F. Biological Psychiatry 2003 Dec; 54:1367-1375; PMID = 14675800." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Nonvocal%20Sounds> a owl:Class ;
+    rdfs:label "Nonvocal Sounds" ;
+    obo:IAO_0000115 "\"sounds produced by animals, machines, nature, objects, or other non-human origins\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00125 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Functional segregation of the temporal lobes into highly differentiated subsystems for auditory perception: An auditory rapid event-related fMRI-task. Specht K, Reul J. Neuroimage 2003 Dec; 20:1944-1954; PMID = 14683700." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Points%20of%20Light> a owl:Class ;
+    rdfs:label "Points of Light" ;
+    obo:IAO_0000115 "one or more points of light that do not create a sense of shape" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"originally in BrainMap as \"\"LED\"\", has since replaced that class\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Age-related differences of saccade induced cortical activation. Nelles G, de Greiff A, Pscherer A, Esser J. Neuroscience Letters 2009 Apr; 458:15-18; PMID = 19442869." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Random%20Dots> a owl:Class ;
+    rdfs:label "Random Dots" ;
+    obo:IAO_0000115 "\"a group of many dots, often moving in random or synchronous patterns\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "includes 3D structure for motion displays" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "dots. (n.d.). The American Heritage Stedman's Medical Dictionary. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/dots" ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Reversed%20Speech> a owl:Class ;
+    rdfs:label "Reversed Speech" ;
+    obo:IAO_0000115 "spoken words or sentences recorded and then played in reverse" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00125 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Hearing and saying: The functional neuro-anatomy of auditory word processing. Price C J, Wise R J S, Warburton E A, Moore C J, Howard D, Patterson K, Frackowiak R S J, Friston K J. Brain 1996 Jun; 119:919-931; PMID = 8673502." ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Tactile%20Stimulation> a owl:Class ;
+    rdfs:label "Tactile Stimulation" ;
+    obo:IAO_0000115 "a class of stimuli perceptible by the sense of touch" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00131 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"all stimuli applied to the skin are included in this class (exceptions that are categorized in more specific classes are: \"\"3D Objects\"\", \"\"Acupuncture\"\", \"\"Electrical Stimulation\"\", \"\"Eye Puffs\"\", \"\"Heat\"\", \"\"Infrared Laser\"\", \"\"Pain\"\", and \"\"Vibrotactile Stimulation\"\")\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "tactile. (n.d.). The American Heritage Dictionary of the English Language, Fourth Edition. Retrieved April 27, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/tactile" ;
+    dc:date "17-Aug-10" .
+
+<http://www.cogpo.org/ontologies/Vibratory%20Stimulation> a owl:Class ;
+    rdfs:label "Vibratory Stimulation" ;
+    obo:IAO_0000115 "a tactile stimulus that moves rhythmically and steadily to oscillate at a given high frequency" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00129 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "vibrate. (n.d.). Dictionary.com Unabridged. Retrieved April 27, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/vibrate" ;
+    dc:date "17-Aug-10" .
+
+obo:IAO_0000007 a owl:Class ;
+    rdfs:label "action specification" .
+
+obo:OBI_0000011 a owl:Class ;
+    rdfs:label "planned process" .
+
+ontologies:COGPO_00017 a owl:Class ;
+    rdfs:label "Count" ;
+    obo:IAO_0000115 "the act of counting; enumeration; reckoning; calculation" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"this includes the numerical operations of addition, subtraction, mental arithmetic, as well basic counting\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "count. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/count" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00018 a owl:Class ;
+    rdfs:label "Imagine" ;
+    obo:IAO_0000115 "to form mental images of things not present to the senses" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "imagine. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/imagine" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00019 a owl:Class ;
+    rdfs:label "Read" ;
+    obo:IAO_0000115 "to utter aloud or render in speech written or printed words" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "may be covert or overt responses" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "read. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/read" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00020 a owl:Class ;
+    rdfs:label "Recall" ;
+    obo:IAO_0000115 "to bring back from memory; recollect; remember" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "recall. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/recall" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00021 a owl:Class ;
+    rdfs:label "Name" ;
+    obo:IAO_0000115 "to identify by name; generate the name of the stimulus" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"generally is Visual Stimulus Modality, but isn't restricted to be so; may be covert or overt responses\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "name. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/name" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00022 a owl:Class ;
+    rdfs:label "Detect" ;
+    obo:IAO_0000115 "to discover the existence of; identify that a specific event has occurred (e.g.; a flash or light or tone presentation)" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "detect. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/detect" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00023 a owl:Class ;
+    rdfs:label "Track" ;
+    obo:IAO_0000115 "to observe or follow the course of progress of" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "track. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/track" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00025 a owl:Class ;
+    rdfs:label "Discriminate" ;
+    obo:IAO_0000115 "to make or constitute a distinction in or between; differentiate" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "discriminate. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/discriminate" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00026 a owl:Class ;
+    rdfs:label "Move" ;
+    obo:IAO_0000115 "to execute an action involving a body part" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "move. (n.d.). Dictionary.com Unabridged. Retrieved July 15, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/move" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00027 a owl:Class ;
+    rdfs:label "Attend" ;
+    obo:IAO_0000115 "to pay attention; listen or watch attentively; direct one's thought; pay heed" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "attend. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/attend" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00029 a owl:Class ;
+    rdfs:label "Fixate" ;
+    obo:IAO_0000115 "to focus one's eyes or attention on" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "fixate. (n.d.). The American Heritage  Dictionary of the English Language, Fourth Edition. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/fixate" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00030 a owl:Class ;
+    rdfs:label "Smile Instructions" ;
+    obo:IAO_0000115 "Instructions to assume a facial expression characterized by an upturning of the corners of the mouth" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "smile. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/smile" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00031 a owl:Class ;
+    rdfs:label "Encode" ;
+    obo:IAO_0000115 "to store a stimulus or stimuli into memory for later retrieval" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "The neural correlates of intentional learning of verbal materials: A PET study in humans. Kapur S, Tulving E, Cabeza R, McIntosh A R, Houle S, Craik F I M. J Cogn Neurosci 1996 Nov; 4:243-249; PMID = 8957565." ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00032 a owl:Class ;
+    rdfs:label "Repeat" ;
+    obo:IAO_0000115 "to say something again" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "may be covert or overt responses" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "repeat. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/repeat" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00033 a owl:Class ;
+    rdfs:label "Generate" ;
+    obo:IAO_0000115 "\"to produce or specify by application of a rule or set of rules; e.g., \"\"Subjects were told to think of as many names of animals as possible\"\".\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "should be not be confused with Naming tasks" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "generate. (n.d.). Dictionary.com Unabridged. Retrieved July 15, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/generate" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00034 a owl:Class ;
+    rdfs:label "Sing" ;
+    obo:IAO_0000115 "to utter words or sounds in succession with musical modulations of the voice; vocalize melodically" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "sing. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/sing" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00137 a owl:Class ;
+    rdfs:label "Blink" ;
+    obo:IAO_0000115 "to open and close the eye" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00117 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "blink. (n.d.). Collins English Dictionary - Complete and Unabridged 10th Edition. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/blink" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00138 a owl:Class ;
+    rdfs:label "Breath-Hold" ;
+    obo:IAO_0000115 "suspension of external breathing" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00118 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "A bilateral cortico-bulbar network associated with breath holding in humans, determined by functional magnetic resonance imaging. McKay L C, Adams L, Frackowiak R S J, Corfield D R. Neuroimage 2008 May; 40:1824-1832; PMID = 18343687." ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00139 a owl:Class ;
+    rdfs:label "Draw" ;
+    obo:IAO_0000115 "to compose or create a picture in lines" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00114 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "draw. (n.d.). Dictionary.com Unabridged. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/draw" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00141 a owl:Class ;
+    rdfs:label "Drink" ;
+    obo:IAO_0000115 "to take water or other liquid into the mouth and swallow it" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00116 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "drink. (n.d.). Dictionary.com Unabridged. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/drink" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00142 a owl:Class ;
+    rdfs:label "Saccades" ;
+    obo:IAO_0000115 "a rapid  eye movement that occurs when the eyes fix on one point after another in the visual field" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00117 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "saccades. (n.d.). The American Heritage  Stedman's Medical Dictionary. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/saccades" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00143 a owl:Class ;
+    rdfs:label "Write" ;
+    obo:IAO_0000115 "\"to trace or form (characters, letters, words, etc.) on the surface of some material, as with a pen, pencil, or other instrument or means; inscribe\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf (
+                            CogPOver1:COGPO_00113
+                            CogPOver1:COGPO_00114
+                            CogPOver1:COGPO_00116 ) ] ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "write. (n.d.). Dictionary.com Unabridged. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/write" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00144 a owl:Class ;
+    rdfs:label "Swallow" ;
+    obo:IAO_0000115 "to take into the stomach by drawing through the throat and esophagus with a voluntary muscular action" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00116 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "swallow. (n.d.). Dictionary.com Unabridged. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/swallow" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00145 a owl:Class ;
+    rdfs:label "Point" ;
+    obo:IAO_0000115 "\"to direct the finger at, to, or upon something\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "point. (n.d.). Dictionary.com Unabridged. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/point" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00146 a owl:Class ;
+    rdfs:label "Manipulate" ;
+    obo:IAO_0000115 "to handle or use skillfully in a process or action" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00114 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "manipulate. (n.d.). Collins English Dictionary - Complete and Unabridged 10th Edition. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/manipulate" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00147 a owl:Class ;
+    rdfs:label "Whistle" ;
+    obo:IAO_0000115 "\"to make a clear musical sound, a series of such sounds, or a high-pitched, warbling sound by the forcible expulsion of the breath through a small opening formed by contracting the lips, or through the teeth, with the aid of the tongue\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00116 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "whistle. (n.d.). Dictionary.com Unabridged. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/whistle" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00148 a owl:Class ;
+    rdfs:label "Smile Response" ;
+    obo:IAO_0000115 "\"to assume a facial expression indicating pleasure, favor, or amusement, but sometimes derision or scorn, characterized by an upturning of the corners of the mouth\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00116 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "smile. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/smile" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00149 a owl:Class ;
+    rdfs:label "Speech" ;
+    obo:IAO_0000115 "oral communication; something that is spoken" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00116 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "speech. (n.d.). Dictionary.com Unabridged. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/speech" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00150 a owl:Class ;
+    rdfs:label "Micturate" ;
+    obo:IAO_0000115 "to pass urine; urinate" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "micturate. (n.d.). Dictionary.com Unabridged. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/micturate" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00151 a owl:Class ;
+    rdfs:label "No Response" ;
+    obo:IAO_0000115 "\"no response type, the absence of a response\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Regional cerebral perfusion abnormalities in attention deficit/hyperactivity disorder: statistical parametric mapping analysis. Kim B N, Lee J S, Shin M S, Cho S C, Lee D S. European Archives of Psychiatry and Clinical Neuroscience 2002 Oct; 252:219-225; PMID = 12451463." ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00152 a owl:Class ;
+    rdfs:label "Acupuncture" ;
+    obo:IAO_0000115 "\"a stimulus in which specific body areas associated with peripheral nerves are pierced with fine needles to produce anesthesia, relieve pain, and promote therapy\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00131 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"even if the acupuncture is painful, the stimulus is coded as \"\"Acupuncture\"\", not as \"\"Pain\"\"\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "acupuncture. (n.d.). The American Heritage Stedman's Medical Dictionary. Retrieved April 06, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/acupuncture" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00153 a owl:Class ;
+    rdfs:label "Clicks" ;
+    obo:IAO_0000115 "\"repeated ticking sounds made by a mechanical or electrical instrument at given frequency (e.g., metronome clicks)\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00125 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Rate-dependent activation of a prefrontal-insular-cerebellar network during passive listening to trains of click stimuli: an fMRI study. Ackermann H, Riecker A, Mathiak K, Erb M, Grodd W, Wildgruber D. Neuroreport 2001 Dec; 12:4087-4092; PMID = 11742243." ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00154 a owl:Class ;
+    rdfs:label "Faces" ;
+    obo:IAO_0000115 "representation of the front part of the human head, from the forehead to the chin" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "face. (n.d.). The American Heritage Dictionary of the English Language, Fourth Edition. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/face" ;
+    dc:date "27-Apr-10" .
+
+ontologies:COGPO_00155 a owl:Class ;
+    rdfs:label "No Stimulus" ;
+    obo:IAO_0000115 "\"no stimulus type, the absence of a stimulus\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Regional cerebral perfusion abnormalities in attention deficit/hyperactivity disorder: statistical parametric mapping analysis. Kim B N, Lee J S, Shin M S, Cho S C, Lee D S. European Archives of Psychiatry and Clinical Neuroscience 2002 Oct; 252:219-225; PMID = 12451463." ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00156 a owl:Class ;
+    rdfs:label "Music" ;
+    obo:IAO_0000115 "\"organized tones or sounds occurring in single line (melody) or multiple lines (harmony), and sounded by one or more voices or instruments, or both\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00125 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "music. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/music" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00157 a owl:Class ;
+    rdfs:label "Food" ;
+    obo:IAO_0000115 "\"any nourishing substance that is eaten, drunk, or otherwise injested\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00123 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "food. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/food" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00158 a owl:Class ;
+    rdfs:label "Infusion" ;
+    obo:IAO_0000115 "\"the introduction of liquid solution (e.g., saline) into a vein\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00128 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "infusion. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/infusion" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00159 a owl:Class ;
+    rdfs:label "Heat" ;
+    obo:IAO_0000115 "stimuli which create the sensation of warmth or hotness" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00133 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Gender differences in pain perception and patterns of cerebral activation during noxious heat stimulation in humans. Paulson P E, Minoshima S, Morrow T J, Casey K L. Pain 1998 May; 76:223-229; PMID = 9696477." ;
+    dc:date "15-May-10" .
+
+ontologies:COGPO_00160 a owl:Class ;
+    rdfs:label "Fractals" ;
+    obo:IAO_0000115 "a complex geometric pattern exhibiting self-similarity in that small details of its structure viewed at any scale repeat elements of the overall pattern" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "fractals. (n.d.). The American Heritage  Science Dictionary. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/fractals" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00161 a owl:Class ;
+    rdfs:label "Noise" ;
+    obo:IAO_0000115 "\"a group of sounds with a broad distribution of intensities across a wide range of frequencies or  an image that carries a broad amount of energy across a wide range of spatial frequencies but is not structured to carry meaning, e.g., white noise or salt-and-pepper noise\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00125 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Functional anatomy of musical processing in listeners with absolute pitch and relative pitch. Zatorre R J, Perry D W, Beckett C A, Westbury C F, Evans A C. Proc Natl Acad Sci USA 1998 May; 95:3172-3177; PMID = 9501235." ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00162 a owl:Class ;
+    rdfs:label "Digits" ;
+    obo:IAO_0000115 "any of the Arabic figures of 1 through 9 and 0" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf (
+                            CogPOver1:COGPO_00125
+                            CogPOver1:COGPO_00132 ) ] ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "digits. (n.d.). Dictionary.com Unabridged. Retrieved April 19, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/digits" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00163 a owl:Class ;
+    rdfs:label "Letters" ;
+    obo:IAO_0000115 "a symbol or character used in writing and printing to represent a speech sound and that is part of an alphabet" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf (
+                            CogPOver1:COGPO_00125
+                            CogPOver1:COGPO_00132 ) ] ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "letters. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/letters" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00164 a owl:Class ;
+    rdfs:label "Tones" ;
+    obo:IAO_0000115 "one or more musical sounds that individually have a single frequency" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00125 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"if the tones are presented as music, stimuli should be classified as \"\"Music\"\"\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Example of stimuli found in Amplitopicity of the human auditory cortex: An fMRI study. Bilecen D, Seifritz E, Scheffler K, Henning J, Schulte A C. Neuroimage 2002 Oct; 17:710-718; PMID = 12377146." ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00165 a owl:Class ;
+    rdfs:label "Pain" ;
+    obo:IAO_0000115 "a physically distressing sensation in a particular part of the body" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00126 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"audiovisual presentation of painful stimulation events are classified as \"\"Film Clips\"\"\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "pain. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/pain" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00166 a owl:Class ;
+    rdfs:label "TMS" ;
+    obo:IAO_0000115 "\"Transcranial Magnetic Stimulation, a noninvasive method to excite neurons in the brain by inducing electrical currents in tissue as a result of rapidly changing magnetic fields\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00128 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "http://en.wikipedia.org/wiki/Transcranial_magnetic_stimulation Retrieved April 16, 2010" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00167 a owl:Class ;
+    rdfs:label "Odor" ;
+    obo:IAO_0000115 "a sensation perceived by the sense of smell; scent" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00130 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "odor. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/odor" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00168 a owl:Class ;
+    rdfs:label "Shapes" ;
+    obo:IAO_0000115 "a distinct body characterized with an outline of specific form or figure" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "shapes. (n.d.). Dictionary.com Unabridged. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/shapes" ;
+    dc:date "17-May-10" .
+
+ontologies:COGPO_00169 a owl:Class ;
+    rdfs:label "Words" ;
+    obo:IAO_0000115 "\"a sound or a combination of sounds, or its representation in writing or printing, that symbolizes and communicates a meaning and may consist of a single morpheme or of a combination of morphemes\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf (
+                            CogPOver1:COGPO_00125
+                            CogPOver1:COGPO_00132 ) ] ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "word. (n.d.). The American Heritage  Dictionary of the English Language, Fourth Edition. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/word" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00170 a owl:Class ;
+    rdfs:label "Symbols" ;
+    obo:IAO_0000115 "\"an arbitrary sign, written or printed, that conveys meaning, e.g., plus signs, arrows, asterisks\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"an object such as a stop sign would be classified under \"\"Pictures\"\"\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Example of stimuli used in Error monitoring using external feedback: Specific roles of the habenular complex, the reward system, and the cingulate motor area revealed by the functional magnetic resonance imaging. Ullsperger M, Yves von Cramon D. Journal of Neuroscience 2003 May; 23:4308-4314; PMID = 12764119." ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00171 a owl:Class ;
+    rdfs:label "Syllables" ;
+    obo:IAO_0000115 "\"a unit of spoken language consisting of a single uninterrupted sound formed by a vowel, diphthong, or syllabic consonant alone, or by any of these sounds preceded, followed, or surrounded by one or more consonants\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf (
+                            CogPOver1:COGPO_00125
+                            CogPOver1:COGPO_00132 ) ] ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "syllable. (n.d.). The American Heritage Dictionary of the English Language, Fourth Edition. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/syllable" ;
+    dc:date "17-Aug-10" .
+
+ontologies:COGPO_00172 a owl:Class ;
+    rdfs:label "Pictures" ;
+    obo:IAO_0000115 "\"a representation or image that is painted, drawn, photographed, or otherwise rendered on a flat surface\"" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom CogPOver1:COGPO_00132 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "pictures. (n.d.). The American Heritage  Dictionary of the English Language, Fourth Edition. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/pictures" ;
+    dc:date "17-Aug-10" .
+
+ontologies:Grasp a owl:Class ;
+    rdfs:label "Grasp" ;
+    obo:IAO_0000115 "to seize and hold by or as if by clasping with the fingers" ;
+    rdfs:subClassOf CogPOver1:COGPO_00136,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00015 ;
+            owl:allValuesFrom CogPOver1:COGPO_00114 ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "grasp. (n.d.). Dictionary.com Unabridged. Retrieved August 13, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/grasp" ;
+    dc:date "17-Aug-10" .
+
+ontologies:Pseudowords a owl:Class ;
+    rdfs:label "Pseudowords" ;
+    obo:IAO_0000115 "groups of letters that are meaningless as words" ;
+    rdfs:subClassOf CogPOver1:COGPO_00122,
+        [ a owl:Restriction ;
+            owl:onProperty :COGPO_00011 ;
+            owl:allValuesFrom [ a owl:Class ;
+                    owl:unionOf (
+                            CogPOver1:COGPO_00125
+                            CogPOver1:COGPO_00132 ) ] ] ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000116 "\"currently, BrainMap only includes this class as Visual stimulus types\"" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "Example of stimuli in Human temporal lobe activation by speech and nonspeech sounds. Binder J R, Frost J A, Hammeke T A, Bellgowan P S, Springer J A, Kaufman J N, Possing E T. Cerebral Cortex 2000 May; 10:512-528; PMID = 10847601." ;
+    dc:date "17-Aug-10" .
+
+Overt2:_Paradigm a owl:Class ;
+    rdfs:label "Reading (Overt) Paradigm"^^xsd:string ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+Overt3:_Paradigm a owl:Class ;
+    rdfs:label "Word Generation (Overt) Paradigm"^^xsd:string ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+Overt4:_Paradigm a owl:Class ;
+    rdfs:label "Word Stem Completion (Overt) Paradigm"^^xsd:string ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+Overt5:_Paradigm a owl:Class ;
+    rdfs:label "Recitation/Repetition (Overt) Paradigm"^^xsd:string ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+Overt:_Paradigm a owl:Class ;
+    rdfs:label "Naming (Overt) Paradigm"^^xsd:string ;
+    rdfs:subClassOf CogPOver1:COGPO_00049 .
+
+owl:Thing a owl:Class .
+
+Passive:COGPO_00024 a owl:Class ;
+    rdfs:label "Rest" ;
+    obo:IAO_0000115 "to become or remain inactive" ;
+    rdfs:subClassOf CogPOver1:COGPO_00028 ;
+    obo:IAO_0000114 "pending_final_vetting" ;
+    obo:IAO_0000117 """PERSON:Jessica Turner#funding:NIHR01MH084812
+PERSON: Angela Laird#funding:NIHR01MH084812""" ;
+    obo:IAO_0000119 "rest. (n.d.). The American Heritage  Dictionary of the English Language, Fourth Edition. Retrieved April 16, 2010, from Dictionary.com website: http://dictionary.reference.com/browse/rest" ;
+    dc:date "17-Aug-10" .
+
+snap:FiatObjectPart a owl:Class ;
+    rdfs:label "Fiat Object Part" .
+
+snap:ObjectAggregate a owl:Class ;
+    rdfs:label "ObjectAggregate" .
+
+snap:Quality a owl:Class ;
+    rdfs:label "quality" .
+
+snap:Role a owl:Class ;
+    rdfs:label "role"@en .
+
+span:ProcessAggregate a owl:Class ;
+    rdfs:label "process aggregate"@en .
+
+### Axioms
+
+[ a owl:AllDisjointClasses ;
+    owl:members (
+            CogPOver1:COGPO_00123
+            CogPOver1:COGPO_00125
+            CogPOver1:COGPO_00130
+            CogPOver1:COGPO_00131
+            CogPOver1:COGPO_00132 ) ] .
+
+[ a owl:AllDisjointClasses ;
+    owl:members (
+            CogPOver1:COGPO_00111
+            CogPOver1:COGPO_00112
+            CogPOver1:COGPO_00113
+            CogPOver1:COGPO_00114
+            CogPOver1:COGPO_00115
+            CogPOver1:COGPO_00117
+            CogPOver1:COGPO_00118
+            CogPOver1:COGPO_00120
+            CogPOver1:COGPO_00121 ) ] .
+
+[ a owl:AllDisjointClasses ;
+    owl:members (
+            CogPOver1:COGPO_00035
+            CogPOver1:COGPO_00036
+            CogPOver1:COGPO_00037
+            CogPOver1:COGPO_00038
+            CogPOver1:COGPO_00039
+            CogPOver1:COGPO_00040
+            CogPOver1:COGPO_00041
+            CogPOver1:COGPO_00042
+            CogPOver1:COGPO_00043
+            CogPOver1:COGPO_00044
+            CogPOver1:COGPO_00045
+            CogPOver1:COGPO_00046
+            CogPOver1:COGPO_00047
+            CogPOver1:COGPO_00048
+            CogPOver1:COGPO_00050
+            CogPOver1:COGPO_00051
+            CogPOver1:COGPO_00052
+            CogPOver1:COGPO_00053
+            CogPOver1:COGPO_00054
+            CogPOver1:COGPO_00055
+            CogPOver1:COGPO_00056
+            CogPOver1:COGPO_00057
+            CogPOver1:COGPO_00058
+            CogPOver1:COGPO_00059
+            CogPOver1:COGPO_00060
+            CogPOver1:COGPO_00061
+            CogPOver1:COGPO_00062
+            CogPOver1:COGPO_00063
+            CogPOver1:COGPO_00065
+            CogPOver1:COGPO_00066
+            CogPOver1:COGPO_00067
+            CogPOver1:COGPO_00068
+            CogPOver1:COGPO_00069
+            CogPOver1:COGPO_00070
+            CogPOver1:COGPO_00071
+            CogPOver1:COGPO_00073
+            CogPOver1:COGPO_00074
+            CogPOver1:COGPO_00075
+            CogPOver1:COGPO_00076
+            CogPOver1:COGPO_00077
+            CogPOver1:COGPO_00078
+            CogPOver1:COGPO_00079
+            CogPOver1:COGPO_00080
+            CogPOver1:COGPO_00081
+            CogPOver1:COGPO_00082
+            CogPOver1:COGPO_00083
+            CogPOver1:COGPO_00084
+            CogPOver1:COGPO_00085
+            CogPOver1:COGPO_00086
+            CogPOver1:COGPO_00087
+            CogPOver1:COGPO_00088
+            CogPOver1:COGPO_00089
+            CogPOver1:COGPO_00090
+            CogPOver1:COGPO_00091
+            CogPOver1:COGPO_00092
+            CogPOver1:COGPO_00093
+            CogPOver1:COGPO_00094
+            CogPOver1:COGPO_00095
+            CogPOver1:COGPO_00096
+            CogPOver1:COGPO_00097
+            CogPOver1:COGPO_00098
+            CogPOver1:COGPO_00099
+            CogPOver1:COGPO_00100
+            CogPOver1:COGPO_00101
+            CogPOver1:COGPO_00102
+            CogPOver1:COGPO_00103
+            CogPOver1:COGPO_00104
+            CogPOver1:COGPO_00105
+            CogPOver1:COGPO_00106
+            CogPOver1:COGPO_00107
+            CogPOver1:COGPO_00108
+            Covert2:_Paradigm
+            Covert3:_Paradigm
+            Covert4:_Paradigm
+            Covert5:_Paradigm
+            Covert:_Paradigm
+            Overt2:_Paradigm
+            Overt3:_Paradigm
+            Overt4:_Paradigm
+            Overt5:_Paradigm
+            Overt:_Paradigm ) ] .
+
+### Annotations
+
+:COGPO_00002 a :COGPO_00016,
+        owl:Thing ;
+    rdfs:label "FBIRNIIaudOddStandardTones" .
+
+:COGPO_00007 a CogPOver1:COGPO_00049,
+        owl:Thing ;
+    rdfs:label "FBIRNIIAudOddTask" ;
+    ro:has_part :COGPO_00002,
+        :COGPO_00009 .
+
+:COGPO_00009 a CogPOver1:COGPO_00110,
+        owl:Thing ;
+    rdfs:label "FBIRNIIaudOddTargetTones" .
+
+### Serialized using the nifstd custom serializer v1.0.7
