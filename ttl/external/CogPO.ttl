@@ -1,5 +1,6 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
-@prefix BFO1SNAP: <http://www.ifomis.org/bfo/1.1/snap#> .
+@prefix bearerOf: <http://purl.obolibrary.org/obo/RO_0000053> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix BFO1SPAN: <http://www.ifomis.org/bfo/1.1/span#> .
 @prefix COGPO: <http://www.cogpo.org/ontologies/COGPO_> .
 @prefix COGPO1: <http://www.cogpo.org/ontologies/CogPOver1.owl#COGPO_> .
@@ -9,61 +10,63 @@
 @prefix defSource: <http://purl.obolibrary.org/obo/IAO_0000119> .
 @prefix editorNote: <http://purl.obolibrary.org/obo/IAO_0000116> .
 @prefix hasCurStatus: <http://purl.obolibrary.org/obo/IAO_0000114> .
+@prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
+@prefix hasParticipant: <http://purl.obolibrary.org/obo/RO_0000057> .
 @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
-@prefix ns1: <http://purl.obolibrary.org/obo/> .
+@prefix inheresIn: <http://purl.obolibrary.org/obo/RO_0000052> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ro: <http://www.obofoundry.org/ro/ro.owl#> .
 @prefix termEditor: <http://purl.obolibrary.org/obo/IAO_0000117> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://www.cogpo.org/ontologies/CogPOver2010.owl> a owl:Ontology ;
-    owl:imports ns1:iao.owl .
+    owl:imports <http://purl.obolibrary.org/obo/iao.owl> .
 
 ### Object Properties
 
+bearerOf: a owl:ObjectProperty .
+
 COGPO10:00006 a owl:ObjectProperty ;
     rdfs:label "has_response_type" ;
-    rdfs:subPropertyOf ns1:BFO_0000051 ;
+    rdfs:subPropertyOf hasPart: ;
     rdfs:domain COGPO1:00109 ;
     rdfs:range COGPO1:00136 .
 
 COGPO10:00011 a owl:ObjectProperty ;
     rdfs:label "has_stimulus_modality" ;
-    rdfs:subPropertyOf ns1:RO_0000053 ;
+    rdfs:subPropertyOf bearerOf: ;
     rdfs:domain COGPO1:00122 ;
     rdfs:range COGPO1:00124 .
 
 COGPO10:00015 a owl:ObjectProperty ;
     rdfs:label "has_response_modality" ;
-    rdfs:subPropertyOf ns1:RO_0000057 ;
+    rdfs:subPropertyOf hasParticipant: ;
     rdfs:domain COGPO1:00136 ;
     rdfs:range COGPO1:00119 .
 
-<http://uri.neuinfo.org/nif/nifstd/readable/proper_part_of> a owl:ObjectProperty .
+hasPart: a owl:ObjectProperty .
+
+hasParticipant: a owl:ObjectProperty .
 
 <http://www.cogpo.org/ontologies/CogPOver1.owl#has_instructions> a owl:ObjectProperty ;
     rdfs:label "has_instructions"^^xsd:string ;
-    rdfs:subPropertyOf ns1:RO_0000057 ;
+    rdfs:subPropertyOf hasParticipant: ;
     rdfs:domain COGPO1:00109 ;
     rdfs:range COGPO1:00028 .
 
 <http://www.cogpo.org/ontologies/CogPOver1.owl#has_stimulus> a owl:ObjectProperty ;
     rdfs:label "has_stimulus"^^xsd:string ;
-    rdfs:subPropertyOf ns1:RO_0000057 ;
+    rdfs:subPropertyOf hasParticipant: ;
     rdfs:domain COGPO1:00109 ;
     rdfs:range COGPO1:00122 .
 
-ns1:BFO_0000051 a owl:ObjectProperty .
+inheresIn: a owl:ObjectProperty .
 
-ns1:RO_0000052 a owl:ObjectProperty .
-
-ns1:RO_0000053 a owl:ObjectProperty .
-
-ns1:RO_0000057 a owl:ObjectProperty .
+NIFRID:proper_part_of a owl:ObjectProperty .
 
 ### Annotation Properties
 
@@ -83,6 +86,18 @@ termEditor: a owl:AnnotationProperty .
 
 BFO1SPAN:ProcessAggregate a owl:Class ;
     rdfs:label "process aggregate"@en .
+
+BFO:0000019 a owl:Class ;
+    rdfs:label "quality" .
+
+BFO:0000023 a owl:Class ;
+    rdfs:label "role"@en .
+
+BFO:0000024 a owl:Class ;
+    rdfs:label "Fiat Object Part" .
+
+BFO:0000027 a owl:Class ;
+    rdfs:label "ObjectAggregate" .
 
 COGPO1:00028 a owl:Class ;
     rdfs:label "Instructions" ;
@@ -154,7 +169,7 @@ COGPO1:00049 a owl:Class ;
     definition: "Within an Experimental Paradigm, the behavioral paradigm describes the behavioral aspects of the experiment: what stimuli are presented to the subject when, and under what conditions, and what the subject's responses are supposed to be."^^xsd:string ;
     rdfs:subClassOf OBI:0000011,
         [ a owl:Restriction ;
-            owl:onProperty ns1:BFO_0000051 ;
+            owl:onProperty hasPart: ;
             owl:someValuesFrom COGPO1:00109 ] ;
     rdfs:comment "Really should be has min 2 conditions, but OWL-DL doesn't allow cardinality restrictions on transitive properties..."^^xsd:string,
         "should be imported from NeuroLex"^^xsd:string .
@@ -411,7 +426,7 @@ COGPO1:00109 a owl:Class ;
     definition: "A planned combination of stimuli and instructions regarding responses to the experimental subjects (who are only involved once the process is implemented)."^^xsd:string ;
     rdfs:subClassOf OBI:0000011,
         [ a owl:Restriction ;
-            owl:onProperty <http://uri.neuinfo.org/nif/nifstd/readable/proper_part_of> ;
+            owl:onProperty NIFRID:proper_part_of ;
             owl:someValuesFrom COGPO1:00049 ] ;
     termEditor: """PERSON: Jessica Turner#funding:NIH1R01MH084812
 PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
@@ -488,7 +503,7 @@ PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
 COGPO1:00119 a owl:Class ;
     rdfs:label "Response Modality" ;
     definition: "Class of body parts used to perform the actions which can play the role of a response"^^xsd:string ;
-    rdfs:subClassOf ns1:BFO_0000024 ;
+    rdfs:subClassOf BFO:0000024 ;
     rdfs:comment "Need to import these from FMA somehow"^^xsd:string ;
     termEditor: """PERSON: Jessica Turner#funding:NIH1R01MH084812
 PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
@@ -508,7 +523,7 @@ PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
 COGPO1:00122 a owl:Class ;
     rdfs:label "Stimulus Type" ;
     definition: "The class of \"things\" which can play the role of Stimulus"^^xsd:string ;
-    rdfs:subClassOf ns1:BFO_0000027,
+    rdfs:subClassOf BFO:0000027,
         [ a owl:Restriction ;
             owl:onProperty COGPO10:00011 ;
             owl:someValuesFrom COGPO1:00124 ] ;
@@ -527,9 +542,9 @@ PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
 COGPO1:00124 a owl:Class ;
     rdfs:label "Stimulus Modality" ;
     definition: "The quality of the sensory perception of a stimulus which can be one or more of the following: auditory, visual, tactile, interoceptive, olfactory, gustatory"^^xsd:string ;
-    rdfs:subClassOf ns1:BFO_0000019,
+    rdfs:subClassOf BFO:0000019,
         [ a owl:Restriction ;
-            owl:onProperty ns1:RO_0000052 ;
+            owl:onProperty inheresIn: ;
             owl:allValuesFrom COGPO1:00122 ] ;
     termEditor: """PERSON: Jessica Turner#funding:NIH1R01MH084812
 PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
@@ -607,7 +622,7 @@ PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
 
 COGPO1:00134 a owl:Class ;
     rdfs:label "Response" ;
-    rdfs:subClassOf ns1:BFO_0000023 ;
+    rdfs:subClassOf BFO:0000023 ;
     termEditor: """PERSON: Jessica Turner#funding:NIH1R01MH084812
 PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
     dc:date "April 13 2010"^^xsd:string .
@@ -615,7 +630,7 @@ PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
 COGPO1:00135 a owl:Class ;
     rdfs:label "Stimulus" ;
     definition: "The role of a stimulus in a behavioral experiment is attributed to the processual entity or continuant which elicits activity from the subject in the context of the experiment."^^xsd:string ;
-    rdfs:subClassOf ns1:BFO_0000023 ;
+    rdfs:subClassOf BFO:0000023 ;
     termEditor: """PERSON: Jessica Turner#funding:NIH1R01MH084812
 PERSON: Angela Laird#funding:NIHR01MH084812"""^^xsd:string ;
     dc:date "April 13 2010"^^xsd:string .
@@ -1677,18 +1692,6 @@ PERSON: Angela Laird#funding:NIHR01MH084812""" ;
 IAO:0000007 a owl:Class ;
     rdfs:label "action specification" .
 
-ns1:BFO_0000019 a owl:Class ;
-    rdfs:label "quality" .
-
-ns1:BFO_0000023 a owl:Class ;
-    rdfs:label "role"@en .
-
-ns1:BFO_0000024 a owl:Class ;
-    rdfs:label "Fiat Object Part" .
-
-ns1:BFO_0000027 a owl:Class ;
-    rdfs:label "ObjectAggregate" .
-
 OBI:0000011 a owl:Class ;
     rdfs:label "planned process" .
 
@@ -1809,7 +1812,7 @@ COGPO10:00002 a COGPO10:00016,
 COGPO10:00007 a COGPO1:00049,
         owl:Thing ;
     rdfs:label "FBIRNIIAudOddTask" ;
-    ns1:BFO_0000051 COGPO10:00002,
+    hasPart: COGPO10:00002,
         COGPO10:00009 .
 
 COGPO10:00009 a COGPO1:00110,
