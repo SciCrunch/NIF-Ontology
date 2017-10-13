@@ -23,8 +23,7 @@ This file will hold any local additions that we want to make.
 1. Create a new bridge file by copying an existing bridge file and modifying
    as needed to import the external file from its canonical iri, and to import
    `filename-dead.ttl`.
-2. Create `generated/filename-dead.ttl` by downloading the new file, placing
-   it in `ttl/external`, and running `necromancy filename.owl`.
+2. Create `generated/filename-dead.ttl` by running `necromancy http://myurl.org/filename.owl`.
 3. Whenever there is a new release repeat step 2.
 
 ## Changing an ontology file
