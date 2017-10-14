@@ -1,4 +1,11 @@
 # Intro
+This file documents
+the development processes
+that have not (yet) been automated
+and
+the practices that developers should follow
+when working on NIFSTD.
+
 All of these processes expect the full NIF-Ontology development
 environment to have been set up according to [development setup.md](development%20setup.md).
 
@@ -6,9 +13,10 @@ All relative filepaths listed in code sections start from the base
 folder of this repository `../` from the location of this file.
 
 # DO NOT PUSH TO MASTER
-The `master` branch serves the 'live' resolvable ontology files.
+The `uri.neuinfo.org` resolver points to the `master` branch on GitHub
+(see [the resolver config](https://github.com/tgbugs/pyontutils/blob/088b2f8f28be5e55278e3cde1e0e8a4f3ccfc94f/resolver/nif-ont-resolver.conf#L20-L24)).
 
-Please do not push to the master branch.
+Therefore, please do not push to the master branch.
 
 Please submit a pull request (even if it is from another branch
 in the SciCrunch org repo) so that we can run all the requisite
@@ -69,8 +77,9 @@ patch -p2 -i ../dev-reasoner.patch
 # Then
 protege  # can be launched as you see fit
 ```
-1. In protege menu bar File -> Open `ttl/nif.ttl`
-2. Make sure reasoner is set to ELK (menu bar Reasoner -> ELK 0.4.3)
+1. In protege menu bar `File -> Open` and choose `ttl/nif.ttl`
+   (after first load `File -> Open recent` is faster).
+2. Make sure reasoner is set to ELK (menu bar `Reasoner -> ELK 0.4.3`)
 3. Ctrl-R
 
 Protege does not have to be run from `ttl/` in order to find `ttl/catalog-v001.xml`,

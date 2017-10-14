@@ -9,7 +9,7 @@ the [log](https://github.com/SciCrunch/NIF-Ontology/commits/master) or
 run `git log` for a quick overview.
 
 # Documentation
-Please see [docs](docs/) for documentation about how to develop NIFSTD
+Please see [docs/](docs/) for documentation about how to develop NIFSTD
 using this repository.
 
 Please see the [GitHub wiki](https://github.com/SciCrunch/NIF-Ontology/wiki)
