@@ -16,8 +16,8 @@ Please see the [GitHub wiki](https://github.com/SciCrunch/NIF-Ontology/wiki)
 for documentation about the structure of the ontology and how to load and edit it.
 
 # Contributing
-Please [fork](https://github.com/SciCrunch/NIF-Ontology/commits/master#fork-destination-box)
-and submit [pull requests](https://github.com/SciCrunch/NIF-Ontology/pull/new/master) on GitHub.  
+Please [fork](https://github.com/SciCrunch/NIF-Ontology#fork-destination-box) and submit
+[pull requests](https://github.com/SciCrunch/NIF-Ontology/pull/new/master) on GitHub.  
 Please read [the docs for development processes](docs/processes.md).  
 See the [wiki](https://github.com/SciCrunch/NIF-Ontology/wiki) for more documentation.  
 In short, load [ttl/nif.ttl](ttl/nif.ttl) in your favourite ontology editor,
