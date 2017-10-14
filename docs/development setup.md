@@ -52,7 +52,11 @@ Download and install the latest version of Protege [here](http://protege.stanfor
 **NIFSTD is a very large ontology which requires more memory than the Protege defaults.**
 
 Modify `run.sh` (or equivalent) so that it launches java with `jre/bin/java -Xmx8G -Xms500M \`
-(or similar).
+(or similar). If you do not you will see the following line in the protege logs:  
+`An error occurred whilst loading the ontology at Java heap space. Cause: {}`.
+
+Make sure that **Expand trees by default is disabled** in menu `File -> Preferences -> General`
+otherwise load times can stretch on for many minutes.
 
 ## Reasoners
 You can obtain copies of ELK and FACT++ by launching protege and going to

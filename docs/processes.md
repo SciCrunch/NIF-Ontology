@@ -65,6 +65,11 @@ cd ttl/
 cat <(head -n -1 catalog-v001.xml) ../catalog-extras <(tail -n 1 catalog-v001.xml) > catalog-new
 mv catalog-new catalog-v001.xml
 ```
+Local copies can be obtained using the following.
+```bash
+cd ttl/external/
+curl --header 'Accept-Encoding: gzip' --compressed --location --remote-name-all $(cat ../../catalog-extras | cut -d'=' -f3 | cut -d'"' -f2)
+```
 
 ## Running the reasoner
 Due to a [bug in protege](https://github.com/protegeproject/protege/issues/709) we need to patch
