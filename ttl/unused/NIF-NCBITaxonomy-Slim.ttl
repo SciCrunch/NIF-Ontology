@@ -1,9 +1,9 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
-@prefix BFO1SNAP: <http://www.ifomis.org/bfo/1.1/snap#> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix importedFrom: <http://purl.obolibrary.org/obo/IAO_0000412> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
-@prefix NIFNCBISLIM: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-NCBITaxonomy-Slim.owl#> .
-@prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix NLXORG: <http://uri.neuinfo.org/nif/nifstd/nlx_organ_> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -28,7 +28,7 @@ importedFrom: a owl:AnnotationProperty ;
 
 NCBITaxon:6231 a owl:Class ;
     rdfs:label "Nematoda"@en ;
-    rdfs:subClassOf NIFNCBISLIM:nif_organ_110519 .
+    rdfs:subClassOf NLXORG:110519 .
 
 NCBITaxon:6239 a owl:Class ;
     rdfs:label "Caenorhabditis elegans"@en ;
@@ -36,11 +36,11 @@ NCBITaxon:6239 a owl:Class ;
 
 NCBITaxon:6340 a owl:Class ;
     rdfs:label "Annelida"@en ;
-    rdfs:subClassOf NIFNCBISLIM:nif_organ_110519 .
+    rdfs:subClassOf NLXORG:110519 .
 
 NCBITaxon:6447 a owl:Class ;
     rdfs:label "Mollusca"@en ;
-    rdfs:subClassOf NIFNCBISLIM:nif_organ_110519 .
+    rdfs:subClassOf NLXORG:110519 .
 
 NCBITaxon:6499 a owl:Class ;
     rdfs:label "Aplysia"@en ;
@@ -52,7 +52,7 @@ NCBITaxon:6534 a owl:Class ;
 
 NCBITaxon:6656 a owl:Class ;
     rdfs:label "Arthropoda"@en ;
-    rdfs:subClassOf NIFNCBISLIM:nif_organ_110519 .
+    rdfs:subClassOf NLXORG:110519 .
 
 NCBITaxon:6657 a owl:Class ;
     rdfs:label "Crustacea"@en ;
@@ -80,7 +80,7 @@ NCBITaxon:7460 a owl:Class ;
 
 NCBITaxon:7742 a owl:Class ;
     rdfs:label "Vertebrata"@en ;
-    rdfs:subClassOf NIFNCBISLIM:nlx_organ_110506 .
+    rdfs:subClassOf NLXORG:110506 .
 
 NCBITaxon:7955 a owl:Class ;
     rdfs:label "Danio rerio"@en ;
@@ -211,22 +211,17 @@ NCBITaxon:216331 a owl:Class ;
     rdfs:label "Doridina"@en ;
     rdfs:subClassOf NCBITaxon:6447 .
 
-NIFNCBISLIM:nif_organ_110519 a owl:Class ;
-    rdfs:label "Invertebrate"^^xsd:string ;
-    rdfs:subClassOf NIFNCBISLIM:nlx_organ_110506 ;
-    owl:disjointWith NCBITaxon:7742 .
-
-NIFNCBISLIM:nlx_organ_110501 a owl:Class ;
+NLXORG:110501 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     NCBITaxon:9443
                     [ a owl:Class ;
                         owl:complementOf NCBITaxon:9606 ] ) ] ;
     rdfs:label "Nonhuman primate"^^xsd:string ;
-    OBOANN:synonym "non human primate"^^xsd:string,
+    NIFRID:synonym "non human primate"^^xsd:string,
         "non-human primate"^^xsd:string .
 
-NIFNCBISLIM:nlx_organ_110503 a owl:Class ;
+NLXORG:110503 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     NCBITaxon:7742
@@ -234,10 +229,15 @@ NIFNCBISLIM:nlx_organ_110503 a owl:Class ;
                         owl:complementOf NCBITaxon:9606 ] ) ] ;
     rdfs:label "Nonhuman vertebrate"^^xsd:string .
 
-NIFNCBISLIM:nlx_organ_110506 a owl:Class ;
+NLXORG:110506 a owl:Class ;
     rdfs:label "Organism (NCBI Taxonomy Slim)"^^xsd:string ;
-    OBOANN:synonym "Organism"^^xsd:string ;
-    rdfs:subClassOf BFO1SNAP:MaterialEntity ;
+    NIFRID:synonym "Organism"^^xsd:string ;
+    rdfs:subClassOf BFO:0000040 ;
     rdfs:comment "A biomaterial object capable of reproduction and harvesting energy from some biomaterial source in order to sustain its existance."^^xsd:string .
+
+NLXORG:110519 a owl:Class ;
+    rdfs:label "Invertebrate"^^xsd:string ;
+    rdfs:subClassOf NLXORG:110506 ;
+    owl:disjointWith NCBITaxon:7742 .
 
 ### Serialized using the nifstd custom serializer v1.0.7
