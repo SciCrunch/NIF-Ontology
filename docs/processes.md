@@ -94,3 +94,15 @@ however the file opened must be in `ttl/`.
 1. Remove `/tmp/ttlcmp.patch` if it exists
 2. `ttlcmp.sh`  (lives in `pyontutils/pyontutils`)
 3. Review `/tmp/ttlcmp.patch` for annotation and object properties.
+
+## Integrating a new set of terms
+If there is an existing ttl file that has been formatted with ttlfmt as described above then
+create a new branch, add the file, and submit a pull request for review.
+
+If this file may need to be regenerated from some external source please add the external source
+and the generation code via the process described in
+[pyontutils/development/README.md](https://github.com/tgbugs/pyontutils/blob/master/development/README.md).
+This does not need to be done if ttl file will become the source of truth once integrated into NIFSTD.
+
+Any set of terms that requires more than direct transformation to ttl should also follow the process described in
+[pyontutils/development/README.md](https://github.com/tgbugs/pyontutils/blob/master/development/README.md).
