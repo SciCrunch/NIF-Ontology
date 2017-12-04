@@ -1,12 +1,5 @@
 We are creating a new neuron ontology. This ontology is built on the idea that neuron types are fundamentally bags of phenotypes.
 
-# WARNING
-At the moment if you see an `ILX:` identifier in one of the ontology files that is involved in modelling neurons it is temporary and should not be used.
-
-# Setup and Example notebook
-https://github.com/tgbugs/pyontutils/blob/master/docs/neurons_notebook.md  
-https://github.com/tgbugs/pyontutils/blob/master/docs/NeuronLangExample.ipynb
-
 # Phenotypes
 In our model phenotypes are the outputs of some measurement or set of measurements and computations/classifications. Ideally the process for documenting exactly how each phenotype was measured would be included as well, but that is currently outside the scope of this project. The current major categories of phenotypes (with example identifiers are):
   * species [NCBITaxon:10116]
@@ -40,6 +33,13 @@ SOMEID:1234567 a owl:Class ;
 
 # Species specific identifiers
 One of the advantages of using a phenotype based approach is that when there are species specific genes or proteins it is possible to be completely explicit about the exact gene or gene product that was measure/detected. When we then construct a high level neuron such as a PV+ neuron, we can then leverage species general identifiers to make it explicit that we are making assertions about phenotypes that are evolutionarily conserved.
+
+# WARNING
+At the moment if you see an `ILX:` identifier in one of the ontology files that is involved in modelling neurons it is temporary and should not be used.
+
+# Setup and Example notebook
+https://github.com/tgbugs/pyontutils/blob/master/docs/neurons_notebook.md  
+https://github.com/tgbugs/pyontutils/blob/master/docs/NeuronLangExample.ipynb
 
 # Notes:
 
