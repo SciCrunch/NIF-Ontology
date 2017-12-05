@@ -2,79 +2,102 @@
   This file documents the logical basis for the [[https://github.com/SciCrunch/NIF-Ontology/blob/master/ttl/generated/parcellation.ttl][NIFSTD parcellation schemes]]
   and their mappings to a variety of semantic anatomical schemes.
   Of these [[https://uberon.org][Uberon]] is of greatest interest.
+  Please see https://github.com/SciCrunch/NIF-Ontology/issues/49 for history and current developments.
 
 * Spatial definitions
-
   #+NAME: table:spatial
   #+CAPTION: Spatial definitions
   | Name (Symbols)     | Anatomical Entities (Beings)       | Spatial definition                                                     | Examples                                     |
   |--------------------+------------------------------------+------------------------------------------------------------------------+----------------------------------------------|
   | semantic label     | semantic anatomical region         |                                                                        | Uberon, BrainInfo, Swanson                   |
-  | semantic label     | semantic spatial anatomical region | a point or unbounded connected spatial volume that contains that point |                                              |
-  | parcellation label | probabilistic parcellation region  | a probabilistically bounded connected spatial volume                   | Jülich histological, Harvard-Oxford cortical |
-  | parcellation label | anatomical parcellation region     | a bounded connected spatial volume                                     | Allen MBA CCFv3                              |
+  | semantic label     | semantic spatial anatomical region | A point or unbounded connected spatial volume that contains that point |                                              |
+  | parcellation label | probabilistic parcellation region  | A probabilistically bounded connected spatial volume                   | Jülich histological, Harvard-Oxford cortical |
+  | parcellation label | anatomical parcellation region     | A bounded connected spatial volume [fn:1]                              | Allen MBA CCFv3                              |
 
+[[images/parcellation-visual.svg]]
 
-  
+[fn:1] As long as the 3d volume is topoligically equivalent to a sphere unconnected regions
+in planes of section are fine.
+
 * Universality
+  A concept is universal [fn:0] up to an agreement-group under a relationship if it is possible
+  to find some other-concept such that there is a group of people who all mutually agree
+  about the existence of the other-concept all of whom that use the concept also agree
+  that the relationship holds between it and the other-concept.
   
-** mutual agreement on existence and classification
-   + (agrees? person '(exists? thing))
-   + (and (agrees? person (definition thing)) ())
-   + agrees-on-common-definition-for?
-   + exists-as-defined?
-   + agrees-with-definition-of?
-   + mutually-identify-as-the-same-thing?
-     
-
-    
-   "we all agree that neurons exist"
-   +"we-all-agree-that-the-brain-exists"+  ; except for the author...
-   (internal-definition thing
-   (oh look halting)
-   mutually-agrees
-   for each person p
-   for all persons o not equal to p
-
-
+  Alternately, if you can find anything that a group can agree about and some relationship,
+  then any additional concept that is used by a subset of that group is universal under that
+  relationship for the whole group if everyone in that subset agrees about the relationship
+  between the additional concept and the thing the whole group agrees about.
   
-** semantic region 
-   people
-   {p ∈ people | (uses p 'thalamus)} ∩ {p ∈ people | (agrees p '(exists 'brain))}
-   {p in people | (and (uses p 'thalamus) (or () (agrees p '(exists 'brain))))}  ; FIXME this is wrong...
+  For example, it is probably fair to say that 'thalamus' is universal under partonomy
+  up to the group of all people who agree about what a brain is. For any group of people
+  who know and agree about what a brain is and that also know what a thalamus is they
+  will agree that a thalamus is part of a brain.
+  
+  Universality is a more general way of expressing that it is possible to find common ground.
+  Everyone does not have to agree about whether the thalamus is part of the forbrain or the
+  midbrain for the concept to be universal under partonomy, since they all agree that it is
+  indeed part of the brain.
+  
+  Universality does not mean that a term is correct or true, only that it is used consistently
+  within a specific group.
 
+  Universality is useful for identifying terminology that is not consistent.
+  If there is someone in an agreement group for the spinal cord, but they disagree
+  about whether a dorsal root gangion is part of the spinal cord (avoiding circular
+  definitions that define it as such) then the dorsal root ganglion is not universal
+  under partonomy for that agreement group about the spinal cord.
+  
+  To give the example that inspired this. If someone uses an Allen Mouse Brain Atlas label
+  to refer to a rat brain region the, term (or perhaps that useage) is not universal under
+  partonomy. Despite mutual agreement about what a mouse brain is and a rat brain
+  is, I do not agree that something that names part of a mouse brain can name something
+  that is part of a rat brain. This would also be true for rodent brains and brains generally.
+  
+[fn:0] This should probably be 'minimally universal'. Maximally universal under a
+realationship would be finding that the set of concept other-concept pairs for the
+concept in question were the same for all members of the agreement group.
+
+** Semantic region 
+   #+BEGIN_SRC racket
    given all people
-   a 'semantic-region is said to be _universal_ iff
-   ∃ some 'other-thing != 'semantic-region such that
-   {p in people | (uses-term-for p 'semantic-region) and (agrees p '(exists? 'other-thing))} = {p in people | (agrees? p '(part-of? 'semantic-region 'other-thing))}
-   ; show every single person who can identify a brain as a brain and agree with the definition etc...
-   ; agrees and identifies...
-
-   {p in people | (uses-term-for? p 'semantic-region)}
-   ∩
-   {p in people | (agrees? p '(exists? 'other-thing))}
-   ; there exists some part that all of them can agree on existing and being the same
-   ; it is a mutual a agrees that b agrees with a
-   ; the set of people who all agree on a the common definition for 'other-thing
-   ==
-   {p in people | (agrees? p '(part-of? 'semantic-region 'other-thing))}
-   
-   only if there are no people such that
-   {p in people | 
-
-
-   and (agrees p '(exists 'brain))
-   
-** semantic spatial region
-   given all people
-   a 'semantic-spatial-region is said to be _universal_ iff
-   there-exists some part 'part such that
-   'semantic-spatial-region is-a semantic-region and
-
-
-
-** probabilistic parcellation region
-
-** parcellation region
+   an agreement-group about 'thing
+   is any member of {subset-of-people in (powerset people) | (mutually-agree? subset-of-people '(exists? 'thing))}
+   a 'semantic-region is-said-to-be universal up to an agreement-group iff
+   there-exists some 'other-region such-that
+   for members of an agreement-group about 'other-region
+   {person in members | (uses-term-for? person 'semantic-region)}  ; universal agreement group
+   is identical to
+   {person in members | (agrees? p '(part-of? 'semantic-region 'other-region))}
+   ; the set of members that agrees that 'semantic-region is part-of other-region
+   #+END_SRC
+   In english.
+   A semantic anatomical region is said to be universal up to an agreement group
+   if and only if it is possible to find some other region such that all of the
+   people who agree about the definition of that other region also agree that
+   the region in question is part of that other region.
   
+** Semantic spatial region
+   #+BEGIN_SRC racket
+   a 'semantic-spatial-region is universal iff
+   it is a 'semantic-region that is universal up to an agreement-group and
+   there-exists some 'point in space such-that
+   for-all 'person in the agreement-group that also use the term  ; universal-agreement-group maybe?
+   (agrees? 'person '(contained-in? 'semantic-spatial-region 'point))
+   #+END_SRC
+   In english.
+   A semantic spatial region is universal if and only iff it is a universal semantic
+   region and all the people in the universal agreement group can agree on at least
+   one real spatial location (point) that they all agree is contained in the region
+   in question.
 
+** Parcellation region (and probabilistic parcellation regions)
+   Universality is derived from the spatial structure of the atlas and the species
+   and developmental stage for which they are defined, as long as the subjects being
+   registered meet those criteria.
+
+   The full explication of the criteria need to support universality is more complex
+   and includes quite a bit of provenance information about the processes used to
+   determine whether the atlas is applicable for the subject in question.
+   However, for the purposes of communication we don't need to dig further for now.
