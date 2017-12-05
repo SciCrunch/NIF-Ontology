@@ -1,0 +1,80 @@
+* A model for semantic anatomical regions and parcellation anatomical regions
+  This file documents the logical basis for the [[https://github.com/SciCrunch/NIF-Ontology/blob/master/ttl/generated/parcellation.ttl][NIFSTD parcellation schemes]]
+  and their mappings to a variety of semantic anatomical schemes.
+  Of these [[https://uberon.org][Uberon]] is of greatest interest.
+
+* Spatial definitions
+
+  #+NAME: table:spatial
+  #+CAPTION: Spatial definitions
+  | Name (Symbols)     | Anatomical Entities (Beings)       | Spatial definition                                                     | Examples                                     |
+  |--------------------+------------------------------------+------------------------------------------------------------------------+----------------------------------------------|
+  | semantic label     | semantic anatomical region         |                                                                        | Uberon, BrainInfo, Swanson                   |
+  | semantic label     | semantic spatial anatomical region | a point or unbounded connected spatial volume that contains that point |                                              |
+  | parcellation label | probabilistic parcellation region  | a probabilistically bounded connected spatial volume                   | Jülich histological, Harvard-Oxford cortical |
+  | parcellation label | anatomical parcellation region     | a bounded connected spatial volume                                     | Allen MBA CCFv3                              |
+
+
+  
+* Universality
+  
+** mutual agreement on existence and classification
+   + (agrees? person '(exists? thing))
+   + (and (agrees? person (definition thing)) ())
+   + agrees-on-common-definition-for?
+   + exists-as-defined?
+   + agrees-with-definition-of?
+   + mutually-identify-as-the-same-thing?
+     
+
+    
+   "we all agree that neurons exist"
+   +"we-all-agree-that-the-brain-exists"+  ; except for the author...
+   (internal-definition thing
+   (oh look halting)
+   mutually-agrees
+   for each person p
+   for all persons o not equal to p
+
+
+  
+** semantic region 
+   people
+   {p ∈ people | (uses p 'thalamus)} ∩ {p ∈ people | (agrees p '(exists 'brain))}
+   {p in people | (and (uses p 'thalamus) (or () (agrees p '(exists 'brain))))}  ; FIXME this is wrong...
+
+   given all people
+   a 'semantic-region is said to be _universal_ iff
+   ∃ some 'other-thing != 'semantic-region such that
+   {p in people | (uses-term-for p 'semantic-region) and (agrees p '(exists? 'other-thing))} = {p in people | (agrees? p '(part-of? 'semantic-region 'other-thing))}
+   ; show every single person who can identify a brain as a brain and agree with the definition etc...
+   ; agrees and identifies...
+
+   {p in people | (uses-term-for? p 'semantic-region)}
+   ∩
+   {p in people | (agrees? p '(exists? 'other-thing))}
+   ; there exists some part that all of them can agree on existing and being the same
+   ; it is a mutual a agrees that b agrees with a
+   ; the set of people who all agree on a the common definition for 'other-thing
+   ==
+   {p in people | (agrees? p '(part-of? 'semantic-region 'other-thing))}
+   
+   only if there are no people such that
+   {p in people | 
+
+
+   and (agrees p '(exists 'brain))
+   
+** semantic spatial region
+   given all people
+   a 'semantic-spatial-region is said to be _universal_ iff
+   there-exists some part 'part such that
+   'semantic-spatial-region is-a semantic-region and
+
+
+
+** probabilistic parcellation region
+
+** parcellation region
+  
+
