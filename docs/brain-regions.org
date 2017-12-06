@@ -1,3 +1,27 @@
+#+MACRO: semantic-l semantic label
+#+MACRO: semantic-r semantic region
+#+MACRO: parc-l parcellation label
+
+#+MACRO: point point
+#+MACRO: line line
+#+MACRO: surface surface
+#+MACRO: volume-conn spatial volume
+#+MACRO: volume-conn-bounded bounded connected spatial volume
+#+MACRO: volume-conn-bounded-prob probabilistically bounded connected spatial volume
+#+MACRO: volume-conn-unbounded unbounded connected spatial volume
+
+#+MACRO: semantic-r-spatial-surface semantic landmark region
+#+MACRO: semantic-r-spatial semantic spatial region
+#+MACRO: semantic-r-spatial-volume semantic spatial region
+#+MACRO: semantic-r-spatial-volume-bounded semantic spatial region
+#+MACRO: semantic-r-spatial-volume-unbounded semantic landmark region
+
+#+MACRO: parc-r-surface parcellation landmark region
+#+MACRO: parc-r-volume parcellation region
+#+MACRO: parc-r-volume-bounded parcellation region
+#+MACRO: parc-r-volume-bounded-prob probabilistic parcellation region
+#+MACRO: parc-r-volume-unbounded parcellation landmark region
+
 * A model for semantic anatomical regions and parcellation anatomical regions
   This file documents the logical basis for the [[https://github.com/SciCrunch/NIF-Ontology/blob/master/ttl/generated/parcellation.ttl][NIFSTD parcellation schemes]]
   and their mappings to a variety of semantic anatomical schemes
@@ -10,21 +34,48 @@
 * Spatial definitions
   #+NAME: table:spatial
   #+CAPTION: Spatial definitions
-  | Name (Symbols) | Anatomical Entities (Beings)       | Spatial definition                                                     | Examples                                     |
-  |----------------+------------------------------------+------------------------------------------------------------------------+----------------------------------------------|
-  | label          | semantic anatomical region         |                                                                        | Uberon, BrainInfo, Swanson                   |
-  | label          | semantic spatial anatomical region | A point or unbounded connected spatial volume that contains that point |                                              |
-  | label          | probabilistic parcellation region  | A probabilistically bounded connected spatial volume                   | Jülich histological, Harvard-Oxford cortical |
-  | label [fn:1]   | anatomical parcellation region     | A bounded connected spatial volume [fn:2]                              | Allen MBA CCFv3                              |
+  | Name source         | Anatomical Entities                    | Spatially defined by                                                                                                                              | Examples                                     |
+  |---------------------+----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------|
+  | {{{semantic-l}}}    | {{{semantic-r}}}                       |                                                                                                                                                   | Uberon, BrainInfo, Swanson                   |
+  | {{{semantic-l}}}    | {{{semantic-r-spatial-volume}}} [fn:0] | A point or {{{volume-conn-unbounded}}} that contains that point                                                                                   |                                              |
+  | {{{parc-l}}} [fn:1] | {{{parc-r-volume-bounded}}}            | A {{{volume-conn-bounded}}} [fn:2]                                                                                                                | Allen MBA CCFv3                              |
+  | {{{parc-l}}}        | {{{parc-r-volume-unbounded}}} [fn:3]   | An {{{volume-conn-unbounded}}} defined by point or a line and a point on that line or a subset of a surface and a line or a point on that surface |                                              |
+  | {{{parc-l}}}        | {{{parc-r-volume-bounded-prob}}}       | A {{{volume-conn-bounded-prob}}}                                                                                                                  | Jülich histological, Harvard-Oxford cortical |
 
-[[file:images/parcellation-visual.svg]]
+  [[file:images/parcellation-visual.svg]]
 
+  #+NAME: table:mapping-1
+  #+CAPTION: Mapping between parcellation and semantic labels
+  | Not a spatial source | Spatial source |
+  |----------------------+----------------|
+  | {{{semantic-l}}}     | {{{parc-l}}}   |
+
+  #+NAME: table:mapping-2
+  #+CAPTION: Mapping between parcellation and spatial semantic regions
+  | Point representation             | Spatial representation |
+  |----------------------------------+------------------------|
+  | {{{semantic-r-spatial-volume}}}  | {{{parc-r-volume}}}    |
+  | {{{semantic-r-spatial-surface}}} | {{{parc-r-surface}}}   |
+
+  + a point representation *isDelineatedBy* a spatial representation
+  + a spatial representation *delineates* a point representation
+
+[fn:0] Because these are defined by a single point they technically encompass landmarks
+and a variety of other immaterial anatomical entities as well. In some cases the point
+could be defined as being confined to a surface. Modelling of surfaces is fairly good
+in uberon
 [fn:1] Futher consideration is needed about whether parcellation labels are distinct from
 semantic labels. The example to considers is what happens when someone creates and atlas
 and uses the uberon identifiers as atlas labels directly. Does that break the semantics
-and if so how?
+and if so how? The answer is yes. The source of the definition does matter and if we
+artifically extend their semantics to cover other atlases or conecepts or regions outside
+the source's original use then that is a problem. See [[https://github.com/SciCrunch/NIF-Ontology/issues/49#issuecomment-349395453]]
+for reference.
 [fn:2] As long as the 3d volume is topoligically equivalent to a sphere, unconnected regions
 in planes of section are fine.
+[fn:3] Landmark is provisional and probably needs to be changed. These cover things like fissures
+or other features that do not form closed spatial volumes and tend to dissapear under a variety
+of topological transformations.
 
 * Universality
   In order to clarify the effects of attaching semantic and parcellation labels onto
@@ -73,7 +124,7 @@ in planes of section are fine.
 realationship would be finding that the set of concept other-concept pairs for the
 concept in question were the same for all members of the agreement group.
 
-** Semantic region 
+** Semantic region [fn:4]
    #+BEGIN_SRC racket
    given all people
    an agreement-group about 'thing
@@ -91,7 +142,9 @@ concept in question were the same for all members of the agreement group.
    if and only if it is possible to find some other region such that all of the
    people who agree about the definition of that other region also agree that
    the region in question is part of that other region.
-  
+
+[fn:4] We need a way to deal with the immaterial anatomical entities from uberon
+
 ** Semantic spatial region
    #+BEGIN_SRC racket
    a 'semantic-spatial-region is universal iff
