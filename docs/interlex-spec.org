@@ -1,0 +1,161 @@
+#+TITLE: InterLex Design Specification
+#+AUTHOR: Tom Gillespie
+#+DATE: [2017-12-06 Wed]
+#+DESCRIPTION: Design specs for InterLex uri schemes and serialization options.
+#+HTML_HEAD: <meta name="version" content="0.0.1" />
+#+OPTIONS: num:nil html-preamble:t
+
+* default 'users' (namespaces) for basic interlex functionality
+** latest
+   uncurated from whichever user made the latest change
+** origin
+   latest from the original defining source (user?)
+*** TODO import chains
+    In addition to rdfs:isDefinedBy we need to have inImportChainOf for anything
+    that appears as an object in rdfs:isDefinedBy and preferably targets of
+    rdfs:isDefinedBy which use version iris in addition to canonical iris
+    should probably follow scigraph here (tagging every triple) and it looks
+    like they get around this by simply adding the ontology that was actually
+    loaded with isDefinedBy as well which would probably work
+
+    #+NAME: table:tidb
+    #+CAPTION: ~terms_is_defined_by~
+    | sid | pid | oid | isDefinedBy                                                        |
+    |-----+-----+-----+--------------------------------------------------------------------+
+    |   0 |   1 |   2 | http://ontology.neuinfo.org/NIF/ttl/nif.ttl                        |
+    |   0 |   1 |   2 | http://ontology.neuinfo.org/NIF/ttl/nif/version/2018-01-01/nif.ttl |
+    |   0 |   1 |   2 | http://ontology.neuinfo.org/NIF/ttl/NIF-Investigation.ttl          |
+
+**** Thoughts
+     'isDefinedBy' lists all files that contain a specific triple
+     an import closure does not add each importing ontology to isDefinedBy 
+     imagine a case where we import an ontology that imports an old version of IAO
+     if we have imported a newer version then the full set of triples in interlex
+     will probably not reason, since the meaning of an iri may have changed
+     (sigh OR strikes again) so we would need some way to tag when a triple was
+     added or removed from the graph (or rather which import chains it is known to
+     participate in)
+*** TODO user/ontology
+    this suggests that we should have a user per ontology that we load
+    since not every ontology will pull in the 'latest' version of imports
+    which will lead to conflicts
+** default
+   latest from the approved set of terms
+** curated
+   latest from the curated set of terms
+** reasonable
+   a subset of the database that is known to be reasonable
+** base
+   the very first version, aka whatever we had in the database
+   before adding the other users (heh)
+* Resolver URI structure
+  Unless the node is marked explicitly as terminal then we will not resolve it.
+** builtin namespaces uri structure
+*** =http://uri.interlex.org/base/=
+*** =http://uri.interlex.org/base/ilx_{1234567}= :terminal:
+*** =http://uri.interlex.org/base/readable/{word}= :terminal:
+    Entities listed here need to be in a 1:1 mapping from ilx_ to readable.
+    These will resolve to the corresponding numeric ilx identifier page.
+    We enforce 1:1 here to avoid confusion and needless multiplcation.
+    Only curators may add readables to the global readable space.
+    An alternate way to enable readability is to use qnames to a complete iri.
+    For example in turtle =@prefix myPrefix: <http://uri.interlex.org/base/ilx_1234567> .=.
+    IF we make this 1:many then we will require the selection of a preferred readable
+    and the exact way to serialize will have a couple of choices as a result.
+    See [[* serialization choices][serialization choices]] for more.
+** user uri structure
+*** =http://uri.interlex.org/{user}/=
+*** =http://uri.interlex.org/{user}/ixl_{1234567}= :terminal:
+*** =http://uri.interlex.org/{user}/readable/{word}= :terminal:
+    Entities listed here need to be in a 1:1 mapping from ilx_ to readable.
+    They map to the user's view of the underlying ilx identifier.
+    These are not resolved dynamically, they must be explicitly defined.
+*** =http://uri.interlex.org/{user}/uris/=
+*** =http://uri.interlex.org/{user}/uris/{path}/{number}= :terminal:
+*** =http://uri.interlex.org/{user}/uris/readable/{word}= :terminal:
+    Not sure if this should exist, but I find it useful when creating my own files
+    and do not want to worry about if I have the names correct.
+  
+* serialization choices
+** Serialization schemes
+   only numeric iris may use prefixes to the full iri
+*** entity choices
+**** all
+**** all entities from this ontology file
+**** all entities from this curie (iri prefix)
+**** one entities
+**** set of entities
+***** by tag
+***** by created by user
+***** by rule
+      too slow, download the full dump if they want this
+*** predicate choices
+**** action
+***** exclude
+      include (not used)
+      all are included by default, you may only remove
+      no removing using one rule and adding back, if you need that get the full dump
+**** filter by
+***** type
+***** value
+**** operators
+***** is
+      (define (is type-or-value test-value)
+        (if (= type-or-value test-value)
+	    true
+	    false))
+***** lenght-less-than
+      (define (length-less-than value n) (< (len value) n))
+***** rule
+      too slow, download the full dump if they want this
+**** targets
+***** subject
+      this is done in the entity choices
+***** predicate
+****** 'action type is AnnotationProperty
+****** 'action type is ObjectProperty
+****** 'action value is x
+***** object
+****** 'action type is Literal
+****** 'action type is URIRef
+****** 'action value length-less-than n
+*** user namespace choices
+    Might want to enable this for both numeric and readable...?
+**** always this user
+     choose this if you are planning to make local changes
+     to the terms you are going to select
+**** failover to user (includes base/default/latest etc)
+**** failover to 'some-builtin but serialize as the user who modified to that version
+**** failover to users in order
+*** iri choices
+**** numeric only
+**** prefer readable
+*** curie choices
+**** none
+**** prefer full
+**** prefer normal
+*** prov choices
+    users, isDefinedBy, InterLexCurationStatus
+**** include
+***** none
+***** same file
+***** separate file (label only)
+**** granularity
+***** per entity  ; name from owl spec
+***** per triple (forces separate file)
+** iri choices
+*** user numeric
+*** user readable
+** curie choices
+*** 'prefix' to full numeric iri
+*** use readable iris with consistent prefix
+** intersection
+   | vIRI >CURIE | prefix-full | prefix-normal | readable |
+   |-------------+-------------+---------------+----------|
+   | numeric     | yes         | yes           | no       |
+   | readable    | no          | yes           | yes      |
+     
+   | iri      | how redable  |
+   |----------+--------------|
+   | numeric  | curie-full   |
+   | readable | curie-normal |
