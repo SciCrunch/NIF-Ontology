@@ -32,33 +32,70 @@
   Please see [[https://github.com/SciCrunch/NIF-Ontology/issues/49]] for history and current developments.
 
 * Spatial definitions
-  #+NAME: table:spatial
-  #+CAPTION: Spatial definitions
-  | Name source         | Anatomical Entities                    | Spatially defined by                                                                                                                              | Examples                                     |
-  |---------------------+----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------|
-  | {{{semantic-l}}}    | {{{semantic-r}}}                       |                                                                                                                                                   | Uberon, BrainInfo, Swanson                   |
-  | {{{semantic-l}}}    | {{{semantic-r-spatial-volume}}} [fn:0] | A point or {{{volume-conn-unbounded}}} that contains that point                                                                                   |                                              |
-  | {{{parc-l}}} [fn:1] | {{{parc-r-volume-bounded}}}            | A {{{volume-conn-bounded}}} [fn:2]                                                                                                                | Allen MBA CCFv3                              |
-  | {{{parc-l}}}        | {{{parc-r-volume-unbounded}}} [fn:3]   | An {{{volume-conn-unbounded}}} defined by point or a line and a point on that line or a subset of a surface and a line or a point on that surface |                                              |
-  | {{{parc-l}}}        | {{{parc-r-volume-bounded-prob}}}       | A {{{volume-conn-bounded-prob}}}                                                                                                                  | Jülich histological, Harvard-Oxford cortical |
+** Preable
+   . named alts *
+   ? unnamed
+   -- -- open
+   - closed
+   | borders
+   || does not border
+   > part of alts ^ ↓→ ->
+   /> not part of alts -/>
 
-  [[file:images/parcellation-visual.svg]]
+** thoughts
+   There are three key relationships that we need to care about for brain regaions when annotating data.
+   One: inside of. Two: close to. Three: part of. Specifically in this case cells or their processes.
+   The full combinatorial blah of this is.
+   | inside of |
+   | part of   |
+   | close to  |
+   A point (soma) can be close to something that is named by a parcellation label or
+   inside of something that is named by a parcellation label.
+   Another volume can be next to (bounded by)
+   inside of something that is named by a parcellation label
 
-  #+NAME: table:mapping-1
-  #+CAPTION: Mapping between parcellation and semantic labels
-  | Not a spatial source | Spatial source |
-  |----------------------+----------------|
-  | {{{semantic-l}}}     | {{{parc-l}}}   |
+   A parcellation with bounded regions and labels that are points inside or on the
+   boundary of those regions has the following classes of lables. Each class tells
+   you what you can infer about a neuron with a phenotype associated with that label.
+   1. The only named point inside a bounded volume.  (I really like the term closed, but I think that its use is incorrect.)
+   2. 
+   If the boundaries are closed then I don't care about the borders relationship because it can be computed from
+   the atlas itself.
 
-  #+NAME: table:mapping-2
-  #+CAPTION: Mapping between parcellation and spatial semantic regions
-  | Point representation             | Spatial representation |
-  |----------------------------------+------------------------|
-  | {{{semantic-r-spatial-volume}}}  | {{{parc-r-volume}}}    |
-  | {{{semantic-r-spatial-surface}}} | {{{parc-r-surface}}}   |
+   The first level of parcellation is of the regions, named, or unnamed that are closed and bounded. If these
+   regions are unnamed, then we need to do something about that. Sometimes, they may only be able to be defined
+   as be the complement of all named regions in a section. But, because the secion is real and is bounded and
+   closed we know that this is possible (thank's math!).
 
-  + a point representation *isDelineatedBy* a spatial representation
-  + a spatial representation *delineates* a point representation
+** tables
+
+   #+NAME: table:spatial
+   #+CAPTION: Spatial definitions
+   | Name source         | Anatomical Entities                    | Spatially defined by                                                                                                                              | Examples                                     |
+   |---------------------+----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------|
+   | {{{semantic-l}}}    | {{{semantic-r}}}                       |                                                                                                                                                   | Uberon, BrainInfo, Swanson                   |
+   | {{{semantic-l}}}    | {{{semantic-r-spatial-volume}}} [fn:0] | A point or {{{volume-conn-unbounded}}} that contains that point                                                                                   |                                              |
+   | {{{parc-l}}} [fn:1] | {{{parc-r-volume-bounded}}}            | A {{{volume-conn-bounded}}} [fn:2]                                                                                                                | Allen MBA CCFv3                              |
+   | {{{parc-l}}}        | {{{parc-r-volume-unbounded}}} [fn:3]   | An {{{volume-conn-unbounded}}} defined by point or a line and a point on that line or a subset of a surface and a line or a point on that surface |                                              |
+   | {{{parc-l}}}        | {{{parc-r-volume-bounded-prob}}}       | A {{{volume-conn-bounded-prob}}}                                                                                                                  | Jülich histological, Harvard-Oxford cortical |
+
+   [[file:images/parcellation-visual.svg]]
+
+   #+NAME: table:mapping-1
+   #+CAPTION: Mapping between parcellation and semantic labels
+   | Not a spatial source | Spatial source |
+   |----------------------+----------------|
+   | {{{semantic-l}}}     | {{{parc-l}}}   |
+
+   #+NAME: table:mapping-2
+   #+CAPTION: Mapping between parcellation and spatial semantic regions
+   | Point representation             | Spatial representation |
+   |----------------------------------+------------------------|
+   | {{{semantic-r-spatial-volume}}}  | {{{parc-r-volume}}}    |
+   | {{{semantic-r-spatial-surface}}} | {{{parc-r-surface}}}   |
+
+   + a point representation *isDelineatedBy* a spatial representation
+   + a spatial representation *delineates* a point representation
 
 [fn:0] Because these are defined by a single point they technically encompass landmarks
 and a variety of other immaterial anatomical entities as well. In some cases the point
