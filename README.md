@@ -1,5 +1,11 @@
 # NIF-Ontology
-Repository for the NIF Standard (NIFSTD) Ontologies.
+This is the main repository for the NIF Standard ontology (NIFSTD).
+NIFSTD is a neuroscience ontology that maintains an extensive set of
+terms and concepts important for the domains of neuroscience and biology.
+
+# The ontology won't load!
+If you are having trouble loading [ttl/nif.ttl](ttl/nif.ttl) in protege
+please see [docs/development setup.md#protege](docs/development%20setup.md#protege).
 
 # Notice
 NIFSTD is undergoing significant changes. Please see the
