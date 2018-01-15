@@ -1,0 +1,161 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-artifacts.ttl> a owl:Ontology ;
+    rdfs:label "Parcellation Artifacts" ;
+    rdfs:comment "Ontology file for artifacts that define labels or geometry for parcellation schemes." ;
+    owl:versionInfo "2018-01-15" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/c1077f61438c72e5c2b26877e27cbf63c4973f7d/pyontutils/parcellation.py#L1144> .
+
+### Classes
+
+ilxtr:hbav2 a owl:Class ;
+    rdfs:label "Allen Human Brain Atlas Terminology" ;
+    skos:prefLabel "Allen Human Brain Atlas Ontology" ;
+    NIFRID:abbrev "MBA" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:date "2013" ;
+    dc:source <http://api.brain-map.org/api/v2/tree_search/Structure/3999.json?descendants=true> ;
+    ilxtr:artifactVersion "2" ;
+    ilxtr:isDocumentedBy <http://help.brain-map.org/download/attachments/2818165/HBA_Ontology-and-Nomenclature.pdf?version=1&modificationDate=1382051847989> .
+
+ilxtr:hcpmmpv1 a owl:Class ;
+    rdfs:label "Human Connectome Project Multi-Modal human cortical parcellation" ;
+    NIFRID:synonym "HCP Multi-Modal Parcellation",
+        "Human Connectome Project Multi-Modal Parcellation",
+        "Human Connectome Project Multi-Modal Parcellation version 1.0" ;
+    NIFRID:abbrev "HCP-MMP1.0",
+        "HCP_MMP",
+        "HCPMMP" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:date "2016-07-20" ;
+    dc:source <https://github.com/tgbugs/pyontutils/blob/1c18b4fe6548dd48d18e1c9dbae1321c9b106bf9/pyontutils/resources/human_connectome_project_2016.csv> ;
+    dcterms:bibliographicCitation <https://doi.org/10.1038/nature18933> ;
+    ilxtr:artifactVersion "1.0" .
+
+ilxtr:mbav2 a owl:Class ;
+    rdfs:label "Allen Mouse Brain Atlas Terminology" ;
+    skos:prefLabel "Allen Mouse Brain Atlas Ontology" ;
+    NIFRID:abbrev "MBA" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10090 ] ;
+    rdfs:comment "Note that the ontology version for MBA is distinct from the common coordinate framework version. Unfortunately there is not a link to documentation for the ontology independent of the CCF, which makes it impossible to determine changes to the ontology independent of changes to the CCF. However there have been few changes over time with only one major change between version 1 and 2." ;
+    dc:date "2011" ;
+    dc:source <http://api.brain-map.org/api/v2/tree_search/Structure/997.json?descendants=true> ;
+    ilxtr:artifactVersion "2" ;
+    ilxtr:isDocumentedBy <http://help.brain-map.org/download/attachments/2818169/AllenReferenceAtlas_v2_2011.pdf?version=1&modificationDate=1319667383440> .
+
+ilxtr:parcellationArtifact a owl:Class ;
+    rdfs:label "Parcellation Artifact" ;
+    skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." .
+
+ilxtr:parcellationAtlas a owl:Class ;
+    rdfs:label "Parcellation Atlas" ;
+    skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." ;
+    rdfs:subClassOf ilxtr:parcellationArtifact .
+
+ilxtr:parcellationTerminology a owl:Class ;
+    rdfs:label "Parcellation Terminology" ;
+    skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." ;
+    rdfs:subClassOf ilxtr:parcellationArtifact .
+
+ilxtr:paxinosRatAtlas a owl:Class ;
+    rdfs:label "Paxinos Rat Atlas" ;
+    skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." ;
+    rdfs:subClassOf ilxtr:parcellationAtlas .
+
+ilxtr:paxr4 a owl:Class ;
+    rdfs:label "The Rat Brain in Stereotaxic Coordinates 4th Edition" ;
+    NIFRID:synonym "Paxinos Rat 6th" ;
+    NIFRID:abbrev "PAXRAT4" ;
+    rdfs:subClassOf ilxtr:paxinosRatAtlas,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10116 ] ;
+    dcterms:bibliographicCitation "Paxinos, George, Charles RR Watson, and Piers C. Emson. \"AChE-stained horizontal sections of the rat brain in stereotaxic coordinates.\" Journal of neuroscience methods 3, no. 2 (1980): 129-149." ;
+    dcterms:dateCopyrighted "1998" ;
+    ilxtr:artifactVersion "4th Edition" ;
+    prov:hadDerivation <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/pax-4th-ed-indexes.txt> .
+
+ilxtr:paxr6 a owl:Class ;
+    rdfs:label "The Rat Brain in Stereotaxic Coordinates 6th Edition" ;
+    NIFRID:synonym "Paxinos Rat 6th" ;
+    NIFRID:abbrev "PAXRAT6" ;
+    rdfs:subClassOf ilxtr:paxinosRatAtlas,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10116 ] ;
+    dcterms:bibliographicCitation "Paxinos, George, Charles RR Watson, and Piers C. Emson. \"AChE-stained horizontal sections of the rat brain in stereotaxic coordinates.\" Journal of neuroscience methods 3, no. 2 (1980): 129-149." ;
+    dcterms:dateCopyrighted "2007" ;
+    ilxtr:artifactVersion "6th Edition" ;
+    prov:hadDerivation <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/pax-6th-ed-indexes.txt>,
+        <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/paxinos09names.txt> .
+
+ilxtr:paxr7 a owl:Class ;
+    rdfs:label "The Rat Brain in Stereotaxic Coordinates 7th Edition" ;
+    NIFRID:synonym "Paxinos Rat 7th",
+        "Paxinso and Watson's The Rat Brain in Stereotaxic Coordinates 7th Edition" ;
+    NIFRID:abbrev "PAXRAT7" ;
+    rdfs:subClassOf ilxtr:paxinosRatAtlas,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10116 ] ;
+    dcterms:bibliographicCitation "Paxinos, George, Charles RR Watson, and Piers C. Emson. \"AChE-stained horizontal sections of the rat brain in stereotaxic coordinates.\" Journal of neuroscience methods 3, no. 2 (1980): 129-149." ;
+    dcterms:dateCopyrighted "2014" ;
+    ilxtr:artifactVersion "7th Edition" .
+
+ilxtr:whssdv2 a owl:Class ;
+    rdfs:label "Waxholm Space Sprague Dawley Terminology v2" ;
+    NIFRID:abbrev "WHSSD2" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10116 ] ;
+    rdfs:comment "There is an earlier version of the .label file but indexes are unique and are not reused, only renamed" ;
+    dc:date "2015-02-02" ;
+    dc:source <https://github.com/tgbugs/pyontutils/blob/1c18b4fe6548dd48d18e1c9dbae1321c9b106bf9/pyontutils/resources/WHS_SD_rat_atlas_v2.label> ;
+    dcterms:bibliographicCitation <https://www.ncbi.nlm.nih.gov/pubmed/24726336> ;
+    ilxtr:artifactVersion "2" .
+
+### Serialized using the pyontutils deterministic serializer v1.1.2
