@@ -18,6 +18,11 @@ The `uri.neuinfo.org` resolver points to the `master` branch on GitHub
 
 Therefore, please do not push to the master branch.
 
+If you are making changes to the ontology that are more than cosmetic
+please push to the `staging` branch. That way merging from staging to
+master can be accompanied by a SciGraph build and pushed out to services
+so that everything can stay 'mostly' in sync.
+
 Please submit a pull request (even if it is from another branch
 in the SciCrunch org repo) so that we can run all the requisite
 checks to make sure that the ontology is consistent.
