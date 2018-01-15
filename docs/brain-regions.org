@@ -23,8 +23,10 @@
 #+MACRO: parc-r-volume-unbounded parcellation landmark region
 
 * A model for semantic anatomical regions and parcellation anatomical regions
-  This file documents the logical basis for the [[https://github.com/SciCrunch/NIF-Ontology/blob/master/ttl/generated/parcellation.ttl][NIFSTD parcellation schemes]]
-  and their mappings to a variety of semantic anatomical schemes
+  This file is a work in progress.
+
+  It documents the logical basis for the [[https://github.com/SciCrunch/NIF-Ontology/blob/master/ttl/generated/parcellation.ttl][NIFSTD parcellation schemes]]
+  and their mappings to a variety of semantic anatomical schemes,
   [[https://uberon.org][Uberon]] being the most relevant.
   
   The terminology used in this file is not final.
@@ -32,20 +34,22 @@
   Please see [[https://github.com/SciCrunch/NIF-Ontology/issues/49]] for history and current developments.
 
 * Spatial definitions
-** Preable
-   . named alts *
-   ? unnamed
-   -- -- open
-   - closed
-   | borders
-   || does not border
-   > part of alts ^ ↓→ ->
-   /> not part of alts -/>
+** Preamble
+   | ~*~   | named                 |
+   | ~?~   | unnamed               |
+   | ~--~  | unbounded (open)      |
+   | ~__~  | bounded (closed)      |
+   | ~?>~  | part of not specified |
+   | ~>~   | part of               |
+   | ~/>~  | not part of           |
+   | ~]?[~ | border not specified  |
+   | ~I~   | borders               |
+   | ~][~  | does not border       |
 
 ** thoughts
    There are three key relationships that we need to care about for brain regaions when annotating data.
    One: inside of. Two: close to. Three: part of. Specifically in this case cells or their processes.
-   The full combinatorial blah of this is.
+   The full combination of these three produces the following. (Note that part of and inside of should be equivalent.)
    | inside of |
    | part of   |
    | close to  |
@@ -55,7 +59,7 @@
    inside of something that is named by a parcellation label
 
    A parcellation with bounded regions and labels that are points inside or on the
-   boundary of those regions has the following classes of lables. Each class tells
+   boundary of those regions has the following classes of labels. Each class tells
    you what you can infer about a neuron with a phenotype associated with that label.
    1. The only named point inside a bounded volume.  (I really like the term closed, but I think that its use is incorrect.)
    2. 
@@ -64,7 +68,7 @@
 
    The first level of parcellation is of the regions, named, or unnamed that are closed and bounded. If these
    regions are unnamed, then we need to do something about that. Sometimes, they may only be able to be defined
-   as be the complement of all named regions in a section. But, because the secion is real and is bounded and
+   as the complement of all named regions in a section. But, because the section is real and is bounded and
    closed we know that this is possible (thank's math!).
 
 ** tables
