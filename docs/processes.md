@@ -115,50 +115,50 @@ Any set of terms that requires more than direct transformation to ttl should als
 [pyontutils/development/README.md](https://github.com/tgbugs/pyontutils/blob/master/development/README.md).
 
 ## Release processes
-   The exact details of the release process are still being worked out so this section
-   may be out of date. Check the underlying documentation and the python scripts/commits
-   for the latest information.
+The exact details of the release process are still being worked out so this section
+may be out of date. Check the underlying documentation and the python scripts/commits
+for the latest information.
 
 ### Run sanity checks on staging
-    Besides the checks listed as part of the development process we need to integrate
-    automated tests, probably using [ROBOT](https://github.com/ontodev/robot). See also
-    https://github.com/SciCrunch/NIF-Ontology/issues/60.
-    
+Besides the checks listed as part of the development process we need to integrate
+automated tests, probably using [ROBOT](https://github.com/ontodev/robot). See also
+https://github.com/SciCrunch/NIF-Ontology/issues/60.
+
 ### versionInfo
-    For the time being bump the least significant digit on nif.ttl whenever we
-    do a release so that there is something that tracks the changes.
-    TODO! The process for determining when to bump versions will be found here.
-    We may get rid of versionInfo completely and just go with the epoch time if
-    we can get versionIRI working.
+For the time being bump the least significant digit on nif.ttl whenever we
+do a release so that there is something that tracks the changes.
+TODO! The process for determining when to bump versions will be found here.
+We may get rid of versionInfo completely and just go with the epoch time if
+we can get versionIRI working.
 
 ### versionIRI
-    TODO! It seems the only way to do this in a sane way is to use the github api to
-    query for commits by epoch which can't be done by nginx alone.
-    
+TODO! It seems the only way to do this in a sane way is to use the github api to
+query for commits by epoch which can't be done by nginx alone.
+
 ### Merge to master
-    If the changes are minor don't bother with a pull reqest, just run
-    `git checkout master && git merge staging` and then push.
-    If there are more major changes, such as changes to modelling of a domain
-    or deprecation of ontolog files, submit a pull request, even if you are the
-    only person who will participate in it. This can provide a nice summary for
-    someone who needs to review the history of changes but shouldn't have to dig
-    through the full commit log.
+If the changes are minor don't bother with a pull reqest, just run
+`git checkout master && git merge staging` and then push.
+If there are more major changes, such as changes to modelling of a domain
+or deprecation of ontolog files, submit a pull request, even if you are the
+only person who will participate in it. This can provide a nice summary for
+someone who needs to review the history of changes but shouldn't have to dig
+through the full commit log.
 
 ### Build graph for SciGraph release
-    See point 1 in [pyontutils/scigraph/README.md#etc-for-centos-7](https://github.com/tgbugs/pyontutils/blob/master/scigraph/README.md#etc-for-centos-7)
-    The build process for the graph is quite customizable. Run `ontload scigraph --help` if
-    you need additional guidance.
+See point 1 in [pyontutils/scigraph/README.md#etc-for-centos-7](https://github.com/tgbugs/pyontutils/blob/master/scigraph/README.md#etc-for-centos-7)
+The build process for the graph is quite customizable. Run `ontload scigraph --help` if
+you need additional guidance.
 
 ### Deploy to SciGraph
-    This process is documented at
-    [pyontutils/scigraph/README.md](https://github.com/tgbugs/pyontutils/blob/master/scigraph/README.md).
+This process is documented at
+[pyontutils/scigraph/README.md](https://github.com/tgbugs/pyontutils/blob/master/scigraph/README.md).
 
 ## External records
-   There are a couple of places where there are external records of the
-   ontology that a maintainer or curator needs to keep up to date.
-   1. https://bioportal.bioontology.org/ontologies/NIFSTD
-   2. https://bioportal.bioontology.org/ontologies/NIFSUBCELL
-   3. https://fairsharing.org/bsg-s002584 (NeuroLex)
-   4. https://fairsharing.org/bsg-s002628 (NIF Ontology)
-   5. https://fairsharing.org/bsg-s002835 (subcellular)
+There are a couple of places where there are external records of the
+ontology that a maintainer or curator needs to keep up to date.
+1. https://bioportal.bioontology.org/ontologies/NIFSTD
+2. https://bioportal.bioontology.org/ontologies/NIFSUBCELL
+3. https://fairsharing.org/bsg-s002584 (NeuroLex)
+4. https://fairsharing.org/bsg-s002628 (NIF Ontology)
+5. https://fairsharing.org/bsg-s002835 (subcellular)
 
