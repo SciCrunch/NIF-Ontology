@@ -125,21 +125,29 @@ automated tests, probably using [ROBOT](https://github.com/ontodev/robot). See a
 https://github.com/SciCrunch/NIF-Ontology/issues/60.
 
 ### versionInfo
-For the time being bump the least significant digit on nif.ttl whenever we
-do a release so that there is something that tracks the changes.
-TODO! The process for determining when to bump versions will be found here.
-We may get rid of versionInfo completely and just go with the epoch time if
-we can get versionIRI working.
+Only bump the versionInfo string on nif.ttl for major releases (e.g. one
+where nif.ttl is pushed to bioportal). Our versionIRI implementation on
+top of the unix epoch provides the logical end of granular versioning so
+we will use that for all practical versioning needs. It seems unlikely
+that we will bump to a 4.0 release any time in the near future so simply
+increase the count on the version by one for each release.
 
 ### versionIRI
-TODO! It seems the only way to do this in a sane way is to use the github api to
-query for commits by epoch which can't be done by nginx alone.
+Run `ontutils version-iri ttl/nif.ttl` from the root of the ontology git
+directory. Then run `ontutils iri-commit NIF-Ontology -l ${git-base}` and
+copy and paste the git commit command and execute it. This can now be run
+on any branch and will resolve correctly when merged to master.
+
+TODO: Should we add a process for adding a versionIRI to individual files 
+whenever there is a substantial non-cosmetic change? It is already possible
+to use the epoch based versionIRIs to refer to files even if we do not include
+the versionIRI in the file explicitly.
 
 ### Merge to master
-If the changes are minor don't bother with a pull reqest, just run
+If the changes are minor don't bother with a pull request, run
 `git checkout master && git merge staging` and then push.
 If there are more major changes, such as changes to modelling of a domain
-or deprecation of ontolog files, submit a pull request, even if you are the
+or deprecation of ontology files, submit a pull request, even if you are the
 only person who will participate in it. This can provide a nice summary for
 someone who needs to review the history of changes but shouldn't have to dig
 through the full commit log.
