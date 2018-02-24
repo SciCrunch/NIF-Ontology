@@ -1,20 +1,21 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix ilx: <http://uri.interlex.org/base/> .
 @prefix ILX: <http://uri.interlex.org/base/ilx_> .
+@prefix ILXREPLACE: <http://ILXREPLACE.org/> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
-@prefix NIFCELL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#> .
-@prefix NIFMOL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
-@prefix NIFQUAL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Quality.owl#> .
-@prefix ns1: <http://ontology.neuinfo.org/NIF/Backend/BIRNLex_annotation_properties.owl#> .
-@prefix ns2: <http://protege.stanford.edu/plugins/owl/protege#> .
+@prefix NIFEXT: <http://uri.neuinfo.org/nif/nifstd/nifext_> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix NLXCELL: <http://uri.neuinfo.org/nif/nifstd/nlx_cell_> .
 @prefix nsu: <http://www.FIXME.org/nsupper#> .
-@prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
 @prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix PR: <http://purl.obolibrary.org/obo/PR_> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix TEMP: <http://uri.interlex.org/temp/uris/> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -22,15 +23,17 @@
 <http://ontology.neuinfo.org/NIF/ttl/NIF-Neuron.ttl> a owl:Ontology ;
     owl:imports <http://ontology.neuinfo.org/NIF/ttl/hbp-special.ttl>,
         <http://ontology.neuinfo.org/NIF/ttl/NIF-Neuron-Defined.ttl>,
-        <http://ontology.neuinfo.org/NIF/ttl/NIF-Neuron-Phenotype.ttl> .
+        <http://ontology.neuinfo.org/NIF/ttl/phenotypes.ttl> ;
+    rdfs:label "Temp Ontology" ;
+    owl:versionInfo "2018-02-10" .
 
 ### Object Properties
 
-ilx:hasExpressionPhenotype a owl:ObjectProperty .
+ilxtr:hasMolecularPhenotype a owl:ObjectProperty .
 
 ### Annotation Properties
 
-OBOANN:abbrev a owl:AnnotationProperty .
+NIFRID:abbrev a owl:AnnotationProperty .
 
 skos:definition a owl:AnnotationProperty .
 
@@ -38,1466 +41,1010 @@ skos:definition a owl:AnnotationProperty .
 
 ILX:0050005 a owl:Class ;
     rdfs:label "Neocortex Neuron expressing neuropeptide y"@en ;
-    OBOANN:abbrev "NPY+ cell"@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasExpressionPhenotype ;
-            owl:someValuesFrom PR:000011387 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "NPY+ cell"@en ;
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasExpressionPhenotype "neuropeptide y" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050006 a owl:Class ;
     rdfs:label "Neocortex Neuron expressing vasoactive intestinal peptide"@en ;
-    OBOANN:abbrev "VIP+ cell"@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasExpressionPhenotype ;
-            owl:someValuesFrom PR:000017299 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "VIP+ cell"@en ;
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasExpressionPhenotype "vasoactive intestinal peptide" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050007 a owl:Class ;
     rdfs:label "Neocortex Neuron expressing cholecystokinin"@en ;
-    OBOANN:abbrev "CCK+ cell"@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasExpressionPhenotype ;
-            owl:someValuesFrom PR:000005110 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "CCK+ cell"@en ;
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasExpressionPhenotype "cholecystokinin" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050008 a owl:Class ;
     rdfs:label "Neocortex Neuron expressing somatostatin"@en ;
-    OBOANN:abbrev "SOM+ cell"@en,
+    NIFRID:abbrev "SOM+ cell"@en,
         "Sst+ cell"@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasExpressionPhenotype ;
-            owl:someValuesFrom PR:000015665 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasExpressionPhenotype "somatostatin" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050009 a owl:Class ;
     rdfs:label "Neocortex Tufted pyramidal cell"@en ;
-    OBOANN:abbrev "TPC"@en ;
-    rdfs:subClassOf NIFCELL:sao2128417084,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "tufted" .
+    NIFRID:abbrev "TPC"@en ;
+    rdfs:subClassOf SAO:2128417084 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050010 a owl:Class ;
     rdfs:label "Neocortex Untufted pyramidal cell"@en ;
-    OBOANN:abbrev "UTPC"@en ;
+    NIFRID:abbrev "UTPC"@en ;
     skos:definition "These cells have a thin apical dendrite without a tuft. The two types of Thick Tufted pyramidal cells have bigger and more typical pyramidal-shaped somata compared with Untufted (slender) pyramidal cells and the Untufted pyramidal cells. The Untufted (slender) pyramidal cells and the Untufted pyramidal cells are smaller neurons which have similar smaller basal dendritic clusters."@en ;
-    rdfs:subClassOf NIFCELL:sao2128417084,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "untufted" .
+    rdfs:subClassOf SAO:2128417084 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "untufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050011 a owl:Class ;
     rdfs:label "Neocortex Star pyramidal cell"@en ;
-    OBOANN:abbrev "SP"@en,
+    NIFRID:abbrev "SP"@en,
         "SPC"@en ;
     skos:definition "Star pyramidal cells have a slender apical dendrite without a tuft."@en ;
-    rdfs:subClassOf NIFCELL:sao2128417084,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "star" .
+    rdfs:subClassOf SAO:2128417084 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "star" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050012 a owl:Class ;
     rdfs:label "Neocortex Layer IV pyramidal cell"@en ;
-    OBOANN:abbrev "L4_PC"@en ;
-    rdfs:subClassOf NIFCELL:sao2128417084,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005393 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L4_PC"@en ;
+    rdfs:subClassOf SAO:2128417084 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005393 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050013 a owl:Class ;
     rdfs:label "Neocortex Horizontal pyramidal cell"@en ;
-    OBOANN:abbrev "HPC"@en ;
+    NIFRID:abbrev "HPC"@en ;
     skos:definition "Horizontal tufted pyramidal cells have a horizontally extended dendrite with more branches than a typical basal dendrite."@en ;
-    rdfs:subClassOf NIFCELL:sao2128417084,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "horizontal" .
+    rdfs:subClassOf SAO:2128417084 ;
+    ilxtr:hasMorphologicalPhenotype "horizontal",
+        "pyramidal" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050014 a owl:Class ;
     rdfs:label "Neocortex Bipolar pyramidal cell"@en ;
-    OBOANN:abbrev "BPC"@en ;
+    NIFRID:abbrev "BPC"@en ;
     skos:definition "Bipolar pyramidal cells have a typical apical dendrite towards pial with or without a small tuft and a big inverted (towards white matter) dendrite with more branches than other basal dendrites."@en ;
-    rdfs:subClassOf NIFCELL:sao2128417084,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BipolarPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    rdfs:subClassOf SAO:2128417084 ;
+    ilxtr:hasMorphologicalPhenotype "bipolar",
+        "pyramidal" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050015 a owl:Class ;
     rdfs:label "Neocortex Narrow pyramidal cell projecting to thalamus"@en ;
-    OBOANN:abbrev "NPC"@en ;
+    NIFRID:abbrev "NPC"@en ;
     skos:definition "Narrow pyramidal cells have a narrow-looking appearance with short basal and oblique dendrites and a small tuft."@en ;
-    rdfs:subClassOf NIFCELL:sao2128417084,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasProjectionPhenotype ;
-            owl:someValuesFrom UBERON:0001879 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "narrow" .
+    rdfs:subClassOf SAO:2128417084 ;
+    ilxtr:hasMorphologicalPhenotype "narrow",
+        "pyramidal" ;
+    ilxtr:hasProjectionPhenotype "thalamus" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050016 a owl:Class ;
     rdfs:label "Neocortex Tufted pyramidal cell towards layer IV"@en ;
-    OBOANN:abbrev "TPC_L4"@en ;
-    rdfs:subClassOf ILX:0050009,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "towards layer IV",
-        "tufted" .
+    NIFRID:abbrev "TPC_L4"@en ;
+    rdfs:subClassOf ILX:0050009 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "towards layer IV",
+        "tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050017 a owl:Class ;
     rdfs:label "Neocortex Tufted pyramidal cell towards layer I"@en ;
-    OBOANN:abbrev "TPC_L1"@en ;
-    rdfs:subClassOf ILX:0050009,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "towards layer I",
-        "tufted" .
+    NIFRID:abbrev "TPC_L1"@en ;
+    rdfs:subClassOf ILX:0050009 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "towards layer I",
+        "tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050018 a owl:Class ;
     rdfs:label "Neocortex Thick tufted pyramidal cell"@en ;
-    OBOANN:abbrev "TTPC"@en ;
-    rdfs:subClassOf ILX:0050009,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "thick tufted",
-        "Thick tufted" .
+    NIFRID:abbrev "TTPC"@en ;
+    rdfs:subClassOf ILX:0050009 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "Thick tufted",
+        "thick tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050019 a owl:Class ;
     rdfs:label "Neocortex Slender tufted pyramidal cell"@en ;
-    OBOANN:abbrev "STPC"@en ;
+    NIFRID:abbrev "STPC"@en ;
     skos:definition "These cells have a thin apical dendrite with a small tuft."@en ;
-    rdfs:subClassOf ILX:0050009,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "slender tufted" .
+    rdfs:subClassOf ILX:0050009 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "slender tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050020 a owl:Class ;
     rdfs:label "Neocortex Early bifurcating thick tufted pyramidal cell"@en ;
-    OBOANN:abbrev "TTPC2"@en ;
+    NIFRID:abbrev "TTPC2"@en ;
     skos:definition "These cells have a thick apical trunk with the tuft occurring more proximally."@en ;
-    rdfs:subClassOf ILX:0050018,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "early bifurcating",
-        "thick tufted" .
+    rdfs:subClassOf ILX:0050018 ;
+    ilxtr:hasMorphologicalPhenotype "early bifurcating",
+        "pyramidal",
+        "thick tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050021 a owl:Class ;
     rdfs:label "Neocortex Late bifurcating thick tufted pyramidal cell"@en ;
-    OBOANN:abbrev "TTPC1"@en ;
+    NIFRID:abbrev "TTPC1"@en ;
     skos:definition "These cells had a thick apical dendrite with a late big tuft."@en ;
-    rdfs:subClassOf ILX:0050018,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "late bifurcating",
-        "thick tufted" .
+    rdfs:subClassOf ILX:0050018 ;
+    ilxtr:hasMorphologicalPhenotype "late bifurcating",
+        "pyramidal",
+        "thick tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050022 a owl:Class ;
     rdfs:label "Neocortex Untufted slender pyramidal cell"@en ;
-    OBOANN:abbrev "USPC"@en ;
-    rdfs:subClassOf ILX:0050010,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "slender",
-        "untufted" .
+    NIFRID:abbrev "USPC"@en ;
+    rdfs:subClassOf ILX:0050010 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "slender",
+        "untufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050023 a owl:Class ;
     rdfs:label "Neocortex Inverted pyramidal cell"@en ;
-    OBOANN:abbrev "IPC"@en,
+    NIFRID:abbrev "IPC"@en,
         "ITPC"@en ;
     skos:definition "Inverted tufted pyramidal cell have a big dendrite inverted towards white matter with more branches than other basal dendrites."@en ;
-    rdfs:subClassOf ILX:0050009,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "inverted" .
+    rdfs:subClassOf ILX:0050009 ;
+    ilxtr:hasMorphologicalPhenotype "inverted",
+        "pyramidal" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050024 a owl:Class ;
     rdfs:label "Neocortex Layer VI tufted pyramidal cell towards layer IV"@en ;
-    OBOANN:abbrev "L6_TTPC_L4"@en ;
-    rdfs:subClassOf ILX:0050016,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] ;
-    ilx:hasMorphologicalPhenotype "towards layer IV",
-        "tufted" .
+    NIFRID:abbrev "L6_TTPC_L4"@en ;
+    rdfs:subClassOf ILX:0050016 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "towards layer IV",
+        "tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050025 a owl:Class ;
     rdfs:label "Neocortex Layer V late bifurcating thick tufted pyramidal cell"@en ;
-    OBOANN:abbrev "L5_TTPC1"@en ;
-    rdfs:subClassOf ILX:0050021,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "late bifurcating",
-        "thick tufted" .
+    NIFRID:abbrev "L5_TTPC1"@en ;
+    rdfs:subClassOf ILX:0050021 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "late bifurcating",
+        "pyramidal",
+        "thick tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050026 a owl:Class ;
     rdfs:label "Neocortex Layer VI untufted pyramidal cell"@en ;
-    OBOANN:abbrev "L6_UTPC"@en ;
-    rdfs:subClassOf ILX:0050010,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] ;
-    ilx:hasMorphologicalPhenotype "untufted" .
+    NIFRID:abbrev "L6_UTPC"@en ;
+    rdfs:subClassOf ILX:0050010 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "untufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050027 a owl:Class ;
     rdfs:label "Neocortex Layer VI inverted pyramidal cell"@en ;
-    OBOANN:abbrev "L6_IPC"@en ;
-    rdfs:subClassOf ILX:0050023,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] ;
-    ilx:hasMorphologicalPhenotype "inverted pyramidal" .
+    NIFRID:abbrev "L6_IPC"@en ;
+    rdfs:subClassOf ILX:0050023 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "inverted pyramidal" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050028 a owl:Class ;
     rdfs:label "Neocortex Layer VI bipolar pyramidal cell"@en ;
-    OBOANN:abbrev "L6_BPC"@en ;
-    rdfs:subClassOf ILX:0050014,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BipolarPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] .
+    NIFRID:abbrev "L6_BPC"@en ;
+    rdfs:subClassOf ILX:0050014 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "bipolar",
+        "pyramidal" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050029 a owl:Class ;
     rdfs:label "Neocortex Layer V early bifurcating thick tufted pyramidal cell"@en ;
-    OBOANN:abbrev "L5_TTPC2"@en ;
-    rdfs:subClassOf ILX:0050020,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ] ;
-    ilx:hasMorphologicalPhenotype "early bifurcating",
-        "thick tufted" .
+    NIFRID:abbrev "L5_TTPC2"@en ;
+    rdfs:subClassOf ILX:0050020 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "early bifurcating",
+        "pyramidal",
+        "thick tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050030 a owl:Class ;
     rdfs:label "Neocortex Layer V untufted pyramidal cell"@en ;
-    OBOANN:abbrev "L5_UTPC"@en ;
-    rdfs:subClassOf ILX:0050010,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "untufted" .
+    NIFRID:abbrev "L5_UTPC"@en ;
+    rdfs:subClassOf ILX:0050010 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "untufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050031 a owl:Class ;
     rdfs:label "Neocortex Layer V slender tufted pyramidal cell"@en ;
-    OBOANN:abbrev "L5_STPC"@en ;
-    rdfs:subClassOf ILX:0050019,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "slender tufted" .
+    NIFRID:abbrev "L5_STPC"@en ;
+    rdfs:subClassOf ILX:0050019 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "slender tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050032 a owl:Class ;
     rdfs:label "Neocortex Layer VI tufted pyramidal cell towards layer I"@en ;
-    OBOANN:abbrev "L6_TPC_L1"@en ;
-    rdfs:subClassOf ILX:0050017,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] ;
-    ilx:hasMorphologicalPhenotype "towards layer I",
-        "tufted" .
+    NIFRID:abbrev "L6_TPC_L1"@en ;
+    rdfs:subClassOf ILX:0050017 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "towards layer I",
+        "tufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050033 a owl:Class ;
     rdfs:label "Neocortex Bitufted cell"@en ;
-    OBOANN:abbrev "BTC"@en ;
+    NIFRID:abbrev "BTC"@en ;
     skos:definition "Bitufted cells have bitufted dendrites, and are characterized by long axonal segments typically forming a big transcolumnar and/or translaminar axonal cluster."@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
+    rdfs:subClassOf SAO:1417703748,
         [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BituftedPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasExpressionPhenotype ;
-            owl:someValuesFrom NIFMOL:sao229636300 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+            owl:onProperty ilxtr:hasMolecularPhenotype ;
+            owl:someValuesFrom SAO:229636300 ] ;
+    ilxtr:hasMorphologicalPhenotype "bitufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050034 a owl:Class ;
     rdfs:label "Neocortex Neurogliaform cell"@en ;
-    OBOANN:abbrev "NGC"@en ;
+    NIFRID:abbrev "NGC"@en ;
     skos:definition "Neurogliaform cell have multipolar dendritic arbors, and are characterized by very small and dense local axonal arborization around the parent cell body and short axonal segments bearing high density of small boutons."@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
+    rdfs:subClassOf SAO:1417703748,
         [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NeurogliaformPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasExpressionPhenotype ;
-            owl:someValuesFrom NIFMOL:sao229636300 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+            owl:onProperty ilxtr:hasMolecularPhenotype ;
+            owl:someValuesFrom SAO:229636300 ] ;
+    ilxtr:hasMorphologicalPhenotype "neurogliaform" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050035 a owl:Class ;
     rdfs:label "Neocortex Neurogliaform cell with sparse axonal arbours"@en ;
-    OBOANN:abbrev "NGC-SA"@en ;
+    NIFRID:abbrev "NGC-SA"@en ;
     skos:definition "Visually, the Neurogliaform cell with sparse axonal arbours, appeared as a sparser variation of Neurogliaform cell with dense axonal arbours. They displayed similar axonal branching patterns in terms of segment length, tortuosity, and branch angles. However, Neurogliaform cell with sparse axonal arbours differ from Neurogliaform cell with dense axonal arbours in that they displayed significantly smaller vertical arborizations with fewer and shorter axon collaterals. On the other hand, the dendritic arborization can extend further horizontally with longer dendritic segments and smaller branching angles."@en ;
-    rdfs:subClassOf ILX:0050034,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NeurogliaformPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "sparse axonal arbour" .
+    rdfs:subClassOf ILX:0050034 ;
+    ilxtr:hasMorphologicalPhenotype "neurogliaform",
+        "sparse axonal arbour" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050036 a owl:Class ;
     rdfs:label "Neocortex Neurogliaform cell with dense axonal arbours"@en ;
-    OBOANN:abbrev "NGC-DA"@en ;
+    NIFRID:abbrev "NGC-DA"@en ;
     skos:definition "Neurogliaform cell with dense axonal arbours cells are very similar to the Neurogliaform cells reported in other cortical layers showing compact axonal arborization. These neurons also typically display the shortest dendritic segments among layer I neurons."@en ;
-    rdfs:subClassOf ILX:0050034,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NeurogliaformPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "dense axonal arbour" .
+    rdfs:subClassOf ILX:0050034 ;
+    ilxtr:hasMorphologicalPhenotype "dense axonal arbour",
+        "neurogliaform" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050037 a owl:Class ;
     rdfs:label "Neocortex Cajal-Retzius cell like cell"@en ;
-    OBOANN:abbrev "CrC"@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
+    NIFRID:abbrev "CrC"@en ;
+    rdfs:subClassOf SAO:1417703748,
         [ a owl:Restriction ;
-            owl:onProperty ilx:hasExpressionPhenotype ;
-            owl:someValuesFrom NIFMOL:sao229636300 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "Cajal-Retzius" .
+            owl:onProperty ilxtr:hasMolecularPhenotype ;
+            owl:someValuesFrom SAO:229636300 ] ;
+    ilxtr:hasMorphologicalPhenotype "Cajal-Retzius" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050038 a owl:Class ;
     rdfs:label "Neocortex Small basket cell"@en ;
-    OBOANN:abbrev "SBC"@en ;
+    NIFRID:abbrev "SBC"@en ;
     skos:definition "Small basket cells have multipolar or bitufted dendritic arbor, and axon collaterals with numerous curved or straight short axonal segments bearing high density of boutons and often forming a dense local axonal cluster around the soma."@en ;
-    rdfs:subClassOf NIFCELL:nifext_56,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:SmallBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    rdfs:subClassOf NIFEXT:56 ;
+    ilxtr:hasMorphologicalPhenotype "small basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050039 a owl:Class ;
     rdfs:label "Neocortex Large basket cell"@en ;
-    OBOANN:abbrev "LBC"@en ;
+    NIFRID:abbrev "LBC"@en ;
     skos:definition "Large basket cells have multipolar or bitufted dendrites, an axonal cluster characterized by straight and long axonal segments with low density of boutons, and long collaterals giving branches from both sides. Layer II /III large basket cells commonly have descending axonal collaterals while those in deep layer V and layer VI often had ascending axonal collaterals reaching layer II/III even layer I."@en ;
-    rdfs:subClassOf NIFCELL:nifext_56,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:LargeBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    rdfs:subClassOf NIFEXT:56 ;
+    ilxtr:hasMorphologicalPhenotype "large basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050040 a owl:Class ;
     rdfs:label "Neocortex Nest basket cell"@en ;
-    OBOANN:abbrev "arcade cell"@en,
+    NIFRID:abbrev "arcade cell"@en,
         "NBC"@en,
         "willow cell"@en ;
     skos:definition "Nest basket cells (corresponding to arcade or willow cells) had multipolar or bitufted dendrites without long collaterals. Nest basket cells in superagranular layers are in general smaller in size than those in infragranular layers."@en ;
-    rdfs:subClassOf NIFCELL:nifext_56,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NestBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    rdfs:subClassOf NIFEXT:56 ;
+    ilxtr:hasMorphologicalPhenotype "nest basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050041 a owl:Class ;
     rdfs:label "Neocortex Axonal cell"@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
+    rdfs:subClassOf SAO:1417703748,
         [ a owl:Restriction ;
-            owl:onProperty ilx:hasExpressionPhenotype ;
-            owl:someValuesFrom NIFMOL:sao229636300 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+            owl:onProperty ilxtr:hasMolecularPhenotype ;
+            owl:someValuesFrom SAO:229636300 ] ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050042 a owl:Class ;
     rdfs:label "Neocortex Descending axon cell"@en ;
-    OBOANN:abbrev "DAC"@en ;
+    NIFRID:abbrev "DAC"@en ;
     skos:definition "Descending axon cells are easily distinguished due to the presence of one to a few descending axon collaterals that reaches layer IV, and layer V, occasionally even layer VI. Their other striking distinguishing feature are the large horizontal (often > 1 mm) and vertical (often > 0.5 mm) extents of their axonal arborization, which was the largest as compared to any cell type in layer I."@en ;
-    rdfs:subClassOf ILX:0050041,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "descending axon" .
+    rdfs:subClassOf ILX:0050041 ;
+    ilxtr:hasMorphologicalPhenotype "descending axon" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050043 a owl:Class ;
     rdfs:label "Neocortex Large axon cell"@en ;
-    OBOANN:abbrev "LAC"@en ;
+    NIFRID:abbrev "LAC"@en ;
     skos:definition "Large axon cells appear visually similar to the Horizontal axon cells. On closer inspection, however, the axonal segments are shorter and projected more radially compared with Horizontal axon cells. Particularly many short branches emerged from long axonal collaterals. They display the longest total length of axon, the highest number of segments, and the highest maximum branch order among layer I neuronal classes. The axonal collaterals of more than 50% of Large axon cells were often seen to project vertically into layer II and layer III. Their dendrites also displayed the highest segment number indicating frequently branching."@en ;
-    rdfs:subClassOf ILX:0050041,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "large axon" .
+    rdfs:subClassOf ILX:0050041 ;
+    ilxtr:hasMorphologicalPhenotype "large axon" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050044 a owl:Class ;
     rdfs:label "Neocortex Horizontal axon cell"@en ;
-    OBOANN:abbrev "HAC"@en ;
+    NIFRID:abbrev "HAC"@en ;
     skos:definition "Horizontal axon cell are characterized by extensive horizontal axonal arborizations as compared to vertical extents, with long axonal segment lengths. Their Horizontal/Vertical extent ratio (often > 4 fold) are higher when compared to other neuron types in layer I."@en ;
-    rdfs:subClassOf ILX:0050041,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "horizontal axon" .
+    rdfs:subClassOf ILX:0050041 ;
+    ilxtr:hasMorphologicalPhenotype "horizontal axon" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050045 a owl:Class ;
     rdfs:label "Neocortex Small axon cell"@en ;
-    OBOANN:abbrev "SAC"@en,
+    NIFRID:abbrev "SAC"@en,
         "SLAC"@en ;
     skos:definition "Small axon cells have the smallest axonal arborization reflected in the lowest total axonal lengths among layer I cells. The axonal arbor also displayed the lowest number of axonal segments and the lowest maximum axonal branch order. The axons have however the largest axonal branch angles with the straightest axonal segments. About 1/3 of all Small axon cells project one or two axonal collaterals into layer II and layer III."@en ;
-    rdfs:subClassOf ILX:0050041,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "small axon" .
+    rdfs:subClassOf ILX:0050041 ;
+    ilxtr:hasMorphologicalPhenotype "small axon" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050046 a owl:Class ;
     rdfs:label "Neocortex Stuttering cell"@en ;
-    OBOANN:abbrev "STUT"@en ;
+    NIFRID:abbrev "STUT"@en ;
     skos:definition "APWaveform spiking response: The stuttering itself can typically not be detected from APWaveform traces. However, the characteristics should be the same as the non-accommodating case. IDRest spiking response: During the different levels of IDRest stimuli, the spike firing is continuous, but is regularly interrupted by short pauses. During these pauses the voltage is around or above the resting membrane potential and shows some lower amplitude noise/oscillations."@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "stuttering" .
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasElectrophysiologicalPhenotype "stuttering" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050047 a owl:Class ;
     rdfs:label "Neocortex Non-accommodating cell"@en ;
-    OBOANN:abbrev "NAC"@en ;
+    NIFRID:abbrev "NAC"@en ;
     skos:definition """Spiking behavior description: This type is characterized by an absence of accommodation in the spike characteristics during the IDRest stimuli. APWaveform spiking response:
 Accommodation is mostly clearly visible in the APWaveform spike. When it is a non-bursting cell, the height and width of the first and second spike should be very similar. When it's a bursting cell, it's important not to confuse the burst spikes with spikes in the more stationary regime. IDRest spiking response: After the transitory behavior after the onset of the stimulus (a burst or a delay), there should be almost no change in the spike width/height, nor should be any change in interspike interval."""@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "non-accommodating" .
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasElectrophysiologicalPhenotype "non-accommodating" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050048 a owl:Class ;
     rdfs:label "Neocortex Accommodating cell"@en ;
-    OBOANN:abbrev "AC"@en ;
+    NIFRID:abbrev "AC"@en ;
     skos:definition "Spiking behavior description: This type is characterized an accommodation in the spike characteristics during the IDRest stimuli. APWaveform spiking response: Accommodation is mostly clearly visible in the APWaveform spike. When it is a non-bursting cell, the second spike should be wider and less high than the first spike. When it's a bursting cell, it's important not to confuse the burst spikes with spikes in the more stationary regime, and the first and second spike of the stationary regime should be compared (if these are present during the short APWaveform stimulus) IDRest spiking response: After the transitory behavior after the onset of the stimulus (a burst or a delay), there should be an increase in the interspike interval, and possibly some accommodation in spike width/height."@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "accommodating" .
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasElectrophysiologicalPhenotype "accommodating" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050049 a owl:Class ;
     rdfs:label "Neocortex Irregular spiking cell"@en ;
-    OBOANN:abbrev "IR"@en ;
+    NIFRID:abbrev "IR"@en ;
     skos:definition "APWaveform spiking response: The irregular spiking itself can typically not be detected from APWaveform traces. However, the characteristics should be the same as the accommodating case. IDRest spiking response: After the transitory behavior after the onset of the stimulus (a burst), the interspike intervals should become very irregular."@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "irregular spiking" .
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasElectrophysiologicalPhenotype "irregular spiking" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050050 a owl:Class ;
     rdfs:label "Neocortex Classical firing cell"@en ;
     skos:definition "Firing behavior description: This type is characterized by a classical/continuous/regular firing behavior of the first spikes in the IDRest protocol. IDRest firing response: The first few spikes (spike height, spike width, interspike interval) are very similar to the other spikes in the trace. The is virtually no delay in firing at all levels above threshold in IDRest. APWaveform firing response: In case of a non-accommodating cell, the first two spikes should look very identical, in accommodating cells there can be and increase in spike width."@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "classical firing" .
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasElectrophysiologicalPhenotype "classical firing" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050051 a owl:Class ;
     rdfs:label "Neocortex Burst firing cell"@en ;
     skos:definition "Firing behavior description: This type is characterized by a short burst of spikes at the onset of the IDRest protocol. IDRest firing response: The first interspike interval is very important. If this is significantly different from the other intervals in the trace, a burst is present. More than two spikes can be involved in the burst. There should be virtually no delay in spiking at the onset of the stimulus. APWaveform firing response: The first two spikes can look very different, the real confirmation of the burst should come from IDRest though."@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "burst firing" .
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasElectrophysiologicalPhenotype "burst firing" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050052 a owl:Class ;
     rdfs:label "Neocortex Delayed firing cell"@en ;
     skos:definition "Firing behavior description: This type is characterized by a delay in spiking at the onset of the IDRest protocol. IDRest firing response: The main characteristic of this type can be seen at the lower levels of current injection of the IDRest stimuli (100-150% of threshold). At these levels a clear delay in firing should be present (50ms+). When there is long delay, it is allowed to have one spike immediately at stimulus onset (followed by a long pause). APWaveform firing response: The delay is not always present in the APWaveform stimuli (since the current injection can be too high)."@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "delayed firing" .
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasElectrophysiologicalPhenotype "delayed firing" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050053 a owl:Class ;
     rdfs:label "Neocortex Classical stuttering cell"@en ;
-    OBOANN:abbrev "cSTUT"@en ;
+    NIFRID:abbrev "cSTUT"@en ;
     rdfs:subClassOf ILX:0050046,
-        ILX:0050050,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "classical stuttering" .
+        ILX:0050050 ;
+    ilxtr:hasElectrophysiologicalPhenotype "classical stuttering" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050054 a owl:Class ;
     rdfs:label "Neocortex Classical irregular cell"@en ;
-    OBOANN:abbrev "cIR"@en ;
+    NIFRID:abbrev "cIR"@en ;
     rdfs:subClassOf ILX:0050049,
-        ILX:0050050,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "classical irregular" .
+        ILX:0050050 ;
+    ilxtr:hasElectrophysiologicalPhenotype "classical irregular" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050055 a owl:Class ;
     rdfs:label "Neocortex Classical non-accommodating cell"@en ;
-    OBOANN:abbrev "cNAC"@en ;
+    NIFRID:abbrev "cNAC"@en ;
     rdfs:subClassOf ILX:0050047,
-        ILX:0050050,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "classical non-accommodating" .
+        ILX:0050050 ;
+    ilxtr:hasElectrophysiologicalPhenotype "classical non-accommodating" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050056 a owl:Class ;
     rdfs:label "Neocortex Classical accommodating cell"@en ;
-    OBOANN:abbrev "cAC"@en ;
+    NIFRID:abbrev "cAC"@en ;
     rdfs:subClassOf ILX:0050048,
-        ILX:0050050,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "classical accommodating" .
+        ILX:0050050 ;
+    ilxtr:hasElectrophysiologicalPhenotype "classical accommodating" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050057 a owl:Class ;
     rdfs:label "Neocortex Burst stuttering cell"@en ;
-    OBOANN:abbrev "bSTUT"@en ;
+    NIFRID:abbrev "bSTUT"@en ;
     rdfs:subClassOf ILX:0050046,
-        ILX:0050051,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "burst stuttering" .
+        ILX:0050051 ;
+    ilxtr:hasElectrophysiologicalPhenotype "burst stuttering" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050058 a owl:Class ;
     rdfs:label "Neocortex Burst non-accommodating cell"@en ;
-    OBOANN:abbrev "bNAC"@en ;
+    NIFRID:abbrev "bNAC"@en ;
     rdfs:subClassOf ILX:0050047,
-        ILX:0050051,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "burst non-accommodating" .
+        ILX:0050051 ;
+    ilxtr:hasElectrophysiologicalPhenotype "burst non-accommodating" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050059 a owl:Class ;
     rdfs:label "Neocortex Burst irregular cell"@en ;
-    OBOANN:abbrev "bIR"@en ;
+    NIFRID:abbrev "bIR"@en ;
     rdfs:subClassOf ILX:0050049,
-        ILX:0050051,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "burst irregular" .
+        ILX:0050051 ;
+    ilxtr:hasElectrophysiologicalPhenotype "burst irregular" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050060 a owl:Class ;
     rdfs:label "Neocortex Burst accommodating cell"@en ;
-    OBOANN:abbrev "bAC"@en ;
+    NIFRID:abbrev "bAC"@en ;
     rdfs:subClassOf ILX:0050048,
-        ILX:0050051,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "burst accommodating" .
+        ILX:0050051 ;
+    ilxtr:hasElectrophysiologicalPhenotype "burst accommodating" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050061 a owl:Class ;
     rdfs:label "Neocortex Delayed stuttering cell"@en ;
-    OBOANN:abbrev "dSTUT"@en ;
+    NIFRID:abbrev "dSTUT"@en ;
     rdfs:subClassOf ILX:0050046,
-        ILX:0050052,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "delayed stuttering" .
+        ILX:0050052 ;
+    ilxtr:hasElectrophysiologicalPhenotype "delayed stuttering" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050062 a owl:Class ;
     rdfs:label "Neocortex Delayed non-accommodating cell"@en ;
-    OBOANN:abbrev "dNAC"@en ;
+    NIFRID:abbrev "dNAC"@en ;
     rdfs:subClassOf ILX:0050047,
-        ILX:0050052,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "delayed non-accommodating" .
+        ILX:0050052 ;
+    ilxtr:hasElectrophysiologicalPhenotype "delayed non-accommodating" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050063 a owl:Class ;
     rdfs:label "Neocortex Delayed accommodating cell"@en ;
-    OBOANN:abbrev "dAC"@en ;
+    NIFRID:abbrev "dAC"@en ;
     rdfs:subClassOf ILX:0050048,
-        ILX:0050052,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasElectrophysiologicalPhenotype "classical accommodating" .
+        ILX:0050052 ;
+    ilxtr:hasElectrophysiologicalPhenotype "classical accommodating" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050064 a owl:Class ;
     rdfs:label "Neocortex Layer I neurogliaform cell with dense axonal arbour"@en ;
-    OBOANN:abbrev "L1_NGC-DA"@en ;
-    rdfs:subClassOf ILX:0050036,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NeurogliaformPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005390 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "dense axonal arbour" .
+    NIFRID:abbrev "L1_NGC-DA"@en ;
+    rdfs:subClassOf ILX:0050036 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005390 ;
+    ilxtr:hasMorphologicalPhenotype "dense axonal arbour",
+        "neurogliaform" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050065 a owl:Class ;
     rdfs:label "Neocortex Layer I neurogliaform cell with sparse axon arbour"@en ;
-    OBOANN:abbrev "L1_NGC-SA"@en ;
-    rdfs:subClassOf ILX:0050035,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NeurogliaformPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005390 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "sparse axonal arbour" .
+    NIFRID:abbrev "L1_NGC-SA"@en ;
+    rdfs:subClassOf ILX:0050035 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005390 ;
+    ilxtr:hasMorphologicalPhenotype "neurogliaform",
+        "sparse axonal arbour" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050066 a owl:Class ;
     rdfs:label "Neocortex Layer I descending axon cell"@en ;
-    OBOANN:abbrev "L1_DAC"@en ;
-    rdfs:subClassOf ILX:0050042,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005390 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "descending axon" .
+    NIFRID:abbrev "L1_DAC"@en ;
+    rdfs:subClassOf ILX:0050042 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005390 ;
+    ilxtr:hasMorphologicalPhenotype "descending axon" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050067 a owl:Class ;
     rdfs:label "Neocortex Layer I horizontal axon cell"@en ;
-    OBOANN:abbrev "L1_HAC"@en ;
-    rdfs:subClassOf ILX:0050044,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005390 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "horizontal axon" .
+    NIFRID:abbrev "L1_HAC"@en ;
+    rdfs:subClassOf ILX:0050044 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005390 ;
+    ilxtr:hasMorphologicalPhenotype "horizontal axon" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050068 a owl:Class ;
     rdfs:label "Neocortex Layer I large axon cell"@en ;
-    OBOANN:abbrev "L1_LAC"@en ;
-    rdfs:subClassOf ILX:0050043,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005390 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "large axon" .
+    NIFRID:abbrev "L1_LAC"@en ;
+    rdfs:subClassOf ILX:0050043 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005390 ;
+    ilxtr:hasMorphologicalPhenotype "large axon" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050069 a owl:Class ;
     rdfs:label "Neocortex Layer I small axon cell"@en ;
-    OBOANN:abbrev "L1_SAC"@en ;
-    rdfs:subClassOf ILX:0050045,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005390 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "small axon" .
+    NIFRID:abbrev "L1_SAC"@en ;
+    rdfs:subClassOf ILX:0050045 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005390 ;
+    ilxtr:hasMorphologicalPhenotype "small axon" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050070 a owl:Class ;
     rdfs:label "Neocortex Layer II/III bipolar cell"@en ;
-    OBOANN:abbrev "L2/3_BP"@en,
+    NIFRID:abbrev "L2/3_BP"@en,
         "L23_BP"@en ;
-    rdfs:subClassOf NIFCELL:nifext_81,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BipolarPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasLayerLocationPhenotype "cortical layer II/III" .
+    rdfs:subClassOf NIFEXT:81 ;
+    ilxtr:hasLayerLocationPhenotype "cortical layer II/III" ;
+    ilxtr:hasMorphologicalPhenotype "bipolar" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050071 a owl:Class ;
     rdfs:label "Neocortex Layer IV bipolar cell"@en ;
-    OBOANN:abbrev "L4_BP"@en ;
-    rdfs:subClassOf NIFCELL:nifext_81,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BipolarPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005393 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L4_BP"@en ;
+    rdfs:subClassOf NIFEXT:81 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005393 ;
+    ilxtr:hasMorphologicalPhenotype "bipolar" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050072 a owl:Class ;
     rdfs:label "Neocortex Layer V bipolar cell"@en ;
-    OBOANN:abbrev "L5_BP"@en ;
-    rdfs:subClassOf NIFCELL:nifext_81,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BipolarPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L5_BP"@en ;
+    rdfs:subClassOf NIFEXT:81 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "bipolar" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050073 a owl:Class ;
     rdfs:label "Neocortex Layer VI bipolar cell"@en ;
-    OBOANN:abbrev "L6_BP"@en ;
-    rdfs:subClassOf NIFCELL:nifext_81,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BipolarPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] .
+    NIFRID:abbrev "L6_BP"@en ;
+    rdfs:subClassOf NIFEXT:81 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "bipolar" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050074 a owl:Class ;
     rdfs:label "Neocortex Layer II/III bitufted cell"@en ;
-    OBOANN:abbrev "L2/3_BTC"@en,
+    NIFRID:abbrev "L2/3_BTC"@en,
         "L23_BTC"@en ;
-    rdfs:subClassOf ILX:0050033,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BituftedPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasLayerLocationPhenotype "cortical layer II/III" .
+    rdfs:subClassOf ILX:0050033 ;
+    ilxtr:hasLayerLocationPhenotype "cortical layer II/III" ;
+    ilxtr:hasMorphologicalPhenotype "bitufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050075 a owl:Class ;
     rdfs:label "Neocortex Layer IV bitufted cell"@en ;
-    OBOANN:abbrev "L4_BTC"@en ;
-    rdfs:subClassOf ILX:0050033,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BituftedPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005393 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L4_BTC"@en ;
+    rdfs:subClassOf ILX:0050033 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005393 ;
+    ilxtr:hasMorphologicalPhenotype "bitufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050076 a owl:Class ;
     rdfs:label "Neocortex Layer V bitufted cell"@en ;
-    OBOANN:abbrev "L5_BTC"@en ;
-    rdfs:subClassOf ILX:0050033,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BituftedPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ] .
+    NIFRID:abbrev "L5_BTC"@en ;
+    rdfs:subClassOf ILX:0050033 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "bitufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050077 a owl:Class ;
     rdfs:label "Neocortex Layer VI bitufted cell"@en ;
-    OBOANN:abbrev "L6_BTC"@en ;
-    rdfs:subClassOf ILX:0050033,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BituftedPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] .
+    NIFRID:abbrev "L6_BTC"@en ;
+    rdfs:subClassOf ILX:0050033 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "bitufted" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050078 a owl:Class ;
     rdfs:label "Neocortex Layer II/III chandelier cell"@en ;
-    OBOANN:abbrev "L2/3_ChC"@en,
+    NIFRID:abbrev "L2/3_ChC"@en,
         "L23_ChC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_57,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:ChandelierPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasLayerLocationPhenotype "cortical layer II/III" .
+    rdfs:subClassOf NIFEXT:57 ;
+    ilxtr:hasLayerLocationPhenotype "cortical layer II/III" ;
+    ilxtr:hasMorphologicalPhenotype "chandelier" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050079 a owl:Class ;
     rdfs:label "Neocortex Layer IV chandelier cell"@en ;
-    OBOANN:abbrev "L4_ChC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_57,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:ChandelierPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005393 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L4_ChC"@en ;
+    rdfs:subClassOf NIFEXT:57 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005393 ;
+    ilxtr:hasMorphologicalPhenotype "chandelier" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050080 a owl:Class ;
     rdfs:label "Neocortex Layer V chandelier cell"@en ;
-    OBOANN:abbrev "L5_ChC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_57,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:ChandelierPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L5_ChC"@en ;
+    rdfs:subClassOf NIFEXT:57 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "chandelier" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050081 a owl:Class ;
     rdfs:label "Neocortex Layer VI chandelier cell"@en ;
-    OBOANN:abbrev "L6_ChC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_57,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:ChandelierPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] .
+    NIFRID:abbrev "L6_ChC"@en ;
+    rdfs:subClassOf NIFEXT:57 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "chandelier" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050082 a owl:Class ;
     rdfs:label "Neocortex Layer II/III double bouquet cell"@en ;
-    OBOANN:abbrev "L2/3_DBC"@en,
+    NIFRID:abbrev "L2/3_DBC"@en,
         "L23_DBC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_59,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:DoubleBouquetPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasLayerLocationPhenotype "cortical layer II/III" .
+    rdfs:subClassOf NIFEXT:59 ;
+    ilxtr:hasLayerLocationPhenotype "cortical layer II/III" ;
+    ilxtr:hasMorphologicalPhenotype "double bouquet" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050083 a owl:Class ;
     rdfs:label "Neocortex Layer IV double bouquet cell"@en ;
-    OBOANN:abbrev "L4_DBC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_59,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:DoubleBouquetPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005393 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L4_DBC"@en ;
+    rdfs:subClassOf NIFEXT:59 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005393 ;
+    ilxtr:hasMorphologicalPhenotype "double bouquet" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050084 a owl:Class ;
     rdfs:label "Neocortex Layer V double bouquet cell"@en ;
-    OBOANN:abbrev "L5_DBC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_59,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:DoubleBouquetPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ] .
+    NIFRID:abbrev "L5_DBC"@en ;
+    rdfs:subClassOf NIFEXT:59 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "double bouquet" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050085 a owl:Class ;
     rdfs:label "Neocortex Layer VI double bouquet cell"@en ;
-    OBOANN:abbrev "L6_DBC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_59,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:DoubleBouquetPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] .
+    NIFRID:abbrev "L6_DBC"@en ;
+    rdfs:subClassOf NIFEXT:59 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "double bouquet" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050086 a owl:Class ;
     rdfs:label "Neocortex Layer II/III neurogliaform cell"@en ;
-    OBOANN:abbrev "L2/3_NGC"@en,
+    NIFRID:abbrev "L2/3_NGC"@en,
         "L23_NGC"@en ;
-    rdfs:subClassOf ILX:0050034,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NeurogliaformPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasLayerLocationPhenotype "cortical layer II/III" .
+    rdfs:subClassOf ILX:0050034 ;
+    ilxtr:hasLayerLocationPhenotype "cortical layer II/III" ;
+    ilxtr:hasMorphologicalPhenotype "neurogliaform" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050087 a owl:Class ;
     rdfs:label "Neocortex Layer IV neurogliaform cell"@en ;
-    OBOANN:abbrev "L4_NGC"@en ;
-    rdfs:subClassOf ILX:0050034,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NeurogliaformPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005393 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L4_NGC"@en ;
+    rdfs:subClassOf ILX:0050034 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005393 ;
+    ilxtr:hasMorphologicalPhenotype "neurogliaform" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050088 a owl:Class ;
     rdfs:label "Neocortex Layer V neurogliaform cell"@en ;
-    OBOANN:abbrev "L5_NGC"@en ;
-    rdfs:subClassOf ILX:0050034,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NeurogliaformPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ] .
+    NIFRID:abbrev "L5_NGC"@en ;
+    rdfs:subClassOf ILX:0050034 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "neurogliaform" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050089 a owl:Class ;
     rdfs:label "Neocortex Layer VI neurogliaform cell"@en ;
-    OBOANN:abbrev "L6_NGC"@en ;
-    rdfs:subClassOf ILX:0050034,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NeurogliaformPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] .
+    NIFRID:abbrev "L6_NGC"@en ;
+    rdfs:subClassOf ILX:0050034 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "neurogliaform" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050090 a owl:Class ;
     rdfs:label "Neocortex Layer II/III Martinotti cell"@en ;
-    OBOANN:abbrev "L2/3_MC"@en,
+    NIFRID:abbrev "L2/3_MC"@en,
         "L23_MC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_55,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasLayerLocationPhenotype "cortical layer II/III" ;
-    ilx:hasMorphologicalPhenotype "Martinotti" .
+    rdfs:subClassOf NIFEXT:55 ;
+    ilxtr:hasLayerLocationPhenotype "cortical layer II/III" ;
+    ilxtr:hasMorphologicalPhenotype "Martinotti" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050091 a owl:Class ;
     rdfs:label "Neocortex Layer IV Martinotti cell"@en ;
-    OBOANN:abbrev "L4_MC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_55,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005393 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "Martinotti" .
+    NIFRID:abbrev "L4_MC"@en ;
+    rdfs:subClassOf NIFEXT:55 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005393 ;
+    ilxtr:hasMorphologicalPhenotype "Martinotti" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050092 a owl:Class ;
     rdfs:label "Neocortex Layer V Martinotti cell"@en ;
-    OBOANN:abbrev "L5_MC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_55,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "Martinotti" .
+    NIFRID:abbrev "L5_MC"@en ;
+    rdfs:subClassOf NIFEXT:55 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "Martinotti" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050093 a owl:Class ;
     rdfs:label "Neocortex Layer VI Martinotti cell"@en ;
-    OBOANN:abbrev "L6_MC"@en ;
-    rdfs:subClassOf NIFCELL:nifext_55,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] ;
-    ilx:hasMorphologicalPhenotype "Martinotti" .
+    NIFRID:abbrev "L6_MC"@en ;
+    rdfs:subClassOf NIFEXT:55 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "Martinotti" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050094 a owl:Class ;
     rdfs:label "Neocortex Layer II/III large basket cell"@en ;
-    OBOANN:abbrev "L2/3_LBC"@en,
+    NIFRID:abbrev "L2/3_LBC"@en,
         "L23_LBC"@en ;
-    rdfs:subClassOf ILX:0050039,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:LargeBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasLayerLocationPhenotype "cortical layer II/III" .
+    rdfs:subClassOf ILX:0050039 ;
+    ilxtr:hasLayerLocationPhenotype "cortical layer II/III" ;
+    ilxtr:hasMorphologicalPhenotype "large basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050095 a owl:Class ;
     rdfs:label "Neocortex Layer IV large basket cell"@en ;
-    OBOANN:abbrev "L4_LBC"@en ;
-    rdfs:subClassOf ILX:0050039,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:LargeBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005393 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L4_LBC"@en ;
+    rdfs:subClassOf ILX:0050039 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005393 ;
+    ilxtr:hasMorphologicalPhenotype "large basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050096 a owl:Class ;
     rdfs:label "Neocortex Layer V large basket cell"@en ;
-    OBOANN:abbrev "L5_LBC"@en ;
-    rdfs:subClassOf ILX:0050039,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:LargeBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L5_LBC"@en ;
+    rdfs:subClassOf ILX:0050039 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "large basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050097 a owl:Class ;
     rdfs:label "Neocortex Layer VI large basket cell"@en ;
-    OBOANN:abbrev "L6_LBC"@en ;
-    rdfs:subClassOf ILX:0050039,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:LargeBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] .
+    NIFRID:abbrev "L6_LBC"@en ;
+    rdfs:subClassOf ILX:0050039 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "large basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050098 a owl:Class ;
     rdfs:label "Neocortex Layer II/III nest basket cell"@en ;
-    OBOANN:abbrev "L2/3_NBC"@en,
+    NIFRID:abbrev "L2/3_NBC"@en,
         "L23_NBC"@en ;
-    rdfs:subClassOf ILX:0050040,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NestBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasLayerLocationPhenotype "cortical layer II/III" .
+    rdfs:subClassOf ILX:0050040 ;
+    ilxtr:hasLayerLocationPhenotype "cortical layer II/III" ;
+    ilxtr:hasMorphologicalPhenotype "nest basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050099 a owl:Class ;
     rdfs:label "Neocortex Layer II/III small basket cell"@en ;
-    OBOANN:abbrev "L2/3_SBC"@en,
+    NIFRID:abbrev "L2/3_SBC"@en,
         "L23_SBC"@en ;
-    rdfs:subClassOf ILX:0050038,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:SmallBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasLayerLocationPhenotype "cortical layer II/III" .
+    rdfs:subClassOf ILX:0050038 ;
+    ilxtr:hasLayerLocationPhenotype "cortical layer II/III" ;
+    ilxtr:hasMorphologicalPhenotype "small basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050100 a owl:Class ;
     rdfs:label "Neocortex Layer IV small basket cell"@en ;
-    OBOANN:abbrev "L4_SBC"@en ;
-    rdfs:subClassOf ILX:0050038,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:SmallBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005393 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L4_SBC"@en ;
+    rdfs:subClassOf ILX:0050038 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005393 ;
+    ilxtr:hasMorphologicalPhenotype "small basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050101 a owl:Class ;
     rdfs:label "Neocortex Layer V small basket cell"@en ;
-    OBOANN:abbrev "L5_SBC"@en ;
-    rdfs:subClassOf ILX:0050038,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:SmallBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ] .
+    NIFRID:abbrev "L5_SBC"@en ;
+    rdfs:subClassOf ILX:0050038 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "small basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050102 a owl:Class ;
     rdfs:label "Neocortex Layer VI small basket cell"@en ;
-    OBOANN:abbrev "L6_SBC"@en ;
-    rdfs:subClassOf ILX:0050038,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:SmallBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] .
+    NIFRID:abbrev "L6_SBC"@en ;
+    rdfs:subClassOf ILX:0050038 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "small basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050103 a owl:Class ;
     rdfs:label "Neocortex Layer IV nest basket cell"@en ;
-    OBOANN:abbrev "L4_NBC"@en ;
-    rdfs:subClassOf ILX:0050040,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NestBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005393 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L4_NBC"@en ;
+    rdfs:subClassOf ILX:0050040 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005393 ;
+    ilxtr:hasMorphologicalPhenotype "nest basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050104 a owl:Class ;
     rdfs:label "Neocortex Layer V nest basket cell"@en ;
-    OBOANN:abbrev "L5_NBC"@en ;
-    rdfs:subClassOf ILX:0050040,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NestBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005394 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] .
+    NIFRID:abbrev "L5_NBC"@en ;
+    rdfs:subClassOf ILX:0050040 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005394 ;
+    ilxtr:hasMorphologicalPhenotype "nest basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050105 a owl:Class ;
     rdfs:label "Neocortex Layer VI nest basket cell"@en ;
-    OBOANN:abbrev "L6_NBC"@en ;
-    rdfs:subClassOf ILX:0050040,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:NestBasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005395 ] .
+    NIFRID:abbrev "L6_NBC"@en ;
+    rdfs:subClassOf ILX:0050040 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005395 ;
+    ilxtr:hasMorphologicalPhenotype "nest basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050106 a owl:Class ;
     rdfs:label "Neocortex GABAergic interneuron"@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
+    rdfs:subClassOf SAO:1417703748,
         [ a owl:Restriction ;
-            owl:onProperty ilx:hasExpressionPhenotype ;
-            owl:someValuesFrom NIFMOL:sao229636300 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasNeurotransmitterPhenotype ;
-            owl:someValuesFrom NIFMOL:sao229636300 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasCircuitRolePhenotype "interneuron" .
+            owl:onProperty ilxtr:hasMolecularPhenotype ;
+            owl:someValuesFrom SAO:229636300 ] ;
+    ilxtr:hasCircuitRolePhenotype "interneuron" ;
+    ilxtr:hasNeurotransmitterPhenotype "GABA" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050107 a owl:Class ;
     rdfs:label "Neocortex Layer IV star pyramidal cell"@en ;
-    OBOANN:abbrev "L4_SP"@en ;
-    rdfs:subClassOf NIFCELL:sao2128417084,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:PyramidalPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasLayerLocationPhenotype ;
-            owl:someValuesFrom UBERON:0005393 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0001950 ] ;
-    ilx:hasMorphologicalPhenotype "star" .
+    NIFRID:abbrev "L4_SP"@en ;
+    rdfs:subClassOf SAO:2128417084 ;
+    ilxtr:hasLayerLocationPhenotype UBERON:0005393 ;
+    ilxtr:hasMorphologicalPhenotype "pyramidal",
+        "star" ;
+    ilxtr:hasSomaLocatedIn UBERON:0001950 .
 
 ILX:0050108 a owl:Class ;
     rdfs:label "Hippocampus CA1 back-projecting cell"@en ;
-    OBOANN:abbrev "SO_BP"@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0003881 ] ;
-    ilx:hasProjectionPhenotype "back-projecting" .
+    NIFRID:abbrev "SO_BP"@en ;
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasProjectionPhenotype "back-projecting" ;
+    ilxtr:hasSomaLocatedIn UBERON:0003881 .
 
 ILX:0050109 a owl:Class ;
     rdfs:label "Hippocampus CA1 bistratified cell"@en ;
-    OBOANN:abbrev "SO_BS"@en,
+    NIFRID:abbrev "SO_BS"@en,
         "SP_BS"@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0003881 ] ;
-    ilx:hasMorphologicalPhenotype "bistratified" .
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasMorphologicalPhenotype "bistratified" ;
+    ilxtr:hasSomaLocatedIn UBERON:0003881 .
 
 ILX:0050110 a owl:Class ;
     rdfs:label "Hippocampus CA1 axo-axonic neuron"@en ;
-    OBOANN:abbrev "SP_AA"@en ;
-    rdfs:subClassOf NIFCELL:sao1417703748,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0003881 ] ;
-    ilx:hasMorphologicalPhenotype "axo-axonic" .
+    NIFRID:abbrev "SP_AA"@en ;
+    rdfs:subClassOf SAO:1417703748 ;
+    ilxtr:hasMorphologicalPhenotype "axo-axonic" ;
+    ilxtr:hasSomaLocatedIn UBERON:0003881 .
 
 ILX:0050111 a owl:Class ;
     rdfs:label "Hippocampus CA1 CCK+ basket cell"@en ;
-    OBOANN:abbrev "SP_CCKBC"@en ;
-    rdfs:subClassOf NIFCELL:nlx_cell_091205,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasExpressionPhenotype ;
-            owl:someValuesFrom PR:000005110 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0003881 ] .
+    NIFRID:abbrev "SP_CCKBC"@en ;
+    rdfs:subClassOf NLXCELL:091205 ;
+    ilxtr:hasExpressionPhenotype "cholecystokinin" ;
+    ilxtr:hasMorphologicalPhenotype "basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0003881 .
 
 ILX:0050112 a owl:Class ;
     rdfs:label "Hippocampus CA1 PV+ basket cell"@en ;
-    OBOANN:abbrev "SP_PVBC"@en ;
-    rdfs:subClassOf NIFCELL:nlx_cell_091205,
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasMorphologicalPhenotype ;
-            owl:someValuesFrom ilx:BasketPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasExpressionPhenotype ;
-            owl:someValuesFrom NIFMOL:nifext_6 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilx:hasSomaLocatedIn ;
-            owl:someValuesFrom UBERON:0003881 ] .
+    NIFRID:abbrev "SP_PVBC"@en ;
+    rdfs:subClassOf NLXCELL:091205 ;
+    ilxtr:hasExpressionPhenotype "parvalbumin" ;
+    ilxtr:hasMorphologicalPhenotype "basket" ;
+    ilxtr:hasSomaLocatedIn UBERON:0003881 .
 
-NIFCELL:nifext_55 a owl:Class ;
+NIFEXT:55 a owl:Class ;
     rdfs:label "Neocortex Martinotti cell"^^xsd:string ;
     skos:prefLabel "Neocortex Martinotti cell"^^xsd:string ;
-    OBOANN:synonym "Martinotti cell"^^xsd:string ;
-    rdfs:subClassOf NIFCELL:sao1417703748 ;
-    OBOANN:createdDate "2007-09-05"^^xsd:string ;
-    OBOANN:modifiedDate "April 15, 2009"^^xsd:string .
+    NIFRID:synonym "Martinotti cell"^^xsd:string ;
+    rdfs:subClassOf SAO:1417703748 ;
+    NIFRID:createdDate "2007-09-05"^^xsd:string ;
+    NIFRID:modifiedDate "April 15, 2009"^^xsd:string .
 
-NIFCELL:nifext_56 a owl:Class ;
+NIFEXT:56 a owl:Class ;
     rdfs:label "Neocortex basket cell"^^xsd:string ;
     skos:prefLabel "Neocortex basket cell"^^xsd:string ;
-    OBOANN:synonym "Basket cell (cortical)"^^xsd:string,
+    NIFRID:synonym "Basket cell (cortical)"^^xsd:string,
         "cortical basket cell"^^xsd:string,
         "cortical basket neuron"^^xsd:string ;
-    rdfs:subClassOf NIFCELL:sao1417703748 ;
-    OBOANN:createdDate "2007-09-05"^^xsd:string ;
-    OBOANN:modifiedDate "April 15, 2009"^^xsd:string .
+    rdfs:subClassOf SAO:1417703748 ;
+    NIFRID:createdDate "2007-09-05"^^xsd:string ;
+    NIFRID:modifiedDate "April 15, 2009"^^xsd:string .
 
-NIFCELL:nifext_57 a owl:Class ;
+NIFEXT:57 a owl:Class ;
     rdfs:label "Neocortex chandelier cell"^^xsd:string ;
     skos:prefLabel "Neocortex chandelier cell"^^xsd:string ;
-    OBOANN:synonym "Chandelier cell"^^xsd:string,
+    NIFRID:synonym "Chandelier cell"^^xsd:string,
         "Chandelier neuron"^^xsd:string,
         "Cortical chandelier Cell"^^xsd:string,
         "Cortical chandelier cell chandelier neuron"^^xsd:string ;
     skos:definition "Type of cortical interneuron characterized by a bitufted appearance, with groups of dendrites extending from the upper and lower poles of an elongate cell body, but some cells have a more multipolar configuration."^^xsd:string ;
-    rdfs:subClassOf NIFCELL:sao1417703748 ;
-    OBOANN:createdDate "2007-09-05"^^xsd:string ;
-    OBOANN:modifiedDate "April 15, 2009"^^xsd:string,
+    rdfs:subClassOf SAO:1417703748 ;
+    NIFRID:createdDate "2007-09-05"^^xsd:string ;
+    NIFRID:modifiedDate "April 15, 2009"^^xsd:string,
         "December 5, 2008"^^xsd:string ;
-    ns2:sao_ID "sao1267578530"^^xsd:string .
+    NIFRID:sao_ID "sao1267578530"^^xsd:string .
 
-NIFCELL:nifext_59 a owl:Class ;
+NIFEXT:59 a owl:Class ;
     rdfs:label "Neocortex bouquet double cell"^^xsd:string ;
     skos:prefLabel "Neocortex bouquet double cell"^^xsd:string ;
-    OBOANN:synonym "Double bouquet cell"^^xsd:string ;
+    NIFRID:synonym "Double bouquet cell"^^xsd:string ;
     skos:definition "Type of inhibitory cortical interneuron that provides inhibitory innervation of pyramidal neurons.  Most commonly described in primates; may be absent in rodent (DeFelipe et al., 2001)."^^xsd:string ;
-    rdfs:subClassOf NIFCELL:sao1417703748 ;
-    OBOANN:createdDate "2007-09-05"^^xsd:string ;
-    OBOANN:modifiedDate "April 15, 2009"^^xsd:string,
+    rdfs:subClassOf SAO:1417703748 ;
+    NIFRID:createdDate "2007-09-05"^^xsd:string ;
+    NIFRID:modifiedDate "April 15, 2009"^^xsd:string,
         "March 19, 2009"^^xsd:string .
 
-NIFCELL:nifext_81 a owl:Class ;
+NIFEXT:81 a owl:Class ;
     rdfs:label "Neocortex bipolar cell"^^xsd:string ;
     skos:prefLabel "Neocortex bipolar cell"^^xsd:string ;
-    OBOANN:synonym "Bipolar dendrite cell"^^xsd:string ;
-    rdfs:subClassOf NIFCELL:sao1417703748 ;
-    OBOANN:createdDate "2007-09-05"^^xsd:string ;
-    OBOANN:modifiedDate "April 15, 2009"^^xsd:string ;
-    OBOANN:hasExternalSource "SenseLab"^^xsd:string ;
+    NIFRID:synonym "Bipolar dendrite cell"^^xsd:string ;
+    rdfs:subClassOf SAO:1417703748 ;
+    NIFRID:createdDate "2007-09-05"^^xsd:string ;
+    NIFRID:modifiedDate "April 15, 2009"^^xsd:string ;
+    NIFRID:hasExternalSource "SenseLab"^^xsd:string ;
     skos:scopeNote "A part of the region of the nervous system known to play a role in Auditory System function."^^xsd:string .
 
-NIFCELL:nlx_cell_091205 a owl:Class ;
+NLXCELL:091205 a owl:Class ;
     rdfs:label "Hippocampus CA1 basket cell"^^xsd:string ;
-    rdfs:subClassOf NIFCELL:sao1417703748 ;
+    rdfs:subClassOf SAO:1417703748 ;
     rdfs:comment "Not sure that this is what was meant by EC stellate II. May have to delete this class."^^xsd:string ;
-    OBOANN:createdDate "December 18, 2009"^^xsd:string .
+    NIFRID:createdDate "December 18, 2009"^^xsd:string .
 
-NIFCELL:sao862606388 a owl:Class ;
+SAO:229636300 a owl:Class .
+
+SAO:862606388 a owl:Class ;
     rdfs:label "Pyramidal cell"^^xsd:string ;
     skos:prefLabel "Pyramidal Cell"^^xsd:string ;
-    OBOANN:synonym "Pyramidal neuron"^^xsd:string ;
+    NIFRID:synonym "Pyramidal neuron"^^xsd:string ;
     skos:definition "Projection neuron in the cerebral cortex, hippocampal formation and some other brain regions. Pyramidal cells have a pyramid-shaped soma with the apex and an apical dendrite pointed toward the pial surface and other dendrites and an axon emerging from the base. The axons may have local collaterals but also project outside their cortical region (MSH)."^^xsd:string ;
-    rdfs:subClassOf NIFCELL:sao1417703748 ;
+    rdfs:subClassOf SAO:1417703748 ;
     skos:changeNote "Definition modified and a synonym added"^^xsd:string ;
-    OBOANN:modifiedDate "December 9, 2008"^^xsd:string ;
-    ns1:cell_ontology_ID "CL:0000598"^^xsd:string ;
-    ns1:curationStatus "uncurated"^^xsd:string ;
-    ns1:sao_ID "sao862606388"^^xsd:string ;
-    ns1:umls_ID "C0206441"^^xsd:string ;
-    OBOANN:definitonSource "UMLS"^^xsd:string .
+    NIFRID:modifiedDate "December 9, 2008"^^xsd:string ;
+    NIFRID:cell_ontology_ID "CL:0000598"^^xsd:string ;
+    NIFRID:hasCurationStatus NIFRID:uncurated ;
+    NIFRID:hasDefinitionSource NIFRID:UMLS ;
+    NIFRID:sao_ID "sao862606388"^^xsd:string ;
+    NIFRID:umls_ID "C0206441"^^xsd:string .
 
-NIFCELL:sao1417703748 a owl:Class ;
+SAO:1417703748 a owl:Class ;
     rdfs:label "Neuron"^^xsd:string ;
     skos:prefLabel "Neuron"^^xsd:string ;
-    OBOANN:synonym "nerve cell"^^xsd:string,
+    NIFRID:synonym "nerve cell"^^xsd:string,
         "neuron"^^xsd:string,
         "neuron cell"^^xsd:string ;
-    rdfs:subClassOf NIFCELL:sao1224657022 ;
-    OBOANN:modifiedDate "April 7, 2010"^^xsd:string,
+    rdfs:subClassOf SAO:1224657022 ;
+    NIFRID:modifiedDate "April 7, 2010"^^xsd:string,
         "December 4, 2008"^^xsd:string ;
-    ns1:cell_ontology_ID "CL:0000540"^^xsd:string ;
-    ns1:curationStatus "uncurated"^^xsd:string ;
-    ns1:sao_ID "sao1417703748"^^xsd:string ;
-    ns1:umls_ID "C0027882"^^xsd:string .
+    NIFRID:cell_ontology_ID "CL:0000540"^^xsd:string ;
+    NIFRID:hasCurationStatus NIFRID:uncurated ;
+    NIFRID:sao_ID "sao1417703748"^^xsd:string ;
+    NIFRID:umls_ID "C0027882"^^xsd:string .
 
-NIFCELL:sao2128417084 a owl:Class ;
+SAO:2128417084 a owl:Class ;
     rdfs:label "Neocortex pyramidal cell"^^xsd:string ;
     skos:prefLabel "Neocortex pyramidal cell"^^xsd:string ;
-    OBOANN:synonym "Cortical Pyramidal Neuron"^^xsd:string,
+    NIFRID:synonym "Cortical Pyramidal Neuron"^^xsd:string,
         "Cortical pyramidal neuron"^^xsd:string,
         "Neocortex pyramidal neuron"^^xsd:string,
         "Neocortical pyramidal cell"^^xsd:string,
@@ -1505,47 +1052,11 @@ NIFCELL:sao2128417084 a owl:Class ;
     skos:definition """Pyramidal neuron of the cerebral cortex (not including hippocampus or olfactory cortex).
 
 The pyramidal cell of the neocortex is located in layers 2-3 and 5-6, has a pyramidal-shaped cell body which gives off a number of laterally-directed basal dendrites and usually a single apical dendrite which ascends to branch and terminate in layer 1; these dendrites are covered in dendritic spines."""^^xsd:string ;
-    rdfs:subClassOf NIFCELL:sao862606388 ;
+    rdfs:subClassOf SAO:862606388 ;
     skos:changeNote "Synonyms added and the label has been changed."^^xsd:string ;
     owl:versionInfo "129938"^^xsd:string ;
-    OBOANN:modifiedDate "April 12, 2010"^^xsd:string ;
-    ns1:curationStatus "uncurated"^^xsd:string ;
-    ns1:sao_ID "sao2128417084"^^xsd:string .
+    NIFRID:modifiedDate "April 12, 2010"^^xsd:string ;
+    NIFRID:hasCurationStatus NIFRID:uncurated ;
+    NIFRID:sao_ID "sao2128417084"^^xsd:string .
 
-NIFMOL:nifext_6 a owl:Class ;
-    rdfs:label "Parvalbumin" .
-
-NIFMOL:sao229636300 a owl:Class ;
-    rdfs:label "GABA" .
-
-PR:000005110 a owl:Class ;
-    rdfs:label "cholecystokinin" .
-
-PR:000011387 a owl:Class ;
-    rdfs:label "neuropeptide Y" .
-
-PR:000015665 a owl:Class ;
-    rdfs:label "somatostatin" .
-
-PR:000017299 a owl:Class ;
-    rdfs:label "VIP peptides" .
-
-UBERON:0001950 a owl:Class ;
-    rdfs:label "neocortex" .
-
-UBERON:0003881 a owl:Class ;
-    rdfs:label "CA1 field of hippocampus" .
-
-UBERON:0005390 a owl:Class ;
-    rdfs:label "cortical layer I" .
-
-UBERON:0005393 a owl:Class ;
-    rdfs:label "cortical layer IV" .
-
-UBERON:0005394 a owl:Class ;
-    rdfs:label "cortical layer V" .
-
-UBERON:0005395 a owl:Class ;
-    rdfs:label "cortical layer VI" .
-
-### Serialized using the nifstd custom serializer v1.0.1
+### Serialized using the pyontutils deterministic serializer v1.1.3
