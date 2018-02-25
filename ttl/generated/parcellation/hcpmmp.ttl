@@ -1,5 +1,5 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
-@prefix HCPMMP: <http://uri.interlex.org/hcpmmp/uris/labels/> .
+@prefix HCPMMP: <http://uri.interlex.org/hcp/uris/mmp/labels/> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -14,13 +14,21 @@
     owl:imports <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-core.ttl> ;
     rdfs:label "Human Connectome Project Multi-Modal human cortical parcellation" ;
     skos:altLabel "hcpmmp" ;
-    owl:versionInfo "2018-02-24" ;
-    ilxtr:hasSourceArtifact ilxtr:hcpmmpv1 ;
-    ilxtr:rootClass ilxtr:hcpmmproot ;
+    owl:versionInfo "2018-02-25" ;
+    ilxtr:hasSourceArtifact <http://uri.interlex.org/hcp/uris/mmp/versions/1.0> ;
+    ilxtr:rootClass HCPMMP: ;
     prov:wasDerivedFrom <https://github.com/tgbugs/pyontutils/blob/1c18b4fe6548dd48d18e1c9dbae1321c9b106bf9/pyontutils/resources/human_connectome_project_2016.csv> ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/da23a6b8703733d518b3e8329cb1bcc90e1797f6/pyontutils/parcellation.py#L1519> .
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/32ab4fa1efad87f6421eb488b28bec81734b41de/pyontutils/parcellation.py#L1544> .
 
 ### Classes
+
+HCPMMP: a owl:Class ;
+    rdfs:label "HCPMMP label root" ;
+    NIFRID:abbrev "hcpmmp" ;
+    rdfs:subClassOf ilxtr:parcellationLabel,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedBy ;
+            owl:allValuesFrom <http://uri.interlex.org/hcp/uris/mmp/versions/1.0> ] .
 
 HCPMMP:1 a owl:Class ;
     rdfs:label "Primary Visual Cortex (hcpmmp)" ;
@@ -30,7 +38,10 @@ HCPMMP:1 a owl:Class ;
         "hOC1" ;
     NIFRID:abbrev "17",
         "OC" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Amunts et al 2000",
+        "Fischl et al 2008" .
 
 HCPMMP:2 a owl:Class ;
     rdfs:label "Medial Superior Temporal Area (hcpmmp)" ;
@@ -39,14 +50,22 @@ HCPMMP:2 a owl:Class ;
     NIFRID:synonym "hOC5",
         "hOC5v",
         "MSTv" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Fischl et al 2008",
+        "Kolster et al 2010",
+        "Malikovic et al 2007" .
 
 HCPMMP:3 a owl:Class ;
     rdfs:label "Sixth Visual Area (hcpmmp)" ;
     skos:prefLabel "Sixth Visual Area" ;
     skos:altLabel "V6" ;
     NIFRID:abbrev "112" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Nieuwenhuys et al 2014",
+        "Pitzalis et al 2006",
+        "Pitzalis et al 2013",
+        "Sereno et al 2012" .
 
 HCPMMP:4 a owl:Class ;
     rdfs:label "Second Visual Area (hcpmmp)" ;
@@ -56,7 +75,13 @@ HCPMMP:4 a owl:Class ;
         "hOC2" ;
     NIFRID:abbrev "18",
         "OB" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Amunts et al 2000",
+        "Fischl et al 2008",
+        "Schira et al 2009",
+        "Wandell and Winawer 2011",
+        "Wang et al 2015" .
 
 HCPMMP:5 a owl:Class ;
     rdfs:label "Third Visual Area (hcpmmp)" ;
@@ -67,7 +92,13 @@ HCPMMP:5 a owl:Class ;
     NIFRID:abbrev "V3d",
         "V3v",
         "VP" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Kujovic et al 2012",
+        "Rottschy et al 2007",
+        "Schira et al 2009",
+        "Wandell and Winawer 2011",
+        "Wang et al 2015" .
 
 HCPMMP:6 a owl:Class ;
     rdfs:label "Fourth Visual Area (hcpmmp)" ;
@@ -79,14 +110,20 @@ HCPMMP:6 a owl:Class ;
         "LO1",
         "V4d",
         "V4v" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Hansen et al 2007",
+        "Malikovic et al 2015",
+        "Rottschy et al 2007" .
 
 HCPMMP:7 a owl:Class ;
     rdfs:label "Eighth Visual Area (hcpmmp)" ;
     skos:prefLabel "Eighth Visual Area" ;
     skos:altLabel "V8" ;
     NIFRID:abbrev "VO1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Hadjikhani et al 1998" .
 
 HCPMMP:8 a owl:Class ;
     rdfs:label "Primary Motor Cortex (hcpmmp)" ;
@@ -98,7 +135,9 @@ HCPMMP:8 a owl:Class ;
         "F1",
         "M1",
         "PMC" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Fischl et al 2008",
+        "Geyer et al 1996" .
 
 HCPMMP:9 a owl:Class ;
     rdfs:label "Primary Sensory Cortex (hcpmmp)" ;
@@ -106,26 +145,34 @@ HCPMMP:9 a owl:Class ;
     skos:altLabel "3b" ;
     NIFRID:abbrev "3",
         "S1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Fischl et al 2008",
+        "Geyer et al 1999",
+        "Geyer et al 2000" .
 
 HCPMMP:10 a owl:Class ;
     rdfs:label "Frontal Eye Fields (hcpmmp)" ;
     skos:prefLabel "Frontal Eye Fields" ;
     skos:altLabel "FEF" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Amiez and Petrides 2009",
+        "Glasser and Van Essen 2011" .
 
 HCPMMP:11 a owl:Class ;
     rdfs:label "Premotor Eye Field (hcpmmp)" ;
     skos:prefLabel "Premotor Eye Field" ;
     skos:altLabel "PEF" ;
     NIFRID:abbrev "6v2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Amiez and Petrides 2009",
+        "Amunts et al 2010" .
 
 HCPMMP:12 a owl:Class ;
     rdfs:label "Area 55b (hcpmmp)" ;
     skos:prefLabel "Area 55b" ;
     skos:altLabel "55b" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Hopf 1956" .
 
 HCPMMP:13 a owl:Class ;
     rdfs:label "Area V3A (hcpmmp)" ;
@@ -133,7 +180,13 @@ HCPMMP:13 a owl:Class ;
     skos:altLabel "V3A" ;
     NIFRID:synonym "hOC4d" ;
     NIFRID:abbrev "V3D" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Kujovic et al 2012",
+        "Larsson and Heeger 2006",
+        "Swisher et al 2007",
+        "Tootell et al 1997",
+        "Wandell and Winawer 2011" .
 
 HCPMMP:14 a owl:Class ;
     rdfs:label "RetroSplenial Complex (hcpmmp)" ;
@@ -141,26 +194,40 @@ HCPMMP:14 a owl:Class ;
     skos:altLabel "RSC" ;
     NIFRID:abbrev "29",
         "30" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2011",
+        "Palomero-Gallagher et al 2009",
+        "Vogt 2009" .
 
 HCPMMP:15 a owl:Class ;
     rdfs:label "Parieto-Occipital Sulcus Area 2 (hcpmmp)" ;
     skos:prefLabel "Parieto-Occipital Sulcus Area 2" ;
     skos:altLabel "POS2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2011",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:16 a owl:Class ;
     rdfs:label "Seventh Visual Area (hcpmmp)" ;
     skos:prefLabel "Seventh Visual Area" ;
     skos:altLabel "V7" ;
     NIFRID:synonym "IPS0" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Hagler et al 2007",
+        "Larsson and Heeger 2006",
+        "Swisher et al 2007",
+        "Tootell et al 1998",
+        "Wang et al 2015" .
 
 HCPMMP:17 a owl:Class ;
     rdfs:label "IntraParietal Sulcus Area 1 (hcpmmp)" ;
     skos:prefLabel "IntraParietal Sulcus Area 1" ;
     skos:altLabel "IPS1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Hagler et al 2007",
+        "Swisher et al 2007",
+        "Wang et al 2015" .
 
 HCPMMP:18 a owl:Class ;
     rdfs:label "Fusiform Face Complex (hcpmmp)" ;
@@ -168,14 +235,23 @@ HCPMMP:18 a owl:Class ;
     skos:altLabel "FFC" ;
     NIFRID:abbrev "FFA",
         "FG2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Caspers et al 2013",
+        "Glasser and Van Essen 2011",
+        "Kanwisher and Yovel 2006",
+        "Weiner et al 2014" .
 
 HCPMMP:19 a owl:Class ;
     rdfs:label "Area V3B (hcpmmp)" ;
     skos:prefLabel "Area V3B" ;
     skos:altLabel "V3B" ;
     NIFRID:abbrev "V3C" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Larsson and Heeger 2006",
+        "Smith et al 1998",
+        "Swisher et al 2007",
+        "Wandell and Winawer 2011" .
 
 HCPMMP:20 a owl:Class ;
     rdfs:label "Area Lateral Occipital 1 (hcpmmp)" ;
@@ -183,7 +259,11 @@ HCPMMP:20 a owl:Class ;
     skos:altLabel "LO1" ;
     NIFRID:synonym "hOC4la" ;
     NIFRID:abbrev "LO2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Hansen et al 2007",
+        "Larsson and Heeger 2006",
+        "Malikovic et al 2015" .
 
 HCPMMP:21 a owl:Class ;
     rdfs:label "Area Lateral Occipital 2 (hcpmmp)" ;
@@ -191,7 +271,11 @@ HCPMMP:21 a owl:Class ;
     skos:altLabel "LO2" ;
     NIFRID:synonym "hOC4la" ;
     NIFRID:abbrev "LO1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Hansen et al 2007",
+        "Larsson and Heeger 2006",
+        "Malikovic et al 2015" .
 
 HCPMMP:22 a owl:Class ;
     rdfs:label "Posterior InferoTemporal Complex (hcpmmp)" ;
@@ -201,7 +285,12 @@ HCPMMP:22 a owl:Class ;
         "phPITd",
         "phPITv" ;
     NIFRID:abbrev "OFA" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Kanwisher and Yovel 2006",
+        "Kolster et al 2010",
+        "Malikovic et al 2015",
+        "Tsao et al 2008" .
 
 HCPMMP:23 a owl:Class ;
     rdfs:label "Middle Temporal Area (hcpmmp)" ;
@@ -209,7 +298,11 @@ HCPMMP:23 a owl:Class ;
     skos:altLabel "MT" ;
     NIFRID:synonym "hOC5",
         "hOC5d" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Fischl et al 2008",
+        "Kolster et al 2010",
+        "Malikovic et al 2007" .
 
 HCPMMP:24 a owl:Class ;
     rdfs:label "Primary Auditory Cortex (hcpmmp)" ;
@@ -221,58 +314,79 @@ HCPMMP:24 a owl:Class ;
     NIFRID:abbrev "41",
         "R1",
         "TC" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2011",
+        "Moerel et al 2014",
+        "Morosan et al 2001",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:25 a owl:Class ;
     rdfs:label "PeriSylvian Language Area (hcpmmp)" ;
     skos:prefLabel "PeriSylvian Language Area" ;
     skos:altLabel "PSL" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:26 a owl:Class ;
     rdfs:label "Superior Frontal Language Area (hcpmmp)" ;
     skos:prefLabel "Superior Frontal Language Area" ;
     skos:altLabel "SFL" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:27 a owl:Class ;
     rdfs:label "PreCuneus Visual Area (hcpmmp)" ;
     skos:prefLabel "PreCuneus Visual Area" ;
     skos:altLabel "PCV" ;
     NIFRID:synonym "PrCu" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Sereno et al 2012" .
 
 HCPMMP:28 a owl:Class ;
     rdfs:label "Superior Temporal Visual Area (hcpmmp)" ;
     skos:prefLabel "Superior Temporal Visual Area" ;
     skos:altLabel "STV" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:29 a owl:Class ;
     rdfs:label "Medial Area 7P (hcpmmp)" ;
     skos:prefLabel "Medial Area 7P" ;
     skos:altLabel "7Pm" ;
     NIFRID:abbrev "7P" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Scheperjans et al 2008a",
+        "Scheperjans et al 2008b" .
 
 HCPMMP:30 a owl:Class ;
     rdfs:label "Area 7m (hcpmmp)" ;
     skos:prefLabel "Area 7m" ;
     skos:altLabel "7m" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Scheperjans et al 2008a",
+        "Scheperjans et al 2008b" .
 
 HCPMMP:31 a owl:Class ;
     rdfs:label "Parieto-Occipital Sulcus Area 1 (hcpmmp)" ;
     skos:prefLabel "Parieto-Occipital Sulcus Area 1" ;
     skos:altLabel "POS1" ;
     NIFRID:synonym "Retrosplenial Cortex" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2011",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:32 a owl:Class ;
     rdfs:label "Area 23d (hcpmmp)" ;
     skos:prefLabel "Area 23d" ;
     skos:altLabel "23d" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Palomero-Gallagher et al 2009",
+        "Vogt 2009" .
 
 HCPMMP:33 a owl:Class ;
     rdfs:label "Area ventral 23 a+b (hcpmmp)" ;
@@ -281,7 +395,9 @@ HCPMMP:33 a owl:Class ;
     NIFRID:abbrev "23a",
         "23b",
         "v23" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Palomero-Gallagher et al 2009",
+        "Vogt 2009" .
 
 HCPMMP:34 a owl:Class ;
     rdfs:label "Area dorsal 23 a+b (hcpmmp)" ;
@@ -290,7 +406,9 @@ HCPMMP:34 a owl:Class ;
     NIFRID:abbrev "23a",
         "23b",
         "d23" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Palomero-Gallagher et al 2009",
+        "Vogt 2009" .
 
 HCPMMP:35 a owl:Class ;
     rdfs:label "Area 31p ventral (hcpmmp)" ;
@@ -299,52 +417,71 @@ HCPMMP:35 a owl:Class ;
     NIFRID:abbrev "31",
         "31d",
         "31v" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Palomero-Gallagher et al 2009",
+        "Vogt 2009" .
 
 HCPMMP:36 a owl:Class ;
     rdfs:label "Area 5m (hcpmmp)" ;
     skos:prefLabel "Area 5m" ;
     skos:altLabel "5m" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Scheperjans et al 2008a",
+        "Scheperjans et al 2008b" .
 
 HCPMMP:37 a owl:Class ;
     rdfs:label "Area 5m ventral (hcpmmp)" ;
     skos:prefLabel "Area 5m ventral" ;
     skos:altLabel "5mv" ;
     NIFRID:abbrev "5ci" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Scheperjans et al 2008a",
+        "Scheperjans et al 2008b" .
 
 HCPMMP:38 a owl:Class ;
     rdfs:label "Area 23c (hcpmmp)" ;
     skos:prefLabel "Area 23c" ;
     skos:altLabel "23c" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Palomero-Gallagher et al 2009",
+        "Vogt 2009" .
 
 HCPMMP:39 a owl:Class ;
     rdfs:label "Area 5L (hcpmmp)" ;
     skos:prefLabel "Area 5L" ;
     skos:altLabel "5L" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Scheperjans et al 2008a",
+        "Scheperjans et al 2008b" .
 
 HCPMMP:40 a owl:Class ;
     rdfs:label "Dorsal Area 24d (hcpmmp)" ;
     skos:prefLabel "Dorsal Area 24d" ;
     skos:altLabel "24dd" ;
     NIFRID:abbrev "24d" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Palomero-Gallagher et al 2009",
+        "Vogt and Vogt 2003" .
 
 HCPMMP:41 a owl:Class ;
     rdfs:label "Ventral Area 24d (hcpmmp)" ;
     skos:prefLabel "Ventral Area 24d" ;
     skos:altLabel "24dv" ;
     NIFRID:abbrev "24d" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Palomero-Gallagher et al 2009",
+        "Vogt and Vogt 2003" .
 
 HCPMMP:42 a owl:Class ;
     rdfs:label "Lateral Area 7A (hcpmmp)" ;
     skos:prefLabel "Lateral Area 7A" ;
     skos:altLabel "7AL" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Scheperjans et al 2008a",
+        "Scheperjans et al 2008b" .
 
 HCPMMP:43 a owl:Class ;
     rdfs:label "Supplementary and Cingulate Eye Field (hcpmmp)" ;
@@ -355,7 +492,9 @@ HCPMMP:43 a owl:Class ;
         "CEF",
         "SEF",
         "SMA" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Amiez and Petrides 2009",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:44 a owl:Class ;
     rdfs:label "Area 6m anterior (hcpmmp)" ;
@@ -364,62 +503,90 @@ HCPMMP:44 a owl:Class ;
     NIFRID:synonym "SMAr" ;
     NIFRID:abbrev "6",
         "SMA" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Fischl et al 2008",
+        "Geyer 2004",
+        "Glasser and Van Essen 2016",
+        "Vorobiev et al 1998" .
 
 HCPMMP:45 a owl:Class ;
     rdfs:label "Medial Area 7A (hcpmmp)" ;
     skos:prefLabel "Medial Area 7A" ;
     skos:altLabel "7Am" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Scheperjans et al 2008a",
+        "Scheperjans et al 2008b" .
 
 HCPMMP:46 a owl:Class ;
     rdfs:label "Lateral Area 7P (hcpmmp)" ;
     skos:prefLabel "Lateral Area 7P" ;
     skos:altLabel "7Pl" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Scheperjans et al 2008a",
+        "Scheperjans et al 2008b" .
 
 HCPMMP:47 a owl:Class ;
     rdfs:label "Area 7PC (hcpmmp)" ;
     skos:prefLabel "Area 7PC" ;
     skos:altLabel "7PC" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Scheperjans et al 2008a",
+        "Scheperjans et al 2008b" .
 
 HCPMMP:48 a owl:Class ;
     rdfs:label "Area Lateral IntraParietal ventral (hcpmmp)" ;
     skos:prefLabel "Area Lateral IntraParietal ventral" ;
     skos:altLabel "LIPv" ;
     NIFRID:synonym "hIP3" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Scheperjans et al 2008a",
+        "Scheperjans et al 2008b",
+        "Van Essen et al 2012a" .
 
 HCPMMP:49 a owl:Class ;
     rdfs:label "Ventral IntraParietal Complex (hcpmmp)" ;
     skos:prefLabel "Ventral IntraParietal Complex" ;
     skos:altLabel "VIP" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Van Essen et al 2012a" .
 
 HCPMMP:50 a owl:Class ;
     rdfs:label "Medial IntraParietal Area (hcpmmp)" ;
     skos:prefLabel "Medial IntraParietal Area" ;
     skos:altLabel "MIP" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Van Essen et al 2012a" .
 
 HCPMMP:51 a owl:Class ;
     rdfs:label "Area 1 (hcpmmp)" ;
     skos:prefLabel "Area 1" ;
     skos:altLabel "1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Fischl et al 2008",
+        "Geyer et al 1999",
+        "Geyer et al 2000" .
 
 HCPMMP:52 a owl:Class ;
     rdfs:label "Area 2 (hcpmmp)" ;
     skos:prefLabel "Area 2" ;
     skos:altLabel "2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Fischl et al 2008",
+        "Grefkes et al 2000" .
 
 HCPMMP:53 a owl:Class ;
     rdfs:label "Area 3a (hcpmmp)" ;
     skos:prefLabel "Area 3a" ;
     skos:altLabel "3a" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Fischl et al 2008",
+        "Geyer et al 1999",
+        "Geyer et al 2000" .
 
 HCPMMP:54 a owl:Class ;
     rdfs:label "Dorsal area 6 (hcpmmp)" ;
@@ -427,7 +594,11 @@ HCPMMP:54 a owl:Class ;
     skos:altLabel "6d" ;
     NIFRID:abbrev "6",
         "6aα" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Fischl et al 2008",
+        "Geyer 2004",
+        "Geyer et al 2000",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:55 a owl:Class ;
     rdfs:label "Area 6mp (hcpmmp)" ;
@@ -436,7 +607,11 @@ HCPMMP:55 a owl:Class ;
     NIFRID:synonym "SMAc" ;
     NIFRID:abbrev "6",
         "SMA" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Fischl et al 2008",
+        "Geyer 2004",
+        "Glasser and Van Essen 2016",
+        "Vorobiev et al 1998" .
 
 HCPMMP:56 a owl:Class ;
     rdfs:label "Ventral Area 6 (hcpmmp)" ;
@@ -444,14 +619,18 @@ HCPMMP:56 a owl:Class ;
     skos:altLabel "6v" ;
     NIFRID:abbrev "6",
         "6v1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Amunts et al 2010",
+        "Fischl et al 2008",
+        "Geyer 2004" .
 
 HCPMMP:57 a owl:Class ;
     rdfs:label "Area Posterior 24 prime (hcpmmp)" ;
     skos:prefLabel "Area Posterior 24 prime" ;
     skos:altLabel "p24pr" ;
     NIFRID:synonym "p24'" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Vogt 2009" .
 
 HCPMMP:58 a owl:Class ;
     rdfs:label "Area 33 prime (hcpmmp)" ;
@@ -459,21 +638,26 @@ HCPMMP:58 a owl:Class ;
     skos:altLabel "33pr" ;
     NIFRID:abbrev "16",
         "33'" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Nieuwenhuys et al 2014",
+        "Vogt 2009" .
 
 HCPMMP:59 a owl:Class ;
     rdfs:label "Anterior 24 prime (hcpmmp)" ;
     skos:prefLabel "Anterior 24 prime" ;
     skos:altLabel "a24pr" ;
     NIFRID:synonym "a24'" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Vogt 2009" .
 
 HCPMMP:60 a owl:Class ;
     rdfs:label "Area p32 prime (hcpmmp)" ;
     skos:prefLabel "Area p32 prime" ;
     skos:altLabel "p32pr" ;
     NIFRID:abbrev "32'" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Vogt 2009" .
 
 HCPMMP:61 a owl:Class ;
     rdfs:label "Area a24 (hcpmmp)" ;
@@ -481,21 +665,27 @@ HCPMMP:61 a owl:Class ;
     skos:altLabel "a24" ;
     NIFRID:abbrev "24",
         "s24" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Palomero-Gallagher et al 2015",
+        "Vogt 2009" .
 
 HCPMMP:62 a owl:Class ;
     rdfs:label "Area dorsal 32 (hcpmmp)" ;
     skos:prefLabel "Area dorsal 32" ;
     skos:altLabel "d32" ;
     NIFRID:abbrev "32" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Vogt 2009" .
 
 HCPMMP:63 a owl:Class ;
     rdfs:label "Area 8BM (hcpmmp)" ;
     skos:prefLabel "Area 8BM" ;
     skos:altLabel "8BM" ;
     NIFRID:abbrev "8B" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Petredes and Pandya 1999" .
 
 HCPMMP:64 a owl:Class ;
     rdfs:label "Area p32 (hcpmmp)" ;
@@ -503,52 +693,72 @@ HCPMMP:64 a owl:Class ;
     skos:altLabel "p32" ;
     NIFRID:synonym "32ac" ;
     NIFRID:abbrev "32" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Ongur et al 2003",
+        "Palomero-Gallagher et al 2009",
+        "Van Essen et al 2012b",
+        "Vogt 2009" .
 
 HCPMMP:65 a owl:Class ;
     rdfs:label "Area 10r (hcpmmp)" ;
     skos:prefLabel "Area 10r" ;
     skos:altLabel "10r" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:66 a owl:Class ;
     rdfs:label "Area 47m (hcpmmp)" ;
     skos:prefLabel "Area 47m" ;
     skos:altLabel "47m" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2011",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:67 a owl:Class ;
     rdfs:label "Area 8Av (hcpmmp)" ;
     skos:prefLabel "Area 8Av" ;
     skos:altLabel "8Av" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Petredes and Pandya 1999" .
 
 HCPMMP:68 a owl:Class ;
     rdfs:label "Area 8Ad (hcpmmp)" ;
     skos:prefLabel "Area 8Ad" ;
     skos:altLabel "8Ad" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Petredes and Pandya 1999" .
 
 HCPMMP:69 a owl:Class ;
     rdfs:label "Area 9 Middle (hcpmmp)" ;
     skos:prefLabel "Area 9 Middle" ;
     skos:altLabel "9m" ;
     NIFRID:abbrev "9" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Petredes and Pandya 1999" .
 
 HCPMMP:70 a owl:Class ;
     rdfs:label "Area 8B Lateral (hcpmmp)" ;
     skos:prefLabel "Area 8B Lateral" ;
     skos:altLabel "8BL" ;
     NIFRID:abbrev "8B" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Petredes and Pandya 1999" .
 
 HCPMMP:71 a owl:Class ;
     rdfs:label "Area 9 Posterior (hcpmmp)" ;
     skos:prefLabel "Area 9 Posterior" ;
     skos:altLabel "9p" ;
     NIFRID:abbrev "9" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Petredes and Pandya 1999" .
 
 HCPMMP:72 a owl:Class ;
     rdfs:label "Area 10d (hcpmmp)" ;
@@ -557,14 +767,19 @@ HCPMMP:72 a owl:Class ;
     NIFRID:abbrev "10",
         "Fp1",
         "Fp2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Bludau et al 2014",
+        "Glasser and Van Essen 2016",
+        "Petredes and Pandya 1999" .
 
 HCPMMP:73 a owl:Class ;
     rdfs:label "Area 8C (hcpmmp)" ;
     skos:prefLabel "Area 8C" ;
     skos:altLabel "8C" ;
     NIFRID:abbrev "8Av" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Petredes and Pandya 1999" .
 
 HCPMMP:74 a owl:Class ;
     rdfs:label "Area 44 (hcpmmp)" ;
@@ -572,7 +787,10 @@ HCPMMP:74 a owl:Class ;
     skos:altLabel "44" ;
     NIFRID:abbrev "44d",
         "44v" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Amunts et al 1999",
+        "Amunts et al 2010",
+        "Fischl et al 2008" .
 
 HCPMMP:75 a owl:Class ;
     rdfs:label "Area 45 (hcpmmp)" ;
@@ -580,83 +798,110 @@ HCPMMP:75 a owl:Class ;
     skos:altLabel "45" ;
     NIFRID:abbrev "45a",
         "45p" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Amunts et al 1999",
+        "Amunts et al 2010",
+        "Fischl et al 2008" .
 
 HCPMMP:76 a owl:Class ;
     rdfs:label "Area 47l (47 lateral) (hcpmmp)" ;
     skos:prefLabel "Area 47l (47 lateral)" ;
     skos:altLabel "47l" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:77 a owl:Class ;
     rdfs:label "Area anterior 47r (hcpmmp)" ;
     skos:prefLabel "Area anterior 47r" ;
     skos:altLabel "a47r" ;
     NIFRID:abbrev "47r" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:78 a owl:Class ;
     rdfs:label "Rostral Area 6 (hcpmmp)" ;
     skos:prefLabel "Rostral Area 6" ;
     skos:altLabel "6r" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Amunts et al 2010" .
 
 HCPMMP:79 a owl:Class ;
     rdfs:label "Area IFJa (hcpmmp)" ;
     skos:prefLabel "Area IFJa" ;
     skos:altLabel "IFJa" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:80 a owl:Class ;
     rdfs:label "Area IFJp (hcpmmp)" ;
     skos:prefLabel "Area IFJp" ;
     skos:altLabel "IFJp" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:81 a owl:Class ;
     rdfs:label "Area IFSp (hcpmmp)" ;
     skos:prefLabel "Area IFSp" ;
     skos:altLabel "IFSp" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:82 a owl:Class ;
     rdfs:label "Area IFSa (hcpmmp)" ;
     skos:prefLabel "Area IFSa" ;
     skos:altLabel "IFSa" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:83 a owl:Class ;
     rdfs:label "Area posterior  9-46v (hcpmmp)" ;
     skos:prefLabel "Area posterior  9-46v" ;
     skos:altLabel "p9-46v" ;
     NIFRID:synonym "9-46v" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Petredes and Pandya 1999" .
 
 HCPMMP:84 a owl:Class ;
     rdfs:label "Area 46 (hcpmmp)" ;
     skos:prefLabel "Area 46" ;
     skos:altLabel "46" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Petredes and Pandya 1999",
+        "Rajkowska and Goldman-Rakic 1995a",
+        "Rajkowska and Goldman-Rakic 1995b" .
 
 HCPMMP:85 a owl:Class ;
     rdfs:label "Area anterior  9-46v (hcpmmp)" ;
     skos:prefLabel "Area anterior  9-46v" ;
     skos:altLabel "a9-46v" ;
     NIFRID:synonym "9-46v" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Petredes and Pandya 1999" .
 
 HCPMMP:86 a owl:Class ;
     rdfs:label "Area 9-46d (hcpmmp)" ;
     skos:prefLabel "Area 9-46d" ;
     skos:altLabel "9-46d" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Petredes and Pandya 1999" .
 
 HCPMMP:87 a owl:Class ;
     rdfs:label "Area 9 anterior (hcpmmp)" ;
     skos:prefLabel "Area 9 anterior" ;
     skos:altLabel "9a" ;
     NIFRID:abbrev "9" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Petredes and Pandya 1999" .
 
 HCPMMP:88 a owl:Class ;
     rdfs:label "Area 10v (hcpmmp)" ;
@@ -664,7 +909,9 @@ HCPMMP:88 a owl:Class ;
     skos:altLabel "10v" ;
     NIFRID:abbrev "10",
         "Fp2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Bludau et al 2014",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:89 a owl:Class ;
     rdfs:label "Area anterior 10p (hcpmmp)" ;
@@ -673,7 +920,11 @@ HCPMMP:89 a owl:Class ;
     NIFRID:abbrev "10",
         "10p",
         "Fp1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Bludau et al 2014",
+        "Glasser and Van Essen 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:90 a owl:Class ;
     rdfs:label "Polar 10p (hcpmmp)" ;
@@ -682,21 +933,31 @@ HCPMMP:90 a owl:Class ;
     NIFRID:abbrev "10",
         "10p",
         "Fp1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Bludau et al 2014",
+        "Glasser and Van Essen 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:91 a owl:Class ;
     rdfs:label "Area 11l (hcpmmp)" ;
     skos:prefLabel "Area 11l" ;
     skos:altLabel "11l" ;
     NIFRID:abbrev "Fo3" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Henssen et al 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:92 a owl:Class ;
     rdfs:label "Area 13l (hcpmmp)" ;
     skos:prefLabel "Area 13l" ;
     skos:altLabel "13l" ;
     NIFRID:abbrev "Fo3" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Henssen et al 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:93 a owl:Class ;
     rdfs:label "Orbital Frontal Complex (hcpmmp)" ;
@@ -707,19 +968,27 @@ HCPMMP:93 a owl:Class ;
         "13m",
         "14r",
         "Fo1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Henssen et al 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:94 a owl:Class ;
     rdfs:label "Area 47s (hcpmmp)" ;
     skos:prefLabel "Area 47s" ;
     skos:altLabel "47s" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:95 a owl:Class ;
     rdfs:label "Area Lateral IntraParietal dorsal (hcpmmp)" ;
     skos:prefLabel "Area Lateral IntraParietal dorsal" ;
     skos:altLabel "LIPd" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Van Essen et al 2012a" .
 
 HCPMMP:96 a owl:Class ;
     rdfs:label "Area 6 anterior (hcpmmp)" ;
@@ -727,41 +996,59 @@ HCPMMP:96 a owl:Class ;
     skos:altLabel "6a" ;
     NIFRID:abbrev "6",
         "6aβ" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Fischl et al 2008",
+        "Geyer 2004",
+        "Geyer et al 2000",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:97 a owl:Class ;
     rdfs:label "Inferior 6-8 Transitional Area (hcpmmp)" ;
     skos:prefLabel "Inferior 6-8 Transitional Area" ;
     skos:altLabel "i6-8" ;
     NIFRID:synonym "FC(B)" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:98 a owl:Class ;
     rdfs:label "Superior 6-8 Transitional Area (hcpmmp)" ;
     skos:prefLabel "Superior 6-8 Transitional Area" ;
     skos:altLabel "s6-8" ;
     NIFRID:synonym "FC(B)" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:99 a owl:Class ;
     rdfs:label "Area 43 (hcpmmp)" ;
     skos:prefLabel "Area 43" ;
     skos:altLabel "43" ;
     NIFRID:abbrev "41" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Brodmann 1909",
+        "Brodmann 2007",
+        "Nieuwenhuys et al 2014" .
 
 HCPMMP:100 a owl:Class ;
     rdfs:label "Area OP4/PV (hcpmmp)" ;
     skos:prefLabel "Area OP4/PV" ;
     skos:altLabel "OP4" ;
     NIFRID:abbrev "68" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Eickhoff et al 2006a",
+        "Eickhoff et al 2006b",
+        "Nieuwenhuys et al 2014" .
 
 HCPMMP:101 a owl:Class ;
     rdfs:label "Area OP1/SII (hcpmmp)" ;
     skos:prefLabel "Area OP1/SII" ;
     skos:altLabel "OP1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Eickhoff et al 2006a",
+        "Eickhoff et al 2006b" .
 
 HCPMMP:102 a owl:Class ;
     rdfs:label "Area OP2-3/VS (hcpmmp)" ;
@@ -769,14 +1056,21 @@ HCPMMP:102 a owl:Class ;
     skos:altLabel "OP2-3" ;
     NIFRID:abbrev "OP2",
         "OP3" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Eickhoff et al 2006a",
+        "Eickhoff et al 2006b",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:103 a owl:Class ;
     rdfs:label "Area 52 (hcpmmp)" ;
     skos:prefLabel "Area 52" ;
     skos:altLabel "52" ;
     NIFRID:abbrev "IBT" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Brodmann 1909",
+        "Brodmann 2007",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:104 a owl:Class ;
     rdfs:label "RetroInsular Cortex (hcpmmp)" ;
@@ -787,13 +1081,20 @@ HCPMMP:104 a owl:Class ;
         "RetroInsular" ;
     NIFRID:abbrev "reI",
         "TD" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2011",
+        "Kurth et al 2009",
+        "Pandya and Sanides 1973",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:105 a owl:Class ;
     rdfs:label "Area PFcm (hcpmmp)" ;
     skos:prefLabel "Area PFcm" ;
     skos:altLabel "PFcm" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Caspers et al 2006",
+        "Caspers et al 2008" .
 
 HCPMMP:106 a owl:Class ;
     rdfs:label "Posterior Insular Area 2 (hcpmmp)" ;
@@ -802,41 +1103,58 @@ HCPMMP:106 a owl:Class ;
     NIFRID:abbrev "Id1",
         "Id2",
         "Id3" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Kurth et al 2009",
+        "Morel et al 2013" .
 
 HCPMMP:107 a owl:Class ;
     rdfs:label "Area TA2 (hcpmmp)" ;
     skos:prefLabel "Area TA2" ;
     skos:altLabel "TA2" ;
     NIFRID:synonym "TE1.2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Morosan et al 2001",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:108 a owl:Class ;
     rdfs:label "Frontal OPercular Area 4 (hcpmmp)" ;
     skos:prefLabel "Frontal OPercular Area 4" ;
     skos:altLabel "FOP4" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:109 a owl:Class ;
     rdfs:label "Middle Insular Area (hcpmmp)" ;
     skos:prefLabel "Middle Insular Area" ;
     skos:altLabel "MI" ;
     NIFRID:abbrev "Ial" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:110 a owl:Class ;
     rdfs:label "Pirform Cortex (hcpmmp)" ;
     skos:prefLabel "Pirform Cortex" ;
     skos:altLabel "Pir" ;
     NIFRID:abbrev "Poc" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Ding et al 2009",
+        "Glasser and Van Essen 2011",
+        "Morel et al 2013" .
 
 HCPMMP:111 a owl:Class ;
     rdfs:label "Anterior Ventral Insular Area (hcpmmp)" ;
     skos:prefLabel "Anterior Ventral Insular Area" ;
     skos:altLabel "AVI" ;
     NIFRID:abbrev "Iai" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:112 a owl:Class ;
     rdfs:label "Anterior Agranular Insula Complex (hcpmmp)" ;
@@ -844,44 +1162,58 @@ HCPMMP:112 a owl:Class ;
     skos:altLabel "AAIC" ;
     NIFRID:abbrev "Iai",
         "Ial" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:113 a owl:Class ;
     rdfs:label "Frontal OPercular Area 1 (hcpmmp)" ;
     skos:prefLabel "Frontal OPercular Area 1" ;
     skos:altLabel "FOP1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:114 a owl:Class ;
     rdfs:label "Frontal OPercular Area 3 (hcpmmp)" ;
     skos:prefLabel "Frontal OPercular Area 3" ;
     skos:altLabel "FOP3" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:115 a owl:Class ;
     rdfs:label "Frontal OPercular Area 2 (hcpmmp)" ;
     skos:prefLabel "Frontal OPercular Area 2" ;
     skos:altLabel "FOP2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:116 a owl:Class ;
     rdfs:label "Area PFt (hcpmmp)" ;
     skos:prefLabel "Area PFt" ;
     skos:altLabel "PFt" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Caspers et al 2006",
+        "Caspers et al 2008" .
 
 HCPMMP:117 a owl:Class ;
     rdfs:label "Anterior IntraParietal Area (hcpmmp)" ;
     skos:prefLabel "Anterior IntraParietal Area" ;
     skos:altLabel "AIP" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Van Essen et al 2012a" .
 
 HCPMMP:118 a owl:Class ;
     rdfs:label "Entorhinal Cortex (hcpmmp)" ;
     skos:prefLabel "Entorhinal Cortex" ;
     skos:altLabel "EC" ;
     NIFRID:abbrev "28" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Fischl et al 2009" .
 
 HCPMMP:119 a owl:Class ;
     rdfs:label "PreSubiculum (hcpmmp)" ;
@@ -889,19 +1221,26 @@ HCPMMP:119 a owl:Class ;
     skos:altLabel "PreS" ;
     NIFRID:synonym "Subicular" ;
     NIFRID:abbrev "Sub" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Amunts et al 2005",
+        "Glasser and Van Essen 2011" .
 
 HCPMMP:120 a owl:Class ;
     rdfs:label "Hippocampus (hcpmmp)" ;
     skos:prefLabel "Hippocampus" ;
     skos:altLabel "H" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "" .
 
 HCPMMP:121 a owl:Class ;
     rdfs:label "ProStriate Area (hcpmmp)" ;
     skos:prefLabel "ProStriate Area" ;
     skos:altLabel "ProS" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2011",
+        "Sanides 1970",
+        "Sanides and Vitzthum 1965",
+        "Vogt et al 2001" .
 
 HCPMMP:122 a owl:Class ;
     rdfs:label "Perirhinal Ectorhinal Cortex (hcpmmp)" ;
@@ -913,13 +1252,21 @@ HCPMMP:122 a owl:Class ;
         "Perirhinal" ;
     NIFRID:abbrev "35",
         "36" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Augustinack et al 2013",
+        "Ding and Van Hoesen 2010",
+        "Ding et al 2009",
+        "Glasser and Van Essen 2016",
+        "Rajimehr et al 2009",
+        "Tsao et al 2008" .
 
 HCPMMP:123 a owl:Class ;
     rdfs:label "Area STGa (hcpmmp)" ;
     skos:prefLabel "Area STGa" ;
     skos:altLabel "STGa" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:124 a owl:Class ;
     rdfs:label "ParaBelt Complex (hcpmmp)" ;
@@ -927,116 +1274,162 @@ HCPMMP:124 a owl:Class ;
     skos:altLabel "PBelt" ;
     NIFRID:synonym "ParaBelt" ;
     NIFRID:abbrev "TA1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Moerel et al 2014",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:125 a owl:Class ;
     rdfs:label "Auditory 5 Complex (hcpmmp)" ;
     skos:prefLabel "Auditory 5 Complex" ;
     skos:altLabel "A5" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:126 a owl:Class ;
     rdfs:label "ParaHippocampal Area 1 (hcpmmp)" ;
     skos:prefLabel "ParaHippocampal Area 1" ;
     skos:altLabel "PHA1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:127 a owl:Class ;
     rdfs:label "ParaHippocampal Area 3 (hcpmmp)" ;
     skos:prefLabel "ParaHippocampal Area 3" ;
     skos:altLabel "PHA3" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:128 a owl:Class ;
     rdfs:label "Area STSd anterior (hcpmmp)" ;
     skos:prefLabel "Area STSd anterior" ;
     skos:altLabel "STSda" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:129 a owl:Class ;
     rdfs:label "Area STSd posterior (hcpmmp)" ;
     skos:prefLabel "Area STSd posterior" ;
     skos:altLabel "STSdp" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:130 a owl:Class ;
     rdfs:label "Area STSv posterior (hcpmmp)" ;
     skos:prefLabel "Area STSv posterior" ;
     skos:altLabel "STSvp" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:131 a owl:Class ;
     rdfs:label "Area TG dorsal (hcpmmp)" ;
     skos:prefLabel "Area TG dorsal" ;
     skos:altLabel "TGd" ;
     NIFRID:abbrev "TG" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Ding et al 2009",
+        "Glasser and Van Essen 2016",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:132 a owl:Class ;
     rdfs:label "Area TE1 anterior (hcpmmp)" ;
     skos:prefLabel "Area TE1 anterior" ;
     skos:altLabel "TE1a" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:133 a owl:Class ;
     rdfs:label "Area TE1 posterior (hcpmmp)" ;
     skos:prefLabel "Area TE1 posterior" ;
     skos:altLabel "TE1p" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:134 a owl:Class ;
     rdfs:label "Area TE2 anterior (hcpmmp)" ;
     skos:prefLabel "Area TE2 anterior" ;
     skos:altLabel "TE2a" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:135 a owl:Class ;
     rdfs:label "Area TF (hcpmmp)" ;
     skos:prefLabel "Area TF" ;
     skos:altLabel "TF" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:136 a owl:Class ;
     rdfs:label "Area TE2 posterior (hcpmmp)" ;
     skos:prefLabel "Area TE2 posterior" ;
     skos:altLabel "TE2p" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:137 a owl:Class ;
     rdfs:label "Area PHT (hcpmmp)" ;
     skos:prefLabel "Area PHT" ;
     skos:altLabel "PHT" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:138 a owl:Class ;
     rdfs:label "Area PH (hcpmmp)" ;
     skos:prefLabel "Area PH" ;
     skos:altLabel "PH" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:139 a owl:Class ;
     rdfs:label "Area TemporoParietoOccipital Junction 1 (hcpmmp)" ;
     skos:prefLabel "Area TemporoParietoOccipital Junction 1" ;
     skos:altLabel "TPOJ1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:140 a owl:Class ;
     rdfs:label "Area TemporoParietoOccipital Junction 2 (hcpmmp)" ;
     skos:prefLabel "Area TemporoParietoOccipital Junction 2" ;
     skos:altLabel "TPOJ2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:141 a owl:Class ;
     rdfs:label "Area TemporoParietoOccipital Junction 3 (hcpmmp)" ;
     skos:prefLabel "Area TemporoParietoOccipital Junction 3" ;
     skos:altLabel "TPOJ3" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:142 a owl:Class ;
     rdfs:label "Dorsal Transitional Visual Area (hcpmmp)" ;
     skos:prefLabel "Dorsal Transitional Visual Area" ;
     skos:altLabel "DVT" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:143 a owl:Class ;
     rdfs:label "Area PGp (hcpmmp)" ;
@@ -1044,25 +1437,31 @@ HCPMMP:143 a owl:Class ;
     skos:altLabel "PGp" ;
     NIFRID:abbrev "39",
         "PG" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Caspers et al 2006",
+        "Caspers et al 2008" .
 
 HCPMMP:144 a owl:Class ;
     rdfs:label "Area IntraParietal 2 (hcpmmp)" ;
     skos:prefLabel "Area IntraParietal 2" ;
     skos:altLabel "IP2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Choi et al 2006" .
 
 HCPMMP:145 a owl:Class ;
     rdfs:label "Area IntraParietal 1 (hcpmmp)" ;
     skos:prefLabel "Area IntraParietal 1" ;
     skos:altLabel "IP1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Choi et al 2006" .
 
 HCPMMP:146 a owl:Class ;
     rdfs:label "Area IntraParietal 0 (hcpmmp)" ;
     skos:prefLabel "Area IntraParietal 0" ;
     skos:altLabel "IP0" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:147 a owl:Class ;
     rdfs:label "Area PF opercular (hcpmmp)" ;
@@ -1070,7 +1469,10 @@ HCPMMP:147 a owl:Class ;
     skos:altLabel "PFop" ;
     NIFRID:abbrev "40",
         "72" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Caspers et al 2006",
+        "Caspers et al 2008",
+        "Nieuwenhuys et al 2014" .
 
 HCPMMP:148 a owl:Class ;
     rdfs:label "Area PF Complex (hcpmmp)" ;
@@ -1078,7 +1480,10 @@ HCPMMP:148 a owl:Class ;
     skos:altLabel "PF" ;
     NIFRID:abbrev "40",
         "88" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Caspers et al 2006",
+        "Caspers et al 2008",
+        "Nieuwenhuys et al 2014" .
 
 HCPMMP:149 a owl:Class ;
     rdfs:label "Area PFm Complex (hcpmmp)" ;
@@ -1086,7 +1491,10 @@ HCPMMP:149 a owl:Class ;
     skos:altLabel "PFm" ;
     NIFRID:abbrev "40",
         "89" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Caspers et al 2006",
+        "Caspers et al 2008",
+        "Nieuwenhuys et al 2014" .
 
 HCPMMP:150 a owl:Class ;
     rdfs:label "Area PGi (hcpmmp)" ;
@@ -1096,7 +1504,10 @@ HCPMMP:150 a owl:Class ;
         "90",
         "PG",
         "PGa" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Caspers et al 2006",
+        "Caspers et al 2008",
+        "Nieuwenhuys et al 2014" .
 
 HCPMMP:151 a owl:Class ;
     rdfs:label "Area PGs (hcpmmp)" ;
@@ -1106,14 +1517,19 @@ HCPMMP:151 a owl:Class ;
         "90",
         "PG",
         "PGa" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Caspers et al 2006",
+        "Caspers et al 2008",
+        "Nieuwenhuys et al 2014" .
 
 HCPMMP:152 a owl:Class ;
     rdfs:label "Area V6A (hcpmmp)" ;
     skos:prefLabel "Area V6A" ;
     skos:altLabel "V6A" ;
     NIFRID:abbrev "112" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Nieuwenhuys et al 2014",
+        "Pizalis et al 2013" .
 
 HCPMMP:153 a owl:Class ;
     rdfs:label "VentroMedial Visual Area 1 (hcpmmp)" ;
@@ -1121,33 +1537,47 @@ HCPMMP:153 a owl:Class ;
     skos:altLabel "VMV1" ;
     NIFRID:synonym "PHC2",
         "PHC-2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Arcaro et al 2009",
+        "Glasser and Van Essen 2016",
+        "Wang et al 2015" .
 
 HCPMMP:154 a owl:Class ;
     rdfs:label "VentroMedial Visual Area 3 (hcpmmp)" ;
     skos:prefLabel "VentroMedial Visual Area 3" ;
     skos:altLabel "VMV3" ;
     NIFRID:abbrev "VO2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Arcaro et al 2009",
+        "Glasser and Van Essen 2016",
+        "Wandell and Winawer 2011",
+        "Wang et al 2015" .
 
 HCPMMP:155 a owl:Class ;
     rdfs:label "ParaHippocampal Area 2 (hcpmmp)" ;
     skos:prefLabel "ParaHippocampal Area 2" ;
     skos:altLabel "PHA2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:156 a owl:Class ;
     rdfs:label "Area V4t (hcpmmp)" ;
     skos:prefLabel "Area V4t" ;
     skos:altLabel "V4t" ;
     NIFRID:abbrev "LO2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Kolster et al 2010",
+        "Larsson and Heeger 2006" .
 
 HCPMMP:157 a owl:Class ;
     rdfs:label "Area FST (hcpmmp)" ;
     skos:prefLabel "Area FST" ;
     skos:altLabel "FST" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Kolster et al 2010" .
 
 HCPMMP:158 a owl:Class ;
     rdfs:label "Area V3CD (hcpmmp)" ;
@@ -1156,14 +1586,19 @@ HCPMMP:158 a owl:Class ;
     NIFRID:synonym "hOC4la" ;
     NIFRID:abbrev "V3A",
         "V3B" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Abdollahi et al 2014",
+        "Glasser and Van Essen 2016",
+        "Malikovic et al 2015" .
 
 HCPMMP:159 a owl:Class ;
     rdfs:label "Area Lateral Occipital 3 (hcpmmp)" ;
     skos:prefLabel "Area Lateral Occipital 3" ;
     skos:altLabel "LO3" ;
     NIFRID:synonym "hOC4la" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:160 a owl:Class ;
     rdfs:label "VentroMedial Visual Area 2 (hcpmmp)" ;
@@ -1171,7 +1606,10 @@ HCPMMP:160 a owl:Class ;
     skos:altLabel "VMV2" ;
     NIFRID:synonym "PHC1",
         "PHC-1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Arcaro et al 2009",
+        "Glasser and Van Essen 2016",
+        "Wang et al 2015" .
 
 HCPMMP:161 a owl:Class ;
     rdfs:label "Area 31pd (hcpmmp)" ;
@@ -1180,7 +1618,10 @@ HCPMMP:161 a owl:Class ;
     NIFRID:abbrev "31",
         "31d",
         "31v" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Palomero-Gallagher et al 2009",
+        "Vogt 2009" .
 
 HCPMMP:162 a owl:Class ;
     rdfs:label "Area 31a (hcpmmp)" ;
@@ -1189,7 +1630,10 @@ HCPMMP:162 a owl:Class ;
     NIFRID:abbrev "31",
         "31d",
         "31v" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Palomero-Gallagher et al 2009",
+        "Vogt 2009" .
 
 HCPMMP:163 a owl:Class ;
     rdfs:label "Ventral Visual Complex (hcpmmp)" ;
@@ -1202,13 +1646,21 @@ HCPMMP:163 a owl:Class ;
     NIFRID:abbrev "FG1",
         "VO1",
         "VO2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Arcaro et al 2009",
+        "Caspers et al 2013",
+        "Glasser and Van Essen 2016",
+        "Wandell and Winawer 2011",
+        "Wang et al 2015",
+        "Weiner et al 2014" .
 
 HCPMMP:164 a owl:Class ;
     rdfs:label "Area 25 (hcpmmp)" ;
     skos:prefLabel "Area 25" ;
     skos:altLabel "25" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Palomero-Gallagher et al 2015",
+        "Vogt 2009" .
 
 HCPMMP:165 a owl:Class ;
     rdfs:label "Area s32 (hcpmmp)" ;
@@ -1216,7 +1668,11 @@ HCPMMP:165 a owl:Class ;
     skos:altLabel "s32" ;
     NIFRID:synonym "32pl" ;
     NIFRID:abbrev "32" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Ongur et al 2003",
+        "Palomero-Gallagher et al 2015",
+        "Van Essen et al 2012b",
+        "Vogt 2009" .
 
 HCPMMP:166 a owl:Class ;
     rdfs:label "posterior OFC Complex (hcpmmp)" ;
@@ -1225,7 +1681,11 @@ HCPMMP:166 a owl:Class ;
     NIFRID:abbrev "13a",
         "14c",
         "Fo2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Henssen et al 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:167 a owl:Class ;
     rdfs:label "Area Posterior Insular 1 (hcpmmp)" ;
@@ -1234,7 +1694,10 @@ HCPMMP:167 a owl:Class ;
     NIFRID:abbrev "Id1",
         "Id2",
         "Id3" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Kurth et al 2009",
+        "Morel et al 2013" .
 
 HCPMMP:168 a owl:Class ;
     rdfs:label "Insular Granular Complex (hcpmmp)" ;
@@ -1242,14 +1705,19 @@ HCPMMP:168 a owl:Class ;
     skos:altLabel "Ig" ;
     NIFRID:abbrev "Ig1",
         "Ig2" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Kurth et al 2009",
+        "Morel et al 2013" .
 
 HCPMMP:169 a owl:Class ;
     rdfs:label "Area Frontal Opercular 5 (hcpmmp)" ;
     skos:prefLabel "Area Frontal Opercular 5" ;
     skos:altLabel "FOP5" ;
     NIFRID:synonym "PrCO" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2011",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:170 a owl:Class ;
     rdfs:label "Area posterior 10p (hcpmmp)" ;
@@ -1258,20 +1726,31 @@ HCPMMP:170 a owl:Class ;
     NIFRID:abbrev "10",
         "10p",
         "Fp1" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Bludau et al 2014",
+        "Glasser and Van Essen 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:171 a owl:Class ;
     rdfs:label "Area posterior 47r (hcpmmp)" ;
     skos:prefLabel "Area posterior 47r" ;
     skos:altLabel "p47r" ;
     NIFRID:abbrev "47r" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Ongur et al 2003",
+        "Van Essen et al 2012b" .
 
 HCPMMP:172 a owl:Class ;
     rdfs:label "Area TG Ventral (hcpmmp)" ;
     skos:prefLabel "Area TG Ventral" ;
     skos:altLabel "TGv" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Ding et al 2009",
+        "Glasser and Van Essen 2016",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:173 a owl:Class ;
     rdfs:label "Medial Belt Complex (hcpmmp)" ;
@@ -1279,7 +1758,11 @@ HCPMMP:173 a owl:Class ;
     skos:altLabel "MBelt" ;
     NIFRID:synonym "Belt" ;
     NIFRID:abbrev "TB" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Moerel et al 2014",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:174 a owl:Class ;
     rdfs:label "Lateral Belt Complex (hcpmmp)" ;
@@ -1287,54 +1770,64 @@ HCPMMP:174 a owl:Class ;
     skos:altLabel "LBelt" ;
     NIFRID:synonym "Belt" ;
     NIFRID:abbrev "TB" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Moerel et al 2014",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:175 a owl:Class ;
     rdfs:label "Auditory 4 Complex (hcpmmp)" ;
     skos:prefLabel "Auditory 4 Complex" ;
     skos:altLabel "A4" ;
     NIFRID:abbrev "TE3" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Morosan et al 2005" .
 
 HCPMMP:176 a owl:Class ;
     rdfs:label "Area STSv anterior (hcpmmp)" ;
     skos:prefLabel "Area STSv anterior" ;
     skos:altLabel "STSva" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "",
+        "Glasser and Van Essen 2016" .
 
 HCPMMP:177 a owl:Class ;
     rdfs:label "Area TE1 Middle (hcpmmp)" ;
     skos:prefLabel "Area TE1 Middle" ;
     skos:altLabel "TE1m" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:178 a owl:Class ;
     rdfs:label "Para-Insular Area (hcpmmp)" ;
     skos:prefLabel "Para-Insular Area" ;
     skos:altLabel "PI" ;
     NIFRID:abbrev "IBT" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Ding et al 2009",
+        "Triarhou 2007",
+        "von Economo and Koskinas 1925" .
 
 HCPMMP:179 a owl:Class ;
     rdfs:label "Area anterior 32 prime (hcpmmp)" ;
     skos:prefLabel "Area anterior 32 prime" ;
     skos:altLabel "a32pr" ;
     NIFRID:abbrev "32'" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Vogt 2009" .
 
 HCPMMP:180 a owl:Class ;
     rdfs:label "Area posterior 24 (hcpmmp)" ;
     skos:prefLabel "Area posterior 24" ;
     skos:altLabel "p24" ;
     NIFRID:abbrev "24" ;
-    rdfs:subClassOf ilxtr:hcpmmproot .
-
-ilxtr:hcpmmproot a owl:Class ;
-    rdfs:label "HCPMMP label root" ;
-    NIFRID:abbrev "hcpmmp" ;
-    rdfs:subClassOf ilxtr:parcellationLabel,
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:isDefinedBy ;
-            owl:allValuesFrom ilxtr:hcpmmpv1 ] .
+    rdfs:subClassOf HCPMMP: ;
+    NIFRID:definingCitation "Glasser and Van Essen 2016",
+        "Vogt 2009" .
 
 ### Serialized using the pyontutils deterministic serializer v1.1.3
