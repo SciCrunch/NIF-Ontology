@@ -1,0 +1,242 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
+@prefix hasParticipant: <http://purl.obolibrary.org/obo/RO_0000057> .
+@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://ontology.neuinfo.org/NIF/ttl/methods-core.ttl> a owl:Ontology ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> ;
+    rdfs:comment "The core components for modelling techniques and methods." ;
+    owl:versionInfo "2018-03-13" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/a8b1546b73c501c42defc8df3a37958dbdf5d81e/pyontutils/core.py#L1196> .
+
+### Object Properties
+
+hasParticipant: a owl:ObjectProperty ;
+    rdfs:label "has participant" ;
+    NIFRID:synonym "has physical participant" .
+
+ilxtr:detects a owl:ObjectProperty ;
+    rdfs:label "detects" ;
+    NIFRID:synonym "has detected phenomena" ;
+    definition: "The relationship between a technique and the phenomena that it detects." ;
+    rdfs:subPropertyOf hasParticipant: .
+
+ilxtr:hasDefiningProtocol a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasOperationDefinition .
+
+ilxtr:hasInformationInput a owl:ObjectProperty ;
+    rdfs:label "has information input" ;
+    NIFRID:synonym "has execution time information input",
+        "has non-constraining information input",
+        "has symbolic input" ;
+    definition: "The relationship between a process and information that is an input to the process." ;
+    rdfs:subPropertyOf ilxtr:hasInformationParticipant ;
+    owl:disjointWith ilxtr:isConstrainedBy ;
+    rdfs:comment "This can be though of as the known variables of a process, or the runtime information that cannot be known prior to process execution." .
+
+ilxtr:hasInformationOutput a owl:ObjectProperty ;
+    rdfs:label "has information output" ;
+    NIFRID:synonym "has symbolic output" ;
+    rdfs:subPropertyOf ilxtr:hasInformationParticipant .
+
+ilxtr:hasInformationParticipant a owl:ObjectProperty ;
+    rdfs:label "has information participant" ;
+    NIFRID:synonym "has symbolic participant" ;
+    definition: "The relationship between a process and some information that participates in it. When this this points to a real thing it is interpreted to mean the informationcontent of the artifact, not the artifact itself." ;
+    rdfs:comment "This is distinct from RO:0000057 in that we are using RO:0000057 explicitly for real things in the world. Information must be symbolized by something in the world but it is not the scratches on the paper that constrain a process, it is their implication." .
+
+ilxtr:hasIntention a owl:ObjectProperty ;
+    rdfs:label "has intention" ;
+    definition: "The relationship between a process and an intended outcome." ;
+    rdfs:comment "Should rarely be used directly." .
+
+ilxtr:hasOperationDefinition a owl:ObjectProperty .
+
+ilxtr:hasPrimaryAspect a owl:ObjectProperty ;
+    rdfs:label "has intended primary aspect" ;
+    NIFRID:synonym "has intention primary aspect",
+        "has intention to effect the primary aspect of the primary participant",
+        "has primary aspect",
+        "hasPrimaryParticipantIntentionPrimaryAspect" ;
+    definition: "The reltionship between a technique and the primary aspect of the primary participant intended to be effected by the technique." ;
+    rdfs:subPropertyOf ilxtr:hasIntention ;
+    rdfs:comment "This property is very useful for classifying techniques. For example a flattening technique is intended to effect the flatness aspect of any primary participant, though it may effect other aspects as well." .
+
+ilxtr:hasPrimaryAspect_dAdS a owl:ObjectProperty ;
+    rdfs:label "has intended change in primary aspect as a function of the subset of the primary participant." ;
+    NIFRID:synonym "has intended dA/dS",
+        "has intended dAspect/dSubset" ;
+    rdfs:subPropertyOf ilxtr:hasIntention ;
+    rdfs:comment "Full specification requires a rule to determine those subsets. Subsets may be spatial, temporal, or spatio-temporal as long as the temporal component occurs within the temporal confines of the execution of the technique." .
+
+ilxtr:hasPrimaryAspect_dAdT a owl:ObjectProperty ;
+    rdfs:label "has intended change in primary aspect" ;
+    NIFRID:synonym "hasPrimaryParticipantIntentionPrimaryAspect_dAdT" ;
+    definition: "The intended change in primary aspect of primary participant before and after technique" ;
+    rdfs:subPropertyOf ilxtr:hasIntention .
+
+ilxtr:hasPrimaryParticipant a owl:ObjectProperty ;
+    rdfs:label "has primary participant" ;
+    definition: "The relationship between a process and its primary participant." ;
+    rdfs:subPropertyOf hasParticipant: ;
+    rdfs:comment "This property should be used to mark the key input and/or output of a process if its type is not generic." .
+
+ilxtr:hasPrimaryParticipantSubsetRule a owl:ObjectProperty ;
+    rdfs:label "has intended primary participant subset rule" ;
+    NIFRID:synonym "has primary participant subset rule",
+        "has subset rule" ;
+    definition: "The rule by which subsets of the primary participant are intended to be distingushed by a technique. The dS in dAdS, change in aspect with respect to change in subset of primary participant." ;
+    rdfs:subPropertyOf ilxtr:hasIntention .
+
+ilxtr:hasProbe a owl:ObjectProperty ;
+    rdfs:label "has probing phenomena" ;
+    NIFRID:synonym "has probe" ;
+    definition: "The relationship between a technique and the phenomena that it uses to probe other participants. Useful for cases where the probing phenomena is different than the detected phenomena." ;
+    rdfs:subPropertyOf hasParticipant: .
+
+ilxtr:isConstrainedBy a owl:ObjectProperty ;
+    rdfs:label "is constrained by" ;
+    NIFRID:synonym "has information constraint",
+        "has symbolic constraint" ;
+    definition: "The relationship between a process and prior information that constrains it. For example the code that is compiled to create a piece of analysis software." ;
+    rdfs:subPropertyOf ilxtr:hasInformationParticipant ;
+    rdfs:comment """These look like free variables inside a process.
+(define (my-process free-variables)
+  (define (execute-process inputs)
+    (combine free-varibles inputs))
+  execute-process)""" .
+
+ilxtr:wasDiscoveredBy a owl:ObjectProperty ;
+    rdfs:label "was discovered by" ;
+    definition: "The relationship between a process and the person who discovered it." .
+
+RO:0002233 a owl:ObjectProperty ;
+    rdfs:label "has input" .
+
+RO:0002234 a owl:ObjectProperty ;
+    rdfs:label "has output" .
+
+### Classes
+
+BFO:0000015 a owl:Class ;
+    rdfs:label "process" .
+
+BFO:0000019 a owl:Class ;
+    rdfs:label "quality" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/flatness> a owl:Class ;
+    rdfs:label "flatness" ;
+    NIFRID:synonym "flatness aspect" ;
+    definition: "How flat a thing is. There are a huge variety of operational definitions depending on the type of thing in question." ;
+    rdfs:subClassOf ilxtr:aspect .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/is> a owl:Class ;
+    rdfs:label "is" ;
+    NIFRID:synonym "being aspect",
+        "beingness",
+        "isness" ;
+    definition: "The aspect of beingness. Should be true or false, value in {0,1}.Not to be confused with the 'is a' reltionship which deals with categories/types/classes.For now should not be used for 'partial' beingness, so a partially completed building is nota building for the purposes of this aspect. This is open to discussion, and if there aregood examples where partial beingness is a useful concept, use as a [0,1] aspect would be encouraged." ;
+    rdfs:subClassOf ilxtr:aspect ;
+    rdfs:comment "There are cases where the value could be ? depending on how one operationalizes certain concepts from quantum physics." .
+
+ilxtr:aspect a owl:Class ;
+    rdfs:label "aspect" ;
+    rdfs:subClassOf BFO:0000019 ;
+    rdfs:comment "PATO has good coverage of many of these aspects though their naming is not alway consistent." .
+
+ilxtr:informationArtifact a owl:Class ;
+    rdfs:label "information artifact" ;
+    definition: "An information entity that has an explicit symbolic encoding which is distinct from the existence or being that it encodes." ;
+    rdfs:subClassOf ilxtr:informationEntity .
+
+ilxtr:informationEntity a owl:Class ;
+    rdfs:label "information entity" ;
+    definition: "Any physically encoded information." .
+
+ilxtr:protocol a owl:Class ;
+    rdfs:label "protocol" ;
+    rdfs:subClassOf ilxtr:informationEntity .
+
+ilxtr:protocolArtifact a owl:Class ;
+    rdfs:label "protocol artifact" ;
+    rdfs:subClassOf ilxtr:informationArtifact,
+        ilxtr:informationEntity,
+        ilxtr:protocol .
+
+ilxtr:protocolExecution a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom ilxtr:protocol ] ) ] ;
+    rdfs:label "protocol execution" ;
+    rdfs:subClassOf ilxtr:technique .
+
+ilxtr:technique a owl:Class ;
+    rdfs:label "technique" ;
+    NIFRID:synonym "method" ;
+    definition: "A repeatable process that is constrained by some prior information." ;
+    rdfs:subClassOf BFO:0000015 .
+
+### Axioms
+
+[ a owl:Axiom ;
+    owl:annotatedSource <http://uri.interlex.org/tgbugs/uris/readable/aspect/flatness> ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedTarget ilxtr:aspect ;
+    ilxtr:isDefinedBy "OWLRL_Semantics" ] .
+
+[ a owl:Axiom ;
+    owl:annotatedSource <http://uri.interlex.org/tgbugs/uris/readable/aspect/is> ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedTarget ilxtr:aspect ;
+    ilxtr:isDefinedBy "OWLRL_Semantics" ] .
+
+[ a owl:Axiom ;
+    owl:annotatedSource ilxtr:informationArtifact ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedTarget ilxtr:informationEntity ;
+    ilxtr:isDefinedBy "OWLRL_Semantics" ] .
+
+[ a owl:Axiom ;
+    owl:annotatedSource ilxtr:protocol ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedTarget ilxtr:informationEntity ;
+    ilxtr:isDefinedBy "OWLRL_Semantics" ] .
+
+[ a owl:Axiom ;
+    owl:annotatedSource ilxtr:protocolArtifact ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedTarget ilxtr:informationArtifact ;
+    ilxtr:isDefinedBy "OWLRL_Semantics" ] .
+
+[ a owl:Axiom ;
+    owl:annotatedSource ilxtr:protocolArtifact ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedTarget ilxtr:informationEntity ;
+    ilxtr:isDefinedBy "OWLRL_Semantics" ] .
+
+[ a owl:Axiom ;
+    owl:annotatedSource ilxtr:protocolArtifact ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedTarget ilxtr:protocol ;
+    ilxtr:isDefinedBy "OWLRL_Semantics" ] .
+
+[ a owl:Axiom ;
+    owl:annotatedSource ilxtr:protocolExecution ;
+    owl:annotatedProperty rdfs:subClassOf ;
+    owl:annotatedTarget ilxtr:technique ;
+    ilxtr:isDefinedBy "OWLRL_Semantics" ] .
+
+### Serialized using the pyontutils deterministic serializer v1.1.3

@@ -1,0 +1,2504 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
+@prefix hasInput: <http://purl.obolibrary.org/obo/RO_0002233> .
+@prefix hasOutput: <http://purl.obolibrary.org/obo/RO_0002234> .
+@prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
+@prefix hasParticipant: <http://purl.obolibrary.org/obo/RO_0000057> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix realizes: <http://purl.obolibrary.org/obo/BFO_0000055> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://ontology.neuinfo.org/NIF/ttl/methods.ttl> a owl:Ontology ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/bridge/chebi-bridge.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/bridge/tax-bridge.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/methods-core.ttl> ;
+    rdfs:comment "The ontology of techniques and methods." ;
+    owl:versionInfo "2018-03-13" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/a8b1546b73c501c42defc8df3a37958dbdf5d81e/pyontutils/core.py#L1196> .
+
+### Classes
+
+<http://purl.obolibrary.org/obo/CHEBI_33696> a owl:Class ;
+    rdfs:subClassOf ilxtr:thingWithSequence .
+
+<http://uri.interlex.org/temp/uris/0> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/informationEntropy> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:positive ] ) ] ;
+    rdfs:label "randomization technique" .
+
+<http://uri.interlex.org/temp/uris/1> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/CHEBI_24431> ] ) ] ;
+    rdfs:label "chemical technique" .
+
+<http://uri.interlex.org/temp/uris/2> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/CHEBI_25367> ] ) ] ;
+    rdfs:label "molecular technique" .
+
+<http://uri.interlex.org/temp/uris/3> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://uri.neuinfo.org/nif/nifstd/sao1813327414> ] ) ] ;
+    rdfs:label "cellular technique" .
+
+<http://uri.interlex.org/temp/uris/4> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:inducationFactor ] ) ] ;
+    rdfs:label "cell type induction technique" .
+
+<http://uri.interlex.org/temp/uris/5> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/CHEBI_16991> ] ) ] ;
+    rdfs:label "cloning technique" .
+
+<http://uri.interlex.org/temp/uris/6> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom <http://uri.neuinfo.org/nif/nifstd/birnlex_11031> ] ) ] ;
+    rdfs:label "microarray technique" .
+
+<http://uri.interlex.org/temp/uris/7> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/_naSeq> ) ] ;
+    rdfs:label "deep sequencing technique" ;
+    NIFRID:synonyms "deep sequencing" .
+
+<http://uri.interlex.org/temp/uris/8> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/_naSeq> ) ] ;
+    rdfs:label "sanger sequencing technique" ;
+    NIFRID:synonyms "sanger sequencing" .
+
+<http://uri.interlex.org/temp/uris/9> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/_naSeq> ) ] ;
+    rdfs:label "shotgun sequencing technique" ;
+    NIFRID:synonyms "shotgun sequencing" .
+
+<http://uri.interlex.org/temp/uris/10> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/sequencing>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://uri.neuinfo.org/nif/nifstd/sao1813327414> ] ) ] ;
+    rdfs:label "single cell sequencing technique" ;
+    NIFRID:synonyms "single cell sequencing" .
+
+<http://uri.interlex.org/temp/uris/11> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/sequencing>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/GO_0005634> ] ) ] ;
+    rdfs:label "single nucleus sequencing technique" ;
+    NIFRID:synonyms "single nucleus sequencing" .
+
+<http://uri.interlex.org/temp/uris/12> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/CHEBI_33697> ] ) ] ;
+    rdfs:label "RNAseq" ;
+    NIFRID:synonyms "RNA-seq" .
+
+<http://uri.interlex.org/temp/uris/13> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:mRNA ] ) ] ;
+    rdfs:label "mRNA-seq" .
+
+<http://uri.interlex.org/temp/uris/14> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/GO_0005634> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/CHEBI_33697> ] ) ] ;
+    rdfs:label "snRNAseq" ;
+    NIFRID:synonyms "single nucleus RNAseq",
+        "snRNA-Seq" .
+
+<http://uri.interlex.org/temp/uris/15> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://uri.neuinfo.org/nif/nifstd/sao1813327414> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/CHEBI_33697> ] ) ] ;
+    rdfs:label "scRNAseq" ;
+    NIFRID:synonyms "scRNA-Seq",
+        "single cell RNAseq" .
+
+<http://uri.interlex.org/temp/uris/16> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:microPipette ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/CHEBI_33697> ] ) ] ;
+    rdfs:label "Patch-seq" ;
+    NIFRID:synonyms "patch seq",
+        "Patch-Seq" .
+
+<http://uri.interlex.org/temp/uris/17> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/18> ] ) ] ;
+    rdfs:label "mC-seq" ;
+    definition: "non CG methylation" .
+
+<http://uri.interlex.org/temp/uris/19> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/GO_0005634> ] ) ] ;
+    rdfs:label "snmC-seq" .
+
+<http://uri.interlex.org/temp/uris/21> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/ATACseq>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/GO_0005634> ] ) ] ;
+    rdfs:label "snATAC-seq" ;
+    NIFRID:synonyms "single nucleus ATAC-seq",
+        "single-nucleus ATAC-seq" .
+
+<http://uri.interlex.org/temp/uris/22> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/ATACseq>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://uri.neuinfo.org/nif/nifstd/sao1813327414> ] ) ] ;
+    rdfs:label "scATAC-seq" ;
+    definition: "enriched for open chromatin" ;
+    NIFRID:synonyms "single cell ATAC-seq",
+        "single-cell ATAC-seq" .
+
+<http://uri.interlex.org/temp/uris/23> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/ATACseq>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/24> ] ) ] ;
+    rdfs:label "Bulk-ATAC-seq" .
+
+<http://uri.interlex.org/temp/uris/25> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/26> ] ) ] ;
+    rdfs:label "Drop-seq" ;
+    NIFRID:synonyms "DroNc-seq" .
+
+<http://uri.interlex.org/temp/uris/27> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/28> ] ) ] ;
+    rdfs:label "10x Genomics" ;
+    definition: "commercialized drop seq" ;
+    NIFRID:synonyms "10x" .
+
+<http://uri.interlex.org/temp/uris/29> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/30> ] ) ] ;
+    rdfs:label "MAP seq" .
+
+<http://uri.interlex.org/temp/uris/31> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/32> ] ) ] ;
+    rdfs:label "Smart-seq" ;
+    NIFRID:synonyms "SMART-seq",
+        "Smart-seq2",
+        "SMART-seq v4" .
+
+<http://uri.interlex.org/temp/uris/33> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/34> ] ) ] ;
+    rdfs:label " technique" .
+
+<http://uri.interlex.org/temp/uris/35> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/36> ] ) ] ;
+    rdfs:label " technique" .
+
+<http://uri.interlex.org/temp/uris/37> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/38> ] ) ] ;
+    rdfs:label " technique" .
+
+<http://uri.interlex.org/temp/uris/44> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/SO_0000704> ] ) ] ;
+    rdfs:label "genetic technique" .
+
+<http://uri.interlex.org/temp/uris/45> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/count> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:increase ] ) ] ;
+    rdfs:label "amplification technique" ;
+    definition: "increase number" .
+
+<http://uri.interlex.org/temp/uris/46> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/47> ] ) ] ;
+    rdfs:label "enrichment technique" ;
+    definition: "increase proporation" .
+
+<http://uri.interlex.org/temp/uris/48> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/49> ] ) ] ;
+    rdfs:label "expression manipulation technique" .
+
+<http://uri.interlex.org/temp/uris/50> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/51> ] ) ] ;
+    rdfs:label "conditional expression manipulation technique" .
+
+<http://uri.interlex.org/temp/uris/52> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/53> ] ) ] ;
+    rdfs:label "knock in technique" .
+
+<http://uri.interlex.org/temp/uris/54> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/55> ] ) ] ;
+    rdfs:label "knock down technique" ;
+    NIFRID:synonyms "underexpression technique" .
+
+<http://uri.interlex.org/temp/uris/56> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/57> ] ) ] ;
+    rdfs:label "knock out technique" .
+
+<http://uri.interlex.org/temp/uris/58> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/59> ] ) ] ;
+    rdfs:label "mutagenesis technique" .
+
+<http://uri.interlex.org/temp/uris/60> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/61> ] ) ] ;
+    rdfs:label "overexpression technique" .
+
+<http://uri.interlex.org/temp/uris/62> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/63> ] ) ] ;
+    rdfs:label "delivery technique" ;
+    definition: "A technique for moving something from point a to point b." .
+
+<http://uri.interlex.org/temp/uris/64> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/65> ] ) ] ;
+    rdfs:label "physical delivery technique" .
+
+<http://uri.interlex.org/temp/uris/66> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/67> ] ) ] ;
+    rdfs:label "diffusion based delivery technique" .
+
+<http://uri.interlex.org/temp/uris/68> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/69> ] ) ] ;
+    rdfs:label "bath application technique" .
+
+<http://uri.interlex.org/temp/uris/70> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/71> ] ) ] ;
+    rdfs:label "topical application technique" .
+
+<http://uri.interlex.org/temp/uris/72> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/73> ] ) ] ;
+    rdfs:label "mechanical delivery technique" .
+
+<http://uri.interlex.org/temp/uris/74> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/75> ] ) ] ;
+    rdfs:label "rocket delivery technique" .
+
+<http://uri.interlex.org/temp/uris/76> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/77> ] ) ] ;
+    rdfs:label "injection technique" .
+
+<http://uri.interlex.org/temp/uris/78> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/79> ] ) ] ;
+    rdfs:label "ballistic technique" .
+
+<http://uri.interlex.org/temp/uris/80> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/81> ] ) ] ;
+    rdfs:label "pressure technique" .
+
+<http://uri.interlex.org/temp/uris/82> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/83> ] ) ] ;
+    rdfs:label "electrical delivery technique" .
+
+<http://uri.interlex.org/temp/uris/84> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/85> ] ) ] ;
+    rdfs:label "electroporation technique" .
+
+<http://uri.interlex.org/temp/uris/86> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/87> ] ) ] ;
+    rdfs:label "in utero electroporation technique" .
+
+<http://uri.interlex.org/temp/uris/88> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/89> ] ) ] ;
+    rdfs:label "single cell electroporation technique" .
+
+<http://uri.interlex.org/temp/uris/90> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/91> ] ) ] ;
+    rdfs:label "chemical delivery technique" .
+
+<http://uri.interlex.org/temp/uris/92> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/93> ] ) ] ;
+    rdfs:label "DNA delivery technique" .
+
+<http://uri.interlex.org/temp/uris/94> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/95> ] ) ] ;
+    rdfs:label "transfection technique" .
+
+<http://uri.interlex.org/temp/uris/96> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/97> ] ) ] ;
+    rdfs:label "delivery exploiting some pre-existing mechanism technique" .
+
+<http://uri.interlex.org/temp/uris/98> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/99> ] ) ] ;
+    rdfs:label "DNA delivery via primary genetic code technique" .
+
+<http://uri.interlex.org/temp/uris/100> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/101> ] ) ] ;
+    rdfs:label "DNA delivery via germ line technique" .
+
+<http://uri.interlex.org/temp/uris/102> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/103> ] ) ] ;
+    rdfs:label "DNA delivery via plasmid technique" .
+
+<http://uri.interlex.org/temp/uris/104> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/105> ] ) ] ;
+    rdfs:label "DNA delivery via viral particle technique" .
+
+<http://uri.interlex.org/temp/uris/106> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/107> ] ) ] ;
+    rdfs:label "tracing technique" .
+
+<http://uri.interlex.org/temp/uris/108> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/109> ] ) ] ;
+    rdfs:label "anterograde tracing technique" .
+
+<http://uri.interlex.org/temp/uris/110> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/111> ] ) ] ;
+    rdfs:label "retrograde tracing technique" .
+
+<http://uri.interlex.org/temp/uris/112> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/113> ] ) ] ;
+    rdfs:label "diffusion tracing technique" .
+
+<http://uri.interlex.org/temp/uris/114> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/115> ] ) ] ;
+    rdfs:label "transsynaptic tracing technique" .
+
+<http://uri.interlex.org/temp/uris/116> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/117> ] ) ] ;
+    rdfs:label "statistical technique" .
+
+<http://uri.interlex.org/temp/uris/118> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/119> ] ) ] ;
+    rdfs:label "computational technique" .
+
+<http://uri.interlex.org/temp/uris/120> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/121> ] ) ] ;
+    rdfs:label "simulation technique" .
+
+<http://uri.interlex.org/temp/uris/122> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/123> ] ) ] ;
+    rdfs:label "storage technique" .
+
+<http://uri.interlex.org/temp/uris/124> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/125> ] ) ] ;
+    rdfs:label "preservation technique" .
+
+<http://uri.interlex.org/temp/uris/126> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/127> ] ) ] ;
+    rdfs:label "tissue preservation technique" .
+
+<http://uri.interlex.org/temp/uris/128> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/129> ] ) ] ;
+    rdfs:label "colocalization technique" .
+
+<http://uri.interlex.org/temp/uris/130> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/131> ] ) ] ;
+    rdfs:label "image reconstruction technique" .
+
+<http://uri.interlex.org/temp/uris/132> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/133> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom ilxtr:radonTransform ] ) ] ;
+    rdfs:label "tomographic technique" ;
+    NIFRID:synonyms "tomography" .
+
+<http://uri.interlex.org/temp/uris/134> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/135> ] ) ] ;
+    rdfs:label "positron emission tomography" ;
+    NIFRID:synonyms "PET",
+        "PET scan" .
+
+<http://uri.interlex.org/temp/uris/136> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/137> ] ) ] ;
+    rdfs:label "stereology technique" ;
+    NIFRID:synonyms "stereology" .
+
+<http://uri.interlex.org/temp/uris/138> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/139> ] ) ] ;
+    rdfs:label "design based stereology technique" ;
+    NIFRID:synonyms "design based stereology" .
+
+<http://uri.interlex.org/temp/uris/140> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/141> ] ) ] ;
+    rdfs:label "spike sorting technique" ;
+    NIFRID:synonyms "spike sorting" .
+
+<http://uri.interlex.org/temp/uris/142> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/143> ] ) ] ;
+    rdfs:label "detection technique" .
+
+<http://uri.interlex.org/temp/uris/144> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/145> ] ) ] ;
+    rdfs:label "identification technique" .
+
+<http://uri.interlex.org/temp/uris/146> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/147> ] ) ] ;
+    rdfs:label "characterization technique" .
+
+<http://uri.interlex.org/temp/uris/148> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/149> ] ) ] ;
+    rdfs:label "classification technique" .
+
+<http://uri.interlex.org/temp/uris/150> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/151> ] ) ] ;
+    rdfs:label "curation technique" .
+
+<http://uri.interlex.org/temp/uris/152> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/153> ] ) ] ;
+    rdfs:label "angiographic technique" ;
+    NIFRID:synonyms "angiography" .
+
+<http://uri.interlex.org/temp/uris/154> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:somethingThatUsedToBeAlive ] ) ] ;
+    rdfs:label "ex vivo technique" ;
+    NIFRID:synonyms "ex vivo" .
+
+<http://uri.interlex.org/temp/uris/155> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/156> ] ) ] ;
+    rdfs:label "in situ technique" ;
+    NIFRID:synonyms "in situ" .
+
+<http://uri.interlex.org/temp/uris/157> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:somethingThatIsAlive ] ) ] ;
+    rdfs:label "in vivo technique" ;
+    NIFRID:synonyms "in vivo" .
+
+<http://uri.interlex.org/temp/uris/158> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:somethingThatIsAliveAndIsInAUterus ] ) ] ;
+    rdfs:label "in utero technique" ;
+    NIFRID:synonyms "in vitro" .
+
+<http://uri.interlex.org/temp/uris/159> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:somethingThatIsAliveAndIsInAGlassContainer ] ) ] ;
+    rdfs:label "in vitro technique" ;
+    NIFRID:synonyms "in vitro" .
+
+<http://uri.interlex.org/temp/uris/160> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/161> ] ) ] ;
+    rdfs:label "high throughput technique" ;
+    NIFRID:synonyms "high throughput" .
+
+<http://uri.interlex.org/temp/uris/162> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom ilxtr:fourierTransform ]
+                    [ a owl:Restriction ;
+                        owl:onProperty realizes: ;
+                        owl:someValuesFrom ilxtr:analysisRole ] ) ] ;
+    rdfs:label "fourier analysis technique" ;
+    NIFRID:synonyms "fourier analysis" .
+
+<http://uri.interlex.org/temp/uris/163> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/164> ] ) ] ;
+    rdfs:label "preparation technique" ;
+    NIFRID:synonyms "sample preparation",
+        "sample preparation technique",
+        "specimine preparation",
+        "specimine preparation technique" .
+
+<http://uri.interlex.org/temp/uris/165> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasOutput ;
+                        owl:someValuesFrom ilxtr:partOfSomePrimaryInput ] ) ] ;
+    rdfs:label "dissection technique" ;
+    NIFRID:synonyms "dissection" .
+
+<http://uri.interlex.org/temp/uris/166> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasOutput ;
+                        owl:someValuesFrom ilxtr:partOfSomePrimaryInput ] ) ] ;
+    rdfs:label "atlas guided microdissection technique" ;
+    NIFRID:synonyms "atlas guided microdissection" .
+
+<http://uri.interlex.org/temp/uris/167> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/168> ] ) ] ;
+    rdfs:label "crystallization technique" ;
+    NIFRID:synonyms "crystallization" .
+
+<http://uri.interlex.org/temp/uris/170> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/fixation>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:tissue ] ) ] ;
+    rdfs:label "tissue fixation technique" ;
+    NIFRID:synonyms "tissue fixation" .
+
+<http://uri.interlex.org/temp/uris/171> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/172> ] ) ] ;
+    rdfs:label "sensitization technique" .
+
+<http://uri.interlex.org/temp/uris/173> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/174> ] ) ] ;
+    rdfs:label "permeabalization technique" .
+
+<http://uri.interlex.org/temp/uris/175> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/creating>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasOutput ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/CHEBI_24431> ] ) ] ;
+    rdfs:label "chemical synthesis technique" .
+
+<http://uri.interlex.org/temp/uris/176> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/creating> ) ] ;
+    rdfs:label "physical synthesis technique" .
+
+<http://uri.interlex.org/temp/uris/177> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/178> ] ) ] ;
+    rdfs:label "mixing technique" ;
+    NIFRID:synonyms "mixing" .
+
+<http://uri.interlex.org/temp/uris/179> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/180> ] ) ] ;
+    rdfs:label "agitating technique" ;
+    NIFRID:synonyms "agitating" .
+
+<http://uri.interlex.org/temp/uris/181> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/182> ] ) ] ;
+    rdfs:label "stirring technique" ;
+    NIFRID:synonyms "stirring" .
+
+<http://uri.interlex.org/temp/uris/183> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/184> ] ) ] ;
+    rdfs:label "dissolving technique" ;
+    NIFRID:synonyms "dissolve" .
+
+<http://uri.interlex.org/temp/uris/185> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/maintaining>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/NCBITaxon_1> ] ) ] ;
+    rdfs:label "husbandry technique" ;
+    NIFRID:synonyms "culture",
+        "culture technique",
+        "husbandry" .
+
+<http://uri.interlex.org/temp/uris/186> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/maintaining>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/NCBITaxon_2> ] ) ] ;
+    rdfs:label "bacterial culture technique" ;
+    NIFRID:synonyms "bacterial culture" .
+
+<http://uri.interlex.org/temp/uris/187> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/maintaining>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://uri.neuinfo.org/nif/nifstd/sao1813327414> ] ) ] ;
+    rdfs:label "cell culture technique" ;
+    NIFRID:synonyms "cell culture" .
+
+<http://uri.interlex.org/temp/uris/188> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/maintaining>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/NCBITaxon_4932> ] ) ] ;
+    rdfs:label "yeast culture technique" ;
+    NIFRID:synonyms "yeast culture" .
+
+<http://uri.interlex.org/temp/uris/189> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/maintaining>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:tissue ] ) ] ;
+    rdfs:label "tissue culture technique" ;
+    NIFRID:synonyms "tissue culture" .
+
+<http://uri.interlex.org/temp/uris/190> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/maintaining>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:brainSlice ] ) ] ;
+    rdfs:label "slice culture technique" ;
+    NIFRID:synonyms "slice culture" .
+
+<http://uri.interlex.org/temp/uris/191> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInput ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/UBERON_0001049> ] ) ] ;
+    rdfs:label "open book preparation technique" ;
+    NIFRID:synonyms "open book culture",
+        "open book preparation" .
+
+<http://uri.interlex.org/temp/uris/192> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/maintaining>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/NCBITaxon_7215> ] ) ] ;
+    rdfs:label "fly culture technique" ;
+    NIFRID:synonyms "fly culture" .
+
+<http://uri.interlex.org/temp/uris/193> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/NCBITaxon_9989> ] ) ] ;
+    rdfs:label "rodent husbandry technique" ;
+    NIFRID:synonyms "rodent culture technique",
+        "rodent husbandry" .
+
+<http://uri.interlex.org/temp/uris/194> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/195> ] ) ] ;
+    rdfs:label "enclosure design technique" .
+
+<http://uri.interlex.org/temp/uris/196> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/197> ] ) ] ;
+    rdfs:label "feeding technique" ;
+    NIFRID:synonyms "feeding" .
+
+<http://uri.interlex.org/temp/uris/198> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/199> ] ) ] ;
+    rdfs:label "housing technique" ;
+    NIFRID:synonyms "housing" .
+
+<http://uri.interlex.org/temp/uris/200> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/201> ] ) ] ;
+    rdfs:label "mating technique" ;
+    NIFRID:synonyms "mating" .
+
+<http://uri.interlex.org/temp/uris/202> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/203> ] ) ] ;
+    rdfs:label "watering technique" ;
+    NIFRID:synonyms "watering" .
+
+<http://uri.interlex.org/temp/uris/204> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/205> ] ) ] ;
+    rdfs:label "taggin technique" .
+
+<http://uri.interlex.org/temp/uris/206> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/207> ] ) ] ;
+    rdfs:label "staining technique" .
+
+<http://uri.interlex.org/temp/uris/208> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/209> ] ) ] ;
+    rdfs:label "immunochemical technique" .
+
+<http://uri.interlex.org/temp/uris/210> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/211> ] ) ] ;
+    rdfs:label "immunocytochemical technique" ;
+    NIFRID:synonyms "immunocytochemistry",
+        "immunocytochemistry technique" .
+
+<http://uri.interlex.org/temp/uris/212> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/213> ] ) ] ;
+    rdfs:label "immunohistochemical technique" ;
+    NIFRID:synonyms "immunohistochemistry",
+        "immunohistochemistry technique" .
+
+<http://uri.interlex.org/temp/uris/214> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/215> ] ) ] ;
+    rdfs:label "direct immunohistochemical technique" ;
+    NIFRID:synonyms "direct immunohistochemistry",
+        "direct immunohistochemistry technique" .
+
+<http://uri.interlex.org/temp/uris/216> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/217> ] ) ] ;
+    rdfs:label "indirect immunohistochemical technique" ;
+    NIFRID:synonyms "indirect immunohistochemistry",
+        "indirect immunohistochemistry technique" .
+
+<http://uri.interlex.org/temp/uris/218> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/219> ] ) ] ;
+    rdfs:label "separation technique" .
+
+<http://uri.interlex.org/temp/uris/220> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/221> ] ) ] ;
+    rdfs:label "sorting technique" .
+
+<http://uri.interlex.org/temp/uris/222> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/223> ] ) ] ;
+    rdfs:label "sampling technique" .
+
+<http://uri.interlex.org/temp/uris/224> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/225> ] ) ] ;
+    rdfs:label "extraction technique" .
+
+<http://uri.interlex.org/temp/uris/226> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/227> ] ) ] ;
+    rdfs:label "pull-down technique" .
+
+<http://uri.interlex.org/temp/uris/228> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/229> ] ) ] ;
+    rdfs:label "isolation technique" .
+
+<http://uri.interlex.org/temp/uris/230> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/231> ] ) ] ;
+    rdfs:label "purification technique" .
+
+<http://uri.interlex.org/temp/uris/232> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/233> ] ) ] ;
+    rdfs:label "selection technique" .
+
+<http://uri.interlex.org/temp/uris/234> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/235> ] ) ] ;
+    rdfs:label "blind selection technique" .
+
+<http://uri.interlex.org/temp/uris/236> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/237> ] ) ] ;
+    rdfs:label "random selection technique" .
+
+<http://uri.interlex.org/temp/uris/238> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/239> ] ) ] ;
+    rdfs:label "targeted selection technique" .
+
+<http://uri.interlex.org/temp/uris/240> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/241> ] ) ] ;
+    rdfs:label "fractionation technique" .
+
+<http://uri.interlex.org/temp/uris/242> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/243> ] ) ] ;
+    rdfs:label "chromatography technique" ;
+    NIFRID:synonyms "chromatography" .
+
+<http://uri.interlex.org/temp/uris/244> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/245> ] ) ] ;
+    rdfs:label "distillation technique" ;
+    NIFRID:synonyms "distillation" .
+
+<http://uri.interlex.org/temp/uris/246> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/247> ] ) ] ;
+    rdfs:label "electrophoresis technique" ;
+    NIFRID:synonyms "electrophoresis" .
+
+<http://uri.interlex.org/temp/uris/248> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/249> ] ) ] ;
+    rdfs:label "centrefugation technique" ;
+    NIFRID:synonyms "centrefugation" .
+
+<http://uri.interlex.org/temp/uris/250> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/251> ] ) ] ;
+    rdfs:label "ultracentrefugation technique" ;
+    NIFRID:synonyms "ultracentrefugation" .
+
+<http://uri.interlex.org/temp/uris/252> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/measure>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/253> ] ) ] ;
+    rdfs:label "observational technique" ;
+    NIFRID:synonyms "observation",
+        "observation technique" .
+
+<http://uri.interlex.org/temp/uris/254> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasOutput ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/BFO_0000040> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/BFO_0000040> ] ) ] ;
+    rdfs:label "procurement technique" ;
+    definition: "A technique for getting or retrieving something." ;
+    NIFRID:synonyms "acquisition technique",
+        "acquistion",
+        "get",
+        "procurement" .
+
+<http://uri.interlex.org/temp/uris/255> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty realizes: ;
+                        owl:someValuesFrom ilxtr:analysisRole ] ) ] ;
+    rdfs:label "analysis technique" ;
+    NIFRID:synonyms "analysis" .
+
+<http://uri.interlex.org/temp/uris/256> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationInput ;
+                        owl:someValuesFrom ilxtr:informationArtifact ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:informationArtifact ] ) ] ;
+    rdfs:label "data processing technique" ;
+    NIFRID:synonyms "data processing" .
+
+<http://uri.interlex.org/temp/uris/257> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationInput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ] ) ] ;
+    rdfs:label "image processing technique" ;
+    NIFRID:synonyms "image processing" .
+
+<http://uri.interlex.org/temp/uris/258> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/sigproc>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationPrimaryAspect ;
+                        owl:someValuesFrom ilxtr:spectru ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negative ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:timeSeries ] ) ] ;
+    rdfs:label "signal filtering technique" ;
+    NIFRID:synonyms "signal filtering" .
+
+<http://uri.interlex.org/temp/uris/259> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/electrical> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:physiologicalSystem ] ) ] ;
+    rdfs:label "electrophysiology technique" ;
+    NIFRID:synonyms "electrophysiological technique",
+        "electrophysiology" .
+
+<http://uri.interlex.org/temp/uris/260> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:microscope ] ) ] ;
+    rdfs:label "microscopy technique" ;
+    NIFRID:synonyms "microscopy" .
+
+<http://uri.interlex.org/temp/uris/261> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:photograph ] ) ] ;
+    rdfs:label "photographic technique" ;
+    NIFRID:synonyms "photography" .
+
+<http://uri.interlex.org/temp/uris/262> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/imaging>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:positron ] ) ] ;
+    rdfs:label "positron emission imaging" .
+
+<http://uri.interlex.org/temp/uris/263> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/contrastDetection>
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/opticalImaging>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom ilxtr:intrinsicSignal ] ) ] ;
+    rdfs:label "intrinsic optical imaging" ;
+    NIFRID:synonyms "intrinsic signal optical imaging" .
+
+<http://uri.interlex.org/temp/uris/264> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/imaging>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:xrays ] ) ] ;
+    rdfs:label "x-ray imaging" .
+
+<http://uri.interlex.org/temp/uris/265> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/> ] ) ] ;
+    rdfs:label "modification technique" .
+
+<http://uri.interlex.org/temp/uris/266> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/267> ] ) ] ;
+    rdfs:label "activation technique" .
+
+<http://uri.interlex.org/temp/uris/268> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/269> ] ) ] ;
+    rdfs:label "deactivation technique" .
+
+<http://uri.interlex.org/temp/uris/270> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/destroying>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/271> ] ) ] ;
+    rdfs:label "euthanasia technique" .
+
+<http://uri.interlex.org/temp/uris/272> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/273> ] ) ] ;
+    rdfs:label "pharmacological technique" ;
+    NIFRID:synonyms "pharmacology" .
+
+<http://uri.interlex.org/temp/uris/274> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/275> ] ) ] ;
+    rdfs:label "photoactivation technique" .
+
+<http://uri.interlex.org/temp/uris/276> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/277> ] ) ] ;
+    rdfs:label "photoinactivation technique" .
+
+<http://uri.interlex.org/temp/uris/278> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/279> ] ) ] ;
+    rdfs:label "photobleaching technique" .
+
+<http://uri.interlex.org/temp/uris/280> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/281> ] ) ] ;
+    rdfs:label "photoconversion technique" .
+
+<http://uri.interlex.org/temp/uris/282> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/283> ] ) ] ;
+    rdfs:label "molecular uncaging technique" ;
+    NIFRID:synonyms "uncaging",
+        "uncaging technique" .
+
+<http://uri.interlex.org/temp/uris/284> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/285> ] ) ] ;
+    rdfs:label "physical modification technique" .
+
+<http://uri.interlex.org/temp/uris/286> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/287> ] ) ] ;
+    rdfs:label "ablation technique" .
+
+<http://uri.interlex.org/temp/uris/288> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/vision> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negative ] ) ] ;
+    rdfs:label "blinding technique" .
+
+<http://uri.interlex.org/temp/uris/289> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/290> ] ) ] ;
+    rdfs:label "crushing technique" .
+
+<http://uri.interlex.org/temp/uris/291> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/292> ] ) ] ;
+    rdfs:label "deafferenting technique" .
+
+<http://uri.interlex.org/temp/uris/293> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/voltage> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:positive ] ) ] ;
+    rdfs:label "depolarization technique" .
+
+<http://uri.interlex.org/temp/uris/294> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/voltage> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negative ] ) ] ;
+    rdfs:label "hyperpolarization technique" .
+
+<http://uri.interlex.org/temp/uris/295> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/296> ] ) ] ;
+    rdfs:label "illumination technique" .
+
+<http://uri.interlex.org/temp/uris/297> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/298> ] ) ] ;
+    rdfs:label "lesioning technique" .
+
+<http://uri.interlex.org/temp/uris/299> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/300> ] ) ] ;
+    rdfs:label "sensory deprivation technique" .
+
+<http://uri.interlex.org/temp/uris/301> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/302> ] ) ] ;
+    rdfs:label "transection technique" .
+
+<http://uri.interlex.org/temp/uris/303> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom ilxtr:physiologicalActivity ] ) ] ;
+    rdfs:label "stimulation technique" .
+
+<http://uri.interlex.org/temp/uris/304> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/305> ] ) ] ;
+    rdfs:label "physical stimulation technique" .
+
+<http://uri.interlex.org/temp/uris/306> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasProbe ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/electrical> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/307> ] ) ] ;
+    rdfs:label "electrical stimulation technique" .
+
+<http://uri.interlex.org/temp/uris/309> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/stim_Magnetic>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/310> ] ) ] ;
+    rdfs:label "transcranial magnetic stimulation technique" .
+
+<http://uri.interlex.org/temp/uris/311> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/312> ] ) ] ;
+    rdfs:label "cortico-cortical evoked potential technique" .
+
+<http://uri.interlex.org/temp/uris/313> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/314> ] ) ] ;
+    rdfs:label "microstimulation technique" .
+
+<http://uri.interlex.org/temp/uris/316> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/maintaining>
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/surgery>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasOutput ;
+                        owl:someValuesFrom ilxtr:tissue ] ) ] ;
+    rdfs:label "biopsy technique" .
+
+<http://uri.interlex.org/temp/uris/317> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/surgery>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/318> ] ) ] ;
+    rdfs:label "craniotomy technique" ;
+    definition: "Makes a hold in the cranium (head)." .
+
+<http://uri.interlex.org/temp/uris/319> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/surgery>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/320> ] ) ] ;
+    rdfs:label "durotomy technique" ;
+    definition: "Makes a hold in the dura." .
+
+<http://uri.interlex.org/temp/uris/321> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/surgery>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/322> ] ) ] ;
+    rdfs:label "transplantation technique" ;
+    NIFRID:synonyms "transplant" .
+
+<http://uri.interlex.org/temp/uris/323> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/surgery>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/324> ] ) ] ;
+    rdfs:label "implantation technique" .
+
+<http://uri.interlex.org/temp/uris/325> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/surgery>
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:stereotax ] ) ] ;
+    rdfs:label "stereotaxic technique" .
+
+<http://uri.interlex.org/temp/uris/326> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/behavioral> ] ) ] ;
+    rdfs:label "behavioral technique" .
+
+<http://uri.interlex.org/temp/uris/327> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/328> ] ) ] ;
+    rdfs:label "behavioral conditioning technique" ;
+    definition: "A technique for producing a specific behavioral response to a set of stimuli." ;
+    NIFRID:synonyms "behavioral conditioning",
+        "conditioning",
+        "conditioning technique" .
+
+<http://uri.interlex.org/temp/uris/329> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimarySubject ;
+                        owl:someValuesFrom ilxtr:notTheSubject ] ) ] ;
+    rdfs:label "environmental manipulation technique" .
+
+<http://uri.interlex.org/temp/uris/330> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/331> ] ) ] ;
+    rdfs:label "environmental enrichment technique" ;
+    NIFRID:synonyms "behavioral enrichment technique" .
+
+<http://uri.interlex.org/temp/uris/332> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/333> ] ) ] ;
+    rdfs:label "dietary technique" .
+
+<http://uri.interlex.org/temp/uris/334> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/335> ] ) ] ;
+    rdfs:label "dietary restriction technique" .
+
+<http://uri.interlex.org/temp/uris/336> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/amount> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negative ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:food ] ) ] ;
+    rdfs:label "food deprivation technique" ;
+    NIFRID:synonyms "food restriction technique",
+        "starvation technique" .
+
+<http://uri.interlex.org/temp/uris/337> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/amount> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negative ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/CHEBI_15377> ] ) ] ;
+    rdfs:label "water deprivation technique" ;
+    NIFRID:synonyms "water restriction",
+        "water restriction technique" .
+
+<http://uri.interlex.org/temp/uris/338> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/sectioning>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/339> ] ) ] ;
+    rdfs:label "block face sectioning technique" .
+
+<http://uri.interlex.org/temp/uris/340> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasParticipant ;
+                        owl:someValuesFrom ilxtr:microtome ] ) ] ;
+    rdfs:label "microtomy technique" ;
+    NIFRID:synonyms "microtomy" .
+
+<http://uri.interlex.org/temp/uris/341> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasParticipant ;
+                        owl:someValuesFrom ilxtr:ultramicrotome ] ) ] ;
+    rdfs:label "ultramicrotomy technique" ;
+    NIFRID:synonyms "ultramicrotomy" .
+
+<http://uri.interlex.org/temp/uris/342> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:microscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom ilxtr:radonTransform ] ) ] ;
+    rdfs:label "array tomographic technique" ;
+    NIFRID:synonyms "array tomography",
+        "array tomography technique" .
+
+<http://uri.interlex.org/temp/uris/343> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:electronMicroscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:lightMicroscope ] ) ] ;
+    rdfs:label "correlative light-electron microscopy technique" ;
+    NIFRID:synonyms "correlative light-electron microscopy" .
+
+<http://uri.interlex.org/temp/uris/344> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:electronMicroscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:ultramicrotome ] ) ] ;
+    rdfs:label "serial blockface electron microscopy technique" ;
+    NIFRID:synonyms "serial blockface electron microscopy" .
+
+<http://uri.interlex.org/temp/uris/345> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:microscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom ilxtr:superResolutionAlgorithem ] ) ] ;
+    rdfs:label "super resolution microscopy technique" ;
+    NIFRID:synonyms "super resolution microscopy" .
+
+<http://uri.interlex.org/temp/uris/346> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/347> ] ) ] ;
+    rdfs:label "northern blotting technique" ;
+    NIFRID:synonyms "northern blot" .
+
+<http://uri.interlex.org/temp/uris/348> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/349> ] ) ] ;
+    rdfs:label "southern blotting technique" ;
+    NIFRID:synonyms "southern blot" .
+
+<http://uri.interlex.org/temp/uris/350> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/351> ] ) ] ;
+    rdfs:label "western blotting technique" ;
+    NIFRID:synonyms "wester blot" .
+
+<http://uri.interlex.org/temp/uris/352> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/353> ] ) ] ;
+    rdfs:label "patch clamp technique" .
+
+<http://uri.interlex.org/temp/uris/354> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/355> ] ) ] ;
+    rdfs:label "cell attached patch technique" .
+
+<http://uri.interlex.org/temp/uris/356> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/357> ] ) ] ;
+    rdfs:label "inside out patch technique" .
+
+<http://uri.interlex.org/temp/uris/358> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/359> ] ) ] ;
+    rdfs:label "loose patch technique" .
+
+<http://uri.interlex.org/temp/uris/360> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/361> ] ) ] ;
+    rdfs:label "outside out patch technique" .
+
+<http://uri.interlex.org/temp/uris/362> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/363> ] ) ] ;
+    rdfs:label "perforated patch technique" .
+
+<http://uri.interlex.org/temp/uris/364> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/365> ] ) ] ;
+    rdfs:label "whole cell patch clamp technique" .
+
+<http://uri.interlex.org/temp/uris/366> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/367> ] ) ] ;
+    rdfs:label "current clamp technique" .
+
+<http://uri.interlex.org/temp/uris/368> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/369> ] ) ] ;
+    rdfs:label "voltage clamp technique" .
+
+<http://uri.interlex.org/temp/uris/370> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/371> ] ) ] ;
+    rdfs:label " technique" .
+
+<http://uri.interlex.org/temp/uris/372> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/373> ] ) ] ;
+    rdfs:label " technique" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/amount> a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/behavioral> a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/charge> a owl:Class ;
+    rdfs:subClassOf <http://uri.interlex.org/tgbugs/uris/readable/aspect/electrical> .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/count> a owl:Class ;
+    rdfs:subClassOf ilxtr:amount .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/current> a owl:Class ;
+    rdfs:subClassOf <http://uri.interlex.org/tgbugs/uris/readable/aspect/electrical> .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/electrical> a owl:Class ;
+    rdfs:subClassOf <http://uri.interlex.org/tgbugs/uris/readable/aspect/electromagnetic> .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/electromagnetic> a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/magnetic> a owl:Class ;
+    rdfs:subClassOf <http://uri.interlex.org/tgbugs/uris/readable/aspect/electromagnetic> .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/physiological> a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/sensory> a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/vision> a owl:Class ;
+    rdfs:subClassOf <http://uri.interlex.org/tgbugs/uris/readable/aspect/sensory> .
+
+<http://uri.interlex.org/tgbugs/uris/readable/aspect/voltage> a owl:Class ;
+    rdfs:subClassOf <http://uri.interlex.org/tgbugs/uris/readable/aspect/electrical> .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/_naSeq> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/SO_0000001> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/CHEBI_33696> ] ) ] ;
+    rdfs:label "nucleic acid sequencing technique" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/ATACseq> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/20> ] ) ] ;
+    rdfs:label "ATAC-seq" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/contrastDetection> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom ilxtr:contrast ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdS ;
+                        owl:someValuesFrom ilxtr:nonZero ] ) ] ;
+    rdfs:label "contrast detection technique" ;
+    NIFRID:synonyms "contrast detection" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/contrastEnhancement> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom ilxtr:contrast ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:positive ] ) ] ;
+    rdfs:label "contrast enhancement technique" ;
+    NIFRID:synonyms "contrast enhancement" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/creating> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/ising>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:positive ] ) ] ;
+    rdfs:label "creating technique" ;
+    NIFRID:synonyms "synthesis technique" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/destroying> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/ising>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negative ] ) ] ;
+    rdfs:label "destroying technique" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/DTI> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/dwMRI> ) ] ;
+    rdfs:label "diffusion tensor imaging" ;
+    NIFRID:synonyms "DTI" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/dwMRI> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/MRI>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/CHEBI_15377> ] ) ] ;
+    rdfs:label "diffusion weighted magnetic resonance imaging" ;
+    NIFRID:synonyms "diffusion weighted nuclear magnetic resonance imaging",
+        "dwMRI" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/FISH> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/40> ] ) ] ;
+    rdfs:label "fluorescence in situ hybridization technique" ;
+    NIFRID:synonyms "FISH",
+        "fluorescence in situ hybridization" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/fixation> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/169> ] ) ] ;
+    rdfs:label "fixation technique" ;
+    NIFRID:synonyms "fixation" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/fMRI> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/MRI>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:haemoglobin ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipantSubsetRule ;
+                        owl:someValuesFrom ilxtr:hasBoundOxygen ] ) ] ;
+    rdfs:label "functional magnetic resonance imaging" ;
+    rdfs:comment "Note that this deals explicitly only with the image acquistion portion of fMRI. Other parts of the full process and techniques in an fMRI study should be modelled separately. They can be tied to fMRI using hasPart: or hasPriorTechnique something similar." ;
+    NIFRID:synonyms "fMRI",
+        "functional nuclear magnetic resonance imaging" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/imaging> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ] ) ] ;
+    rdfs:label "imaging technique" ;
+    NIFRID:synonyms "imaging" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/ISH> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/39> ] ) ],
+        [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/43> ] ) ] ;
+    rdfs:label "in situ hybridization technique" ;
+    NIFRID:synonyms "in situ hybridization",
+        "ISH" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/ising> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom ilxtr:is ] ) ] ;
+    rdfs:label "ising technique" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/maintaining> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/ising>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:zero ] ) ] ;
+    rdfs:label "maintaining technique" ;
+    NIFRID:synonyms "maintenance technique" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/measure> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom <http://purl.obolibrary.org/obo/BFO_0000001> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:informationEntity ] ) ] ;
+    rdfs:label "measurement technique" ;
+    NIFRID:synonyms "measure" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/MERFISH> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/42> ] ) ] ;
+    rdfs:label "multiplexed error-robust fluorescence in situ hybridization technique" ;
+    NIFRID:synonyms "MERFISH",
+        "multiplexed error robust FISH",
+        "multiplexed error robust fluorescence in situ hybridization",
+        "multiplexed error-robust FISH",
+        "multiplexed error-robust fluorescence in situ hybridization" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/MRI> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/contrastDetection>
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/imaging>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom ilxtr:nuclearMagneticResonance ] ) ] ;
+    rdfs:label "magnetic resonance imaging" ;
+    NIFRID:synonyms "MRI",
+        "nuclear magnetic resonance imaging" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/opticalImaging> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/imaging>
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:visibleLight ] ) ] ;
+    rdfs:label "optical imaging" ;
+    NIFRID:synonyms "light imaging",
+        "visible light imaging" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/sectioning> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasOutput ;
+                        owl:someValuesFrom ilxtr:sectionsOfPrimaryInput ] ) ] ;
+    rdfs:label "sectioning technique" ;
+    NIFRID:synonyms "sectioning" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/sequencing> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:thingWithSequence ] ) ] ;
+    rdfs:label "sequencing technique" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/sigproc> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationInput ;
+                        owl:someValuesFrom ilxtr:timeSeries ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:timeSeries ] ) ] ;
+    rdfs:label "signal processing technique" ;
+    NIFRID:synonyms "signal processing" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/smFISH> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/41> ] ) ] ;
+    rdfs:label "single-molecule fluorescence in situ hybridization technique" ;
+    NIFRID:synonyms "single molecule FISH",
+        "single molecule fluorescence in situ hybridization",
+        "single-molecule FISH",
+        "single-molecule fluorescence in situ hybridization",
+        "smFISH" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/stateBasedContrastEnhancement> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    <http://uri.interlex.org/tgbugs/uris/readable/technique/contrastEnhancement> ) ] ;
+    rdfs:label "state based contrast enhancement technique" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/stim_Magnetic> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasProbe ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/aspect/magnetic> ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/308> ] ) ] ;
+    rdfs:label "magnetic stimulation technique" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/technique/surgery> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom <http://uri.interlex.org/temp/uris/315> ] ) ] ;
+    rdfs:label "surgical technique" ;
+    NIFRID:synonyms "surgery" .
+
+ilxtr:analysisRole a owl:Class ;
+    rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000023> .
+
+ilxtr:thingWithSequence a owl:Class .
+
+### Serialized using the pyontutils deterministic serializer v1.1.3
