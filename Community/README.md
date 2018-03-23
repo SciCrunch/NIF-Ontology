@@ -1,5 +1,5 @@
 # Community Terms Lists
-Please contribute your community term files here.
+Please contribute your community term files, data dictionaries, CDE lists here. This space is meant to provide a shared space where these documents can be contribut4ed and shared.
 
 This space was requested as part of the INCF/MNI Neuroinformatics Workshop which was held at McGill University from March 21 – 23, 2018
 
