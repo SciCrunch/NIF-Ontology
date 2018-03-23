@@ -1,6 +1,8 @@
 # Community Terms Lists
 Please contribute your community term files here.
 
+This space was requested as part of the INCF/MNI Neuroinformatics Workshop which was held at McGill University from March 21 – 23, 2018
+
 ## Contributing
 Please [fork](https://github.com/SciCrunch/NIF-Ontology#fork-destination-box) and submit
 [pull requests](https://github.com/SciCrunch/NIF-Ontology/pull/new/master) on GitHub.  
