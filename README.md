@@ -24,6 +24,8 @@ for documentation about the structure of the ontology and how to load and edit i
 # Contributing
 Please [fork](https://github.com/SciCrunch/NIF-Ontology#fork-destination-box) and submit
 [pull requests](https://github.com/SciCrunch/NIF-Ontology/pull/new/master) on GitHub.  
+If you have additional non-ontology files please contribute them to the appropriate folder
+in [pyontutils/development](https://github.com/tgbugs/pyontutils/tree/master/development).  
 Please read [the docs for development processes](docs/processes.md).  
 See the [wiki](https://github.com/SciCrunch/NIF-Ontology/wiki) for more documentation.  
 In short, load [ttl/nif.ttl](ttl/nif.ttl) in your favourite ontology editor,
