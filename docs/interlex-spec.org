@@ -86,6 +86,18 @@
     They map to the user's view of the underlying ilx identifier.
     These are not resolved dynamically, they must be explicitly defined.
 *** =http://uri.interlex.org/{user}/uris/=
+    =/uris/= is a containment mechanism for user/org specific resolvable ontology identifiers.
+    We use this so that there is zero chance of collision between interlex defined paths and user
+    paths. This also lets us immediately determine that this was a user defined path.
+    Synonyms for this would be ~user defined uris~ ~user defined urls~ or ~user defined iris~.
+    Despite the markings as =:terminal:= below, the structure of =/uris/= is completely unrestricted,
+    though we do have best-practices suggestions for how to use them effectively.
+    One key implementation detail is that path elements may be used as identifiers, but there shall be
+    an =owl:sameAs= relationship between =uris/path/= and =uris/path=. =uris/path= shall resolve to =uris/path/=
+    if it is a path element. In the event that a terminal is converted into branch (a common pattern if
+    the url hierarchy reflects the subClassOf hierarchy, not that it should) then the node shall resolve to
+    =uris/wasterminal/=. This means that interlex needs to track the non-terminal nodes under =/uris/=.
+    The only other place users have some control over paths is in defining the locations of their ontologies.
 *** =http://uri.interlex.org/{user}/uris/{path}/{local_alphanumeric_id}= :terminal:
     Ideally =local_alphanumeric_id= should be a number, but there are cases, for example
     with the DICOM terms, that are alphanumeric local ids so we need to support that.
