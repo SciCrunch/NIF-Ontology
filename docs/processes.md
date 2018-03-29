@@ -12,7 +12,7 @@ environment to have been set up according to [development setup.md](development%
 All relative filepaths listed in code sections start from the base
 folder of this repository `../` from the location of this file.
 
-# DO NOT PUSH TO MASTER
+# DO NOT PUSH ONTOLOGY FILES TO MASTER
 The `uri.neuinfo.org` resolver points to the `master` branch on GitHub
 (see [the resolver config](https://github.com/tgbugs/pyontutils/blob/088b2f8f28be5e55278e3cde1e0e8a4f3ccfc94f/resolver/nif-ont-resolver.conf#L20-L24)).
 
@@ -26,6 +26,8 @@ so that everything can stay 'mostly' in sync.
 Please submit a pull request (even if it is from another branch
 in the SciCrunch org repo) so that we can run all the requisite
 checks to make sure that the ontology is consistent.
+
+# Please do push documentation to master
 
 ## Development processes
 
