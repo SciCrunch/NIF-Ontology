@@ -65,20 +65,67 @@
     See [[* serialization choices][serialization choices]] for more.
 ** user uri structure
 *** =http://uri.interlex.org/{user}/=
+*** =http://uri.interlex.org/{user}/versions/=
+*** =http://uri.interlex.org/{user}/versions/{epoch}=
+*** =http://uri.interlex.org/{user}/versions/{version-string}=
+    View the version of a particular term, accessible via all the usual paths.
+*** =http://uri.interlex.org/{user}/versions/{epoch}/ilx_{1234567}= :terminal:
+*** =http://uri.interlex.org/{user}/versions/{epoch}/readable/{word}= :terminal:
+*** =http://uri.interlex.org/{user}/versions/{epoch}/uris/readable/{word}= :terminal:
+*** =http://uri.interlex.org/{user}/ontologies/{path/}filename{.ext}= :terminal:
+    Need to consider naming, but this is where automatically generated ontology files could live.
+    =files= or =graphs= are reasonable alternative names?
+*** =http://uri.interlex.org/{user}/ontologies/{path/}filename/version/{epoch}/filename{.ext}= :terminal:
+    Access to versions of auto-generated ontology files.
+    This may be hard to pull off for arbitrary dates.
+*** =http://uri.interlex.org/{user}/ontologies/{path/}filename/version/{version-string}/filename{.ext}= :terminal:
+    This is easier to pull off for things like uberon.
 *** =http://uri.interlex.org/{user}/ixl_{1234567}= :terminal:
 *** =http://uri.interlex.org/{user}/readable/{word}= :terminal:
     Entities listed here need to be in a 1:1 mapping from ilx_ to readable.
     They map to the user's view of the underlying ilx identifier.
     These are not resolved dynamically, they must be explicitly defined.
 *** =http://uri.interlex.org/{user}/uris/=
+    =/uris/= is a containment mechanism for user/org specific resolvable ontology identifiers.
+    We use this so that there is zero chance of collision between interlex defined paths and user
+    paths. This also lets us immediately determine that this was a user defined path.
+    Synonyms for this would be ~user defined uris~ ~user defined urls~ or ~user defined iris~.
+    Despite the markings as =:terminal:= below, the structure of =/uris/= is completely unrestricted,
+    though we do have best-practices suggestions for how to use them effectively.
+    One key implementation detail is that path elements may be used as identifiers, but there shall be
+    an =owl:sameAs= relationship between =uris/path/= and =uris/path=. =uris/path= shall resolve to =uris/path/=
+    if it is a path element. In the event that a terminal is converted into branch (a common pattern if
+    the url hierarchy reflects the subClassOf hierarchy, not that it should) then the node shall resolve to
+    =uris/wasterminal/=. This means that interlex needs to track the non-terminal nodes under =/uris/=.
+    The only other place users have some control over paths is in defining the locations of their ontologies.
 *** =http://uri.interlex.org/{user}/uris/{path}/{local_alphanumeric_id}= :terminal:
     Ideally =local_alphanumeric_id= should be a number, but there are cases, for example
     with the DICOM terms, that are alphanumeric local ids so we need to support that.
     This means that we leave the decision about what is 'readable' to the discretion of
     the user.
+
+    Examples of how to use this.
+    =http://uri.interlex.org/hcp/uris/mmp/labels/{local_alphanumeric_id}=
+    =http://uri.interlex.org/hcp/uris/mmp/versions/{local_alphanumeric_id}=
+    Implicitly terminology.
+    =http://uri.interlex.org/aibs/uris/mouse/versions/{local_alphanumeric_id}=
+    Implicitly the terminology source, which also happens to be the atlas in this case.
+    =http://uri.interlex.org/paxinos/uris/mouse/versions/{local_alphanumeric_id}=
+    Explicitly the physical atlas.
+    =http://uri.interlex.org/aibs/uris/atlases/mouse/versions/{local_alphanumeric_id}=
+    A case where we are using external identifiers but need a valid root class in the
+    ontology. This suggests that we should probably allow intermediate nodes to be
+    used, though trickier to enforce safely when there are no numeric leaves.
+    =http://uri.interlex.org/aibs/uris/mouse/labels/=
+    Using the 'null' label as the root including the trailing slash has the additional
+    nice effect that the URL will shorten and appear first in a ttl file.
+
 *** =http://uri.interlex.org/{user}/uris/readable/{word}= :terminal:
-    Not sure if this should exist, but I find it useful when creating my own files
-    and do not want to worry about if I have the names correct.
+    This path isolates user readable definitions from the default readable definitions.
+    This prevents strangeness when switching between users.
+    For example =user1/readable/brain= and =user2/readable/brain= and =default/readable/brain=
+    should all point to =ILX:1234567=. However =user1/uris/readable/brain= and =user2/uris/readable/brain=
+    could point to other interlex identifiers entirely.
 * Existing users and URI paths :TODO:
 ** tgbugs
 ** dicom
@@ -99,10 +146,16 @@
       too slow, download the full dump if they want this
 *** predicate choices
 **** action
+***** normalize
+      normalize partOf: to ilxr:partOf
 ***** exclude
       include (not used)
       all are included by default, you may only remove
       no removing using one rule and adding back, if you need that get the full dump
+***** include
+      Used as part of compound rules such as
+      =p include value is oboInOwl:hasRelatedSynonym, o include value length-less-than 3=
+      this probably will not be used as part of predicate queries in the serialization context.
 **** filter by
 ***** type
 ***** value
@@ -112,6 +165,10 @@
         (if (= type-or-value test-value)
 	    true
 	    false))
+***** in
+      set membership
+***** to
+      only applies in the normalize context
 ***** lenght-less-than
       (define (length-less-than value n) (< (len value) n))
 ***** rule
