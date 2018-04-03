@@ -214,9 +214,12 @@ once per release and can afford to pull in the full tree.
 ## External records
 There are a couple of places where there are external records of the
 ontology that a maintainer or curator needs to keep up to date.
-1. https://bioportal.bioontology.org/ontologies/NIFSTD
-2. https://bioportal.bioontology.org/ontologies/NIFSUBCELL
-3. https://fairsharing.org/bsg-s002584 (NeuroLex)
-4. https://fairsharing.org/bsg-s002628 (NIF Ontology)
-5. https://fairsharing.org/bsg-s002835 (subcellular)
+1. https://scicrunch.org/resolver/SCR_005414 (NIF Ontology)
+2. https://scicrunch.org/resolver/SCR_005402 (NeuroLex)
+3. https://scicrunch.org/resolver/SCR_016178 (InterLex)
+4. https://bioportal.bioontology.org/ontologies/NIFSTD
+5. https://bioportal.bioontology.org/ontologies/NIFSUBCELL
+6. https://fairsharing.org/bsg-s002584 (NeuroLex)
+7. https://fairsharing.org/bsg-s002628 (NIF Ontology)
+8. https://fairsharing.org/bsg-s002835 (subcellular)
 
