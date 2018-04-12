@@ -52,7 +52,6 @@
    besides those used to map to other namespaces. It will not have its own user view
    but will redirect to one of the other builtin namespaces, probably =curated=.
 * URI resolver structure =uri.interlex.org=
-  +Unless the node is marked explicitly as terminal then we will not resolve it+.
 ** Mapping between the canonical =http://uri.interlex.org/base/ilx_1234567= identifiers and =/uris/=
    As outlined below, =/uris/= is free form except that InterLex enforces a 1:1 mapping
    when serializing an ontology.
@@ -179,8 +178,9 @@
     For example =user1/readable/brain= and =user2/readable/brain= and =default/readable/brain=
     should all point to =ILX:1234567=. However =user1/uris/readable/brain= and =user2/uris/readable/brain=
     could point to other interlex identifiers entirely.
-*** =http://uri.interlex.org/{user}/fork/{other-user}/uris/=
-    =/fork/= is provided so that users can have access to their view of other
+*** =http://uri.interlex.org/{user}/own/=
+*** =http://uri.interlex.org/{user}/own/{other-user}/uris/=
+    =/own/= is provided so that users can have access to their view of other
     users identifiers. This cannot be provided by mirroring =/uris/= across all
     users because =/uris/= must be isolated on a per user basis to prevent naming conflicts.
     For example =http://uri.interlex.org/tgbugs/uris/0= and =http://uri.interlex.org/nifstd/uris/0=
@@ -204,37 +204,33 @@
     non-anatomists trying to use them, they would inevitably run into a case where
     there was an identifier conflict.
     
-    =/fork/= makes this whole process completely transparent. Any user can reference
+    =/own/= makes this whole process completely transparent. Any user can reference
     any other user's locally unique names and see their own version of the term.
     
-    One potential wrinkle we could introduce into how we resolve =/fork/= is to keep track
+    One potential wrinkle we could introduce into how we resolve =/own/= is to keep track
     of ={other-user}= and make it possible to easily load up a diff.
     
-    One potential alternate name for this branch is =view=, but that seems like it will be misinterpreted.
-    =/forks/= is also a possibility, plural being more consistent with the other branches, at this level,
-    but more verbose, and possibly misleading since there is really only the users own version of the view.
-    =/see-own-version-of/= or maybe =/own-view/= or just =/own/= would work? Another option would be =diff=,
-    but that implies certain extra semantics, which could be provided as well, =own=, =diff=, =other=.
-    =/fork/= also has additional semantics, which implies that the original term came from that user which
-    is not necessarily the case. Will probably go with =/own/=.
-
-*** =http://uri.interlex.org/{user}/fork/{other-user}/curies/=
+*** =http://uri.interlex.org/{user}/own/{other-user}/curies/=
     Like user =/uris/= curies are local identifiers. Therefore it is useful for a user
     to be able to see their own view of terms using the names (curies) defined by another user. \\
-*** =http://uri.interlex.org/{user}/fork/{other-user}/curies/{curie}=
+*** =http://uri.interlex.org/{user}/own/{other-user}/curies/{curie}=
     This endpoint returns ={user}= version of the term resolved to by
     the curie defined by ={other-user}=. This is useful functionality even if a user
     has defined curies that map to many other user's views. So for example
-    =http://uri.interlex.org/tgbugs/fork/{other-user}/curies/ILX:1234567= and
-    =http://uri.interlex.org/tgbugs/fork/{other-user}/curies/defaultILX:1234567= would
+    =http://uri.interlex.org/tgbugs/own/{other-user}/curies/ILX:1234567= and
+    =http://uri.interlex.org/tgbugs/own/{other-user}/curies/defaultILX:1234567= would
     both resolve to =http://uri.interlex.org/tgbugs/ilx_1234567= as indented.
-
-*** =http://uri.interlex.org/{user}/fork/{other-user}/curies/{iri}=
-*** =http://uri.interlex.org/{user}/fork/{other-user}/curies/{prefix}=
+*** =http://uri.interlex.org/{user}/own/{other-user}/curies/{iri}=
+*** =http://uri.interlex.org/{user}/own/{other-user}/curies/{prefix}=
+*** =http://uri.interlex.org/{user}/diff/=
+    Like =/own/= but instead of resolving to a single version of a term
+    resolves to a diff of the two terms.
+*** =http://uri.interlex.org/{user}/diff/{other-user}/uris/=
+*** =http://uri.interlex.org/{user}/diff/{other-user}/curies/=
 
 * CURIE resolver structure =resolver.interlex.org=
   *NOTE: This section is still highly provisional.*
-  Since =uri.interlex.org= is used only to specify resolvable ontology identifiers
+  Since =uri.interlex.org= is intended to manage resolvable ontology identifiers
   InterLex needs another endpoint to make it easy to resolve community defined curies.
   In order to prevent conflation of InterLex users and organizations with curies (which
   often have the same name with some case variants) this will be provided through a different
@@ -243,51 +239,23 @@
   An alternate, and probably clearer name for this endpoint would be =curies.interlex.org= or
   since =resolver.interlex.org= is fairly ambiguous with regard to what it is actually resolving.
   This would also match the naming for =http://uri.interlex.org/{user}/curies/=.
-** =http://resolver.interlex.org/{curie}=
-   This is the only endpoint and it shall only resolve community approved curies using the
-   default/curated/latest/base curie mappings.
 ** Resolving to alternate CURIE mappings
    Users who are technical enough to want the ability to resolve their own curies
-   should instead select the =/{user}/ilx_{1234567}=, or =/{user}/fork/= versions
+   should instead select the =/{user}/ilx_{1234567}=, or =/{user}/own/= versions
    of the identifier for serialization and map the prefix to the curie they wish
-   to formally resolve. =http://uri.interlex.org/{user}/curies/{curie}= with our
-   without =?resolve=true= could also be used, depending on what we decide the
-   default behavior of that endpoint should be when given a curie.
-** Considerations for ways to resolve user versions of curies      :noexport:
-   Thinking has clarified on the issue of how to handle user curies. They are local identifiers
-   the below is kept for the record.
+   to formally resolve. If users just want to resolve a curie as a local identifier
+   defined by a particular user the =http://uri.interlex.org/{user}/curies/{curie}=
+   endpoint provides that functionality.
 
-   It may be acceptable to provide =uri.interlex.org/{user}/curies/= path as part of the uri endpoint.
-   This seems reasonable in the sense that curies are local
-
-   In theory we could resolve =/{curie}?user={user}= queries but we have to consider the
-   consequences of those leaking out. InterLex certainly will never provide uris of that form
-   but I think it makes more sense to provide this kind of functionality via an api, e.g. via
-   =https://interlex.org/api/1/curies/curie/{curie}?user={user}=,
-   =https://interlex.org/api/1/curies/curie-prefix/{curie-prefix}?user={user}=, and
-   =https://interlex.org/api/1/curies/iri-prefix/{iri-prefix}?user={user}=.
+   *NOTE:* =resolver.interlex.org= and =uri.interlex.org/{user}/curies/{curie}= urls are not
+   appropriate for use as ontology identifiers and are disallowed as iri prefixes to prevent
+   confusion. The reason for this is that curie resolvers impose semantics a local identifiers
+   which can be ambiguous, and in the case of user curies, can change without warning.
+** resolver uri structure
+*** =http://resolver.interlex.org/{curie}=
+    This is the only endpoint and it shall only resolve community approved curies using InterLex default curie mappings.
    
-   The other possibility which seems more consistent with our other designs is to put this
-   as functionality for the user on the main site. For example
-   =https://interlex.org/{user}/curies=
-   Unfortunately I don't think that it is consistent or correct to use things like
-   =https://uri.interlex.org/{user}/curies/curie/{curie}=,
-   =https://uri.interlex.org/{user}/curies/{curie}=, or
-   =https://uri.interlex.org/{user}/curies/iri-prefix/{iri-prefix}=. However, I do think that
-   the problem space for curies is well understood enough that we can use a path based API instead of
-   =?key=value= based api. More brainstporming required.
-
-   One issue with this is the order of operations. \\
-   Given =curies.interlex.org/{curie}?user={user}=. \\
-   Do we resolve with the community curie mapping to the user's view of the resulting term? \\
-   Do we resolve with the user curie to the default view of the term? \\
-   Do we resolve with the user curie to the user view of the term? \\
-   etc.
-
-   The issue is that the structure would have to be ={curie}?curie_user={user0}&term_user={user1}=
-   because the view of a term and a curie for an identifier are independent.
-
-* Existing users and URI paths :TODO:
+* TODO Existing users and URI paths
 ** tgbugs
 ** dicom
 ** paxinos
