@@ -19,8 +19,8 @@
 <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-artifacts.ttl> a owl:Ontology ;
     rdfs:label "Parcellation Artifacts" ;
     rdfs:comment "Ontology file for artifacts that define labels or geometry for parcellation schemes." ;
-    owl:versionInfo "2018-04-06" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/cf6b2ed6115580bb05132bbeb45468d1fb0eb138/pyontutils/parcellation.py#L818> .
+    owl:versionInfo "2018-04-12" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/bec2841aa66d45d5e746e1c0a9057349d581211a/pyontutils/parcellation.py#L810> .
 
 ### Classes
 
@@ -345,6 +345,35 @@ FSLATS:Thalamus a owl:Class ;
     ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/mbaslim.ttl> ;
     ilxtr:isDocumentedBy <http://help.brain-map.org/download/attachments/2818169/AllenReferenceAtlas_v2_2011.pdf?version=1&modificationDate=1319667383440> .
 
+<http://uri.interlex.org/freesurfer/uris/FreeSurferColorLUT/> a owl:Class ;
+    NIFRID:abbrev "FSCL" ;
+    rdfs:subClassOf <http://uri.interlex.org/freesurfer/uris/FreeSurferColorLUT/>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:date "2003-05-07" ;
+    dcterms:bibliographicCitation <https://doi.org/10.1016/j.neuroimage.2012.01.021> ;
+    ilxtr:isDocumentedBy <https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT> .
+
+<http://uri.interlex.org/freesurfer/uris/FreeSurferColorLUT/versions/1.105> a owl:Class ;
+    NIFRID:abbrev "FSCL1.105" ;
+    rdfs:subClassOf <http://uri.interlex.org/freesurfer/uris/FreeSurferColorLUT/>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:date "2003-05-07" ;
+    dc:source <https://github.com/freesurfer/freesurfer/blob/dev/distribution/FreeSurferColorLUT.txt> ;
+    dcterms:bibliographicCitation <https://doi.org/10.1016/j.neuroimage.2012.01.021> ;
+    ilxtr:artifactVersion "1.105" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/freesurfer-labels.ttl> ;
+    ilxtr:isDocumentedBy <https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT> .
+
 <http://uri.interlex.org/hcp/uris/mmp/versions/1.0> a owl:Class ;
     rdfs:label "Human Connectome Project Multi-Modal human cortical parcellation" ;
     NIFRID:synonym "HCP Multi-Modal Parcellation",
@@ -362,7 +391,7 @@ FSLATS:Thalamus a owl:Class ;
             owl:onProperty ilxtr:isDefinedInTaxon ;
             owl:allValuesFrom NCBITaxon:9606 ] ;
     dc:date "2016-07-20" ;
-    dc:source <https://github.com/tgbugs/pyontutils/blob/1c18b4fe6548dd48d18e1c9dbae1321c9b106bf9/pyontutils/resources/human_connectome_project_2016.csv> ;
+    dc:source <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/human_connectome_project_2016.csv> ;
     dcterms:bibliographicCitation <https://doi.org/10.1038/nature18933> ;
     ilxtr:artifactVersion "1.0" ;
     ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/hcpmmp.ttl> .
@@ -380,25 +409,9 @@ FSLATS:Thalamus a owl:Class ;
             owl:onProperty ilxtr:isDefinedInTaxon ;
             owl:allValuesFrom NCBITaxon:9606 ] ;
     dc:date "2014-10-20" ;
-    dc:source <https://github.com/nipy/mindboggle/blob/0e6203c58462c2b872ab942bc9038366b4ebdfbf/mindboggle/mio/labels.py> ;
+    dc:source <https://github.com/nipy/mindboggle/blob/master/mindboggle/mio/labels.py> ;
     dcterms:bibliographicCitation "101 labeled brain images and a consistent human cortical labeling protocol. Arno Klein, Jason Tourville. Frontiers in Brain Imaging Methods. 6:171. DOI: 10.3389/fnins.2012.00171" ;
     ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/dkt-labels.ttl> ;
-    ilxtr:isDocumentedBy <https://mindboggle.readthedocs.io/en/latest/labels.html> .
-
-<http://uri.interlex.org/mindboggle/uris/mndbgl/versions/1> a owl:Class ;
-    rdfs:label "Mindboggle parcellation terminology" ;
-    NIFRID:abbrev "MNDBGL" ;
-    rdfs:subClassOf ilxtr:parcellationTerminology,
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
-            owl:allValuesFrom UBERON:0000113 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:isDefinedInTaxon ;
-            owl:allValuesFrom NCBITaxon:9606 ] ;
-    dc:date "2014-10-20" ;
-    dc:source <https://github.com/nipy/mindboggle/blob/0e6203c58462c2b872ab942bc9038366b4ebdfbf/mindboggle/mio/labels.py> ;
-    dcterms:bibliographicCitation "Klein A, Ghosh SS, Bao FS, Giard J, Hame Y, Stavsky E, Lee N, Rossa B, Reuter M, Neto EC, Keshavan A. (2017) Mindboggling morphometry of human brains. PLoS Computational Biology 13(3): e1005350. doi:10.1371/journal.pcbi.1005350" ;
-    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/mndbgl-labels.ttl> ;
     ilxtr:isDocumentedBy <https://mindboggle.readthedocs.io/en/latest/labels.html> .
 
 <http://uri.interlex.org/paxinos/uris/mouse> a owl:Class ;
@@ -411,19 +424,47 @@ FSLATS:Thalamus a owl:Class ;
     skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." ;
     rdfs:subClassOf ilxtr:parcellationAtlas .
 
-<http://uri.interlex.org/waxholm/uris/sd/versions/2> a owl:Class ;
-    rdfs:label "Waxholm Space Sprague Dawley Terminology v2" ;
-    NIFRID:abbrev "WHSSD2" ;
-    rdfs:subClassOf ilxtr:parcellationTerminology,
+<http://uri.interlex.org/waxholm/uris/sd/> a owl:Class ;
+    rdfs:subClassOf <http://uri.interlex.org/waxholm/uris/sd/>,
         [ a owl:Restriction ;
             owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
             owl:allValuesFrom UBERON:0000113 ],
         [ a owl:Restriction ;
             owl:onProperty ilxtr:isDefinedInTaxon ;
             owl:allValuesFrom NCBITaxon:10116 ] ;
-    rdfs:comment "There is an earlier version of the .label file but indexes are unique and are not reused, only renamed" ;
+    rdfs:comment "Versions of the .label file add and remove entries and sometimes slightly modify the label, but indexes are never reused and retain their meaning." ;
+    dcterms:bibliographicCitation <https://www.ncbi.nlm.nih.gov/pubmed/24726336> .
+
+<http://uri.interlex.org/waxholm/uris/sd/versions/1> a owl:Class ;
+    rdfs:label "Waxholm Space Sprague Dawley Terminology v1" ;
+    NIFRID:abbrev "WHSSD1" ;
+    rdfs:subClassOf <http://uri.interlex.org/waxholm/uris/sd/>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10116 ] ;
+    rdfs:comment "Versions of the .label file add and remove entries and sometimes slightly modify the label, but indexes are never reused and retain their meaning." ;
+    dc:date "2014-04-09" ;
+    dc:source <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/WHS_SD_rat_atlas_v1_labels.ilf> ;
+    dcterms:bibliographicCitation <https://www.ncbi.nlm.nih.gov/pubmed/24726336> ;
+    ilxtr:artifactVersion "1" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/waxholm-rat-labels.ttl> .
+
+<http://uri.interlex.org/waxholm/uris/sd/versions/2> a owl:Class ;
+    rdfs:label "Waxholm Space Sprague Dawley Terminology v2" ;
+    NIFRID:abbrev "WHSSD2" ;
+    rdfs:subClassOf <http://uri.interlex.org/waxholm/uris/sd/>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10116 ] ;
+    rdfs:comment "Versions of the .label file add and remove entries and sometimes slightly modify the label, but indexes are never reused and retain their meaning." ;
     dc:date "2015-02-02" ;
-    dc:source <https://github.com/tgbugs/pyontutils/blob/e58a03a1001767d9f703196d6a4ce61c41ebf24c/pyontutils/resources/WHS_SD_rat_atlas_v2_labels.ilf> ;
+    dc:source <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/WHS_SD_rat_atlas_v2_labels.ilf> ;
     dcterms:bibliographicCitation <https://www.ncbi.nlm.nih.gov/pubmed/24726336> ;
     ilxtr:artifactVersion "2" ;
     ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/waxholm-rat-labels.ttl> .
