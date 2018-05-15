@@ -1,3 +1,4 @@
+#+TITLE: NIF Parcellation Schemes
 #+MACRO: semantic-l semantic label
 #+MACRO: semantic-r semantic region
 #+MACRO: parc-l parcellation label
@@ -51,6 +52,8 @@
    | ~?~    | unnamed               |
    | ~--~   | unbounded (open)      |
    | ~__~   | bounded (closed)      |
+   | ~O~    | connected             |
+   | ~OO~   | disconnected          |
    | ~?>~   | part of not specified |
    | ~>~    | part of               |
    | ~/>~   | not part of           |
@@ -74,14 +77,21 @@
    boundary of those regions has the following classes of labels. Each class tells
    you what you can infer about a neuron with a phenotype associated with that label.
    1. The only named point inside a bounded volume.  (I really like the term closed, but I think that its use is incorrect.)
-   2. 
-   If the boundaries are closed then I don't care about the borders relationship because it can be computed from
-   the atlas itself.
+   2. If the boundaries are closed then I don't care about the borders relationship because it can be computed from the atlas itself.
 
    The first level of parcellation is of the regions, named, or unnamed that are closed and bounded. If these
    regions are unnamed, then we need to do something about that. Sometimes, they may only be able to be defined
    as the complement of all named regions in a section. But, because the section is real and is bounded and
-   closed we know that this is possible (thank's math!).
+   closed we know that this is possible (thanks math!).
+   
+   A second issue that needs to be considered is when the same name is applied to a set of disconnected bounded regions.
+   This could be where the idea of closed vs open comes into play. If there is another region that can have the same name
+   then we might call any one so-named region as open, but it is not clear that this makes sense mathematically.
+   The relevant definition is that $\exists$ at least two regions $A$ and $B$ bearing the same name such that $A \cap B = \emptyset$.
+   These regions do not have a simple mapping to the {{{semantic-r-spatial-volume}}} listed below, but require more a more complex model.
+   This is because the agreement needed as the basis for a definition may be significantly harder to obtain due to the number
+   of points that are required for agreement. An example of this is the rodent internal capsule where fiber tracts are interspersed
+   and do not form a single contiguous structure as they do in human.
 
 ** tables
 
