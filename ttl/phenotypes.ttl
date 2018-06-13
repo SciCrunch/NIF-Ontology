@@ -24,7 +24,7 @@
     owl:imports <http://ontology.neuinfo.org/NIF/ttl/phenotype-core.ttl> ;
     rdfs:label "NIF Phenotypes" ;
     rdfs:comment "A taxonomy of phenotypes used to model biological types as collections of measurements." ;
-    owl:versionInfo "2018-02-10" .
+    owl:versionInfo "2018-06-12" .
 
 ### Classes
 
@@ -178,7 +178,14 @@ ilxtr:DescendingAxonPhenotype a owl:Class ;
 
 ilxtr:DirectPathway a owl:Class ;
     rdfs:label "Direct Pathway" ;
+    rdfs:comment "Needs work" ;
     skos:hiddenLabel "Direct Pathway" .
+
+ilxtr:DopaminergicPhenotype a owl:Class ;
+    rdfs:label "Dopaminergic Phenotype" ;
+    rdfs:subClassOf ilxtr:ExpressionPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasExpressionPhenotype ;
+    skos:hiddenLabel "Dopaminergic" .
 
 ilxtr:DoubleBouquetPhenotype a owl:Class ;
     rdfs:label "Double Bouquet Phenotype" ;
@@ -216,6 +223,7 @@ ilxtr:EarlyBifurcatingTuftedPyramidalPhenotype a owl:Class ;
         ilxtr:NarrowTuftedPyramidalPhenotype,
         ilxtr:SlenderTuftedPyramidalPhenotype,
         ilxtr:ThickTuftedPyramidalPhenotype ;
+    rdfs:comment "we are not modelling dendrite phenotypes directly at the moment so we cant break about EB/LB" ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Early Bifurcating Tufted Pyramidal" .
 
@@ -224,6 +232,13 @@ ilxtr:ElectrophysiologicalPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:CellPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
     skos:hiddenLabel "Electrophysiological" .
+
+ilxtr:ExpressionPhenotype a owl:Class ;
+    rdfs:label "Expression Phenotype" ;
+    NIFRID:synonym "molecular phenotype" ;
+    rdfs:subClassOf ilxtr:CellPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasExpressionPhenotype ;
+    skos:hiddenLabel "Expression" .
 
 ilxtr:FastSpikingPhenotype a owl:Class ;
     rdfs:label "Fast Spiking Phenotype" ;
@@ -263,9 +278,10 @@ ilxtr:HorizontalPyramidalPhenotype a owl:Class ;
     skos:hiddenLabel "Horizontal Pyramidal" .
 
 ilxtr:InterneuronPhenotype a owl:Class ;
-    rdfs:label "Interneuron Phenotype" ;
+    rdfs:label "Intrinsic Phenotype" ;
     rdfs:subClassOf ilxtr:AxonPhenotype ;
-    skos:hiddenLabel "Interneuron" .
+    rdfs:comment "local projections only? (define local) equivalent to LocalAxonOnly" ;
+    skos:hiddenLabel "Intrinsic" .
 
 ilxtr:InvertedPyramidalPhenotype a owl:Class ;
     rdfs:label "Inverted Pyramidal Phenotype" ;
@@ -332,6 +348,7 @@ ilxtr:LocalAxon a owl:Class ;
 ilxtr:LocalAxonOnly a owl:Class ;
     rdfs:label "Local Axon Only" ;
     rdfs:subClassOf ilxtr:AxonPhenotype ;
+    rdfs:comment "model this as NegPhenotype(ilxtr:RemoteAxon)? This really feels like we are overcomplicating things… all we should need to know is that in projects to its own brain region… or better to a specific cell population that has a known location" ;
     skos:hiddenLabel "Local Axon Only" .
 
 ilxtr:MartinottiPhenotype a owl:Class ;
@@ -354,12 +371,14 @@ ilxtr:MediumSpinyPhenotype a owl:Class ;
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype,
         ilxtr:UntuftedPyramidalPhenotype ;
+    rdfs:comment "we really should be able to deal with spines in a convenient way" ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Medium Spiny" .
 
 ilxtr:MorphologicalPhenotype a owl:Class ;
     rdfs:label "Morphological Phenotype" ;
     rdfs:subClassOf ilxtr:CellPhenotype ;
+    rdfs:comment "this is the 'general' morphological phenotype that might be made up of soma/axon/dendrite" ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Morphological" .
 
@@ -368,6 +387,7 @@ ilxtr:NarrowPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:TrunkPhenotype ;
     owl:disjointWith ilxtr:SlenderPhenotype,
         ilxtr:ThickPhenotype ;
+    rdfs:comment "I get the feeling that this is actually a synonym for slender, ma2015sup uses 'thin' but that has nasty collsions with 'thick' for short naming (sigh)" ;
     ilxtr:useObjectProperty ilxtr:hasDendriteMorphologicalPhenotype ;
     skos:hiddenLabel "Narrow" .
 
@@ -376,6 +396,7 @@ ilxtr:NarrowPyramidalPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:PyramidalPhenotype ;
     owl:disjointWith ilxtr:StarPyramidalPhenotype,
         ilxtr:TuftedPyramidalPhenotype ;
+    rdfs:comment "this class is circumspect, and may actually be NarrowTuftedPyramidalPhenotype" ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Narrow Pyramidal" .
 
@@ -384,6 +405,7 @@ ilxtr:NarrowTuftedPyramidalPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:TuftedPyramidalPhenotype ;
     owl:disjointWith ilxtr:SlenderTuftedPyramidalPhenotype,
         ilxtr:ThickTuftedPyramidalPhenotype ;
+    rdfs:comment "issues with NarowPyramidalPhenotype" ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Narrow Tufted Pyramidal" .
 
@@ -424,6 +446,7 @@ ilxtr:NonAccomodatingSpikingPhenotype a owl:Class ;
 
 ilxtr:PerforantPathwayAssociated a owl:Class ;
     rdfs:label "Perforant Pathway Associated" ;
+    rdfs:comment "Needs work" ;
     skos:hiddenLabel "Perforant Pathway Associated" .
 
 ilxtr:PetillaInitialBurstSpikingPhenotype a owl:Class ;
@@ -463,6 +486,7 @@ ilxtr:PetillaSustainedAccomodatingPhenotype a owl:Class ;
     owl:disjointWith ilxtr:PetillaSustainedIrregularPhenotype,
         ilxtr:PetillaSustainedNonAccomodatingPhenotype,
         ilxtr:PetillaSustainedStutteringPhenotype ;
+    rdfs:comment "how do we deal with the fact that there are other accomodating phenotypes‚ multiple parent is annoying" ;
     ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
     skos:hiddenLabel "Petilla Sustained Accomodating" .
 
@@ -499,6 +523,7 @@ ilxtr:PetillaSustainedStutteringPhenotype a owl:Class ;
 ilxtr:ProjectionPhenotype a owl:Class ;
     rdfs:label "Projection Phenotype" ;
     rdfs:subClassOf ilxtr:AxonPhenotype ;
+    rdfs:comment "we don’t always have target location information, sometimes the best we get is ‘the axon leaves the section’, equivalent to RemoteAxon" ;
     skos:hiddenLabel "Projection" .
 
 ilxtr:PyramidalPhenotype a owl:Class ;
@@ -519,17 +544,25 @@ ilxtr:RegularSpikingNonPyramidalPhenotype a owl:Class ;
 ilxtr:RemoteAxon a owl:Class ;
     rdfs:label "Remote Axon" ;
     rdfs:subClassOf ilxtr:AxonPhenotype ;
+    rdfs:comment "hasProjectionPhenotype (some (class brainRegion (not (brainRegion containing this neruon))))" ;
     skos:hiddenLabel "Remote Axon" .
 
 ilxtr:RemoteAxonOnly a owl:Class ;
     rdfs:label "Remote Axon Only" ;
     rdfs:subClassOf ilxtr:AxonPhenotype ;
+    rdfs:comment "model this as NegPhenotype(ilxtr:LocalAxon) except that this entails boutons/terminals" ;
     skos:hiddenLabel "Remote Axon Only" .
+
+ilxtr:SerotonergicPhenotype a owl:Class ;
+    rdfs:label "Serotonergic Phenotype" ;
+    rdfs:subClassOf ilxtr:ExpressionPhenotype ;
+    skos:hiddenLabel "Serotonergic" .
 
 ilxtr:SlenderPhenotype a owl:Class ;
     rdfs:label "Slender Phenotype" ;
     rdfs:subClassOf ilxtr:TrunkPhenotype ;
     owl:disjointWith ilxtr:ThickPhenotype ;
+    rdfs:comment "is this a synonym for narrow?" ;
     ilxtr:useObjectProperty ilxtr:hasDendriteMorphologicalPhenotype ;
     skos:hiddenLabel "Slender" .
 
@@ -537,6 +570,7 @@ ilxtr:SlenderTuftedPyramidalPhenotype a owl:Class ;
     rdfs:label "Slender Tufted Pyramidal Phenotype" ;
     rdfs:subClassOf ilxtr:TuftedPyramidalPhenotype ;
     owl:disjointWith ilxtr:ThickTuftedPyramidalPhenotype ;
+    rdfs:comment "note that there is also an 'untufted slender' classification so we probably do need to break these out" ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Slender Tufted Pyramidal" .
 
@@ -575,6 +609,7 @@ ilxtr:SpikingPhenotype a owl:Class ;
 ilxtr:SpinyPhenotype a owl:Class ;
     rdfs:label "Spiny Phenotype" ;
     rdfs:subClassOf ilxtr:DendritePhenotype ;
+    rdfs:comment "Aspiny can be modelled as (not ilxtr:SpinyPhenotype), this will be needed for Allen's scheme" ;
     ilxtr:useObjectProperty ilxtr:hasDendriteMorphologicalPhenotype ;
     skos:hiddenLabel "Spiny" .
 
@@ -621,6 +656,7 @@ ilxtr:TrunkPhenotype a owl:Class ;
 ilxtr:TuftedPhenotype a owl:Class ;
     rdfs:label "Tufted Phenotype" ;
     rdfs:subClassOf ilxtr:DendritePhenotype ;
+    rdfs:comment "to get Untufted use the negative phenotype of this and add a naming rule" ;
     ilxtr:useObjectProperty ilxtr:hasDendriteMorphologicalPhenotype ;
     skos:hiddenLabel "Tufted" .
 
@@ -635,4 +671,4 @@ ilxtr:UntuftedPyramidalPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
     skos:hiddenLabel "Untufted Pyramidal" .
 
-### Serialized using the pyontutils deterministic serializer v1.1.3
+### Serialized using the pyontutils deterministic serializer v1.1.4

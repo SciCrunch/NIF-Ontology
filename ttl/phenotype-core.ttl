@@ -24,7 +24,7 @@
     rdfs:label "NIF Phenotype Core",
         "NIF Phenotype core" ;
     rdfs:comment "This is the core set of predicates used to model phenotypes and the parent class for phenotypes." ;
-    owl:versionInfo "2018-02-10" .
+    owl:versionInfo "2018-06-12" .
 
 ### Object Properties
 
@@ -64,6 +64,14 @@ ilxtr:hasElectrophysiologicalPhenotype a owl:AsymmetricProperty,
     skos:definition "Expresses a relationship between a neuron type and an electrophysiological phenotype concept. This should be used when a neuron type is described using a high level electrophysiological concept class." ;
     rdfs:subPropertyOf ilxtr:hasPhenotype .
 
+ilxtr:hasExperimentalPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasExperimentalPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron and an experimental condition. This should be used when a neuron type is described by some experimental condition or functional designation." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "This needs a better name. It is clear what it means when you see examples of the usage." .
+
 ilxtr:hasExpressionPhenotype a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
         owl:ObjectProperty ;
@@ -83,7 +91,8 @@ ilxtr:hasLayerLocationPhenotype a owl:AsymmetricProperty,
         owl:ObjectProperty ;
     rdfs:label "hasLayerLocationPhenotype" ;
     skos:definition "Expresses a relationship between a neuron type and a laminar brain region." ;
-    rdfs:subPropertyOf ilxtr:hasLocationPhenotype .
+    rdfs:subPropertyOf ilxtr:hasLocationPhenotype ;
+    rdfs:comment "May need hasSomaLayerLocation or something, do we really even need this?? if axioms are missing in parcellation schemes and uberon then it should be easy enough to add them, or at least we won't get disjointness issues because layers of cortex are orthogonal to parts of cortex (eg) and thus we shouldnt get reasoning errors" .
 
 ilxtr:hasLocationPhenotype a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
@@ -103,7 +112,8 @@ ilxtr:hasNeurotransmitterPhenotype a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
         owl:ObjectProperty ;
     rdfs:label "hasNeurotransmitterPhenotype" ;
-    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype .
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype ;
+    rdfs:comment "not entirely sure if we need this one" .
 
 ilxtr:hasNucleicAcidExpressionPhenotype a owl:ObjectProperty ;
     rdfs:label "hasNucleicAcidExpressionPhenotype" .
@@ -118,14 +128,16 @@ ilxtr:hasPhenotype a owl:AsymmetricProperty,
 ilxtr:hasPresynapticTerminalsIn a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
         owl:ObjectProperty ;
-    rdfs:label "hasPresynapticTerminalsIn" .
+    rdfs:label "hasPresynapticTerminalsIn" ;
+    rdfs:comment "projectsTo?" .
 
 ilxtr:hasProjectionPhenotype a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
         owl:ObjectProperty ;
     rdfs:label "hasProjectionPhenotype" ;
     skos:definition "Expresses a relationship between a neuron type and a brain region that said neuron type sends axons to." ;
-    rdfs:subPropertyOf ilxtr:hasPhenotype .
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "this might be clearer than hasCircuitRole but might confuse with projectsTo or the like, excitatory/inhibitory shouldn't be handled here? The way that projection vs intrinsic is modelled relates whether axons leave the brain region that contains the soma or not, this is not fully modelled at the moment" .
 
 ilxtr:hasProteinExpressionPhenotype a owl:ObjectProperty ;
     rdfs:label "hasProteinExpressionPhenotype" .
@@ -144,15 +156,18 @@ ilxtr:hasTaxonRank a owl:AsymmetricProperty,
         owl:ObjectProperty ;
     rdfs:label "hasTaxonRank" ;
     skos:definition "Expresses a relationship between a neuron type and a taxon. This should be used when a neuron type is thought to have been present in the last common ancestor of the taxon." ;
-    rdfs:subPropertyOf ilxtr:hasPhenotype .
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "isAncestralInTaxon (because convergent evolution is SOOO likely…)" .
 
 ilxtr:phenotypeCooccuresWith a owl:ObjectProperty ;
     rdfs:label "phenotypeCooccuresWith" ;
-    skos:definition "Expresses a relationship between a phenotype and a phenotype. This should be used when two phenotypes commonly cooccure." .
+    skos:definition "Expresses a relationship between a phenotype and a phenotype. This should be used when two phenotypes commonly cooccure." ;
+    rdfs:comment "this is not the right way to pull this off, need something akin to disjointness" .
 
 ilxtr:phenotypeObservedInBrainRegion a owl:ObjectProperty ;
     rdfs:label "phenotypeObservedInBrainRegion" ;
-    skos:definition "Expresses a relationship between a phenotype and a brain region. This should be used when a neuron phenotype is observed in specific brain regions." .
+    skos:definition "Expresses a relationship between a phenotype and a brain region. This should be used when a neuron phenotype is observed in specific brain regions." ;
+    rdfs:comment "existential not universal" .
 
 ilxtr:phenotypeOf a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
@@ -163,6 +178,6 @@ ilxtr:phenotypeOf a owl:AsymmetricProperty,
 
 ilxtr:Phenotype a owl:Class ;
     rdfs:label "Phenotype" ;
-    skos:definition "A Phenotype is a binary property of a biological entity. Phenotypes are derived from measurements made on the subject of interest. While Phenotype is not currently placed within the BFO hierarchy, if we were to place it, it would fall under BFO:0000016 -> disposition, since these phenotypes are contingent on the experimental conditions under which measurements were made and are NOT qualities. For consideration: in theory this would mean that disjointness does not make sense, even for things that would seem to be obviously disjoint such as Accomodating and Non-Accomodating. However, this information can still be captured on a subject by subject basis by asserting that for this particular entity, coocurrance of phenotypes is not possilbe. This still leaves the question of whether the class of biological entities that correspond to the bag of phenotypes is implicitly bounded/limited only to the extrinsic and unspecified experimental contidions, some of which are not and cannot be included in a bag of phenotypes. The way to deal with this when we want to include 2 'same time' disjoint phenotypes, is to use a logical phenotype to wrap them with an auxillary variable that we think accounts for the difference." .
+    skos:definition "A Phenotype is a binary property of a biological entity. Phenotypes are derived from measurements made on the subject of interest. While Phenotype is not currently placed within the BFO hierarchy, if we were to place it, it would fall under BFO:0000016 -> disposition, since these phenotypes are contingent on the experimental conditions under which measurements were made and are NOT qualities. For consideration: in theory this would mean that disjointness does not make sense, even for things that would seem to be obviously disjoint such as Accomodating and Non-Accomodating. However, this information can still be captured on a subject by subject basis by asserting that for this particular entity, coocurrance of phenotypes is not possible. This still leaves the question of whether the class of biological entities that correspond to the bag of phenotypes is implicitly bounded/limited only to the extrinsic and unspecified experimental conditions, some of which are not and cannot be included in a bag of phenotypes. The way to deal with this when we want to include 2 'same time' disjoint phenotypes, is to use a logical phenotype to wrap them with an auxiliary variable that we think accounts for the difference." .
 
-### Serialized using the pyontutils deterministic serializer v1.1.3
+### Serialized using the pyontutils deterministic serializer v1.1.4
