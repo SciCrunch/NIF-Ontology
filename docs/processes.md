@@ -29,7 +29,9 @@ checks to make sure that the ontology is consistent.
 
 # Please do push documentation to master
 
-## Development processes
+# Processes
+
+## Development
 
 ### Prior to commit
 ```bash
