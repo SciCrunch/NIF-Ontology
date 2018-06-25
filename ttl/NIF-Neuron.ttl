@@ -1,22 +1,31 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
-@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix ILX: <http://uri.interlex.org/base/ilx_> .
+@prefix ILXREPLACE: <http://ILXREPLACE.org/> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix NIFEXT: <http://uri.neuinfo.org/nif/nifstd/nifext_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix NLXCELL: <http://uri.neuinfo.org/nif/nifstd/nlx_cell_> .
+@prefix nsu: <http://www.FIXME.org/nsupper#> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix PR: <http://purl.obolibrary.org/obo/PR_> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix TEMP: <http://uri.interlex.org/temp/uris/> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://ontology.neuinfo.org/NIF/ttl/generated/NIF-Neuron-HBP-cell-import.ttl> a owl:Ontology ;
-    rdfs:label "NIF Neuron HBP cell import" ;
-    rdfs:comment "this file was automatically using pyontutils/hbp_cells.py" ;
-    owl:versionInfo "2016-03-22" .
+<http://ontology.neuinfo.org/NIF/ttl/NIF-Neuron.ttl> a owl:Ontology ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/hbp-special.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/NIF-Neuron-Defined.ttl>,
+        <http://ontology.neuinfo.org/NIF/ttl/phenotypes.ttl> ;
+    rdfs:label "Temp Ontology" ;
+    owl:versionInfo "2018-02-10" .
 
 ### Object Properties
 
@@ -944,23 +953,110 @@ ILX:0050112 a owl:Class ;
     ilxtr:hasMorphologicalPhenotype "basket" ;
     ilxtr:hasSomaLocatedIn UBERON:0003881 .
 
-NIFEXT:55 a owl:Class .
+NIFEXT:55 a owl:Class ;
+    rdfs:label "Neocortex Martinotti cell"^^xsd:string ;
+    skos:prefLabel "Neocortex Martinotti cell"^^xsd:string ;
+    NIFRID:synonym "Martinotti cell"^^xsd:string ;
+    rdfs:subClassOf SAO:1417703748 ;
+    NIFRID:createdDate "2007-09-05"^^xsd:string ;
+    NIFRID:modifiedDate "April 15, 2009"^^xsd:string .
 
-NIFEXT:56 a owl:Class .
+NIFEXT:56 a owl:Class ;
+    rdfs:label "Neocortex basket cell"^^xsd:string ;
+    skos:prefLabel "Neocortex basket cell"^^xsd:string ;
+    NIFRID:synonym "Basket cell (cortical)"^^xsd:string,
+        "cortical basket cell"^^xsd:string,
+        "cortical basket neuron"^^xsd:string ;
+    rdfs:subClassOf SAO:1417703748 ;
+    NIFRID:createdDate "2007-09-05"^^xsd:string ;
+    NIFRID:modifiedDate "April 15, 2009"^^xsd:string .
 
-NIFEXT:57 a owl:Class .
+NIFEXT:57 a owl:Class ;
+    rdfs:label "Neocortex chandelier cell"^^xsd:string ;
+    skos:prefLabel "Neocortex chandelier cell"^^xsd:string ;
+    NIFRID:synonym "Chandelier cell"^^xsd:string,
+        "Chandelier neuron"^^xsd:string,
+        "Cortical chandelier Cell"^^xsd:string,
+        "Cortical chandelier cell chandelier neuron"^^xsd:string ;
+    skos:definition "Type of cortical interneuron characterized by a bitufted appearance, with groups of dendrites extending from the upper and lower poles of an elongate cell body, but some cells have a more multipolar configuration."^^xsd:string ;
+    rdfs:subClassOf SAO:1417703748 ;
+    NIFRID:createdDate "2007-09-05"^^xsd:string ;
+    NIFRID:modifiedDate "April 15, 2009"^^xsd:string,
+        "December 5, 2008"^^xsd:string ;
+    NIFRID:sao_ID "sao1267578530"^^xsd:string .
 
-NIFEXT:59 a owl:Class .
+NIFEXT:59 a owl:Class ;
+    rdfs:label "Neocortex bouquet double cell"^^xsd:string ;
+    skos:prefLabel "Neocortex bouquet double cell"^^xsd:string ;
+    NIFRID:synonym "Double bouquet cell"^^xsd:string ;
+    skos:definition "Type of inhibitory cortical interneuron that provides inhibitory innervation of pyramidal neurons.  Most commonly described in primates; may be absent in rodent (DeFelipe et al., 2001)."^^xsd:string ;
+    rdfs:subClassOf SAO:1417703748 ;
+    NIFRID:createdDate "2007-09-05"^^xsd:string ;
+    NIFRID:modifiedDate "April 15, 2009"^^xsd:string,
+        "March 19, 2009"^^xsd:string .
 
-NIFEXT:81 a owl:Class .
+NIFEXT:81 a owl:Class ;
+    rdfs:label "Neocortex bipolar cell"^^xsd:string ;
+    skos:prefLabel "Neocortex bipolar cell"^^xsd:string ;
+    NIFRID:synonym "Bipolar dendrite cell"^^xsd:string ;
+    rdfs:subClassOf SAO:1417703748 ;
+    NIFRID:createdDate "2007-09-05"^^xsd:string ;
+    NIFRID:modifiedDate "April 15, 2009"^^xsd:string ;
+    NIFRID:hasExternalSource "SenseLab"^^xsd:string ;
+    skos:scopeNote "A part of the region of the nervous system known to play a role in Auditory System function."^^xsd:string .
 
-NLXCELL:091205 a owl:Class .
+NLXCELL:091205 a owl:Class ;
+    rdfs:label "Hippocampus CA1 basket cell"^^xsd:string ;
+    rdfs:subClassOf SAO:1417703748 ;
+    rdfs:comment "Not sure that this is what was meant by EC stellate II. May have to delete this class."^^xsd:string ;
+    NIFRID:createdDate "December 18, 2009"^^xsd:string .
 
 SAO:229636300 a owl:Class .
 
-SAO:1417703748 a owl:Class .
+SAO:862606388 a owl:Class ;
+    rdfs:label "Pyramidal cell"^^xsd:string ;
+    skos:prefLabel "Pyramidal Cell"^^xsd:string ;
+    NIFRID:synonym "Pyramidal neuron"^^xsd:string ;
+    skos:definition "Projection neuron in the cerebral cortex, hippocampal formation and some other brain regions. Pyramidal cells have a pyramid-shaped soma with the apex and an apical dendrite pointed toward the pial surface and other dendrites and an axon emerging from the base. The axons may have local collaterals but also project outside their cortical region (MSH)."^^xsd:string ;
+    rdfs:subClassOf SAO:1417703748 ;
+    skos:changeNote "Definition modified and a synonym added"^^xsd:string ;
+    NIFRID:modifiedDate "December 9, 2008"^^xsd:string ;
+    NIFRID:cell_ontology_ID "CL:0000598"^^xsd:string ;
+    NIFRID:hasCurationStatus NIFRID:uncurated ;
+    NIFRID:hasDefinitionSource NIFRID:UMLS ;
+    NIFRID:sao_ID "sao862606388"^^xsd:string ;
+    NIFRID:umls_ID "C0206441"^^xsd:string .
 
-SAO:2128417084 a owl:Class .
+SAO:1417703748 a owl:Class ;
+    rdfs:label "Neuron"^^xsd:string ;
+    skos:prefLabel "Neuron"^^xsd:string ;
+    NIFRID:synonym "nerve cell"^^xsd:string,
+        "neuron"^^xsd:string,
+        "neuron cell"^^xsd:string ;
+    rdfs:subClassOf SAO:1224657022 ;
+    NIFRID:modifiedDate "April 7, 2010"^^xsd:string,
+        "December 4, 2008"^^xsd:string ;
+    NIFRID:cell_ontology_ID "CL:0000540"^^xsd:string ;
+    NIFRID:hasCurationStatus NIFRID:uncurated ;
+    NIFRID:sao_ID "sao1417703748"^^xsd:string ;
+    NIFRID:umls_ID "C0027882"^^xsd:string .
 
-### Serialized using the pyontutils deterministic serializer v1.1.2
+SAO:2128417084 a owl:Class ;
+    rdfs:label "Neocortex pyramidal cell"^^xsd:string ;
+    skos:prefLabel "Neocortex pyramidal cell"^^xsd:string ;
+    NIFRID:synonym "Cortical Pyramidal Neuron"^^xsd:string,
+        "Cortical pyramidal neuron"^^xsd:string,
+        "Neocortex pyramidal neuron"^^xsd:string,
+        "Neocortical pyramidal cell"^^xsd:string,
+        "Neocortical pyramidal neuron"^^xsd:string ;
+    skos:definition """Pyramidal neuron of the cerebral cortex (not including hippocampus or olfactory cortex).
 
+The pyramidal cell of the neocortex is located in layers 2-3 and 5-6, has a pyramidal-shaped cell body which gives off a number of laterally-directed basal dendrites and usually a single apical dendrite which ascends to branch and terminate in layer 1; these dendrites are covered in dendritic spines."""^^xsd:string ;
+    rdfs:subClassOf SAO:862606388 ;
+    skos:changeNote "Synonyms added and the label has been changed."^^xsd:string ;
+    owl:versionInfo "129938"^^xsd:string ;
+    NIFRID:modifiedDate "April 12, 2010"^^xsd:string ;
+    NIFRID:hasCurationStatus NIFRID:uncurated ;
+    NIFRID:sao_ID "sao2128417084"^^xsd:string .
+
+### Serialized using the pyontutils deterministic serializer v1.1.3
