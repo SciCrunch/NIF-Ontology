@@ -24,7 +24,7 @@
     rdfs:label "NIF Phenotype Core",
         "NIF Phenotype core" ;
     rdfs:comment "This is the core set of predicates used to model phenotypes and the parent class for phenotypes." ;
-    owl:versionInfo "2018-06-12" .
+    owl:versionInfo "2018-06-27" .
 
 ### Object Properties
 
@@ -55,7 +55,12 @@ ilxtr:hasDendriteMorphologicalPhenotype a owl:AsymmetricProperty,
 
 ilxtr:hasDevelopmentalOrigin a owl:ObjectProperty ;
     rdfs:label "hasDevelopmentalOrigin" ;
-    skos:definition "Expresses a relationship between a neuron type and a developmental cell population. This should be used when a neuron develops from an identified developmental cell population." .
+    skos:definition "Expresses a relationship between a neuron type and a developmental cell population. This should be used when a neuron develops from an identified developmental cell population." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasDriverExpressionPhenotype a owl:ObjectProperty ;
+    rdfs:label "hasDriverExpressionPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype .
 
 ilxtr:hasElectrophysiologicalPhenotype a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
@@ -116,7 +121,8 @@ ilxtr:hasNeurotransmitterPhenotype a owl:AsymmetricProperty,
     rdfs:comment "not entirely sure if we need this one" .
 
 ilxtr:hasNucleicAcidExpressionPhenotype a owl:ObjectProperty ;
-    rdfs:label "hasNucleicAcidExpressionPhenotype" .
+    rdfs:label "hasNucleicAcidExpressionPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype .
 
 ilxtr:hasPhenotype a owl:AsymmetricProperty,
         owl:FunctionalProperty,
@@ -129,6 +135,7 @@ ilxtr:hasPresynapticTerminalsIn a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
         owl:ObjectProperty ;
     rdfs:label "hasPresynapticTerminalsIn" ;
+    rdfs:subPropertyOf ilxtr:hasLocationPhenotype ;
     rdfs:comment "projectsTo?" .
 
 ilxtr:hasProjectionPhenotype a owl:AsymmetricProperty,
@@ -140,10 +147,16 @@ ilxtr:hasProjectionPhenotype a owl:AsymmetricProperty,
     rdfs:comment "this might be clearer than hasCircuitRole but might confuse with projectsTo or the like, excitatory/inhibitory shouldn't be handled here? The way that projection vs intrinsic is modelled relates whether axons leave the brain region that contains the soma or not, this is not fully modelled at the moment" .
 
 ilxtr:hasProteinExpressionPhenotype a owl:ObjectProperty ;
-    rdfs:label "hasProteinExpressionPhenotype" .
+    rdfs:label "hasProteinExpressionPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype .
+
+ilxtr:hasReporterExpressionPhenotype a owl:ObjectProperty ;
+    rdfs:label "hasReporterExpressionPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype .
 
 ilxtr:hasSmallMoleculeExpressionPhenotype a owl:ObjectProperty ;
-    rdfs:label "hasSmallMoleculeExpressionPhenotype" .
+    rdfs:label "hasSmallMoleculeExpressionPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype .
 
 ilxtr:hasSomaLocatedIn a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
