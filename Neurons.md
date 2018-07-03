@@ -45,16 +45,19 @@ https://github.com/tgbugs/pyontutils/blob/master/docs/NeuronLangExample.ipynb
 
 1. Mappings between hbp-cell and the new interlex identifiers.
 
-2. The neurons branch https://github.com/SciCrunch/NIF-Ontology/tree/neurons/ttl
+2. The neurons branch  
+https://github.com/SciCrunch/NIF-Ontology/tree/neurons/ttl  
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/bridge/neuron-bridge.ttl  
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/phenotype-core.ttl  
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/phenotypes.ttl  
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/huang-2017.ttl
 
-3. Python code that generates the new neuron ttl files
 
-https://github.com/tgbugs/pyontutils/blob/master/pyontutils/neuron_lang.py
-
-https://github.com/tgbugs/pyontutils/blob/master/pyontutils/neurons.py
-
-https://github.com/tgbugs/pyontutils/blob/master/pyontutils/nif_neuron.py
-
-https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/26451489%20table%201.csv
-
-https://www.ncbi.nlm.nih.gov/pubmed/26451489
+3. Python code that generates the new neuron ttl files  
+https://github.com/tgbugs/pyontutils/blob/master/pyontutils/neuron_lang.py  
+https://github.com/tgbugs/pyontutils/blob/master/pyontutils/neurons.py  
+https://github.com/tgbugs/pyontutils/blob/master/pyontutils/nif_neuron.py  
+https://github.com/tgbugs/pyontutils/tree/master/pyontutils/neuron_models  
+https://github.com/tgbugs/nlxeol/blob/master/lift_neuron_triples.py  
+https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/26451489%20table%201.csv  
+https://www.ncbi.nlm.nih.gov/pubmed/26451489  
