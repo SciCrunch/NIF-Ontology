@@ -12,7 +12,7 @@ environment to have been set up according to [development setup.md](development%
 All relative filepaths listed in code sections start from the base
 folder of this repository `../` from the location of this file.
 
-# DO NOT PUSH TO MASTER
+# DO NOT PUSH ONTOLOGY FILES TO MASTER
 The `uri.neuinfo.org` resolver points to the `master` branch on GitHub
 (see [the resolver config](https://github.com/tgbugs/pyontutils/blob/088b2f8f28be5e55278e3cde1e0e8a4f3ccfc94f/resolver/nif-ont-resolver.conf#L20-L24)).
 
@@ -26,6 +26,8 @@ so that everything can stay 'mostly' in sync.
 Please submit a pull request (even if it is from another branch
 in the SciCrunch org repo) so that we can run all the requisite
 checks to make sure that the ontology is consistent.
+
+# Please do push documentation to master
 
 ## Development processes
 
@@ -114,6 +116,48 @@ This does not need to be done if ttl file will become the source of truth once i
 Any set of terms that requires more than direct transformation to ttl should also follow the process described in
 [pyontutils/development/README.md](https://github.com/tgbugs/pyontutils/blob/master/development/README.md).
 
+## External source synchronization
+Full documentation of defaults and command line arguments can be found by running
+`--help` for any of the commands listed in this section.
+
+All of these will soon be set up to run on cron jobs and automatically
+submit pull requests to the NIF-Ontology repository.
+
+All of these scripts expect pyontutils and the NIF-Ontology repos to be
+in the same directory `${HOME}/git/pyontutils` `${HOME}/git/NIF-Ontology`.
+I am in the process of making this configurable (for some scripts is already is).
+
+The following sections require you to have already run `pipenv install --skip-lock`
+and `pipenv shell`.  For `registry-sync` you may want to run `pipenv install --skip-lock --dev`
+in which case see the
+[development installation notes](https://github.com/tgbugs/pyontutils/blob/master/README.md#development-installation)
+for potential pitfalls.
+
+Start with
+``` bash
+cd ~/git/pyontutils &&  # adjust accordingly
+pipenv shell
+```
+
+### SciCrunch Registry
+```
+BRANCH="registry-$(date +%s)"
+registry-sync &&
+cd ${PATH_TO_ONTOLOGY} &&
+git pull &&  # alternately git clone and set pushurl -> script-user or something
+git checkout -B ${BRANCH} &&
+git push --set-upstream origin ${BRANCH} &&
+echo success
+# TODO auto github api pull
+```
+
+### parcellation
+TODO
+
+### slimgen
+TODO
+
+
 ## Release processes
 The exact details of the release process are still being worked out so this section
 may be out of date. Check the underlying documentation and the python scripts/commits
@@ -170,9 +214,12 @@ once per release and can afford to pull in the full tree.
 ## External records
 There are a couple of places where there are external records of the
 ontology that a maintainer or curator needs to keep up to date.
-1. https://bioportal.bioontology.org/ontologies/NIFSTD
-2. https://bioportal.bioontology.org/ontologies/NIFSUBCELL
-3. https://fairsharing.org/bsg-s002584 (NeuroLex)
-4. https://fairsharing.org/bsg-s002628 (NIF Ontology)
-5. https://fairsharing.org/bsg-s002835 (subcellular)
+1. https://scicrunch.org/resolver/SCR_005414 (NIF Ontology)
+2. https://scicrunch.org/resolver/SCR_005402 (NeuroLex)
+3. https://scicrunch.org/resolver/SCR_016178 (InterLex)
+4. https://bioportal.bioontology.org/ontologies/NIFSTD
+5. https://bioportal.bioontology.org/ontologies/NIFSUBCELL
+6. https://fairsharing.org/bsg-s002584 (NeuroLex)
+7. https://fairsharing.org/bsg-s002628 (NIF Ontology)
+8. https://fairsharing.org/bsg-s002835 (subcellular)
 

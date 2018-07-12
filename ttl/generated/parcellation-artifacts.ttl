@@ -1,10 +1,13 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix FSLATS: <http://uri.interlex.org/fsl/uris/atlases/> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix paxmusver: <http://uri.interlex.org/paxinos/uris/mouse/versions/> .
+@prefix paxratver: <http://uri.interlex.org/paxinos/uris/rat/versions/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -16,15 +19,284 @@
 <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-artifacts.ttl> a owl:Ontology ;
     rdfs:label "Parcellation Artifacts" ;
     rdfs:comment "Ontology file for artifacts that define labels or geometry for parcellation schemes." ;
-    owl:versionInfo "2018-01-26" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/348836acee11d2ed6dba99067823beb7bd11531a/pyontutils/parcellation.py#L1144> .
+    owl:versionInfo "2018-07-11" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/d99319f5f0d3f4a692bdcd9f3109a5a22e65efe2/pyontutils/parcellation.py#L849> .
 
 ### Classes
 
-ilxtr:hbav2 a owl:Class ;
+FSLATS:Cerebellum_MNIflirt a owl:Class ;
+    rdfs:label "Cerebellar Atlas in MNI152 space after normalization with FLIRT" ;
+    NIFRID:abbrev "Cerebellum_MNI_flirt" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/Cerebellum_MNIflirt.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:Cerebellum_MNIfnirt a owl:Class ;
+    rdfs:label "Cerebellar Atlas in MNI152 space after normalization with FNIRT" ;
+    NIFRID:abbrev "Cerebellum_MNI_fnirt" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/Cerebellum_MNIfnirt.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:HarvardOxford-Cortical a owl:Class ;
+    rdfs:label "Harvard-Oxford Cortical Structural Atlas" ;
+    NIFRID:abbrev "HOCPA" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/HarvardOxford-Cortical.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:HarvardOxford-Subcortical a owl:Class ;
+    rdfs:label "Harvard-Oxford Subcortical Structural Atlas" ;
+    NIFRID:abbrev "HOSPA" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/HarvardOxford-Subcortical.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:JHU-labels a owl:Class ;
+    rdfs:label "JHU ICBM-DTI-81 White-Matter Labels" ;
+    NIFRID:abbrev "JHU ICBM WM" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/JHU-labels.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:JHU-tracts a owl:Class ;
+    rdfs:label "JHU White-Matter Tractography Atlas" ;
+    NIFRID:abbrev "JHU WM" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/JHU-tracts.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:Juelich a owl:Class ;
+    rdfs:label "Juelich Histological Atlas" ;
+    NIFRID:abbrev "Juelich" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/Juelich.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:MarsParietalParcellation a owl:Class ;
+    rdfs:label "Mars Parietal connectivity-based parcellation" ;
+    NIFRID:abbrev "Parietal CBP" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/MarsParietalParcellation.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:MarsTPJParcellation a owl:Class ;
+    rdfs:label "Mars TPJ connectivity-based parcellation" ;
+    NIFRID:abbrev "TPJ CBP" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/MarsTPJParcellation.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:MNI a owl:Class ;
+    rdfs:label "MNI Structural Atlas" ;
+    NIFRID:abbrev "MNI Struct" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/MNI.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:NeubertVentralFrontalParcellation a owl:Class ;
+    rdfs:label "Neubert Ventral Frontal connectivity-based parcellation" ;
+    NIFRID:abbrev "Ventral Frontal CBP" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/NeubertVentralFrontalParcellation.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:SalletDorsalFrontalParcellation a owl:Class ;
+    rdfs:label "Sallet Dorsal Frontal connectivity-based parcellation" ;
+    NIFRID:abbrev "Dorsal Frontal CBP" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/SalletDorsalFrontalParcellation.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:STN a owl:Class ;
+    rdfs:label "Subthalamic Nucleus Atlas" ;
+    NIFRID:abbrev "SNA" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/STN.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:Striatum-Connectivity-3sub a owl:Class ;
+    rdfs:label "Oxford-Imanova Striatal Connectivity Atlas 3 sub-regions" ;
+    NIFRID:abbrev "OISCA3" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/Striatum-Connectivity-3sub.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:Striatum-Connectivity-7sub a owl:Class ;
+    rdfs:label "Oxford-Imanova Striatal Connectivity Atlas 7 sub-regions" ;
+    NIFRID:abbrev "OISCA7" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/Striatum-Connectivity-7sub.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:Striatum-Structural a owl:Class ;
+    rdfs:label "Oxford-Imanova Striatal Structural Atlas" ;
+    NIFRID:abbrev "OISS" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/Striatum-Structural.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:Talairach a owl:Class ;
+    rdfs:label "Talairach Daemon Labels" ;
+    NIFRID:abbrev "Talairach" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/Talairach.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+FSLATS:Thalamus a owl:Class ;
+    rdfs:label "Oxford Thalamic Connectivity Probability Atlas" ;
+    NIFRID:abbrev "OTCPA" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:source <file:///usr/share/fsl/data/atlases/Thalamus.xml> ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/fsl.ttl> ;
+    ilxtr:isDocumentedBy <http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Atlases> .
+
+<http://uri.interlex.org/aibs/uris/human/devel/versions/1> a owl:Class ;
+    rdfs:label "Allen Developing Human Brain Atlas Terminology" ;
+    skos:prefLabel "Allen Developing Human Brain Atlas Ontology" ;
+    NIFRID:abbrev "DHBA" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom "many" ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:date "" ;
+    dc:source <http://api.brain-map.org/api/v2/tree_search/Structure/10154.json?descendants=true> ;
+    ilxtr:artifactVersion "1" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/dhbaslim.ttl> ;
+    ilxtr:isDocumentedBy "" .
+
+<http://uri.interlex.org/aibs/uris/human/versions/2> a owl:Class ;
     rdfs:label "Allen Human Brain Atlas Terminology" ;
     skos:prefLabel "Allen Human Brain Atlas Ontology" ;
-    NIFRID:abbrev "MBA" ;
+    NIFRID:abbrev "HBA" ;
     rdfs:subClassOf ilxtr:parcellationTerminology,
         [ a owl:Restriction ;
             owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
@@ -35,29 +307,27 @@ ilxtr:hbav2 a owl:Class ;
     dc:date "2013" ;
     dc:source <http://api.brain-map.org/api/v2/tree_search/Structure/3999.json?descendants=true> ;
     ilxtr:artifactVersion "2" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/hbaslim.ttl> ;
     ilxtr:isDocumentedBy <http://help.brain-map.org/download/attachments/2818165/HBA_Ontology-and-Nomenclature.pdf?version=1&modificationDate=1382051847989> .
 
-ilxtr:hcpmmpv1 a owl:Class ;
-    rdfs:label "Human Connectome Project Multi-Modal human cortical parcellation" ;
-    NIFRID:synonym "HCP Multi-Modal Parcellation",
-        "Human Connectome Project Multi-Modal Parcellation",
-        "Human Connectome Project Multi-Modal Parcellation version 1.0" ;
-    NIFRID:abbrev "HCP-MMP1.0",
-        "HCP_MMP",
-        "HCPMMP" ;
+<http://uri.interlex.org/aibs/uris/mouse/devel/versions/1> a owl:Class ;
+    rdfs:label "Allen Developing Mouse Brain Atlas Terminology" ;
+    skos:prefLabel "Allen Mouse Brain Atlas Ontology" ;
+    NIFRID:abbrev "DMBA" ;
     rdfs:subClassOf ilxtr:parcellationTerminology,
         [ a owl:Restriction ;
             owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
-            owl:allValuesFrom UBERON:0000113 ],
+            owl:allValuesFrom "many" ],
         [ a owl:Restriction ;
             owl:onProperty ilxtr:isDefinedInTaxon ;
-            owl:allValuesFrom NCBITaxon:9606 ] ;
-    dc:date "2016-07-20" ;
-    dc:source <https://github.com/tgbugs/pyontutils/blob/1c18b4fe6548dd48d18e1c9dbae1321c9b106bf9/pyontutils/resources/human_connectome_project_2016.csv> ;
-    dcterms:bibliographicCitation <https://doi.org/10.1038/nature18933> ;
-    ilxtr:artifactVersion "1.0" .
+            owl:allValuesFrom NCBITaxon:10090 ] ;
+    dc:date "" ;
+    dc:source <http://api.brain-map.org/api/v2/tree_search/Structure/15564.json?descendants=true> ;
+    ilxtr:artifactVersion "1" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/dmbaslim.ttl> ;
+    ilxtr:isDocumentedBy "" .
 
-ilxtr:mbav2 a owl:Class ;
+<http://uri.interlex.org/aibs/uris/mouse/versions/2> a owl:Class ;
     rdfs:label "Allen Mouse Brain Atlas Terminology" ;
     skos:prefLabel "Allen Mouse Brain Atlas Ontology" ;
     NIFRID:abbrev "MBA" ;
@@ -72,32 +342,225 @@ ilxtr:mbav2 a owl:Class ;
     dc:date "2011" ;
     dc:source <http://api.brain-map.org/api/v2/tree_search/Structure/997.json?descendants=true> ;
     ilxtr:artifactVersion "2" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/mbaslim.ttl> ;
     ilxtr:isDocumentedBy <http://help.brain-map.org/download/attachments/2818169/AllenReferenceAtlas_v2_2011.pdf?version=1&modificationDate=1319667383440> .
+
+<http://uri.interlex.org/freesurfer/uris/FreeSurferColorLUT/> a owl:Class ;
+    NIFRID:abbrev "FSCL" ;
+    rdfs:subClassOf <http://uri.interlex.org/freesurfer/uris/FreeSurferColorLUT/>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:date "2003-05-07" ;
+    dcterms:bibliographicCitation <https://doi.org/10.1016/j.neuroimage.2012.01.021> ;
+    ilxtr:isDocumentedBy <https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT> .
+
+<http://uri.interlex.org/freesurfer/uris/FreeSurferColorLUT/versions/1.105> a owl:Class ;
+    NIFRID:abbrev "FSCL1.105" ;
+    rdfs:subClassOf <http://uri.interlex.org/freesurfer/uris/FreeSurferColorLUT/>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:date "2003-05-07" ;
+    dc:source <https://github.com/freesurfer/freesurfer/blob/dev/distribution/FreeSurferColorLUT.txt> ;
+    dcterms:bibliographicCitation <https://doi.org/10.1016/j.neuroimage.2012.01.021> ;
+    ilxtr:artifactVersion "1.105" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/freesurfer-labels.ttl> ;
+    ilxtr:isDocumentedBy <https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT> .
+
+<http://uri.interlex.org/hcp/uris/mmp/versions/1.0> a owl:Class ;
+    rdfs:label "Human Connectome Project Multi-Modal human cortical parcellation" ;
+    NIFRID:synonym "HCP Multi-Modal Parcellation",
+        "Human Connectome Project Multi-Modal Parcellation",
+        "Human Connectome Project Multi-Modal Parcellation version 1.0" ;
+    NIFRID:abbrev "HCP MMP 1.0",
+        "HCP-MMP1.0",
+        "HCP_MMP",
+        "HCPMMP" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:date "2016-07-20" ;
+    dc:source <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/human_connectome_project_2016.csv> ;
+    dcterms:bibliographicCitation <https://doi.org/10.1038/nature18933> ;
+    ilxtr:artifactVersion "1.0" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/hcpmmp.ttl> .
+
+<http://uri.interlex.org/mindboggle/uris/dkt/versions/1> a owl:Class ;
+    rdfs:label "Desikan-Killiany-Tourville parcellation terminology" ;
+    NIFRID:synonym "Desikan-Killiany-Tourville (DKT) human brain cortical labeling protocol",
+        "Desikan-Killiany-Tourville brain labeling protocol" ;
+    NIFRID:abbrev "DKT" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:9606 ] ;
+    dc:date "2014-10-20" ;
+    dc:source <https://github.com/nipy/mindboggle/blob/master/mindboggle/mio/labels.py> ;
+    dcterms:bibliographicCitation "101 labeled brain images and a consistent human cortical labeling protocol. Arno Klein, Jason Tourville. Frontiers in Brain Imaging Methods. 6:171. DOI: 10.3389/fnins.2012.00171" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/dkt-labels.ttl> ;
+    ilxtr:isDocumentedBy <https://mindboggle.readthedocs.io/en/latest/labels.html> .
+
+<http://uri.interlex.org/paxinos/uris/mouse> a owl:Class ;
+    rdfs:label "Paxinos Mouse Atlas" ;
+    skos:definition "Any atlas artifact with Paxinos as an author for the adult rat." ;
+    rdfs:subClassOf ilxtr:parcellationAtlas .
+
+<http://uri.interlex.org/paxinos/uris/rat> a owl:Class ;
+    rdfs:label "Paxinos Rat Atlas" ;
+    skos:definition "Any atlas artifact with Paxinos as an author for the adult rat." ;
+    rdfs:subClassOf ilxtr:parcellationAtlas .
+
+<http://uri.interlex.org/swanson/uris/neuroanatomical-terminology/versions/1> a owl:Class ;
+    rdfs:label "Swanson Neuroanatomical Terminology" ;
+    NIFRID:synonym "Swanson 2014 Appendicies" ;
+    NIFRID:abbrev "swannt" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:40674 ] ;
+    rdfs:comment "Each appendix probably needs its own artifact entry because the taxon rank and devstage are determined by appendix not NT." ;
+    dc:identifier "ISBN:9780195340624" ;
+    dcterms:bibliographicCitation "Swanson, Larry W. Neuroanatomical Terminology: a lexicon of classical origins and historical foundations. Oxford University Press, USA, 2014." ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/swanson.ttl> ;
+    prov:hadDerivation <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/swanson_aligned.txt> .
+
+<http://uri.interlex.org/waxholm/uris/sd/> a owl:Class ;
+    rdfs:subClassOf <http://uri.interlex.org/waxholm/uris/sd/>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10116 ] ;
+    rdfs:comment "Versions of the .label file add and remove entries and sometimes slightly modify the label, but indexes are never reused and retain their meaning." ;
+    dcterms:bibliographicCitation <https://www.ncbi.nlm.nih.gov/pubmed/24726336> .
+
+<http://uri.interlex.org/waxholm/uris/sd/versions/1> a owl:Class ;
+    rdfs:label "Waxholm Space Sprague Dawley Terminology v1" ;
+    NIFRID:abbrev "WHSSD1" ;
+    rdfs:subClassOf <http://uri.interlex.org/waxholm/uris/sd/>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10116 ] ;
+    rdfs:comment "Versions of the .label file add and remove entries and sometimes slightly modify the label, but indexes are never reused and retain their meaning." ;
+    dc:date "2014-04-09" ;
+    dc:source <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/WHS_SD_rat_atlas_v1_labels.ilf> ;
+    dcterms:bibliographicCitation <https://www.ncbi.nlm.nih.gov/pubmed/24726336> ;
+    ilxtr:artifactVersion "1" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/waxholm-rat-labels.ttl> .
+
+<http://uri.interlex.org/waxholm/uris/sd/versions/2> a owl:Class ;
+    rdfs:label "Waxholm Space Sprague Dawley Terminology v2" ;
+    NIFRID:abbrev "WHSSD2" ;
+    rdfs:subClassOf <http://uri.interlex.org/waxholm/uris/sd/>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10116 ] ;
+    rdfs:comment "Versions of the .label file add and remove entries and sometimes slightly modify the label, but indexes are never reused and retain their meaning." ;
+    dc:date "2015-02-02" ;
+    dc:source <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/WHS_SD_rat_atlas_v2_labels.ilf> ;
+    dcterms:bibliographicCitation <https://www.ncbi.nlm.nih.gov/pubmed/24726336> ;
+    ilxtr:artifactVersion "2" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/waxholm-rat-labels.ttl> .
 
 ilxtr:parcellationArtifact a owl:Class ;
     rdfs:label "Parcellation Artifact" ;
     skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." .
 
 ilxtr:parcellationAtlas a owl:Class ;
-    rdfs:label "Parcellation Atlas" ;
-    skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." ;
+    rdfs:label "Parcellation atlas" ;
+    skos:definition "An artifact that contains information about the terminology, delineation, and coordinate system for a parcellation. These are usually physical atlases where it is not possibly to uniquely identify any of the component parts, but only all the parts taken together (e.g. via ISBN)." ;
+    rdfs:subClassOf ilxtr:parcellationArtifact .
+
+ilxtr:parcellationCoordinateSystem a owl:Class ;
+    rdfs:label "Parcellation coordinate system" ;
+    skos:definition "An artifact that defines the geometric coordinates used by one or more parcellations." ;
+    rdfs:subClassOf ilxtr:parcellationArtifact .
+
+ilxtr:parcellationDelineation a owl:Class ;
+    rdfs:label "Parcellation delineation" ;
+    skos:definition "An artifact that defines the spatial boundaries or landmarks for a parcellation. Delineations must be explicitly spatial and are distinct from delineation criteria which may provide a non-spatial definition for regions." ;
     rdfs:subClassOf ilxtr:parcellationArtifact .
 
 ilxtr:parcellationTerminology a owl:Class ;
-    rdfs:label "Parcellation Terminology" ;
-    skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." ;
+    rdfs:label "Parcellation terminology" ;
+    skos:definition "A source for parcellation information that applies to one or more spatial sources, but does not itself contain the spatial definitions. For example Allen MBA." ;
     rdfs:subClassOf ilxtr:parcellationArtifact .
 
-ilxtr:paxinosRatAtlas a owl:Class ;
-    rdfs:label "Paxinos Rat Atlas" ;
-    skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." ;
-    rdfs:subClassOf ilxtr:parcellationAtlas .
+paxmusver:2 a owl:Class ;
+    rdfs:label "The Mouse Brain in Stereotaxic Coordinates 2nd Edition" ;
+    NIFRID:synonym "Paxinos Mouse 2nd" ;
+    NIFRID:abbrev "PAXMOUSE2" ;
+    rdfs:subClassOf <http://uri.interlex.org/paxinos/uris/mouse>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10090 ] ;
+    dcterms:bibliographicCitation "INTERNAL SCREAMING" ;
+    dcterms:dateCopyrighted "2001" ;
+    ilxtr:artifactVersion "2nd Edition" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/paxinos-mus-labels.ttl> ;
+    prov:hadDerivation <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/paxm-2nd-ed-indexes.txt> .
 
-ilxtr:paxr4 a owl:Class ;
+paxmusver:3 a owl:Class ;
+    rdfs:label "The Mouse Brain in Stereotaxic Coordinates 3rd Edition" ;
+    NIFRID:synonym "Paxinos Mouse 3rd" ;
+    NIFRID:abbrev "PAXMOUSE3" ;
+    rdfs:subClassOf <http://uri.interlex.org/paxinos/uris/mouse>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10090 ] ;
+    dcterms:bibliographicCitation "INTERNAL SCREAMING" ;
+    dcterms:dateCopyrighted "2008" ;
+    ilxtr:artifactVersion "3rd Edition" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/paxinos-mus-labels.ttl> ;
+    prov:hadDerivation <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/paxm-3rd-ed-indexes.txt> .
+
+paxmusver:4 a owl:Class ;
+    rdfs:label "The Mouse Brain in Stereotaxic Coordinates 4th Edition" ;
+    NIFRID:synonym "Paxinos Mouse 4th" ;
+    NIFRID:abbrev "PAXMOUSE4" ;
+    rdfs:subClassOf <http://uri.interlex.org/paxinos/uris/mouse>,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
+            owl:allValuesFrom UBERON:0000113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:10090 ] ;
+    dcterms:bibliographicCitation "INTERNAL SCREAMING" ;
+    dcterms:dateCopyrighted "2012" ;
+    ilxtr:artifactVersion "4th Edition" .
+
+paxratver:4 a owl:Class ;
     rdfs:label "The Rat Brain in Stereotaxic Coordinates 4th Edition" ;
     NIFRID:synonym "Paxinos Rat 4th" ;
     NIFRID:abbrev "PAXRAT4" ;
-    rdfs:subClassOf ilxtr:paxinosRatAtlas,
+    rdfs:subClassOf <http://uri.interlex.org/paxinos/uris/rat>,
         [ a owl:Restriction ;
             owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
             owl:allValuesFrom UBERON:0000113 ],
@@ -107,13 +570,14 @@ ilxtr:paxr4 a owl:Class ;
     dcterms:bibliographicCitation "Paxinos, George, Charles RR Watson, and Piers C. Emson. \"AChE-stained horizontal sections of the rat brain in stereotaxic coordinates.\" Journal of neuroscience methods 3, no. 2 (1980): 129-149." ;
     dcterms:dateCopyrighted "1998" ;
     ilxtr:artifactVersion "4th Edition" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/paxinos-rat-labels.ttl> ;
     prov:hadDerivation <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/pax-4th-ed-indexes.txt> .
 
-ilxtr:paxr6 a owl:Class ;
+paxratver:6 a owl:Class ;
     rdfs:label "The Rat Brain in Stereotaxic Coordinates 6th Edition" ;
     NIFRID:synonym "Paxinos Rat 6th" ;
     NIFRID:abbrev "PAXRAT6" ;
-    rdfs:subClassOf ilxtr:paxinosRatAtlas,
+    rdfs:subClassOf <http://uri.interlex.org/paxinos/uris/rat>,
         [ a owl:Restriction ;
             owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
             owl:allValuesFrom UBERON:0000113 ],
@@ -123,15 +587,16 @@ ilxtr:paxr6 a owl:Class ;
     dcterms:bibliographicCitation "Paxinos, George, Charles RR Watson, and Piers C. Emson. \"AChE-stained horizontal sections of the rat brain in stereotaxic coordinates.\" Journal of neuroscience methods 3, no. 2 (1980): 129-149." ;
     dcterms:dateCopyrighted "2007" ;
     ilxtr:artifactVersion "6th Edition" ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation/paxinos-rat-labels.ttl> ;
     prov:hadDerivation <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/pax-6th-ed-indexes.txt>,
         <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/paxinos09names.txt> .
 
-ilxtr:paxr7 a owl:Class ;
+paxratver:7 a owl:Class ;
     rdfs:label "The Rat Brain in Stereotaxic Coordinates 7th Edition" ;
     NIFRID:synonym "Paxinos Rat 7th",
         "Paxinso and Watson's The Rat Brain in Stereotaxic Coordinates 7th Edition" ;
     NIFRID:abbrev "PAXRAT7" ;
-    rdfs:subClassOf ilxtr:paxinosRatAtlas,
+    rdfs:subClassOf <http://uri.interlex.org/paxinos/uris/rat>,
         [ a owl:Restriction ;
             owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
             owl:allValuesFrom UBERON:0000113 ],
@@ -142,20 +607,4 @@ ilxtr:paxr7 a owl:Class ;
     dcterms:dateCopyrighted "2014" ;
     ilxtr:artifactVersion "7th Edition" .
 
-ilxtr:whssdv2 a owl:Class ;
-    rdfs:label "Waxholm Space Sprague Dawley Terminology v2" ;
-    NIFRID:abbrev "WHSSD2" ;
-    rdfs:subClassOf ilxtr:parcellationTerminology,
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:isDefinedInDevelopmentalStage ;
-            owl:allValuesFrom UBERON:0000113 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:isDefinedInTaxon ;
-            owl:allValuesFrom NCBITaxon:10116 ] ;
-    rdfs:comment "There is an earlier version of the .label file but indexes are unique and are not reused, only renamed" ;
-    dc:date "2015-02-02" ;
-    dc:source <https://github.com/tgbugs/pyontutils/blob/1c18b4fe6548dd48d18e1c9dbae1321c9b106bf9/pyontutils/resources/WHS_SD_rat_atlas_v2.label> ;
-    dcterms:bibliographicCitation <https://www.ncbi.nlm.nih.gov/pubmed/24726336> ;
-    ilxtr:artifactVersion "2" .
-
-### Serialized using the pyontutils deterministic serializer v1.1.3
+### Serialized using the pyontutils deterministic serializer v1.1.4
