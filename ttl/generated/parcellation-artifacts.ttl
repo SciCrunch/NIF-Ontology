@@ -19,8 +19,8 @@
 <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-artifacts.ttl> a owl:Ontology ;
     rdfs:label "Parcellation Artifacts" ;
     rdfs:comment "Ontology file for artifacts that define labels or geometry for parcellation schemes." ;
-    owl:versionInfo "2018-04-12" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/bec2841aa66d45d5e746e1c0a9057349d581211a/pyontutils/parcellation.py#L810> .
+    owl:versionInfo "2018-07-11" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/d99319f5f0d3f4a692bdcd9f3109a5a22e65efe2/pyontutils/parcellation.py#L849> .
 
 ### Classes
 
@@ -416,13 +416,27 @@ FSLATS:Thalamus a owl:Class ;
 
 <http://uri.interlex.org/paxinos/uris/mouse> a owl:Class ;
     rdfs:label "Paxinos Mouse Atlas" ;
-    skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." ;
+    skos:definition "Any atlas artifact with Paxinos as an author for the adult rat." ;
     rdfs:subClassOf ilxtr:parcellationAtlas .
 
 <http://uri.interlex.org/paxinos/uris/rat> a owl:Class ;
     rdfs:label "Paxinos Rat Atlas" ;
-    skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." ;
+    skos:definition "Any atlas artifact with Paxinos as an author for the adult rat." ;
     rdfs:subClassOf ilxtr:parcellationAtlas .
+
+<http://uri.interlex.org/swanson/uris/neuroanatomical-terminology/versions/1> a owl:Class ;
+    rdfs:label "Swanson Neuroanatomical Terminology" ;
+    NIFRID:synonym "Swanson 2014 Appendicies" ;
+    NIFRID:abbrev "swannt" ;
+    rdfs:subClassOf ilxtr:parcellationTerminology,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedInTaxon ;
+            owl:allValuesFrom NCBITaxon:40674 ] ;
+    rdfs:comment "Each appendix probably needs its own artifact entry because the taxon rank and devstage are determined by appendix not NT." ;
+    dc:identifier "ISBN:9780195340624" ;
+    dcterms:bibliographicCitation "Swanson, Larry W. Neuroanatomical Terminology: a lexicon of classical origins and historical foundations. Oxford University Press, USA, 2014." ;
+    ilxtr:hasDerivedArtifact <http://ontology.neuinfo.org/NIF/ttl/generated/swanson.ttl> ;
+    prov:hadDerivation <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/swanson_aligned.txt> .
 
 <http://uri.interlex.org/waxholm/uris/sd/> a owl:Class ;
     rdfs:subClassOf <http://uri.interlex.org/waxholm/uris/sd/>,
@@ -474,13 +488,23 @@ ilxtr:parcellationArtifact a owl:Class ;
     skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." .
 
 ilxtr:parcellationAtlas a owl:Class ;
-    rdfs:label "Parcellation Atlas" ;
-    skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." ;
+    rdfs:label "Parcellation atlas" ;
+    skos:definition "An artifact that contains information about the terminology, delineation, and coordinate system for a parcellation. These are usually physical atlases where it is not possibly to uniquely identify any of the component parts, but only all the parts taken together (e.g. via ISBN)." ;
+    rdfs:subClassOf ilxtr:parcellationArtifact .
+
+ilxtr:parcellationCoordinateSystem a owl:Class ;
+    rdfs:label "Parcellation coordinate system" ;
+    skos:definition "An artifact that defines the geometric coordinates used by one or more parcellations." ;
+    rdfs:subClassOf ilxtr:parcellationArtifact .
+
+ilxtr:parcellationDelineation a owl:Class ;
+    rdfs:label "Parcellation delineation" ;
+    skos:definition "An artifact that defines the spatial boundaries or landmarks for a parcellation. Delineations must be explicitly spatial and are distinct from delineation criteria which may provide a non-spatial definition for regions." ;
     rdfs:subClassOf ilxtr:parcellationArtifact .
 
 ilxtr:parcellationTerminology a owl:Class ;
-    rdfs:label "Parcellation Terminology" ;
-    skos:definition "Parcellation artifacts are the defining information sources for parcellation labels and/or atlases in which those labels are used. They may include semantic and/or geometric information." ;
+    rdfs:label "Parcellation terminology" ;
+    skos:definition "A source for parcellation information that applies to one or more spatial sources, but does not itself contain the spatial definitions. For example Allen MBA." ;
     rdfs:subClassOf ilxtr:parcellationArtifact .
 
 paxmusver:2 a owl:Class ;
@@ -583,4 +607,4 @@ paxratver:7 a owl:Class ;
     dcterms:dateCopyrighted "2014" ;
     ilxtr:artifactVersion "7th Edition" .
 
-### Serialized using the pyontutils deterministic serializer v1.1.3
+### Serialized using the pyontutils deterministic serializer v1.1.4
