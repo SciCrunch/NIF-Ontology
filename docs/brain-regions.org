@@ -1,3 +1,6 @@
+#+TITLE: NIF Parcellation Schemes
+#+AUTHOR: Tom Gillespie
+#+DATE: ongoing
 #+MACRO: semantic-l semantic label
 #+MACRO: semantic-r semantic region
 #+MACRO: parc-l parcellation label
@@ -22,29 +25,46 @@
 #+MACRO: parc-r-volume-bounded-prob probabilistic parcellation region
 #+MACRO: parc-r-volume-unbounded parcellation landmark region
 
-* A model for semantic anatomical regions and parcellation anatomical regions
-  This file is a work in progress.
+#+SETUPFILE: theme-readtheorg.setup
+#+OPTIONS: num:nil html-preamble:t H:2
 
-  It documents the logical basis for the [[https://github.com/SciCrunch/NIF-Ontology/blob/master/ttl/generated/parcellation.ttl][NIFSTD parcellation schemes]]
+* A model for semantic anatomical regions and parcellation anatomical regions
+  This file is a work in progress. \\
+  The terminology used in this file is not final.
+
+  It documents the logical basis for the NIFSTD parcellation schemes
   and their mappings to a variety of semantic anatomical schemes,
   [[https://uberon.org][Uberon]] being the most relevant.
-  
-  The terminology used in this file is not final.
 
   Please see [[https://github.com/SciCrunch/NIF-Ontology/issues/49]] for history and current developments.
 
+  The files that are involved
+  - [[https://github.com/SciCrunch/NIF-Ontology/blob/parcellation/ttl/generated/parcellation-artifacts.ttl][parcellation-artifacts.ttl]]
+    catalogs the information artifacts from which the ontology files are derived
+    and defines high level conceptual structure for the parts of a parcellation scheme
+  - [[https://github.com/SciCrunch/NIF-Ontology/blob/parcellation/ttl/generated/parcellation-core.ttl][parcellation-core.ttl]]
+    holds the object properties used to link the various parts of parcellations schemes together
+  - [[https://github.com/SciCrunch/NIF-Ontology/blob/parcellation/ttl/bridge/parcellation-bridge.ttl][parcellation-bridge.ttl]]
+    manages the import of all the files into the ontology
+  - [[https://github.com/SciCrunch/NIF-Ontology/tree/parcellation/ttl/generated/parcellation/][parcellation/*]]
+    holds the ontology files that actually represent the parcellation schemes.
+  
 * Spatial definitions
 ** Preamble
-   | ~*~   | named                 |
-   | ~?~   | unnamed               |
-   | ~--~  | unbounded (open)      |
-   | ~__~  | bounded (closed)      |
-   | ~?>~  | part of not specified |
-   | ~>~   | part of               |
-   | ~/>~  | not part of           |
-   | ~]?[~ | border not specified  |
-   | ~I~   | borders               |
-   | ~][~  | does not border       |
+   | symbol | name                  |
+   |--------+-----------------------|
+   | ~*~    | named                 |
+   | ~?~    | unnamed               |
+   | ~--~   | unbounded (open)      |
+   | ~__~   | bounded (closed)      |
+   | ~O~    | connected             |
+   | ~OO~   | disconnected          |
+   | ~?>~   | part of not specified |
+   | ~>~    | part of               |
+   | ~/>~   | not part of           |
+   | ~]?[~  | border not specified  |
+   | ~I~    | borders               |
+   | ~][~   | does not border       |
 
 ** thoughts
    There are three key relationships that we need to care about for brain regaions when annotating data.
@@ -62,14 +82,21 @@
    boundary of those regions has the following classes of labels. Each class tells
    you what you can infer about a neuron with a phenotype associated with that label.
    1. The only named point inside a bounded volume.  (I really like the term closed, but I think that its use is incorrect.)
-   2. 
-   If the boundaries are closed then I don't care about the borders relationship because it can be computed from
-   the atlas itself.
+   2. If the boundaries are closed then I don't care about the borders relationship because it can be computed from the atlas itself.
 
    The first level of parcellation is of the regions, named, or unnamed that are closed and bounded. If these
    regions are unnamed, then we need to do something about that. Sometimes, they may only be able to be defined
    as the complement of all named regions in a section. But, because the section is real and is bounded and
-   closed we know that this is possible (thank's math!).
+   closed we know that this is possible (thanks math!).
+   
+   A second issue that needs to be considered is when the same name is applied to a set of disconnected bounded regions.
+   This could be where the idea of closed vs open comes into play. If there is another region that can have the same name
+   then we might call any one so-named region as open, but it is not clear that this makes sense mathematically.
+   The relevant definition is that $\exists$ at least two regions $A$ and $B$ bearing the same name such that $A \cap B = \emptyset$.
+   These regions do not have a simple mapping to the {{{semantic-r-spatial-volume}}} listed below, but require more a more complex model.
+   This is because the agreement needed as the basis for a definition may be significantly harder to obtain due to the number
+   of points that are required for agreement. An example of this is the rodent internal capsule where fiber tracts are interspersed
+   and do not form a single contiguous structure as they do in human.
 
 ** tables
 
@@ -118,6 +145,8 @@ in planes of section are fine.
 or other features that do not form closed spatial volumes and tend to dissapear under a variety
 of topological transformations.
 
+* Conceptual model for artifacts, labels, and regions
+   [[file:images/parcellation-overview.svg]]
 * Parcellation region scope
    Parcellation labels only apply to all regions that could
    potentially be registerd to an atlas that uses those labels. [fn:-0]

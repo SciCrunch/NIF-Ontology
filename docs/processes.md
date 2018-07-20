@@ -29,7 +29,9 @@ checks to make sure that the ontology is consistent.
 
 # Please do push documentation to master
 
-## Development processes
+# Processes
+
+## Development
 
 ### Prior to commit
 ```bash
@@ -76,8 +78,10 @@ mv catalog-new catalog-v001.xml
 ```
 Local copies can be obtained using the following.
 ```bash
-cd ttl/external/
-curl --header 'Accept-Encoding: gzip' --compressed --location --remote-name-all $(cat ../../catalog-extras | cut -d'=' -f3 | cut -d'"' -f2)
+cd ttl
+curl --header 'Accept-Encoding: gzip' --compressed --location --create-dirs \
+$(cat ../catalog-extras | cut -d'=' -f4 | cut -d'"' -f2 | sed 's/^/-o /') \
+--remote-name-all $(cat ../catalog-extras | cut -d'=' -f3 | cut -d'"' -f2)
 ```
 
 ### Running the reasoner
