@@ -31,11 +31,11 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://ontology.neuinfo.org/NIF/ttl/methods-helper.ttl> a owl:Ontology ;
-    owl:imports <http://ontology.neuinfo.org/NIF/ttl/methods-core.ttl> ;
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-helper.ttl> a owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-core.ttl> ;
     rdfs:comment "helper for methods development" ;
-    owl:versionInfo "2018-05-23" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/fac58f3a88c0dc2e0754ee20270cc5fad5efe8a2/pyontutils/core.py#L1898> .
+    owl:versionInfo "2018-07-20" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/a1e82533daf74e104436bc99da583353eca45817/pyontutils/core.py#L1926> .
 
 ### Classes
 
@@ -57,32 +57,50 @@ asp:anySpatioTemporalMeasure a owl:Class ;
     rdfs:subClassOf ilxtr:aspect .
 
 asp:behavioral a owl:Class ;
-    rdfs:subClassOf asp:Local .
+    rdfs:subClassOf asp:nonLocal .
 
 asp:biologicalActivity a owl:Class ;
     rdfs:subClassOf asp:Local .
 
-asp:boilingPoint a owl:Class,
-        owl:Restriction ;
-    owl:onProperty ilxtr:hasContextAspect ;
-    owl:someValuesFrom asp:pressure ;
-    rdfs:subClassOf asp:nonLocal .
+asp:boilingPoint a owl:Class ;
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasAspectContext ;
+            owl:someValuesFrom asp:pressure ] .
+
+asp:BoltzmannAspect a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
 
 asp:boundFunctionalAspect a owl:Class ;
     rdfs:label "bound functional aspect" ;
     rdfs:subClassOf asp:nonLocal .
 
+asp:boundingRadius a owl:Class ;
+    rdfs:subClassOf asp:Local .
+
 asp:category a owl:Class ;
     rdfs:subClassOf asp:Local .
 
 asp:categoryAssigned a owl:Class ;
-    rdfs:subClassOf asp:nonLocal ;
-    ilxtr:hasLocalEquivalent asp:category .
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isQualifiedFormOf ;
+            owl:someValuesFrom asp:category ] ;
+    owl:intersectionOf (
+            [ a owl:Restriction ;
+                owl:onProperty ilxtr:hasInformationContext ;
+                owl:someValuesFrom ilxtr:categoryAssignments ]
+            [ a owl:Restriction ;
+                owl:onProperty ilxtr:hasInformationContext ;
+                owl:someValuesFrom ilxtr:categoryNames ] ) .
 
 asp:charge a owl:Class ;
     rdfs:subClassOf asp:electrical .
 
 asp:circadianPhase a owl:Class ;
+    rdfs:subClassOf asp:Local .
+
+asp:complementSequencePresent a owl:Class ;
     rdfs:subClassOf asp:Local .
 
 asp:condensationPoint a owl:Class ;
@@ -91,15 +109,21 @@ asp:condensationPoint a owl:Class ;
 asp:connectivity a owl:Class ;
     rdfs:subClassOf asp:Local .
 
-asp:contrast a owl:Class,
-        owl:Restriction ;
-    owl:onProperty ilxtr:hasContext ;
-    owl:someValuesFrom ilxtr:detectedPhenomena ;
-    rdfs:subClassOf asp:nonLocal .
+asp:contrast a owl:Class ;
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasAspectContext ;
+            owl:someValuesFrom asp:dynamicRange ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasMaterialContext ;
+            owl:someValuesFrom ilxtr:interactingPhenomena ] .
+
+asp:CoulombsAspect a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
 
 asp:count a owl:Class ;
     rdfs:subClassOf asp:amount,
-        asp:direct .
+        asp:Local .
 
 asp:current a owl:Class ;
     rdfs:subClassOf asp:electrical,
@@ -109,6 +133,9 @@ asp:deadness a owl:Class ;
     rdfs:subClassOf asp:Local .
 
 asp:density a owl:Class ;
+    rdfs:subClassOf asp:Local .
+
+asp:diametere a owl:Class ;
     rdfs:subClassOf asp:Local .
 
 asp:direct a owl:Class ;
@@ -124,8 +151,14 @@ asp:distance a owl:Class ;
 asp:distanceFromSoma a owl:Class ;
     rdfs:subClassOf asp:distance,
         [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasContext ;
+            owl:onProperty ilxtr:hasMaterialContext ;
             owl:someValuesFrom ilxtr:cellSoma ] .
+
+asp:dynamicRange a owl:Class ;
+    rdfs:subClassOf asp:nonLocal .
+
+asp:elasticity a owl:Class ;
+    rdfs:subClassOf asp:Local .
 
 asp:electrical a owl:Class ;
     rdfs:subClassOf asp:electromagnetic .
@@ -133,11 +166,29 @@ asp:electrical a owl:Class ;
 asp:electromagnetic a owl:Class ;
     rdfs:subClassOf ilxtr:aspect .
 
+asp:electronRestMass a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
+asp:elementaryCharge a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
+asp:endLocation a owl:Class ;
+    rdfs:subClassOf asp:location,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasAspectContext ;
+            owl:someValuesFrom asp:endTime ] .
+
+asp:endTime a owl:Class ;
+    rdfs:subClassOf asp:time .
+
 asp:energy a owl:Class ;
     rdfs:subClassOf asp:nonLocal .
 
 asp:epitopePresent a owl:Class ;
     rdfs:subClassOf asp:Local .
+
+asp:fineStructureAspect a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
 
 asp:flatness a owl:Class ;
     rdfs:label "flatness" ;
@@ -151,8 +202,24 @@ asp:force a owl:Class ;
 asp:functionalDefinition a owl:Class ;
     rdfs:subClassOf asp:nonLocal .
 
+asp:GravitationalAspect a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
+asp:gravitationalCouplingAspect a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
+asp:heterogenity a owl:Class ;
+    rdfs:subClassOf asp:allocation .
+
+asp:homogenaity a owl:Class ;
+    rdfs:subClassOf asp:allocation ;
+    owl:inverseOf asp:heterogenity .
+
 asp:identity a owl:Class ;
     rdfs:subClassOf asp:Local .
+
+asp:impedanceOfFreeSpace a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
 
 asp:informationEntropy a owl:Class ;
     rdfs:subClassOf asp:Local .
@@ -166,11 +233,21 @@ asp:is a owl:Class ;
     rdfs:subClassOf asp:Local ;
     rdfs:comment "There are cases where the value could be ? depending on how one operationalizes certain concepts from quantum physics. Note also that isness will be directly affected by the choice of the operational defintion. Because of the scope of this ontology, there are implicit decisions about the nature of certain operational definitions, such as livingness, which imply that our operational definition for isness is invariant to dead." .
 
+asp:JosephsonAspect a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
+asp:junctionPotential a owl:Class ;
+    rdfs:subClassOf asp:voltage .
+
 asp:latticePeriodicity a owl:Class ;
     rdfs:subClassOf asp:physicalOrderedness .
 
 asp:length a owl:Class ;
-    rdfs:subClassOf asp:direct .
+    rdfs:subClassOf asp:Local ;
+    rdfs:comment "This is rest-length." .
+
+asp:lengthRelativistic a owl:Class ;
+    rdfs:subClassOf asp:nonLocal .
 
 asp:livingness a owl:Class ;
     rdfs:subClassOf asp:Local .
@@ -178,11 +255,11 @@ asp:livingness a owl:Class ;
 asp:location a owl:Class ;
     rdfs:subClassOf asp:spatial .
 
-asp:locationInAtlas a owl:Class,
-        owl:Restriction ;
-    owl:onProperty ilxtr:hasContext ;
-    owl:someValuesFrom ilxtr:atlasLandmarks ;
-    rdfs:subClassOf asp:location .
+asp:locationInAtlas a owl:Class ;
+    rdfs:subClassOf asp:location,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasContext ;
+            owl:someValuesFrom ilxtr:atlasLandmarks ] .
 
 asp:lumenance a owl:Class ;
     rdfs:subClassOf asp:Local .
@@ -194,24 +271,61 @@ asp:magnetic a owl:Class ;
 asp:mass a owl:Class ;
     rdfs:label "mass" ;
     NIFRID:synonym "rest mass" ;
-    rdfs:subClassOf asp:direct,
-        asp:Local .
+    rdfs:subClassOf asp:Local .
 
-asp:massRelitavisitc a owl:Class ;
+asp:massRelativistic a owl:Class ;
     rdfs:subClassOf asp:nonLocal .
 
-asp:mechanicalRigidity a owl:Class ;
-    rdfs:subClassOf asp:Local .
+asp:methylationSequence a owl:Class ;
+    rdfs:subClassOf asp:sequence,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:knownUnderlyingProcess ;
+            owl:someValuesFrom GO:0010424 ] .
 
 asp:momentum a owl:Class ;
     rdfs:subClassOf asp:nonLocal .
 
 asp:name a owl:Class ;
-    rdfs:subClassOf asp:nonLocal ;
-    ilxtr:hasLocalEquivalent asp:identity .
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasInformationContext ;
+            owl:someValuesFrom ilxtr:nameIdentityMapping ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isQualifiedFormOf ;
+            owl:someValuesFrom asp:identity ] .
+
+asp:nuclearMagneticResonance a owl:Class ;
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasMaterialContext ;
+            owl:someValuesFrom ilxtr:magneticField ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasMaterialContext ;
+            owl:someValuesFrom ilxtr:radiowaves ] .
+
+asp:opacity a owl:Class ;
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasComplementAspect ;
+            owl:someValuesFrom asp:transparency ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasMaterialContext ;
+            owl:someValuesFrom ilxtr:interactingPhenomena ] .
+
+asp:orientation a owl:Class ;
+    rdfs:subClassOf asp:spatial,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasMaterialContext ;
+            owl:someValuesFrom ilxtr:measurableReferenceFrame ] .
 
 asp:permeability a owl:Class ;
     rdfs:subClassOf asp:functionalDefinition .
+
+asp:permeabilityOfFreeSpace a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
+asp:permittivityOfFreeSpace a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
 
 asp:physicalOrderedness a owl:Class ;
     rdfs:subClassOf asp:Local .
@@ -219,14 +333,20 @@ asp:physicalOrderedness a owl:Class ;
 asp:physiological a owl:Class ;
     rdfs:subClassOf asp:Local .
 
+asp:PlankAspect a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
+
 asp:proportion a owl:Class ;
     rdfs:subClassOf asp:allocation .
+
+asp:radius a owl:Class ;
+    rdfs:subClassOf asp:Local .
 
 asp:resistance a owl:Class ;
     rdfs:subClassOf asp:electrical,
         asp:Local .
 
-asp:sensitvity a owl:Class ;
+asp:sensitivity a owl:Class ;
     rdfs:subClassOf asp:nonLocal .
 
 asp:sensory a owl:Class ;
@@ -238,17 +358,73 @@ asp:sequence a owl:Class ;
 asp:shape a owl:Class ;
     rdfs:subClassOf asp:Local .
 
+asp:size a owl:Class ;
+    rdfs:subClassOf asp:Local .
+
 asp:spatial a owl:Class ;
     rdfs:subClassOf asp:nonLocal .
 
 asp:spectrum a owl:Class ;
     rdfs:subClassOf asp:Local .
 
+asp:speedOfLight a owl:Class ;
+    rdfs:subClassOf asp:Local .
+
 asp:spontaneousChangeInStructure a owl:Class ;
+    rdfs:subClassOf asp:Local .
+
+asp:startLocation a owl:Class ;
+    rdfs:subClassOf asp:location,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasAspectContext ;
+            owl:someValuesFrom asp:startTime ] .
+
+asp:startTime a owl:Class ;
+    rdfs:subClassOf asp:time .
+
+asp:stiffness a owl:Class ;
+    rdfs:label "stiffness" ;
+    NIFRID:synonym "mechanical rigidity" ;
     rdfs:subClassOf asp:Local .
 
 asp:temperature a owl:Class ;
     rdfs:subClassOf asp:Local .
+
+asp:thickness a owl:Class ;
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasAspectContext ;
+            owl:someValuesFrom asp:orientation ] .
+
+asp:time a owl:Class ;
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasAspectContext ;
+            owl:someValuesFrom asp:startTime ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasMaterialContext ;
+            owl:someValuesFrom ilxtr:periodicPhenomena ] .
+
+asp:timeInterval a owl:Class ;
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasAspectContext ;
+            owl:someValuesFrom asp:endTime ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasAspectContext ;
+            owl:someValuesFrom asp:startTime ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasMaterialContext ;
+            owl:someValuesFrom ilxtr:periodicPhenomena ] .
+
+asp:transparency a owl:Class ;
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasComplementAspect ;
+            owl:someValuesFrom asp:opacity ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasMaterialContext ;
+            owl:someValuesFrom ilxtr:interactingPhenomena ] .
 
 asp:velocity a owl:Class ;
     rdfs:subClassOf asp:nonLocal .
@@ -260,19 +436,61 @@ asp:voltage a owl:Class ;
     rdfs:subClassOf asp:electrical,
         asp:nonLocal,
         [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasContext ;
+            owl:onProperty ilxtr:hasMaterialContext ;
             owl:someValuesFrom ilxtr:electricalGround ] .
 
 asp:volume a owl:Class ;
-    rdfs:subClassOf asp:direct .
+    rdfs:subClassOf asp:Local .
+
+asp:volumeRelativistic a owl:Class ;
+    rdfs:subClassOf asp:nonLocal .
+
+asp:vonKlitzingAspect a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
 
 asp:weight a owl:Class ;
     rdfs:label "weight" ;
-    NIFRID:synonym "weight aspect" ;
-    rdfs:subClassOf asp:nonLocal .
+    NIFRID:synonym "weight aspect",
+        "weight aspect on earth",
+        "weight on earth" ;
+    rdfs:subClassOf asp:Local ;
+    owl:intersectionOf (
+            [ a owl:Restriction ;
+                owl:onProperty ilxtr:hasQualifiedForm ;
+                owl:someValuesFrom asp:weightUnqualified ]
+            [ a owl:Restriction ;
+                owl:onProperty ilxtr:qualifyingValue ;
+                owl:someValuesFrom [ owl:intersectionOf (
+                                asp:acceleration
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasMeasuredValue ;
+                                    owl:hasValue "9.8 m/s^2" ] ) ] ] ) .
+
+asp:weightOnJupiter a owl:Class ;
+    owl:intersectionOf (
+            [ a owl:Restriction ;
+                owl:onProperty ilxtr:hasQualifiedForm ;
+                owl:someValuesFrom asp:weightUnqualified ]
+            [ a owl:Restriction ;
+                owl:onProperty ilxtr:qualifyingValue ;
+                owl:someValuesFrom [ owl:intersectionOf (
+                                asp:acceleration
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasMeasuredValue ;
+                                    owl:hasValue "24.5 m/s^2" ] ) ] ] ) .
+
+asp:weightQualified a owl:Class ;
+    rdfs:label "weight qualified" ;
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasAspectContext ;
+            owl:someValuesFrom asp:acceleration ] .
 
 BIRNLEX:2041 a owl:Class ;
     rdfs:subClassOf ilxtr:microscope .
+
+CHEBI:25367 a owl:Class ;
+    rdfs:subClassOf CHEBI:24431 .
 
 CHEBI:33696 a owl:Class ;
     rdfs:subClassOf ilxtr:thingWithSequence .
@@ -310,6 +528,12 @@ ilxtr:brainSlice a owl:Class ;
 
 ilxtr:building a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
+
+ilxtr:categoryAssignments a owl:Class ;
+    rdfs:subClassOf ilxtr:informationEntity .
+
+ilxtr:categoryNames a owl:Class ;
+    rdfs:subClassOf ilxtr:informationEntity .
 
 ilxtr:cellMembrane a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
@@ -358,7 +582,7 @@ ilxtr:DNA a owl:Class ;
     rdfs:subClassOf ilxtr:nucleicAcid .
 
 ilxtr:electricalField a owl:Class ;
-    rdfs:subClassOf ilxtr:materialEntity .
+    rdfs:subClassOf ilxtr:physicalForce .
 
 ilxtr:electricalGround a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
@@ -367,6 +591,9 @@ ilxtr:electrolytes a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
 
 ilxtr:ephysRig a owl:Class ;
+    rdfs:subClassOf ilxtr:materialEntity .
+
+ilxtr:fluorescentMolecule a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
 
 ilxtr:food a owl:Class ;
@@ -426,7 +653,7 @@ ilxtr:lightMicroscope a owl:Class ;
     rdfs:subClassOf ilxtr:microscope .
 
 ilxtr:magneticField a owl:Class ;
-    rdfs:subClassOf ilxtr:materialEntity .
+    rdfs:subClassOf ilxtr:physicalForce .
 
 ilxtr:materialEntity a owl:Class ;
     owl:equivalentClass BFO:0000040 ;
@@ -436,6 +663,9 @@ ilxtr:materialEntity a owl:Class ;
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasAspect ;
             owl:someValuesFrom asp:livingness ] .
+
+ilxtr:mechanicalForce a owl:Class ;
+    rdfs:subClassOf ilxtr:physicalForce .
 
 ilxtr:methylatedDNA a owl:Class ;
     rdfs:subClassOf CHEBI:16991 .
@@ -452,23 +682,37 @@ ilxtr:microtome a owl:Class ;
 ilxtr:microwaves a owl:Class ;
     rdfs:subClassOf ilxtr:photons .
 
+ilxtr:molecule a owl:Class ;
+    owl:equivalentClass CHEBI:25367 ;
+    rdfs:subClassOf ilxtr:materialEntity .
+
 ilxtr:multiElectrode a owl:Class ;
     rdfs:subClassOf ilxtr:recordingElectrode .
 
 ilxtr:multiElectrodeArray a owl:Class ;
     rdfs:subClassOf ilxtr:multiElectrode .
 
+ilxtr:nameIdentityMapping a owl:Class ;
+    rdfs:subClassOf ilxtr:informationEntity .
+
 ilxtr:negative a owl:Class ;
     rdfs:subClassOf ilxtr:changeType ;
     owl:disjointWith ilxtr:positive .
 
+ilxtr:negativeNonZero a owl:Class ;
+    rdfs:subClassOf ilxtr:negative,
+        ilxtr:nonZero .
+
 ilxtr:nonZero a owl:Class ;
     rdfs:subClassOf ilxtr:changeType ;
-    owl:disjointWith ilxtr:zero .
+    owl:disjointWith ilxtr:zero ;
+    owl:disjointUnionOf (
+            ilxtr:negativeNonZero
+            ilxtr:positiveNonZero ) .
 
 ilxtr:nucleicAcid a owl:Class ;
     owl:equivalentClass CHEBI:33696 ;
-    rdfs:subClassOf ilxtr:materialEntity .
+    rdfs:subClassOf ilxtr:molecule .
 
 ilxtr:parcellationArtifact a owl:Class ;
     rdfs:subClassOf ilxtr:informationArtifact .
@@ -479,10 +723,24 @@ ilxtr:parcellationAtlas a owl:Class ;
 ilxtr:parcellationCoordinateSystem a owl:Class ;
     rdfs:subClassOf ilxtr:parcellationArtifact .
 
+ilxtr:partOfSomePrimaryInput a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:materialEntity
+                    [ a owl:Restriction ;
+                        owl:onProperty BFO:0000050 ;
+                        owl:someValuesFrom [ a owl:Restriction ;
+                                owl:onProperty ilxtr:primaryInputIn ;
+                                owl:someValuesFrom ilxtr:technique ] ] ) ] .
+
 ilxtr:patchElectrode a owl:Class ;
     rdfs:subClassOf ilxtr:recordingElectrode ;
-    hasPart: ilxtr:patchPipette,
-        ilxtr:singleElectrode .
+    owl:intersectionOf (
+            [ a owl:Restriction ;
+                owl:onProperty hasPart: ;
+                owl:someValuesFrom ilxtr:patchPipette ]
+            [ a owl:Restriction ;
+                owl:onProperty hasPart: ;
+                owl:someValuesFrom ilxtr:singleElectrode ] ) .
 
 ilxtr:patchPipette a owl:Class ;
     rdfs:subClassOf ilxtr:microPipette .
@@ -501,6 +759,9 @@ ilxtr:photons a owl:Class ;
             ilxtr:visibleLight
             ilxtr:xrays ) .
 
+ilxtr:physicalForce a owl:Class ;
+    rdfs:subClassOf ilxtr:materialEntity .
+
 ilxtr:physiologicalSystem a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity ;
     owl:unionOf (
@@ -514,6 +775,10 @@ ilxtr:plasmidDNA a owl:Class ;
 
 ilxtr:positive a owl:Class ;
     rdfs:subClassOf ilxtr:changeType .
+
+ilxtr:positiveNonZero a owl:Class ;
+    rdfs:subClassOf ilxtr:nonZero,
+        ilxtr:positive .
 
 ilxtr:primaryHeritableGeneticMaterial a owl:Class ;
     rdfs:subClassOf ilxtr:molecule .
@@ -565,8 +830,13 @@ ilxtr:serialBlockfaceUltraMicrotome a owl:Class ;
 
 ilxtr:sharpElectrode a owl:Class ;
     rdfs:subClassOf ilxtr:recordingElectrode ;
-    hasPart: ilxtr:sharpMicroPipette,
-        ilxtr:singleElectrode .
+    owl:intersectionOf (
+            [ a owl:Restriction ;
+                owl:onProperty hasPart: ;
+                owl:someValuesFrom ilxtr:sharpMicroPipette ]
+            [ a owl:Restriction ;
+                owl:onProperty hasPart: ;
+                owl:someValuesFrom ilxtr:singleElectrode ] ) .
 
 ilxtr:sharpMicroPipette a owl:Class ;
     rdfs:subClassOf ilxtr:microPipette .
@@ -594,6 +864,54 @@ ilxtr:superResolutionAlgorithem a owl:Class ;
 
 ilxtr:synapse a owl:Class ;
     rdfs:subClassOf GO:0005575 .
+
+ilxtr:theObservableUniverse a owl:Class ;
+    rdfs:subClassOf ilxtr:compositeMaterialEntity,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:BoltzmannAspect ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:CoulombsAspect ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:electronRestMass ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:elementaryCharge ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:fineStructureAspect ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:fineStructureAspect ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:GravitationalAspect ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:gravitationalCouplingAspect ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:impedanceOfFreeSpace ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:JosephsonAspect ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:permeabilityOfFreeSpace ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:permittivityOfFreeSpace ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:PlankAspect ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:speedOfLight ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasExpAspect ;
+            owl:someValuesFrom asp:vonKlitzingAspect ] .
 
 ilxtr:thingWithSequence a owl:Class ;
     rdfs:label "thing with molecular sequence" ;
@@ -714,8 +1032,6 @@ GO:0005622 rdfs:subClassOf GO:0005575 .
 
 ilxtr:cell owl:equivalentClass SAO:1813327414 .
 
-ilxtr:molecule owl:equivalentClass CHEBI:25367 .
-
 ilxtr:mRNA owl:equivalentClass SO:0000234 .
 
 ilxtr:positron owl:equivalentClass CHEBI:30225 .
@@ -725,4 +1041,4 @@ ilxtr:RNA owl:equivalentClass CHEBI:33697 ;
 
 tech:injection owl:equivalentClass BIRNLEX:2135 .
 
-### Serialized using the pyontutils deterministic serializer v1.1.3
+### Serialized using the pyontutils deterministic serializer v1.1.4
