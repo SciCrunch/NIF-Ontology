@@ -18,8 +18,8 @@
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-core.ttl> a owl:Ontology ;
     owl:imports <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> ;
     rdfs:comment "The core components for modelling techniques and methods." ;
-    owl:versionInfo "2018-07-20" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/a1e82533daf74e104436bc99da583353eca45817/pyontutils/core.py#L1926> .
+    owl:versionInfo "2018-08-06" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/023bb7007c0c6a6c55566954c733b3ede5203b90/pyontutils/core.py#L1935> .
 
 ### Object Properties
 
@@ -255,11 +255,11 @@ ilxtr:hasPartPriAspect a owl:ObjectProperty ;
 
 ilxtr:hasPartPriParticipant a owl:ObjectProperty ;
     owl:propertyChainAxiom (
-            BFO:0000051
-            ilxtr:hasPrimaryParticipant ),
-        (
             ilxtr:hasPrimaryParticipant
-            BFO:0000051 ) .
+            BFO:0000051 ),
+        (
+            BFO:0000051
+            ilxtr:hasPrimaryParticipant ) .
 
 ilxtr:hasPrimaryAspect a owl:ObjectProperty ;
     rdfs:label "has primary aspect" ;
@@ -293,6 +293,9 @@ ilxtr:hasPrimaryAspectActualized a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:hasPrimaryAspect,
         ilxtr:processActualizesAspect .
 
+ilxtr:hasPrimaryAspectMeasured a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasPrimaryAspect .
+
 ilxtr:hasPrimaryInput a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:hasPrimaryParticipant,
         RO:0002233 .
@@ -301,10 +304,18 @@ ilxtr:hasPrimaryInputOutput a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:hasInputOutput,
         ilxtr:hasPrimaryParticipant .
 
+ilxtr:hasPrimaryInputUnbinding a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasPrimaryInput ;
+    owl:propertyDisjointWith ilxtr:hasPrimaryOutput .
+
 ilxtr:hasPrimaryOutput a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:hasIntention,
         ilxtr:hasPrimaryParticipant,
         RO:0002234 .
+
+ilxtr:hasPrimaryOutputNoInput a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasPrimaryOutput ;
+    owl:propertyDisjointWith ilxtr:hasPrimaryInput .
 
 ilxtr:hasPrimaryParticipant a owl:ObjectProperty ;
     rdfs:label "has primary participant" ;
@@ -314,12 +325,25 @@ ilxtr:hasPrimaryParticipant a owl:ObjectProperty ;
     rdfs:range ilxtr:materialEntity ;
     rdfs:comment "This property should be used to mark the key input and/or output of a process if its type is not generic." .
 
+ilxtr:hasPrimaryParticipantNoInput a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasPrimaryParticipant ;
+    owl:propertyDisjointWith ilxtr:hasPrimaryInput .
+
+ilxtr:hasPrimaryParticipantNoInputNoOutput a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasPrimaryParticipant ;
+    owl:propertyDisjointWith ilxtr:hasPrimaryInput,
+        ilxtr:hasPrimaryOutput .
+
 ilxtr:hasPrimaryParticipantSubsetRule a owl:ObjectProperty ;
     rdfs:label "has intended primary participant subset rule" ;
     NIFRID:synonym "has primary participant subset rule",
         "has subset rule" ;
     definition: "The rule by which subsets of the primary participant are intended to be distingushed by a technique. The dS in dAdS, change in aspect with respect to change in subset of primary participant." ;
     rdfs:subPropertyOf ilxtr:hasIntention .
+
+ilxtr:hasPrimaryParticipantUnbinding a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasPrimaryParticipant ;
+    owl:propertyDisjointWith ilxtr:hasPrimaryOutput .
 
 ilxtr:hasPriParticipantPartAspect a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:processHasAspect .
@@ -375,6 +399,10 @@ ilxtr:knownDifferentiatingPhenomena a owl:ObjectProperty ;
 
 ilxtr:knownProbedPhenomena a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:hasPrimaryParticipant .
+
+ilxtr:modifiesPrimaryInputOutput a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasPrimaryInput,
+        ilxtr:hasPrimaryOutput .
 
 ilxtr:names a owl:ObjectProperty .
 
