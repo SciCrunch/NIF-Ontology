@@ -209,11 +209,9 @@ you need additional guidance.
 This process is documented at
 [pyontutils/scigraph/README.md](https://github.com/tgbugs/pyontutils/blob/master/scigraph/README.md).
 
-### Update/deploy import-closure.html
-`ontload chain NIF-Ontology NIF /tmp/NIF-Ontology/ttl/nif.ttl` or similar and then
-`cp /tmp/NIF-Ontology-import-chain.html $wherever` or scp to a known location.
-TODO update how chain works to pull in everything since we are only going to do this
-once per release and can afford to pull in the full tree.
+### Restart dependent services
+1. Restart the `ontree` process on aux-resolver. This is needed to flush the cache of the import chain.
+
 
 ## Building documentation
 
