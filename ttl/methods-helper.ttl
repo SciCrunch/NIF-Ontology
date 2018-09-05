@@ -34,8 +34,30 @@
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-helper.ttl> a owl:Ontology ;
     owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-core.ttl> ;
     rdfs:comment "helper for methods development" ;
-    owl:versionInfo "2018-08-06" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/023bb7007c0c6a6c55566954c733b3ede5203b90/pyontutils/core.py#L1935> .
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/f6bcddd111ce734e9123bc5e1c10f5df4a5d3ddb/pyontutils/core.py#L1056> .
+
+### Object Properties
+
+ilxtr:hasDeliveryVector a owl:ObjectProperty .
+
+ilxtr:hasResult a owl:ObjectProperty ;
+    rdfs:subClassOf prov:generated ;
+    rdfs:domain ilxtr:protocolExecution ;
+    rdfs:range ilxtr:result .
+
+ilxtr:hasTracingDirection a owl:ObjectProperty .
+
+ilxtr:hasTracingTransportType a owl:ObjectProperty .
+
+ilxtr:hasTracingUptakeStructure a owl:ObjectProperty .
+
+ilxtr:resultAspect a owl:ObjectProperty ;
+    rdfs:domain ilxtr:result ;
+    rdfs:range ilxtr:aspect .
+
+### Data Properties
+
+ilxtr:resultValue a owl:DatatypeProperty .
 
 ### Classes
 
@@ -102,6 +124,12 @@ asp:circadianPhase a owl:Class ;
 
 asp:complementSequencePresent a owl:Class ;
     rdfs:subClassOf asp:Local .
+
+asp:concentration a owl:Class ;
+    rdfs:subClassOf asp:nonLocal,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasMaterialContext ;
+            owl:someValuesFrom ilxtr:solvent ] .
 
 asp:condensationPoint a owl:Class ;
     rdfs:subClassOf asp:nonLocal .
@@ -415,7 +443,8 @@ asp:timeInterval a owl:Class ;
             owl:someValuesFrom asp:startTime ],
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasMaterialContext ;
-            owl:someValuesFrom ilxtr:periodicPhenomena ] .
+            owl:someValuesFrom ilxtr:periodicPhenomena ] ;
+    NIFRID:symomym "duration" .
 
 asp:transparency a owl:Class ;
     rdfs:subClassOf asp:nonLocal,
@@ -504,11 +533,22 @@ GO:0044464 a owl:Class ;
 <http://uri.interlex.org/researchdiets/uris/productnumber/D12492> a owl:Class ;
     rdfs:subClassOf ilxtr:DIODiet .
 
+ilxtr:AAVretro a owl:Class ;
+    rdfs:subClassOf ilxtr:viralParticle .
+
+ilxtr:activeLabel a owl:Class ;
+    rdfs:subClassOf ilxtr:cellLabel ;
+    owl:disjointWith ilxtr:interLabel ;
+    ilxtr:hasDeliveryVector ilxtr:someVector .
+
 ilxtr:acuteBrainSlice a owl:Class ;
     rdfs:subClassOf ilxtr:physiologicalSystem .
 
 ilxtr:algorithem a owl:Class ;
     rdfs:subClassOf ilxtr:informationEntity .
+
+ilxtr:anterograde a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
 
 ilxtr:aspectBottom a owl:Class ;
     rdfs:label "aspect bottom" ;
@@ -534,6 +574,13 @@ ilxtr:categoryAssignments a owl:Class ;
 
 ilxtr:categoryNames a owl:Class ;
     rdfs:subClassOf ilxtr:informationEntity .
+
+ilxtr:cellLabel a owl:Class ;
+    NIFRID:synonym "tracer" ;
+    rdfs:subClassOf ilxtr:contrastAgent ;
+    ilxtr:hasTracingDirection ilxtr:someDirection ;
+    ilxtr:hasTracingStartLocation ilxtr:nervousSystemRegion ;
+    ilxtr:hasTracingTransportType ilxtr:movesVia_Transport .
 
 ilxtr:cellMembrane a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
@@ -565,6 +612,9 @@ ilxtr:contrastAgent a owl:Class ;
             owl:onProperty ilxtr:hasAspect ;
             owl:someValuesFrom asp:contrast ] .
 
+ilxtr:cultureMedia a owl:Class ;
+    rdfs:subClassOf ilxtr:materialEntity .
+
 ilxtr:cuttingTool a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
 
@@ -593,6 +643,9 @@ ilxtr:electrolytes a owl:Class ;
 ilxtr:ephysRig a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
 
+ilxtr:expressionModifierLabel a owl:Class ;
+    rdfs:subClassOf ilxtr:modifierLabel .
+
 ilxtr:fluorescentMolecule a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
 
@@ -601,6 +654,9 @@ ilxtr:food a owl:Class ;
 
 ilxtr:food_and_water a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
+
+ilxtr:functionalLabel a owl:Class ;
+    rdfs:subClassOf ilxtr:activeLabel .
 
 ilxtr:gammarays a owl:Class ;
     rdfs:subClassOf ilxtr:photons .
@@ -621,6 +677,9 @@ ilxtr:image a owl:Class ;
 
 ilxtr:inductionFactor a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
+
+ilxtr:inertLabel a owl:Class ;
+    rdfs:subClassOf ilxtr:cellLabel .
 
 ilxtr:infaredLight a owl:Class ;
     rdfs:subClassOf ilxtr:photons .
@@ -682,9 +741,19 @@ ilxtr:microtome a owl:Class ;
 ilxtr:microwaves a owl:Class ;
     rdfs:subClassOf ilxtr:photons .
 
+ilxtr:modifierLabel a owl:Class ;
+    rdfs:subClassOf ilxtr:activeLabel .
+
 ilxtr:molecule a owl:Class ;
     owl:equivalentClass CHEBI:25367 ;
     rdfs:subClassOf ilxtr:materialEntity .
+
+ilxtr:movesViaActiveTransport a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect ;
+    owl:disjointWith ilxtr:movesViaPassiveTransport .
+
+ilxtr:movesViaPassiveTransport a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
 
 ilxtr:multiElectrode a owl:Class ;
     rdfs:subClassOf ilxtr:recordingElectrode .
@@ -713,6 +782,9 @@ ilxtr:nonZero a owl:Class ;
 ilxtr:nucleicAcid a owl:Class ;
     owl:equivalentClass CHEBI:33696 ;
     rdfs:subClassOf ilxtr:molecule .
+
+ilxtr:nucleicAcidLibrary a owl:Class ;
+    rdfs:subClassOf ilxtr:materialEntity .
 
 ilxtr:parcellationArtifact a owl:Class ;
     rdfs:subClassOf ilxtr:informationArtifact .
@@ -800,7 +872,8 @@ ilxtr:protocolExecution a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:isConstrainedBy ;
                         owl:someValuesFrom ilxtr:protocol ] ) ] ;
-    rdfs:label "protocol execution" .
+    rdfs:label "protocol execution" ;
+    rdfs:subClassOf prov:Activity .
 
 ilxtr:radiowaves a owl:Class ;
     rdfs:subClassOf ilxtr:photons .
@@ -810,6 +883,12 @@ ilxtr:radonTransform a owl:Class ;
 
 ilxtr:recordingElectrode a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
+
+ilxtr:result a owl:Class ;
+    definition: "The result of a measurement." .
+
+ilxtr:retrograde a owl:Class ;
+    rdfs:subClassOf ilxtr:aspect .
 
 ilxtr:section a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity ;
@@ -849,6 +928,9 @@ ilxtr:spatialFrequencyImageStack a owl:Class ;
 
 ilxtr:spikeSortingAlgorithem a owl:Class ;
     rdfs:subClassOf ilxtr:informationEntity .
+
+ilxtr:spreadModifierLabel a owl:Class ;
+    rdfs:subClassOf ilxtr:modifierLabel .
 
 ilxtr:statisticalAlgorithem a owl:Class ;
     rdfs:subClassOf ilxtr:algorithem .

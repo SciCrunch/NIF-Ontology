@@ -28,6 +28,7 @@ in the SciCrunch org repo) so that we can run all the requisite
 checks to make sure that the ontology is consistent.
 
 # Please do push documentation to master
+[catalog-v001.xml.example](../ttl/catalog-v001.xml.example) should also always be updated on master
 
 # Processes
 
@@ -62,7 +63,9 @@ touch filename.ttl
 add filename.ttl
 `make_catalog`  # NOTE this is broken at the moment
 ```
-1. Add an entry in [catalog-v001.xml](../ttl/catalog-v001.xml) by hand.
+1. Add an entry in [catalog-v001.xml](../ttl/catalog-v001.xml.example) by hand.
+Note that you will need to make sure that `catalog-v001.xml` is copied from the
+example order to make use of the new entry.
 
 Before you run `make_catalog` make sure that the import chain is local (unpatched)
 otherwise it will take an extremely long time to fetch files.
@@ -209,11 +212,30 @@ you need additional guidance.
 This process is documented at
 [pyontutils/scigraph/README.md](https://github.com/tgbugs/pyontutils/blob/master/scigraph/README.md).
 
-### Update/deploy import-closure.html
-`ontload chain NIF-Ontology NIF /tmp/NIF-Ontology/ttl/nif.ttl` or similar and then
-`cp /tmp/NIF-Ontology-import-chain.html $wherever` or scp to a known location.
-TODO update how chain works to pull in everything since we are only going to do this
-once per release and can afford to pull in the full tree.
+### Restart dependent services
+1. Restart the `ontree` process on aux-resolver. This is needed to flush the cache of the import chain.
+
+
+## Building documentation
+
+### Resolver
+See [pyontutils/resolver/aux-resolver.conf](https://github.com/tgbugs/pyontutils/blob/9c5f64afe62cf22f5e972868225835c1e65e07b8/resolver/aux-resolver.conf#L92-L94)
+and [pyontutils/resolver/nif-ont-resolver.conf](https://github.com/tgbugs/pyontutils/blob/ef18da508ebfd95aff8b1ca01f6117c95326f036/resolver/nif-ont-resolver.conf#L36-L44).
+
+### Setup
+See [pyontutils/README.md#requirements](https://github.com/tgbugs/pyontutils/blob/master/README.md#requirements)
+for details on `pandoc` and `orgstrap`. For the best results use `>=app-text/emacs-26.1` and `>=app-text/pandoc-2.2.3.2`.
+For centos 7 (i.e. the current aux-resolver sever) this means
+1. download, extract, build, and install [emacs](https://ftp.gnu.org/gnu/emacs/emacs-26.1.tar.xz)
+2. download, extract, and install the [latest](https://github.com/jgm/pandoc/releases/latest) version
+of [pandoc](https://github.com/jgm/pandoc/releases/download/2.2.3.2/pandoc-2.2.3.2-linux.tar.gz).
+3. `git clone https://github.com/tgbugs/orgstrap.git` and run `orgstrap/orgstrap`
+
+### Build
+On aux-resolver `pyontutils/pyontutils/docs.py`
+
+### Deploy
+On aux-resolver `cp -a pyontutils/pyontutils/doc_build/docs /var/www/ontology-docs`
 
 ## External records
 There are a couple of places where there are external records of the

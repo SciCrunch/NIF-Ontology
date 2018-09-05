@@ -31,16 +31,14 @@ non-ontology files please contribute them to the appropriate folder in
 
 ## New terms
 There are two ways to submit new terms.
-1) Via the [issue tracker](https://github.com/SciCrunch/NIF-Ontology/issues) with the `new term` tag.
-2) Via [InterLex](http://interlex.org). InterLex is still in beta so you will need to
-[contact us](info@scicrunch.org) in order to get edit access. There will be some delay between
+1. Via the [issue tracker](https://github.com/SciCrunch/NIF-Ontology/issues) with the `new term` tag.  
+2. Via [InterLex](http://interlex.org). InterLex is still in beta so you will need to
+[contact us](mailto:info@scicrunch.org) in order to get edit access. There will be some delay between
 the creation of a term in InterLex and its inclusion here in the ontology.
 
 # Documentation
-Please see [docs/](docs/) for documentation about how to develop NIFSTD
-using this repository. We are in the process of consolidating our documentation.
-In the mean time there is additional documentation in the [GitHub wiki](https://github.com/SciCrunch/NIF-Ontology/wiki).
+Please see the [documentation](http://ontology.neuinfo.org/docs) for information about how to use and develop NIFSTD.
 
 # License
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />The contents of this repository are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-The text of the license can also be found in the [LICENSE](LICENSE) file.
+The text of the license can also be found in the [./LICENSE](./LICENSE) file.
