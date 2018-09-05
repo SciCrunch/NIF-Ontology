@@ -20,6 +20,6 @@ locations where bridging axioms should live that can be easily checked by
 seeing whether the basic principle holds.
 
 Import of `ttl/generated/*-dead.ttl` files should occur at the first point in
-the import chain that we have control over. See for example [doid-bridge.ttl](../ttl/bridge/doid-bridge.ttl)
+the import chain that we have control over. See for example [doid-bridge.ttl](./../ttl/bridge/doid-bridge.ttl)
 which imports both `symp-dead.ttl` and `trans-dead.ttl`. The original ontologies
 are imported by `doid.owl` so we import them in `doid-bridge.ttl`.
