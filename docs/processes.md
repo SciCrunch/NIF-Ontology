@@ -28,6 +28,7 @@ in the SciCrunch org repo) so that we can run all the requisite
 checks to make sure that the ontology is consistent.
 
 # Please do push documentation to master
+[catalog-v001.xml.example](../ttl/catalog-v001.xml.example) should also always be updated on master
 
 # Processes
 
@@ -62,7 +63,9 @@ touch filename.ttl
 add filename.ttl
 `make_catalog`  # NOTE this is broken at the moment
 ```
-1. Add an entry in [catalog-v001.xml](../ttl/catalog-v001.xml) by hand.
+1. Add an entry in [catalog-v001.xml](../ttl/catalog-v001.xml.example) by hand.
+Note that you will need to make sure that `catalog-v001.xml` is copied from the
+example order to make use of the new entry.
 
 Before you run `make_catalog` make sure that the import chain is local (unpatched)
 otherwise it will take an extremely long time to fetch files.
