@@ -515,6 +515,18 @@ sparc:energyDeliveryDeviceUtilized a owl:DatatypeProperty ;
         sparc:ThermalEnergyModulation ;
     rdfs:range xsd:string .
 
+sparc:experimentHasOverallDesign a owl:DatatypeProperty ;
+    rdfs:domain sparc:Experiment ;
+    rdfs:range xsd:string .
+
+sparc:experimentHasSummary a owl:DatatypeProperty ;
+    rdfs:domain sparc:Experiment ;
+    rdfs:range xsd:string .
+
+sparc:experimentHasTitle a owl:DatatypeProperty ;
+    rdfs:domain sparc:Experiment ;
+    rdfs:range xsd:string .
+
 sparc:firstName a owl:DatatypeProperty ;
     rdfs:domain sparc:Researcher ;
     rdfs:range xsd:string .
@@ -848,6 +860,11 @@ sparc:nameOfRadiologicalDevice a owl:DatatypeProperty ;
     rdfs:domain sparc:RadiologcalAcquistion ;
     rdfs:range xsd:string .
 
+sparc:organismSubjectHasGenotype a owl:DatatypeProperty ;
+    rdfs:subPropertyOf owl:topDataProperty ;
+    rdfs:domain sparc:OrganismSubject ;
+    rdfs:range xsd:string .
+
 sparc:originOfSample a owl:DatatypeProperty ;
     rdfs:domain sparc:CellCulture,
         sparc:StemCells ;
@@ -872,6 +889,30 @@ sparc:propertiesOfHumanSubject a owl:DatatypeProperty ;
 
 sparc:propertiesOfRadiologicalAcquisition a owl:DatatypeProperty ;
     rdfs:domain sparc:RadiologcalAcquistion .
+
+sparc:rnaSeqSpecimenHasSampleNumber a owl:DatatypeProperty ;
+    rdfs:domain sparc:RNASeqSpecimen ;
+    rdfs:range xsd:string .
+
+sparc:rnaSeqSpecimenHasSourceName a owl:DatatypeProperty ;
+    rdfs:domain sparc:RNASeqSpecimen ;
+    rdfs:range xsd:string .
+
+sparc:rnaSeqSpecimenHasTotalCellNumber a owl:DatatypeProperty ;
+    rdfs:domain sparc:RNASeqSpecimen ;
+    rdfs:range xsd:string .
+
+sparc:rnaSeqSpecimenWasPreparedWithExtractProtocol a owl:DatatypeProperty ;
+    rdfs:domain sparc:RNASeqSpecimen ;
+    rdfs:range xsd:string .
+
+sparc:rnaSeqSpecimenWasPreparedWithGrowthProtocol a owl:DatatypeProperty ;
+    rdfs:domain sparc:RNASeqSpecimen ;
+    rdfs:range xsd:string .
+
+sparc:rnaSeqSpecimenWasPreparedWithTreatmentProtocol a owl:DatatypeProperty ;
+    rdfs:domain sparc:RNASeqSpecimen ;
+    rdfs:range xsd:string .
 
 sparc:samplingResolution a owl:DatatypeProperty ;
     rdfs:domain sparc:OpticalAcquisition ;
@@ -907,6 +948,10 @@ sparc:sourceOfChemicalInSolution a owl:DatatypeProperty ;
     rdfs:domain sparc:ChemicalInSolution ;
     rdfs:range xsd:string .
 
+sparc:specimenHasIdentifier a owl:DatatypeProperty ;
+    rdfs:domain sparc:Specimen ;
+    rdfs:range xsd:string .
+
 sparc:stimulatorUtilized a owl:DatatypeProperty ;
     rdfs:domain sparc:BioelectronicNerveBlockingModulation,
         sparc:ElectricalModulation ;
@@ -932,6 +977,58 @@ sparc:timingControlFeaturesForMultipleRecordingSystems a owl:DatatypeProperty ;
     rdfs:domain sparc:Acquisition ;
     rdfs:range xsd:string .
 
+sparc:transcriptomicsAcquisitionDealsWithMolecule a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionHasDescription a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionHasLabel a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionHasRunNumber a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionHasSequencingDepth a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionUsedLabelProtocol a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionUsedLibraryConstructionProtocol a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionUsedLibrarySelection a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionUsedLibrarySource a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionUsedLibraryStrategy a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionUsedPlatform a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionUsedRNAIsolationMethod a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:transcriptomicsAcquisitionUsedScanProtocol a owl:DatatypeProperty ;
+    rdfs:domain sparc:TranscriptomicsAcquisition ;
+    rdfs:range xsd:string .
+
 ### Classes
 
 sparc:Acquisition a owl:Class ;
@@ -954,16 +1051,23 @@ sparc:AnimalExperiment a owl:Class ;
 
 sparc:AnimalSubject a owl:Class ;
     replacedBy: NCBITaxon:33208 ;
-    rdfs:subClassOf sparc:Specimen .
+    rdfs:subClassOf sparc:OrganismSubject,
+        sparc:Specimen ;
+    owl:disjointWith sparc:RNASeqSpecimen .
 
 sparc:BioelectronicNerveBlockingModulation a owl:Class ;
     rdfs:subClassOf sparc:Modulation .
 
+sparc:BulkRNASeqSpecimen a owl:Class ;
+    rdfs:subClassOf sparc:RNASeqSpecimen .
+
 sparc:CellCulture a owl:Class ;
-    rdfs:subClassOf sparc:Specimen .
+    rdfs:subClassOf sparc:Specimen ;
+    owl:disjointWith sparc:RNASeqSpecimen .
 
 sparc:CellCultureExperiment a owl:Class ;
-    rdfs:subClassOf sparc:ExperimentOnTissueDerivatives .
+    rdfs:subClassOf sparc:ExperimentOnTissueDerivatives ;
+    owl:disjointWith sparc:TranscriptomicsExperiment .
 
 sparc:ChemicalAcquisition a owl:Class ;
     rdfs:subClassOf sparc:Acquisition .
@@ -1015,7 +1119,9 @@ sparc:FunctionalMRIFeatures a owl:Class .
 sparc:GeneralMRISequence a owl:Class .
 
 sparc:HumanSubject a owl:Class ;
-    rdfs:subClassOf sparc:Specimen .
+    rdfs:subClassOf sparc:OrganismSubject,
+        sparc:Specimen ;
+    owl:disjointWith sparc:RNASeqSpecimen .
 
 sparc:IREnergyModulation a owl:Class ;
     rdfs:subClassOf sparc:Modulation .
@@ -1033,6 +1139,9 @@ sparc:Modulation a owl:Class ;
 
 sparc:OpticalAcquisition a owl:Class ;
     rdfs:subClassOf sparc:Acquisition .
+
+sparc:OrganismSubject a owl:Class ;
+    rdfs:subClassOf sparc:Specimen .
 
 sparc:Organization a owl:Class .
 
@@ -1055,13 +1164,22 @@ sparc:Resource a owl:Class ;
     replacedBy: NLX:63400 ;
     rdfs:comment "the usage here is a conflation between resources and prov entities/ methonds ontology results" .
 
+sparc:RNASeqSpecimen a owl:Class ;
+    rdfs:subClassOf sparc:Specimen ;
+    owl:disjointWith sparc:StemCells,
+        sparc:TissueSample .
+
 sparc:Sedation a owl:Class ;
     replacedBy: tech:sedation .
+
+sparc:SingleCellRNASeqSpecimen a owl:Class ;
+    rdfs:subClassOf sparc:RNASeqSpecimen .
 
 sparc:Specimen a owl:Class .
 
 sparc:StemCellExperiment a owl:Class ;
-    rdfs:subClassOf sparc:ExperimentOnTissueDerivatives .
+    rdfs:subClassOf sparc:ExperimentOnTissueDerivatives ;
+    owl:disjointWith sparc:TranscriptomicsExperiment .
 
 sparc:StemCells a owl:Class ;
     rdfs:subClassOf sparc:Specimen .
@@ -1074,6 +1192,7 @@ sparc:TissueExperiment a owl:Class ;
             owl:onProperty ilxtr:hasPrimaryParticipant ;
             owl:someValuesFrom ilxtr:tissue ] ;
     rdfs:subClassOf sparc:ExperimentOnTissueDerivatives ;
+    owl:disjointWith sparc:TranscriptomicsExperiment ;
     rdfs:comment "TODO tissue experiment vs tissue technique ..." .
 
 sparc:TissueSample a owl:Class ;
@@ -1082,6 +1201,9 @@ sparc:TissueSample a owl:Class ;
 
 sparc:TranscriptomicsAcquisition a owl:Class ;
     rdfs:subClassOf sparc:Acquisition .
+
+sparc:TranscriptomicsExperiment a owl:Class ;
+    rdfs:subClassOf sparc:ExperimentOnTissueDerivatives .
 
 ### Axioms
 
@@ -1092,6 +1214,20 @@ sparc:TranscriptomicsAcquisition a owl:Class ;
             sparc:HumanSubject
             sparc:StemCells
             sparc:TissueSample ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members (
+            sparc:AnimalSubject
+            sparc:CellCulture
+            sparc:HumanSubject
+            sparc:StemCells
+            sparc:TissueSample ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members (
+            sparc:CellCultureExperiment
+            sparc:StemCellExperiment
+            sparc:TissueExperiment ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members (
