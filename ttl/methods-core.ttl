@@ -18,8 +18,7 @@
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-core.ttl> a owl:Ontology ;
     owl:imports <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> ;
     rdfs:comment "The core components for modelling techniques and methods." ;
-    owl:versionInfo "2018-08-06" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/023bb7007c0c6a6c55566954c733b3ede5203b90/pyontutils/core.py#L1935> .
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/b57bc2f6ef1b257627cfe144155d8ba95e5a7089/pyontutils/core.py#L1061> .
 
 ### Object Properties
 
@@ -50,6 +49,10 @@ ilxtr:detects a owl:ObjectProperty ;
 
 ilxtr:hasActualizedValue a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:aspectHasValue .
+
+ilxtr:hasActualPrimaryAspect a owl:ObjectProperty .
+
+ilxtr:hasActualPrimaryAspect_dAdT a owl:ObjectProperty .
 
 ilxtr:hasAspect a owl:ObjectProperty ;
     rdfs:subPropertyOf RO:0000086 ;
@@ -106,13 +109,20 @@ ilxtr:hasDirectInformationParticipant a owl:ObjectProperty ;
 ilxtr:hasDualInputTechnique a owl:ObjectProperty ;
     rdfs:label "has dual input technique" ;
     definition: "The relationship between a technique that has a primary output and a dual technique that has a primary input that is destroyed." ;
-    rdfs:subPropertyOf BFO:0000051 ;
+    rdfs:subPropertyOf ilxtr:hasDualTechnique ;
     owl:inverseOf ilxtr:hasDualOutputTechnique .
 
 ilxtr:hasDualOutputTechnique a owl:ObjectProperty ;
     rdfs:label "has dual output technique" ;
     definition: "The relationship between a technique that has a primary input that is destroyed and a dual technique that has the corresponding primary output." ;
-    rdfs:subPropertyOf BFO:0000051 .
+    rdfs:subPropertyOf ilxtr:hasDualTechnique .
+
+ilxtr:hasDualTechnique a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "has dual technique" ;
+    definition: "The relationship between techniques that are duals of each other. An example usage is in cases where the matter constituting the primary input in one technique is transformed (read: renamed) and becomes the primary output of another technique. Bearing this relation implies that both techniques are part of a same enclosing technique." ;
+    rdfs:domain ilxtr:technique ;
+    rdfs:range ilxtr:technique .
 
 ilxtr:hasExecutor a owl:ObjectProperty ;
     rdfs:label "has executor" ;
@@ -255,11 +265,11 @@ ilxtr:hasPartPriAspect a owl:ObjectProperty ;
 
 ilxtr:hasPartPriParticipant a owl:ObjectProperty ;
     owl:propertyChainAxiom (
-            ilxtr:hasPrimaryParticipant
-            BFO:0000051 ),
-        (
             BFO:0000051
-            ilxtr:hasPrimaryParticipant ) .
+            ilxtr:hasPrimaryParticipant ),
+        (
+            ilxtr:hasPrimaryParticipant
+            BFO:0000051 ) .
 
 ilxtr:hasPrimaryAspect a owl:ObjectProperty ;
     rdfs:label "has primary aspect" ;
@@ -542,14 +552,6 @@ ilxtr:technique a owl:Class ;
     ilxtr:hasTempId HBP_MEM:0000000 .
 
 [] a owl:Class ;
-    owl:equivalentClass [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-            owl:someValuesFrom ilxtr:nonZero ] ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-            owl:someValuesFrom ilxtr:aspect ] .
-
-[] a owl:Class ;
     owl:equivalentClass [ owl:intersectionOf (
                     ilxtr:materialEntity
                     [ a owl:Restriction ;
@@ -582,4 +584,13 @@ ilxtr:technique a owl:Class ;
                 owl:onProperty ilxtr:processHasContext ;
                 owl:someValuesFrom BFO:0000002 ] ) .
 
-### Serialized using the pyontutils deterministic serializer v1.1.4
+### Axioms
+
+[] a owl:Restriction ;
+    owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+    owl:someValuesFrom ilxtr:nonZero ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+            owl:someValuesFrom ilxtr:aspect ] .
+
+### Serialized using the pyontutils deterministic serializer v1.2.0
