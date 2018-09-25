@@ -36,7 +36,7 @@
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-core.ttl>,
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-helper.ttl> ;
     rdfs:comment "The ontology of techniques and methods." ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/f6bcddd111ce734e9123bc5e1c10f5df4a5d3ddb/pyontutils/core.py#L1056> .
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/b57bc2f6ef1b257627cfe144155d8ba95e5a7089/pyontutils/core.py#L1061> .
 
 ### Classes
 
@@ -87,6 +87,51 @@ BIRNLEX:2136 a owl:Class ;
     rdfs:label "intracellular injection technique" ;
     NIFRID:synonyms "intracellular injection" .
 
+<http://uri.interlex.org/tgbugs/uris/readable/process/anterogradeMovement> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    BFO:0000015
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:materialEntity ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasActualPrimaryAspect ;
+                        owl:someValuesFrom asp:distanceFromSoma ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasActualPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:positive ] ) ] ;
+    rdfs:label "anterograde movement" ;
+    definition: "movement via active or passive means away from the soma of a cell" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/process/diffusion> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    BFO:0000015
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:materialEntity ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasActualPrimaryAspect ;
+                        owl:someValuesFrom asp:allocation ] ) ] ;
+    rdfs:label "diffusion process" ;
+    definition: "a process where particles spread out due to random motion" .
+
+<http://uri.interlex.org/tgbugs/uris/readable/process/retrogradeMovement> a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    BFO:0000015
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:materialEntity ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasActualPrimaryAspect ;
+                        owl:someValuesFrom asp:distanceFromSoma ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasActualPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negative ] ) ] ;
+    rdfs:label "retrograde movement" ;
+    definition: "movement via active or passive means toward the soma of a cell" .
+
 ilxtr:allocatingProcessPart a owl:Class ;
     owl:equivalentClass [ owl:intersectionOf (
                     BFO:0000015
@@ -100,36 +145,6 @@ ilxtr:allocatingProcessPart a owl:Class ;
 
 ilxtr:analysisRole a owl:Class ;
     rdfs:subClassOf BFO:0000023 .
-
-ilxtr:anterogradeMovement a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    BFO:0000015
-                    [ a owl:Restriction ;
-                        owl:onProperty hasParticipant: ;
-                        owl:someValuesFrom ilxtr:materialEntity ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:distanceFromSoma ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:positive ] ) ] ;
-    rdfs:label "anterograde movement" .
-
-ilxtr:retrogradeMovement a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    BFO:0000015
-                    [ a owl:Restriction ;
-                        owl:onProperty hasParticipant: ;
-                        owl:someValuesFrom ilxtr:materialEntity ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:distanceFromSoma ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:negative ] ) ] ;
-    rdfs:label "retrograde movement" .
 
 ilxtr:separationProcessPart a owl:Class ;
     owl:equivalentClass [ owl:intersectionOf (
@@ -192,7 +207,7 @@ tech:_naSeq a owl:Class ;
                         owl:someValuesFrom asp:sequence ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom CHEBI:33696 ] ) ] ;
+                        owl:someValuesFrom ilxtr:_NApolymer ] ) ] ;
     rdfs:label "nucleic acid sequencing technique" .
 
 tech:activityModulation a owl:Class ;
@@ -368,6 +383,57 @@ tech:cellPatching a owl:Class ;
             owl:onProperty hasInput: ;
             owl:someValuesFrom ilxtr:inVitroEphysRig ] .
 
+tech:chromium3p a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:dropSep ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:rnaSeq ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:chromium3pkit ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom TEMP:30 ] ) ] ;
+    rdfs:label "chromium 3' sequencing" ;
+    definition: "commercialized drop seq which uses " ;
+    NIFRID:synonyms "10x",
+        "10x Genomics sequencing",
+        "10x sequencing",
+        "chromium 3' assay",
+        "Chromium sequencing10x 3' chemistry" .
+
+tech:chromium3pv1 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    tech:chromium3p
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:rnaSeq ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:chromium3pv1kit ] ) ] ;
+    rdfs:label "chromium 3' sequencing v1" ;
+    owl:disjointWith tech:chromium3pv2 ;
+    rdfs:comment "different versions of the chromium 3' chemistry use different barcoding strategies and require different processing pipelines." .
+
+tech:chromium3pv2 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    tech:chromium3p
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:rnaSeq ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:chromium3pv2kit ] ) ] ;
+    rdfs:label "chromium 3' sequencing v2" ;
+    rdfs:comment "different versions of the chromium 3' chemistry use different barcoding strategies and require different processing pipelines." .
+
 tech:contrastDetection a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
@@ -466,7 +532,29 @@ tech:dissection a owl:Class ;
                         owl:onProperty ilxtr:hasPrimaryOutput ;
                         owl:someValuesFrom ilxtr:partOfSomePrimaryInput ] ) ] ;
     rdfs:label "dissection technique" ;
+    rdfs:comment """
+       # FIXME need to implement the dual for this
+       # hasDualTechnique -> hasPrimaryInput -> hasPart <-> removal invariant aka wasPartOf
+       # vs extraction technique ...
+       # note that dissection may not actually be a destroying technique in all cases
+       # for example microdissection or biopsy techniques
+       """ ;
     NIFRID:synonyms "dissection" .
+
+tech:dropSep a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom TEMP:26 ] ) ] ;
+    rdfs:label "droplet based separation technique" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty hasParticipant: ;
+            owl:someValuesFrom ilxtr:dropletFormingMicrofluidicsDevice ] ;
+    NIFRID:synonyms "droplet based sequencing technique",
+        "droplet sequencing",
+        "Droplet-Sequencing" .
 
 tech:DTI a owl:Class ;
     owl:equivalentClass [ owl:intersectionOf (
@@ -475,11 +563,8 @@ tech:DTI a owl:Class ;
                         owl:onProperty hasInput: ;
                         owl:someValuesFrom ilxtr:MRIScanner ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:knownDetectedPhenomena ;
-                        owl:someValuesFrom CHEBI:15377 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:knownProbedPhenomena ;
-                        owl:someValuesFrom CHEBI:15377 ] ) ],
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/process/diffusion> ] ) ],
         [ owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
@@ -508,7 +593,7 @@ tech:DTI_ImageProcessing a owl:Class ;
                         owl:someValuesFrom ilxtr:image ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:229 ] ) ] ;
+                        owl:someValuesFrom TEMP:230 ] ) ] ;
     rdfs:label "diffusion tensor image processing" .
 
 tech:dwMRI a owl:Class ;
@@ -541,7 +626,7 @@ tech:dwMRI_ImageProcessing a owl:Class ;
                         owl:someValuesFrom ilxtr:image ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:228 ] ) ] ;
+                        owl:someValuesFrom TEMP:229 ] ) ] ;
     rdfs:label "diffusion weighted MRI image processing" .
 
 tech:eClamp a owl:Class ;
@@ -615,7 +700,8 @@ tech:electroporation a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryParticipant ;
                         owl:someValuesFrom ilxtr:cellMembrane ] ) ] ;
-    rdfs:label "electroporation technique" .
+    rdfs:label "electroporation technique" ;
+    NIFRID:synonyms "electropermeabilization technique" .
 
 tech:enrichment a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -764,7 +850,7 @@ tech:fMRI_ImageProcessing a owl:Class ;
                         owl:someValuesFrom ilxtr:image ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:227 ] ) ] ;
+                        owl:someValuesFrom TEMP:228 ] ) ] ;
     rdfs:label "fMRI image processing" .
 
 tech:histology a owl:Class ;
@@ -856,7 +942,7 @@ tech:ISH a owl:Class ;
                         owl:someValuesFrom ilxtr:hybridizationProbe ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPartPriParticipant ;
-                        owl:someValuesFrom ilxtr:RNA ]
+                        owl:someValuesFrom ilxtr:RNApolymer ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryAspect ;
                         owl:someValuesFrom asp:complementSequencePresent ] ) ] ;
@@ -960,7 +1046,7 @@ tech:mcSeq a owl:Class ;
                         owl:someValuesFrom asp:methylationSequence ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom ilxtr:DNA ] ) ] ;
+                        owl:someValuesFrom ilxtr:DNApolymer ] ) ] ;
     rdfs:label "mC-seq" ;
     definition: "non CG methylation" .
 
@@ -994,7 +1080,7 @@ tech:MERFISH a owl:Class ;
                         owl:someValuesFrom tech:ISH ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:42 ] ) ] ;
+                        owl:someValuesFrom TEMP:41 ] ) ] ;
     rdfs:label "multiplexed error-robust fluorescence in situ hybridization technique" ;
     NIFRID:synonyms "MERFISH",
         "multiplexed error robust FISH",
@@ -1060,7 +1146,7 @@ tech:MRI_ImageProcessing a owl:Class ;
                         owl:someValuesFrom ilxtr:nonZero ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:226 ] ) ] ;
+                        owl:someValuesFrom TEMP:227 ] ) ] ;
     rdfs:label "magnetic resonance image processing" .
 
 tech:multiElectrodeEphys a owl:Class ;
@@ -1128,8 +1214,22 @@ tech:perfusion a owl:Class ;
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:237 ] ) ] ;
+                        owl:someValuesFrom TEMP:238 ] ) ] ;
     rdfs:label "perfusion technique" .
+
+tech:poration a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                        owl:someValuesFrom asp:permeability ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:cellMembrane ] ) ] ;
+    rdfs:label "poration technique" ;
+    definition: "a technique for making holes in things" ;
+    NIFRID:synonyms "membrane poration technique",
+        "permeabilization technique" .
 
 tech:positronEmissionImaging a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1182,7 +1282,7 @@ tech:rnaSeq a owl:Class ;
                         owl:someValuesFrom asp:sequence ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom CHEBI:33697 ] ) ],
+                        owl:someValuesFrom ilxtr:RNApolymer ] ) ],
         [ owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
@@ -1230,12 +1330,12 @@ tech:sectioning a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:destroying ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryOutput ;
                         owl:someValuesFrom ilxtr:section ] ) ] ;
     rdfs:label "sectioning technique" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasDualInputTechnique ;
+            owl:someValuesFrom tech:destroying ] ;
     NIFRID:synonyms "sectioning" .
 
 tech:sedation a owl:Class ;
@@ -1394,7 +1494,7 @@ tech:smFISH a owl:Class ;
                         owl:someValuesFrom tech:ISH ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:41 ] ) ] ;
+                        owl:someValuesFrom TEMP:40 ] ) ] ;
     rdfs:label "single-molecule fluorescence in situ hybridization technique" ;
     NIFRID:synonyms "single molecule FISH",
         "single molecule fluorescence in situ hybridization",
@@ -1436,7 +1536,7 @@ tech:statistics a owl:Class ;
                         owl:someValuesFrom ilxtr:informationEntity ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom ilxtr:statisticalAlgorithem ] ) ] ;
+                        owl:someValuesFrom ilxtr:statisticalAlgorithm ] ) ] ;
     rdfs:label "statistical technique" .
 
 tech:stim_Magnetic a owl:Class ;
@@ -1460,9 +1560,30 @@ tech:surgical a owl:Class ;
                         owl:someValuesFrom tech:cutting ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:278 ] ) ] ;
+                        owl:someValuesFrom TEMP:279 ] ) ] ;
     rdfs:label "surgical technique" ;
     NIFRID:synonyms "surgery" .
+
+tech:thermalporation a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    [ a owl:Class ;
+                        owl:intersectionOf (
+                                ilxtr:technique
+                                [ a owl:Restriction ;
+                                    owl:onProperty hasPart: ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                                            owl:someValuesFrom asp:temperature ] ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                                    owl:someValuesFrom asp:permeability ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasPrimaryParticipant ;
+                                    owl:someValuesFrom ilxtr:cellMembrane ] ) ] ) ] ;
+    rdfs:label "thermalporation technique" ;
+    NIFRID:synonyms "heatshock",
+        "heatshock poration technique" .
 
 tech:tomography a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1486,18 +1607,18 @@ tech:twoPhoton a owl:Class ;
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:358 ] ) ] ;
+                        owl:someValuesFrom TEMP:360 ] ) ] ;
     rdfs:label "two-photon microscopy technique" .
 
-tech:unclassified a owl:Class ;
+tech:unfinished a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:temp ] ) ] ;
-    rdfs:label "Unclassified techniques" ;
-    NIFRID:synonyms "unfinished techniques" .
+    rdfs:label "Unfinished techniques" ;
+    NIFRID:synonyms "incompletely modeled techniques" .
 
 tech:vClamp a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1529,7 +1650,7 @@ tech:wholeCellPatch a owl:Class ;
                         owl:someValuesFrom ilxtr:cellMembrane ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:329 ] ) ] ;
+                        owl:someValuesFrom TEMP:331 ] ) ] ;
     rdfs:label "whole cell patch technique" .
 
 TEMP:0 a owl:Class ;
@@ -1604,7 +1725,8 @@ TEMP:6 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
                         owl:someValuesFrom ilxtr:technique ] ) ] ;
-    rdfs:label "composite techniques" .
+    rdfs:label "composite techniques" ;
+    rdfs:comment "Note that while the notion of atomic techniques is the complement of composite techniques, in an open world it is very hard to show that at technique cannot be broken down any further. Therefore we have to use something other than owl in order to account for techniques that 'at the current time' or 'in the current model' or 'at the current level of abstraction' do not have any explicit parts." .
 
 TEMP:7 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1768,7 +1890,7 @@ TEMP:19 a owl:Class ;
                         owl:someValuesFrom ilxtr:microPipette ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom CHEBI:33697 ] ) ] ;
+                        owl:someValuesFrom ilxtr:RNApolymer ] ) ] ;
     rdfs:label "Patch-seq" ;
     NIFRID:synonyms "patch seq",
         "Patch-Seq" .
@@ -1828,24 +1950,28 @@ TEMP:24 a owl:Class ;
     rdfs:label "bulk ATAC-seq" ;
     NIFRID:synonyms "Bulk-ATAC-seq" .
 
-TEMP:26 a owl:Class ;
+TEMP:27 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:dropSep ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
                         owl:someValuesFrom tech:rnaSeq ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:27 ] ) ] ;
-    rdfs:label "Drop-seq" ;
-    NIFRID:synonyms "droplet sequencing",
-        "Droplet-Sequencing" .
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom prot:dropSeq ] ) ] ;
+    rdfs:label "Drop-seq" .
 
 TEMP:28 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:dropSep ]
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
                         owl:someValuesFrom tech:rnaSeq ]
@@ -1854,24 +1980,7 @@ TEMP:28 a owl:Class ;
                         owl:someValuesFrom TEMP:29 ] ) ] ;
     rdfs:label "DroNc-seq" .
 
-TEMP:30 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:rnaSeq ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:31 ] ) ] ;
-    rdfs:label "10x Chromium sequencing" ;
-    definition: "commercialized drop seq" ;
-    NIFRID:synonyms "10x",
-        "10x Genomics",
-        "10x sequencing",
-        "Chromium sequencing" .
-
-TEMP:32 a owl:Class ;
+TEMP:31 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -1883,13 +1992,13 @@ TEMP:32 a owl:Class ;
                         owl:someValuesFrom tech:sequencing ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:33 ] ) ] ;
+                        owl:someValuesFrom TEMP:32 ] ) ] ;
     rdfs:label "MAP-seq" ;
     NIFRID:synonyms "MAP seq",
         "MAPseq",
         "Multiplexed Analysis of Projections by Sequencing" .
 
-TEMP:34 a owl:Class ;
+TEMP:33 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -1898,7 +2007,7 @@ TEMP:34 a owl:Class ;
                         owl:someValuesFrom tech:rnaSeq ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:35 ]
+                        owl:someValuesFrom TEMP:34 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:isImplementationOf ;
                         owl:someValuesFrom tech:smartSeq ] ) ] ;
@@ -1907,7 +2016,7 @@ TEMP:34 a owl:Class ;
     NIFRID:synonyms "SMART-seq2",
         "Smart-Seq2" .
 
-TEMP:36 a owl:Class ;
+TEMP:35 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -1922,7 +2031,7 @@ TEMP:36 a owl:Class ;
     NIFRID:synonyms "SMART-Seq v4",
         "SMARTer v4" .
 
-TEMP:37 a owl:Class ;
+TEMP:36 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -1940,11 +2049,11 @@ TEMP:37 a owl:Class ;
                         owl:someValuesFrom ilxtr:negative ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:38 ] ) ] ;
+                        owl:someValuesFrom TEMP:37 ] ) ] ;
     rdfs:label "survival anaesthesia technique" ;
     NIFRID:synonyms "anaesthesia with recovery" .
 
-TEMP:39 a owl:Class ;
+TEMP:38 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -1962,12 +2071,12 @@ TEMP:39 a owl:Class ;
                         owl:someValuesFrom ilxtr:negative ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:40 ] ) ] ;
+                        owl:someValuesFrom TEMP:39 ] ) ] ;
     rdfs:label "terminal anaesthesia technique" ;
     NIFRID:synonyms "anaesthesia with no recovery",
         "anaesthesia without recovery" .
 
-TEMP:43 a owl:Class ;
+TEMP:42 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -1976,7 +2085,7 @@ TEMP:43 a owl:Class ;
                         owl:someValuesFrom SO:0000704 ] ) ] ;
     rdfs:label "genetic technique" .
 
-TEMP:44 a owl:Class ;
+TEMP:43 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -1991,71 +2100,84 @@ TEMP:44 a owl:Class ;
                         owl:someValuesFrom CHEBI:33696 ] ) ] ;
     rdfs:label "nucleic acid amplification technique" .
 
-TEMP:45 a owl:Class ;
+TEMP:44 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:46 ] ) ] ;
+                        owl:someValuesFrom TEMP:45 ] ) ] ;
     rdfs:label "expression manipulation technique" .
 
-TEMP:47 a owl:Class ;
+TEMP:46 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:48 ] ) ] ;
+                        owl:someValuesFrom TEMP:47 ] ) ] ;
     rdfs:label "conditional expression manipulation technique" .
 
-TEMP:49 a owl:Class ;
+TEMP:48 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:50 ] ) ] ;
+                        owl:someValuesFrom TEMP:49 ] ) ] ;
     rdfs:label "knock in technique" ;
     ilxtr:hasTempId HBP_MEM:0000121 .
 
-TEMP:51 a owl:Class ;
+TEMP:50 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:52 ] ) ] ;
+                        owl:someValuesFrom TEMP:51 ] ) ] ;
     rdfs:label "knock down technique" ;
     NIFRID:synonyms "underexpression technique" .
 
-TEMP:53 a owl:Class ;
+TEMP:52 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:54 ] ) ] ;
+                        owl:someValuesFrom TEMP:53 ] ) ] ;
     rdfs:label "knock out technique" ;
     ilxtr:hasTempId HBP_MEM:0000120 .
 
-TEMP:55 a owl:Class ;
+TEMP:54 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:56 ] ) ] ;
+                        owl:someValuesFrom TEMP:55 ] ) ] ;
     rdfs:label "mutagenesis technique" .
 
-TEMP:57 a owl:Class ;
+TEMP:56 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:58 ] ) ] ;
+                        owl:someValuesFrom TEMP:57 ] ) ] ;
     rdfs:label "overexpression technique" .
+
+TEMP:58 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                        owl:someValuesFrom asp:location ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:package ] ) ] ;
+    rdfs:label "package delivery technique" ;
+    NIFRID:synonyms "parcel delivery technique" .
 
 TEMP:59 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -2102,8 +2224,9 @@ TEMP:62 a owl:Class ;
                         owl:someValuesFrom asp:location ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTarget ;
-                        owl:someValuesFrom ilxtr:externalSurfaceOfOrganism ] ) ] ;
-    rdfs:label "topical application technique" .
+                        owl:someValuesFrom ilxtr:surface ] ) ] ;
+    rdfs:label "topical application technique" ;
+    rdfs:comment "topical application of peanutbutter to bread is allowed" .
 
 TEMP:63 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -2127,7 +2250,8 @@ TEMP:64 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryAspectActualized ;
                         owl:someValuesFrom asp:location ] ) ] ;
-    rdfs:label "rocket delivery technique" .
+    rdfs:label "rocket delivery technique" ;
+    rdfs:comment "This is here for (among other things) the morbid clinical scenario where someone might need to know that a nerve agent was delivered by rocket and not just released to drift on the wind, because it means that there might be additional complications." .
 
 TEMP:65 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -2157,9 +2281,24 @@ TEMP:67 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:68 ] ) ] ;
-    rdfs:label "pressure injection technique" .
+    rdfs:label "biolistic injection technique" .
 
 TEMP:69 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                        owl:someValuesFrom asp:location ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom ilxtr:intoSomething ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom TEMP:70 ] ) ] ;
+    rdfs:label "pressure injection technique" .
+
+TEMP:71 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -2173,7 +2312,7 @@ TEMP:69 a owl:Class ;
     NIFRID:synonyms "brain injection",
         "injection into the brain" .
 
-TEMP:70 a owl:Class ;
+TEMP:72 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -2186,7 +2325,7 @@ TEMP:70 a owl:Class ;
     rdfs:label "viral injection technique" ;
     definition: "a technique for injecting viral particles" .
 
-TEMP:71 a owl:Class ;
+TEMP:73 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -2199,7 +2338,7 @@ TEMP:71 a owl:Class ;
     rdfs:label "AAVretro injection technique" ;
     NIFRID:synonyms "AAVretro injection" .
 
-TEMP:72 a owl:Class ;
+TEMP:74 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -2211,10 +2350,11 @@ TEMP:72 a owl:Class ;
                         owl:someValuesFrom asp:location ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:73 ] ) ] ;
-    rdfs:label "electrical delivery technique" .
+                        owl:someValuesFrom TEMP:75 ] ) ] ;
+    rdfs:label "electrical delivery technique" ;
+    rdfs:comment "rail gun seems about as close was we can get" .
 
-TEMP:74 a owl:Class ;
+TEMP:76 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -2228,7 +2368,7 @@ TEMP:74 a owl:Class ;
                                 owl:someValuesFrom ilxtr:uterus ] ] ) ] ;
     rdfs:label "in utero electroporation technique" .
 
-TEMP:75 a owl:Class ;
+TEMP:77 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     [ a owl:Restriction ;
@@ -2243,7 +2383,7 @@ TEMP:75 a owl:Class ;
                         owl:maxCardinality 1 ] ) ] ;
     rdfs:label "single cell electroporation technique" .
 
-TEMP:76 a owl:Class ;
+TEMP:78 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     [ a owl:Restriction ;
@@ -2258,7 +2398,7 @@ TEMP:76 a owl:Class ;
                         owl:maxCardinality 1 ] ) ] ;
     rdfs:label "single neuron electroporation technique" .
 
-TEMP:77 a owl:Class ;
+TEMP:79 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -2267,23 +2407,8 @@ TEMP:77 a owl:Class ;
                         owl:someValuesFrom asp:location ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom CHEBI:16991 ] ) ] ;
+                        owl:someValuesFrom SO:0001235 ] ) ] ;
     rdfs:label "DNA delivery technique" .
-
-TEMP:78 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                        owl:someValuesFrom asp:location ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom CHEBI:16991 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:79 ] ) ] ;
-    rdfs:label "transfection technique" .
 
 TEMP:80 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -2294,13 +2419,29 @@ TEMP:80 a owl:Class ;
                         owl:someValuesFrom asp:location ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom CHEBI:16991 ]
+                        owl:someValuesFrom SO:0001235 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:81 ] ) ] ;
-    rdfs:label "DNA delivery exploiting some pre-existing mechanism technique" .
+    rdfs:label "transfection technique" .
 
 TEMP:82 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                        owl:someValuesFrom asp:location ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryInput ;
+                        owl:someValuesFrom SO:0001235 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom TEMP:83 ] ) ] ;
+    rdfs:label "DNA delivery technique exploiting some active biological process" ;
+    NIFRID:synonyms "DNA delivery exploiting some pre-existing mechanism technique" .
+
+TEMP:84 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -2312,23 +2453,8 @@ TEMP:82 a owl:Class ;
                         owl:someValuesFrom asp:location ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom CHEBI:16991 ] ) ] ;
+                        owl:someValuesFrom SO:0001235 ] ) ] ;
     rdfs:label "DNA delivery via primary genetic code technique" .
-
-TEMP:83 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                        owl:someValuesFrom asp:location ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom CHEBI:16991 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:84 ] ) ] ;
-    rdfs:label "DNA delivery via germ line technique" .
 
 TEMP:85 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -2342,7 +2468,7 @@ TEMP:85 a owl:Class ;
                         owl:someValuesFrom asp:location ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom CHEBI:16991 ] ) ] ;
+                        owl:someValuesFrom SO:0001235 ] ) ] ;
     rdfs:label "DNA delivery via plasmid technique" .
 
 TEMP:86 a owl:Class ;
@@ -2357,7 +2483,7 @@ TEMP:86 a owl:Class ;
                         owl:someValuesFrom asp:location ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom CHEBI:16991 ] ) ] ;
+                        owl:someValuesFrom SO:0001235 ] ) ] ;
     rdfs:label "DNA delivery via viral particle technique" .
 
 TEMP:87 a owl:Class ;
@@ -2382,7 +2508,7 @@ TEMP:88 a owl:Class ;
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
-                        owl:someValuesFrom ilxtr:anterogradeMovement ]
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/process/anterogradeMovement> ]
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
                         owl:someValuesFrom tech:delivery ]
@@ -2401,7 +2527,7 @@ TEMP:89 a owl:Class ;
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
-                        owl:someValuesFrom ilxtr:retrogradeMovement ]
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/process/retrogradeMovement> ]
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
                         owl:someValuesFrom tech:delivery ]
@@ -2420,10 +2546,10 @@ TEMP:90 a owl:Class ;
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
-                        owl:someValuesFrom ilxtr:anterogradeMovement ]
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/process/anterogradeMovement> ]
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
-                        owl:someValuesFrom ilxtr:retrogradeMovement ]
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/process/retrogradeMovement> ]
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
                         owl:someValuesFrom tech:delivery ]
@@ -2532,7 +2658,7 @@ TEMP:98 a owl:Class ;
                         owl:someValuesFrom ilxtr:informationEntity ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom ilxtr:algorithem ;
+                        owl:someValuesFrom ilxtr:algorithm ;
                         owl:minCardinality 1 ] ) ] ;
     rdfs:label "computational technique" .
 
@@ -2551,7 +2677,7 @@ TEMP:99 a owl:Class ;
                         owl:someValuesFrom TEMP:100 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom ilxtr:algorithem ] ) ] ;
+                        owl:someValuesFrom ilxtr:algorithm ] ) ] ;
     rdfs:label "simulation technique" .
 
 TEMP:101 a owl:Class ;
@@ -2621,7 +2747,7 @@ TEMP:106 a owl:Class ;
                         owl:someValuesFrom ilxtr:image ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom ilxtr:inverseProblemAlgorithem ] ) ] ;
+                        owl:someValuesFrom ilxtr:inverseProblemAlgorithm ] ) ] ;
     rdfs:label "image reconstruction technique" .
 
 TEMP:107 a owl:Class ;
@@ -2674,7 +2800,7 @@ TEMP:112 a owl:Class ;
                         owl:someValuesFrom ilxtr:timeSeries ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom ilxtr:spikeSortingAlgorithem ] ) ] ;
+                        owl:someValuesFrom ilxtr:spikeSortingAlgorithm ] ) ] ;
     rdfs:label "spike sorting technique" ;
     NIFRID:synonyms "spike sorting" .
 
@@ -3308,7 +3434,7 @@ TEMP:185 a owl:Class ;
                                                             owl:someValuesFrom asp:isCategoryMember ]
                                                         [ a owl:Restriction ;
                                                             owl:onProperty ilxtr:hasPrimaryAspect ;
-                                                            owl:someValuesFrom asp:category ] ) ] ] ] ] ) ] ;
+                                                            owl:someValuesFrom asp:categoryAssigned ] ) ] ] ] ] ) ] ;
     rdfs:label "sorting technique" .
 
 TEMP:186 a owl:Class ;
@@ -3645,6 +3771,25 @@ TEMP:222 a owl:Class ;
     NIFRID:synonyms "confocal microscopy" .
 
 TEMP:223 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:phaseContrastMicroscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:visibleLight ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "phase contrast microscopy technique" ;
+    NIFRID:synonyms "phase contrast microscopy" .
+
+TEMP:224 a owl:Class ;
     owl:equivalentClass [ owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
@@ -3673,7 +3818,7 @@ TEMP:223 a owl:Class ;
     ilxtr:hasTempId HBP_MEM:0000007 ;
     NIFRID:synonyms "imaging that relies on contrast provided by differential aspects of some biological process" .
 
-TEMP:224 a owl:Class ;
+TEMP:225 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3689,7 +3834,7 @@ TEMP:224 a owl:Class ;
     rdfs:label "photographic technique" ;
     NIFRID:synonyms "photography" .
 
-TEMP:225 a owl:Class ;
+TEMP:226 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3708,7 +3853,7 @@ TEMP:225 a owl:Class ;
     rdfs:label "intrinsic optical imaging" ;
     NIFRID:synonyms "intrinsic signal optical imaging" .
 
-TEMP:230 a owl:Class ;
+TEMP:231 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3723,12 +3868,12 @@ TEMP:230 a owl:Class ;
                         owl:someValuesFrom ilxtr:physiologicalSystem ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:231 ] ) ] ;
+                        owl:someValuesFrom TEMP:232 ] ) ] ;
     rdfs:label "electroencephalography" ;
     ilxtr:hasTempId HBP_MEM:0000011 ;
     NIFRID:synonyms "EEG" .
 
-TEMP:232 a owl:Class ;
+TEMP:233 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3743,12 +3888,12 @@ TEMP:232 a owl:Class ;
                         owl:someValuesFrom NCBITaxon:40674 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:233 ] ) ] ;
+                        owl:someValuesFrom TEMP:234 ] ) ] ;
     rdfs:label "magnetoencephalography" ;
     ilxtr:hasTempId HBP_MEM:0000012 ;
     NIFRID:synonyms "MEG" .
 
-TEMP:234 a owl:Class ;
+TEMP:235 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3759,7 +3904,7 @@ TEMP:234 a owl:Class ;
     NIFRID:synonyms "state creation technique",
         "state induction technique" .
 
-TEMP:235 a owl:Class ;
+TEMP:236 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3774,7 +3919,7 @@ TEMP:235 a owl:Class ;
                         owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
     rdfs:label "activation technique" .
 
-TEMP:236 a owl:Class ;
+TEMP:237 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3789,17 +3934,17 @@ TEMP:236 a owl:Class ;
                         owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
     rdfs:label "deactivation technique" .
 
-TEMP:238 a owl:Class ;
+TEMP:239 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:239 ] ) ] ;
+                        owl:someValuesFrom TEMP:240 ] ) ] ;
     rdfs:label "intracardial perfusion technique" ;
     NIFRID:synonyms "intracardial perfusion" .
 
-TEMP:240 a owl:Class ;
+TEMP:241 a owl:Class ;
     owl:equivalentClass [ owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
@@ -3817,7 +3962,7 @@ TEMP:240 a owl:Class ;
     rdfs:label "pharmacological technique" ;
     NIFRID:synonyms "pharmacology" .
 
-TEMP:241 a owl:Class ;
+TEMP:242 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3832,7 +3977,7 @@ TEMP:241 a owl:Class ;
                         owl:someValuesFrom CHEBI:9506 ] ) ] ;
     rdfs:label "ttx bath application technique" .
 
-TEMP:242 a owl:Class ;
+TEMP:243 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3847,7 +3992,7 @@ TEMP:242 a owl:Class ;
                         owl:someValuesFrom ilxtr:photons ] ) ] ;
     rdfs:label "photoactivation technique" .
 
-TEMP:243 a owl:Class ;
+TEMP:244 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3862,7 +4007,7 @@ TEMP:243 a owl:Class ;
                         owl:someValuesFrom ilxtr:photons ] ) ] ;
     rdfs:label "photoinactivation technique" .
 
-TEMP:244 a owl:Class ;
+TEMP:245 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3871,10 +4016,10 @@ TEMP:244 a owl:Class ;
                         owl:someValuesFrom ilxtr:photons ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:245 ] ) ] ;
+                        owl:someValuesFrom TEMP:246 ] ) ] ;
     rdfs:label "photobleaching technique" .
 
-TEMP:246 a owl:Class ;
+TEMP:247 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3883,10 +4028,10 @@ TEMP:246 a owl:Class ;
                         owl:someValuesFrom ilxtr:photons ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:247 ] ) ] ;
+                        owl:someValuesFrom TEMP:248 ] ) ] ;
     rdfs:label "photoconversion technique" .
 
-TEMP:248 a owl:Class ;
+TEMP:249 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3903,25 +4048,25 @@ TEMP:248 a owl:Class ;
     NIFRID:synonyms "uncaging",
         "uncaging technique" .
 
-TEMP:249 a owl:Class ;
+TEMP:250 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:250 ] ) ] ;
+                        owl:someValuesFrom TEMP:251 ] ) ] ;
     rdfs:label "physical modification technique" .
 
-TEMP:251 a owl:Class ;
+TEMP:252 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:252 ] ) ] ;
+                        owl:someValuesFrom TEMP:253 ] ) ] ;
     rdfs:label "ablation technique" .
 
-TEMP:253 a owl:Class ;
+TEMP:254 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3933,25 +4078,25 @@ TEMP:253 a owl:Class ;
                         owl:someValuesFrom ilxtr:negativeNonZero ] ) ] ;
     rdfs:label "blinding technique" .
 
-TEMP:254 a owl:Class ;
+TEMP:255 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:255 ] ) ] ;
+                        owl:someValuesFrom TEMP:256 ] ) ] ;
     rdfs:label "crushing technique" .
 
-TEMP:256 a owl:Class ;
+TEMP:257 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:257 ] ) ] ;
+                        owl:someValuesFrom TEMP:258 ] ) ] ;
     rdfs:label "deafferenting technique" .
 
-TEMP:258 a owl:Class ;
+TEMP:259 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3963,7 +4108,7 @@ TEMP:258 a owl:Class ;
                         owl:someValuesFrom ilxtr:positiveNonZero ] ) ] ;
     rdfs:label "depolarization technique" .
 
-TEMP:259 a owl:Class ;
+TEMP:260 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3975,7 +4120,7 @@ TEMP:259 a owl:Class ;
                         owl:someValuesFrom ilxtr:negativeNonZero ] ) ] ;
     rdfs:label "hyperpolarization technique" .
 
-TEMP:260 a owl:Class ;
+TEMP:261 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3987,7 +4132,7 @@ TEMP:260 a owl:Class ;
                         owl:someValuesFrom asp:lumenance ] ) ] ;
     rdfs:label "illumination technique" .
 
-TEMP:261 a owl:Class ;
+TEMP:262 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -3996,10 +4141,10 @@ TEMP:261 a owl:Class ;
                         owl:someValuesFrom tech:surgical ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:262 ] ) ] ;
+                        owl:someValuesFrom TEMP:263 ] ) ] ;
     rdfs:label "lesioning technique" .
 
-TEMP:263 a owl:Class ;
+TEMP:264 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4011,10 +4156,10 @@ TEMP:263 a owl:Class ;
                         owl:someValuesFrom ilxtr:negativeNonZero ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:264 ] ) ] ;
+                        owl:someValuesFrom TEMP:265 ] ) ] ;
     rdfs:label "sensory deprivation technique" .
 
-TEMP:265 a owl:Class ;
+TEMP:266 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4023,10 +4168,10 @@ TEMP:265 a owl:Class ;
                         owl:someValuesFrom tech:surgical ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:266 ] ) ] ;
+                        owl:someValuesFrom TEMP:267 ] ) ] ;
     rdfs:label "transection technique" .
 
-TEMP:267 a owl:Class ;
+TEMP:268 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4041,7 +4186,7 @@ TEMP:267 a owl:Class ;
                         owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
     rdfs:label "stimulation technique" .
 
-TEMP:268 a owl:Class ;
+TEMP:269 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4050,12 +4195,12 @@ TEMP:268 a owl:Class ;
                         owl:someValuesFrom ilxtr:mechanicalForce ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:269 ] ) ] ;
+                        owl:someValuesFrom TEMP:270 ] ) ] ;
     rdfs:label "physical stimulation technique" ;
     definition: "A technique using mechanical force to enduce a state change on a system." ;
     NIFRID:synonyms "mechanical stimulation technique" .
 
-TEMP:270 a owl:Class ;
+TEMP:271 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4067,10 +4212,10 @@ TEMP:270 a owl:Class ;
                         owl:someValuesFrom ilxtr:electricalField ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:271 ] ) ] ;
+                        owl:someValuesFrom TEMP:272 ] ) ] ;
     rdfs:label "electrical stimulation technique" .
 
-TEMP:272 a owl:Class ;
+TEMP:273 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4082,28 +4227,28 @@ TEMP:272 a owl:Class ;
                         owl:someValuesFrom ilxtr:magneticField ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:273 ] ) ] ;
+                        owl:someValuesFrom TEMP:274 ] ) ] ;
     rdfs:label "transcranial magnetic stimulation technique" .
 
-TEMP:274 a owl:Class ;
+TEMP:275 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:275 ] ) ] ;
+                        owl:someValuesFrom TEMP:276 ] ) ] ;
     rdfs:label "cortico-cortical evoked potential technique" .
 
-TEMP:276 a owl:Class ;
+TEMP:277 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:277 ] ) ] ;
+                        owl:someValuesFrom TEMP:278 ] ) ] ;
     rdfs:label "microstimulation technique" .
 
-TEMP:279 a owl:Class ;
+TEMP:280 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     [ a owl:Restriction ;
@@ -4114,7 +4259,7 @@ TEMP:279 a owl:Class ;
                         owl:someValuesFrom ilxtr:toReconstruct ] ) ] ;
     rdfs:label "reconstructive surgery" .
 
-TEMP:280 a owl:Class ;
+TEMP:281 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4126,7 +4271,7 @@ TEMP:280 a owl:Class ;
                         owl:someValuesFrom ilxtr:tissue ] ) ] ;
     rdfs:label "biopsy technique" .
 
-TEMP:281 a owl:Class ;
+TEMP:282 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4135,11 +4280,11 @@ TEMP:281 a owl:Class ;
                         owl:someValuesFrom tech:surgical ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:282 ] ) ] ;
+                        owl:someValuesFrom TEMP:283 ] ) ] ;
     rdfs:label "craniotomy technique" ;
     definition: "Makes a hold in the cranium (head)." .
 
-TEMP:283 a owl:Class ;
+TEMP:284 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4148,11 +4293,11 @@ TEMP:283 a owl:Class ;
                         owl:someValuesFrom tech:surgical ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:284 ] ) ] ;
+                        owl:someValuesFrom TEMP:285 ] ) ] ;
     rdfs:label "durotomy technique" ;
     definition: "Makes a hold in the dura." .
 
-TEMP:285 a owl:Class ;
+TEMP:286 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4161,11 +4306,11 @@ TEMP:285 a owl:Class ;
                         owl:someValuesFrom tech:surgical ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:286 ] ) ] ;
+                        owl:someValuesFrom TEMP:287 ] ) ] ;
     rdfs:label "transplantation technique" ;
     NIFRID:synonyms "transplant" .
 
-TEMP:287 a owl:Class ;
+TEMP:288 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4174,10 +4319,10 @@ TEMP:287 a owl:Class ;
                         owl:someValuesFrom tech:surgical ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:288 ] ) ] ;
+                        owl:someValuesFrom TEMP:289 ] ) ] ;
     rdfs:label "implantation technique" .
 
-TEMP:289 a owl:Class ;
+TEMP:290 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4192,7 +4337,7 @@ TEMP:289 a owl:Class ;
                         owl:someValuesFrom ilxtr:stereotaxiCoordinateSystem ] ) ] ;
     rdfs:label "stereotaxic technique" .
 
-TEMP:290 a owl:Class ;
+TEMP:291 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4201,20 +4346,20 @@ TEMP:290 a owl:Class ;
                         owl:someValuesFrom asp:behavioral ] ) ] ;
     rdfs:label "behavioral technique" .
 
-TEMP:291 a owl:Class ;
+TEMP:292 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:292 ] ) ] ;
+                        owl:someValuesFrom TEMP:293 ] ) ] ;
     rdfs:label "behavioral conditioning technique" ;
     definition: "A technique for producing a specific behavioral response to a set of stimuli." ;
     NIFRID:synonyms "behavioral conditioning",
         "conditioning",
         "conditioning technique" .
 
-TEMP:293 a owl:Class ;
+TEMP:294 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4223,22 +4368,22 @@ TEMP:293 a owl:Class ;
                         owl:someValuesFrom ilxtr:notTheSubject ] ) ] ;
     rdfs:label "environmental manipulation technique" .
 
-TEMP:294 a owl:Class ;
+TEMP:295 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:295 ] ) ] ;
+                        owl:someValuesFrom TEMP:296 ] ) ] ;
     rdfs:label "environmental enrichment technique" ;
     NIFRID:synonyms "behavioral enrichment technique" .
 
-TEMP:296 a owl:Class ;
+TEMP:297 a owl:Class ;
     owl:equivalentClass [ owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
-                        owl:someValuesFrom TEMP:296 ] ) ],
+                        owl:someValuesFrom TEMP:297 ] ) ],
         [ owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
@@ -4249,7 +4394,19 @@ TEMP:296 a owl:Class ;
                         owl:someValuesFrom ilxtr:food_and_water ] ) ] ;
     rdfs:label "dietary technique" .
 
-TEMP:297 a owl:Class ;
+TEMP:298 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:food_and_water ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:positiveNonZero ] ) ] ;
+    rdfs:label "dietary enrichment technique" .
+
+TEMP:299 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4261,7 +4418,7 @@ TEMP:297 a owl:Class ;
                         owl:someValuesFrom ilxtr:negativeNonZero ] ) ] ;
     rdfs:label "dietary restriction technique" .
 
-TEMP:298 a owl:Class ;
+TEMP:300 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4278,16 +4435,16 @@ TEMP:298 a owl:Class ;
     NIFRID:synonyms "food restriction technique",
         "starvation technique" .
 
-TEMP:299 a owl:Class ;
+TEMP:301 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
                         owl:onProperty hasPart: ;
-                        owl:someValuesFrom TEMP:298 ] ) ] ;
+                        owl:someValuesFrom TEMP:300 ] ) ] ;
     rdfs:label "technique that makes use of food deprivation" .
 
-TEMP:300 a owl:Class ;
+TEMP:302 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4304,13 +4461,10 @@ TEMP:300 a owl:Class ;
     NIFRID:synonyms "water restriction",
         "water restriction technique" .
 
-TEMP:301 a owl:Class ;
+TEMP:303 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:destroying ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryOutput ;
                         owl:someValuesFrom ilxtr:section ]
@@ -4320,32 +4474,31 @@ TEMP:301 a owl:Class ;
     rdfs:label "tissue sectioning technique" ;
     NIFRID:synonyms "tissue sectioning" .
 
-TEMP:302 a owl:Class ;
+TEMP:304 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:destroying ]
+                        owl:onProperty ilxtr:hasDualTechnique ;
+                        owl:someValuesFrom [ a owl:Restriction ;
+                                owl:onProperty ilxtr:hasPrimaryInput ;
+                                owl:someValuesFrom UBERON:0000955 ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryOutput ;
-                        owl:someValuesFrom ilxtr:section ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom UBERON:0000955 ] ) ] ;
+                        owl:someValuesFrom ilxtr:section ] ) ] ;
     rdfs:label "brain sectioning technique" ;
     NIFRID:synonyms "brain sectioning" .
 
-TEMP:303 a owl:Class ;
+TEMP:305 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     tech:sectioning
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:304 ] ) ] ;
+                        owl:someValuesFrom TEMP:306 ] ) ] ;
     rdfs:label "block face sectioning technique" .
 
-TEMP:305 a owl:Class ;
+TEMP:307 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4358,7 +4511,7 @@ TEMP:305 a owl:Class ;
     rdfs:label "microtomy technique" ;
     NIFRID:synonyms "microtomy" .
 
-TEMP:306 a owl:Class ;
+TEMP:308 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4371,7 +4524,7 @@ TEMP:306 a owl:Class ;
     rdfs:label "ultramicrotomy technique" ;
     NIFRID:synonyms "ultramicrotomy" .
 
-TEMP:307 a owl:Class ;
+TEMP:309 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4385,7 +4538,7 @@ TEMP:307 a owl:Class ;
     NIFRID:synonyms "array tomography",
         "array tomography technique" .
 
-TEMP:308 a owl:Class ;
+TEMP:310 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4398,7 +4551,7 @@ TEMP:308 a owl:Class ;
     rdfs:label "electron tomography technique" ;
     NIFRID:synonyms "electron tomography" .
 
-TEMP:309 a owl:Class ;
+TEMP:311 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4417,7 +4570,7 @@ TEMP:309 a owl:Class ;
     rdfs:label "correlative light-electron microscopy technique" ;
     NIFRID:synonyms "correlative light-electron microscopy" .
 
-TEMP:310 a owl:Class ;
+TEMP:312 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4436,7 +4589,7 @@ TEMP:310 a owl:Class ;
     rdfs:label "serial blockface electron microscopy technique" ;
     NIFRID:synonyms "serial blockface electron microscopy" .
 
-TEMP:311 a owl:Class ;
+TEMP:313 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4448,11 +4601,11 @@ TEMP:311 a owl:Class ;
                         owl:someValuesFrom ilxtr:materialEntity ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom ilxtr:superResolutionAlgorithem ] ) ] ;
+                        owl:someValuesFrom ilxtr:superResolutionAlgorithm ] ) ] ;
     rdfs:label "super resolution microscopy technique" ;
     NIFRID:synonyms "super resolution microscopy" .
 
-TEMP:312 a owl:Class ;
+TEMP:314 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4471,7 +4624,7 @@ TEMP:312 a owl:Class ;
     rdfs:label "northern blotting technique" ;
     NIFRID:synonyms "northern blot" .
 
-TEMP:313 a owl:Class ;
+TEMP:315 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4483,14 +4636,14 @@ TEMP:313 a owl:Class ;
                         owl:someValuesFrom asp:sequence ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom CHEBI:16991 ]
+                        owl:someValuesFrom ilxtr:DNApolymer ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasProbe ;
                         owl:someValuesFrom ilxtr:hybridizationProbe ] ) ] ;
     rdfs:label "Southern blotting technique" ;
     NIFRID:synonyms "Southern blot" .
 
-TEMP:314 a owl:Class ;
+TEMP:316 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4511,7 +4664,7 @@ TEMP:314 a owl:Class ;
     NIFRID:synonyms "protein immunoblot",
         "wester blot" .
 
-TEMP:315 a owl:Class ;
+TEMP:317 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4523,7 +4676,7 @@ TEMP:315 a owl:Class ;
                         owl:someValuesFrom GO:0005622 ] ) ] ;
     rdfs:label "intracellular electrophysiology technique" .
 
-TEMP:316 a owl:Class ;
+TEMP:318 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4538,7 +4691,7 @@ TEMP:316 a owl:Class ;
         "multi unit recording technique",
         "multi-unit recording" .
 
-TEMP:317 a owl:Class ;
+TEMP:319 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4553,7 +4706,7 @@ TEMP:317 a owl:Class ;
         "single unit recording technique",
         "single-unit recording" .
 
-TEMP:318 a owl:Class ;
+TEMP:320 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4566,7 +4719,7 @@ TEMP:318 a owl:Class ;
     rdfs:label "extracellular electrophysiology recording technique" ;
     NIFRID:synonyms "extracellular recording" .
 
-TEMP:319 a owl:Class ;
+TEMP:321 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4581,25 +4734,9 @@ TEMP:319 a owl:Class ;
                         owl:someValuesFrom ilxtr:cellMembrane ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:320 ] ) ] ;
+                        owl:someValuesFrom TEMP:322 ] ) ] ;
     rdfs:label "cell attached patch technique" ;
     ilxtr:hasTempId HBP_MEM:0000029 .
-
-TEMP:321 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:patchPipette ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:cellMembrane ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:322 ] ) ] ;
-    rdfs:label "inside out patch technique" ;
-    ilxtr:hasTempId HBP_MEM:0000028 .
 
 TEMP:323 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4614,8 +4751,8 @@ TEMP:323 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:324 ] ) ] ;
-    rdfs:label "loose patch technique" ;
-    ilxtr:hasTempId HBP_MEM:0000024 .
+    rdfs:label "inside out patch technique" ;
+    ilxtr:hasTempId HBP_MEM:0000028 .
 
 TEMP:325 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4630,8 +4767,8 @@ TEMP:325 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:326 ] ) ] ;
-    rdfs:label "outside out patch technique" ;
-    ilxtr:hasTempId HBP_MEM:0000026 .
+    rdfs:label "loose patch technique" ;
+    ilxtr:hasTempId HBP_MEM:0000024 .
 
 TEMP:327 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4646,11 +4783,27 @@ TEMP:327 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:328 ] ) ] ;
+    rdfs:label "outside out patch technique" ;
+    ilxtr:hasTempId HBP_MEM:0000026 .
+
+TEMP:329 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:patchPipette ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:cellMembrane ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom TEMP:330 ] ) ] ;
     rdfs:label "perforated patch technique" ;
     ilxtr:hasTempId HBP_MEM:0000025,
         HBP_MEM:0000027 .
 
-TEMP:330 a owl:Class ;
+TEMP:332 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4667,7 +4820,7 @@ TEMP:330 a owl:Class ;
     ilxtr:hasTempId HBP_MEM:0000203,
         HBP_MEM:0000204 .
 
-TEMP:331 a owl:Class ;
+TEMP:333 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4679,7 +4832,7 @@ TEMP:331 a owl:Class ;
                         owl:someValuesFrom tech:vClamp ] ) ] ;
     rdfs:label "dynamic clamp technique" .
 
-TEMP:332 a owl:Class ;
+TEMP:334 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4692,7 +4845,7 @@ TEMP:332 a owl:Class ;
     rdfs:label "whole cell patch clamp technique" ;
     NIFRID:synonyms "whole cell patch clamp" .
 
-TEMP:333 a owl:Class ;
+TEMP:335 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4704,15 +4857,6 @@ TEMP:333 a owl:Class ;
                         owl:someValuesFrom tech:cellPatching ] ) ] ;
     rdfs:label "cell filling technique" .
 
-TEMP:334 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:335 ] ) ] ;
-    rdfs:label "neuron morphology reconstruction technique" .
-
 TEMP:336 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
@@ -4720,7 +4864,7 @@ TEMP:336 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:337 ] ) ] ;
-    rdfs:label "autoradiographic technique" .
+    rdfs:label "neuron morphology reconstruction technique" .
 
 TEMP:338 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4729,7 +4873,7 @@ TEMP:338 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:339 ] ) ] ;
-    rdfs:label "intravascaular filling technique" .
+    rdfs:label "autoradiographic technique" .
 
 TEMP:340 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4738,7 +4882,7 @@ TEMP:340 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:341 ] ) ] ;
-    rdfs:label "brightfield microscopy technique" .
+    rdfs:label "intravascaular filling technique" .
 
 TEMP:342 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4747,7 +4891,7 @@ TEMP:342 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:343 ] ) ] ;
-    rdfs:label "machine learning technique" .
+    rdfs:label "brightfield microscopy technique" .
 
 TEMP:344 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4756,7 +4900,7 @@ TEMP:344 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:345 ] ) ] ;
-    rdfs:label "deep learning technique" .
+    rdfs:label "machine learning technique" .
 
 TEMP:346 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4765,7 +4909,7 @@ TEMP:346 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:347 ] ) ] ;
-    rdfs:label "delineation technique" .
+    rdfs:label "deep learning technique" .
 
 TEMP:348 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4774,7 +4918,7 @@ TEMP:348 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:349 ] ) ] ;
-    rdfs:label "epifluorescent microscopy technique" .
+    rdfs:label "delineation technique" .
 
 TEMP:350 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4783,7 +4927,7 @@ TEMP:350 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:351 ] ) ] ;
-    rdfs:label "epifluorescent microscopy" .
+    rdfs:label "epifluorescent microscopy technique" .
 
 TEMP:352 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4792,7 +4936,7 @@ TEMP:352 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:353 ] ) ] ;
-    rdfs:label "fiber photometry technique" .
+    rdfs:label "epifluorescent microscopy" .
 
 TEMP:354 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4801,7 +4945,7 @@ TEMP:354 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:355 ] ) ] ;
-    rdfs:label "focused ion beam scanning electron microscoscopy technique" .
+    rdfs:label "fiber photometry technique" .
 
 TEMP:356 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4810,9 +4954,18 @@ TEMP:356 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:357 ] ) ] ;
+    rdfs:label "focused ion beam scanning electron microscoscopy technique" .
+
+TEMP:358 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom TEMP:359 ] ) ] ;
     rdfs:label "microendoscopic technique" .
 
-TEMP:359 a owl:Class ;
+TEMP:361 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4824,7 +4977,7 @@ TEMP:359 a owl:Class ;
                         owl:someValuesFrom tech:twoPhoton ] ) ] ;
     rdfs:label "two-photon tomographic technique" .
 
-TEMP:360 a owl:Class ;
+TEMP:362 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
@@ -4836,18 +4989,9 @@ TEMP:360 a owl:Class ;
                         owl:someValuesFrom tech:twoPhoton ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:361 ] ) ] ;
+                        owl:someValuesFrom TEMP:363 ] ) ] ;
     rdfs:label "serial two-photon tomography" ;
     NIFRID:synonyms "STPT" .
-
-TEMP:362 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom TEMP:363 ] ) ] ;
-    rdfs:label "wide-field microscopy technique" .
 
 TEMP:364 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4856,7 +5000,7 @@ TEMP:364 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:365 ] ) ] ;
-    rdfs:label "brain-wide technique" .
+    rdfs:label "wide-field microscopy technique" .
 
 TEMP:366 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4865,7 +5009,7 @@ TEMP:366 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:367 ] ) ] ;
-    rdfs:label "gene characterization technique" .
+    rdfs:label "brain-wide technique" .
 
 TEMP:368 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4874,7 +5018,7 @@ TEMP:368 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:369 ] ) ] ;
-    rdfs:label " blank technique" .
+    rdfs:label "gene characterization technique" .
 
 [] a owl:Class ;
     owl:equivalentClass [ a owl:Restriction ;
@@ -4907,49 +5051,49 @@ TEMP:21 rdfs:subClassOf TEMP:temp .
 
 TEMP:25 rdfs:subClassOf TEMP:temp .
 
-TEMP:27 rdfs:subClassOf TEMP:temp .
+TEMP:26 rdfs:subClassOf TEMP:temp .
 
 TEMP:29 rdfs:subClassOf TEMP:temp .
 
-TEMP:31 rdfs:subClassOf TEMP:temp .
+TEMP:30 rdfs:subClassOf TEMP:temp .
 
-TEMP:33 rdfs:subClassOf TEMP:temp .
+TEMP:32 rdfs:subClassOf TEMP:temp .
 
-TEMP:35 rdfs:subClassOf TEMP:temp .
+TEMP:34 rdfs:subClassOf TEMP:temp .
 
-TEMP:38 rdfs:subClassOf TEMP:temp .
+TEMP:37 rdfs:subClassOf TEMP:temp .
+
+TEMP:39 rdfs:subClassOf TEMP:temp .
 
 TEMP:40 rdfs:subClassOf TEMP:temp .
 
 TEMP:41 rdfs:subClassOf TEMP:temp .
 
-TEMP:42 rdfs:subClassOf TEMP:temp .
+TEMP:45 rdfs:subClassOf TEMP:temp .
 
-TEMP:46 rdfs:subClassOf TEMP:temp .
+TEMP:47 rdfs:subClassOf TEMP:temp .
 
-TEMP:48 rdfs:subClassOf TEMP:temp .
+TEMP:49 rdfs:subClassOf TEMP:temp .
 
-TEMP:50 rdfs:subClassOf TEMP:temp .
+TEMP:51 rdfs:subClassOf TEMP:temp .
 
-TEMP:52 rdfs:subClassOf TEMP:temp .
+TEMP:53 rdfs:subClassOf TEMP:temp .
 
-TEMP:54 rdfs:subClassOf TEMP:temp .
+TEMP:55 rdfs:subClassOf TEMP:temp .
 
-TEMP:56 rdfs:subClassOf TEMP:temp .
-
-TEMP:58 rdfs:subClassOf TEMP:temp .
+TEMP:57 rdfs:subClassOf TEMP:temp .
 
 TEMP:66 rdfs:subClassOf TEMP:temp .
 
 TEMP:68 rdfs:subClassOf TEMP:temp .
 
-TEMP:73 rdfs:subClassOf TEMP:temp .
+TEMP:70 rdfs:subClassOf TEMP:temp .
 
-TEMP:79 rdfs:subClassOf TEMP:temp .
+TEMP:75 rdfs:subClassOf TEMP:temp .
 
 TEMP:81 rdfs:subClassOf TEMP:temp .
 
-TEMP:84 rdfs:subClassOf TEMP:temp .
+TEMP:83 rdfs:subClassOf TEMP:temp .
 
 TEMP:92 rdfs:subClassOf TEMP:temp .
 
@@ -5033,67 +5177,65 @@ TEMP:211 rdfs:subClassOf TEMP:temp .
 
 TEMP:213 rdfs:subClassOf TEMP:temp .
 
-TEMP:226 rdfs:subClassOf TEMP:temp .
-
 TEMP:227 rdfs:subClassOf TEMP:temp .
 
 TEMP:228 rdfs:subClassOf TEMP:temp .
 
 TEMP:229 rdfs:subClassOf TEMP:temp .
 
-TEMP:231 rdfs:subClassOf TEMP:temp .
+TEMP:230 rdfs:subClassOf TEMP:temp .
 
-TEMP:233 rdfs:subClassOf TEMP:temp .
+TEMP:232 rdfs:subClassOf TEMP:temp .
 
-TEMP:237 rdfs:subClassOf TEMP:temp .
+TEMP:234 rdfs:subClassOf TEMP:temp .
 
-TEMP:239 rdfs:subClassOf TEMP:temp .
+TEMP:238 rdfs:subClassOf TEMP:temp .
 
-TEMP:245 rdfs:subClassOf TEMP:temp .
+TEMP:240 rdfs:subClassOf TEMP:temp .
 
-TEMP:247 rdfs:subClassOf TEMP:temp .
+TEMP:246 rdfs:subClassOf TEMP:temp .
 
-TEMP:250 rdfs:subClassOf TEMP:temp .
+TEMP:248 rdfs:subClassOf TEMP:temp .
 
-TEMP:252 rdfs:subClassOf TEMP:temp .
+TEMP:251 rdfs:subClassOf TEMP:temp .
 
-TEMP:255 rdfs:subClassOf TEMP:temp .
+TEMP:253 rdfs:subClassOf TEMP:temp .
 
-TEMP:257 rdfs:subClassOf TEMP:temp .
+TEMP:256 rdfs:subClassOf TEMP:temp .
 
-TEMP:262 rdfs:subClassOf TEMP:temp .
+TEMP:258 rdfs:subClassOf TEMP:temp .
 
-TEMP:264 rdfs:subClassOf TEMP:temp .
+TEMP:263 rdfs:subClassOf TEMP:temp .
 
-TEMP:266 rdfs:subClassOf TEMP:temp .
+TEMP:265 rdfs:subClassOf TEMP:temp .
 
-TEMP:269 rdfs:subClassOf TEMP:temp .
+TEMP:267 rdfs:subClassOf TEMP:temp .
 
-TEMP:271 rdfs:subClassOf TEMP:temp .
+TEMP:270 rdfs:subClassOf TEMP:temp .
 
-TEMP:273 rdfs:subClassOf TEMP:temp .
+TEMP:272 rdfs:subClassOf TEMP:temp .
 
-TEMP:275 rdfs:subClassOf TEMP:temp .
+TEMP:274 rdfs:subClassOf TEMP:temp .
 
-TEMP:277 rdfs:subClassOf TEMP:temp .
+TEMP:276 rdfs:subClassOf TEMP:temp .
 
 TEMP:278 rdfs:subClassOf TEMP:temp .
 
-TEMP:282 rdfs:subClassOf TEMP:temp .
+TEMP:279 rdfs:subClassOf TEMP:temp .
 
-TEMP:284 rdfs:subClassOf TEMP:temp .
+TEMP:283 rdfs:subClassOf TEMP:temp .
 
-TEMP:286 rdfs:subClassOf TEMP:temp .
+TEMP:285 rdfs:subClassOf TEMP:temp .
 
-TEMP:288 rdfs:subClassOf TEMP:temp .
+TEMP:287 rdfs:subClassOf TEMP:temp .
 
-TEMP:292 rdfs:subClassOf TEMP:temp .
+TEMP:289 rdfs:subClassOf TEMP:temp .
 
-TEMP:295 rdfs:subClassOf TEMP:temp .
+TEMP:293 rdfs:subClassOf TEMP:temp .
 
-TEMP:304 rdfs:subClassOf TEMP:temp .
+TEMP:296 rdfs:subClassOf TEMP:temp .
 
-TEMP:320 rdfs:subClassOf TEMP:temp .
+TEMP:306 rdfs:subClassOf TEMP:temp .
 
 TEMP:322 rdfs:subClassOf TEMP:temp .
 
@@ -5103,9 +5245,9 @@ TEMP:326 rdfs:subClassOf TEMP:temp .
 
 TEMP:328 rdfs:subClassOf TEMP:temp .
 
-TEMP:329 rdfs:subClassOf TEMP:temp .
+TEMP:330 rdfs:subClassOf TEMP:temp .
 
-TEMP:335 rdfs:subClassOf TEMP:temp .
+TEMP:331 rdfs:subClassOf TEMP:temp .
 
 TEMP:337 rdfs:subClassOf TEMP:temp .
 
@@ -5129,9 +5271,9 @@ TEMP:355 rdfs:subClassOf TEMP:temp .
 
 TEMP:357 rdfs:subClassOf TEMP:temp .
 
-TEMP:358 rdfs:subClassOf TEMP:temp .
+TEMP:359 rdfs:subClassOf TEMP:temp .
 
-TEMP:361 rdfs:subClassOf TEMP:temp .
+TEMP:360 rdfs:subClassOf TEMP:temp .
 
 TEMP:363 rdfs:subClassOf TEMP:temp .
 
@@ -5143,4 +5285,4 @@ TEMP:369 rdfs:subClassOf TEMP:temp .
 
 TEMP:temp rdfs:subClassOf TEMP:temp .
 
-### Serialized using the pyontutils deterministic serializer v1.1.4
+### Serialized using the pyontutils deterministic serializer v1.2.0
