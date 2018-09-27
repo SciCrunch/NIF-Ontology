@@ -41,30 +41,30 @@ At the moment if you see an `ILX:` identifier in one of the ontology files that 
 
 # Setup and Example notebook
 https://github.com/tgbugs/pyontutils/blob/master/docs/neurons_notebook.md  
-https://github.com/tgbugs/pyontutils/blob/master/docs/NeuronLangExample.ipynb
+https://github.com/tgbugs/pyontutils/blob/master/docs/NeuronLangExample.ipynb  
 
 # Notes:
 
-1. Mappings between hbp-cell and the new interlex identifiers.
-https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/NIF-Neuron-HBP-cell-import.ttl
-https://github.com/tgbugs/pyontutils/blob/master/hbp_cell_conv.csv
+1. Mappings between hbp-cell and the new interlex identifiers.  
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/NIF-Neuron-HBP-cell-import.ttl  
+https://github.com/tgbugs/pyontutils/blob/master/hbp_cell_conv.csv  
 
 2. The neurons branch  
 https://github.com/SciCrunch/NIF-Ontology/tree/neurons/ttl  
 https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/bridge/neuron-bridge.ttl  
 https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/phenotype-core.ttl  
 https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/phenotypes.ttl  
-https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/common-usage-types.ttl
-https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/allen-cell-types.ttl
-https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/huang-2017.ttl
-https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/markram-2015.ttl
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/common-usage-types.ttl  
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/allen-cell-types.ttl  
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/huang-2017.ttl  
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/markram-2015.ttl  
 
 
 3. Python code that generates the new neuron ttl files  
 https://github.com/tgbugs/pyontutils/blob/master/pyontutils/neurons/lang.py  
 https://github.com/tgbugs/pyontutils/blob/master/pyontutils/neurons/core.py
-https://github.com/tgbugs/pyontutils/blob/master/pyontutils/neurons/build.py
-https://github.com/tgbugs/pyontutils/tree/master/pyontutils/neurons/models
+https://github.com/tgbugs/pyontutils/blob/master/pyontutils/neurons/build.py  
+https://github.com/tgbugs/pyontutils/tree/master/pyontutils/neurons/models  
 https://github.com/tgbugs/nlxeol/blob/master/lift_neuron_triples.py  
 https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/26451489%20table%201.csv  
 https://www.ncbi.nlm.nih.gov/pubmed/26451489  
