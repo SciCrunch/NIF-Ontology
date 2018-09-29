@@ -1,9 +1,6 @@
 # https://travis-ci.org/tgbugs/pyontutils
 sudo: false
 language: python
-env:
-  global:
-    - PIPENV_VENV_IN_PROJECT=1
 branches:
   only:
     - dev
@@ -14,11 +11,6 @@ branches:
 python:
   - 3.6
 
-addons:
-  apt:
-    packages:
-      - oracle-java8-set-default
-
 before_install:
   - mkdir build
   - pushd build
@@ -27,12 +19,11 @@ before_install:
   - popd
 
 install:
-  - pip install pipenv
-  - pipenv install --system --skip-lock pyontutils
+  - pip install pyontutils
 
 script:
   #- pipenv run ipython -c "__import__('pyontutils.config').config.bootstrap_config()"
-  - pipenv run ontload graph NIF-Ontology NIF -z build -l "${TRAVIS_BUILD_DIR}/../" -O SciGraph -B master -b ${TRAVIS_BRANCH} -t "${TRAVIS_BUILD_DIR}/build/graphload.yaml.template" -u "${TRAVIS_BUILD_DIR}/build/nifstd_curie_map.yaml" 
+  - ontload graph NIF-Ontology NIF -z build -l "${TRAVIS_BUILD_DIR}/../" -O SciGraph -B master -b ${TRAVIS_BRANCH} -t "${TRAVIS_BUILD_DIR}/build/graphload.yaml.template" -u "${TRAVIS_BUILD_DIR}/build/nifstd_curie_map.yaml" 
 
 after_success:
   - echo "scp the artifacts somewhere"
