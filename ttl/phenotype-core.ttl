@@ -23,7 +23,8 @@
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-core.ttl> a owl:Ontology ;
     rdfs:label "NIF Phenotype Core",
         "NIF Phenotype core" ;
-    rdfs:comment "This is the core set of predicates used to model phenotypes and the parent class for phenotypes." .
+    rdfs:comment "This is the core set of predicates used to model phenotypes and the parent class for phenotypes." ;
+    owl:versionInfo "2018-10-07" .
 
 ### Object Properties
 
@@ -38,6 +39,20 @@ ilxtr:hasCircuitRolePhenotype a owl:AsymmetricProperty,
         owl:ObjectProperty ;
     rdfs:label "hasCircuitRolePhenotype" ;
     rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasClassificationPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasClassificationPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and an opaque symbol that is used by experts to distinguish subtypes." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasContactWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "hasContactWith" ;
+    skos:definition "Expresses a relationship between a neuron type and a neuron type where some members make physical contact with eachother." ;
+    rdfs:subPropertyOf ilxtr:hasProjectionPhenotype ;
+    rdfs:comment "could be makesContactWith, this is primary for purely visual or anatomical contacts" .
 
 ilxtr:hasDendriteLocatedIn a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
