@@ -23,11 +23,11 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://ontology.neuinfo.org/NIF/ttl/phenotypes.ttl> a owl:Ontology ;
-    owl:imports <http://ontology.neuinfo.org/NIF/ttl/phenotype-core.ttl> ;
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotypes.ttl> a owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-core.ttl> ;
     rdfs:label "NIF Phenotypes" ;
     rdfs:comment "A taxonomy of phenotypes used to model biological types as collections of measurements." ;
-    owl:versionInfo "2018-10-05" .
+    owl:versionInfo "2018-10-11" .
 
 ### Classes
 
@@ -44,7 +44,8 @@ ilxtr:AxonMorphologicalPhenotype a owl:Class ;
 
 ilxtr:AxonPhenotype a owl:Class ;
     rdfs:label "Axon Phenotype" ;
-    rdfs:subClassOf ilxtr:Phenotype .
+    rdfs:subClassOf ilxtr:Phenotype ;
+    ilxtr:useObjectProperty ilxtr:hasAxonPhenotype .
 
 ilxtr:BasketPhenotype a owl:Class ;
     rdfs:label "Basket Phenotype" ;
@@ -184,6 +185,7 @@ ilxtr:DirectPathway a owl:Class ;
 ilxtr:DopaminergicPhenotype a owl:Class ;
     rdfs:label "Dopaminergic Phenotype" ;
     rdfs:subClassOf ilxtr:ExpressionPhenotype ;
+    rdfs:comment "figure out how to regularize these since I have used ilxtr:parvalbumin elsewhere, probably ilxtr:phenotype/thing will be best" ;
     ilxtr:useObjectProperty ilxtr:hasExpressionPhenotype ;
     skos:hiddenLabel "Dopaminergic" .
 
@@ -278,9 +280,15 @@ ilxtr:HorizontalPyramidalPhenotype a owl:Class ;
     skos:hiddenLabel "Horizontal Pyramidal" .
 
 ilxtr:InterneuronPhenotype a owl:Class ;
+    rdfs:label "Interneuron Phenotype" ;
+    rdfs:subClassOf ilxtr:IntrinsicPhenotype ;
+    rdfs:comment "this is the 'general' morphological phenotype that might be made up of soma/axon/dendrite" ;
+    skos:hiddenLabel "Interneuron" .
+
+ilxtr:IntrinsicPhenotype a owl:Class ;
     rdfs:label "Intrinsic Phenotype" ;
     rdfs:subClassOf ilxtr:AxonPhenotype ;
-    rdfs:comment "local projections only? (define local) equivalent to LocalAxonOnly" ;
+    rdfs:comment "local projections only? (define local) equivalent to LocalAxonOnly, is this an axon phenotype or an axon location phenotype?" ;
     skos:hiddenLabel "Intrinsic" .
 
 ilxtr:InvertedPyramidalPhenotype a owl:Class ;
@@ -383,8 +391,8 @@ ilxtr:MorphologicalPhenotype a owl:Class ;
 
 ilxtr:MotorPhenotype a owl:Class ;
     rdfs:label "Motor Phenotype" ;
-    rdfs:subClassOf ilxtr:AxonPhenotype ;
-    rdfs:comment "motor neuron phenotype, motor projecting phenotype, muscle projecting phenotype" ;
+    rdfs:subClassOf ilxtr:ProjectionPhenotype ;
+    rdfs:comment "motor neuron phenotype, motor projecting phenotype, muscle projecting phenotype, hasForwardConnectionPhenotype some myocyte, implies " ;
     skos:hiddenLabel "Motor" .
 
 ilxtr:NarrowPhenotype a owl:Class ;
@@ -557,6 +565,12 @@ ilxtr:RemoteAxonOnly a owl:Class ;
     rdfs:subClassOf ilxtr:AxonPhenotype ;
     rdfs:comment "model this as NegPhenotype(ilxtr:LocalAxon) except that this entails boutons/terminals" ;
     skos:hiddenLabel "Remote Axon Only" .
+
+ilxtr:SensoryPhenotype a owl:Class ;
+    rdfs:label "Sensory Phenotype" ;
+    rdfs:subClassOf ilxtr:Phenotype ;
+    rdfs:comment "the implementation of the sensor in a sensory neuron is essentially arbitrary with respect to subcompartment and projection pattern" ;
+    skos:hiddenLabel "Sensory" .
 
 ilxtr:SerotonergicPhenotype a owl:Class ;
     rdfs:label "Serotonergic Phenotype" ;
