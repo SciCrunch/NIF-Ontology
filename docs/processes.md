@@ -232,7 +232,7 @@ of [pandoc](https://github.com/jgm/pandoc/releases/download/2.2.3.2/pandoc-2.2.3
 3. `git clone https://github.com/tgbugs/orgstrap.git` and run `orgstrap/orgstrap`
 
 ### Build
-On aux-resolver `pyontutils/pyontutils/docs.py`
+On aux-resolver `SCICRUNCH_API_KEY=$(cat api-key) pyontutils/pyontutils/docs.py`
 
 ### Deploy
 On aux-resolver `cp -a pyontutils/pyontutils/doc_build/docs /var/www/ontology-docs`

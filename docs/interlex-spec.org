@@ -89,6 +89,32 @@
     IF we make this 1:many then we will require the selection of a preferred readable
     and the exact way to serialize will have a couple of choices as a result.
     See [[* serialization choices][serialization choices]] for more.
+*** =http://uri.interlex.org/base/lexical/{label}= :terminal:
+    This endpoint represents a mapping of all labels to escaped uri fragments.
+    If there are duplicate labels then the page resolves to a wikipedia like disambiguation page.
+    This is the foundation for redlinks, which are in a sense the 'ambiguation' page for a term.
+
+    It is not clear whether we should support lexical resolution inside of a user's =/uris/=.
+    The thing that would seem to make the most sense is for there to be a way for users to
+    choose which ambiguous term they personally want to resolve to. Since there is only a single
+    possible set of purely lexical terms, this means that =/uris/= will NOT have a lexical subheading.
+    Instead the user can define _on the global ambiguous terms_ which term they want to resolve to.
+
+    There is a potential issue, which is that when there is a _single_ ambiguous term then it will
+    resolve to the users definition of that term as with readable. The difference is that with lexical
+    all of the labels by definition are conflated, so we have to include the mapping to an individual term.
+    Unlike in the =/readable/= namespace, InterLex SHALL NOT define default mappings for ambiguous labels.
+**** Logic
+     | result count | action              |
+     |            0 | ambiguate term      |
+     |            1 | resolve directly    |
+     |          > 1 | disambiguation page |
+**** When the user is wrong
+     The reason for taking the approach outlined above is that when a user enters a label for a term
+     if they concept they are thinking of is not defined, but there is another concept with the same
+     label masquerading as such, then we need a way to warn the user. For labels that appear on only
+     a single term, a purely lexical reference will not be allowed. In fact, lexical references will
+     only be allowed as redlinks and should be hastily mapped to an existing ilx_id or to a new term.
 ** user uri structure
 *** =http://uri.interlex.org/{user}/=
 *** =http://uri.interlex.org/{user}/versions/=
