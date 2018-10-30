@@ -26,7 +26,8 @@
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotypes.ttl> a owl:Ontology ;
     owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-core.ttl> ;
     rdfs:label "NIF Phenotypes" ;
-    rdfs:comment "A taxonomy of phenotypes used to model biological types as collections of measurements." .
+    rdfs:comment "A taxonomy of phenotypes used to model biological types as collections of measurements." ;
+    owl:versionInfo "2018-10-11" .
 
 ### Classes
 
@@ -43,7 +44,8 @@ ilxtr:AxonMorphologicalPhenotype a owl:Class ;
 
 ilxtr:AxonPhenotype a owl:Class ;
     rdfs:label "Axon Phenotype" ;
-    rdfs:subClassOf ilxtr:Phenotype .
+    rdfs:subClassOf ilxtr:Phenotype ;
+    ilxtr:useObjectProperty ilxtr:hasAxonPhenotype .
 
 ilxtr:BasketPhenotype a owl:Class ;
     rdfs:label "Basket Phenotype" ;
@@ -60,8 +62,7 @@ ilxtr:BasketPhenotype a owl:Class ;
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
         ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Basket" .
 
@@ -71,8 +72,10 @@ ilxtr:BiopolarPyramidalPhenotype a owl:Class ;
     owl:disjointWith ilxtr:HorizontalPyramidalPhenotype,
         ilxtr:InvertedPyramidalPhenotype,
         ilxtr:NarrowPyramidalPhenotype,
+        ilxtr:SmallPyramidalPhenotype,
         ilxtr:StarPyramidalPhenotype,
-        ilxtr:TuftedPyramidalPhenotype ;
+        ilxtr:TuftedPyramidalPhenotype,
+        ilxtr:UntuftedPyramidalPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Biopolar Pyramidal" .
 
@@ -90,8 +93,7 @@ ilxtr:BipolarPhenotype a owl:Class ;
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
         ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Bipolar" .
 
@@ -108,8 +110,7 @@ ilxtr:BistratifiedPhenotype a owl:Class ;
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
         ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Bistratified" .
 
@@ -125,8 +126,7 @@ ilxtr:BituftedPhenotype a owl:Class ;
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
         ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Bitufted" .
 
@@ -152,8 +152,7 @@ ilxtr:ChandelierPhenotype a owl:Class ;
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
         ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Chandelier" .
 
@@ -186,6 +185,7 @@ ilxtr:DirectPathway a owl:Class ;
 ilxtr:DopaminergicPhenotype a owl:Class ;
     rdfs:label "Dopaminergic Phenotype" ;
     rdfs:subClassOf ilxtr:ExpressionPhenotype ;
+    rdfs:comment "figure out how to regularize these since I have used ilxtr:parvalbumin elsewhere, probably ilxtr:phenotype/thing will be best" ;
     ilxtr:useObjectProperty ilxtr:hasExpressionPhenotype ;
     skos:hiddenLabel "Dopaminergic" .
 
@@ -199,8 +199,7 @@ ilxtr:DoubleBouquetPhenotype a owl:Class ;
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
         ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Double Bouquet" .
 
@@ -258,8 +257,7 @@ ilxtr:GranulePhenotype a owl:Class ;
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
         ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Granule" .
 
@@ -274,23 +272,33 @@ ilxtr:HorizontalPyramidalPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:PyramidalPhenotype ;
     owl:disjointWith ilxtr:InvertedPyramidalPhenotype,
         ilxtr:NarrowPyramidalPhenotype,
+        ilxtr:SmallPyramidalPhenotype,
         ilxtr:StarPyramidalPhenotype,
-        ilxtr:TuftedPyramidalPhenotype ;
+        ilxtr:TuftedPyramidalPhenotype,
+        ilxtr:UntuftedPyramidalPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Horizontal Pyramidal" .
 
 ilxtr:InterneuronPhenotype a owl:Class ;
+    rdfs:label "Interneuron Phenotype" ;
+    rdfs:subClassOf ilxtr:IntrinsicPhenotype ;
+    rdfs:comment "this is the 'general' morphological phenotype that might be made up of soma/axon/dendrite" ;
+    skos:hiddenLabel "Interneuron" .
+
+ilxtr:IntrinsicPhenotype a owl:Class ;
     rdfs:label "Intrinsic Phenotype" ;
     rdfs:subClassOf ilxtr:AxonPhenotype ;
-    rdfs:comment "local projections only? (define local) equivalent to LocalAxonOnly" ;
+    rdfs:comment "local projections only? (define local) equivalent to LocalAxonOnly, is this an axon phenotype or an axon location phenotype?" ;
     skos:hiddenLabel "Intrinsic" .
 
 ilxtr:InvertedPyramidalPhenotype a owl:Class ;
     rdfs:label "Inverted Pyramidal Phenotype" ;
     rdfs:subClassOf ilxtr:PyramidalPhenotype ;
     owl:disjointWith ilxtr:NarrowPyramidalPhenotype,
+        ilxtr:SmallPyramidalPhenotype,
         ilxtr:StarPyramidalPhenotype,
-        ilxtr:TuftedPyramidalPhenotype ;
+        ilxtr:TuftedPyramidalPhenotype,
+        ilxtr:UntuftedPyramidalPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Inverted Pyramidal" .
 
@@ -302,8 +310,7 @@ ilxtr:IvyPhenotype a owl:Class ;
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
         ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Ivy" .
 
@@ -360,8 +367,7 @@ ilxtr:MartinottiPhenotype a owl:Class ;
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
         ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Martinotti" .
 
@@ -371,8 +377,7 @@ ilxtr:MediumSpinyPhenotype a owl:Class ;
     owl:disjointWith ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
         ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     rdfs:comment "we really should be able to deal with spines in a convenient way" ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Medium Spiny" .
@@ -383,6 +388,12 @@ ilxtr:MorphologicalPhenotype a owl:Class ;
     rdfs:comment "this is the 'general' morphological phenotype that might be made up of soma/axon/dendrite" ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Morphological" .
+
+ilxtr:MotorPhenotype a owl:Class ;
+    rdfs:label "Motor Phenotype" ;
+    rdfs:subClassOf ilxtr:ProjectionPhenotype ;
+    rdfs:comment "motor neuron phenotype, motor projecting phenotype, muscle projecting phenotype, hasForwardConnectionPhenotype some myocyte, implies " ;
+    skos:hiddenLabel "Motor" .
 
 ilxtr:NarrowPhenotype a owl:Class ;
     rdfs:label "Narrow Phenotype" ;
@@ -396,8 +407,10 @@ ilxtr:NarrowPhenotype a owl:Class ;
 ilxtr:NarrowPyramidalPhenotype a owl:Class ;
     rdfs:label "Narrow Pyramidal Phenotype" ;
     rdfs:subClassOf ilxtr:PyramidalPhenotype ;
-    owl:disjointWith ilxtr:StarPyramidalPhenotype,
-        ilxtr:TuftedPyramidalPhenotype ;
+    owl:disjointWith ilxtr:SmallPyramidalPhenotype,
+        ilxtr:StarPyramidalPhenotype,
+        ilxtr:TuftedPyramidalPhenotype,
+        ilxtr:UntuftedPyramidalPhenotype ;
     rdfs:comment "this class is circumspect, and may actually be NarrowTuftedPyramidalPhenotype" ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Narrow Pyramidal" .
@@ -429,8 +442,7 @@ ilxtr:NeurogliaformPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
     owl:disjointWith ilxtr:PyramidalPhenotype,
         ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Neurogliaform" .
 
@@ -532,8 +544,7 @@ ilxtr:PyramidalPhenotype a owl:Class ;
     rdfs:label "Pyramidal Phenotype" ;
     rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
     owl:disjointWith ilxtr:SpinyStellatePhenotype,
-        ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+        ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Pyramidal" .
 
@@ -554,6 +565,12 @@ ilxtr:RemoteAxonOnly a owl:Class ;
     rdfs:subClassOf ilxtr:AxonPhenotype ;
     rdfs:comment "model this as NegPhenotype(ilxtr:LocalAxon) except that this entails boutons/terminals" ;
     skos:hiddenLabel "Remote Axon Only" .
+
+ilxtr:SensoryPhenotype a owl:Class ;
+    rdfs:label "Sensory Phenotype" ;
+    rdfs:subClassOf ilxtr:Phenotype ;
+    rdfs:comment "the implementation of the sensor in a sensory neuron is essentially arbitrary with respect to subcompartment and projection pattern" ;
+    skos:hiddenLabel "Sensory" .
 
 ilxtr:SerotonergicPhenotype a owl:Class ;
     rdfs:label "Serotonergic Phenotype" ;
@@ -588,6 +605,15 @@ ilxtr:SmallBasketPhenotype a owl:Class ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Small Basket" .
 
+ilxtr:SmallPyramidalPhenotype a owl:Class ;
+    rdfs:label "Small Pyramidal Phenotype" ;
+    rdfs:subClassOf ilxtr:PyramidalPhenotype ;
+    owl:disjointWith ilxtr:StarPyramidalPhenotype,
+        ilxtr:TuftedPyramidalPhenotype,
+        ilxtr:UntuftedPyramidalPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Small Pyramidal" .
+
 ilxtr:SomaMorphologicalPhenotype a owl:Class ;
     rdfs:label "Soma Morphological Phenotype" ;
     rdfs:subClassOf ilxtr:SomaPhenotype .
@@ -618,15 +644,15 @@ ilxtr:SpinyPhenotype a owl:Class ;
 ilxtr:SpinyStellatePhenotype a owl:Class ;
     rdfs:label "Spiny Stellate Phenotype" ;
     rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
-    owl:disjointWith ilxtr:TrilaminarPhenotype,
-        ilxtr:UntuftedPyramidalPhenotype ;
+    owl:disjointWith ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Spiny Stellate" .
 
 ilxtr:StarPyramidalPhenotype a owl:Class ;
     rdfs:label "Star Pyramidal Phenotype" ;
     rdfs:subClassOf ilxtr:PyramidalPhenotype ;
-    owl:disjointWith ilxtr:TuftedPyramidalPhenotype ;
+    owl:disjointWith ilxtr:TuftedPyramidalPhenotype,
+        ilxtr:UntuftedPyramidalPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Star Pyramidal" .
 
@@ -645,7 +671,6 @@ ilxtr:ThickTuftedPyramidalPhenotype a owl:Class ;
 ilxtr:TrilaminarPhenotype a owl:Class ;
     rdfs:label "Trilaminar Phenotype" ;
     rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
-    owl:disjointWith ilxtr:UntuftedPyramidalPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Trilaminar" .
 
@@ -665,12 +690,14 @@ ilxtr:TuftedPhenotype a owl:Class ;
 ilxtr:TuftedPyramidalPhenotype a owl:Class ;
     rdfs:label "Tufted Pyramidal Phenotype" ;
     rdfs:subClassOf ilxtr:PyramidalPhenotype ;
+    owl:disjointWith ilxtr:UntuftedPyramidalPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Tufted Pyramidal" .
 
 ilxtr:UntuftedPyramidalPhenotype a owl:Class ;
     rdfs:label "Untufted Pyramidal Phenotype" ;
-    rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
+    rdfs:subClassOf ilxtr:PyramidalPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Untufted Pyramidal" .
 
 pheno:parvalbumin a owl:Class ;
