@@ -331,10 +331,26 @@ sparc:temperatureHemostasis a owl:ObjectProperty ;
     rdfs:domain sparc:ExperimentOnLiveOrganism ;
     rdfs:range sparc:Resource .
 
+sparc:tissuePreparationCarriedOutForMicroscopyAcquisition a owl:ObjectProperty ;
+    rdfs:domain sparc:TissuePreparationForMicroscopy ;
+    rdfs:range sparc:MicroscopyAcquisition .
+
+sparc:tissuePreparationHasStep a owl:ObjectProperty ;
+    rdfs:domain sparc:TissuePreparationForMicroscopy ;
+    rdfs:range sparc:TissuePreparationSteps .
+
+sparc:tissueSampleForTissuePreparationForMicroscopy a owl:ObjectProperty ;
+    rdfs:domain sparc:TissueSample ;
+    rdfs:range sparc:TissuePreparationForMicroscopy .
+
 sparc:volumeHemostasis a owl:ObjectProperty ;
     rdfs:subPropertyOf sparc:environmentLogsForLiveOrganism ;
     rdfs:domain sparc:ExperimentOnLiveOrganism ;
     rdfs:range sparc:Resource .
+
+### Annotation Properties
+
+replacedBy: a owl:AnnotationProperty .
 
 ### Data Properties
 
@@ -412,6 +428,14 @@ sparc:bioreactor a owl:DatatypeProperty ;
     rdfs:domain sparc:CellCulture,
         sparc:EngineeredTissue,
         sparc:StemCells ;
+    rdfs:range xsd:string .
+
+sparc:cameraSettings a owl:DatatypeProperty ;
+    rdfs:domain sparc:MicroscopyAcquisition ;
+    rdfs:range xsd:string .
+
+sparc:cameraType a owl:DatatypeProperty ;
+    rdfs:domain sparc:MicroscopyAcquisition ;
     rdfs:range xsd:string .
 
 sparc:cellLine a owl:DatatypeProperty ;
@@ -772,6 +796,10 @@ sparc:husbandryDetails a owl:DatatypeProperty ;
     rdfs:domain sparc:AnimalSubject ;
     rdfs:range xsd:string .
 
+sparc:imageResolution a owl:DatatypeProperty ;
+    rdfs:domain sparc:MicroscopyAcquisition ;
+    rdfs:range xsd:string .
+
 sparc:indicesForAssessmentOfViability a owl:DatatypeProperty ;
     rdfs:domain sparc:TissueSample ;
     rdfs:range xsd:string .
@@ -839,6 +867,10 @@ sparc:methodOfEuthanasia a owl:DatatypeProperty ;
                     owl:someValuesFrom tech:euthanasia ] ] ;
     rdfs:subPropertyOf sparc:propertiesOfAnimalSubject ;
     rdfs:domain sparc:AnimalSubject ;
+    rdfs:range xsd:string .
+
+sparc:microscopeSettings a owl:DatatypeProperty ;
+    rdfs:domain sparc:MicroscopyAcquisition ;
     rdfs:range xsd:string .
 
 sparc:nameOfChemicalInSolution a owl:DatatypeProperty ;
@@ -918,6 +950,10 @@ sparc:samplingResolution a owl:DatatypeProperty ;
     rdfs:domain sparc:OpticalAcquisition ;
     rdfs:range xsd:string .
 
+sparc:scaleBarVsSpatial a owl:DatatypeProperty ;
+    rdfs:domain sparc:MicroscopyAcquisition ;
+    rdfs:range xsd:string .
+
 sparc:sedationWasSourcedFrom a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty ;
     rdfs:domain sparc:Sedation ;
@@ -977,6 +1013,10 @@ sparc:timingControlFeaturesForMultipleRecordingSystems a owl:DatatypeProperty ;
     rdfs:domain sparc:Acquisition ;
     rdfs:range xsd:string .
 
+sparc:tissuePreparationStepHasDescription a owl:DatatypeProperty ;
+    rdfs:domain sparc:TissuePreparationSteps ;
+    rdfs:range xsd:string .
+
 sparc:transcriptomicsAcquisitionDealsWithMolecule a owl:DatatypeProperty ;
     rdfs:domain sparc:TranscriptomicsAcquisition ;
     rdfs:range xsd:string .
@@ -1029,6 +1069,10 @@ sparc:transcriptomicsAcquisitionUsedScanProtocol a owl:DatatypeProperty ;
     rdfs:domain sparc:TranscriptomicsAcquisition ;
     rdfs:range xsd:string .
 
+sparc:typeOfMicroscope a owl:DatatypeProperty ;
+    rdfs:domain sparc:MicroscopyAcquisition ;
+    rdfs:range xsd:string .
+
 ### Classes
 
 sparc:Acquisition a owl:Class ;
@@ -1077,12 +1121,24 @@ sparc:ChemicalInSolution a owl:Class .
 sparc:ClinicalExperiment a owl:Class ;
     rdfs:subClassOf sparc:ExperimentOnLiveOrganism .
 
+sparc:CounterStaining a owl:Class ;
+    rdfs:subClassOf sparc:Staining .
+
 sparc:ElectricalAcquisition a owl:Class ;
     replacedBy: tech:ephysRecording ;
     rdfs:subClassOf sparc:Acquisition .
 
 sparc:ElectricalModulation a owl:Class ;
     rdfs:subClassOf sparc:Modulation .
+
+sparc:Embedding a owl:Class ;
+    rdfs:subClassOf sparc:TissuePreparationSteps .
+
+sparc:EmbeddingMedia a owl:Class ;
+    rdfs:subClassOf sparc:Embedding .
+
+sparc:EndogenousReporters a owl:Class ;
+    rdfs:subClassOf sparc:Staining .
 
 sparc:EngineeredTissue a owl:Class ;
     rdfs:subClassOf sparc:TissueSample .
@@ -1114,14 +1170,26 @@ sparc:Extraction a owl:Class ;
     replacedBy: tech:dissection ;
     rdfs:comment "at the moment the underlying definition of dissection is just that the technique has as a primary output some part of the primary input of the 'dual' technique" .
 
+sparc:FreezingVsChemicalFixation a owl:Class ;
+    rdfs:subClassOf sparc:TissuePreparationForMicroscopy .
+
 sparc:FunctionalMRIFeatures a owl:Class .
 
 sparc:GeneralMRISequence a owl:Class .
+
+sparc:Histochemistry a owl:Class ;
+    rdfs:subClassOf sparc:Staining .
 
 sparc:HumanSubject a owl:Class ;
     rdfs:subClassOf sparc:OrganismSubject,
         sparc:Specimen ;
     owl:disjointWith sparc:RNASeqSpecimen .
+
+sparc:IDISCO a owl:Class ;
+    rdfs:subClassOf sparc:TissueClearance .
+
+sparc:Immunohistochemistry a owl:Class ;
+    rdfs:subClassOf sparc:Staining .
 
 sparc:IREnergyModulation a owl:Class ;
     rdfs:subClassOf sparc:Modulation .
@@ -1136,6 +1204,9 @@ sparc:MicroscopyAcquisition a owl:Class ;
 
 sparc:Modulation a owl:Class ;
     replacedBy: tech:activityModulation .
+
+sparc:MountVsSections a owl:Class ;
+    rdfs:subClassOf sparc:TissueMounting .
 
 sparc:OpticalAcquisition a owl:Class ;
     rdfs:subClassOf sparc:Acquisition .
@@ -1169,13 +1240,31 @@ sparc:RNASeqSpecimen a owl:Class ;
     owl:disjointWith sparc:StemCells,
         sparc:TissueSample .
 
+sparc:RRIDs a owl:Class ;
+    rdfs:subClassOf sparc:Staining .
+
+sparc:Sectioning a owl:Class ;
+    rdfs:subClassOf sparc:TissuePreparationSteps .
+
+sparc:SectioningDevice a owl:Class ;
+    rdfs:subClassOf sparc:Sectioning .
+
+sparc:SectionThickness a owl:Class ;
+    rdfs:subClassOf sparc:Sectioning .
+
 sparc:Sedation a owl:Class ;
     replacedBy: tech:sedation .
 
 sparc:SingleCellRNASeqSpecimen a owl:Class ;
     rdfs:subClassOf sparc:RNASeqSpecimen .
 
+sparc:SlidesVsGrid a owl:Class ;
+    rdfs:subClassOf sparc:TissueMounting .
+
 sparc:Specimen a owl:Class .
+
+sparc:Staining a owl:Class ;
+    rdfs:subClassOf sparc:TissuePreparationSteps .
 
 sparc:StemCellExperiment a owl:Class ;
     rdfs:subClassOf sparc:ExperimentOnTissueDerivatives ;
@@ -1187,6 +1276,12 @@ sparc:StemCells a owl:Class ;
 sparc:ThermalEnergyModulation a owl:Class ;
     rdfs:subClassOf sparc:Modulation .
 
+sparc:TissueClearance a owl:Class ;
+    rdfs:subClassOf sparc:TissuePreparationSteps .
+
+sparc:TissueClearing a owl:Class ;
+    rdfs:subClassOf sparc:Embedding .
+
 sparc:TissueExperiment a owl:Class ;
     replacedBy: [ a owl:Restriction ;
             owl:onProperty ilxtr:hasPrimaryParticipant ;
@@ -1194,6 +1289,16 @@ sparc:TissueExperiment a owl:Class ;
     rdfs:subClassOf sparc:ExperimentOnTissueDerivatives ;
     owl:disjointWith sparc:TranscriptomicsExperiment ;
     rdfs:comment "TODO tissue experiment vs tissue technique ..." .
+
+sparc:TissueMounting a owl:Class ;
+    rdfs:subClassOf sparc:TissuePreparationSteps .
+
+sparc:TissuePreparationForMicroscopy a owl:Class .
+
+sparc:TissuePreparationSteps a owl:Class .
+
+sparc:TissuePreservation a owl:Class ;
+    rdfs:subClassOf sparc:TissuePreparationSteps .
 
 sparc:TissueSample a owl:Class ;
     replacedBy: ilxtr:tissue ;
@@ -1217,22 +1322,8 @@ sparc:TranscriptomicsExperiment a owl:Class ;
 
 [] a owl:AllDisjointClasses ;
     owl:members (
-            sparc:AnimalSubject
-            sparc:CellCulture
-            sparc:HumanSubject
-            sparc:StemCells
-            sparc:TissueSample ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members (
             sparc:CellCultureExperiment
             sparc:StemCellExperiment
             sparc:TissueExperiment ) .
 
-[] a owl:AllDisjointClasses ;
-    owl:members (
-            sparc:CellCultureExperiment
-            sparc:StemCellExperiment
-            sparc:TissueExperiment ) .
-
-### Serialized using the pyontutils deterministic serializer v1.1.4
+### Serialized using the pyontutils deterministic serializer v1.2.0
