@@ -238,6 +238,7 @@ On aux-resolver `SCICRUNCH_API_KEY=$(cat api-key) pyontutils/pyontutils/docs.py`
 On aux-resolver `cp -a pyontutils/pyontutils/doc_build/docs /var/www/ontology-docs`
 
 ## External records
+### Registries
 There are a couple of places where there are external records of the
 ontology that a maintainer or curator needs to keep up to date.
 1. https://scicrunch.org/resolver/SCR_005414 (NIF Ontology)
@@ -249,3 +250,11 @@ ontology that a maintainer or curator needs to keep up to date.
 7. https://fairsharing.org/bsg-s002628 (NIF Ontology)
 8. https://fairsharing.org/bsg-s002835 (subcellular)
 
+### About pages
+Pages that need to be kept up to date / sourced from material here.
+1. https://neuinfo.org/about/components
+2. https://neuinfo.org/about/nifvocabularies
+
+### Related search pages
+1. http://interlex.org
+2. https://scicrunch.org/browse/terminology
