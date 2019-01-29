@@ -41,38 +41,19 @@ ttlfmt $(git status -s | grep ttl | grep M | cut -d' ' -f3)
 qnamefix $(git status -s | grep ttl | grep M | cut -d' ' -f3)
 ```
 
-### Adding a new external import
-All external imports should be imported into NIFSTD via a bridge file.
+### Adding a new remote import
+All remote imports should be imported into NIFSTD via a bridge file.
 This file will hold any local additions that we want to make.
 1. Create a new bridge file by copying an existing bridge file and modifying
-   as needed to import the external file from its canonical iri, and to import
+   as needed to import the remote file from its canonical iri, and to import
    `filename-dead.ttl`.
 2. Add an entry in [catalog-extras](../catalog-extras) for the new import.
 3. Create `ttl/generated/filename-dead.ttl` by running `necromancy http://myurl.org/filename.owl`.
 4. Whenever there is a new release repeat step 3.
 
-### Changing an ontology file
-1. Edit your file and save.
-2. If using protege `git diff` to make sure that any new triples
-   have landed in the correct file.
-3. Execute prior to commit processes.
-
-### Adding a new ontology file
-```bash
-touch filename.ttl
-add filename.ttl
-`make_catalog`  # NOTE this is broken at the moment
-```
-1. Add an entry in [catalog-v001.xml](../ttl/catalog-v001.xml.example) by hand.
-Note that you will need to make sure that `catalog-v001.xml` is copied from the
-example order to make use of the new entry.
-
-Before you run `make_catalog` make sure that the import chain is local (unpatched)
-otherwise it will take an extremely long time to fetch files.
-
 ### Load remote imports from local copies
 Sometimes we don't want to have to retrieve remote copies of files every time
-we start protege, or we need to run tests for patches that are applied to external
+we start protege, or we need to run tests for patches that are applied to remote
 imports when loading the ontology into SciGraph.
 ```bash
 cd ttl/
@@ -106,10 +87,24 @@ protege  # can be launched as you see fit
 Protege does not have to be run from `ttl/` in order to find `ttl/catalog-v001.xml`,
 however the file opened must be in `ttl/`.
 
-### Check for incorrect or unimported predicates
-1. Remove `/tmp/ttlcmp.patch` if it exists
-2. `ttlcmp.sh`  (lives in `pyontutils/pyontutils`)
-3. Review `/tmp/ttlcmp.patch` for annotation and object properties.
+### Changing an ontology file
+1. Edit your file and save.
+2. If using protege `git diff` to make sure that any new triples
+   have landed in the correct file.
+3. Execute prior to commit processes.
+
+### Adding a new ontology file
+```bash
+touch filename.ttl
+add filename.ttl
+`make_catalog`  # NOTE this is broken at the moment
+```
+1. Add an entry in [catalog-v001.xml](../ttl/catalog-v001.xml.example) by hand.
+Note that you will need to make sure that `catalog-v001.xml` is copied from the
+example order to make use of the new entry.
+
+Before you run `make_catalog` make sure that the import chain is local (unpatched)
+otherwise it will take an extremely long time to fetch files.
 
 ### Integrating a new set of terms
 If there is an existing ttl file that has been formatted with ttlfmt as described above then
@@ -122,6 +117,11 @@ This does not need to be done if ttl file will become the source of truth once i
 
 Any set of terms that requires more than direct transformation to ttl should also follow the process described in
 [pyontutils/development/README.md](https://github.com/tgbugs/pyontutils/blob/master/development/README.md).
+
+### Check for incorrect or unimported predicates
+1. Remove `/tmp/ttlcmp.patch` if it exists
+2. `ttlcmp.sh`  (lives in `pyontutils/pyontutils`)
+3. Review `/tmp/ttlcmp.patch` for annotation and object properties.
 
 ## External source synchronization
 Full documentation of defaults and command line arguments can be found by running
