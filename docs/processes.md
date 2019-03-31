@@ -204,24 +204,36 @@ someone who needs to review the history of changes but shouldn't have to dig
 through the full commit log.
 
 ### Build graph for SciGraph release
-See point 1 in [pyontutils/scigraph/README.md#etc-for-centos-7](https://github.com/tgbugs/pyontutils/blob/master/scigraph/README.md#etc-for-centos-7)
-The build process for the graph is quite customizable. Run `ontload scigraph --help` if
-you need additional guidance.
+To load the graph run the following from either `pyontutils/nifstd/scigraph` or `sparc-curation/resources/scigraph`
+``` bash
+ontload graph NIF-Ontology NIF -z /tmp/test1 -l /tmp/test1 -b dev -p -t ./graphload.yaml
+```
+If you need something more the build process for the graph is quite customizable.
+Run `ontload scigraph --help` if you need additional guidance.
+
+### Build and deploy services config
+This only needs to be done if the services config has changed.  
+
+To create services.yaml run the following from the folder of this readme.
+``` bash
+scigraph-deploy config --local --services-config ./services.yaml --services-user ec2-user --zip-location ./ localhost scigraph.scicrunch.io
+```
 
 ### Deploy to SciGraph
-This process is documented at
-[pyontutils/scigraph/README.md](https://github.com/tgbugs/pyontutils/blob/master/scigraph/README.md).
+See the [RPM Builds](https://github.com/tgbugs/pyontutils/blob/master/nifstd/scigraph/README.md#rpm-builds) secion of the
+[the pyontutils scigraph readme](https://github.com/tgbugs/pyontutils/blob/master/nifstd/scigraph/README.md) for the rest
+of the instructions for deployment.
 
 ### Restart dependent services
 1. Restart the `ontree` process on aux-resolver. This is needed to flush the cache of the import chain.
 
+## Resolver
+Information about the implementation of `ontology.neuinfo.org` is mostly covered in
+the [resolver readme](https://github.com/tgubgs/pyontutils/blob/master/nifstd/resolver/README.md).
+See [pyontutils/nifstd/resolver/aux-resolver.conf](https://github.com/tgbugs/pyontutils/blob/9c5f64afe62cf22f5e972868225835c1e65e07b8/resolver/aux-resolver.conf#L92-L94)
+and [pyontutils/nifstd/resolver/nif-ont-resolver.conf](https://github.com/tgbugs/pyontutils/blob/ef18da508ebfd95aff8b1ca01f6117c95326f036/resolver/nif-ont-resolver.conf#L36-L44).
 
 ## Building documentation
-
-### Resolver
-See [pyontutils/resolver/aux-resolver.conf](https://github.com/tgbugs/pyontutils/blob/9c5f64afe62cf22f5e972868225835c1e65e07b8/resolver/aux-resolver.conf#L92-L94)
-and [pyontutils/resolver/nif-ont-resolver.conf](https://github.com/tgbugs/pyontutils/blob/ef18da508ebfd95aff8b1ca01f6117c95326f036/resolver/nif-ont-resolver.conf#L36-L44).
-
 ### Setup
 See [pyontutils/README.md#requirements](https://github.com/tgbugs/pyontutils/blob/master/README.md#requirements)
 for details on `pandoc` and `orgstrap`. For the best results use `>=app-text/emacs-26.1` and `>=app-text/pandoc-2.2.3.2`.
