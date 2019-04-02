@@ -14,8 +14,8 @@ python:
 before_install:
   - mkdir build
   - pushd build
-  - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/scigraph/nifstd_curie_map.yaml
-  - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/scigraph/graphload.yaml.template
+  - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/nifstd/scigraph/curie_map.yaml
+  - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/nifstd/scigraph/graphload.yaml.template
   - popd
 
 install:
@@ -24,7 +24,7 @@ install:
 script:
   #- pipenv run ipython -c "__import__('pyontutils.config').config.bootstrap_config()"
   - git checkout ${TRAVIS_BRANCH}  # ontload doesn't currently work if git is in detached head mode
-  - ontload graph NIF-Ontology NIF -z "${TRAVIS_BUILD_DIR}/build" -l "${TRAVIS_BUILD_DIR}/../" -O SciGraph -B master -b ${TRAVIS_BRANCH} -t "${TRAVIS_BUILD_DIR}/build/graphload.yaml" -u "${TRAVIS_BUILD_DIR}/build/nifstd_curie_map.yaml" 
+  - ontload graph NIF-Ontology NIF -z "${TRAVIS_BUILD_DIR}/build" -l "${TRAVIS_BUILD_DIR}/../" -O SciGraph -B master -b ${TRAVIS_BRANCH} -t "${TRAVIS_BUILD_DIR}/build/graphload.yaml" -u "${TRAVIS_BUILD_DIR}/build/curie_map.yaml" 
 
 after_success:
   - echo "scp the artifacts somewhere"
