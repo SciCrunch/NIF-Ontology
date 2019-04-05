@@ -41,4 +41,4 @@ Please see the [documentation](http://ontology.neuinfo.org/docs) for information
 
 # License
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />The contents of this repository are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-The text of the license can also be found in the [./LICENSE](./LICENSE) file.
+The text of the license can also be found in the [LICENSE](./LICENSE) file.

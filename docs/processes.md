@@ -112,11 +112,11 @@ create a new branch, add the file, and submit a pull request for review.
 
 If there is a chance that this file may need to be regenerated from an external source
 please add the external source and the generation code via the process described in
-[pyontutils/development/README.md](https://github.com/tgbugs/pyontutils/blob/master/development/README.md).
+[pyontutils/nifstd/development/README.md](https://github.com/tgbugs/pyontutils/blob/master/nifstd/development/README.md).
 This does not need to be done if ttl file will become the source of truth once integrated into NIFSTD.
 
 Any set of terms that requires more than direct transformation to ttl should also follow the process described in
-[pyontutils/development/README.md](https://github.com/tgbugs/pyontutils/blob/master/development/README.md).
+[pyontutils/nifstd/development/README.md](https://github.com/tgbugs/pyontutils/blob/master/nifstd/development/README.md).
 
 ### Check for incorrect or unimported predicates
 1. Remove `/tmp/ttlcmp.patch` if it exists
@@ -229,7 +229,7 @@ of the instructions for deployment.
 
 ## Resolver
 Information about the implementation of `ontology.neuinfo.org` is mostly covered in
-the [resolver readme](https://github.com/tgubgs/pyontutils/blob/master/nifstd/resolver/README.md).
+the [resolver readme](https://github.com/tgbugs/pyontutils/blob/master/nifstd/resolver/README.md).
 See [pyontutils/nifstd/resolver/aux-resolver.conf](https://github.com/tgbugs/pyontutils/blob/9c5f64afe62cf22f5e972868225835c1e65e07b8/resolver/aux-resolver.conf#L92-L94)
 and [pyontutils/nifstd/resolver/nif-ont-resolver.conf](https://github.com/tgbugs/pyontutils/blob/ef18da508ebfd95aff8b1ca01f6117c95326f036/resolver/nif-ont-resolver.conf#L36-L44).
 
