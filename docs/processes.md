@@ -28,7 +28,7 @@ in the SciCrunch org repo) so that we can run all the requisite
 checks to make sure that the ontology is consistent.
 
 # Please do push documentation to master
-[catalog-v001.xml.example](../ttl/catalog-v001.xml.example) should also always be updated on master
+[catalog-v001.xml.example](./../ttl/catalog-v001.xml.example) should also always be updated on master
 
 # Processes
 
@@ -47,7 +47,7 @@ This file will hold any local additions that we want to make.
 1. Create a new bridge file by copying an existing bridge file and modifying
    as needed to import the remote file from its canonical iri, and to import
    `filename-dead.ttl`.
-2. Add an entry in [catalog-extras](../catalog-extras) for the new import.
+2. Add an entry in [catalog-extras](./../catalog-extras) for the new import.
 3. Create `ttl/generated/filename-dead.ttl` by running `necromancy http://myurl.org/filename.owl`.
 4. Whenever there is a new release repeat step 3.
 
@@ -99,7 +99,7 @@ touch filename.ttl
 add filename.ttl
 `make_catalog`  # NOTE this is broken at the moment
 ```
-1. Add an entry in [catalog-v001.xml](../ttl/catalog-v001.xml.example) by hand.
+1. Add an entry in [catalog-v001.xml](./../ttl/catalog-v001.xml.example) by hand.
 Note that you will need to make sure that `catalog-v001.xml` is copied from the
 example order to make use of the new entry.
 
@@ -245,6 +245,21 @@ of [pandoc](https://github.com/jgm/pandoc/releases/download/2.2.3.2/pandoc-2.2.3
 
 ### Build
 On aux-resolver `SCICRUNCH_API_KEY=$(cat api-key) pyontutils/pyontutils/docs.py`
+
+### Check links
+Use a crawler to check for broken links. For example using
+[pylinkvalidator.py](https://github.com/bartdag/pylinkvalidator) one can run the following.
+``` sh
+pylinkvalidate.py \
+--progress \
+--depth 1 \
+--workers 4 \
+--parser=lxml \
+--types=a \
+--accepted-hosts=github.com \
+http://ontology.neuinfo.org/docs/
+```
+
 
 ### Deploy
 On aux-resolver `cp -a pyontutils/pyontutils/doc_build/docs /var/www/ontology-docs`

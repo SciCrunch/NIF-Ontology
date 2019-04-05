@@ -59,7 +59,7 @@ Make sure that **Expand trees by default is disabled** in menu `File -> Preferen
 otherwise load times can stretch on for many minutes.
 
 ## Catalog
-There is an example ontology catalog [catalog-v001.xml.example](../ttl/catalog-v001.xml.example)
+There is an example ontology catalog [catalog-v001.xml.example](./../ttl/catalog-v001.xml.example)
 which should be installed by `cp catalog-v001.xml.example catalog-v001.xml`. The file itself
 is not tracked to preven conflicts when switching branches.
 
