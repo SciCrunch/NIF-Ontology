@@ -40,18 +40,25 @@ One of the advantages of using a phenotype based approach is that when there are
 # WARNING
 At the moment if you see an `ILX:` identifier in one of the ontology files that is involved in modelling neurons it is temporary and should not be used.
 
+# Protege development setup
+1. Follow the ontology [development setup doc](./development setup.md).
+Be sure not to miss the section on setting up the [catalog file](./development setup.md#catalog).
+2. Make sure you are working on the neurons branch (run `git checkout neurons`).
+2. Open [ttl/neuron-development.ttl](./../ttl/neuron-development.ttl) **from disk** in protege.
+3. Follow these sections of the ontology processes document as you edit the file.
+   - [Changing an ontology file](./processes.md#changing-an-ontology-file)
+   - [Prior to commit](./docs/processes.md#prior-to-commit)
+   - [Do not push to master!](docs/processes.md#do-not-push-ontology-files-to-master)
+
 # Setup and Example notebook
 https://github.com/tgbugs/pyontutils/blob/master/neurondm/docs/neurons_notebook.md  
 https://github.com/tgbugs/pyontutils/blob/master/neurondm/docs/NeuronLangExample.ipynb  
 
 # Notes:
 
-1. Mappings between hbp-cell and the new interlex identifiers.  
-https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/NIF-Neuron-HBP-cell-import.ttl  
-https://github.com/tgbugs/pyontutils/blob/master/hbp_cell_conv.csv  
-
-2. The neurons branch  
+1. The neurons branch  
 https://github.com/SciCrunch/NIF-Ontology/tree/neurons/ttl  
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/neuron-development.ttl  
 https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/bridge/neuron-bridge.ttl  
 https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/phenotype-core.ttl  
 https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/phenotypes.ttl  
@@ -60,12 +67,18 @@ https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/all
 https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/huang-2017.ttl  
 https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/markram-2015.ttl  
 
+2. Mappings between hbp-cell and the new interlex identifiers.  
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/NIF-Neuron-HBP-cell-import.ttl  
+https://github.com/tgbugs/pyontutils/blob/master/hbp_cell_conv.csv  
 
 3. Python code that generates the new neuron ttl files  
-https://github.com/tgbugs/pyontutils/blob/master/neurondm/neurondm/lang.py  
-https://github.com/tgbugs/pyontutils/blob/master/neurondm/neurondm/core.py
-https://github.com/tgbugs/pyontutils/blob/master/neurondm/neurondm/build.py  
-https://github.com/tgbugs/pyontutils/tree/master/neurondm/neurondm/models  
-https://github.com/tgbugs/nlxeol/blob/master/lift_neuron_triples.py  
-https://github.com/tgbugs/pyontutils/blob/master/nifstd/resources/26451489%20table%201.csv  
-https://www.ncbi.nlm.nih.gov/pubmed/26451489  
+[neurondm/lang.py](https://github.com/tgbugs/pyontutils/blob/master/neurondm/neurondm/lang.py)  
+[neurondm/core.py](https://github.com/tgbugs/pyontutils/blob/master/neurondm/neurondm/core.py)  
+[neurondm/build.py](https://github.com/tgbugs/pyontutils/blob/master/neurondm/neurondm/build.py)  
+[neurondm/models](https://github.com/tgbugs/pyontutils/tree/master/neurondm/neurondm/models)  
+[nlxeol/lift_neuron_triples.py](https://github.com/tgbugs/nlxeol/blob/master/lift_neuron_triples.py)  
+[nifstd/resources/26451489 table 1.csv](https://github.com/tgbugs/pyontutils/blob/master/nifstd/resources/26451489%20table%201.csv)  
+
+4. Papers  
+Markram 2015 [PMID:26451489](https://www.ncbi.nlm.nih.gov/pubmed/26451489)  
+Huang 2017 [PMID:27053207](https://www.ncbi.nlm.nih.gov/pubmed/27053207)  
