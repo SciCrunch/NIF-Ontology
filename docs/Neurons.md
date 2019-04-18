@@ -47,8 +47,8 @@ Be sure not to miss the section on setting up the [catalog file](./development s
 2. Open [ttl/neuron-development.ttl](./../ttl/neuron-development.ttl) **from disk** in protege.
 3. Follow these sections of the ontology processes document as you edit the file.
    - [Changing an ontology file](./processes.md#changing-an-ontology-file)
-   - [Prior to commit](./docs/processes.md#prior-to-commit)
-   - [Do not push to master!](docs/processes.md#do-not-push-ontology-files-to-master)
+   - [Prior to commit](./processes.md#prior-to-commit)
+   - [Do not push to master!](./processes.md#do-not-push-ontology-files-to-master)
 
 # Setup and Example notebook
 https://github.com/tgbugs/pyontutils/blob/master/neurondm/docs/neurons_notebook.md  
