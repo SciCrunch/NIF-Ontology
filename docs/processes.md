@@ -256,7 +256,7 @@ pylinkvalidate.py \
 --workers 4 \
 --parser=lxml \
 --types=a \
---accepted-hosts=github.com,scicrunch.org,bioontology.org,fairsharing.org,neuinfo.org,interlex.org \
+--accepted-hosts=github.com,scicrunch.org,bioontology.org,fairsharing.org,neuinfo.org,interlex.org,wordpress.com,w3.org \
 http://ontology.neuinfo.org/docs/
 ```
 
