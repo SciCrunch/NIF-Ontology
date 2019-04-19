@@ -277,6 +277,9 @@ ontology that a maintainer or curator needs to keep up to date.
 7. https://fairsharing.org/bsg-s002628 (NIF Ontology)
 8. https://fairsharing.org/bsg-s002835 (subcellular)
 
+### Other references
+1. https://www.biccn.org/tools/atlas
+
 ### About pages
 Pages that need to be kept up to date / sourced from material here.
 1. https://neuinfo.org/about/components
