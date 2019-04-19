@@ -41,8 +41,8 @@ One of the advantages of using a phenotype based approach is that when there are
 At the moment if you see an `ILX:` identifier in one of the ontology files that is involved in modelling neurons it is temporary and should not be used.
 
 # Protege development setup
-1. Follow the ontology [development setup doc](./development setup.md).
-Be sure not to miss the section on setting up the [catalog file](./development setup.md#catalog).
+1. Follow the ontology [development setup doc](./development-setup.md).
+Be sure not to miss the section on setting up the [catalog file](./development-setup.md#catalog).
 2. Make sure you are working on the neurons branch (run `git checkout neurons`).
 2. Open [ttl/neuron-development.ttl](./../ttl/neuron-development.ttl) **from disk** in protege.
 3. Follow these sections of the ontology processes document as you edit the file.

@@ -7,7 +7,7 @@ the practices that developers should follow
 when working on NIFSTD.
 
 All of these processes expect the full NIF-Ontology development
-environment to have been set up according to [development setup.md](development%20setup.md).
+environment to have been set up according to [development-setup.md](development-setup.md).
 
 All relative filepaths listed in code sections start from the base
 folder of this repository `../` from the location of this file.
