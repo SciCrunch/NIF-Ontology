@@ -1,4 +1,3 @@
-@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -6,10 +5,8 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-core.ttl> a owl:Ontology ;
-    rdfs:label "NIF Phenotype Core",
-        "NIF Phenotype core" ;
-    rdfs:comment "This is the core set of predicates used to model phenotypes and the parent class for phenotypes." ;
-    owl:versionInfo "2019-04-16" .
+    rdfs:label "NIF Phenotype core" ;
+    rdfs:comment "This is the core set of predicates used to model phenotypes and the parent class for phenotypes." .
 
 ### Object Properties
 
@@ -315,5 +312,11 @@ ilxtr:NeuronEBM a owl:Class ;
 ilxtr:Phenotype a owl:Class ;
     rdfs:label "Phenotype" ;
     skos:definition "A Phenotype is a binary property of a biological entity. Phenotypes are derived from measurements made on the subject of interest. While Phenotype is not currently placed within the BFO hierarchy, if we were to place it, it would fall under BFO:0000016 -> disposition, since these phenotypes are contingent on the experimental conditions under which measurements were made and are NOT qualities. For consideration: in theory this would mean that disjointness does not make sense, even for things that would seem to be obviously disjoint such as Accomodating and Non-Accomodating. However, this information can still be captured on a subject by subject basis by asserting that for this particular entity, coocurrance of phenotypes is not possible. This still leaves the question of whether the class of biological entities that correspond to the bag of phenotypes is implicitly bounded/limited only to the extrinsic and unspecified experimental conditions, some of which are not and cannot be included in a bag of phenotypes. The way to deal with this when we want to include 2 'same time' disjoint phenotypes, is to use a logical phenotype to wrap them with an auxiliary variable that we think accounts for the difference." .
+
+### Annotations
+
+ilxtr:delineates owl:inverseOf ilxtr:isDelineatedBy .
+
+ilxtr:labelPartOf rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000050> .
 
 ### Serialized using the pyontutils deterministic serializer v1.2.0
