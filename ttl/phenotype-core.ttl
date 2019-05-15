@@ -1,30 +1,12 @@
-@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix ILX: <http://uri.interlex.org/base/ilx_> .
-@prefix ILXREPLACE: <http://ILXREPLACE.org/> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
-@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
-@prefix NIFEXT: <http://uri.neuinfo.org/nif/nifstd/nifext_> .
-@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
-@prefix NLXCELL: <http://uri.neuinfo.org/nif/nifstd/nlx_cell_> .
-@prefix nsu: <http://www.FIXME.org/nsupper#> .
-@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix PR: <http://purl.obolibrary.org/obo/PR_> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix TEMP: <http://uri.interlex.org/temp/uris/> .
-@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-core.ttl> a owl:Ontology ;
-    rdfs:label "NIF Phenotype Core",
-        "NIF Phenotype core" ;
-    rdfs:comment "This is the core set of predicates used to model phenotypes and the parent class for phenotypes." ;
-    owl:versionInfo "2018-10-11" .
+    rdfs:label "NIF Phenotype core" ;
+    rdfs:comment "This is the core set of predicates used to model phenotypes and the parent class for phenotypes." .
 
 ### Object Properties
 
@@ -41,9 +23,16 @@ ilxtr:hasAxonMorphologicalPhenotype a owl:AsymmetricProperty,
 
 ilxtr:hasAxonPhenotype a owl:ObjectProperty ;
     rdfs:label "hasAxonPhenotype" ;
-    skos:definition "Expresses a relationship between a a neuron type and some phenotype of its axon." ;
+    skos:definition "Expresses a relationship between a neuron type and some phenotype of its axon." ;
     rdfs:subPropertyOf ilxtr:hasPhenotype ;
     rdfs:comment "Use to provide clarity about where a generic phenotype is attached in the event that the object is not qualified. The alternative is to precompose the subcompartments e.g. SmallSomaPhenotype and SmallAxonPhenotype." .
+
+ilxtr:hasBiologicalSex a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasBiologicalSex" ;
+    skos:definition "Expresses a relationship between a neuron type and a biological sex. This should be used when a neuron type has been observed in a specific sex." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
 
 ilxtr:hasCircuitRolePhenotype a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
@@ -111,9 +100,16 @@ ilxtr:hasDendriteMorphologicalPhenotype a owl:AsymmetricProperty,
 
 ilxtr:hasDendritePhenotype a owl:ObjectProperty ;
     rdfs:label "hasDendritePhenotype" ;
-    skos:definition "Expresses a relationship between a a neuron type and some phenotype of its dendrite." ;
+    skos:definition "Expresses a relationship between a neuron type and some phenotype of its dendrite." ;
     rdfs:subPropertyOf ilxtr:hasPhenotype ;
     rdfs:comment "Use to provide clarity about where a generic phenotype is attached in the event that the object is not qualified. The alternative is to precompose the subcompartments e.g. SmallSomaPhenotype and SmallAxonPhenotype." .
+
+ilxtr:hasDevelopmentalStage a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasDevelopmentalStage" ;
+    skos:definition "Expresses a relationship between a neuron type and a developmental stage. This should be used when a neuron type has been observed during a developmental stage." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
 
 ilxtr:hasDevelopmentalStructure a owl:ObjectProperty ;
     rdfs:label "hasDevelopmentalStructure" ;
@@ -221,6 +217,12 @@ ilxtr:hasPhenotype a owl:AsymmetricProperty,
     rdfs:label "hasPhenotype" ;
     owl:inverseOf ilxtr:phenotypeOf .
 
+ilxtr:hasPhenotypeModifier a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasPhenotypeModifier" ;
+    skos:definition "Expresses a restriction that modifies all phenotypes associated with a neuron type or a logical phenotype, only meaningful when used inside of owl:intersectionOf" .
+
 ilxtr:hasPresynapticTerminalsIn a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
         owl:ObjectProperty ;
@@ -271,7 +273,7 @@ ilxtr:hasSomaLocatedIn a owl:AsymmetricProperty,
 
 ilxtr:hasSomaPhenotype a owl:ObjectProperty ;
     rdfs:label "hasSomaPhenotype" ;
-    skos:definition "Expresses a relationship between a a neuron type and some phenotype of its soma." ;
+    skos:definition "Expresses a relationship between a neuron type and some phenotype of its soma." ;
     rdfs:subPropertyOf ilxtr:hasPhenotype ;
     rdfs:comment "Use to provide clarity about where a generic phenotype is attached in the event that the object is not qualified. The alternative is to precompose the subcompartments e.g. SmallSomaPhenotype and SmallAxonPhenotype." .
 
@@ -310,5 +312,11 @@ ilxtr:NeuronEBM a owl:Class ;
 ilxtr:Phenotype a owl:Class ;
     rdfs:label "Phenotype" ;
     skos:definition "A Phenotype is a binary property of a biological entity. Phenotypes are derived from measurements made on the subject of interest. While Phenotype is not currently placed within the BFO hierarchy, if we were to place it, it would fall under BFO:0000016 -> disposition, since these phenotypes are contingent on the experimental conditions under which measurements were made and are NOT qualities. For consideration: in theory this would mean that disjointness does not make sense, even for things that would seem to be obviously disjoint such as Accomodating and Non-Accomodating. However, this information can still be captured on a subject by subject basis by asserting that for this particular entity, coocurrance of phenotypes is not possible. This still leaves the question of whether the class of biological entities that correspond to the bag of phenotypes is implicitly bounded/limited only to the extrinsic and unspecified experimental conditions, some of which are not and cannot be included in a bag of phenotypes. The way to deal with this when we want to include 2 'same time' disjoint phenotypes, is to use a logical phenotype to wrap them with an auxiliary variable that we think accounts for the difference." .
+
+### Annotations
+
+ilxtr:delineates owl:inverseOf ilxtr:isDelineatedBy .
+
+ilxtr:labelPartOf rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000050> .
 
 ### Serialized using the pyontutils deterministic serializer v1.2.0
