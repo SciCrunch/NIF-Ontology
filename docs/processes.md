@@ -34,22 +34,10 @@ checks to make sure that the ontology is consistent.
 
 ## Development
 
-### Prior to commit
-```bash
-ttlfmt $(git status -s | grep ttl | grep M | cut -d' ' -f3)
-# OR if you are working on files that need to be normalized
-qnamefix $(git status -s | grep ttl | grep M | cut -d' ' -f3)
-```
-
-### Adding a new remote import
-All remote imports should be imported into NIFSTD via a bridge file.
-This file will hold any local additions that we want to make.
-1. Create a new bridge file by copying an existing bridge file and modifying
-   as needed to import the remote file from its canonical iri, and to import
-   `filename-dead.ttl`.
-2. Add an entry in [catalog-extras](./../catalog-extras) for the new import.
-3. Create `ttl/generated/filename-dead.ttl` by running `necromancy http://myurl.org/filename.owl`.
-4. Whenever there is a new release repeat step 3.
+### Set up the catalog file
+There is an example ontology catalog [catalog-v001.xml.example](./../ttl/catalog-v001.xml.example)
+that should be installed by running `cp catalog-v001.xml.example catalog-v001.xml`. The file itself
+is not tracked to prevent conflicts when switching branches.
 
 ### Load remote imports from local copies
 Sometimes we don't want to have to retrieve remote copies of files every time
@@ -105,6 +93,23 @@ example order to make use of the new entry.
 
 Before you run `make_catalog` make sure that the import chain is local (unpatched)
 otherwise it will take an extremely long time to fetch files.
+
+### Prior to commit
+```bash
+ttlfmt $(git status -s | grep ttl | grep M | cut -d' ' -f3)
+# OR if you are working on files that need to be normalized
+qnamefix $(git status -s | grep ttl | grep M | cut -d' ' -f3)
+```
+
+### Adding a new remote import
+All remote imports should be imported into NIFSTD via a bridge file.
+This file will hold any local additions that we want to make.
+1. Create a new bridge file by copying an existing bridge file and modifying
+   as needed to import the remote file from its canonical iri, and to import
+   `filename-dead.ttl`.
+2. Add an entry in [catalog-extras](./../catalog-extras) for the new import.
+3. Create `ttl/generated/filename-dead.ttl` by running `necromancy http://myurl.org/filename.owl`.
+4. Whenever there is a new release repeat step 3.
 
 ### Integrating a new set of terms
 If there is an existing ttl file that has been formatted with ttlfmt as described above then
