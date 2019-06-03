@@ -1,4 +1,5 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
 @prefix hasRole: <http://purl.obolibrary.org/obo/RO_0000087> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
@@ -9,6 +10,8 @@
 @prefix NLXMOL: <http://uri.neuinfo.org/nif/nifstd/nlx_mol_> .
 @prefix obo: <http://purl.obolibrary.org/obo/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix partOf: <http://purl.obolibrary.org/obo/BFO_0000050> .
+@prefix PAXRAT: <http://uri.interlex.org/paxinos/uris/rat/labels/> .
 @prefix PR: <http://purl.obolibrary.org/obo/PR_> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix PTHR: <http://www.pantherdb.org/panther/family.do?clsAccession=PTHR> .
@@ -27,22 +30,22 @@
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/uberon-parcellation-mappings.ttl>,
         obo:uberon.owl ;
     rdfs:label "Utility ontology for neuron development" ;
-    owl:versionInfo "2019-05-31" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/c956ee2cdb1c22b206dfd65d99e0c1a32797b8a7/neurondm/neurondm/build.py#L1367> .
+    owl:versionInfo "2019-06-03" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/a6faae9a766e3eadc3bd286f94bac87ff42b96b6/neurondm/neurondm/build.py#L1384> .
 
 ### Classes
 
 ilxtr:GABAReceptor a owl:Class ;
-    owl:equivalentClass [ rdfs:subClassOf [ a owl:Restriction ;
-                    owl:onProperty hasRole: ;
-                    owl:someValuesFrom NLXMOL:1006001 ] ] ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hasRole: ;
+            owl:someValuesFrom NLXMOL:1006001 ] ;
     rdfs:label "GABA receptor" ;
     NIFRID:synonym "GABAR" .
 
 ilxtr:glutamateReceptor a owl:Class ;
-    owl:equivalentClass [ rdfs:subClassOf [ a owl:Restriction ;
-                    owl:onProperty hasRole: ;
-                    owl:someValuesFrom SAO:1164727693 ] ] ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hasRole: ;
+            owl:someValuesFrom SAO:1164727693 ] ;
     rdfs:label "Glutamate receptor" ;
     NIFRID:synonym "GluR" .
 
@@ -123,7 +126,11 @@ PTHR:11653 a owl:Class ;
 
 CHEBI:18234 rdfs:label "α,α'-trehalose 6-mycolate" .
 
+ilxtr:labelPartOf rdfs:subPropertyOf partOf: .
+
 ilxtr:parcellationLabel rdfs:subClassOf UBERON:0001062 .
+
+ilxtr:Phenotype rdfs:subClassOf BFO:0000016 .
 
 ilxtr:PV-cre rdfs:subClassOf PTHR:11653 .
 
@@ -149,8 +156,17 @@ NCBIGene:20604 rdfs:subClassOf PTHR:10558 .
 
 NIFEXT:6 rdfs:subClassOf PTHR:11653 .
 
+PAXRAT:794 rdfs:subClassOf UBERON:0008933,
+        [ a owl:Restriction ;
+            owl:onProperty UBERON:0008933 ;
+            owl:someValuesFrom ilxtr:isDelineatedBy ] .
+
 PR:000013502 rdfs:subClassOf PTHR:11653 .
 
 PR:000015665 rdfs:subClassOf PTHR:10558 .
+
+UBERON:0008933 rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty PAXRAT:794 ;
+            owl:someValuesFrom ilxtr:delineates ] .
 
 ### Serialized using the pyontutils deterministic serializer v1.2.0
