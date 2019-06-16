@@ -1,18 +1,32 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix ILX: <http://uri.interlex.org/base/ilx_> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
-@prefix JAX: <http://jaxmice.jax.org/strain/> .
 @prefix NCBIGene: <http://www.ncbi.nlm.nih.gov/gene/> .
+@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix NIFEXT: <http://uri.neuinfo.org/nif/nifstd/nifext_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix NLXCELL: <http://uri.neuinfo.org/nif/nifstd/nlx_cell_> .
+@prefix nsu: <http://www.FIXME.org/nsupper#> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix pheno: <http://uri.interlex.org/tgbugs/uris/readable/Phenotype/> .
 @prefix PR: <http://purl.obolibrary.org/obo/PR_> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix TEMP: <http://uri.interlex.org/temp/uris/> .
+@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotypes.ttl> a owl:Ontology ;
     owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-core.ttl> ;
     rdfs:label "NIF Phenotypes" ;
-    rdfs:comment "A taxonomy of phenotypes used to model biological types as collections of measurements." .
+    rdfs:comment "A taxonomy of phenotypes used to model biological types as collections of measurements." ;
+    owl:versionInfo "2019-05-31" .
 
 ### Classes
 
@@ -22,6 +36,13 @@ ilxtr:AccomodatingSpikingPhenotype a owl:Class ;
     owl:disjointWith ilxtr:NonAccomodatingSpikingPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
     skos:hiddenLabel "Accomodating Spiking" .
+
+ilxtr:ApicalDendritePhenotype a owl:Class ;
+    rdfs:label "Apical Dendrite Phenotype" ;
+    rdfs:subClassOf ilxtr:DendritePhenotype ;
+    rdfs:comment "When used directly indicates the presence or absense of an apical dendrite. Rather than subclassing directly, could be combined with general dendrite phenotypes to allow specificity." ;
+    ilxtr:useObjectProperty ilxtr:hasDendriteMorphologicalPhenotype ;
+    skos:hiddenLabel "Apical Dendrite" .
 
 ilxtr:AxonMorphologicalPhenotype a owl:Class ;
     rdfs:label "Axon Morphological Phenotype" ;
@@ -39,6 +60,7 @@ ilxtr:BasketPhenotype a owl:Class ;
         ilxtr:BistratifiedPhenotype,
         ilxtr:BituftedPhenotype,
         ilxtr:ChandelierPhenotype,
+        ilxtr:ConeMorphologicalPhenotype,
         ilxtr:DoubleBouquetPhenotype,
         ilxtr:GranulePhenotype,
         ilxtr:IvyPhenotype,
@@ -46,6 +68,7 @@ ilxtr:BasketPhenotype a owl:Class ;
         ilxtr:MediumSpinyPhenotype,
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
@@ -70,6 +93,7 @@ ilxtr:BipolarPhenotype a owl:Class ;
     owl:disjointWith ilxtr:BistratifiedPhenotype,
         ilxtr:BituftedPhenotype,
         ilxtr:ChandelierPhenotype,
+        ilxtr:ConeMorphologicalPhenotype,
         ilxtr:DoubleBouquetPhenotype,
         ilxtr:GranulePhenotype,
         ilxtr:IvyPhenotype,
@@ -77,6 +101,7 @@ ilxtr:BipolarPhenotype a owl:Class ;
         ilxtr:MediumSpinyPhenotype,
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
@@ -87,6 +112,7 @@ ilxtr:BistratifiedPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
     owl:disjointWith ilxtr:BituftedPhenotype,
         ilxtr:ChandelierPhenotype,
+        ilxtr:ConeMorphologicalPhenotype,
         ilxtr:DoubleBouquetPhenotype,
         ilxtr:GranulePhenotype,
         ilxtr:IvyPhenotype,
@@ -94,6 +120,7 @@ ilxtr:BistratifiedPhenotype a owl:Class ;
         ilxtr:MediumSpinyPhenotype,
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
@@ -103,6 +130,7 @@ ilxtr:BituftedPhenotype a owl:Class ;
     rdfs:label "Bitufted Phenotype" ;
     rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
     owl:disjointWith ilxtr:ChandelierPhenotype,
+        ilxtr:ConeMorphologicalPhenotype,
         ilxtr:DoubleBouquetPhenotype,
         ilxtr:GranulePhenotype,
         ilxtr:IvyPhenotype,
@@ -110,6 +138,7 @@ ilxtr:BituftedPhenotype a owl:Class ;
         ilxtr:MediumSpinyPhenotype,
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
@@ -129,6 +158,23 @@ ilxtr:ChandelierPhenotype a owl:Class ;
     rdfs:label "Chandelier Phenotype" ;
     NIFRID:synonym "AxoAxonicPhenotype" ;
     rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
+    owl:disjointWith ilxtr:ConeMorphologicalPhenotype,
+        ilxtr:DoubleBouquetPhenotype,
+        ilxtr:GranulePhenotype,
+        ilxtr:IvyPhenotype,
+        ilxtr:MartinottiPhenotype,
+        ilxtr:MediumSpinyPhenotype,
+        ilxtr:NeurogliaformPhenotype,
+        ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
+        ilxtr:SpinyStellatePhenotype,
+        ilxtr:TrilaminarPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Chandelier" .
+
+ilxtr:ConeMorphologicalPhenotype a owl:Class ;
+    rdfs:label "Cone Phenotype" ;
+    rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
     owl:disjointWith ilxtr:DoubleBouquetPhenotype,
         ilxtr:GranulePhenotype,
         ilxtr:IvyPhenotype,
@@ -136,10 +182,11 @@ ilxtr:ChandelierPhenotype a owl:Class ;
         ilxtr:MediumSpinyPhenotype,
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
-    skos:hiddenLabel "Chandelier" .
+    skos:hiddenLabel "Cone" .
 
 ilxtr:DendriteMorphologicalPhenotype a owl:Class ;
     rdfs:label "Dendrite Morphological Phenotype" ;
@@ -183,6 +230,7 @@ ilxtr:DoubleBouquetPhenotype a owl:Class ;
         ilxtr:MediumSpinyPhenotype,
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
@@ -241,6 +289,7 @@ ilxtr:GranulePhenotype a owl:Class ;
         ilxtr:MediumSpinyPhenotype,
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
@@ -294,6 +343,7 @@ ilxtr:IvyPhenotype a owl:Class ;
         ilxtr:MediumSpinyPhenotype,
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
@@ -351,6 +401,7 @@ ilxtr:MartinottiPhenotype a owl:Class ;
     owl:disjointWith ilxtr:MediumSpinyPhenotype,
         ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
@@ -361,6 +412,7 @@ ilxtr:MediumSpinyPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
     owl:disjointWith ilxtr:NeurogliaformPhenotype,
         ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     rdfs:comment "we really should be able to deal with spines in a convenient way" ;
@@ -426,6 +478,7 @@ ilxtr:NeurogliaformPhenotype a owl:Class ;
     rdfs:label "Neurogliaform Phenotype" ;
     rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
     owl:disjointWith ilxtr:PyramidalPhenotype,
+        ilxtr:RodMorphologicalPhenotype,
         ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
@@ -528,7 +581,8 @@ ilxtr:ProjectionPhenotype a owl:Class ;
 ilxtr:PyramidalPhenotype a owl:Class ;
     rdfs:label "Pyramidal Phenotype" ;
     rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
-    owl:disjointWith ilxtr:SpinyStellatePhenotype,
+    owl:disjointWith ilxtr:RodMorphologicalPhenotype,
+        ilxtr:SpinyStellatePhenotype,
         ilxtr:TrilaminarPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Pyramidal" .
@@ -550,6 +604,14 @@ ilxtr:RemoteAxonOnly a owl:Class ;
     rdfs:subClassOf ilxtr:AxonPhenotype ;
     rdfs:comment "model this as NegPhenotype(ilxtr:LocalAxon) except that this entails boutons/terminals" ;
     skos:hiddenLabel "Remote Axon Only" .
+
+ilxtr:RodMorphologicalPhenotype a owl:Class ;
+    rdfs:label "Rod Phenotype" ;
+    rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
+    owl:disjointWith ilxtr:SpinyStellatePhenotype,
+        ilxtr:TrilaminarPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Rod" .
 
 ilxtr:SensoryPhenotype a owl:Class ;
     rdfs:label "Sensory Phenotype" ;
@@ -684,28 +746,5 @@ ilxtr:UntuftedPyramidalPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:PyramidalPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
     skos:hiddenLabel "Untufted Pyramidal" .
-
-pheno:parvalbumin a owl:Class ;
-    rdfs:subClassOf ilxtr:ExpressionPhenotype .
-
-### Annotations
-
-ilxtr:PV-cre rdfs:subClassOf pheno:parvalbumin .
-
-ilxtr:Pvalb rdfs:subClassOf pheno:parvalbumin .
-
-JAX:008096 rdfs:subClassOf pheno:parvalbumin .
-
-JAX:021189 rdfs:subClassOf pheno:parvalbumin .
-
-JAX:021190 rdfs:subClassOf pheno:parvalbumin .
-
-JAX:022730 rdfs:subClassOf pheno:parvalbumin .
-
-NCBIGene:19293 rdfs:subClassOf pheno:parvalbumin .
-
-NIFEXT:6 rdfs:subClassOf pheno:parvalbumin .
-
-PR:000013502 rdfs:subClassOf pheno:parvalbumin .
 
 ### Serialized using the pyontutils deterministic serializer v1.2.0

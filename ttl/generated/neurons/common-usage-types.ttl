@@ -1,3 +1,4 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix BIRNLEX: <http://uri.neuinfo.org/nif/nifstd/birnlex_> .
 @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
@@ -19,12 +20,14 @@
 @prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix TEMP: <http://uri.interlex.org/temp/uris/> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/neurons/common-usage-types.ttl> a owl:Ontology ;
     owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-core.ttl>,
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotypes.ttl> ;
     prov:wasDerivedFrom <https://github.com/tgbugs/pyontutils/blob/02e7d2f897ca7a83daab9ecbaf2747694d17db4d/nifstd/resources/common-usage-types.csv> ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/3e46ee512b848d7af0b7cb03bc88ca03d4bd0071/neurondm/neurondm/models/cuts.py> .
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/5d8ec23a85881389360f75eda192380adfe740dd/neurondm/neurondm/models/cuts.py> .
 
 ### Classes
 
@@ -77,11 +80,11 @@ NIFEXT:17 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia retina ganglionic layer of retina (with-axons-in LGN superior colliculus SCh brachium of superior colliculus) +GABA A-gated anionic channel +GABA C-gated anionic channel +Glycine-gated chloride channel +nAChR +NMDA +AMPA +Kainate glutamate-gated cationic channel +Glu neuron" ;
+    rdfs:label "Mammalia retina ganglionic layer of retina (with-axons-in LGB superior colliculus SCN brachium of superior colliculus) +GABA A-gated anionic channel +GABA C-gated anionic channel +Glycine-gated chloride channel +nAChR +NMDA +AMPA +Kainate glutamate-gated cationic channel +Glu neuron" ;
     NIFRID:synonym "Retinal ganglion cell",
         "Retinal Ganglion Neuron" ;
     definition: "The main principal neuron of the retina, whose axon projects to several sites in the brain: lateral geniculate nucleus on the pathway to visual cortex, superior colliculus and suprachiasmatic nucleus.  It receives input from bipolar cells, and has synaptic inputs" ;
-    ilxtr:genLabel "Mammalia retina ganglionic layer of retina (with-axons-in LGN superior colliculus SCh brachium of superior colliculus) +GABA A-gated anionic channel +GABA C-gated anionic channel +Glycine-gated chloride channel +nAChR +NMDA +AMPA +Kainate glutamate-gated cationic channel +Glu neuron" ;
+    ilxtr:genLabel "Mammalia retina ganglionic layer of retina (with-axons-in LGB superior colliculus SCN brachium of superior colliculus) +GABA A-gated anionic channel +GABA C-gated anionic channel +Glycine-gated chloride channel +nAChR +NMDA +AMPA +Kainate glutamate-gated cationic channel +Glu neuron" ;
     ilxtr:origLabel "Retina ganglion cell" .
 
 NIFEXT:31 a owl:Class ;
@@ -102,13 +105,13 @@ NIFEXT:31 a owl:Class ;
                         owl:someValuesFrom NLX:93816 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom ilxtr:GABAReceptor ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom ilxtr:glutamateReceptor ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NIFEXT:5244 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NLXMOL:1006001 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom SAO:1164727693 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BipolarPhenotype ]
@@ -118,11 +121,11 @@ NIFEXT:31 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Retina inner nuclear layer INL (with-axon-in Retina inner plexiform layer) Bipolar +Glycine-gated chloride channel +GABA receptor role +Glutamate Receptor +Glu interneuron" ;
+    rdfs:label "Mammalia Retina inner nuclear layer INL (with-axon-in Retina inner plexiform layer) Bipolar +ilxtr:GABAReceptor +ilxtr:glutamateReceptor +Glycine-gated chloride channel +Glu interneuron" ;
     NIFRID:synonym "retinal bipolar cell",
         "Retinal Bipolar Neuron" ;
     definition: "Small cell in the retina with one peripheral process connecting to terminals of photoreceptors and horizontal cells and the other process connecting to dendrites of ganglion cells and amacrine cells.  It provides the straight-through pathway for visual responses from photoreceptors to ganglion cells.  Several varieties are related to specific processing pathways.  O" ;
-    ilxtr:genLabel "Mammalia Retina inner nuclear layer INL (with-axon-in Retina inner plexiform layer) Bipolar +Glycine-gated chloride channel +GABA receptor role +Glutamate Receptor +Glu interneuron" ;
+    ilxtr:genLabel "Mammalia Retina inner nuclear layer INL (with-axon-in Retina inner plexiform layer) Bipolar +ilxtr:GABAReceptor +ilxtr:glutamateReceptor +Glycine-gated chloride channel +Glu interneuron" ;
     ilxtr:origLabel "Retina bipolar cell" .
 
 NIFEXT:36 a owl:Class ;
@@ -139,9 +142,6 @@ NIFEXT:36 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0001795 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom NLX:20558 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom CHEBI:15428 ]
                     [ a owl:Restriction ;
@@ -153,11 +153,11 @@ NIFEXT:36 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Retina inner plexiform layer IPL (with-dendrite-in Retina inner plexiform layer) +G +DA +GABA interneuron" ;
+    rdfs:label "Mammalia IPL (with-dendrite-in Retina inner plexiform layer) +Gly +DA +GABA interneuron" ;
     NIFRID:synonym "Amacrine Neuron type II",
         "Type II Amacrine cell" ;
     definition: "Cell in the inner plexiform layer of the retina, consisting of multiple dendrites and no axon.  It makes synaptic connections with bipolar cell terminals and ganglion cell dendrites, as well as other amacrine cell dendrites.  Amacrine II cells have gap junctions with bipolar terminals and other amacrine cells, which are switched on for night time vision." ;
-    ilxtr:genLabel "Mammalia Retina inner plexiform layer IPL (with-dendrite-in Retina inner plexiform layer) +G +DA +GABA interneuron" ;
+    ilxtr:genLabel "Mammalia IPL (with-dendrite-in Retina inner plexiform layer) +Gly +DA +GABA interneuron" ;
     ilxtr:origLabel "Retina amacrine cell" .
 
 NIFEXT:40 a owl:Class ;
@@ -238,7 +238,7 @@ NIFEXT:49 a owl:Class ;
         "superficial pyramidal cell" ;
     definition: "This basic excitatory neuron type has a pyramidal-shaped cell body, with apical and basal dendrites. Typically, there is an axon that projects to other cortical and/or subcortical areas, as well as giving rise to local collaterals." ;
     ilxtr:genLabel "Mammalia neocortex (unionOf L4 L5 L6) L5/6 (with-axons-in superior colliculus claustrum of brain) Pyramidal +Glu projection neuron" ;
-    ilxtr:localLabel "Mammalia neocortex (OR   ) (OR  ) (with-axons-in superior colliculus claustrum of brain) Pyramidal +Glu projection neuron" ;
+    ilxtr:localLabel "Mammalia neocortex (unionOf L4 L5 L6) (unionOf L5 L6) (with-axons-in superior colliculus claustrum of brain) Pyramidal +Glu projection neuron" ;
     ilxtr:origLabel "Neocortex layer 2-3 pyramidal cell" .
 
 NIFEXT:52 a owl:Class ;
@@ -269,20 +269,16 @@ NIFEXT:53 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0005393 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0005393 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom SAO:9271919883 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia cortical layer IV L4 Stellate neuron" ;
+    rdfs:label "Mammalia L4 Stellate neuron" ;
     NIFRID:synonym "cortical spiny stellate cell",
         "Cortical stellate cell",
         "cortical stellate neuron" ;
-    ilxtr:genLabel "Mammalia cortical layer IV L4 Stellate neuron" ;
-    ilxtr:localLabel "Mammalia cortical layer IV cortical layer IV Stellate neuron" ;
+    ilxtr:genLabel "Mammalia L4 Stellate neuron" ;
     ilxtr:origLabel "Neocortex layer 4 spiny stellate cell" .
 
 NIFEXT:55 a owl:Class ;
@@ -311,13 +307,13 @@ NIFEXT:55 a owl:Class ;
                         owl:someValuesFrom UBERON:0001950 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom ilxtr:GABAReceptor ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom ilxtr:glutamateReceptor ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NCBIGene:20604 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NLXMOL:1006001 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom SAO:1164727693 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:MartinottiPhenotype ]
@@ -327,9 +323,9 @@ NIFEXT:55 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia neocortex EGL (with-axon-in cortical layer I) Martinotti +GABA receptor role +Glutamate Receptor +SS +GABA interneuron" ;
+    rdfs:label "Mammalia neocortex (unionOf EGL L3 L5) (with-axon-in cortical layer I) Martinotti +ilxtr:GABAReceptor +ilxtr:glutamateReceptor +SS +GABA interneuron" ;
     NIFRID:synonym "Martinotti cell" ;
-    ilxtr:genLabel "Mammalia neocortex EGL (with-axon-in cortical layer I) Martinotti +GABA receptor role +Glutamate Receptor +SS +GABA interneuron" ;
+    ilxtr:genLabel "Mammalia neocortex (unionOf EGL L3 L5) (with-axon-in cortical layer I) Martinotti +ilxtr:GABAReceptor +ilxtr:glutamateReceptor +SS +GABA interneuron" ;
     ilxtr:origLabel "Neocortex Martinotti cell" .
 
 NIFEXT:56 a owl:Class ;
@@ -365,14 +361,14 @@ NIFEXT:56 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia neocortex L2/3 Basket +GluR +GABA-gated anionic channel +Parv +GABA neuron" ;
+    rdfs:label "Mammalia neocortex L2/3 Basket +GluR +GABA-gated anionic channel +PV +GABA neuron" ;
     NIFRID:synonym "basket cell",
         "cortical basket cell",
         "cortical basket neuron",
         "Neocortical basket cell",
         "parvalbumin interneuron" ;
-    ilxtr:genLabel "Mammalia neocortex L2/3 Basket +GluR +GABA-gated anionic channel +Parv +GABA neuron" ;
-    ilxtr:localLabel "Mammalia neocortex EGL Basket +GluR +GABA-gated anionic channel +Parv +GABA neuron" ;
+    ilxtr:genLabel "Mammalia neocortex L2/3 Basket +GluR +GABA-gated anionic channel +PV +GABA neuron" ;
+    ilxtr:localLabel "Mammalia neocortex (unionOf EGL L3) Basket +GluR +GABA-gated anionic channel +PV +GABA neuron" ;
     ilxtr:origLabel "Neocortex basket cell" .
 
 NIFEXT:57 a owl:Class ;
@@ -465,9 +461,6 @@ NIFEXT:69 a owl:Class ;
                         owl:someValuesFrom ilxtr:InterneuronPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom CHEBI:15428 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NIFEXT:5242 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
@@ -481,14 +474,14 @@ NIFEXT:69 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia VCo +G +GABA A-gated anionic channel +AMPA +G interneuron" ;
+    rdfs:label "Mammalia VCo +GABA A-gated anionic channel +AMPA +Gly interneuron" ;
     NIFRID:synonym "D multipolar cell",
         "onset-chopper responses to tones",
         "radial stellate",
         "type II (Cant,1981)",
         "wide-band inhibitor" ;
     definition: "One of two types of multipolar or stellate cells, D stellate cells are glycinergic inhibitory neurons named for having an axon that projects dorsalward into the dorsal cochlear nucleus and that exits through the intermediate acoustic stria to innervate the contralateral cochlear nucleus.  Axons have widespread collaterals in the ventral cochlear nucleus and in the deep layer of the dorsal cochlear nucleus." ;
-    ilxtr:genLabel "Mammalia VCo +G +GABA A-gated anionic channel +AMPA +G interneuron" ;
+    ilxtr:genLabel "Mammalia VCo +GABA A-gated anionic channel +AMPA +Gly interneuron" ;
     ilxtr:origLabel "Cochlear nucleus (ventral) multipolar D cell" .
 
 NIFEXT:70 a owl:Class ;
@@ -558,11 +551,11 @@ NIFEXT:72 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia VCo (with-axons-in ventral nucleus of lateral lemniscus Superior paraolivary nucleus) +HAC2 +AMPA +CR +Parv +Glu projection neuron" ;
+    rdfs:label "Mammalia VCo (with-axons-in ventral nucleus of lateral lemniscus Superior paraolivary nucleus) +HAC2 +AMPA +CR +PV +Glu projection neuron" ;
     NIFRID:synonym "octopus cell",
         "Ventral cochlear nucleus octopus cell" ;
     definition: "Large neuron located in the octopus cell area of the posterior division of the ventral cochlear nucleus (called dorsal tail of the ventral cochlear nucleus by Cajal and nucleus interfascicularis by Lorente de No), whose dendrites emanate from one side of the cell body, giving them a shape reminiscent of an octopus." ;
-    ilxtr:genLabel "Mammalia VCo (with-axons-in ventral nucleus of lateral lemniscus Superior paraolivary nucleus) +HAC2 +AMPA +CR +Parv +Glu projection neuron" ;
+    ilxtr:genLabel "Mammalia VCo (with-axons-in ventral nucleus of lateral lemniscus Superior paraolivary nucleus) +HAC2 +AMPA +CR +PV +Glu projection neuron" ;
     ilxtr:origLabel "Cochlear nucleus (ventral) octopus cell" .
 
 NIFEXT:73 a owl:Class ;
@@ -590,12 +583,12 @@ NIFEXT:73 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Dorsal cochlear nucleus deep layer (with-axons-in VCo DCo) +AMPA +G interneuron" ;
+    rdfs:label "Mammalia Dorsal cochlear nucleus deep layer (with-axons-in VCo DCo) +AMPA +Gly interneuron" ;
     NIFRID:synonym "corn cell",
         "tuberculoventral cell",
         "vertical cell" ;
     definition: "Intrinsic neuron found in the deep layer of the dorsal cochlear nucleus, whose cell bodies and dendrites are intermingled among the basal dendritic trees of pyramidal cells.  Their dendrites are smooth and lie in the plane of an isofrequency sheet; in sections in standard planes, parts of the dendrites are cut so they appear to be oriented vertically, perpendicular to the plane of the layers.  They are inhibitory and use glycine as a neurotransmitter." ;
-    ilxtr:genLabel "Mammalia Dorsal cochlear nucleus deep layer (with-axons-in VCo DCo) +AMPA +G interneuron" ;
+    ilxtr:genLabel "Mammalia Dorsal cochlear nucleus deep layer (with-axons-in VCo DCo) +AMPA +Gly interneuron" ;
     ilxtr:origLabel "Cochlear nucleus (dorsal) vertical cell" .
 
 NIFEXT:74 a owl:Class ;
@@ -668,10 +661,10 @@ NIFEXT:76 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia DCo (with-dendrite-in Molecular layer of dorsal cochlear nucleus) +G +GABA interneuron" ;
+    rdfs:label "Mammalia DCo (with-dendrite-in molecular layer of dorsal cochlear nucleus) +Gly +GABA interneuron" ;
     NIFRID:synonym "Cartwheel neuron" ;
     definition: "Cartwheel cell bodies lie on the superficial side of the pyramidal (or fusiform) cell layer of the dorsal cochlear nucleus. Their spiny dendrites receive input from the axons of granule cells (parallel fibers) and their axons release GABA and glycine onto cartwheel, pyramidal and giant cell targets. Cartwheel cells share many of the features, molecular and electrophysiological, of cerebellar Purkinje neurons." ;
-    ilxtr:genLabel "Mammalia DCo (with-dendrite-in Molecular layer of dorsal cochlear nucleus) +G +GABA interneuron" ;
+    ilxtr:genLabel "Mammalia DCo (with-dendrite-in molecular layer of dorsal cochlear nucleus) +Gly +GABA interneuron" ;
     ilxtr:origLabel "Cochlear nucleus (dorsal) cartwheel cell" .
 
 NIFEXT:81 a owl:Class ;
@@ -853,10 +846,10 @@ NIFEXT:113 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia ventral horn of spinal cord +G interneuron" ;
+    rdfs:label "Mammalia ventral horn of spinal cord +Gly interneuron" ;
     NIFRID:synonym "Renshaw cell",
         "Renshaw interneuron" ;
-    ilxtr:genLabel "Mammalia ventral horn of spinal cord +G interneuron" ;
+    ilxtr:genLabel "Mammalia ventral horn of spinal cord +Gly interneuron" ;
     ilxtr:origLabel "Spinal cord ventral horn interneuron Renshaw" .
 
 NIFEXT:116 a owl:Class ;
@@ -970,8 +963,8 @@ NIFEXT:120 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0004186 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0004186 ]
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom ilxtr:GABAReceptor ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NIFEXT:5242 ]
@@ -985,18 +978,15 @@ NIFEXT:120 a owl:Class ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NLXMOL:090801 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NLXMOL:1006001 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia olfactory bulb mitral cell layer olfactory bulb mitral cell layer (with-axons-in olfactory cortex Olfactory bulb main granule cell layer Olfactory bulb main external plexiform layer) +GABA A-gated anionic channel +AMPA +NMDA +Neurofilament 150kD mRNA +GABA receptor role +Glu projection neuron" ;
+    rdfs:label "Mammalia olfactory bulb mitral cell layer (with-axons-in olfactory cortex Olfactory bulb main granule cell layer Olfactory bulb main external plexiform layer) +ilxtr:GABAReceptor +GABA A-gated anionic channel +AMPA +NMDA +Neurofilament 150kD mRNA +Glu projection neuron" ;
     NIFRID:synonym "Mitral neuron" ;
     definition: "Principal neuron located in the olfactory bulb in the mammalian central nervous system. The cell bodies are arranged in a thin layer between the granule cell layer and the external plexiform layer.  Each mitral cell is usually characterized in the mammal by a single primary dendrite that traverses the external plexiform layer and terminates within an olfactory glomerulus in a tuft of branches which receives input from the axons of olfactory receptor neurons.  Axons of the mitral cells project to a number of areas in the brain, including the piriform cortex, entorhinal cortex, olfactory tubercle, and amygdala." ;
-    ilxtr:genLabel "Mammalia olfactory bulb mitral cell layer olfactory bulb mitral cell layer (with-axons-in olfactory cortex Olfactory bulb main granule cell layer Olfactory bulb main external plexiform layer) +GABA A-gated anionic channel +AMPA +NMDA +Neurofilament 150kD mRNA +GABA receptor role +Glu projection neuron" ;
+    ilxtr:genLabel "Mammalia olfactory bulb mitral cell layer (with-axons-in olfactory cortex Olfactory bulb main granule cell layer Olfactory bulb main external plexiform layer) +ilxtr:GABAReceptor +GABA A-gated anionic channel +AMPA +NMDA +Neurofilament 150kD mRNA +Glu projection neuron" ;
     ilxtr:origLabel "Olfactory bulb (main) mitral cell" .
 
 NIFEXT:121 a owl:Class ;
@@ -1023,20 +1013,20 @@ NIFEXT:121 a owl:Class ;
                         owl:someValuesFrom UBERON:0002264 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NLXMOL:1006001 ]
+                        owl:someValuesFrom ilxtr:GABAReceptor ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom SAO:1164727693 ]
+                        owl:someValuesFrom ilxtr:glutamateReceptor ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia olfactory bulb hippocampus stratum lacunosum (with-axons-in olfactory cortex Olfactory bulb (main) internal plexiform layer) Tufted +GABA receptor role +Glutamate Receptor +Glu projection neuron" ;
+    rdfs:label "Mammalia olfactory bulb hippocampus stratum lacunosum (with-axons-in olfactory cortex Olfactory bulb (main) internal plexiform layer) Tufted +ilxtr:GABAReceptor +ilxtr:glutamateReceptor +Glu projection neuron" ;
     NIFRID:synonym "Olfactory bulb (main) tufted cell (middle)" ;
     definition: "Principal neuron located in the outer third of the external plexiform layer of the olfactory bulb in the mammalian central nervous system. Each tufted cell is characterized by usually a single short primary dendrite that traverses the outer external plexiform layer and terminates within an olfactory glomerulus in a tuft of branches, where it receives the input from olfactory receptor neuron axon terminals. Differentiated from external tufted cells.  Axons of the tufted cells transfer information to a number of areas in the brain, including the piriform cortex, entorhinal cortex, olfactory tubercle, and amygdala. Shepherd, Shen, Greer.  Olfactory bulb.  In The synaptic organization of the brain, ed 5 New York: Oxford University Press, 2004." ;
-    ilxtr:genLabel "Mammalia olfactory bulb hippocampus stratum lacunosum (with-axons-in olfactory cortex Olfactory bulb (main) internal plexiform layer) Tufted +GABA receptor role +Glutamate Receptor +Glu projection neuron" ;
+    ilxtr:genLabel "Mammalia olfactory bulb hippocampus stratum lacunosum (with-axons-in olfactory cortex Olfactory bulb (main) internal plexiform layer) Tufted +ilxtr:GABAReceptor +ilxtr:glutamateReceptor +Glu projection neuron" ;
     ilxtr:origLabel "Olfactory bulb (main) tufted cell (middle)" .
 
 NIFEXT:122 a owl:Class ;
@@ -1105,11 +1095,11 @@ NIFEXT:123 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Rodent +NMDA +AMPA +Parv +GABA interneuron" ;
+    rdfs:label "Mammalia Rodent +NMDA +AMPA +PV +GABA interneuron" ;
     NIFRID:synonym "Granule cell of olfactory bulb",
         "Olfactory granule neuron" ;
     definition: "The main intrinsic neuron in the vertebrate olfactory bulb.  It lacks an axon.  Each cell gives rise to short central dendrites and a single long apical dendrite that traverses the granule cell layer, pierces the mitral cell body layer, and branches and terminates within the external plexiform layer among the lateral dendrites of mitral and tufted cells.  The dendrites receive synaptic input from mitral and tufted cell lateral dendrites, and have synaptic outputs on those dendrites through reciprocal dendrodendritic synapses.  Shepherd, Chen & Greer.  Olfactory Bulb.  The Synaptic Organization of the Brain, ed 5. New York: Oxford University Press, 2004." ;
-    ilxtr:genLabel "Mammalia Rodent +NMDA +AMPA +Parv +GABA interneuron" ;
+    ilxtr:genLabel "Mammalia Rodent +NMDA +AMPA +PV +GABA interneuron" ;
     ilxtr:origLabel "Olfactory bulb (main) granule cell" .
 
 NIFEXT:124 a owl:Class ;
@@ -1126,20 +1116,17 @@ NIFEXT:124 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0005378 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom NLX:407 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Olfactory bulb main granule cell layer olfactory bulb granule cell layer (with-axon-in Olfactory bulb main granule cell layer) +GABA interneuron" ;
+    rdfs:label "Mammalia olfactory bulb granule cell layer (with-axon-in Olfactory bulb main granule cell layer) +GABA interneuron" ;
     NIFRID:synonym "Blanes Cell",
         "Olfactory bulb (main) deep short axon cell",
         "short axon cell" ;
     definition: "Large, stellate-shaped short axon cell in the granule cell layer of the main olfactory bulb." ;
-    ilxtr:genLabel "Mammalia Olfactory bulb main granule cell layer olfactory bulb granule cell layer (with-axon-in Olfactory bulb main granule cell layer) +GABA interneuron" ;
+    ilxtr:genLabel "Mammalia olfactory bulb granule cell layer (with-axon-in Olfactory bulb main granule cell layer) +GABA interneuron" ;
     ilxtr:origLabel "Olfactory bulb (main) Blanes cell" .
 
 NIFEXT:128 a owl:Class ;
@@ -1153,9 +1140,6 @@ NIFEXT:128 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0002956 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0002956 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NIFEXT:5239 ]
                     [ a owl:Restriction ;
@@ -1164,11 +1148,11 @@ NIFEXT:128 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia granular layer of cerebellar cortex granular layer of cerebellar cortex (with-axon-in molecular layer of cerebellar cortex) +GluR +Glu neuron" ;
+    rdfs:label "Mammalia granular layer of cerebellar cortex (with-axon-in molecular layer of cerebellar cortex) +GluR +Glu neuron" ;
     NIFRID:synonym "Cerebellar granule cell",
         "Cerebellar granule neuron" ;
     definition: "Small, numerous neuron in the granule cell layer of the vertebrate cerebellar cortex, characterized by a very small soma and several short dendrites which terminate with claw-shaped endings.  In the transmission electron microscope, these cells are characterized by a darkly stained nucleus surrounded by a thin rim of cytoplasm.  The axon ascends into the molecular layer where it bifurcates to form parallel fibers which run parallel to the long axis of the folium.  Llinas, Walton and Lang. Cerebellum. In The Synaptic Organization of the Brain. 5th ed. 2004." ;
-    ilxtr:genLabel "Mammalia granular layer of cerebellar cortex granular layer of cerebellar cortex (with-axon-in molecular layer of cerebellar cortex) +GluR +Glu neuron" ;
+    ilxtr:genLabel "Mammalia granular layer of cerebellar cortex (with-axon-in molecular layer of cerebellar cortex) +GluR +Glu neuron" ;
     ilxtr:origLabel "Cerebellum granule cell" .
 
 NIFEXT:130 a owl:Class ;
@@ -1214,9 +1198,6 @@ NIFEXT:132 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0002956 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0002956 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NCBIGene:12308 ]
                     [ a owl:Restriction ;
@@ -1225,11 +1206,11 @@ NIFEXT:132 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia granular layer of cerebellar cortex granular layer of cerebellar cortex (with-axon-in granular layer of cerebellar cortex) +CR +Glu interneuron" ;
+    rdfs:label "Mammalia granular layer of cerebellar cortex (with-axon-in granular layer of cerebellar cortex) +CR +Glu interneuron" ;
     NIFRID:synonym "Unipolar brush cell",
         "Unipolar brush neuron" ;
     definition: "A type of cell in the cerebellar cortex, first described in 1977 by Altman and Bayer, characterized by a single dendrite ending in a small brush consisting of a number of small dendrites called dendrioles.  Unipolar brush cells are found in primarily in the granular cell layer and most concentrated in lobule IX, the flocculus, the nodulus and the ventromedial zone of the paraflocculus.  Their somata are larger than granule cells but smaller than Golgi cells.  They are known to stain for calretinin." ;
-    ilxtr:genLabel "Mammalia granular layer of cerebellar cortex granular layer of cerebellar cortex (with-axon-in granular layer of cerebellar cortex) +CR +Glu interneuron" ;
+    ilxtr:genLabel "Mammalia granular layer of cerebellar cortex (with-axon-in granular layer of cerebellar cortex) +CR +Glu interneuron" ;
     ilxtr:origLabel "Cerebellum unipolar brush cell" .
 
 NIFEXT:133 a owl:Class ;
@@ -1248,18 +1229,14 @@ NIFEXT:133 a owl:Class ;
                         owl:onProperty ilxtr:hasLocationPhenotype ;
                         owl:someValuesFrom UBERON:0002037 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom SAO:229636300 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia cerebellum (unionOf Purkinje cell layer of cerebellar cortex granular layer of cerebellar cortex) +GABA +GABA neuron" ;
+    rdfs:label "Mammalia cerebellum (unionOf granular layer of cerebellar cortex Purkinje cell layer of cerebellar cortex) +GABA neuron" ;
     definition: "Type of neuron found in cerebellar granule cell layer characterized by a fusiform cell body with thick, horizontally oriented dendrites. Lugaro cells are located in or slightly below the Purkinje cell layer outermost edge of the granular layer." ;
-    ilxtr:genLabel "Mammalia cerebellum (unionOf Purkinje cell layer of cerebellar cortex granular layer of cerebellar cortex) +GABA +GABA neuron" ;
-    ilxtr:localLabel "Mammalia cerebellum (OR  ) +GABA +GABA neuron" ;
+    ilxtr:genLabel "Mammalia cerebellum (unionOf granular layer of cerebellar cortex Purkinje cell layer of cerebellar cortex) +GABA neuron" ;
     ilxtr:origLabel "Cerebellum Lugaro cell" .
 
 NIFEXT:135 a owl:Class ;
@@ -1342,11 +1319,11 @@ NIFEXT:145 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia SNpc +TH +CHEBI:18234 +DA projection neuron" ;
+    rdfs:label "Mammalia SNC +TH +CHEBI:18234 +DA projection neuron" ;
     NIFRID:synonym "Nigral dopaminergic cell",
         "substantia nigra dopaminergic cell" ;
     definition: "Principal neuron of the substantia nigra pars compacta" ;
-    ilxtr:genLabel "Mammalia SNpc +TH +CHEBI:18234 +DA projection neuron" ;
+    ilxtr:genLabel "Mammalia SNC +TH +CHEBI:18234 +DA projection neuron" ;
     ilxtr:origLabel "Substantia nigra pars compacta dopaminergic cell" .
 
 NIFEXT:148 a owl:Class ;
@@ -1522,6 +1499,25 @@ NIFSTD:BAMSC987 a owl:Class ;
     ilxtr:genLabel "Mammalia Small Pyramidal neuron" ;
     ilxtr:origLabel "Bed nucleus of the stria terminalis small pyramidal neuron" .
 
+NIFSTD:BAMSC991 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:NeuronCUT
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasLocationPhenotype ;
+                        owl:someValuesFrom NLX:77783 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMorphologicalPhenotype ;
+                        owl:someValuesFrom ilxtr:SpinyPhenotype ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasTaxonRank ;
+                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
+    rdfs:label "Mammalia Bed nuclei of the stria terminalis oval nucleus Spiny neuron" ;
+    NIFRID:synonym "BNST common spiny neuron",
+        "common spiny cell" ;
+    ilxtr:genLabel "Mammalia Bed nuclei of the stria terminalis oval nucleus Spiny neuron" ;
+    ilxtr:origLabel "Bed nucleus of the stria terminalis common spiny neuron" .
+
 NIFSTD:BAMSC995 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
@@ -1530,16 +1526,13 @@ NIFSTD:BAMSC995 a owl:Class ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
                         owl:someValuesFrom NLX:77783 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom NLX:77783 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia oval nucleus of stria terminalis (with-axon-in oval nucleus of stria terminalis) neuron" ;
+    rdfs:label "Mammalia (with-axon-in Bed nuclei of the stria terminalis oval nucleus) neuron" ;
     NIFRID:synonym "BNST beaded cell",
         "BNST beaded neuron" ;
     definition: "Neuron located within the core of the nucleus (BSTov) that is termed a beaded neuron (BN) because of its rounded soma and numerous spherules along both dendrites and axon (Fig. 11). The soma measures from 12 to 17 micrometers in its widest axis and is nearly spherical, having a rather smooth profile. The soma issues two or three short primary dendrites, which usually run horizontally. After a short distance (10 to 40 micrometers), these proximal branches give rise to sets of two to five long, secondary dendrites. The occurrence of third to order dendrites is variable, as is their length (20 to 150 micrometers). A defining characteristic of BN dendrites is the presence of distinct varicosities that are virtually devoid of dendritic spines.  The BN axon and its collaterals also exhibit a series of small spherules (0.3-0.5 um) united by thin axonal bridges (Lariva-Sahd, 2006, as reported in  http://brancusi.usc.edu/bkms)." ;
-    ilxtr:genLabel "Mammalia oval nucleus of stria terminalis (with-axon-in oval nucleus of stria terminalis) neuron" ;
+    ilxtr:genLabel "Mammalia (with-axon-in Bed nuclei of the stria terminalis oval nucleus) neuron" ;
     ilxtr:origLabel "Bed nucleus of the stria terminalis beaded neuron" .
 
 NIFSTD:BAMSC1117 a owl:Class ;
@@ -1550,17 +1543,30 @@ NIFSTD:BAMSC1117 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom NLX:144109 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom NLX:144109 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Superior colliculus stratum opticum Superior colliculus stratum opticum neuron" ;
+    rdfs:label "Mammalia Superior colliculus stratum opticum neuron" ;
     NIFRID:synonym "piriform cell",
         "piriform neuron" ;
     definition: "The piriform cells have ovoid or cup shaped cell bodies, 10 to 15 micrometers in diameter, located within a narrow lamina along the deep margin of the zone of horizontal cells. The restriction of the piriform cell somata to the boundary between the zone of horizontal cells and the zone of vertical cells is remarkably accurate and consistent. The piriform cells give rise to 2 to 5 dendrites from the superficial surface, which course through the zone of horizontal cells to terminate just beneath the surface. As the ascending dendrites approach the surface they branch more frequently, almost always by equipartition, to form a complicated intermingling bouquet of slowly tapering dendrites, 150 to 350 micrometers in width and slightly less than 200 micrometers in depth. The axon most frequently takes its origin from the base of the soma, but sometimes it arises from one of the low order dendrites. From its origin the axon runs immediately down through the zone of vertical cells, occasionally with collaterals which may arborize within the superficial laminae. The axon is thin and smooth, occasionally with en passant varicosities." ;
-    ilxtr:genLabel "Mammalia Superior colliculus stratum opticum Superior colliculus stratum opticum neuron" ;
+    ilxtr:genLabel "Mammalia Superior colliculus stratum opticum neuron" ;
     ilxtr:origLabel "Colliculus superior piriform cell" .
+
+NIFSTD:BAMSC1122 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:NeuronCUT
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedIn ;
+                        owl:someValuesFrom UBERON:0001945 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasTaxonRank ;
+                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
+    rdfs:label "Mammalia superior colliculus neuron" ;
+    NIFRID:synonym "deep vertical fusiform cell" ;
+    definition: "Deep vertical fusiform cells have cell bodies about 20 micrometers wide and their dendrites extend from the upper margin of the zone of vertical cells to the depth of the zone of optic fibers perhaps even deeper. The superficial and deep fields are usually notably different in the manner in which the dendrites branch and spread, the over to all size of the fields, the shapes of the fields, the type and density of spines, and the caliber of the dendrites." ;
+    ilxtr:genLabel "Mammalia superior colliculus neuron" ;
+    ilxtr:origLabel "Colliculus superior deep vertical fusiform cell" .
 
 NIFSTD:BAMSC1123 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1583,22 +1589,6 @@ NIFSTD:BAMSC1123 a owl:Class ;
     definition: "Pyramidal cells are similar to vertical fusiform cells in most respects. They have a vertically elongated cell body, about 15 micrometers in transverse diameter, in the deeper half of the zone of vertical cells. The dendritic field is narrow and cylindrical, 100 to 250 micrometer in diameter, and extends from the upper margin of the zone of horizontal cells to the lower margin of the zone of vertical cells, about 500 micrometers. Rather than having superficial and deep fields, the pyramidal cell has the deep field reduced to a circumsomatic field, or a diminuitive basal field, and the superficial field is relatively elongated to accord with the deeper cell body. Pyramidal cells are usually multipolar, with one or two thick apical dendrites, which branch several times on the way to the surface, particularly in the upper portion of the zone of horizontal cells, and several smaller dendrites which form a small field about the cell body. It is of interest that smooth pyramidal cells tend to have two primary dendrites, like smooth vertical fusiform cells. The axon takes its origin from the soma or a low order dendrite and runs down into the deep zones. It is smooth and thin, about like that of the vertical fusiform cells." ;
     ilxtr:genLabel "Mammalia superior colliculus superior colliculus superficial gray layer Pyramidal neuron" ;
     ilxtr:origLabel "Colliculus superior pyramidal cell" .
-
-NIFSTD:BAMSC1124 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:NeuronCUT
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0001945 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasTaxonRank ;
-                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia superior colliculus neuron" ;
-    NIFRID:synonym "inverted pyramidal cell" ;
-    definition: "The inverted pyramidal cell is similar to the pyramidal cell except that the cell body lies within the deep portion of the zone of horizontal cells. The superficial field is a circumsomatic field and the deep field is elongated to reach into the deeper portion of the zone of vertical cells. The cell body is about the size of an intermediate vertical fusiform cell soma. The axon is similar, but more apt to have collaterals to the superficial zones. Inverted pyramidal cells fall within the definition of the narrow field vertical cells." ;
-    ilxtr:genLabel "Mammalia superior colliculus neuron" ;
-    ilxtr:origLabel "Colliculus superior inverted pyramidal cell" .
 
 NIFSTD:BAMSC1125 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1705,20 +1695,17 @@ NLX:22799 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0002136 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0002136 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia CA4 CA4 (with-dendrite-in CA4) (with-axons-in CA4 dentate gyrus molecular layer inner) +Glu interneuron" ;
+    rdfs:label "Mammalia CA4 (with-dendrite-in CA4) (with-axons-in CA4 dentate gyrus molecular layer inner) +Glu interneuron" ;
     NIFRID:synonym "Dentate gyrus mossy neuron",
         "Mossy cell",
         "Mossy neuron" ;
     definition: "Excitatory polymorphic intrinsic neuron of the dentate gyrus hilus" ;
-    ilxtr:genLabel "Mammalia CA4 CA4 (with-dendrite-in CA4) (with-axons-in CA4 dentate gyrus molecular layer inner) +Glu interneuron" ;
+    ilxtr:genLabel "Mammalia CA4 (with-dendrite-in CA4) (with-axons-in CA4 dentate gyrus molecular layer inner) +Glu interneuron" ;
     ilxtr:origLabel "Dentate gyrus mossy cell" .
 
 NLX:35220 a owl:Class ;
@@ -1744,9 +1731,6 @@ NLX:35220 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0014548 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0014548 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:IvyPhenotype ]
                     [ a owl:Restriction ;
@@ -1755,11 +1739,11 @@ NLX:35220 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia pyramidal layer of CA1 pyramidal layer of CA1 (with-axons-in pyramidal layer of CA1 CA1 stratum oriens CA1 stratum radiatum CA1 alveus) Ivy +GABA interneuron" ;
+    rdfs:label "Mammalia pyramidal layer of CA1 (with-axons-in pyramidal layer of CA1 CA1 stratum oriens CA1 stratum radiatum CA1 alveus) Ivy +GABA interneuron" ;
     NIFRID:synonym "CA1 ivy cell",
         "ivy cell" ;
     definition: "Ivy cells are highly abundant GABAergic interneurons when compared to basket, bistratified, or axo-axonic cells. \"Ivy\" cells are named after their dense and fine axons innervating mostly basal and oblique pyramidal cell dendrites. They express nitric oxide synthase, neuropeptide Y, and high levels of GABAa receptor aplha1 subunit and they are also identified as slow-spiking interneurons that regulate the excitability of pyramidal cell dendrites through slowly rising and decaying GABAergic inputs." ;
-    ilxtr:genLabel "Mammalia pyramidal layer of CA1 pyramidal layer of CA1 (with-axons-in pyramidal layer of CA1 CA1 stratum oriens CA1 stratum radiatum CA1 alveus) Ivy +GABA interneuron" ;
+    ilxtr:genLabel "Mammalia pyramidal layer of CA1 (with-axons-in pyramidal layer of CA1 CA1 stratum oriens CA1 stratum radiatum CA1 alveus) Ivy +GABA interneuron" ;
     ilxtr:origLabel "Hippocampus CA1 ivy neuron" .
 
 NLX:38713 a owl:Class ;
@@ -1881,22 +1865,19 @@ NLX:82555 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0023934 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0023934 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NIFEXT:5239 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom NIFEXT:5068 ]
+                        owl:someValuesFrom PR:000005110 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia olfactory bulb main glomerular layer olfactory bulb main glomerular layer (with-axon-in olfactory bulb main glomerular layer) Tufted +GluR +CCK interneuron" ;
+    rdfs:label "Mammalia olfactory bulb main glomerular layer (with-axon-in olfactory bulb main glomerular layer) Tufted +GluR +CCK interneuron" ;
     NIFRID:synonym "external tufted cell",
         "external tufted neuron",
         "olfactory bulb external tufted cell" ;
-    ilxtr:genLabel "Mammalia olfactory bulb main glomerular layer olfactory bulb main glomerular layer (with-axon-in olfactory bulb main glomerular layer) Tufted +GluR +CCK interneuron" ;
+    ilxtr:genLabel "Mammalia olfactory bulb main glomerular layer (with-axon-in olfactory bulb main glomerular layer) Tufted +GluR +CCK interneuron" ;
     ilxtr:origLabel "Olfactory bulb main tufted cell external" .
 
 NLX:144252 a owl:Class ;
@@ -1927,9 +1908,9 @@ NLX:144252 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Olfactory bulb main granule cell layer olfactory bulb granule cell layer +NMDA +AMPA +Parv +GABA interneuron" ;
+    rdfs:label "Mammalia Olfactory bulb main granule cell layer olfactory bulb granule cell layer +NMDA +AMPA +PV +GABA interneuron" ;
     definition: "The olfactory bulb adult-born granule cell is a cohort of cell that comprise a large fraction of the vertibrate olfactory bulb granule cell layer.  These neurons proliferate from from the subventricular zone, migrate through the rostral migratory stream and integrate into the olfactory bulb granule cell layer.  Upon arriving in the olfactory bulb granule cell layer they migrate radially outward and mature with morphologies similar to neonate olfactory bulb granule cells.  This process continues throughout the adult life of the vertibrate.  There is some decline in adult neurogenesis in aged vertebrates and the presence of the subventricular proliferative zone is controversial in humans" ;
-    ilxtr:genLabel "Mammalia Olfactory bulb main granule cell layer olfactory bulb granule cell layer +NMDA +AMPA +Parv +GABA interneuron" ;
+    ilxtr:genLabel "Mammalia Olfactory bulb main granule cell layer olfactory bulb granule cell layer +NMDA +AMPA +PV +GABA interneuron" ;
     ilxtr:origLabel "Olfactory bulb (main) adult-born granule cell" .
 
 NLX:149094 a owl:Class ;
@@ -2079,12 +2060,12 @@ NLX:153867 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Anterior piriform cortex olfactory cortex (unionOf olfactory cortex layer 2 olfactory cortex layer 3) (with-axons-in GC (MOB) Olfactory cortex large multipolar cell) Pyramidal +NMDA +AMPA +Glu projection neuron" ;
+    rdfs:label "Mammalia Anterior piriform cortex olfactory cortex (unionOf olfactory cortex layer 2 olfactory cortex layer 3) (with-axons-in GC (MOB) Mammalia olfactory cortex olfactory cortex layer 3 (with-axons-in endopiriform nucleus Mediodorsal thalamus) +Glu interneuron) Pyramidal +NMDA +AMPA +Glu projection neuron" ;
     NIFRID:synonym "Olfactory cortex pyramidal neuron",
         "Small pyramidal neuron" ;
     definition: "A cell with the classic pyramidal-shaped cell body and apical and basal dendritic trees, with cell body in layer IIb and superficial layer III of the piriform (olfactory) cortex.  Its axon arises from the deeper aspect of the cell body and gives rise to collaterals which terminate within the layer III on local intrinsic cells, and also recur to layer III, II and Ib where they form association fibers that connect to the apical dendrites of pyramidal neurons and continue to become centrifugal fibers to the olfactory bulb." ;
-    ilxtr:genLabel "Mammalia Anterior piriform cortex olfactory cortex (unionOf olfactory cortex layer 2 olfactory cortex layer 3) (with-axons-in GC (MOB) Olfactory cortex large multipolar cell) Pyramidal +NMDA +AMPA +Glu projection neuron" ;
-    ilxtr:localLabel "Mammalia Anterior piriform cortex olfactory cortex (OR  ) (with-axons-in GC (MOB) Vertebrata olfactory cortex olfactory cortex layer 3 (with-axons-in Mediodorsal thalamus Endopiriform nucleus) +Glutamate interneuron) Pyramidal +NMDA +AMPA +Glu projection neuron" ;
+    ilxtr:genLabel "Mammalia Anterior piriform cortex olfactory cortex (unionOf olfactory cortex layer 2 olfactory cortex layer 3) (with-axons-in GC (MOB) Mammalia olfactory cortex olfactory cortex layer 3 (with-axons-in endopiriform nucleus Mediodorsal thalamus) +Glu interneuron) Pyramidal +NMDA +AMPA +Glu projection neuron" ;
+    ilxtr:localLabel "Mammalia Anterior piriform cortex olfactory cortex (unionOf olfactory cortex layer 2 olfactory cortex layer 3) (with-axons-in GC (MOB) Vertebrata olfactory cortex olfactory cortex layer 3 (with-axons-in Mediodorsal thalamus Endopiriform nucleus) +Glu interneuron) Pyramidal +NMDA +AMPA +Glu projection neuron" ;
     ilxtr:origLabel "Olfactory cortex superficial pyramidal cell" .
 
 NLX:153868 a owl:Class ;
@@ -2121,13 +2102,13 @@ NLX:153868 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Anterior piriform cortex olfactory cortex piriform cortex layer 3 (with-axons-in GC (MOB) Olfactory cortex large multipolar cell) Pyramidal +NMDA +AMPA +Glu neuron" ;
+    rdfs:label "Mammalia Anterior piriform cortex olfactory cortex piriform cortex layer 3 (with-axons-in GC (MOB) Mammalia olfactory cortex olfactory cortex layer 3 (with-axons-in endopiriform nucleus Mediodorsal thalamus) +Glu interneuron) Pyramidal +NMDA +AMPA +Glu neuron" ;
     NIFRID:synonym "Olfactory cortex pyramidal neuron",
         "piriform cortex deep pyramidal neuron",
         "Small pyramidal neuron" ;
     definition: "A cell with the classic pyramidal-shaped cell body and apical and basal dendritic trees, with cell body in layer III of the piriform (olfactory) cortex.  Its axon arises from the deeper aspect of the cell body and gives rise to collaterals which terminate within the layer III on local intrinsic cells, and also recur to layer III and II where they form association fibers that connect to the apical dendrites of pyramidal neurons and continue to become centrifugal fibers to the olfactory bulb." ;
-    ilxtr:genLabel "Mammalia Anterior piriform cortex olfactory cortex piriform cortex layer 3 (with-axons-in GC (MOB) Olfactory cortex large multipolar cell) Pyramidal +NMDA +AMPA +Glu neuron" ;
-    ilxtr:localLabel "Mammalia Anterior piriform cortex olfactory cortex piriform cortex layer 3 (with-axons-in GC (MOB) Vertebrata olfactory cortex olfactory cortex layer 3 (with-axons-in Mediodorsal thalamus Endopiriform nucleus) +Glutamate interneuron) Pyramidal +NMDA +AMPA +Glu neuron" ;
+    ilxtr:genLabel "Mammalia Anterior piriform cortex olfactory cortex piriform cortex layer 3 (with-axons-in GC (MOB) Mammalia olfactory cortex olfactory cortex layer 3 (with-axons-in endopiriform nucleus Mediodorsal thalamus) +Glu interneuron) Pyramidal +NMDA +AMPA +Glu neuron" ;
+    ilxtr:localLabel "Mammalia Anterior piriform cortex olfactory cortex piriform cortex layer 3 (with-axons-in GC (MOB) Vertebrata olfactory cortex olfactory cortex layer 3 (with-axons-in Mediodorsal thalamus Endopiriform nucleus) +Glu interneuron) Pyramidal +NMDA +AMPA +Glu neuron" ;
     ilxtr:origLabel "Olfactory cortex deep pyramidal cell" .
 
 NLXCELL:091001 a owl:Class ;
@@ -2223,11 +2204,11 @@ NLXCELL:091005 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Anterior piriform cortex olfactory cortex primary olfactory cortex olfactory cortex layer 2 (with-axons-in Olfactory cortex layer 2 olfactory cortex layer 3) +NMDA +AMPA +Dbct +Glu neuron" ;
+    rdfs:label "Mammalia Anterior piriform cortex olfactory cortex primary olfactory cortex olfactory cortex layer 2 (with-axons-in olfactory cortex layer 2 olfactory cortex layer 3) +NMDA +AMPA +Dbct +Glu neuron" ;
     NIFRID:synonym "semilunar cell",
         "semilunar neuron" ;
     definition: "Projection neuron found in the superficial border of layer II (IIa) of piriform cortex similar in characteristics to a pyramidal cell and also resembling the granule cell of the dentate gyrus.  It has an apical but no basilar dendrites.  They project to other cortical areas but, in contrast to pyramidal cells, they do not project back to the olfactory bulb." ;
-    ilxtr:genLabel "Mammalia Anterior piriform cortex olfactory cortex primary olfactory cortex olfactory cortex layer 2 (with-axons-in Olfactory cortex layer 2 olfactory cortex layer 3) +NMDA +AMPA +Dbct +Glu neuron" ;
+    ilxtr:genLabel "Mammalia Anterior piriform cortex olfactory cortex primary olfactory cortex olfactory cortex layer 2 (with-axons-in olfactory cortex layer 2 olfactory cortex layer 3) +NMDA +AMPA +Dbct +Glu neuron" ;
     ilxtr:origLabel "Olfactory cortex semilunar cell" .
 
 NLXCELL:091202 a owl:Class ;
@@ -2241,9 +2222,6 @@ NLXCELL:091202 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0023934 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0023934 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom CHEBI:18243 ]
                     [ a owl:Restriction ;
@@ -2252,11 +2230,11 @@ NLXCELL:091202 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia olfactory bulb main glomerular layer olfactory bulb main glomerular layer +DA +GABA interneuron" ;
+    rdfs:label "Mammalia olfactory bulb main glomerular layer +DA +GABA interneuron" ;
     NIFRID:synonym "Olfactory bulb periglomerular cell",
         "Periglomerular neuron" ;
     definition: "Small intrinsic neuron in the glomerular layer of the olfactory bulb, with cell bodies surrounding the olfactory glomerulus.  The cell body is 6-8 um in diameter, from which arises a short bushy dendrite that arborizes within a glomerulus, where it receives synaptic input from olfactory receptor cell axon terminals, and engages in dendrodendritic interactions with mitral/tufted cell dendrites.  Occasionally, bitufted PG cells connected to two glomeruli are seen.  The axon distributes laterally within the extraglomerular region, extending as far as 5-10 glomeruli away.  Some PG cells appear to lack axons.  Subtypes may be identified based on their biochemical constituents." ;
-    ilxtr:genLabel "Mammalia olfactory bulb main glomerular layer olfactory bulb main glomerular layer +DA +GABA interneuron" ;
+    ilxtr:genLabel "Mammalia olfactory bulb main glomerular layer +DA +GABA interneuron" ;
     ilxtr:origLabel "Olfactory bulb (main) periglomerular cell" .
 
 NLXCELL:091205 a owl:Class ;
@@ -2283,10 +2261,9 @@ NLXCELL:091205 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia CA1 (unionOf CA1 alveus CA1 stratum oriens) Basket +GABA neuron" ;
+    rdfs:label "Mammalia CA1 (unionOf CA1 stratum oriens CA1 alveus) Basket +GABA neuron" ;
     NIFRID:synonym "Hippocampal CA1 basket cell" ;
-    ilxtr:genLabel "Mammalia CA1 (unionOf CA1 alveus CA1 stratum oriens) Basket +GABA neuron" ;
-    ilxtr:localLabel "Mammalia CA1 (OR  ) Basket +GABA neuron" ;
+    ilxtr:genLabel "Mammalia CA1 (unionOf CA1 stratum oriens CA1 alveus) Basket +GABA neuron" ;
     ilxtr:origLabel "Hippocampus CA1 basket cell" .
 
 NLXCELL:091206 a owl:Class ;
@@ -2328,11 +2305,10 @@ NLXCELL:091206 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia CA1 (unionOf CA1 alveus CA1 stratum oriens) (with-axon-in CA1 stratum lacunosum moleculare) +GRM1 +Parv +SS +GABA (projecting to CA1 stratum lacunosum moleculare) interneuron" ;
+    rdfs:label "Mammalia CA1 (unionOf CA1 stratum oriens CA1 alveus) (with-axon-in CA1 stratum lacunosum moleculare) +GRM1 +PV +SS +GABA (projecting to CA1 stratum lacunosum moleculare) interneuron" ;
     NIFRID:synonym "CA1 O-LM interneuron" ;
     definition: "CA1 Oriens Lacunosum Moleculare (O-LM) cell is a neuron, which is characterized as a non-pyramidal cell type and interneuron that is mostly immunoreactive to GABAergic markers with the soma and dendrites mainly located in the CA1 stratum oriens and alveus, and axons extend directly to the stratum lacunosum-moleculare, ramifying there to form a dense plexus, forming symmetrical inhibitory synapses with the distal apical dendrites of pyramidal neurons while receiving excitatory input from CA1 recurrent collaterals in a disynaptic, feedback manner." ;
-    ilxtr:genLabel "Mammalia CA1 (unionOf CA1 alveus CA1 stratum oriens) (with-axon-in CA1 stratum lacunosum moleculare) +GRM1 +Parv +SS +GABA (projecting to CA1 stratum lacunosum moleculare) interneuron" ;
-    ilxtr:localLabel "Mammalia CA1 (OR  ) (with-axon-in CA1 stratum lacunosum moleculare) +GRM1 +Parv +SS +GABA (projecting to CA1 stratum lacunosum moleculare) interneuron" ;
+    ilxtr:genLabel "Mammalia CA1 (unionOf CA1 stratum oriens CA1 alveus) (with-axon-in CA1 stratum lacunosum moleculare) +GRM1 +PV +SS +GABA (projecting to CA1 stratum lacunosum moleculare) interneuron" ;
     ilxtr:origLabel "Hippocampus CA1 oriens lacunosum moleculare neuron" .
 
 NLXCELL:091207 a owl:Class ;
@@ -2372,10 +2348,10 @@ NLXCELL:091207 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia CA2 (with-axons-in pyramidal layer of CA1 pyramidal layer of CA2 pyramidal layer of CA3 CA2 stratum oriens CA2 stratum radiatum CA2 alveus) Basket +Parv +GABA neuron" ;
+    rdfs:label "Mammalia CA2 (with-axons-in pyramidal layer of CA1 pyramidal layer of CA2 pyramidal layer of CA3 CA2 stratum oriens CA2 stratum radiatum CA2 alveus) Basket +PV +GABA neuron" ;
     NIFRID:synonym "CA2 basket cell" ;
     definition: "The CA2 basket cells are the largest group of interneurons whose vertically oriented dendrites extend across all layers from stratum oriens into stratum lacunosum-moleculare and whose axons ramify extensively in stratum pyramidale. The broad basket cells have significantly broader dendritic width, and axonal arbors than that of other types of CA2 basket cells or of CA1 basket cells." ;
-    ilxtr:genLabel "Mammalia CA2 (with-axons-in pyramidal layer of CA1 pyramidal layer of CA2 pyramidal layer of CA3 CA2 stratum oriens CA2 stratum radiatum CA2 alveus) Basket +Parv +GABA neuron" ;
+    ilxtr:genLabel "Mammalia CA2 (with-axons-in pyramidal layer of CA1 pyramidal layer of CA2 pyramidal layer of CA3 CA2 stratum oriens CA2 stratum radiatum CA2 alveus) Basket +PV +GABA neuron" ;
     ilxtr:origLabel "Hippocampus CA2 Basket cell" .
 
 NLXCELL:091213 a owl:Class ;
@@ -2392,9 +2368,6 @@ NLXCELL:091213 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0014550 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0014550 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BasketPhenotype ]
                     [ a owl:Restriction ;
@@ -2403,10 +2376,10 @@ NLXCELL:091213 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia pyramidal layer of CA3 pyramidal layer of CA3 (with-axons-in pyramidal layer of CA3 CA3 alveus) Basket +GABA neuron" ;
+    rdfs:label "Mammalia pyramidal layer of CA3 (with-axons-in pyramidal layer of CA3 CA3 alveus) Basket +GABA neuron" ;
     NIFRID:synonym "CA3 pyramidal basket cell" ;
     definition: "The CA3 basket cell is an interneuron located in hippocampus area CA3 characterized by a triangular or fusiform soma, with one to three dendrites extending from the cell soma.  One of the three dendrites originate from the apical pole of soma, which then branch profusely, ascend through stratum radiatum, and often penetrate stratum lacunosum-moelculare. Primary basal dendrites are more numerous. They also branch close to soma and fan out toward the alveus, spanning the entire depth of stratum oriens." ;
-    ilxtr:genLabel "Mammalia pyramidal layer of CA3 pyramidal layer of CA3 (with-axons-in pyramidal layer of CA3 CA3 alveus) Basket +GABA neuron" ;
+    ilxtr:genLabel "Mammalia pyramidal layer of CA3 (with-axons-in pyramidal layer of CA3 CA3 alveus) Basket +GABA neuron" ;
     ilxtr:origLabel "Hippocampus CA3 basket cell" .
 
 NLXCELL:091214 a owl:Class ;
@@ -2426,18 +2399,15 @@ NLXCELL:091214 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0014559 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0014559 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia CA3 stratum lacunosum moleculare CA3 stratum lacunosum moleculare (with-dendrite-in CA3 stratum lacunosum moleculare) (with-axons-in CA3 stratum radiatum CA1 stratum lacunosum moleculare) +GABA neuron" ;
+    rdfs:label "Mammalia CA3 stratum lacunosum moleculare (with-dendrite-in CA3 stratum lacunosum moleculare) (with-axons-in CA3 stratum radiatum CA1 stratum lacunosum moleculare) +GABA neuron" ;
     NIFRID:synonym "CA3 LM interneurons" ;
     definition: "The CA3 Lacunosum Moleculare (LM) neurons are interneurons with somata in stratum lacunosum-moleculare that receive converging stimulation from the DG and entorhinal cortex as well as from within CA3. These LM neurons have dendrites that are oriented horizontally within the layer but occasionally have branches that extend into the pyramidal cell layer. The axon also takes a predominantly horizontal orientation and ramifies mainly in the stratum lacunosum-moleculare or superficial layer portion of the stratum radiatum." ;
-    ilxtr:genLabel "Mammalia CA3 stratum lacunosum moleculare CA3 stratum lacunosum moleculare (with-dendrite-in CA3 stratum lacunosum moleculare) (with-axons-in CA3 stratum radiatum CA1 stratum lacunosum moleculare) +GABA neuron" ;
+    ilxtr:genLabel "Mammalia CA3 stratum lacunosum moleculare (with-dendrite-in CA3 stratum lacunosum moleculare) (with-axons-in CA3 stratum radiatum CA1 stratum lacunosum moleculare) +GABA neuron" ;
     ilxtr:origLabel "Hippocampus CA3 lacunosum moleculare neuron" .
 
 NLXCELL:091215 a owl:Class ;
@@ -2470,15 +2440,14 @@ NLXCELL:091215 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia CA3 (unionOf CA3 alveus CA3 stratum oriens) (with-axons-in pyramidal layer of CA3 CA3 stratum radiatum) +GABA interneuron" ;
+    rdfs:label "Mammalia CA3 (unionOf CA3 stratum oriens CA3 alveus) (with-axons-in pyramidal layer of CA3 CA3 stratum radiatum) +GABA interneuron" ;
     NIFRID:synonym "CA3 s. oriens interneuron",
         "CA3 SO interneuron",
         "CA3 SO neuron",
         "CA3 stratum oriens interneuron",
         "Hippocampus CA3 stratum oriens interneuron" ;
     definition: "The CA3 stratum oriens interneuron is a fast spiking interneuron in hippocampal area CA3 with a main dendrite arborization extending in the stratum oriens and a widespread axonal arborization in all strata (Kawaguchi et al., 1987). The vast majority of dendritic processes were confined to the same layers as the cell bodies (Kantona et al., 1999)." ;
-    ilxtr:genLabel "Mammalia CA3 (unionOf CA3 alveus CA3 stratum oriens) (with-axons-in pyramidal layer of CA3 CA3 stratum radiatum) +GABA interneuron" ;
-    ilxtr:localLabel "Mammalia CA3 (OR  ) (with-axons-in pyramidal layer of CA3 CA3 stratum radiatum) +GABA interneuron" ;
+    ilxtr:genLabel "Mammalia CA3 (unionOf CA3 stratum oriens CA3 alveus) (with-axons-in pyramidal layer of CA3 CA3 stratum radiatum) +GABA interneuron" ;
     ilxtr:origLabel "Hippocampus CA3 oriens interneuron" .
 
 NLXCELL:100201 a owl:Class ;
@@ -2530,6 +2499,39 @@ NLXCELL:100209 a owl:Class ;
     ilxtr:genLabel "Mammalia CA1 (with-axons-in pyramidal layer of CA1 CA1 stratum oriens CA1 stratum radiatum CA1 alveus) +CR neuron" ;
     ilxtr:origLabel "Hippocampus CA1 IS-I neuron" .
 
+NLXCELL:100212 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:NeuronCUT
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasAxonLocatedIn ;
+                        owl:someValuesFrom NLX:152184 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                        owl:someValuesFrom ilxtr:InterneuronPhenotype ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasLayerLocationPhenotype ;
+                        owl:someValuesFrom UBERON:0001789 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasLocationPhenotype ;
+                        owl:someValuesFrom NLX:152183 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMorphologicalPhenotype ;
+                        owl:someValuesFrom ilxtr:RodMorphologicalPhenotype ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
+                        owl:someValuesFrom SAO:1744435799 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasTaxonRank ;
+                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
+    rdfs:label "Mammalia Retina outer nuclear layer ONL (with-axon-in Retina outer plexiform layer) Rod +Glu interneuron" ;
+    NIFRID:synonym "retinal rod photoreceptor",
+        "rod",
+        "rod cell" ;
+    definition: "One of the two photoreceptor cell types of the vertebrate retina. Primarily used in night vision.  Rods significantly outnumber cones.  The photopigment is in stacks of membranous disks separate from the outer cell membrane. Rods are more sensitive to light than cones, but rod mediated vision has less spatial and temporal resolution than cone vision." ;
+    ilxtr:genLabel "Mammalia Retina outer nuclear layer ONL (with-axon-in Retina outer plexiform layer) Rod +Glu interneuron" ;
+    ilxtr:origLabel "Retina photoreceptor rod cell" .
+
 NLXCELL:100311 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
@@ -2573,22 +2575,19 @@ NLXCELL:1006031 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0014557 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0014557 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NIFEXT:5090 ]
+                        owl:someValuesFrom PR:000011387 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NeurogliaformPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia CA1 stratum lacunosum moleculare CA1 stratum lacunosum moleculare (with-axons-in dentate gyrus molecular layer CA1 stratum lacunosum moleculare) Neurogliaform +Neuropeptide Y neuron" ;
+    rdfs:label "Mammalia CA1 stratum lacunosum moleculare (with-axons-in dentate gyrus molecular layer CA1 stratum lacunosum moleculare) Neurogliaform +NPY neuron" ;
     NIFRID:synonym "CA1 NG cells",
         "NG cells" ;
     definition: "CA1 neurogliaform neuron is a GABAergic interneuron, these cells are positive for NPY and co-express the actin-binding protein alpha-actinin-2. They are not positive for PV and VIP. Characteristically these neurons has a round cell body and short, non-spiny dendrites that were arranged in a stellate patterns around the cell body, spatially localized to the SLM, and often enter the molecular layer of the dentate gyrus. The axons are branched profusely close to soma occupying greater area than dendrites, like dendrites axons also tend to occupy mainly the SLM, often traveling fairly long distances along the SLM axis and mostly even entering the neighboring molecular layer of the dentate gyrus." ;
-    ilxtr:genLabel "Mammalia CA1 stratum lacunosum moleculare CA1 stratum lacunosum moleculare (with-axons-in dentate gyrus molecular layer CA1 stratum lacunosum moleculare) Neurogliaform +Neuropeptide Y neuron" ;
+    ilxtr:genLabel "Mammalia CA1 stratum lacunosum moleculare (with-axons-in dentate gyrus molecular layer CA1 stratum lacunosum moleculare) Neurogliaform +NPY neuron" ;
     ilxtr:origLabel "Hippocampus CA1 neurogliaform neuron" .
 
 NLXCELL:20081201 a owl:Class ;
@@ -2675,19 +2674,16 @@ NLXCELL:20090304 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0015432 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0015432 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia accessory olfactory bulb mitral cell layer accessory olfactory bulb mitral cell layer (with-axon-in Olfactory bulb (accessory) external plexiform layer) +Glu projection neuron" ;
+    rdfs:label "Mammalia accessory olfactory bulb mitral cell layer (with-axon-in Olfactory bulb (accessory) external plexiform layer) +Glu projection neuron" ;
     NIFRID:synonym "accessory olfactory bulb mitral cell",
         "Mitral cell of the accessory olfactory bulb" ;
     definition: "A principal neuron of the mammalian accessory olfactory bulb.  Resembles the mitral cell of the main olfactory bulb, though somewhat smaller and less clearly differentiated.  The cell bodies are arranged in a thin layer between the granule cell layer and the external plexiform layer.  Each mitral cell is characterized by one (occasionally several) primary dendrite that traverses the external plexiform layer and terminates within an olfactory glomerulus in a tuft of branches where it receives input from the axons of sensory cells of the vomeronasal organ." ;
-    ilxtr:genLabel "Mammalia accessory olfactory bulb mitral cell layer accessory olfactory bulb mitral cell layer (with-axon-in Olfactory bulb (accessory) external plexiform layer) +Glu projection neuron" ;
+    ilxtr:genLabel "Mammalia accessory olfactory bulb mitral cell layer (with-axon-in Olfactory bulb (accessory) external plexiform layer) +Glu projection neuron" ;
     ilxtr:origLabel "Olfactory bulb (accessory) mitral cell" .
 
 NLXCELL:20090305 a owl:Class ;
@@ -2801,7 +2797,6 @@ NLXCELL:20090401 a owl:Class ;
         "Accessory olfactory bulb granule neuron" ;
     definition: "The main intrinsic neuron in the accessory olfactory bulb in the mammalian central nervous system.  It resembles the granule cell in the main olfactory bulb, including the lack of an axon.  Each cell gives rise to short central dendrites and a single long apical dendrite that traverses the granule cell layer, pierces the mitral cell body layer, and branches and terminates within the external plexiform layer among the lateral dendrites of mitral and tufted cells.  The dendrites receive synaptic input from mitral and tufted cell dendrites, and have synaptic outputs to those dendrites through reciprocal dendrodendritic synapses.  Shepherd, Chen, Greer.  Olfactory Bulb.  In The Synaptic Organization of the Brain, ed 5. New York: Oxford University Press, 2004.  The AOB granule cells are replaced in the adult through ongoing neurogenesis in the subventricular zone" ;
     ilxtr:genLabel "Mammalia olfactory bulb (unionOf accessory olfactory bulb granule cell layer accessory olfactory bulb mitral cell layer) (with-dendrite-in Olfactory bulb (accessory) external plexiform layer) +NMDA +AMPA +GABA interneuron" ;
-    ilxtr:localLabel "Mammalia olfactory bulb (OR  ) (with-dendrite-in Olfactory bulb (accessory) external plexiform layer) +NMDA +AMPA +GABA interneuron" ;
     ilxtr:origLabel "Olfactory bulb (accessory) granule cell" .
 
 NLXCELL:20090727 a owl:Class ;
@@ -2847,14 +2842,11 @@ SAO:383526650 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0014550 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0014550 ]
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom ilxtr:GABAReceptor ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NLXMOL:1006001 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom SAO:1164727693 ]
+                        owl:someValuesFrom ilxtr:glutamateReceptor ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:PyramidalPhenotype ]
@@ -2864,12 +2856,12 @@ SAO:383526650 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia pyramidal layer of CA3 pyramidal layer of CA3 (with-axons-in CA3 CA1 stratum oriens CA3 stratum oriens CA1 stratum radiatum CA3 stratum radiatum) Pyramidal +GABA receptor role +Glutamate Receptor +Glu projection neuron" ;
+    rdfs:label "Mammalia pyramidal layer of CA3 (with-axons-in CA3 CA1 stratum oriens CA3 stratum oriens CA1 stratum radiatum CA3 stratum radiatum) Pyramidal +ilxtr:GABAReceptor +ilxtr:glutamateReceptor +Glu projection neuron" ;
     NIFRID:synonym "CA3 pyramidal cell",
         "CA3 pyramidal neuron",
         "Hippocampal CA3 Pyramidal Neuron" ;
     definition: "This is the major output neuron in area CA3 of the hippocampus.  It receives input from mossy fibers of the dentate gyrus.  Its axon projects to the contralateral hippocampus and subcortically to the septal nucleus, and sends axon collaterals called Shaffer collaterals to the nearby CA1 region." ;
-    ilxtr:genLabel "Mammalia pyramidal layer of CA3 pyramidal layer of CA3 (with-axons-in CA3 CA1 stratum oriens CA3 stratum oriens CA1 stratum radiatum CA3 stratum radiatum) Pyramidal +GABA receptor role +Glutamate Receptor +Glu projection neuron" ;
+    ilxtr:genLabel "Mammalia pyramidal layer of CA3 (with-axons-in CA3 CA1 stratum oriens CA3 stratum oriens CA1 stratum radiatum CA3 stratum radiatum) Pyramidal +ilxtr:GABAReceptor +ilxtr:glutamateReceptor +Glu projection neuron" ;
     ilxtr:origLabel "Hippocampus CA3 pyramidal cell" .
 
 SAO:471801888 a owl:Class ;
@@ -2926,9 +2918,6 @@ SAO:666951243 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0002974 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0002974 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BasketPhenotype ]
                     [ a owl:Restriction ;
@@ -2937,10 +2926,10 @@ SAO:666951243 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia molecular layer of cerebellar cortex molecular layer of cerebellar cortex (with-axon-in Purkinje cell layer of cerebellar cortex) Basket +GABA interneuron" ;
+    rdfs:label "Mammalia molecular layer of cerebellar cortex (with-axon-in Purkinje cell layer of cerebellar cortex) Basket +GABA interneuron" ;
     NIFRID:synonym "Cerebellar basket cell" ;
     definition: "Intrinsic cell residing in the inner third of the molecular layer of the cerebellar cortex.  Axons extend laterally, transverse to the folium, and densely innervate the somata of Purkinje neurons.  Axon collaterals of the basket cell axon form the specialized terminal plexus, the \"pinceau\", around the Purkinje cell axon initial segment. Llinas, Walton and Lang.  In: The Synaptic Organization of the Brain.  5th ed. 2004." ;
-    ilxtr:genLabel "Mammalia molecular layer of cerebellar cortex molecular layer of cerebellar cortex (with-axon-in Purkinje cell layer of cerebellar cortex) Basket +GABA interneuron" ;
+    ilxtr:genLabel "Mammalia molecular layer of cerebellar cortex (with-axon-in Purkinje cell layer of cerebellar cortex) Basket +GABA interneuron" ;
     ilxtr:origLabel "Cerebellum basket cell" .
 
 SAO:830368389 a owl:Class ;
@@ -2960,14 +2949,11 @@ SAO:830368389 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0014548 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0014548 ]
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom ilxtr:GABAReceptor ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NLXMOL:1006001 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom SAO:1164727693 ]
+                        owl:someValuesFrom ilxtr:glutamateReceptor ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:PyramidalPhenotype ]
@@ -2977,12 +2963,12 @@ SAO:830368389 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia pyramidal layer of CA1 pyramidal layer of CA1 (with-axons-in subiculum entorhinal cortex) Pyramidal +GABA receptor role +Glutamate Receptor +Glu projection neuron" ;
+    rdfs:label "Mammalia pyramidal layer of CA1 (with-axons-in subiculum entorhinal cortex) Pyramidal +ilxtr:GABAReceptor +ilxtr:glutamateReceptor +Glu projection neuron" ;
     NIFRID:synonym "CA1 pyramidal neuron",
         "Hippocampal CA1 pyramidal cell",
         "Hippocampal CA1 Pyramidal Neuron" ;
     definition: "Pyramidal neuron with a soma located in hippocampal area CA1.  It receives input from Schaffer collaterals of CA3 pyramidal neurons, and sends its axon to the subiculum and entorhinal cortex." ;
-    ilxtr:genLabel "Mammalia pyramidal layer of CA1 pyramidal layer of CA1 (with-axons-in subiculum entorhinal cortex) Pyramidal +GABA receptor role +Glutamate Receptor +Glu projection neuron" ;
+    ilxtr:genLabel "Mammalia pyramidal layer of CA1 (with-axons-in subiculum entorhinal cortex) Pyramidal +ilxtr:GABAReceptor +ilxtr:glutamateReceptor +Glu projection neuron" ;
     ilxtr:origLabel "Hippocampus CA1 pyramidal cell" .
 
 SAO:1103104164 a owl:Class ;
@@ -3002,17 +2988,20 @@ SAO:1103104164 a owl:Class ;
                         owl:onProperty ilxtr:hasLocationPhenotype ;
                         owl:someValuesFrom NLX:152183 ]
                     [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMorphologicalPhenotype ;
+                        owl:someValuesFrom ilxtr:ConeMorphologicalPhenotype ]
+                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Retina outer nuclear layer ONL (with-axon-in Retina outer plexiform layer) +Glu interneuron" ;
+    rdfs:label "Mammalia Retina outer nuclear layer ONL (with-axon-in Retina outer plexiform layer) Cone +Glu interneuron" ;
     NIFRID:synonym "cone",
         "Cone cell",
         "retinal cone" ;
     definition: "One of the two photoreceptor cell types in the vertebrate retina. In cones the photopigment is in invaginations of the cell membrane of the outer segment. Cones are less sensitive to light than rods, but they provide vision with higher spatial and temporal acuity, and the combination of signals from cones with different pigments allows color vision. (MSH)" ;
-    ilxtr:genLabel "Mammalia Retina outer nuclear layer ONL (with-axon-in Retina outer plexiform layer) +Glu interneuron" ;
+    ilxtr:genLabel "Mammalia Retina outer nuclear layer ONL (with-axon-in Retina outer plexiform layer) Cone +Glu interneuron" ;
     ilxtr:origLabel "Retina photoreceptor cone cell" .
 
 SAO:1154704263 a owl:Class ;
@@ -3036,10 +3025,10 @@ SAO:1154704263 a owl:Class ;
                         owl:someValuesFrom UBERON:0002257 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NIFEXT:5242 ]
+                        owl:someValuesFrom ilxtr:glutamateReceptor ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom SAO:1164727693 ]
+                        owl:someValuesFrom NIFEXT:5242 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:185580330 ]
@@ -3049,12 +3038,12 @@ SAO:1154704263 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia ventral horn of spinal cord (with-dendrite-in ventral horn of spinal cord) (with-axon-in ventral horn of spinal cord) +GABA A-gated anionic channel +Glutamate Receptor +Glu +ACh motor projection neuron" ;
+    rdfs:label "Mammalia ventral horn of spinal cord (with-dendrite-in ventral horn of spinal cord) (with-axon-in ventral horn of spinal cord) +ilxtr:glutamateReceptor +GABA A-gated anionic channel +Glu +ACh motor projection neuron" ;
     NIFRID:synonym "alpha motoneuron",
         "alpha motor neuron",
         "lower motor neuron" ;
     definition: "Large lower motor neuron of the brainstem and spinal cord. They innervate extrafusal muscle fibers of skeletal muscle and are directly responsible for initiating their contraction. Alpha motor neurons are distinct from gamma motor neurons, which innervate intrafusal muscle fibers of muscle spindles." ;
-    ilxtr:genLabel "Mammalia ventral horn of spinal cord (with-dendrite-in ventral horn of spinal cord) (with-axon-in ventral horn of spinal cord) +GABA A-gated anionic channel +Glutamate Receptor +Glu +ACh motor projection neuron" ;
+    ilxtr:genLabel "Mammalia ventral horn of spinal cord (with-dendrite-in ventral horn of spinal cord) (with-axon-in ventral horn of spinal cord) +ilxtr:glutamateReceptor +GABA A-gated anionic channel +Glu +ACh motor projection neuron" ;
     ilxtr:origLabel "Spinal cord ventral horn motor neuron alpha" .
 
 SAO:1366775348 a owl:Class ;
@@ -3070,9 +3059,9 @@ SAO:1366775348 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia ciliary ganglion +ACh neuron" ;
+    rdfs:label "Mammalia main ciliary ganglion +ACh neuron" ;
     NIFRID:synonym "Ciliary ganglion neuron" ;
-    ilxtr:genLabel "Mammalia ciliary ganglion +ACh neuron" ;
+    ilxtr:genLabel "Mammalia main ciliary ganglion +ACh neuron" ;
     ilxtr:origLabel "Ciliary ganglion cell" .
 
 SAO:1415726815 a owl:Class ;
@@ -3086,19 +3075,16 @@ SAO:1415726815 a owl:Class ;
                         owl:onProperty ilxtr:hasLayerLocationPhenotype ;
                         owl:someValuesFrom UBERON:0002956 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0002956 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia granular layer of cerebellar cortex granular layer of cerebellar cortex (with-axon-in granular layer of cerebellar cortex) +GABA neuron" ;
+    rdfs:label "Mammalia granular layer of cerebellar cortex (with-axon-in granular layer of cerebellar cortex) +GABA neuron" ;
     NIFRID:synonym "Cerebellar golgi cell",
         "Cerebellar Golgi neuron" ;
     definition: "Large intrinsic neuron located in the granule layer of the cerebellar cortex that extends its dendrites into the molecular layer where they receive contact from parallel fibers.  The axon of the Golgi cell enters ramifies densely in the granule layer and enters into a complex arrangement with mossy fiber terminals and granule cell dendrites to form the cerebellar glomerulus. Llinas, Walton and Lang. In The Synaptic Organization of the Brain. 5th ed. 2004." ;
-    ilxtr:genLabel "Mammalia granular layer of cerebellar cortex granular layer of cerebellar cortex (with-axon-in granular layer of cerebellar cortex) +GABA neuron" ;
+    ilxtr:genLabel "Mammalia granular layer of cerebellar cortex (with-axon-in granular layer of cerebellar cortex) +GABA neuron" ;
     ilxtr:origLabel "Cerebellum Golgi cell" .
 
 SAO:1438006234 a owl:Class ;
@@ -3122,21 +3108,21 @@ SAO:1438006234 a owl:Class ;
                         owl:someValuesFrom UBERON:0002257 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NIFEXT:5242 ]
+                        owl:someValuesFrom ilxtr:glutamateReceptor ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom SAO:1164727693 ]
+                        owl:someValuesFrom NIFEXT:5242 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:185580330 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia ventral horn of spinal cord (with-dendrite-in ventral horn of spinal cord) (with-axon-in ventral horn of spinal cord) +GABA A-gated anionic channel +Glutamate Receptor +ACh motor projection neuron" ;
+    rdfs:label "Mammalia ventral horn of spinal cord (with-dendrite-in ventral horn of spinal cord) (with-axon-in ventral horn of spinal cord) +ilxtr:glutamateReceptor +GABA A-gated anionic channel +ACh motor projection neuron" ;
     NIFRID:synonym "fusimotor neuron",
         "Gamma motor neuron" ;
     definition: "Motor neurons which activate the contractile regions of intrafusal muscle fibers, thus adjusting the sensitivity of the muscle spindles to stretch. Gamma motor neurons may be \"static\" or \"dynamic\" according to which aspect of responsiveness (or which fiber types) they regulate. The alpha and gamma motor neurons are often activated together (alpha gamma coactivation) which allows the spindles to contribute to the control of movement trajectories despite changes in muscle length (MSH)." ;
-    ilxtr:genLabel "Mammalia ventral horn of spinal cord (with-dendrite-in ventral horn of spinal cord) (with-axon-in ventral horn of spinal cord) +GABA A-gated anionic channel +Glutamate Receptor +ACh motor projection neuron" ;
+    ilxtr:genLabel "Mammalia ventral horn of spinal cord (with-dendrite-in ventral horn of spinal cord) (with-axon-in ventral horn of spinal cord) +ilxtr:glutamateReceptor +GABA A-gated anionic channel +ACh motor projection neuron" ;
     ilxtr:origLabel "Spinal cord ventral horn motor neuron gamma" .
 
 SAO:1582628662 a owl:Class ;
@@ -3157,18 +3143,18 @@ SAO:1582628662 a owl:Class ;
                         owl:someValuesFrom PR:000015040 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom NLXMOL:20090301 ]
+                        owl:someValuesFrom CHEBI:132943 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia cochlea spiral organ of cochlea +PRES +Asp, D +Glu projection neuron" ;
+    rdfs:label "Mammalia cochlea spiral organ of cochlea +PRES +aspartate +Glu projection neuron" ;
     NIFRID:synonym "Cochlear Outer Hair Cell",
         "Outer Hair Cell" ;
     definition: "In mammals, the outer hair cells are arranged in three rows that are further removed from the modiolus than the single row of inner hair cells. Although receiving only ~5% of the innervating auditory nerve dendrites, the motile properties of the outer hair cells actively contribute to the sensitivity and frequency selectivity of the cochlea. The process of somatic electromotility, due to the presence of the motor protein, prestin, is essential for normal cochlear function.  Outer hair cell function is also directly influenced by efferent input from the medial superior olivary complex. (MSH)" ;
-    ilxtr:genLabel "Mammalia cochlea spiral organ of cochlea +PRES +Asp, D +Glu projection neuron" ;
+    ilxtr:genLabel "Mammalia cochlea spiral organ of cochlea +PRES +aspartate +Glu projection neuron" ;
     ilxtr:origLabel "Cochlea outer hair cell" .
 
 SAO:2128417084 a owl:Class ;
@@ -3453,8 +3439,8 @@ TEMP:Basal-forebrain-GABAergic-neuron a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia basal forebrain +4Abu neuron" ;
-    ilxtr:genLabel "Mammalia basal forebrain +4Abu neuron" ;
+    rdfs:label "Mammalia basal forebrain +GABA neuron" ;
+    ilxtr:genLabel "Mammalia basal forebrain +GABA neuron" ;
     ilxtr:origLabel "Basal forebrain GABAergic neuron" .
 
 TEMP:Basolateral-amygdalar-complex-intrinsic-interneuron a owl:Class ;
@@ -3525,7 +3511,7 @@ TEMP:Bed-nuclei-of-terminal-stria-projection-neuron a owl:Class ;
     ilxtr:genLabel "Mammalia BST projection neuron" ;
     ilxtr:origLabel "Bed nuclei of terminal stria projection neuron" .
 
-TEMP:Bed-nucleus-of-the-stria-terminalis-common-spiny-neuron a owl:Class ;
+TEMP:Bed-nucleus-of-the-stria-terminalis--ALG- a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronCUT
@@ -3537,7 +3523,7 @@ TEMP:Bed-nucleus-of-the-stria-terminalis-common-spiny-neuron a owl:Class ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia BST neuron" ;
     ilxtr:genLabel "Mammalia BST neuron" ;
-    ilxtr:origLabel "Bed nucleus of the stria terminalis common spiny neuron" .
+    ilxtr:origLabel "Bed nucleus of the stria terminalis (ALG)" .
 
 TEMP:Central-amygdalar-nucleus-intrinsic-interneuron a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4007,12 +3993,12 @@ TEMP:Habenular-nuclei-intrinsic-interneuron a owl:Class ;
                         owl:someValuesFrom ilxtr:InterneuronPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0001904 ]
+                        owl:someValuesFrom UBERON:0008993 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia Hb interneuron" ;
-    ilxtr:genLabel "Mammalia Hb interneuron" ;
+    rdfs:label "Mammalia habenular nucleus interneuron" ;
+    ilxtr:genLabel "Mammalia habenular nucleus interneuron" ;
     ilxtr:origLabel "Habenular nuclei intrinsic interneuron" .
 
 TEMP:Hippocampus-CA1-radiatum-giant-neuron a owl:Class ;
@@ -4487,7 +4473,6 @@ TEMP:Medial-entorhinal-cortex-layer-III-pyramidal-cell a owl:Class ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia MEC L3 Pyramidal neuron" ;
     ilxtr:genLabel "Mammalia MEC L3 Pyramidal neuron" ;
-    ilxtr:localLabel "Mammalia MEC cortical layer III Pyramidal neuron" ;
     ilxtr:origLabel "Medial entorhinal cortex layer III pyramidal cell" .
 
 TEMP:Medial-hypothalamic-zone-intrinsic-interneuron a owl:Class ;
@@ -4744,7 +4729,6 @@ TEMP:Neocortex-layer-3-pyramidal-cell a owl:Class ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia L3 Pyramidal neuron" ;
     ilxtr:genLabel "Mammalia L3 Pyramidal neuron" ;
-    ilxtr:localLabel "Mammalia cortical layer III Pyramidal neuron" ;
     ilxtr:origLabel "Neocortex layer 3 pyramidal cell" .
 
 TEMP:Neocortex-layer-4-pyramidal-cell a owl:Class ;
@@ -4762,7 +4746,6 @@ TEMP:Neocortex-layer-4-pyramidal-cell a owl:Class ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia L4 Pyramidal neuron" ;
     ilxtr:genLabel "Mammalia L4 Pyramidal neuron" ;
-    ilxtr:localLabel "Mammalia cortical layer IV Pyramidal neuron" ;
     ilxtr:origLabel "Neocortex layer 4 pyramidal cell" .
 
 TEMP:Neocortex-layer-4-star-pyramid-cell a owl:Class ;
@@ -4777,7 +4760,6 @@ TEMP:Neocortex-layer-4-star-pyramid-cell a owl:Class ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia L4 neuron" ;
     ilxtr:genLabel "Mammalia L4 neuron" ;
-    ilxtr:localLabel "Mammalia cortical layer IV neuron" ;
     ilxtr:origLabel "Neocortex layer 4 star pyramid cell" .
 
 TEMP:Neocortex-layer-5-pyramidal-cell a owl:Class ;
@@ -4795,7 +4777,6 @@ TEMP:Neocortex-layer-5-pyramidal-cell a owl:Class ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia L5 Pyramidal neuron" ;
     ilxtr:genLabel "Mammalia L5 Pyramidal neuron" ;
-    ilxtr:localLabel "Mammalia cortical layer V Pyramidal neuron" ;
     ilxtr:origLabel "Neocortex layer 5 pyramidal cell" .
 
 TEMP:Neocortex-layer-6-pyramidal-cell a owl:Class ;
@@ -4813,7 +4794,6 @@ TEMP:Neocortex-layer-6-pyramidal-cell a owl:Class ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia L6 Pyramidal neuron" ;
     ilxtr:genLabel "Mammalia L6 Pyramidal neuron" ;
-    ilxtr:localLabel "Mammalia cortical layer VI Pyramidal neuron" ;
     ilxtr:origLabel "Neocortex layer 6 pyramidal cell" .
 
 TEMP:Neocortex-layer-I-interneuron a owl:Class ;
@@ -4831,7 +4811,6 @@ TEMP:Neocortex-layer-I-interneuron a owl:Class ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia L1 interneuron" ;
     ilxtr:genLabel "Mammalia L1 interneuron" ;
-    ilxtr:localLabel "Mammalia cortical layer I interneuron" ;
     ilxtr:origLabel "Neocortex layer I interneuron" .
 
 TEMP:Neocortex-neurogliaform-cell a owl:Class ;
@@ -4932,8 +4911,8 @@ TEMP:Oculomotor-nucleus-intrinsic-interneuron a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia nIII interneuron" ;
-    ilxtr:genLabel "Mammalia nIII interneuron" ;
+    rdfs:label "Mammalia OM interneuron" ;
+    ilxtr:genLabel "Mammalia OM interneuron" ;
     ilxtr:origLabel "Oculomotor nucleus intrinsic interneuron" .
 
 TEMP:Oculomotor-nucleus-projection-neuron a owl:Class ;
@@ -4949,8 +4928,8 @@ TEMP:Oculomotor-nucleus-projection-neuron a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia nIII projection neuron" ;
-    ilxtr:genLabel "Mammalia nIII projection neuron" ;
+    rdfs:label "Mammalia OM projection neuron" ;
+    ilxtr:genLabel "Mammalia OM projection neuron" ;
     ilxtr:origLabel "Oculomotor nucleus projection neuron" .
 
 TEMP:Olfactory-cortex-large-multipolar-cell a owl:Class ;
@@ -4993,12 +4972,12 @@ TEMP:Olfactory-tubercle-intrinsic-interneuron a owl:Class ;
                         owl:someValuesFrom ilxtr:InterneuronPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0018141 ]
+                        owl:someValuesFrom UBERON:0001883 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia anterior perforated substance interneuron" ;
-    ilxtr:genLabel "Mammalia anterior perforated substance interneuron" ;
+    rdfs:label "Mammalia olfactory tubercle interneuron" ;
+    ilxtr:genLabel "Mammalia olfactory tubercle interneuron" ;
     ilxtr:origLabel "Olfactory tubercle intrinsic interneuron" .
 
 TEMP:Olfactory-tubercle-projection-neuron a owl:Class ;
@@ -5010,12 +4989,12 @@ TEMP:Olfactory-tubercle-projection-neuron a owl:Class ;
                         owl:someValuesFrom ilxtr:ProjectionPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0018141 ]
+                        owl:someValuesFrom UBERON:0001883 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia anterior perforated substance projection neuron" ;
-    ilxtr:genLabel "Mammalia anterior perforated substance projection neuron" ;
+    rdfs:label "Mammalia olfactory tubercle projection neuron" ;
+    ilxtr:genLabel "Mammalia olfactory tubercle projection neuron" ;
     ilxtr:origLabel "Olfactory tubercle projection neuron" .
 
 TEMP:Parabrachial-nucleus-intrinsic-interneuron a owl:Class ;
@@ -5082,8 +5061,8 @@ TEMP:Pedunculopontine-nucleus-GABAergic-neuron a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia PPTg +4Abu neuron" ;
-    ilxtr:genLabel "Mammalia PPTg +4Abu neuron" ;
+    rdfs:label "Mammalia PPTg +GABA neuron" ;
+    ilxtr:genLabel "Mammalia PPTg +GABA neuron" ;
     ilxtr:origLabel "Pedunculopontine nucleus GABAergic neuron" .
 
 TEMP:Pedunculopontine-nucleus-glutamatergic-neuron a owl:Class ;
@@ -5099,8 +5078,8 @@ TEMP:Pedunculopontine-nucleus-glutamatergic-neuron a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia PPTg +E neuron" ;
-    ilxtr:genLabel "Mammalia PPTg +E neuron" ;
+    rdfs:label "Mammalia PPTg +Glu neuron" ;
+    ilxtr:genLabel "Mammalia PPTg +Glu neuron" ;
     ilxtr:origLabel "Pedunculopontine nucleus glutamatergic neuron" .
 
 TEMP:Pedunculopontine-nucleus-projection-neuron a owl:Class ;
@@ -5507,8 +5486,8 @@ TEMP:Raphe-nucleus-dorsal-serotonergic-neuron a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia DRN +5-HT neuron" ;
-    ilxtr:genLabel "Mammalia DRN +5-HT neuron" ;
+    rdfs:label "Mammalia DR +5-HT neuron" ;
+    ilxtr:genLabel "Mammalia DR +5-HT neuron" ;
     ilxtr:origLabel "Raphe nucleus dorsal serotonergic neuron" .
 
 TEMP:Raphe-nucleus-medial-serotonergic-neuron a owl:Class ;
@@ -5541,8 +5520,8 @@ TEMP:Red-nucleus-intrinsic-interneuron a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia R interneuron" ;
-    ilxtr:genLabel "Mammalia R interneuron" ;
+    rdfs:label "Mammalia red nucleus interneuron" ;
+    ilxtr:genLabel "Mammalia red nucleus interneuron" ;
     ilxtr:origLabel "Red nucleus intrinsic interneuron" .
 
 TEMP:Red-nucleus-projection-neuron a owl:Class ;
@@ -5558,8 +5537,8 @@ TEMP:Red-nucleus-projection-neuron a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia R projection neuron" ;
-    ilxtr:genLabel "Mammalia R projection neuron" ;
+    rdfs:label "Mammalia red nucleus projection neuron" ;
+    ilxtr:genLabel "Mammalia red nucleus projection neuron" ;
     ilxtr:origLabel "Red nucleus projection neuron" .
 
 TEMP:Retroambiguous-nucleus-intrinsic-neuron a owl:Class ;
@@ -5732,7 +5711,7 @@ TEMP:Septal-complex-medial-projection-neuron a owl:Class ;
     ilxtr:genLabel "Mammalia medial septal complex projection neuron" ;
     ilxtr:origLabel "Septal complex medial projection neuron" .
 
-TEMP:Spinal-cord-ventral-horn-interneuron-II a owl:Class ;
+TEMP:Spinal-cord-ventral-horn-interneuron-V2 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronCUT
@@ -5747,7 +5726,7 @@ TEMP:Spinal-cord-ventral-horn-interneuron-II a owl:Class ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia ventral horn of spinal cord interneuron" ;
     ilxtr:genLabel "Mammalia ventral horn of spinal cord interneuron" ;
-    ilxtr:origLabel "Spinal cord ventral horn interneuron II" .
+    ilxtr:origLabel "Spinal cord ventral horn interneuron V2" .
 
 TEMP:Spinocerebellar-dorsal-tract-cell-principal-cell a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -5810,8 +5789,8 @@ TEMP:Striatum-GABAergic-interneuron a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia striatum +4Abu interneuron" ;
-    ilxtr:genLabel "Mammalia striatum +4Abu interneuron" ;
+    rdfs:label "Mammalia striatum +GABA interneuron" ;
+    ilxtr:genLabel "Mammalia striatum +GABA interneuron" ;
     ilxtr:origLabel "Striatum GABAergic interneuron" .
 
 TEMP:Striatum-medium-spiny-neuron a owl:Class ;
@@ -5895,8 +5874,8 @@ TEMP:Striatum-TH--cell a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia striatum +TYH neuron" ;
-    ilxtr:genLabel "Mammalia striatum +TYH neuron" ;
+    rdfs:label "Mammalia striatum +TH neuron" ;
+    ilxtr:genLabel "Mammalia striatum +TH neuron" ;
     ilxtr:origLabel "Striatum TH+ cell" .
 
 TEMP:Subceruleus-nucleus-intrinsic-neuron a owl:Class ;
@@ -6001,7 +5980,7 @@ TEMP:Substantia-innominata-projection-neuron a owl:Class ;
     ilxtr:genLabel "Mammalia substantia innominata projection neuron" ;
     ilxtr:origLabel "Substantia innominata projection neuron" .
 
-TEMP:Substantia-nigra-pars-reticulata-interneuron a owl:Class ;
+TEMP:Substantia-nigra-pars-reticulata-intrinsic-interneuron a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronCUT
@@ -6016,7 +5995,7 @@ TEMP:Substantia-nigra-pars-reticulata-interneuron a owl:Class ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia SNR interneuron" ;
     ilxtr:genLabel "Mammalia SNR interneuron" ;
-    ilxtr:origLabel "Substantia nigra pars reticulata interneuron" .
+    ilxtr:origLabel "Substantia nigra pars reticulata intrinsic interneuron" .
 
 TEMP:Subthalamic-nucleus-neuron a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -6045,8 +6024,8 @@ TEMP:Suprachiasmatic-nucleus-intrinsic-neuron a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia SCh interneuron" ;
-    ilxtr:genLabel "Mammalia SCh interneuron" ;
+    rdfs:label "Mammalia SCN interneuron" ;
+    ilxtr:genLabel "Mammalia SCN interneuron" ;
     ilxtr:origLabel "Suprachiasmatic nucleus intrinsic neuron" .
 
 TEMP:Suprachiasmatic-nucleus-projection-neuron a owl:Class ;
@@ -6062,8 +6041,8 @@ TEMP:Suprachiasmatic-nucleus-projection-neuron a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia SCh projection neuron" ;
-    ilxtr:genLabel "Mammalia SCh projection neuron" ;
+    rdfs:label "Mammalia SCN projection neuron" ;
+    ilxtr:genLabel "Mammalia SCN projection neuron" ;
     ilxtr:origLabel "Suprachiasmatic nucleus projection neuron" .
 
 TEMP:Tenia-tecta-intrinsic-interneuron a owl:Class ;

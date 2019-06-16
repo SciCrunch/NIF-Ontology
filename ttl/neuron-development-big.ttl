@@ -1,0 +1,172 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix hasRole: <http://purl.obolibrary.org/obo/RO_0000087> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix JAX: <http://jaxmice.jax.org/strain/> .
+@prefix NCBIGene: <http://www.ncbi.nlm.nih.gov/gene/> .
+@prefix NIFEXT: <http://uri.neuinfo.org/nif/nifstd/nifext_> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix NLXMOL: <http://uri.neuinfo.org/nif/nifstd/nlx_mol_> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix partOf: <http://purl.obolibrary.org/obo/BFO_0000050> .
+@prefix PAXRAT: <http://uri.interlex.org/paxinos/uris/rat/labels/> .
+@prefix PR: <http://purl.obolibrary.org/obo/PR_> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix PTHR: <http://www.pantherdb.org/panther/family.do?clsAccession=PTHR> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
+@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/neuron-development-big.ttl> a owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/bridge/chemical-bridge.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/bridge/neuron-bridge.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/parcellation-artifacts.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/parcellation.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/parcellation/mbaslim.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/parcellation/paxinos-rat-labels.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/uberon-parcellation-mappings.ttl>,
+        obo:uberon.owl ;
+    rdfs:label "Utility ontology for neuron development" ;
+    owl:versionInfo "2019-06-03" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/a6faae9a766e3eadc3bd286f94bac87ff42b96b6/neurondm/neurondm/build.py#L1384> .
+
+### Classes
+
+ilxtr:GABAReceptor a owl:Class ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hasRole: ;
+            owl:someValuesFrom NLXMOL:1006001 ] ;
+    rdfs:label "GABA receptor" ;
+    NIFRID:synonym "GABAR" .
+
+ilxtr:glutamateReceptor a owl:Class ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hasRole: ;
+            owl:someValuesFrom SAO:1164727693 ] ;
+    rdfs:label "Glutamate receptor" ;
+    NIFRID:synonym "GluR" .
+
+ilxtr:NeuronQuery a owl:Class ;
+    rdfs:subClassOf SAO:1417703748 .
+
+ilxtr:NeuronQueryPV a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:unionOf (
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom ilxtr:PV-cre ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom ilxtr:Pvalb ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom JAX:008069 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom JAX:021189 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom JAX:021190 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom JAX:022730 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom NCBIGene:19293 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom NIFEXT:6 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom PR:000013502 ] ) ] ;
+    rdfs:label "Parvalbumin Neuron (query)" ;
+    NIFRID:synonym "Pvalb Neuron (query)" ;
+    rdfs:subClassOf ilxtr:NeuronQuery .
+
+ilxtr:NeuronQuerySST a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:unionOf (
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom ilxtr:SST-flp ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom JAX:013044 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom JAX:028579 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom NCBIGene:20604 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom PR:000015665 ] ) ] ;
+    rdfs:label "Somatostatin Neuron (query)" ;
+    NIFRID:synonym "Sst Neuron (query)" ;
+    rdfs:subClassOf ilxtr:NeuronQuery .
+
+PTHR:10558 a owl:Class ;
+    rdfs:label "somatostatin (indicator)" ;
+    NIFRID:synonym "SOM",
+        "somatostatin",
+        "Sst" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+PTHR:11653 a owl:Class ;
+    rdfs:label "parvalbumin (indicator)" ;
+    NIFRID:synonym "parvalbumin",
+        "PV",
+        "Pvalb" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+### Annotations
+
+CHEBI:18234 rdfs:label "α,α'-trehalose 6-mycolate" .
+
+ilxtr:labelPartOf rdfs:subPropertyOf partOf: .
+
+ilxtr:parcellationLabel rdfs:subClassOf UBERON:0001062 .
+
+ilxtr:Phenotype rdfs:subClassOf BFO:0000016 .
+
+ilxtr:PV-cre rdfs:subClassOf PTHR:11653 .
+
+ilxtr:Pvalb rdfs:subClassOf PTHR:11653 .
+
+ilxtr:SST-flp rdfs:subClassOf PTHR:10558 .
+
+JAX:008069 rdfs:subClassOf PTHR:11653 .
+
+JAX:013044 rdfs:subClassOf PTHR:10558 .
+
+JAX:021189 rdfs:subClassOf PTHR:11653 .
+
+JAX:021190 rdfs:subClassOf PTHR:11653 .
+
+JAX:022730 rdfs:subClassOf PTHR:11653 .
+
+JAX:028579 rdfs:subClassOf PTHR:10558 .
+
+NCBIGene:19293 rdfs:subClassOf PTHR:11653 .
+
+NCBIGene:20604 rdfs:subClassOf PTHR:10558 .
+
+NIFEXT:6 rdfs:subClassOf PTHR:11653 .
+
+PAXRAT:794 rdfs:subClassOf UBERON:0008933,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDelineatedBy ;
+            owl:someValuesFrom UBERON:0008933 ] .
+
+PR:000013502 rdfs:subClassOf PTHR:11653 .
+
+PR:000015665 rdfs:subClassOf PTHR:10558 .
+
+UBERON:0008933 rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ilxtr:delineates ;
+            owl:someValuesFrom PAXRAT:794 ] .
+
+### Serialized using the pyontutils deterministic serializer v1.2.0
