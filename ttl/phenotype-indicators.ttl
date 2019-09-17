@@ -1,5 +1,6 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix AllenTL: <http://api.brain-map.org/api/v2/data/TransgenicLine/> .
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix JAX: <http://jaxmice.jax.org/strain/> .
 @prefix MMRRC: <http://www.mmrrc.org/catalog/getSDS.jsp?mmrrc_id=> .
@@ -10,12 +11,13 @@
 @prefix PR: <http://purl.obolibrary.org/obo/PR_> .
 @prefix PTHR: <http://www.pantherdb.org/panther/family.do?clsAccession=PTHR> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix TEMPIND: <http://uri.interlex.org/temp/uris/phenotype-indicators/> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-indicators.ttl> a owl:Ontology ;
     rdfs:label "Phenotype indicators" ;
-    owl:versionInfo "2019-08-06" .
+    owl:versionInfo "2019-09-16" .
 
 ### Classes
 
@@ -104,6 +106,12 @@ TEMPIND:Edn3 a owl:Class ;
     rdfs:subClassOf ilxtr:PhenotypeIndicator ;
     skos:hiddenLabel "Edn3" .
 
+TEMPIND:GABA a owl:Class ;
+    rdfs:label "GABA (indicator)" ;
+    NIFRID:synonym "gamma-Aminobutyric acid" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator ;
+    skos:hiddenLabel "GABA" .
+
 TEMPIND:Htr3a a owl:Class ;
     rdfs:label "Htr3a (indicator)" ;
     NIFRID:synonym "5-hydroxytryptamine receptor 3A",
@@ -167,6 +175,8 @@ AllenTL:301021674 rdfs:subClassOf TEMPIND:Oxtr .
 
 AllenTL:543338518 rdfs:subClassOf TEMPIND:Vipr2 .
 
+CHEBI:16865 rdfs:subClassOf TEMPIND:GABA .
+
 ilxtr:CCK-cre rdfs:subClassOf TEMPIND:Cck .
 
 ilxtr:NOS1-creER rdfs:subClassOf TEMPIND:Nos1 .
@@ -181,15 +191,27 @@ ilxtr:VIP-flp rdfs:subClassOf TEMPIND:VIP .
 
 JAX:008069 rdfs:subClassOf PTHR:11653 .
 
+JAX:010802 rdfs:subClassOf TEMPIND:GABA .
+
 JAX:010908 rdfs:subClassOf TEMPIND:VIP .
 
+JAX:012706 rdfs:subClassOf TEMPIND:Cck .
+
 JAX:013044 rdfs:subClassOf PTHR:10558 .
+
+JAX:013730 rdfs:subClassOf TEMPIND:Calb2 .
+
+JAX:014541 rdfs:subClassOf TEMPIND:Nos1 .
+
+JAX:017320 rdfs:subClassOf PTHR:11653 .
 
 JAX:021189 rdfs:subClassOf PTHR:11653 .
 
 JAX:021190 rdfs:subClassOf PTHR:11653 .
 
 JAX:022730 rdfs:subClassOf PTHR:11653 .
+
+JAX:028578 rdfs:subClassOf TEMPIND:VIP .
 
 JAX:028579 rdfs:subClassOf PTHR:10558 .
 
@@ -214,6 +236,8 @@ NCBIGene:12854 rdfs:subClassOf TEMPIND:Cort .
 NCBIGene:12918 rdfs:subClassOf TEMPIND:Crh .
 
 NCBIGene:13616 rdfs:subClassOf TEMPIND:Edn3 .
+
+NCBIGene:14417 rdfs:subClassOf TEMPIND:GABA .
 
 NCBIGene:15561 rdfs:subClassOf TEMPIND:Htr3a .
 
@@ -286,5 +310,7 @@ PR:000017300 rdfs:subClassOf TEMPIND:Vipr1 .
 PR:000017301 rdfs:subClassOf TEMPIND:Vipr2 .
 
 PR:000027222 rdfs:subClassOf TEMPIND:Calca .
+
+SAO:229636300 rdfs:subClassOf TEMPIND:GABA .
 
 ### Serialized using the pyontutils deterministic serializer v1.2.0
