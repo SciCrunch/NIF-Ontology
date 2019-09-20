@@ -1,4 +1,3 @@
-@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -186,7 +185,16 @@ ilxtr:hasInstanceInSpecies a owl:AsymmetricProperty,
         owl:ObjectProperty ;
     rdfs:label "hasInstanceInSpecies" ;
     skos:definition "Expresses a relationship between a neuron type and a species. This should be used when a neuron type has been observed in a specific species." ;
-    rdfs:subPropertyOf ilxtr:hasPhenotype .
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "should rarely be used, even if dealing with evidence based models because it is an extremely weak assertion, possibly rename to hasBeenObservedInAtLeastOneIndividualInSpecies or something like that" .
+
+ilxtr:hasInstanceInTaxon a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasInstanceInTaxon" ;
+    skos:definition "Expresses a relationship between a neuron type and a taxon. When dealing with both EBMs and CUTs this is the predicate that should be used." ;
+    rdfs:subPropertyOf ilxtr:hasInstanceInSpecies ;
+    rdfs:comment "this is the weakest assertion we have available at a taxon level, hasInstanceInSpecies is even weaker since it does not propagage" .
 
 ilxtr:hasLayerLocationPhenotype a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
@@ -318,8 +326,8 @@ ilxtr:hasTaxonRank a owl:AsymmetricProperty,
         owl:ObjectProperty ;
     rdfs:label "hasTaxonRank" ;
     skos:definition "Expresses a relationship between a neuron type and a taxon. This should be used when a neuron type is thought to have been present in the last common ancestor of the taxon." ;
-    rdfs:subPropertyOf ilxtr:hasPhenotype ;
-    rdfs:comment "isAncestralInTaxon (because convergent evolution is SOOO likely…)" .
+    rdfs:subPropertyOf ilxtr:hasInstanceInTaxon ;
+    rdfs:comment "note that this is a subPropertyOf hasInstanceInTaxon NOT the other way around, aka isAncestralInTaxon, even stronger claim than instance and propagates downward implying that instances were present in all members except those specifically marked (which owl can't really support)" .
 
 ilxtr:phenotypeCooccuresWith a owl:ObjectProperty ;
     rdfs:label "phenotypeCooccuresWith" ;
