@@ -17,23 +17,20 @@
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-indicators.ttl> a owl:Ontology ;
     rdfs:label "Phenotype indicators" ;
-    owl:versionInfo "2019-09-16" .
+    owl:versionInfo "2019-10-03" .
 
 ### Classes
 
-PTHR:10558 a owl:Class ;
-    rdfs:label "somatostatin (indicator)" ;
-    NIFRID:synonym "SOM",
-        "somatostatin",
-        "Sst" ;
-    rdfs:subClassOf ilxtr:PhenotypeIndicator .
-
-PTHR:11653 a owl:Class ;
-    rdfs:label "parvalbumin (indicator)" ;
-    NIFRID:synonym "parvalbumin",
-        "PV",
-        "Pvalb" ;
-    rdfs:subClassOf ilxtr:PhenotypeIndicator .
+TEMPIND:ACh a owl:Class ;
+    rdfs:label "ACh (indicator)" ;
+    NIFRID:synonym "Acetylcholine",
+        "ChAT",
+        "Choline O-acetyltransferase",
+        "Slc18a3",
+        "VAChT",
+        "Vesicular acetylcholine transporter" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator ;
+    skos:hiddenLabel "ACh" .
 
 TEMPIND:Adm a owl:Class ;
     rdfs:label "Adm (indicator)" ;
@@ -76,8 +73,7 @@ TEMPIND:Cckbr a owl:Class ;
 
 TEMPIND:Chrm2 a owl:Class ;
     rdfs:label "Chrm2 (indicator)" ;
-    NIFRID:synonym "cardiac",
-        "cholinergic receptor",
+    NIFRID:synonym "cholinergic receptor",
         "muscarinic 2" ;
     rdfs:subClassOf ilxtr:PhenotypeIndicator ;
     skos:hiddenLabel "Chrm2" .
@@ -108,9 +104,25 @@ TEMPIND:Edn3 a owl:Class ;
 
 TEMPIND:GABA a owl:Class ;
     rdfs:label "GABA (indicator)" ;
-    NIFRID:synonym "gamma-Aminobutyric acid" ;
+    NIFRID:synonym "Gad2",
+        "gamma-Aminobutyric acid",
+        "Glutamate decarboxylase 2",
+        "Slc32a1",
+        "Vesicular inhibitory amino acid transporter",
+        "VGAT" ;
     rdfs:subClassOf ilxtr:PhenotypeIndicator ;
     skos:hiddenLabel "GABA" .
+
+TEMPIND:Glutamate a owl:Class ;
+    rdfs:label "Glutamate (indicator)" ;
+    NIFRID:synonym "GLU",
+        "Glu",
+        "L-Glutamate",
+        "Slc17a6",
+        "Vesicular glutamate transporter 2",
+        "VGluT2" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator ;
+    skos:hiddenLabel "Glutamate" .
 
 TEMPIND:Htr3a a owl:Class ;
     rdfs:label "Htr3a (indicator)" ;
@@ -151,6 +163,39 @@ TEMPIND:Penk a owl:Class ;
     rdfs:subClassOf ilxtr:PhenotypeIndicator ;
     skos:hiddenLabel "Penk" .
 
+TEMPIND:Pvalb a owl:Class ;
+    rdfs:label "parvalbumin (indicator)" ;
+    NIFRID:synonym "parvalbumin",
+        "PV",
+        "Pvalb" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Serotonin a owl:Class ;
+    rdfs:label "Serotonin (indicator)" ;
+    NIFRID:synonym "5-HT",
+        "5-hydroxytryptamine",
+        "SERT",
+        "Slc6a4",
+        "Sodium-dependent serotonin transporter" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator ;
+    skos:hiddenLabel "Serotonin" .
+
+TEMPIND:Sst a owl:Class ;
+    rdfs:label "somatostatin (indicator)" ;
+    NIFRID:synonym "SOM",
+        "somatostatin",
+        "Sst" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:TH a owl:Class ;
+    rdfs:label "TH (indicator)" ;
+    NIFRID:synonym "TH",
+        "Th",
+        "Tyrosine 3-monooxygenase",
+        "Tyrosine hydroxylase" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator ;
+    skos:hiddenLabel "TH" .
+
 TEMPIND:VIP a owl:Class ;
     rdfs:label "VIP (indicator)" ;
     NIFRID:synonym "synonym \"vasoactive intestinal polypeptide\"" ;
@@ -175,21 +220,29 @@ AllenTL:301021674 rdfs:subClassOf TEMPIND:Oxtr .
 
 AllenTL:543338518 rdfs:subClassOf TEMPIND:Vipr2 .
 
+CHEBI:15355 rdfs:subClassOf TEMPIND:ACh .
+
+CHEBI:16015 rdfs:subClassOf TEMPIND:Glutamate .
+
 CHEBI:16865 rdfs:subClassOf TEMPIND:GABA .
+
+CHEBI:28790 rdfs:subClassOf TEMPIND:Serotonin .
 
 ilxtr:CCK-cre rdfs:subClassOf TEMPIND:Cck .
 
 ilxtr:NOS1-creER rdfs:subClassOf TEMPIND:Nos1 .
 
-ilxtr:PV-cre rdfs:subClassOf PTHR:11653 .
+ilxtr:PV-cre rdfs:subClassOf TEMPIND:Pvalb .
 
-ilxtr:Pvalb rdfs:subClassOf PTHR:11653 .
+ilxtr:Pvalb rdfs:subClassOf TEMPIND:Pvalb .
 
-ilxtr:SST-flp rdfs:subClassOf PTHR:10558 .
+ilxtr:SST-flp rdfs:subClassOf TEMPIND:Sst .
 
 ilxtr:VIP-flp rdfs:subClassOf TEMPIND:VIP .
 
-JAX:008069 rdfs:subClassOf PTHR:11653 .
+JAX:006410 rdfs:subClassOf TEMPIND:ACh .
+
+JAX:008069 rdfs:subClassOf TEMPIND:Pvalb .
 
 JAX:010802 rdfs:subClassOf TEMPIND:GABA .
 
@@ -197,23 +250,27 @@ JAX:010908 rdfs:subClassOf TEMPIND:VIP .
 
 JAX:012706 rdfs:subClassOf TEMPIND:Cck .
 
-JAX:013044 rdfs:subClassOf PTHR:10558 .
+JAX:013044 rdfs:subClassOf TEMPIND:Sst .
 
 JAX:013730 rdfs:subClassOf TEMPIND:Calb2 .
 
 JAX:014541 rdfs:subClassOf TEMPIND:Nos1 .
 
-JAX:017320 rdfs:subClassOf PTHR:11653 .
+JAX:017320 rdfs:subClassOf TEMPIND:Pvalb .
 
-JAX:021189 rdfs:subClassOf PTHR:11653 .
+JAX:021189 rdfs:subClassOf TEMPIND:Pvalb .
 
-JAX:021190 rdfs:subClassOf PTHR:11653 .
+JAX:021190 rdfs:subClassOf TEMPIND:Pvalb .
 
-JAX:022730 rdfs:subClassOf PTHR:11653 .
+JAX:022730 rdfs:subClassOf TEMPIND:Pvalb .
+
+JAX:025112 rdfs:subClassOf TEMPIND:Penk .
 
 JAX:028578 rdfs:subClassOf TEMPIND:VIP .
 
-JAX:028579 rdfs:subClassOf PTHR:10558 .
+JAX:028579 rdfs:subClassOf TEMPIND:Sst .
+
+JAX:029591 rdfs:subClassOf TEMPIND:GABA .
 
 MMRRC:036680 rdfs:subClassOf TEMPIND:Htr3a .
 
@@ -229,6 +286,8 @@ NCBIGene:12424 rdfs:subClassOf TEMPIND:Cck .
 
 NCBIGene:12426 rdfs:subClassOf TEMPIND:Cckbr .
 
+NCBIGene:12647 rdfs:subClassOf TEMPIND:ACh .
+
 NCBIGene:12801 rdfs:subClassOf TEMPIND:Cnr1 .
 
 NCBIGene:12854 rdfs:subClassOf TEMPIND:Cort .
@@ -241,6 +300,8 @@ NCBIGene:14417 rdfs:subClassOf TEMPIND:GABA .
 
 NCBIGene:15561 rdfs:subClassOf TEMPIND:Htr3a .
 
+NCBIGene:15567 rdfs:subClassOf TEMPIND:Serotonin .
+
 NCBIGene:16000 rdfs:subClassOf TEMPIND:Igf1 .
 
 NCBIGene:18125 rdfs:subClassOf TEMPIND:Nos1 .
@@ -249,9 +310,15 @@ NCBIGene:18430 rdfs:subClassOf TEMPIND:Oxtr .
 
 NCBIGene:18619 rdfs:subClassOf TEMPIND:Penk .
 
-NCBIGene:19293 rdfs:subClassOf PTHR:11653 .
+NCBIGene:19293 rdfs:subClassOf TEMPIND:Pvalb .
 
-NCBIGene:20604 rdfs:subClassOf PTHR:10558 .
+NCBIGene:20508 rdfs:subClassOf TEMPIND:ACh .
+
+NCBIGene:20604 rdfs:subClassOf TEMPIND:Sst .
+
+NCBIGene:21823 rdfs:subClassOf TEMPIND:TH .
+
+NCBIGene:22348 rdfs:subClassOf TEMPIND:GABA .
 
 NCBIGene:22353 rdfs:subClassOf TEMPIND:VIP .
 
@@ -261,9 +328,11 @@ NCBIGene:22355 rdfs:subClassOf TEMPIND:Vipr2 .
 
 NCBIGene:109648 rdfs:subClassOf TEMPIND:Npy .
 
+NCBIGene:140919 rdfs:subClassOf TEMPIND:Glutamate .
+
 NCBIGene:243764 rdfs:subClassOf TEMPIND:Chrm2 .
 
-NIFEXT:6 rdfs:subClassOf PTHR:11653 .
+NIFEXT:6 rdfs:subClassOf TEMPIND:Pvalb .
 
 NIFEXT:5096 rdfs:subClassOf TEMPIND:Penk .
 
@@ -283,11 +352,15 @@ PR:000004968 rdfs:subClassOf TEMPIND:Calb2 .
 
 PR:000005110 rdfs:subClassOf TEMPIND:Cck .
 
+PR:000005404 rdfs:subClassOf TEMPIND:ACh .
+
 PR:000005767 rdfs:subClassOf TEMPIND:Cort .
 
 PR:000005867 rdfs:subClassOf TEMPIND:Crh .
 
 PR:000006899 rdfs:subClassOf TEMPIND:Edn3 .
+
+PR:000007786 rdfs:subClassOf TEMPIND:GABA .
 
 PR:000008833 rdfs:subClassOf TEMPIND:Htr3a .
 
@@ -299,9 +372,19 @@ PR:000011387 rdfs:subClassOf TEMPIND:Npy .
 
 PR:000012544 rdfs:subClassOf TEMPIND:Penk .
 
-PR:000013502 rdfs:subClassOf PTHR:11653 .
+PR:000013502 rdfs:subClassOf TEMPIND:Pvalb .
 
-PR:000015665 rdfs:subClassOf PTHR:10558 .
+PR:000014962 rdfs:subClassOf TEMPIND:Glutamate .
+
+PR:000014968 rdfs:subClassOf TEMPIND:ACh .
+
+PR:000015084 rdfs:subClassOf TEMPIND:GABA .
+
+PR:000015189 rdfs:subClassOf TEMPIND:Serotonin .
+
+PR:000015665 rdfs:subClassOf TEMPIND:Sst .
+
+PR:000016301 rdfs:subClassOf TEMPIND:TH .
 
 PR:000017299 rdfs:subClassOf TEMPIND:VIP .
 
@@ -310,6 +393,12 @@ PR:000017300 rdfs:subClassOf TEMPIND:Vipr1 .
 PR:000017301 rdfs:subClassOf TEMPIND:Vipr2 .
 
 PR:000027222 rdfs:subClassOf TEMPIND:Calca .
+
+PTHR:10558 rdfs:subClassOf TEMPIND:Sst .
+
+PTHR:11653 rdfs:subClassOf TEMPIND:Pvalb .
+
+SAO:185580330 rdfs:subClassOf TEMPIND:ACh .
 
 SAO:229636300 rdfs:subClassOf TEMPIND:GABA .
 
