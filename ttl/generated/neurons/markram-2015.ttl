@@ -3,6 +3,7 @@
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix partOf: <http://purl.obolibrary.org/obo/BFO_0000050> .
 @prefix PAXRAT: <http://uri.interlex.org/paxinos/uris/rat/labels/> .
 @prefix PR: <http://purl.obolibrary.org/obo/PR_> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -15,7 +16,7 @@
     owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-core.ttl>,
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-indicators.ttl>,
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotypes.ttl> ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/1adb49f9ac21de50db3b5d6b45affc6ed7bc71e6/neurondm/neurondm/models/ma2015.py> .
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/5da978c718bafc1b5c49650234ac3a46a496c2f3/neurondm/neurondm/models/ma2015.py> .
 
 ### Classes
 
@@ -23,7 +24,7 @@ ilxtr:NeuronMarkram2015 a owl:Class ;
     rdfs:subClassOf ilxtr:NeuronEBM ;
     ilxtr:modelSource <https://doi.org/10.1016/j.cell.2015.09.029> .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -64,18 +65,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:LargeBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Large Basket (intersectionOf AC b) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Large Basket (intersectionOf AC b) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -116,18 +122,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:LargeBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Large Basket (intersectionOf AC c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Large Basket (intersectionOf AC c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -168,18 +179,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:LargeBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Large Basket (intersectionOf IR c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Large Basket (intersectionOf IR c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -220,18 +236,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:LargeBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Large Basket (intersectionOf NAC c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Large Basket (intersectionOf NAC c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -272,18 +293,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:LargeBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Large Basket (intersectionOf NAC d) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Large Basket (intersectionOf NAC d) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-LargeBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -324,18 +350,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:LargeBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Large Basket (intersectionOf STUT d) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Large Basket (intersectionOf STUT d) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -376,18 +407,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NestBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Nest Basket (intersectionOf AC b) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Nest Basket (intersectionOf AC b) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -428,18 +464,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NestBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Nest Basket (intersectionOf IR b) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Nest Basket (intersectionOf IR b) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -480,18 +521,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NestBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Nest Basket (intersectionOf STUT b) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Nest Basket (intersectionOf STUT b) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -532,18 +578,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NestBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Nest Basket (intersectionOf AC c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Nest Basket (intersectionOf AC c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -584,18 +635,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NestBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Nest Basket (intersectionOf IR c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Nest Basket (intersectionOf IR c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -636,18 +692,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NestBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Nest Basket (intersectionOf NAC c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Nest Basket (intersectionOf NAC c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -688,18 +749,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NestBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Nest Basket (intersectionOf STUT c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Nest Basket (intersectionOf STUT c) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000013502-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NestBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000015665-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -740,18 +806,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NestBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Nest Basket (intersectionOf STUT d) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Nest Basket (intersectionOf STUT d) Fast Spiking +GABA +CB +CR +NPY +PV +VIP -SST interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-SmallBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-SmallBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -793,18 +864,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:SmallBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Small Basket (intersectionOf NAC b) Fast Spiking +GABA +CB +NPY +SST +VIP -CR -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Small Basket (intersectionOf NAC b) Fast Spiking +GABA +CB +NPY +SST +VIP -CR -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-SmallBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-SmallBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -846,18 +922,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:SmallBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Small Basket (intersectionOf AC c) Fast Spiking +GABA +CB +NPY +SST +VIP -CR -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Small Basket (intersectionOf AC c) Fast Spiking +GABA +CB +NPY +SST +VIP -CR -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-SmallBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-SmallBasketPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -899,18 +980,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:SmallBasketPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Small Basket (intersectionOf NAC d) Fast Spiking +GABA +CB +NPY +SST +VIP -CR -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Small Basket (intersectionOf NAC d) Fast Spiking +GABA +CB +NPY +SST +VIP -CR -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-ChandelierPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-ChandelierPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -955,18 +1041,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000004967 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:ChandelierPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Chandelier (intersectionOf AC c) Fast Spiking +GABA +CB -CR -NPY -PV -SST -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Chandelier (intersectionOf AC c) Fast Spiking +GABA +CB -CR -NPY -PV -SST -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-ChandelierPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-ChandelierPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1011,18 +1102,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000004967 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:ChandelierPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Chandelier (intersectionOf NAC c) Fast Spiking +GABA +CB -CR -NPY -PV -SST -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Chandelier (intersectionOf NAC c) Fast Spiking +GABA +CB -CR -NPY -PV -SST -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-ChandelierPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-ChandelierPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1067,18 +1163,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000004967 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:ChandelierPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Chandelier (intersectionOf NAC d) Fast Spiking +GABA +CB -CR -NPY -PV -SST -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Chandelier (intersectionOf NAC d) Fast Spiking +GABA +CB -CR -NPY -PV -SST -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BituftedPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BituftedPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1119,18 +1220,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BituftedPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Bitufted (intersectionOf AC b) Regular Spiking Non Pyramidal +GABA +CB +CR +NPY +SST +VIP -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Bitufted (intersectionOf AC b) Regular Spiking Non Pyramidal +GABA +CB +CR +NPY +SST +VIP -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BituftedPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BituftedPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1171,18 +1277,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BituftedPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Bitufted (intersectionOf AC c) Regular Spiking Non Pyramidal +GABA +CB +CR +NPY +SST +VIP -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Bitufted (intersectionOf AC c) Regular Spiking Non Pyramidal +GABA +CB +CR +NPY +SST +VIP -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BituftedPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BituftedPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1223,18 +1334,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BituftedPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Bitufted (intersectionOf NAC c) Regular Spiking Non Pyramidal +GABA +CB +CR +NPY +SST +VIP -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Bitufted (intersectionOf NAC c) Regular Spiking Non Pyramidal +GABA +CB +CR +NPY +SST +VIP -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1276,18 +1392,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:DoubleBouquetPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Double Bouquet (intersectionOf AC b) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Double Bouquet (intersectionOf AC b) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1329,18 +1450,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:DoubleBouquetPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Double Bouquet (intersectionOf IR b) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Double Bouquet (intersectionOf IR b) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1382,18 +1508,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:DoubleBouquetPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Double Bouquet (intersectionOf NAC b) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Double Bouquet (intersectionOf NAC b) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1435,18 +1566,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:DoubleBouquetPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Double Bouquet (intersectionOf STUT b) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Double Bouquet (intersectionOf STUT b) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1488,18 +1624,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:DoubleBouquetPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Double Bouquet (intersectionOf AC c) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Double Bouquet (intersectionOf AC c) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1541,18 +1682,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:DoubleBouquetPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Double Bouquet (intersectionOf IR c) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Double Bouquet (intersectionOf IR c) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-DoubleBouquetPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1594,18 +1740,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:DoubleBouquetPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Double Bouquet (intersectionOf NAC c) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Double Bouquet (intersectionOf NAC c) Regular Spiking Non Pyramidal +GABA +CB +CR +SST +VIP -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1648,18 +1799,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000015665 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:MartinottiPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Martinotti (intersectionOf AC b) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Martinotti (intersectionOf AC b) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1702,18 +1858,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000015665 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:MartinottiPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Martinotti (intersectionOf IR b) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Martinotti (intersectionOf IR b) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1756,18 +1917,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000015665 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:MartinottiPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Martinotti (intersectionOf STUT b) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Martinotti (intersectionOf STUT b) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1810,18 +1976,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000015665 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:MartinottiPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Martinotti (intersectionOf AC c) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Martinotti (intersectionOf AC c) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1864,18 +2035,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000015665 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:MartinottiPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Martinotti (intersectionOf NAC c) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Martinotti (intersectionOf NAC c) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1918,18 +2094,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000015665 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:MartinottiPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Martinotti (intersectionOf STUT c) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Martinotti (intersectionOf STUT c) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004967-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-MartinottiPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -1972,18 +2153,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000015665 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:MartinottiPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Martinotti (intersectionOf NAC d) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Martinotti (intersectionOf NAC d) Regular Spiking Non Pyramidal +GABA +CB +NPY +SST -CR -PV -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -2026,18 +2212,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BipolarPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Bipolar (intersectionOf AC b) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Bipolar (intersectionOf AC b) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedIrregularPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -2080,18 +2271,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BipolarPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Bipolar (intersectionOf IR b) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Bipolar (intersectionOf IR b) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -2134,18 +2330,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BipolarPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Bipolar (intersectionOf NAC b) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Bipolar (intersectionOf NAC b) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -2188,18 +2389,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BipolarPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Bipolar (intersectionOf AC c) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Bipolar (intersectionOf AC c) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -2242,18 +2448,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BipolarPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Bipolar (intersectionOf NAC c) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Bipolar (intersectionOf NAC c) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-RegularSpikingNonPyramidalPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000004968-0-ilxtr-hasExpressionPhenotype-PR-000015665-0-ilxtr-hasExpressionPhenotype-PR-000017299-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-BipolarPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000011387-1-ilxtr-hasExpressionPhenotype-PR-000013502-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialDelayedSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -2296,18 +2507,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000017299 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:BipolarPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Bipolar (intersectionOf STUT d) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Bipolar (intersectionOf STUT d) Regular Spiking Non Pyramidal +GABA +CR +SST +VIP -CB -NPY -PV interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NeurogliaformPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NeurogliaformPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialBurstSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -2353,18 +2569,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000011387 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NeurogliaformPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Neurogliaform (intersectionOf NAC b) -Fast Spiking +GABA +NPY -CB -CR -PV -SST -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Neurogliaform (intersectionOf NAC b) -Fast Spiking +GABA +NPY -CB -CR -PV -SST -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NeurogliaformPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NeurogliaformPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -2410,18 +2631,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000011387 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NeurogliaformPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Neurogliaform (intersectionOf AC c) -Fast Spiking +GABA +NPY -CB -CR -PV -SST -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Neurogliaform (intersectionOf AC c) -Fast Spiking +GABA +NPY -CB -CR -PV -SST -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NeurogliaformPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NeurogliaformPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedNonAccomodatingPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -2467,18 +2693,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000011387 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NeurogliaformPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Neurogliaform (intersectionOf NAC c) -Fast Spiking +GABA +NPY -CB -CR -PV -SST -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Neurogliaform (intersectionOf NAC c) -Fast Spiking +GABA +NPY -CB -CR -PV -SST -VIP interneuron (Markram2015)" .
 
-TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NeurogliaformPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
+TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasExpressionPhenotype-PR-000011387-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasMorphologicalPhenotype-ilxtr-NeurogliaformPhenotype-0-ilxtr-hasSomaLocatedIn-PAXRAT-794-1-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-FastSpikingPhenotype-1-ilxtr-hasExpressionPhenotype-PR-000004967-1-ilxtr-hasExpressionPhenotype-PR-000004968-1-ilxtr-hasExpressionPhenotype-PR-000013502-1-ilxtr-hasExpressionPhenotype-PR-000015665-1-ilxtr-hasExpressionPhenotype-PR-000017299-4_0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaInitialClassicalSpikingPhenotype-0-ilxtr-hasElectrophysiologicalPhenotype-ilxtr-PetillaSustainedStutteringPhenotype_ a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronMarkram2015
@@ -2524,18 +2755,23 @@ TEMP:ilxtr-NeuronMarkram2015-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPh
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom PR:000011387 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:NeurogliaformPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 Neurogliaform (intersectionOf STUT c) -Fast Spiking +GABA +NPY -CB -CR -PV -SST -VIP interneuron (Markram2015)" ;
     ilxtr:genLabel "Rattus norvegicus S1 Neurogliaform (intersectionOf STUT c) -Fast Spiking +GABA +NPY -CB -CR -PV -SST -VIP interneuron (Markram2015)" .
 
-TEMP:SAO-1417703748-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasInstanceInSpecies-NCBITaxon-10116-0-ilxtr-hasSomaLocatedIn-PAXRAT-794 a owl:Class ;
+TEMP:SAO-1417703748-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0-ilxtr-hasExpressionPhenotype-CHEBI-16865-0-ilxtr-hasInstanceInTaxon-NCBITaxon-10116-0-ilxtr-hasSomaLocatedIn-PAXRAT-794 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     SAO:1417703748
@@ -2546,11 +2782,16 @@ TEMP:SAO-1417703748-0-ilxtr-hasCircuitRolePhenotype-ilxtr-InterneuronPhenotype-0
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom CHEBI:16865 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInstanceInSpecies ;
+                        owl:onProperty ilxtr:hasInstanceInTaxon ;
                         owl:someValuesFrom NCBITaxon:10116 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom PAXRAT:794 ] ) ] ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        PAXRAT:794
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom PAXRAT:794 ] ) ] ] ) ] ;
     rdfs:label "Rattus norvegicus S1 +GABA interneuron" ;
     ilxtr:genLabel "Rattus norvegicus S1 +GABA interneuron" ;
     ilxtr:localLabel "Rat S1 +GABA int" .
