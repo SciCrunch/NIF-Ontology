@@ -10,32 +10,37 @@
 @prefix NLXCELL: <http://uri.neuinfo.org/nif/nifstd/nlx_cell_> .
 @prefix NLXMOL: <http://uri.neuinfo.org/nif/nifstd/nlx_mol_> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix partOf: <http://purl.obolibrary.org/obo/BFO_0000050> .
 @prefix PR: <http://purl.obolibrary.org/obo/PR_> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/neurons/cut-roundtrip.ttl> a owl:Ontology ;
     owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-core.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-indicators.ttl>,
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotypes.ttl> ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/f68d87177d1cd0e63dca3192f27a2dbaf9e1ad35/neurondm/neurondm/core.py#L1011> .
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/5da978c718bafc1b5c49650234ac3a46a496c2f3/neurondm/neurondm/core.py#L1124> .
 
 ### Classes
 
 NIFEXT:52 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom SAO:9271919883 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0001950 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0001950
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0001950 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
@@ -43,16 +48,22 @@ NIFEXT:52 a owl:Class ;
     NIFRID:synonym "cortical stellate cell",
         "layer 4 stellate cell",
         "stellate cell cortical" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia neocortex Stellate neuron" ;
     ilxtr:origLabel "Neocortex stellate cell" .
 
 NIFEXT:72 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0002952 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002952
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002952 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:ProjectionPhenotype ]
@@ -73,7 +84,12 @@ NIFEXT:72 a owl:Class ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002828 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002828
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002828 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
@@ -81,46 +97,14 @@ NIFEXT:72 a owl:Class ;
     NIFRID:synonym "octopus cell",
         "Ventral cochlear nucleus octopus cell" ;
     definition: "Large neuron located in the octopus cell area of the posterior division of the ventral cochlear nucleus (called dorsal tail of the ventral cochlear nucleus by Cajal and nucleus interfascicularis by Lorente de No), whose dendrites emanate from one side of the cell body, giving them a shape reminiscent of an octopus." ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia VCo (with-axon-in intermediate acoustic stria) +CR +HAC2 +AMPA +PV +Glu projection neuron" ;
     ilxtr:origLabel "Cochlear nucleus (ventral) octopus cell" .
-
-NIFEXT:73 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:NeuronCUT
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-                        owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NIFEXT:5251 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom NCBITaxon:3846 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasProjectionPhenotype ;
-                        owl:someValuesFrom UBERON:0002828 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasProjectionPhenotype ;
-                        owl:someValuesFrom UBERON:0002829 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002829 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasTaxonRank ;
-                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia DCo +AMPA +Glycine (projecting to VCo DCo) intrinsic neuron" ;
-    NIFRID:synonym "corn cell",
-        "tuberculoventral cell",
-        "vertical cell" ;
-    definition: "Intrinsic neuron found in the deep layer of the dorsal cochlear nucleus, whose cell bodies and dendrites are intermingled among the basal dendritic trees of pyramidal cells.  Their dendrites are smooth and lie in the plane of an isofrequency sheet; in sections in standard planes, parts of the dendrites are cut so they appear to be oriented vertically, perpendicular to the plane of the layers.  They are inhibitory and use glycine as a neurotransmitter." ;
-    ilxtr:genLabel "Mammalia DCo +AMPA +Glycine (projecting to VCo DCo) intrinsic neuron" ;
-    ilxtr:origLabel "Cochlear nucleus (dorsal) vertical cell" .
 
 NIFEXT:81 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
@@ -132,41 +116,58 @@ NIFEXT:81 a owl:Class ;
                         owl:someValuesFrom ilxtr:BipolarPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0001950 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0001950
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0001950 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia neocortex Bipolar +GluR intrinsic neuron" ;
     NIFRID:synonym "Bipolar dendrite cell",
         "Cortical bipolar cell" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia neocortex Bipolar +GluR intrinsic neuron" ;
     ilxtr:origLabel "Neocortex bipolar cell" .
 
 NIFEXT:97 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0002925 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002925
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002925 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia trigeminal nucleus intrinsic neuron" ;
     NIFRID:synonym "Trigeminal nucleus intrinsic neuron" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia trigeminal nucleus intrinsic neuron" ;
     ilxtr:origLabel "Trigeminal nucleus intrinsic cell" .
 
 NIFEXT:100 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0007634 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0007634
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0007634 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
@@ -181,102 +182,49 @@ NIFEXT:100 a owl:Class ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0009050 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0009050
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0009050 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia nucleus of solitary tract (with-axon-in parabrachial nucleus) +GABA A-gated anionic channel +AMPA +Glu intrinsic neuron" ;
     definition: "projects" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia nucleus of solitary tract (with-axon-in parabrachial nucleus) +GABA A-gated anionic channel +AMPA +Glu intrinsic neuron" ;
     ilxtr:origLabel "Solitary tract nucleus principal cell" .
 
 NIFEXT:101 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0009050 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0009050
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0009050 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia nucleus of solitary tract intrinsic neuron" ;
     NIFRID:synonym "Nucleus of the solitary tract intrinsic cell" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia nucleus of solitary tract intrinsic neuron" ;
     ilxtr:origLabel "Solitary tract nucleus intrinsic cell" .
-
-NIFEXT:106 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:NeuronCUT
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-                        owl:someValuesFrom ilxtr:MotorPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0002257 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom CHEBI:15355 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasTaxonRank ;
-                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia ventral horn of spinal cord +ACh motor neuron" ;
-    NIFRID:synonym "Beta motor neuron" ;
-    ilxtr:genLabel "Mammalia ventral horn of spinal cord +ACh motor neuron" ;
-    ilxtr:origLabel "Spinal cord ventral horn motor neuron beta" .
-
-NIFEXT:109 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:NeuronCUT
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-                        owl:someValuesFrom ilxtr:MotorPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0002240 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom CHEBI:15355 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasTaxonRank ;
-                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia SpC +ACh motor neuron" ;
-    NIFRID:synonym "preganglionic sympathetic neuron",
-        "Sympathetic motor neuron" ;
-    ilxtr:genLabel "Mammalia SpC +ACh motor neuron" ;
-    ilxtr:origLabel "Spinal cord intermediate horn motor neuron sympathetic" .
-
-NIFEXT:113 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:NeuronCUT
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-                        owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0002257 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom NCBITaxon:3846 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasTaxonRank ;
-                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia ventral horn of spinal cord +Glycine intrinsic neuron" ;
-    NIFRID:synonym "Renshaw cell",
-        "Renshaw interneuron" ;
-    ilxtr:genLabel "Mammalia ventral horn of spinal cord +Glycine intrinsic neuron" ;
-    ilxtr:origLabel "Spinal cord ventral horn interneuron Renshaw" .
 
 NIFEXT:116 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NLXMOL:20090604 ]
@@ -285,7 +233,12 @@ NIFEXT:116 a owl:Class ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0001997 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0001997
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0001997 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
@@ -293,25 +246,28 @@ NIFEXT:116 a owl:Class ;
     NIFRID:synonym "olfactory receptor cell",
         "olfactory sensory neuron" ;
     definition: "This is the sensory neuron of the main olfactory epithelium in the nasal cavity that transduces odor molecules into receptor potentials, which give rise to the impulse trains that are sent further in the olfactory system..  It is a small bipolar cell in the pseudostratified olfactory epithelium, with cell body 8-15 um diameter giving rise to a single dendrite ending in a knob at the epithelial surface, from which arise several sensory cilia.  A single unmyelinated axon descends through the basal lamina and turns to project to the glomeruli of the olfactory bulb.  Shepherd, Chen & Greer.  Olfactory Bulb,  In The Synaptic Organization of the Brain. 5th ed. 2004." ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia MOE +GABA-gated anionic channel +Glu neuron" ;
     ilxtr:origLabel "Olfactory epithelium main sensory cell" .
 
 NIFEXT:121 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0002894 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002894
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002894 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:ProjectionPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasDendriteMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:TuftedPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLayerLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0005370 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NLXMOL:1006001 ]
@@ -323,85 +279,45 @@ NIFEXT:121 a owl:Class ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002264 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002264
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002264 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedInLayer ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0005370
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0005370 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia olfactory bulb hippocampus stratum lacunosum (with-axon-in olfactory cortex) Tufted +GABA receptor role +Glutamate Receptor +Glu projection neuron" ;
     NIFRID:synonym "Olfactory bulb (main) tufted cell (middle)" ;
     definition: "Principal neuron located in the outer third of the external plexiform layer of the olfactory bulb in the mammalian central nervous system. Each tufted cell is characterized by usually a single short primary dendrite that traverses the outer external plexiform layer and terminates within an olfactory glomerulus in a tuft of branches, where it receives the input from olfactory receptor neuron axon terminals. Differentiated from external tufted cells.  Axons of the tufted cells transfer information to a number of areas in the brain, including the piriform cortex, entorhinal cortex, olfactory tubercle, and amygdala. Shepherd, Shen, Greer.  Olfactory bulb.  In The synaptic organization of the brain, ed 5 New York: Oxford University Press, 2004." ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia olfactory bulb hippocampus stratum lacunosum (with-axon-in olfactory cortex) Tufted +GABA receptor role +Glutamate Receptor +Glu projection neuron" ;
     ilxtr:origLabel "Olfactory bulb (main) tufted cell (middle)" .
-
-NIFEXT:123 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:NeuronCUT
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-                        owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NIFEXT:6 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NIFEXT:5250 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NIFEXT:5251 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom SAO:229636300 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002264 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasTaxonRank ;
-                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia olfactory bulb +NMDA +AMPA +PV +GABA intrinsic neuron" ;
-    NIFRID:synonym "Granule cell of olfactory bulb",
-        "Olfactory granule neuron" ;
-    definition: "The main intrinsic neuron in the vertebrate olfactory bulb.  It lacks an axon.  Each cell gives rise to short central dendrites and a single long apical dendrite that traverses the granule cell layer, pierces the mitral cell body layer, and branches and terminates within the external plexiform layer among the lateral dendrites of mitral and tufted cells.  The dendrites receive synaptic input from mitral and tufted cell lateral dendrites, and have synaptic outputs on those dendrites through reciprocal dendrodendritic synapses.  Shepherd, Chen & Greer.  Olfactory Bulb.  The Synaptic Organization of the Brain, ed 5. New York: Oxford University Press, 2004." ;
-    ilxtr:genLabel "Mammalia olfactory bulb +NMDA +AMPA +PV +GABA intrinsic neuron" ;
-    ilxtr:origLabel "Olfactory bulb (main) granule cell" .
-
-NIFEXT:124 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:NeuronCUT
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-                        owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLayerLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0005378 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom SAO:229636300 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002264 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasTaxonRank ;
-                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia olfactory bulb olfactory bulb granule cell layer +GABA intrinsic neuron" ;
-    NIFRID:synonym "Blanes Cell",
-        "Olfactory bulb (main) deep short axon cell",
-        "short axon cell" ;
-    definition: "Large, stellate-shaped short axon cell in the granule cell layer of the main olfactory bulb." ;
-    ilxtr:genLabel "Mammalia olfactory bulb olfactory bulb granule cell layer +GABA intrinsic neuron" ;
-    ilxtr:origLabel "Olfactory bulb (main) Blanes cell" .
 
 NIFEXT:136 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002829 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002829
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002829 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
@@ -409,13 +325,14 @@ NIFEXT:136 a owl:Class ;
     NIFRID:synonym "DCN Gabaergic cell",
         "deep cerebellar nucleus GABAergic cell",
         "Dorsal cochlear nucleus gabaergic cell" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia DCo +GABA neuron" ;
     ilxtr:origLabel "Cochlear nucleus (dorsal) Golgi cell" .
 
 NIFEXT:145 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:ProjectionPhenotype ]
@@ -430,7 +347,12 @@ NIFEXT:145 a owl:Class ;
                         owl:someValuesFrom CHEBI:18243 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0001965 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0001965
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0001965 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
@@ -438,13 +360,14 @@ NIFEXT:145 a owl:Class ;
     NIFRID:synonym "Nigral dopaminergic cell",
         "substantia nigra dopaminergic cell" ;
     definition: "Principal neuron of the substantia nigra pars compacta" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia SNC +TH +CHEBI:18234 +DA projection neuron" ;
     ilxtr:origLabel "Substantia nigra pars compacta dopaminergic cell" .
 
 NIFEXT:148 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:ProjectionPhenotype ]
@@ -453,25 +376,41 @@ NIFEXT:148 a owl:Class ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0001966 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0001966
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0001966 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia SNR +GABA projection neuron" ;
     NIFRID:synonym "Substantia nigra pars reticulata principal neuron" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia SNR +GABA projection neuron" ;
     ilxtr:origLabel "Substantia nigra pars reticulata principal cell" .
 
 NIFEXT:159 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0002191 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002191
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002191 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0002728 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002728
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002728 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom ilxtr:PyramidalPhenotype ]
@@ -480,121 +419,170 @@ NIFEXT:159 a owl:Class ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002191 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002191
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002191 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia subiculum (with-axons-in subiculum entorhinal cortex) Pyramidal +Glu neuron" ;
     NIFRID:synonym "Subiculum pyramidal neuron" ;
     definition: "Pyramidal neuron whose cell body is located in the subiculum" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia subiculum (with-axons-in subiculum entorhinal cortex) Pyramidal +Glu neuron" ;
     ilxtr:origLabel "Subiculum pyramidal cell" .
 
 NLX:268 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom NIFEXT:5124 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0001898 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0001898
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0001898 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia Hy +Vasopressin neuron" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia Hy +Vasopressin neuron" ;
     ilxtr:origLabel "Hypothalamus vasopressin neuroendocrine magnocellular neuron" .
 
-NLX:38713 a owl:Class ;
+NLX:22799 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-                        owl:someValuesFrom ilxtr:MotorPhenotype ]
+                        owl:onProperty ilxtr:hasAxonLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002136
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002136 ] ) ] ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0005843 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom CHEBI:15355 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasTaxonRank ;
-                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia sacral spinal cord +ACh motor neuron" ;
-    definition: "Spinal cord parasympathetic motor neuron located in the sacral spinal cord" ;
-    ilxtr:genLabel "Mammalia sacral spinal cord +ACh motor neuron" ;
-    ilxtr:origLabel "Spinal cord motor neuron parasympathetic" .
-
-NLX:44081 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:NeuronCUT
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-                        owl:someValuesFrom ilxtr:MotorPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-                        owl:someValuesFrom ilxtr:ProjectionPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0002925 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom CHEBI:15355 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002633 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasTaxonRank ;
-                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia trigeminal nucleus nV +ACh motor projection neuron" ;
-    NIFRID:synonym "5th nerve motor neuron",
-        "trigeminal nucleus motor cell",
-        "Vth nerve motor neuron" ;
-    definition: "Motor neuron whose cell soma lies within the Motor nucleus of trigeminal nerve" ;
-    ilxtr:genLabel "Mammalia trigeminal nucleus nV +ACh motor projection neuron" ;
-    ilxtr:origLabel "Trigeminal nucleus motor neuron" .
-
-NLX:50129 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:NeuronCUT
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-                        owl:someValuesFrom ilxtr:MotorPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-                        owl:someValuesFrom ilxtr:ProjectionPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0003011 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom CHEBI:15355 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasTaxonRank ;
-                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia nVII +ACh motor projection neuron" ;
-    NIFRID:synonym "7th nerve motor neuron",
-        "facial nucleus motor cell",
-        "VIIth nerve motor neuron" ;
-    definition: "Motor neuron whose cell soma lies within the facial nucleus." ;
-    ilxtr:genLabel "Mammalia nVII +ACh motor projection neuron" ;
-    ilxtr:origLabel "Facial nucleus motor neuron" .
-
-NLX:144252 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                        owl:onProperty ilxtr:hasAxonLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0022347
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0022347 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLayerLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0005378 ]
+                        owl:onProperty ilxtr:hasDendriteLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002136
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002136 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
+                        owl:someValuesFrom SAO:1744435799 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedInLayer ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002136
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002136 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasTaxonRank ;
+                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
+    rdfs:label "Mammalia CA4 (with-dendrite-in CA4) (with-axons-in CA4 dentate gyrus molecular layer inner) +Glu intrinsic neuron" ;
+    NIFRID:synonym "Dentate gyrus mossy neuron",
+        "Mossy cell",
+        "Mossy neuron" ;
+    definition: "Excitatory polymorphic intrinsic neuron of the dentate gyrus hilus" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
+    ilxtr:genLabel "Mammalia CA4 (with-dendrite-in CA4) (with-axons-in CA4 dentate gyrus molecular layer inner) +Glu intrinsic neuron" ;
+    ilxtr:origLabel "Dentate gyrus mossy cell" .
+
+NLX:35220 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    SAO:1417703748
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasAxonLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014552
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014552 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasAxonLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014554
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014554 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasAxonLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014570
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014570 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                        owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMorphologicalPhenotype ;
+                        owl:someValuesFrom ilxtr:IvyPhenotype ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
+                        owl:someValuesFrom SAO:229636300 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0003881
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0003881 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedInLayer ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014548
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014548 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasTaxonRank ;
+                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
+    rdfs:label "Mammalia CA1 pyramidal layer of CA1 (with-axons-in CA1 stratum oriens CA1 stratum radiatum CA1 alveus) Ivy +GABA intrinsic neuron" ;
+    NIFRID:synonym "CA1 ivy cell",
+        "ivy cell" ;
+    definition: "Ivy cells are highly abundant GABAergic interneurons when compared to basket, bistratified, or axo-axonic cells. \"Ivy\" cells are named after their dense and fine axons innervating mostly basal and oblique pyramidal cell dendrites. They express nitric oxide synthase, neuropeptide Y, and high levels of GABAa receptor aplha1 subunit and they are also identified as slow-spiking interneurons that regulate the excitability of pyramidal cell dendrites through slowly rising and decaying GABAergic inputs." ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
+    ilxtr:genLabel "Mammalia CA1 pyramidal layer of CA1 (with-axons-in CA1 stratum oriens CA1 stratum radiatum CA1 alveus) Ivy +GABA intrinsic neuron" ;
+    ilxtr:origLabel "Hippocampus CA1 ivy neuron" .
+
+NLX:144252 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    SAO:1417703748
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                        owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NIFEXT:6 ]
@@ -609,31 +597,65 @@ NLX:144252 a owl:Class ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002264 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002264
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002264 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedInLayer ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0005378
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0005378 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia olfactory bulb olfactory bulb granule cell layer +NMDA +AMPA +PV +GABA intrinsic neuron" ;
     definition: "The olfactory bulb adult-born granule cell is a cohort of cell that comprise a large fraction of the vertibrate olfactory bulb granule cell layer.  These neurons proliferate from from the subventricular zone, migrate through the rostral migratory stream and integrate into the olfactory bulb granule cell layer.  Upon arriving in the olfactory bulb granule cell layer they migrate radially outward and mature with morphologies similar to neonate olfactory bulb granule cells.  This process continues throughout the adult life of the vertibrate.  There is some decline in adult neurogenesis in aged vertebrates and the presence of the subventricular proliferative zone is controversial in humans" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia olfactory bulb olfactory bulb granule cell layer +NMDA +AMPA +PV +GABA intrinsic neuron" ;
     ilxtr:origLabel "Olfactory bulb (main) adult-born granule cell" .
 
 NLX:149094 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0001880 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0001880
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0001880 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0002883 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002883
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002883 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0003017 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0003017
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0003017 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0007634 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0007634
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0007634 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:ProjectionPhenotype ]
@@ -669,12 +691,18 @@ NLX:149094 a owl:Class ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002883 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002883
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002883 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia central amygdaloid nucleus (with-axons-in BST central amygdaloid nucleus substantia innominata parabrachial nucleus) Spiny +SOM +Neurotensin +Enkephalin +CRF +GABA A-gated anionic channel +GABA C-gated anionic channel +NMDA +AMPA +GABA projection neuron" ;
     definition: "Medium-sized, multipolar, principal neuron found in lateral portions of the central nucleus. It has very spiny dendrites and closely resembles the medium spiny neuron of the adjacent striatum." ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia central amygdaloid nucleus (with-axons-in BST central amygdaloid nucleus substantia innominata parabrachial nucleus) Spiny +SOM +Neurotensin +Enkephalin +CRF +GABA A-gated anionic channel +GABA C-gated anionic channel +NMDA +AMPA +GABA projection neuron" ;
     ilxtr:localLabel "Mammalia central amygdaloid nucleus (with-axons-in BST central amygdaloid nucleus substantia innominata parabrachial nucleus) Spiny +SST +Neurotensin +Enkephalin +CRF +GABA A-gated anionic channel +GABA C-gated anionic channel +NMDA +AMPA +GABA projection neuron" ;
     ilxtr:origLabel "Amygdala lateral central nucleus medium spiny neuron" .
@@ -682,81 +710,120 @@ NLX:149094 a owl:Class ;
 NLX:151892 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0012170 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0012170
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0012170 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia core of nucleus accumbens neuron" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia core of nucleus accumbens neuron" ;
     ilxtr:origLabel "Accumbens nucleus core nucleus neuron" .
 
 NLX:151893 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0012171 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0012171
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0012171 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia shell of nucleus accumbens neuron" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia shell of nucleus accumbens neuron" ;
     ilxtr:origLabel "Accumbens nucleus shell neuron" .
 
 NLX:153843 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMorphologicalPhenotype ;
                         owl:someValuesFrom SAO:9271919883 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002829 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002829
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002829 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia DCo Stellate neuron" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia DCo Stellate neuron" ;
     ilxtr:origLabel "Cochlear nucleus (dorsal) stellate cell" .
 
 NLXCELL:091001 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014284 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014284
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014284 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLayerLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0035044 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002894 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002894
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002894 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedInLayer ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0035044
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0035044 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia olfactory cortex olfactory cortex layer 3 (with-axon-in endopiriform nucleus) +Glu intrinsic neuron" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia olfactory cortex olfactory cortex layer 3 (with-axon-in endopiriform nucleus) +Glu intrinsic neuron" ;
     ilxtr:origLabel "Olfactory cortex large multipolar cell" .
 
 NLXCELL:091002 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0022317 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0022317
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0022317 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
@@ -765,71 +832,51 @@ NLXCELL:091002 a owl:Class ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002894 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002894
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002894 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia olfactory cortex (with-axon-in olfactory cortex layer 1) +GABA intrinsic neuron" ;
     definition: "A small stellate cell with globular somata found in all layers of the piriform cortex." ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia olfactory cortex (with-axon-in olfactory cortex layer 1) +GABA intrinsic neuron" ;
     ilxtr:origLabel "Olfactory cortex small globular cell" .
-
-NLXCELL:091005 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:NeuronCUT
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0022318 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0035044 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLayerLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0022318 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0022469 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NIFEXT:5250 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NIFEXT:5251 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasMolecularPhenotype ;
-                        owl:someValuesFrom NLXMOL:20090513 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
-                        owl:someValuesFrom SAO:1744435799 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002894 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasTaxonRank ;
-                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia primary olfactory cortex olfactory cortex olfactory cortex layer 2 (with-axons-in olfactory cortex layer 2 olfactory cortex layer 3) +NMDA +AMPA +Dbct +Glu neuron" ;
-    NIFRID:synonym "semilunar cell",
-        "semilunar neuron" ;
-    definition: "Projection neuron found in the superficial border of layer II (IIa) of piriform cortex similar in characteristics to a pyramidal cell and also resembling the granule cell of the dentate gyrus.  It has an apical but no basilar dendrites.  They project to other cortical areas but, in contrast to pyramidal cells, they do not project back to the olfactory bulb." ;
-    ilxtr:genLabel "Mammalia primary olfactory cortex olfactory cortex olfactory cortex layer 2 (with-axons-in olfactory cortex layer 2 olfactory cortex layer 3) +NMDA +AMPA +Dbct +Glu neuron" ;
-    ilxtr:origLabel "Olfactory cortex semilunar cell" .
 
 NLXCELL:091215 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Class ;
                         owl:unionOf (
                                 [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasLayerLocationPhenotype ;
-                                    owl:someValuesFrom UBERON:0014553 ]
+                                    owl:onProperty ilxtr:hasSomaLocatedInLayer ;
+                                    owl:someValuesFrom [ a owl:Class ;
+                                            owl:unionOf (
+                                                    UBERON:0014553
+                                                    [ a owl:Restriction ;
+                                                        owl:onProperty partOf: ;
+                                                        owl:someValuesFrom UBERON:0014553 ] ) ] ]
                                 [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasLayerLocationPhenotype ;
-                                    owl:someValuesFrom UBERON:0014571 ] ) ]
+                                    owl:onProperty ilxtr:hasSomaLocatedInLayer ;
+                                    owl:someValuesFrom [ a owl:Class ;
+                                            owl:unionOf (
+                                                    UBERON:0014571
+                                                    [ a owl:Restriction ;
+                                                        owl:onProperty partOf: ;
+                                                        owl:someValuesFrom UBERON:0014571 ] ) ] ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014556 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014556
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014556 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
@@ -838,52 +885,79 @@ NLXCELL:091215 a owl:Class ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0003883 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0003883
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0003883 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
-    rdfs:label "Mammalia CA3 (unionOf CA3 stratum oriens CA3 alveus) (with-axon-in CA3 stratum radiatum) +GABA intrinsic neuron" ;
+    rdfs:label "Mammalia CA3 (unionOf CA3 alveus CA3 stratum oriens) (with-axon-in CA3 stratum radiatum) +GABA intrinsic neuron" ;
     NIFRID:synonym "CA3 s. oriens interneuron",
         "CA3 SO interneuron",
         "CA3 SO neuron",
         "CA3 stratum oriens interneuron",
         "Hippocampus CA3 stratum oriens interneuron" ;
     definition: "The CA3 stratum oriens interneuron is a fast spiking interneuron in hippocampal area CA3 with a main dendrite arborization extending in the stratum oriens and a widespread axonal arborization in all strata (Kawaguchi et al., 1987). The vast majority of dendritic processes were confined to the same layers as the cell bodies (Kantona et al., 1999)." ;
-    ilxtr:genLabel "Mammalia CA3 (unionOf CA3 stratum oriens CA3 alveus) (with-axon-in CA3 stratum radiatum) +GABA intrinsic neuron" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
+    ilxtr:genLabel "Mammalia CA3 (unionOf CA3 alveus CA3 stratum oriens) (with-axon-in CA3 stratum radiatum) +GABA intrinsic neuron" ;
     ilxtr:origLabel "Hippocampus CA3 oriens interneuron" .
 
 NLXCELL:100209 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014552 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014552
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014552 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014554 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014554
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014554 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014570 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014570
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014570 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom PR:000004968 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0003881 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0003881
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0003881 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia CA1 (with-axons-in CA1 stratum oriens CA1 stratum radiatum CA1 alveus) +CR neuron" ;
     NIFRID:synonym "CA1 IS-I cell" ;
     definition: "The IS (Interneuron-Specific) subpopulation of interneurons have axons that preferentially innervate other interneurons. The CA1 Interneuron Specific (IS) Type I cells is one of the many IS cell types from the CA1 region. The soma is located in stratum radiatum and pyramidale with dendrites spanning most layers and the axon innervating mainly calbindin positive and other calretinin positive cells (Acsady et al. 1996b,Gulyas et al. 1996). The possible expression of VIP by these cells is not known." ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia CA1 (with-axons-in CA1 stratum oriens CA1 stratum radiatum CA1 alveus) +CR neuron" ;
     ilxtr:origLabel "Hippocampus CA1 IS-I neuron" .
 
 NLXCELL:100311 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:MotorPhenotype ]
@@ -895,7 +969,12 @@ NLXCELL:100311 a owl:Class ;
                         owl:someValuesFrom CHEBI:15355 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002871 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002871
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002871 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
@@ -906,13 +985,80 @@ NLXCELL:100311 a owl:Class ;
         "hypoglossal nucleus motoneuron",
         "XII nerve motor neuron" ;
     definition: "Motor neuron whose soma lies in the hypoglossal nucleus" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia hypoglossal nucleus +ACh motor projection neuron" ;
     ilxtr:origLabel "Hypoglossal nucleus motor neuron" .
+
+NLXCELL:20081202 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    SAO:1417703748
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasLocationPhenotype ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002610
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002610 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002828
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002828 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasTaxonRank ;
+                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
+    rdfs:label "Mammalia cochlear nuclear complex VCo neuron" ;
+    definition: "Multipolar neuron located in the ventral cochlear nucleus with multiple long dendrites extending from the cell soma.  Two subclasses (D and T) are recognzed based on their alignment with auditory nerve fibers. Both types have axon collaterals that terminate locally near the cell soma." ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
+    ilxtr:genLabel "Mammalia cochlear nuclear complex VCo neuron" ;
+    ilxtr:origLabel "Cochlear nucleus (ventral) multipolar cell" .
+
+NLXCELL:20090304 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    SAO:1417703748
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                        owl:someValuesFrom ilxtr:ProjectionPhenotype ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
+                        owl:someValuesFrom SAO:1744435799 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0004069
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0004069 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedInLayer ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0015432
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0015432 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasTaxonRank ;
+                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
+    rdfs:label "Mammalia accessory olfactory bulb accessory olfactory bulb mitral cell layer +Glu projection neuron" ;
+    NIFRID:synonym "accessory olfactory bulb mitral cell",
+        "Mitral cell of the accessory olfactory bulb" ;
+    definition: "A principal neuron of the mammalian accessory olfactory bulb.  Resembles the mitral cell of the main olfactory bulb, though somewhat smaller and less clearly differentiated.  The cell bodies are arranged in a thin layer between the granule cell layer and the external plexiform layer.  Each mitral cell is characterized by one (occasionally several) primary dendrite that traverses the external plexiform layer and terminates within an olfactory glomerulus in a tuft of branches where it receives input from the axons of sensory cells of the vomeronasal organ." ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
+    ilxtr:genLabel "Mammalia accessory olfactory bulb accessory olfactory bulb mitral cell layer +Glu projection neuron" ;
+    ilxtr:origLabel "Olfactory bulb (accessory) mitral cell" .
 
 NLXCELL:20090305 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom CHEBI:18234 ]
@@ -921,7 +1067,12 @@ NLXCELL:20090305 a owl:Class ;
                         owl:someValuesFrom CHEBI:18243 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0002691 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002691
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002691 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
@@ -930,37 +1081,78 @@ NLXCELL:20090305 a owl:Class ;
         "ventral tegmental area dopaminergic neuron",
         "VTA dopaminergic neuron" ;
     definition: "Principal neuron of the ventral tegmental area" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia VTA +CHEBI:18234 +DA neuron" ;
     ilxtr:origLabel "Ventral tegmental area dopamine neuron" .
 
 NLXCELL:20090311 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014551 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014551
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014551 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014552 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014552
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014552 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014553 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014553
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014553 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014554 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014554
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014554 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014555 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014555
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014555 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014556 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014556
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014556 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014570 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014570
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014570 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonLocatedIn ;
-                        owl:someValuesFrom UBERON:0014571 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014571
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014571 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:ProjectionPhenotype ]
@@ -972,34 +1164,55 @@ NLXCELL:20090311 a owl:Class ;
                         owl:someValuesFrom SAO:1744435799 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0003882 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0003882
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0003882 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia CA2 (with-axons-in CA2 stratum oriens CA1 stratum oriens CA3 stratum oriens CA1 stratum radiatum CA2 stratum radiatum CA3 stratum radiatum CA1 alveus CA3 alveus) Pyramidal +Glu projection neuron" ;
     NIFRID:synonym "CA2 pyramidal cell" ;
     definition: "CA2 pyramidal cells are the primary excitatory cells of CA2 region of the hippocampus. These cells have shorter dendrites when compared to CA1 pyramidal cells. The axons arbors into stratum radiatum, as well as into stratum oriens of CA1, CA2 and CA3 regions. The CA2 pyramids are innervated by schaffer collaterals in stratum oriens and stratum radiatum and by input from entorhinal cortex in stratum lacunosum moleculare." ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia CA2 (with-axons-in CA2 stratum oriens CA1 stratum oriens CA3 stratum oriens CA1 stratum radiatum CA2 stratum radiatum CA3 stratum radiatum CA1 alveus CA3 alveus) Pyramidal +Glu projection neuron" ;
     ilxtr:origLabel "Hippocampus CA2 pyramidal neuron" .
 
 NLXCELL:20090401 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Class ;
                         owl:unionOf (
                                 [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasLayerLocationPhenotype ;
-                                    owl:someValuesFrom UBERON:0015244 ]
+                                    owl:onProperty ilxtr:hasSomaLocatedInLayer ;
+                                    owl:someValuesFrom [ a owl:Class ;
+                                            owl:unionOf (
+                                                    UBERON:0015244
+                                                    [ a owl:Restriction ;
+                                                        owl:onProperty partOf: ;
+                                                        owl:someValuesFrom UBERON:0015244 ] ) ] ]
                                 [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasLayerLocationPhenotype ;
-                                    owl:someValuesFrom UBERON:0015432 ] ) ]
+                                    owl:onProperty ilxtr:hasSomaLocatedInLayer ;
+                                    owl:someValuesFrom [ a owl:Class ;
+                                            owl:unionOf (
+                                                    UBERON:0015432
+                                                    [ a owl:Restriction ;
+                                                        owl:onProperty partOf: ;
+                                                        owl:someValuesFrom UBERON:0015432 ] ) ] ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasCircuitRolePhenotype ;
                         owl:someValuesFrom ilxtr:IntrinsicPhenotype ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasLocationPhenotype ;
-                        owl:someValuesFrom UBERON:0002264 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0002264
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0002264 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasMolecularPhenotype ;
                         owl:someValuesFrom NIFEXT:5250 ]
@@ -1011,7 +1224,12 @@ NLXCELL:20090401 a owl:Class ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0004069 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0004069
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0004069 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
@@ -1019,25 +1237,111 @@ NLXCELL:20090401 a owl:Class ;
     NIFRID:synonym "Accessory olfactory bulb granule cell",
         "Accessory olfactory bulb granule neuron" ;
     definition: "The main intrinsic neuron in the accessory olfactory bulb in the mammalian central nervous system.  It resembles the granule cell in the main olfactory bulb, including the lack of an axon.  Each cell gives rise to short central dendrites and a single long apical dendrite that traverses the granule cell layer, pierces the mitral cell body layer, and branches and terminates within the external plexiform layer among the lateral dendrites of mitral and tufted cells.  The dendrites receive synaptic input from mitral and tufted cell dendrites, and have synaptic outputs to those dendrites through reciprocal dendrodendritic synapses.  Shepherd, Chen, Greer.  Olfactory Bulb.  In The Synaptic Organization of the Brain, ed 5. New York: Oxford University Press, 2004.  The AOB granule cells are replaced in the adult through ongoing neurogenesis in the subventricular zone" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia olfactory bulb accessory olfactory bulb (unionOf accessory olfactory bulb granule cell layer accessory olfactory bulb mitral cell layer) +NMDA +AMPA +GABA intrinsic neuron" ;
     ilxtr:origLabel "Olfactory bulb (accessory) granule cell" .
 
 NLXCELL:20090727 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
-                    ilxtr:NeuronCUT
+                    SAO:1417703748
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
                         owl:someValuesFrom SAO:229636300 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom UBERON:0001885 ]
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0001885
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0001885 ] ) ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasTaxonRank ;
                         owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
     rdfs:label "Mammalia dentate gyrus of hippocampal formation +GABA neuron" ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
     ilxtr:genLabel "Mammalia dentate gyrus of hippocampal formation +GABA neuron" ;
     ilxtr:origLabel "Dentate gyrus hilar cell" .
+
+SAO:383526650 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    SAO:1417703748
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasAxonLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014552
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014552 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasAxonLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014553
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014553 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasAxonLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014554
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014554 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasAxonLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014556
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014556 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                        owl:someValuesFrom ilxtr:ProjectionPhenotype ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom NLXMOL:1006001 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMolecularPhenotype ;
+                        owl:someValuesFrom SAO:1164727693 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasMorphologicalPhenotype ;
+                        owl:someValuesFrom ilxtr:PyramidalPhenotype ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasNeurotransmitterPhenotype ;
+                        owl:someValuesFrom SAO:1744435799 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedIn ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0003883
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0003883 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomaLocatedInLayer ;
+                        owl:someValuesFrom [ a owl:Class ;
+                                owl:unionOf (
+                                        UBERON:0014550
+                                        [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0014550 ] ) ] ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasTaxonRank ;
+                        owl:someValuesFrom NCBITaxon:40674 ] ) ] ;
+    rdfs:label "Mammalia CA3 pyramidal layer of CA3 (with-axons-in CA1 stratum oriens CA3 stratum oriens CA1 stratum radiatum CA3 stratum radiatum) Pyramidal +GABA receptor role +Glutamate Receptor +Glu projection neuron" ;
+    NIFRID:synonym "CA3 pyramidal cell",
+        "CA3 pyramidal neuron",
+        "Hippocampal CA3 Pyramidal Neuron" ;
+    definition: "This is the major output neuron in area CA3 of the hippocampus.  It receives input from mossy fibers of the dentate gyrus.  Its axon projects to the contralateral hippocampus and subcortically to the septal nucleus, and sends axon collaterals called Shaffer collaterals to the nearby CA1 region." ;
+    rdfs:subClassOf ilxtr:NeuronCUT ;
+    ilxtr:genLabel "Mammalia CA3 pyramidal layer of CA3 (with-axons-in CA1 stratum oriens CA3 stratum oriens CA1 stratum radiatum CA3 stratum radiatum) Pyramidal +GABA receptor role +Glutamate Receptor +Glu projection neuron" ;
+    ilxtr:origLabel "Hippocampus CA3 pyramidal cell" .
 
 ### Axioms
 
@@ -1052,6 +1356,12 @@ NLXCELL:20090727 a owl:Class ;
     owl:annotatedProperty rdfs:label ;
     owl:annotatedTarget "Solitary tract nucleus intrinsic cell" ;
     ilxtr:literatureCitation hyp:tGcQ1tb_EeiM0ydCDJg6ig .
+
+[] a owl:Axiom ;
+    owl:annotatedSource NLX:22799 ;
+    owl:annotatedProperty ilxtr:hasNeurotransmitterPhenotype ;
+    owl:annotatedTarget SAO:1744435799 ;
+    ilxtr:literatureCitation hyp:3gqFcmxPEemVmo-vWWKycg .
 
 [] a owl:Axiom ;
     owl:annotatedSource NLX:149094 ;
