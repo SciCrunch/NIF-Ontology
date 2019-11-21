@@ -1,4 +1,5 @@
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 @prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
@@ -71,6 +72,29 @@ ilxtr:parcellationRegion a owl:Class ;
     rdfs:label "Parcellation Region" ;
     skos:definition "Parcellation regions are 'anatomical entities' that correspond to some part of a real biological system and are equivalent to an intersection between a parcellation label and a specific version of an atlas that defines or uses that label and that provides a definitive (0, 1, or probabilistic) way to determine whether a particular sample corresponds to any given region. " .
 
+parc:Alignment a owl:Class ;
+    rdfs:label "spatial alignment" ;
+    definition: "axis -> axis" ;
+    rdfs:subClassOf parc:Process ;
+    ilxtr:localName "alignment" .
+
+parc:AnatomicalAxis a owl:Class ;
+    rdfs:subClassOf parc:Axis .
+
+parc:AnatomicalAxisAlignmentVector a owl:Class ;
+    rdfs:label "anatomical axis alignment vector" ;
+    rdfs:subClassOf parc:Vector,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirectionMappedToPositiveX ;
+            owl:someValuesFrom parc:AnatomicalDirection ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirectionMappedToPositiveY ;
+            owl:someValuesFrom parc:AnatomicalDirection ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirectionMappedToPositiveZ ;
+            owl:someValuesFrom parc:AnatomicalDirection ] ;
+    ilxtr:localName "anatomical axis alignment vector" .
+
 parc:AnatomicalDataset a owl:Class ;
     rdfs:label "anatomical dataset" ;
     NIFRID:synonym "raw image",
@@ -82,6 +106,9 @@ parc:AnatomicalDataset a owl:Class ;
             owl:someValuesFrom parc:SampleSpace ] ;
     ilxtr:localName "anatomical dataset" .
 
+parc:AnatomicalDirection a owl:Class ;
+    rdfs:subClassOf parc:Direction .
+
 parc:Annotation a owl:Class ;
     rdfs:label "parcellation annotation" ;
     NIFRID:synonym "atlas annotation" ;
@@ -89,11 +116,32 @@ parc:Annotation a owl:Class ;
         [ a owl:Restriction ;
             owl:onProperty parc:annotates ;
             owl:someValuesFrom parc:Space ;
-            owl:cardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onProperty parc:hasUnit ;
-            owl:someValuesFrom parc:spaceUnit ] ;
+            owl:cardinality 1 ] ;
     ilxtr:localName "annotation" .
+
+parc:AnnotationCriteria a owl:Class ;
+    rdfs:label "parcellation annotation criteria" ;
+    NIFRID:synonym "anatomical annotation criteria" ;
+    rdfs:subClassOf parc:Artifact ;
+    ilxtr:localName "annotation criteria" .
+
+parc:Anterior a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Posterior ] .
+
+parc:AnteriorPosteriorAxis a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalAxis,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Anterior ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Posterior ] .
+
+parc:ApplicationOfAnnotationCriteria a owl:Class ;
+    rdfs:subClassOf parc:Process .
 
 parc:Artifact a owl:Class ;
     rdfs:label "parcellation artifact" ;
@@ -115,6 +163,12 @@ parc:Atlas a owl:Class ;
             owl:someValuesFrom parc:Terminology ] ;
     ilxtr:localName "atlas" .
 
+parc:Axis a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Direction ;
+            owl:cardinality 2 ] .
+
 parc:Border a owl:Class ;
     rdfs:label "anatomical border" ;
     rdfs:subClassOf parc:Line ;
@@ -124,6 +178,12 @@ parc:Boundary a owl:Class ;
     rdfs:label "anatomical boundary" ;
     rdfs:subClassOf parc:ClosedCurve ;
     ilxtr:localName "boundary" .
+
+parc:Caudal a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Rostral ] .
 
 parc:Centroid a owl:Class ;
     rdfs:label "anatomical centroid" ;
@@ -144,6 +204,23 @@ parc:CoordinatedDataset a owl:Class ;
             owl:someValuesFrom parc:ReferenceSpace ] ;
     ilxtr:localName "coordinated dataset" .
 
+parc:CoordinateSystemApplication a owl:Class ;
+    rdfs:label "coordinate system application" ;
+    rdfs:subClassOf parc:Process,
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:Alignment ],
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:Transformation ] ;
+    ilxtr:localName "coordinate system application" .
+
+parc:CoordinateSystemDefinition a owl:Class ;
+    rdfs:label "coordinate system definition" ;
+    NIFRID:synonym "coordination rule" ;
+    rdfs:subClassOf parc:Artifact ;
+    ilxtr:localName "coordinate system definition" .
+
 parc:Data a owl:Class ;
     rdfs:label "anatomical data" ;
     rdfs:subClassOf parc:Artifact,
@@ -159,26 +236,145 @@ parc:Data a owl:Class ;
             owl:someValuesFrom NCBITaxon:1 ] ;
     ilxtr:localName "data" .
 
+parc:Direction a owl:Class .
+
+parc:Dorsal a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Ventral ] .
+
+parc:DorsalVentralAxis a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalAxis,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Dorsal ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Ventral ] .
+
+parc:Inferior a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Superior ] .
+
+parc:InferiorSuperiorAxis a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalAxis,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Inferior ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Superior ] .
+
 parc:Landmark a owl:Class ;
     rdfs:label "anatomical landmark" ;
     rdfs:subClassOf parc:Annotation ;
     ilxtr:localName "landmark" .
+
+parc:Lateral a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Medial ] .
+
+parc:Left a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Right ] .
+
+parc:LeftRightAxis a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalAxis,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Left ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Right ] .
 
 parc:Line a owl:Class ;
     rdfs:label "anatomical line" ;
     rdfs:subClassOf parc:Annotation ;
     ilxtr:localName "line" .
 
+parc:Matrix a owl:Class ;
+    rdfs:label "matrix" ;
+    ilxtr:localName "matrix" .
+
+parc:Medial a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Lateral ] .
+
+parc:MedialLateralAxis a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalAxis,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Lateral ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Medial ] .
+
+parc:NegativeX a owl:Class ;
+    rdfs:subClassOf parc:SpatialDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:PositiveX ] .
+
+parc:NegativeY a owl:Class ;
+    rdfs:subClassOf parc:SpatialDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:PositiveY ] .
+
+parc:NegativeZ a owl:Class ;
+    rdfs:subClassOf parc:SpatialDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:PositiveZ ] .
+
 parc:Point a owl:Class ;
     rdfs:label "anatomical point" ;
     rdfs:subClassOf parc:Annotation ;
     ilxtr:localName "point" .
+
+parc:PositiveX a owl:Class ;
+    rdfs:subClassOf parc:SpatialDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:NegativeX ] .
+
+parc:PositiveY a owl:Class ;
+    rdfs:subClassOf parc:SpatialDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:NegativeY ] .
+
+parc:PositiveZ a owl:Class ;
+    rdfs:subClassOf parc:SpatialDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:NegativeZ ] .
+
+parc:Posterior a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Anterior ] .
+
+parc:Process a owl:Class ;
+    rdfs:label "process" ;
+    ilxtr:localName "process" .
 
 parc:ReferenceSpace a owl:Class ;
     rdfs:label "anatomical reference space" ;
     NIFRID:synonym "anatomical coordinate space",
         "atlas space",
         "common coordinate space",
+        "parameterized coordinate space",
         "physical space",
         "reference space" ;
     rdfs:subClassOf parc:Space,
@@ -197,9 +393,20 @@ parc:Region a owl:Class ;
             owl:cardinality 1 ] ;
     ilxtr:localName "region" .
 
+parc:Registration a owl:Class ;
+    rdfs:label "spatial registration" ;
+    definition: "dataset -> dataset" ;
+    rdfs:subClassOf parc:Process ;
+    ilxtr:localName "registration" .
+
+parc:RegistrationUsingAnnotationOnly a owl:Class ;
+    definition: "dataset -> annotation" ;
+    rdfs:subClassOf parc:Process .
+
 parc:Resolution a owl:Class ;
     rdfs:label "resolution" ;
-    rdfs:subClassOf [ a owl:Restriction ;
+    rdfs:subClassOf parc:Vector,
+        [ a owl:Restriction ;
             owl:onProperty parc:hasResolutionX ;
             owl:someValuesFrom owl:real ],
         [ a owl:Restriction ;
@@ -213,20 +420,57 @@ parc:Resolution a owl:Class ;
             owl:someValuesFrom parc:spaceUnit ] ;
     ilxtr:localName "resolution" .
 
-parc:SampleSpace a owl:Class ;
-    rdfs:label "anatomical sample space" ;
-    NIFRID:synonym "data space",
-        "dataset space",
-        "image space",
-        "intrinsic data space",
-        "intrinsic space" ;
-    rdfs:subClassOf parc:Space ;
-    ilxtr:localName "sample space" .
+parc:Right a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Left ] .
+
+parc:Rostral a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Caudal ] .
+
+parc:RostralCaudalAxis a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalAxis,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Caudal ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:Rostral ] .
 
 parc:Space a owl:Class ;
     rdfs:label "anatomical space" ;
     rdfs:subClassOf parc:Artifact ;
     ilxtr:localName "space" .
+
+parc:SpatialAxis a owl:Class ;
+    rdfs:subClassOf parc:Axis .
+
+parc:SpatialDirection a owl:Class ;
+    rdfs:subClassOf parc:Direction .
+
+parc:SpecimenSpace a owl:Class ;
+    rdfs:label "anatomical specimen space" ;
+    NIFRID:synonym "data space",
+        "dataset space",
+        "donor space",
+        "image space",
+        "individual space",
+        "intrinsic data space",
+        "intrinsic space",
+        "sample space" ;
+    rdfs:subClassOf parc:Space ;
+    ilxtr:editorQuestion "are specimen/individual space different from image/dataset space?" ;
+    ilxtr:localName "sample space" .
+
+parc:Superior a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Inferior ] .
 
 parc:Term a owl:Class ;
     rdfs:label "parcellation term" ;
@@ -238,5 +482,53 @@ parc:Terminology a owl:Class ;
     NIFRID:synonym "controlled vocabulary" ;
     rdfs:subClassOf parc:Artifact ;
     ilxtr:localName "terminology" .
+
+parc:Transformation a owl:Class ;
+    rdfs:label "spatial transformation" ;
+    definition: "space -> space" ;
+    rdfs:subClassOf parc:Process ;
+    ilxtr:localName "transformation" .
+
+parc:TransformationMatrix a owl:Class ;
+    rdfs:label "transformation matrix" ;
+    rdfs:subClassOf parc:Matrix ;
+    ilxtr:localName "transformation matrix" .
+
+parc:Vector a owl:Class ;
+    rdfs:label "vector" ;
+    ilxtr:localName "vector" .
+
+parc:Ventral a owl:Class ;
+    rdfs:subClassOf parc:AnatomicalDirection,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasOppositeDirection ;
+            owl:someValuesFrom parc:Dorsal ] .
+
+parc:XAxis a owl:Class ;
+    rdfs:subClassOf parc:SpatialAxis,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:NegativeX ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:PositiveX ] .
+
+parc:YAxis a owl:Class ;
+    rdfs:subClassOf parc:SpatialAxis,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:NegativeY ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:PositiveY ] .
+
+parc:ZAxis a owl:Class ;
+    rdfs:subClassOf parc:SpatialAxis,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:NegativeZ ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasDirection ;
+            owl:someValuesFrom parc:PositiveZ ] .
 
 ### Serialized using the ttlser deterministic serializer v1.2.0
