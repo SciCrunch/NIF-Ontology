@@ -1,10 +1,15 @@
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix parc: <http://uri.interlex.org/tgbugs/uris/readable/parcellation/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-
+@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/parcellation-core.ttl> a owl:Ontology ;
     owl:imports <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-artifacts.ttl> ;
@@ -19,6 +24,43 @@ ilxtr:labelPartOf a owl:ObjectProperty,
         owl:TransitiveProperty ;
     rdfs:subPropertyOf BFO:0000050 .
 
+parc:annotates a owl:ObjectProperty ;
+    rdfs:label "annotates" ;
+    NIFRID:synonym "isAnchoredTo",
+        "isCoordinatedTo" ;
+    rdfs:domain parc:Annotation ;
+    rdfs:range parc:Space .
+
+parc:hasResolution a owl:ObjectProperty ;
+    rdfs:label "hasResolution" ;
+    rdfs:domain parc:Data ;
+    rdfs:range parc:Resolution .
+
+parc:hasSpace a owl:ObjectProperty ;
+    rdfs:label "hasSpace" ;
+    rdfs:domain parc:Data ;
+    rdfs:range parc:Space .
+
+parc:hasUnit a owl:ObjectProperty ;
+    rdfs:label "hasUnit" ;
+    rdfs:domain parc:Space .
+
+parc:isMeasurementOf a owl:ObjectProperty ;
+    rdfs:domain parc:Data .
+
+parc:names a owl:ObjectProperty ;
+    rdfs:label "names" ;
+    rdfs:domain parc:Region ;
+    rdfs:range parc:Annotation .
+
+### Data Properties
+
+parc:hasResolutionX a owl:DatatypeProperty .
+
+parc:hasResolutionY a owl:DatatypeProperty .
+
+parc:hasResolutionZ a owl:DatatypeProperty .
+
 ### Classes
 
 ilxtr:parcellationLabel a owl:Class ;
@@ -29,4 +71,172 @@ ilxtr:parcellationRegion a owl:Class ;
     rdfs:label "Parcellation Region" ;
     skos:definition "Parcellation regions are 'anatomical entities' that correspond to some part of a real biological system and are equivalent to an intersection between a parcellation label and a specific version of an atlas that defines or uses that label and that provides a definitive (0, 1, or probabilistic) way to determine whether a particular sample corresponds to any given region. " .
 
-### Serialized using the pyontutils deterministic serializer v1.2.0
+parc:AnatomicalDataset a owl:Class ;
+    rdfs:label "anatomical dataset" ;
+    NIFRID:synonym "raw image",
+        "template",
+        "uncoordinated dataset" ;
+    rdfs:subClassOf parc:Data,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasSpace ;
+            owl:someValuesFrom parc:SampleSpace ] ;
+    ilxtr:localName "anatomical dataset" .
+
+parc:Annotation a owl:Class ;
+    rdfs:label "parcellation annotation" ;
+    NIFRID:synonym "atlas annotation" ;
+    rdfs:subClassOf parc:Artifact,
+        [ a owl:Restriction ;
+            owl:onProperty parc:annotates ;
+            owl:someValuesFrom parc:Space ;
+            owl:cardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasUnit ;
+            owl:someValuesFrom parc:spaceUnit ] ;
+    ilxtr:localName "annotation" .
+
+parc:Artifact a owl:Class ;
+    rdfs:label "parcellation artifact" ;
+    NIFRID:synonym "parcellation artifact" ;
+    ilxtr:localName "artifact" .
+
+parc:Atlas a owl:Class ;
+    rdfs:label "parcellation atlas" ;
+    NIFRID:synonym "anatomical reference atlas" ;
+    rdfs:subClassOf parc:Artifact,
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:Annotation ],
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:Space ],
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:Terminology ] ;
+    ilxtr:localName "atlas" .
+
+parc:Border a owl:Class ;
+    rdfs:label "anatomical border" ;
+    rdfs:subClassOf parc:Line ;
+    ilxtr:localName "border" .
+
+parc:Boundary a owl:Class ;
+    rdfs:label "anatomical boundary" ;
+    rdfs:subClassOf parc:ClosedCurve ;
+    ilxtr:localName "boundary" .
+
+parc:Centroid a owl:Class ;
+    rdfs:label "anatomical centroid" ;
+    rdfs:subClassOf parc:Point ;
+    ilxtr:localName "centroid" .
+
+parc:ClosedCurve a owl:Class ;
+    rdfs:label "anatomical closed curve" ;
+    rdfs:subClassOf parc:Annotation ;
+    ilxtr:localName "closed curve" .
+
+parc:CoordinatedDataset a owl:Class ;
+    rdfs:label "coordinated dataset" ;
+    NIFRID:synonym "default image" ;
+    rdfs:subClassOf parc:Data,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasSpace ;
+            owl:someValuesFrom parc:ReferenceSpace ] ;
+    ilxtr:localName "coordinated dataset" .
+
+parc:Data a owl:Class ;
+    rdfs:label "anatomical data" ;
+    rdfs:subClassOf parc:Artifact,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasResolution ;
+            owl:someValuesFrom parc:Resolution ;
+            owl:cardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasSpace ;
+            owl:someValuesFrom parc:Space ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:isMeasurementOf ;
+            owl:someValuesFrom NCBITaxon:1 ] ;
+    ilxtr:localName "data" .
+
+parc:Landmark a owl:Class ;
+    rdfs:label "anatomical landmark" ;
+    rdfs:subClassOf parc:Annotation ;
+    ilxtr:localName "landmark" .
+
+parc:Line a owl:Class ;
+    rdfs:label "anatomical line" ;
+    rdfs:subClassOf parc:Annotation ;
+    ilxtr:localName "line" .
+
+parc:Point a owl:Class ;
+    rdfs:label "anatomical point" ;
+    rdfs:subClassOf parc:Annotation ;
+    ilxtr:localName "point" .
+
+parc:ReferenceSpace a owl:Class ;
+    rdfs:label "anatomical reference space" ;
+    NIFRID:synonym "anatomical coordinate space",
+        "atlas space",
+        "common coordinate space",
+        "physical space",
+        "reference space" ;
+    rdfs:subClassOf parc:Space,
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasUnit ;
+            owl:someValuesFrom parc:spaceUnit ] ;
+    ilxtr:localName "reference space" .
+
+parc:Region a owl:Class ;
+    rdfs:label "parcellation region" ;
+    NIFRID:synonym "atlas region" ;
+    rdfs:subClassOf parc:Term,
+        [ a owl:Restriction ;
+            owl:onProperty parc:names ;
+            owl:someValuesFrom parc:Annotation ;
+            owl:cardinality 1 ] ;
+    ilxtr:localName "region" .
+
+parc:Resolution a owl:Class ;
+    rdfs:label "resolution" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty parc:hasResolutionX ;
+            owl:someValuesFrom owl:real ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasResolutionY ;
+            owl:someValuesFrom owl:real ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasResolutionZ ;
+            owl:someValuesFrom owl:real ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasUnit ;
+            owl:someValuesFrom parc:spaceUnit ] ;
+    ilxtr:localName "resolution" .
+
+parc:SampleSpace a owl:Class ;
+    rdfs:label "anatomical sample space" ;
+    NIFRID:synonym "data space",
+        "dataset space",
+        "image space",
+        "intrinsic data space",
+        "intrinsic space" ;
+    rdfs:subClassOf parc:Space ;
+    ilxtr:localName "sample space" .
+
+parc:Space a owl:Class ;
+    rdfs:label "anatomical space" ;
+    rdfs:subClassOf parc:Artifact ;
+    ilxtr:localName "space" .
+
+parc:Term a owl:Class ;
+    rdfs:label "parcellation term" ;
+    rdfs:subClassOf UBERON:0001062 ;
+    ilxtr:localName "term" .
+
+parc:Terminology a owl:Class ;
+    rdfs:label "parcellation terminology" ;
+    NIFRID:synonym "controlled vocabulary" ;
+    rdfs:subClassOf parc:Artifact ;
+    ilxtr:localName "terminology" .
+
+### Serialized using the ttlser deterministic serializer v1.2.0
