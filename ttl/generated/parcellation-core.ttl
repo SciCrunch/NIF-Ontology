@@ -1,5 +1,6 @@
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
+@prefix editorNote: <http://purl.obolibrary.org/obo/IAO_0000116> .
 @prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
@@ -43,8 +44,7 @@ parc:hasSpace a owl:ObjectProperty ;
     rdfs:range parc:Space .
 
 parc:hasUnit a owl:ObjectProperty ;
-    rdfs:label "hasUnit" ;
-    rdfs:domain parc:Space .
+    rdfs:label "hasUnit" .
 
 parc:isMeasurementOf a owl:ObjectProperty ;
     rdfs:domain parc:Data .
@@ -53,6 +53,10 @@ parc:names a owl:ObjectProperty ;
     rdfs:label "names" ;
     rdfs:domain parc:Region ;
     rdfs:range parc:Annotation .
+
+parc:transforms a owl:ObjectProperty ;
+    rdfs:domain parc:TransformationRule ;
+    rdfs:range parc:Space .
 
 ### Data Properties
 
@@ -65,17 +69,21 @@ parc:hasResolutionZ a owl:DatatypeProperty .
 ### Classes
 
 ilxtr:parcellationLabel a owl:Class ;
-    rdfs:label "Parcellation Label" ;
-    skos:definition "Parcellation labels are strings characthers sometimes associated with a unique identifier, such as an index number or an iri." .
+    owl:equivalentClass parc:Label .
 
 ilxtr:parcellationRegion a owl:Class ;
-    rdfs:label "Parcellation Region" ;
-    skos:definition "Parcellation regions are 'anatomical entities' that correspond to some part of a real biological system and are equivalent to an intersection between a parcellation label and a specific version of an atlas that defines or uses that label and that provides a definitive (0, 1, or probabilistic) way to determine whether a particular sample corresponds to any given region. " .
+    owl:equivalentClass parc:Region .
 
 parc:Alignment a owl:Class ;
     rdfs:label "spatial alignment" ;
-    definition: "axis -> axis" ;
-    rdfs:subClassOf parc:Process ;
+    definition: "dataset -> dataset, rotation, translation" ;
+    rdfs:subClassOf parc:Process,
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:SpacePreservingLinearTransformation ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasInformationOutput ;
+            owl:someValuesFrom parc:TransformationRule ] ;
     ilxtr:localName "alignment" .
 
 parc:AnatomicalAxis a owl:Class ;
@@ -97,17 +105,26 @@ parc:AnatomicalAxisAlignmentVector a owl:Class ;
 
 parc:AnatomicalDataset a owl:Class ;
     rdfs:label "anatomical dataset" ;
-    NIFRID:synonym "raw image",
+    NIFRID:synonym "default image",
+        "raw image",
         "template",
-        "uncoordinated dataset" ;
+        "uncoordinated dataset",
+        "unoriented dataset" ;
     rdfs:subClassOf parc:Data,
         [ a owl:Restriction ;
             owl:onProperty parc:hasSpace ;
-            owl:someValuesFrom parc:SampleSpace ] ;
+            owl:someValuesFrom parc:ImageSpace ] ;
     ilxtr:localName "anatomical dataset" .
 
 parc:AnatomicalDirection a owl:Class ;
     rdfs:subClassOf parc:Direction .
+
+parc:Anchoring a owl:Class ;
+    rdfs:label "anchoring" ;
+    NIFRID:synonym "RegistrationUsingAnnotationOnly" ;
+    definition: "dataset -> annotation" ;
+    rdfs:subClassOf parc:Process ;
+    ilxtr:localName "anchoring" .
 
 parc:Annotation a owl:Class ;
     rdfs:label "parcellation annotation" ;
@@ -125,6 +142,11 @@ parc:AnnotationCriteria a owl:Class ;
     rdfs:subClassOf parc:Artifact ;
     ilxtr:localName "annotation criteria" .
 
+parc:AnnotationCriteriaApplication a owl:Class ;
+    rdfs:label "annotation criteria application" ;
+    rdfs:subClassOf parc:Process ;
+    ilxtr:localName "annotation criteria application" .
+
 parc:Anterior a owl:Class ;
     rdfs:subClassOf parc:AnatomicalDirection,
         [ a owl:Restriction ;
@@ -140,15 +162,14 @@ parc:AnteriorPosteriorAxis a owl:Class ;
             owl:onProperty parc:hasDirection ;
             owl:someValuesFrom parc:Posterior ] .
 
-parc:ApplicationOfAnnotationCriteria a owl:Class ;
-    rdfs:subClassOf parc:Process .
-
 parc:Artifact a owl:Class ;
+    owl:equivalentClass ilxtr:parcellationArtifact ;
     rdfs:label "parcellation artifact" ;
     NIFRID:synonym "parcellation artifact" ;
     ilxtr:localName "artifact" .
 
 parc:Atlas a owl:Class ;
+    owl:equivalentClass ilxtr:parcellationAtlas ;
     rdfs:label "parcellation atlas" ;
     NIFRID:synonym "anatomical reference atlas" ;
     rdfs:subClassOf parc:Artifact,
@@ -168,6 +189,9 @@ parc:Axis a owl:Class ;
             owl:onProperty parc:hasDirection ;
             owl:someValuesFrom parc:Direction ;
             owl:cardinality 2 ] .
+
+parc:AxisDirectionMatrix a owl:Class ;
+    rdfs:subClassOf parc:Matrix .
 
 parc:Border a owl:Class ;
     rdfs:label "anatomical border" ;
@@ -197,7 +221,7 @@ parc:ClosedCurve a owl:Class ;
 
 parc:CoordinatedDataset a owl:Class ;
     rdfs:label "coordinated dataset" ;
-    NIFRID:synonym "default image" ;
+    NIFRID:synonym "reconstructed brain" ;
     rdfs:subClassOf parc:Data,
         [ a owl:Restriction ;
             owl:onProperty parc:hasSpace ;
@@ -236,6 +260,12 @@ parc:Data a owl:Class ;
             owl:someValuesFrom NCBITaxon:1 ] ;
     ilxtr:localName "data" .
 
+parc:Delineation a owl:Class ;
+    rdfs:label "anatomical delineation" ;
+    definition: "an annotation with criteria demarcating the border between two regions or the boundary of a single region" ;
+    rdfs:subClassOf parc:Annotation ;
+    ilxtr:localName "delineation" .
+
 parc:Direction a owl:Class .
 
 parc:Dorsal a owl:Class ;
@@ -253,6 +283,21 @@ parc:DorsalVentralAxis a owl:Class ;
             owl:onProperty parc:hasDirection ;
             owl:someValuesFrom parc:Ventral ] .
 
+parc:ImageSpace a owl:Class ;
+    rdfs:label "anatomical image space" ;
+    NIFRID:synonym "data space",
+        "dataset space",
+        "donor space",
+        "image space",
+        "individual space",
+        "intrinsic data space",
+        "intrinsic space",
+        "sample space",
+        "specimen space" ;
+    rdfs:subClassOf parc:Space ;
+    ilxtr:editorQuestion "are specimen/individual space different from image/dataset space?" ;
+    ilxtr:localName "image space" .
+
 parc:Inferior a owl:Class ;
     rdfs:subClassOf parc:AnatomicalDirection,
         [ a owl:Restriction ;
@@ -267,6 +312,15 @@ parc:InferiorSuperiorAxis a owl:Class ;
         [ a owl:Restriction ;
             owl:onProperty parc:hasDirection ;
             owl:someValuesFrom parc:Superior ] .
+
+parc:Label a owl:Class ;
+    rdfs:label "parcellation label" ;
+    NIFRID:synonym "Parcellation Label",
+        "parcellation term",
+        "term" ;
+    skos:definition "Parcellation labels are strings characthers sometimes associated with a unique identifier, such as an index number or an iri." ;
+    rdfs:subClassOf UBERON:0001062 ;
+    ilxtr:localName "label" .
 
 parc:Landmark a owl:Class ;
     rdfs:label "anatomical landmark" ;
@@ -298,6 +352,15 @@ parc:Line a owl:Class ;
     rdfs:label "anatomical line" ;
     rdfs:subClassOf parc:Annotation ;
     ilxtr:localName "line" .
+
+parc:LinearRegistration a owl:Class ;
+    rdfs:subClassOf parc:Registration,
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:LinearTransformation ] .
+
+parc:LinearTransformation a owl:Class ;
+    rdfs:subClassOf parc:Transformation .
 
 parc:Matrix a owl:Class ;
     rdfs:label "matrix" ;
@@ -335,6 +398,29 @@ parc:NegativeZ a owl:Class ;
         [ a owl:Restriction ;
             owl:onProperty parc:hasOppositeDirection ;
             owl:someValuesFrom parc:PositiveZ ] .
+
+parc:NonLinearRegistration a owl:Class ;
+    rdfs:subClassOf parc:Registration,
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:NonLinearTransformation ] .
+
+parc:NonLinearTransformation a owl:Class ;
+    rdfs:subClassOf parc:Transformation .
+
+parc:Orienting a owl:Class ;
+    rdfs:label "spatial orienting" ;
+    NIFRID:synonym "orienting" ;
+    definition: "axis -> axis" ;
+    rdfs:subClassOf parc:Alignment ;
+    ilxtr:localName "orienting" .
+
+parc:Parcellation a owl:Class ;
+    rdfs:label "anatomical parcellation" ;
+    NIFRID:synonym "anatomical parcellation scheme",
+        "parcellation scheme" ;
+    rdfs:subClassOf parc:Artifact ;
+    ilxtr:localName "parcellation" .
 
 parc:Point a owl:Class ;
     rdfs:label "anatomical point" ;
@@ -379,14 +465,26 @@ parc:ReferenceSpace a owl:Class ;
         "reference space" ;
     rdfs:subClassOf parc:Space,
         [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:AnatomicalAxisAlignmentVector ],
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:AxisDirectionMatrix ],
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:AxisOrigin ],
+        [ a owl:Restriction ;
             owl:onProperty parc:hasUnit ;
             owl:someValuesFrom parc:spaceUnit ] ;
+    editorNote: "To avoid problems like those encountered by nifti an anatomical reference space MUST define an anatomical axis alignment vector which states, for example, [X, Y, Z] -> [R, A, D] (left hand rule). This immediately indicates the three annotations required on any unoriented dataset as opposed to someone trying to apply the anatomical directions directly to the unoriented dataset" ;
     ilxtr:localName "reference space" .
 
 parc:Region a owl:Class ;
     rdfs:label "parcellation region" ;
-    NIFRID:synonym "atlas region" ;
-    rdfs:subClassOf parc:Term,
+    NIFRID:synonym "atlas region",
+        "Parcellation Region" ;
+    skos:definition "Parcellation regions are 'anatomical entities' that correspond to some part of a real biological system and are equivalent to an intersection between a parcellation label and a specific version of an atlas that defines or uses that label and that provides a definitive (0, 1, or probabilistic) way to determine whether a particular sample corresponds to any given region. " ;
+    rdfs:subClassOf parc:Label,
         [ a owl:Restriction ;
             owl:onProperty parc:names ;
             owl:someValuesFrom parc:Annotation ;
@@ -395,13 +493,12 @@ parc:Region a owl:Class ;
 
 parc:Registration a owl:Class ;
     rdfs:label "spatial registration" ;
-    definition: "dataset -> dataset" ;
-    rdfs:subClassOf parc:Process ;
+    definition: "dataset -> dataset, rotation, translation, scaling, or some nonlinear transformation" ;
+    rdfs:subClassOf parc:Alignment,
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:Transformation ] ;
     ilxtr:localName "registration" .
-
-parc:RegistrationUsingAnnotationOnly a owl:Class ;
-    definition: "dataset -> annotation" ;
-    rdfs:subClassOf parc:Process .
 
 parc:Resolution a owl:Class ;
     rdfs:label "resolution" ;
@@ -441,10 +538,25 @@ parc:RostralCaudalAxis a owl:Class ;
             owl:onProperty parc:hasDirection ;
             owl:someValuesFrom parc:Rostral ] .
 
+parc:Rotation a owl:Class ;
+    rdfs:subClassOf parc:SpacePreservingLinearTransformation .
+
+parc:RotationMatrix a owl:Class ;
+    rdfs:subClassOf parc:TransformationMatrix .
+
+parc:Scaling a owl:Class ;
+    rdfs:subClassOf parc:LinearTransformation .
+
+parc:Segmentation a owl:Class ;
+    rdfs:subClassOf parc:Artifact .
+
 parc:Space a owl:Class ;
     rdfs:label "anatomical space" ;
     rdfs:subClassOf parc:Artifact ;
     ilxtr:localName "space" .
+
+parc:SpacePreservingLinearTransformation a owl:Class ;
+    rdfs:subClassOf parc:LinearTransformation .
 
 parc:SpatialAxis a owl:Class ;
     rdfs:subClassOf parc:Axis .
@@ -452,47 +564,50 @@ parc:SpatialAxis a owl:Class ;
 parc:SpatialDirection a owl:Class ;
     rdfs:subClassOf parc:Direction .
 
-parc:SpecimenSpace a owl:Class ;
-    rdfs:label "anatomical specimen space" ;
-    NIFRID:synonym "data space",
-        "dataset space",
-        "donor space",
-        "image space",
-        "individual space",
-        "intrinsic data space",
-        "intrinsic space",
-        "sample space" ;
-    rdfs:subClassOf parc:Space ;
-    ilxtr:editorQuestion "are specimen/individual space different from image/dataset space?" ;
-    ilxtr:localName "sample space" .
-
 parc:Superior a owl:Class ;
     rdfs:subClassOf parc:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty parc:hasOppositeDirection ;
             owl:someValuesFrom parc:Inferior ] .
 
-parc:Term a owl:Class ;
-    rdfs:label "parcellation term" ;
-    rdfs:subClassOf UBERON:0001062 ;
-    ilxtr:localName "term" .
-
 parc:Terminology a owl:Class ;
+    owl:equivalentClass ilxtr:parcellationTerminology ;
     rdfs:label "parcellation terminology" ;
     NIFRID:synonym "controlled vocabulary" ;
     rdfs:subClassOf parc:Artifact ;
     ilxtr:localName "terminology" .
 
+parc:Tiling a owl:Class ;
+    rdfs:subClassOf parc:Artifact .
+
 parc:Transformation a owl:Class ;
     rdfs:label "spatial transformation" ;
     definition: "space -> space" ;
-    rdfs:subClassOf parc:Process ;
+    rdfs:subClassOf parc:Process,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasInformationInput ;
+            owl:someValuesFrom parc:Space ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasInformationOutput ;
+            owl:someValuesFrom parc:Space ] ;
     ilxtr:localName "transformation" .
 
 parc:TransformationMatrix a owl:Class ;
     rdfs:label "transformation matrix" ;
-    rdfs:subClassOf parc:Matrix ;
+    rdfs:subClassOf parc:Matrix,
+        parc:TransformationRule ;
     ilxtr:localName "transformation matrix" .
+
+parc:TransformationRule a owl:Class ;
+    rdfs:label "transformation rule" ;
+    rdfs:subClassOf parc:Artifact,
+        [ a owl:Restriction ;
+            owl:onProperty parc:transforms ;
+            owl:someValuesFrom parc:Space ] ;
+    ilxtr:localName "transformation rule" .
+
+parc:Translation a owl:Class ;
+    rdfs:subClassOf parc:SpacePreservingLinearTransformation .
 
 parc:Vector a owl:Class ;
     rdfs:label "vector" ;
