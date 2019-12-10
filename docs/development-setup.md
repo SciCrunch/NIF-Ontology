@@ -83,6 +83,7 @@ You can obtain copies of ELK and FACT++ by launching protege and going to
 menu bar `File -> Check for plugins` and selecting ELK and FACT++.
 **NOTE:** sometimes the plugin repos don't load, if that happens try again.
 Otherwise you can download the reasoner plugins and put them in `Protege-*/plugins/`.
+If you are on OSX the folder is `/Applications/Protégé.app/Contents/Java/plugins`.
 ### ELK
 Get the latest version of `elk-distribution-*-protege-plugin.zip` from https://github.com/liveontologies/elk-reasoner/releases.
 Or get the latest version of https://mvnrepository.com/artifact/org.semanticweb.elk/elk-owlapi.

@@ -1,6 +1,11 @@
 # https://travis-ci.org/tgbugs/pyontutils
 sudo: false
 language: python
+cache:
+  directories:
+  - $HOME/.cache/pip
+  - $HOME/.m2
+  - ${TRAVIS_BUILD_DIR}/../SciGraph
 branches:
   only:
     - dev
@@ -9,7 +14,7 @@ branches:
     depth: 3
 
 python:
-  - 3.6
+  - 3.7
 
 before_install:
   - mkdir build
@@ -20,11 +25,28 @@ before_install:
 
 install:
   - pip install pyontutils
+  - ontload scigraph --scigraph-quiet -z "${TRAVIS_BUILD_DIR}/build" -l $(realpath "${TRAVIS_BUILD_DIR}/../") -O SciGraph -B master -b ${TRAVIS_BRANCH} -t "${TRAVIS_BUILD_DIR}/build/graphload.yaml" -u "${TRAVIS_BUILD_DIR}/build/curie_map.yaml"
 
 script:
   #- pipenv run ipython -c "__import__('pyontutils.config').config.bootstrap_config()"
   - git checkout ${TRAVIS_BRANCH}  # ontload doesn't currently work if git is in detached head mode
-  - ontload graph NIF-Ontology NIF -z "${TRAVIS_BUILD_DIR}/build" -l "${TRAVIS_BUILD_DIR}/../" -O SciGraph -B master -b ${TRAVIS_BRANCH} -t "${TRAVIS_BUILD_DIR}/build/graphload.yaml" -u "${TRAVIS_BUILD_DIR}/build/curie_map.yaml" 
+  - ontload graph NIF-Ontology NIF --scigraph-quiet --build-scigraph -z "${TRAVIS_BUILD_DIR}/build" -l $(realpath "${TRAVIS_BUILD_DIR}/../") -O SciGraph -B master -b ${TRAVIS_BRANCH} -t "${TRAVIS_BUILD_DIR}/build/graphload.yaml" -u "${TRAVIS_BUILD_DIR}/build/curie_map.yaml"
 
 after_success:
   - echo "scp the artifacts somewhere"
+
+before_deploy:
+  - git config --local user.name "Travis Build Bot"
+  - git config --local user.email "tgbugs+build@gmail.com"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "CK0fvltjiIAiJ0fDlqzyHG0XpvoROODdRZc7LLwajxNAfRMl9TjH5jD9zVsaH3dt11grweoknRS8WcAzZ2kwDePEbTKON20Ay2tvf73fIzxpA+szg+zJF+sH23bx3xEQrjW/9SQTYx7dOGrvJwhI9GPqctFjPpSwy40/+nMBJ7gocF8TG1ZSswa1anFsM6LNtcSb+qRduIto8z8XkIyi7/BV6yfXrPj/HAeDUoDTVaIQj85DONWmV9h4vrkHBgcqFtWwVvt5uIRCscwFUPYhGcPCBE9sGGeCOaYLiwGzmBwoR4DPuc8Qns4WY/JqBa/IbhmuenybWxlTpgwW+NCs8VcmOrcP9plBxf52nVYNIT4u+k+2h4LwLu3fuJMA0YhQuwnok18b6wS4Yf0E04s03YiouM7kzDAQ6Y8ZESmcJ0CeileGDoxBeI4HIs+xohMsNbpj+KcxcBVQF9tvpBw9ysZodpiYPgO8fnVcIa7li4gtRcDgQGw0NeIEC/VU4wiZJQsQp1W6wqFI6fkZ6dsN9q/zO1nhkyhUChFWQAoQWaMZNhsS6xQiuZkjSrPtyFFEYR0rbzFIMIEk2fzbqwnE4pHyok2vTBDTVGdZGez+O0fLJPs1ojgS0BprciYZqeT8JRu+jv/MZ89lhdilwt1xsJH5+3dYtghAyUv8UfkgIss=" 
+  file_glob: true
+  file: "${TRAVIS_BUILD_DIR}/build/NIF-Ontology-${TRAVIS_BRANCH}-graph-*.zip" 
+  skip_cleanup: true
+  prerelease: true
+  draft: true

@@ -249,7 +249,7 @@ of [pandoc](https://github.com/jgm/pandoc/releases/download/2.2.3.2/pandoc-2.2.3
 3. `git clone https://github.com/tgbugs/orgstrap.git` and run `orgstrap/orgstrap`
 
 ### Build
-On aux-resolver `SCICRUNCH_API_KEY=$(cat api-key) pyontutils/pyontutils/docs.py`
+On aux-resolver `SCICRUNCH_API_KEY=$(cat api-key) ont-docs`
 
 ### Check links
 Use a crawler to check for broken links. For example using
@@ -264,7 +264,6 @@ pylinkvalidate.py \
 --accepted-hosts=github.com,scicrunch.org,bioontology.org,fairsharing.org,neuinfo.org,interlex.org,wordpress.com,w3.org \
 http://ontology.neuinfo.org/docs/
 ```
-
 
 ### Deploy
 On aux-resolver `cp -a pyontutils/pyontutils/doc_build/docs /var/www/ontology-docs`
