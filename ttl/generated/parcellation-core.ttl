@@ -455,30 +455,6 @@ parc:Process a owl:Class ;
     rdfs:label "process" ;
     ilxtr:localName "process" .
 
-parc:ReferenceSpace a owl:Class ;
-    rdfs:label "anatomical reference space" ;
-    NIFRID:synonym "anatomical coordinate space",
-        "atlas space",
-        "common coordinate space",
-        "parameterized coordinate space",
-        "physical space",
-        "reference space" ;
-    rdfs:subClassOf parc:Space,
-        [ a owl:Restriction ;
-            owl:onProperty hasPart: ;
-            owl:someValuesFrom parc:AnatomicalAxisAlignmentVector ],
-        [ a owl:Restriction ;
-            owl:onProperty hasPart: ;
-            owl:someValuesFrom parc:AxisDirectionMatrix ],
-        [ a owl:Restriction ;
-            owl:onProperty hasPart: ;
-            owl:someValuesFrom parc:AxisOrigin ],
-        [ a owl:Restriction ;
-            owl:onProperty parc:hasUnit ;
-            owl:someValuesFrom parc:spaceUnit ] ;
-    editorNote: "To avoid problems like those encountered by nifti an anatomical reference space MUST define an anatomical axis alignment vector which states, for example, [X, Y, Z] -> [R, A, D] (left hand rule). This immediately indicates the three annotations required on any unoriented dataset as opposed to someone trying to apply the anatomical directions directly to the unoriented dataset" ;
-    ilxtr:localName "reference space" .
-
 parc:Region a owl:Class ;
     rdfs:label "parcellation region" ;
     NIFRID:synonym "atlas region",
@@ -550,10 +526,39 @@ parc:Scaling a owl:Class ;
 parc:Segmentation a owl:Class ;
     rdfs:subClassOf parc:Artifact .
 
+parc:AxisOrigin a owl:Class ;
+    rdfs:subClassOf parc:Vector ;
+    editorNote: "" .
+
 parc:Space a owl:Class ;
     rdfs:label "anatomical space" ;
     rdfs:subClassOf parc:Artifact ;
+    NIFRID:synonym "anatomical coordinate space",
+        "atlas space",
+        "common coordinate space",
+        "parameterized coordinate space",
+        "physical space"
+        # "image space",
+        # "reference space",
+    ;
+    rdfs:subClassOf parc:Space,
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:AnatomicalAxisAlignmentVector ],
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:AxisDirectionMatrix ],
+        [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom parc:AxisOrigin ],
+        [ a owl:Restriction ;
+            owl:onProperty parc:hasUnit ;
+            owl:someValuesFrom parc:spaceUnit ] ;
+    editorNote: "To avoid problems like those encountered by nifti an anatomical reference space MUST define an anatomical axis alignment vector which states, for example, [X, Y, Z] -> [R, A, D] (left hand rule). This immediately indicates the three annotations required on any unoriented dataset as opposed to someone trying to apply the anatomical directions directly to the unoriented dataset" ;
     ilxtr:localName "space" .
+    #ilxtr:localName "reference space" .
+
+
 
 parc:SpacePreservingLinearTransformation a owl:Class ;
     rdfs:subClassOf parc:LinearTransformation .
