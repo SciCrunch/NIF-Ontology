@@ -209,20 +209,17 @@ someone who needs to review the history of changes but shouldn't have to dig
 through the full commit log.
 
 ### Build graph for SciGraph release
-To load the graph run the following from either `pyontutils/nifstd/scigraph` or `sparc-curation/resources/scigraph`
-``` bash
-ontload graph NIF-Ontology NIF -z /tmp/test1 -l /tmp/test1 -b dev -p -t ./graphload.yaml
-```
-If you need something more the build process for the graph is quite customizable.
-Run `ontload scigraph --help` if you need additional guidance.
+This process has been automated via `run-load-graph-nifstd`
+or `run-load-graph-sparc`. See the nifstd
+[SciGraph README](https://github.com/tgbugs/pyontutils/master/nifstd/scigraph/README.org#sparc-graph-load)
+for details.
 
 ### Build and deploy services config
 This only needs to be done if the services config has changed.  
-
-To create services.yaml run the following from the folder of this readme.
-``` bash
-scigraph-deploy config --local --services-config ./services.yaml --services-user ec2-user --zip-location ./ localhost scigraph.scicrunch.io
-```
+This process has been automated via `run-build-deploy-nistd` or
+`run-build-deploy-sparc`. See the nifstd
+[SciGraph README](https://github.com/tgbugs/pyontutils/master/nifstd/scigraph/README.org#sparc-services-build-deploy)
+for details.
 
 ### Deploy to SciGraph
 See the [RPM Builds](https://github.com/tgbugs/pyontutils/blob/master/nifstd/scigraph/README.md#rpm-builds) secion of the
