@@ -27,16 +27,32 @@ before_install:
   - git checkout ${TRAVIS_BRANCH}  # ontload doesn't currently work if git is in detached head mode
   - mkdir build
   - pushd build
-  - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/nifstd/scigraph/curie_map.yaml
-  - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/nifstd/scigraph/graphload.yaml.template
+  - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/nifstd/scigraph/graphload-base-template.yaml
+  - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/nifstd/scigraph/ontologies-nifstd.yaml
   - popd
 
 install:
   - pip install pyontutils
-  - ontload scigraph --scigraph-quiet -z "${TRAVIS_BUILD_DIR}/build" -l $(realpath "${TRAVIS_BUILD_DIR}/../") -O SciGraph -B master -b ${TRAVIS_BRANCH} -t "${TRAVIS_BUILD_DIR}/build/graphload.yaml" -u "${TRAVIS_BUILD_DIR}/build/curie_map.yaml"
+  - >
+    ontload scigraph
+    --scigraph-quiet
+    --scigraph-org SciGraph
+    --scigraph-branch master
+    --zip-location "${TRAVIS_BUILD_DIR}/build"
+    --git-local $(realpath "${TRAVIS_BUILD_DIR}/../")
 
 script:
-  - ontload graph NIF-Ontology NIF --scigraph-quiet --build-scigraph -z "${TRAVIS_BUILD_DIR}/build" -l $(realpath "${TRAVIS_BUILD_DIR}/../") -O SciGraph -B master -b ${TRAVIS_BRANCH} -t "${TRAVIS_BUILD_DIR}/build/graphload.yaml" -u "${TRAVIS_BUILD_DIR}/build/curie_map.yaml"
+  - >
+    ontload graph NIF-Ontology NIF
+    --build-scigraph
+    --scigraph-quiet
+    --scigraph-org SciGraph
+    --scigraph-branch master
+    --zip-location "${TRAVIS_BUILD_DIR}/build"
+    --git-local $(realpath "${TRAVIS_BUILD_DIR}/../")
+    --branch ${TRAVIS_BRANCH}
+    --graphload-config "${TRAVIS_BUILD_DIR}/build/graphload-base-template.yaml"
+    --graphload-ontologies "${TRAVIS_BUILD_DIR}/build/ontologies-nifstd.yaml"
 
 after_success:
   - echo ""
