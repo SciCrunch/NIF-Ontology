@@ -1,25 +1,48 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix BIRNLEX: <http://uri.neuinfo.org/nif/nifstd/birnlex_> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 @prefix EMAPA: <http://purl.obolibrary.org/obo/EMAPA_> .
 @prefix FMA: <http://purl.org/sig/ont/fma/fma> .
 @prefix ILX: <http://uri.interlex.org/base/ilx_> .
 @prefix ilx.anno.hasBroadSynonym: <http://uri.interlex.org/base/ilx_0737164> .
 @prefix ilx.anno.hasExactSynonym: <http://uri.interlex.org/base/ilx_0737161> .
+@prefix ilx.anno.hasNarrowSynonym: <http://uri.interlex.org/base/ilx_0737163> .
 @prefix ilx.anno.hasRelatedSynonym: <http://uri.interlex.org/base/ilx_0737162> .
 @prefix ilx.hasDbXref: <http://uri.interlex.org/base/ilx_0381360> .
+@prefix ilx.hasRole: <http://uri.interlex.org/base/ilx_0112784> .
 @prefix ilx.includeForSPARC: <http://uri.interlex.org/base/ilx_0738400> .
+@prefix ilx.partOf: <http://uri.interlex.org/base/ilx_0112785> .
 @prefix ilx.type: <http://uri.interlex.org/base/readable/type/> .
 @prefix ilxr: <http://uri.interlex.org/base/readable/> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix NLX: <http://uri.neuinfo.org/nif/nifstd/nlx_> .
+@prefix NLXWIKI: <http://neurolex.org/wiki/> .
 @prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://uri.interlex.org/sparc/ontologies/community-terms> a owl:Ontology ;
-    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/community-terms/version/1582822637.332412/community-terms> ;
-    owl:versionInfo "2020-02-27T08:57:17.332412" .
+    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/community-terms/version/1584583578.557763/community-terms> ;
+    owl:versionInfo "2020-03-18T19:06:18.557763" .
+
+### Object Properties
+
+ilx.includeForSPARC: a owl:ObjectProperty ;
+    rdfs:label "includeForSPARC" ;
+    definition: "A relationship that binds a term to the required entities for the purposes required by SPARC, e.g., returning a term in response to a query for all relevant organ parts when it is not specified in the core ontology.  We view this as a temporary and practical solution.  At some points, all such terms will be contributed back to the core ontologies for proper engineering." ;
+    ilxr:type ilx.type:relationship ;
+    ilxtr:hasExistingId ilx.includeForSPARC: ;
+    ilxtr:hasIlxId ilx.includeForSPARC: ;
+    ilxtr:hasIlxPreferredId ilx.includeForSPARC: .
+
+ILX:0112773 a owl:ObjectProperty ;
+    rdfs:label "Efferent projection" ;
+    ilxtr:hasExistingId ILX:0112773 ;
+    ilxtr:hasIlxId ILX:0112773 ;
+    ilxtr:hasIlxPreferredId ILX:0112773 .
 
 ### Annotation Properties
 
@@ -28,6 +51,12 @@ ILX:0383241 a owl:AnnotationProperty ;
     ilxtr:hasExistingId ILX:0383241 ;
     ilxtr:hasIlxId ILX:0383241 ;
     ilxtr:hasIlxPreferredId ILX:0383241 .
+
+ILX:0738303 a owl:AnnotationProperty ;
+    rdfs:label "curatorSource" ;
+    ilxtr:hasExistingId ILX:0738303 ;
+    ilxtr:hasIlxId ILX:0738303 ;
+    ilxtr:hasIlxPreferredId ILX:0738303 .
 
 ### Classes
 
@@ -40,8 +69,16 @@ EMAPA:18995 a owl:Class ;
         ILX:0738415 ;
     ilxtr:hasExternalId EMAPA:18995 ;
     ilxtr:hasIlxId ILX:0738415 ;
-    ilxtr:hasIlxPreferredId EMAPA:18995 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:18995 .
+
+EMAPA:25169 a owl:Class ;
+    rdfs:label "sixth lumbar dorsal root ganglion" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId EMAPA:25169,
+        ILX:0739221 ;
+    ilxtr:hasExternalId EMAPA:25169 ;
+    ilxtr:hasIlxId ILX:0739221 ;
+    ilxtr:hasIlxPreferredId EMAPA:25169 .
 
 EMAPA:28697 a owl:Class ;
     rdfs:label "epithelium of pelvic urethra of male" ;
@@ -52,8 +89,7 @@ EMAPA:28697 a owl:Class ;
         ILX:0738401 ;
     ilxtr:hasExternalId EMAPA:28697 ;
     ilxtr:hasIlxId ILX:0738401 ;
-    ilxtr:hasIlxPreferredId EMAPA:28697 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:28697 .
 
 EMAPA:28753 a owl:Class ;
     rdfs:label "pelvic urethra of female" ;
@@ -66,8 +102,7 @@ EMAPA:28753 a owl:Class ;
         ILX:0738402 ;
     ilxtr:hasExternalId EMAPA:28753 ;
     ilxtr:hasIlxId ILX:0738402 ;
-    ilxtr:hasIlxPreferredId EMAPA:28753 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:28753 .
 
 EMAPA:28759 a owl:Class ;
     rdfs:label "epithelium of pelvic urethra of female" ;
@@ -78,8 +113,7 @@ EMAPA:28759 a owl:Class ;
         ILX:0738417 ;
     ilxtr:hasExternalId EMAPA:28759 ;
     ilxtr:hasIlxId ILX:0738417 ;
-    ilxtr:hasIlxPreferredId EMAPA:28759 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:28759 .
 
 EMAPA:30917 a owl:Class ;
     rdfs:label "clitoral urethra" ;
@@ -91,8 +125,7 @@ EMAPA:30917 a owl:Class ;
         ILX:0738413 ;
     ilxtr:hasExternalId EMAPA:30917 ;
     ilxtr:hasIlxId ILX:0738413 ;
-    ilxtr:hasIlxPreferredId EMAPA:30917 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:30917 .
 
 EMAPA:30930 a owl:Class ;
     rdfs:label "epithelium of clitoral urethra" ;
@@ -102,8 +135,7 @@ EMAPA:30930 a owl:Class ;
         ILX:0738418 ;
     ilxtr:hasExternalId EMAPA:30930 ;
     ilxtr:hasIlxId ILX:0738418 ;
-    ilxtr:hasIlxPreferredId EMAPA:30930 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:30930 .
 
 EMAPA:30944 a owl:Class ;
     rdfs:label "penile urethra" ;
@@ -115,8 +147,7 @@ EMAPA:30944 a owl:Class ;
         ILX:0738409 ;
     ilxtr:hasExternalId EMAPA:30944 ;
     ilxtr:hasIlxId ILX:0738409 ;
-    ilxtr:hasIlxPreferredId EMAPA:30944 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:30944 .
 
 EMAPA:30946 a owl:Class ;
     rdfs:label "epithelium of penile urethra" ;
@@ -126,8 +157,7 @@ EMAPA:30946 a owl:Class ;
         ILX:0738414 ;
     ilxtr:hasExternalId EMAPA:30946 ;
     ilxtr:hasIlxId ILX:0738414 ;
-    ilxtr:hasIlxPreferredId EMAPA:30946 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:30946 .
 
 EMAPA:32269 a owl:Class ;
     rdfs:label "rhabdosphincter of male" ;
@@ -139,8 +169,7 @@ EMAPA:32269 a owl:Class ;
         ILX:0738408 ;
     ilxtr:hasExternalId EMAPA:32269 ;
     ilxtr:hasIlxId ILX:0738408 ;
-    ilxtr:hasIlxPreferredId EMAPA:32269 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:32269 .
 
 EMAPA:36077 a owl:Class ;
     rdfs:label "outer layer of bladder" ;
@@ -151,8 +180,7 @@ EMAPA:36077 a owl:Class ;
         ILX:0738406 ;
     ilxtr:hasExternalId EMAPA:36077 ;
     ilxtr:hasIlxId ILX:0738406 ;
-    ilxtr:hasIlxPreferredId EMAPA:36077 ;
-    ilxtr:includedForSPARCUnder FMA:15900 .
+    ilxtr:hasIlxPreferredId EMAPA:36077 .
 
 EMAPA:36079 a owl:Class ;
     rdfs:label "ventral bladder neck" ;
@@ -163,8 +191,7 @@ EMAPA:36079 a owl:Class ;
         ILX:0738405 ;
     ilxtr:hasExternalId EMAPA:36079 ;
     ilxtr:hasIlxId ILX:0738405 ;
-    ilxtr:hasIlxPreferredId EMAPA:36079 ;
-    ilxtr:includedForSPARCUnder FMA:15900 .
+    ilxtr:hasIlxPreferredId EMAPA:36079 .
 
 EMAPA:36080 a owl:Class ;
     rdfs:label "ureter junction of bladder trigone" ;
@@ -174,8 +201,7 @@ EMAPA:36080 a owl:Class ;
         ILX:0738403 ;
     ilxtr:hasExternalId EMAPA:36080 ;
     ilxtr:hasIlxId ILX:0738403 ;
-    ilxtr:hasIlxPreferredId EMAPA:36080 ;
-    ilxtr:includedForSPARCUnder FMA:15900 .
+    ilxtr:hasIlxPreferredId EMAPA:36080 .
 
 EMAPA:36081 a owl:Class ;
     rdfs:label "urethra junction of bladder trigone" ;
@@ -185,8 +211,7 @@ EMAPA:36081 a owl:Class ;
         ILX:0738411 ;
     ilxtr:hasExternalId EMAPA:36081 ;
     ilxtr:hasIlxId ILX:0738411 ;
-    ilxtr:hasIlxPreferredId EMAPA:36081 ;
-    ilxtr:includedForSPARCUnder FMA:15900 .
+    ilxtr:hasIlxPreferredId EMAPA:36081 .
 
 EMAPA:36084 a owl:Class ;
     rdfs:label "urethra junction of ventral bladder neck" ;
@@ -196,8 +221,7 @@ EMAPA:36084 a owl:Class ;
         ILX:0738410 ;
     ilxtr:hasExternalId EMAPA:36084 ;
     ilxtr:hasIlxId ILX:0738410 ;
-    ilxtr:hasIlxPreferredId EMAPA:36084 ;
-    ilxtr:includedForSPARCUnder FMA:15900 .
+    ilxtr:hasIlxPreferredId EMAPA:36084 .
 
 EMAPA:36117 a owl:Class ;
     rdfs:label "rhabdosphincter of female" ;
@@ -209,8 +233,7 @@ EMAPA:36117 a owl:Class ;
         ILX:0738416 ;
     ilxtr:hasExternalId EMAPA:36117 ;
     ilxtr:hasIlxId ILX:0738416 ;
-    ilxtr:hasIlxPreferredId EMAPA:36117 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:36117 .
 
 EMAPA:36140 a owl:Class ;
     rdfs:label "adventitia of prostatic urethra" ;
@@ -221,8 +244,7 @@ EMAPA:36140 a owl:Class ;
         ILX:0738412 ;
     ilxtr:hasExternalId EMAPA:36140 ;
     ilxtr:hasIlxId ILX:0738412 ;
-    ilxtr:hasIlxPreferredId EMAPA:36140 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:36140 .
 
 EMAPA:36421 a owl:Class ;
     rdfs:label "urethral seam" ;
@@ -235,8 +257,7 @@ EMAPA:36421 a owl:Class ;
         ILX:0738407 ;
     ilxtr:hasExternalId EMAPA:36421 ;
     ilxtr:hasIlxId ILX:0738407 ;
-    ilxtr:hasIlxPreferredId EMAPA:36421 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:hasIlxPreferredId EMAPA:36421 .
 
 FMA:5915 a owl:Class ;
     rdfs:label "myelinated nerve fiber" ;
@@ -266,6 +287,75 @@ FMA:5916 a owl:Class ;
         UBERON:0006136 ;
     ilxtr:hasIlxId ILX:0735330 ;
     ilxtr:hasIlxPreferredId UBERON:0006136 .
+
+FMA:6262 a owl:Class ;
+    rdfs:label "thoracic sympathetic nerve trunk" ;
+    definition: "A sympathetic nerve trunk that is part of a thorax [Automatically generated definition]." ;
+    ilx.anno.hasExactSynonym: "nerve trunk of sympathetic nervous system of thorax",
+        "nerve trunk of sympathetic part of autonomic division of nervous system of thorax",
+        "sympathetic nerve trunk of thorax",
+        "sympathetic nervous system nerve trunk of thorax",
+        "thoracic part of sympathetic trunk",
+        "thoracic sympathetic chain",
+        "thorax nerve trunk of sympathetic nervous system",
+        "thorax nerve trunk of sympathetic part of autonomic division of nervous system",
+        "thorax sympathetic nerve trunk",
+        "thorax sympathetic nervous system nerve trunk" ;
+    ilx.anno.hasRelatedSynonym: "thoracic sympathetic trunk" ;
+    ilx.hasDbXref: "EMAPA:37657",
+        "FMA:6262",
+        "MA:0001165",
+        "NCIT:C52827",
+        "UMLS:C1710393",
+        <http://linkedlifedata.com/resource/umls/id/C1710393> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:6262,
+        ILX:0730031,
+        UBERON:0004863 ;
+    ilxtr:hasExternalId FMA:6262,
+        UBERON:0004863 ;
+    ilxtr:hasIlxId ILX:0730031 ;
+    ilxtr:hasIlxPreferredId UBERON:0004863 ;
+    oboInOwl:hasExactSynonym "nerve trunk of sympathetic nervous system of thorax",
+        "nerve trunk of sympathetic part of autonomic division of nervous system of thorax",
+        "sympathetic nerve trunk of thorax",
+        "sympathetic nervous system nerve trunk of thorax",
+        "thoracic part of sympathetic trunk",
+        "thoracic sympathetic chain",
+        "thorax nerve trunk of sympathetic nervous system",
+        "thorax nerve trunk of sympathetic part of autonomic division of nervous system",
+        "thorax sympathetic nerve trunk",
+        "thorax sympathetic nervous system nerve trunk" ;
+    oboInOwl:hasRelatedSynonym "thoracic sympathetic trunk" .
+
+FMA:6469 a owl:Class ;
+    rdfs:label "cervicothoracic ganglion" ;
+    definition: "the group of neurons formed by the fusion of the inferior cervical and first thoracic ganglia" ;
+    ilx.anno.hasExactSynonym: "cervicothoracic sympathetic ganglion",
+        "ganglion cervicothoracicum",
+        "ganglion stellatum",
+        "stellate ganglion" ;
+    ilx.hasDbXref: "BAMS:GSTL",
+        "BTO:0001815",
+        "EMAPA:18226",
+        "FMA:6469",
+        "GAID:711",
+        "MA:0001157",
+        "MESH:D013233",
+        <http://en.wikipedia.org/wiki/Cervicothoracic_ganglion>,
+        <http://www.snomedbrowser.com/Codes/Details/181101006> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:6469,
+        ILX:0733799,
+        UBERON:0002441 ;
+    ilxtr:hasExternalId FMA:6469,
+        UBERON:0002441 ;
+    ilxtr:hasIlxId ILX:0733799 ;
+    ilxtr:hasIlxPreferredId UBERON:0002441 ;
+    oboInOwl:hasExactSynonym "cervicothoracic sympathetic ganglion",
+        "ganglion cervicothoracicum",
+        "ganglion stellatum",
+        "stellate ganglion" .
 
 FMA:6628 a owl:Class ;
     rdfs:label "cardiac nerve plexus" ;
@@ -299,6 +389,113 @@ FMA:6628 a owl:Class ;
         "heart autonomic nerve plexus",
         "heart autonomic plexus",
         "plexus cardiacus" .
+
+FMA:7088 a owl:Class ;
+    rdfs:label "heart" ;
+    definition: "A myogenic muscular circulatory organ found in the vertebrate cardiovascular system composed of chambers of cardiac muscle. It is the primary circulatory organ." ;
+    ilx.anno.hasExactSynonym: "chambered heart",
+        "vertebrate heart" ;
+    ilx.anno.hasNarrowSynonym: "branchial heart" ;
+    ilx.anno.hasRelatedSynonym: "cardium",
+        "Herz@de" ;
+    ilx.hasDbXref: "AAO:0010210",
+        "BILA:0000020",
+        "BTO:0000562",
+        "CALOHA:TS-0445",
+        "EFO:0000815",
+        "EHDAA2:0000738",
+        "EHDAA:420",
+        "EMAPA:16105",
+        "EV:0100018",
+        "FMA:7088",
+        "GAID:174",
+        "galen:Heart",
+        "MA:0000072",
+        "MAT:0000036",
+        "MESH:D006321",
+        "MIAA:0000036",
+        "NCIT:C12727",
+        "OpenCyc:Mx4rvVjvDpwpEbGdrcN5Y29ycA",
+        "TAO:0000114",
+        "UMLS:C0018787",
+        "VHOG:0000276",
+        "XAO:0000064",
+        "ZFA:0000114",
+        <http://en.wikipedia.org/wiki/Heart>,
+        <http://linkedlifedata.com/resource/umls/id/C0018787>,
+        <http://www.snomedbrowser.com/Codes/Details/302509004> ;
+    ilx.includeForSPARC: ILX:0739222,
+        UBERON:0004851,
+        UBERON:0009030,
+        UBERON:0009032 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:7088,
+        ILX:0732254,
+        UBERON:0000948 ;
+    ilxtr:hasExternalId FMA:7088,
+        UBERON:0000948 ;
+    ilxtr:hasIlxId ILX:0732254 ;
+    ilxtr:hasIlxPreferredId UBERON:0000948 ;
+    oboInOwl:hasExactSynonym "chambered heart",
+        "vertebrate heart" ;
+    oboInOwl:hasNarrowSynonym "branchial heart" ;
+    oboInOwl:hasRelatedSynonym "cardium",
+        "Herz@de" .
+
+FMA:7471 a owl:Class ;
+    rdfs:label "tracheal mucosa" ;
+    NIFRID:synonym "Mucosa of trachea " ;
+    definition: "A mucosa that is part of a respiratory airway." ;
+    ilx.anno.hasExactSynonym: "mucosa of organ of trachea",
+        "mucosa of organ of windpipe",
+        "mucosa of trachea",
+        "mucosa of windpipe",
+        "mucous membrane of trachea",
+        "mucous membrane of windpipe",
+        "organ mucosa of trachea",
+        "organ mucosa of windpipe",
+        "trachea mucosa",
+        "trachea mucosa of organ",
+        "trachea mucous membrane",
+        "trachea organ mucosa",
+        "tracheal mucous membrane",
+        "tunica mucosa (tracheae)",
+        "tunica mucosa tracheae",
+        "windpipe mucosa",
+        "windpipe mucosa of organ",
+        "windpipe mucous membrane",
+        "windpipe organ mucosa" ;
+    ilx.hasDbXref: "BTO:0001390",
+        "FMA:7471",
+        <http://www.snomedbrowser.com/Codes/Details/660006> ;
+    ILX:0738303 "36381" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:7471,
+        ILX:0724678,
+        UBERON:0000379 ;
+    ilxtr:hasExternalId FMA:7471,
+        UBERON:0000379 ;
+    ilxtr:hasIlxId ILX:0724678 ;
+    ilxtr:hasIlxPreferredId UBERON:0000379 ;
+    oboInOwl:hasExactSynonym "mucosa of organ of trachea",
+        "mucosa of organ of windpipe",
+        "mucosa of trachea",
+        "mucosa of windpipe",
+        "mucous membrane of trachea",
+        "mucous membrane of windpipe",
+        "organ mucosa of trachea",
+        "organ mucosa of windpipe",
+        "trachea mucosa",
+        "trachea mucosa of organ",
+        "trachea mucous membrane",
+        "trachea organ mucosa",
+        "tracheal mucous membrane",
+        "tunica mucosa (tracheae)",
+        "tunica mucosa tracheae",
+        "windpipe mucosa",
+        "windpipe mucosa of organ",
+        "windpipe mucous membrane",
+        "windpipe organ mucosa" .
 
 FMA:9704 a owl:Class ;
     rdfs:label "ureter" ;
@@ -337,13 +534,59 @@ FMA:9704 a owl:Class ;
         UBERON:0000056 ;
     ilxtr:hasIlxId ILX:0728080 ;
     ilxtr:hasIlxPreferredId UBERON:0000056 ;
-    ilxtr:includedForSPARCUnder FMA:45659 ;
     oboInOwl:hasRelatedSynonym "metanephric duct" .
 
 FMA:9903 a owl:Class ;
     rdfs:label "Peripheral nervous system" ;
-    ilx.includeForSPARC: ILX:0738436,
-        ILX:0738443 .
+    NIFRID:synonym "PNS" ;
+    definition: "The peripheral nervous system (PNS) is the part of the nervous system connected to the CNS which contains cranial nerves III - XII, spinal, peripheral and autonomic nerves. (CUMBO)" ;
+    ilx.anno.hasBroadSynonym: "PNS" ;
+    ilx.anno.hasExactSynonym: "pars peripherica",
+        "systema nervosum periphericum" ;
+    ilx.hasDbXref: "AAO:0000429",
+        "BAMS:PNS",
+        "BILA:0000081",
+        "BTO:0001028",
+        "CALOHA:TS-0808",
+        "EFO:0000891",
+        "EHDAA2:0001445",
+        "EHDAA:2893",
+        "EMAPA:16665",
+        "EV:0100335",
+        "FBbt:00005098",
+        "FMA:9903",
+        "GAID:715",
+        "MA:0000218",
+        "MAT:0000338",
+        "MESH:D017933",
+        "MIAA:0000338",
+        "NCIT:C12465",
+        "TAO:0000142",
+        "UMLS:C0206417",
+        "UMLS:C1305921",
+        "VHOG:0000399",
+        "XAO:0000178",
+        "ZFA:0000142",
+        BIRNLEX:1111,
+        <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=3232>,
+        <http://en.wikipedia.org/wiki/Peripheral_nervous_system>,
+        <http://linkedlifedata.com/resource/umls/id/C0206417>,
+        <http://linkedlifedata.com/resource/umls/id/C1305921>,
+        <http://www.snomedbrowser.com/Codes/Details/362292005>,
+        NLXWIKI:birnlex_1111 ;
+    ilx.hasRole: NLX:64503 ;
+    ilx.includeForSPARC: FMA:6262,
+        FMA:6469 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:1111,
+        FMA:9903,
+        ILX:0108735,
+        UBERON:0000010 ;
+    ilxtr:hasExternalId BIRNLEX:1111,
+        FMA:9903,
+        UBERON:0000010 ;
+    ilxtr:hasIlxId ILX:0108735 ;
+    ilxtr:hasIlxPreferredId UBERON:0000010 .
 
 FMA:15897 a owl:Class ;
     rdfs:label "urothelium of ureter" ;
@@ -365,7 +608,6 @@ FMA:15897 a owl:Class ;
         UBERON:0001254 ;
     ilxtr:hasIlxId ILX:0736395 ;
     ilxtr:hasIlxPreferredId UBERON:0001254 ;
-    ilxtr:includedForSPARCUnder FMA:45659 ;
     oboInOwl:hasExactSynonym "transitional epithelium of ureter",
         "ureter transitional epithelium",
         "ureter urothelium" ;
@@ -458,7 +700,6 @@ FMA:15936 a owl:Class ;
         ILX:0738404 ;
     ilxtr:hasIlxPreferredId FMA:15936,
         UBERON:0004645 ;
-    ilxtr:includedForSPARCUnder FMA:15900 ;
     oboInOwl:hasBroadSynonym "urothelium" ;
     oboInOwl:hasExactSynonym "bladder transitional cell epithelium",
         "transitional epithelium of urinary bladder",
@@ -469,7 +710,8 @@ FMA:15936 a owl:Class ;
 
 FMA:18176 a owl:Class ;
     rdfs:label "Cervical part of trunk of left vagus nerve" ;
-    NIFRID:synonym "Left cervical vagus nerve" ;
+    NIFRID:synonym "Cervical part of trunk of left vagus nerve",
+        "Left cervical vagus nerve" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:18176,
         ILX:0738429 ;
@@ -504,7 +746,6 @@ FMA:19673 a owl:Class ;
         UBERON:0001335 ;
     ilxtr:hasIlxId ILX:0725904 ;
     ilxtr:hasIlxPreferredId UBERON:0001335 ;
-    ilxtr:includedForSPARCUnder FMA:45659 ;
     oboInOwl:hasExactSynonym "male prostatic urethra",
         "prostatic part of male urethra",
         "prostatic part of urethra" ;
@@ -540,6 +781,108 @@ FMA:45659 a owl:Class ;
         UBERON:0001556 ;
     ilxtr:hasIlxId ILX:0725452 ;
     ilxtr:hasIlxPreferredId UBERON:0001556 .
+
+FMA:54501 a owl:Class ;
+    rdfs:label "Cranial nerve nucleus" ;
+    ilxtr:hasExistingId FMA:54501,
+        ILX:0102609,
+        NLX:28532,
+        UBERON:0000126 ;
+    ilxtr:hasExternalId FMA:54501,
+        NLX:28532,
+        UBERON:0000126 ;
+    ilxtr:hasIlxId ILX:0102609 ;
+    ilxtr:hasIlxPreferredId UBERON:0000126 .
+
+FMA:55676 a owl:Class ;
+    rdfs:label "Regional part of brain" ;
+    ilxtr:hasExistingId BIRNLEX:1167,
+        FMA:55676,
+        ILX:0109835,
+        UBERON:0002616 ;
+    ilxtr:hasExternalId BIRNLEX:1167,
+        FMA:55676,
+        UBERON:0002616 ;
+    ilxtr:hasIlxId ILX:0109835 ;
+    ilxtr:hasIlxPreferredId UBERON:0002616 .
+
+FMA:62004 a owl:Class ;
+    rdfs:label "Medulla oblongata" ;
+    ilxtr:hasExistingId BIRNLEX:957,
+        FMA:62004,
+        ILX:0106736,
+        UBERON:0001896 ;
+    ilxtr:hasExternalId BIRNLEX:957,
+        FMA:62004,
+        UBERON:0001896 ;
+    ilxtr:hasIlxId ILX:0106736 ;
+    ilxtr:hasIlxPreferredId UBERON:0001896 .
+
+FMA:66643 a owl:Class ;
+    rdfs:label "pulmonary vein" ;
+    ilxtr:hasExistingId FMA:66643,
+        ILX:0723973,
+        UBERON:0002016 ;
+    ilxtr:hasExternalId FMA:66643,
+        UBERON:0002016 ;
+    ilxtr:hasIlxId ILX:0723973 ;
+    ilxtr:hasIlxPreferredId UBERON:0002016 .
+
+FMA:256691 a owl:Class ;
+    rdfs:label "Solitary nucleus" ;
+    NIFRID:synonym "nucleus of the solitary tract",
+        "nucleus of the tractus solitarius",
+        "Nucleus solitary tract",
+        "Nucleus tractus solitarius" ;
+    rdfs:subClassOf FMA:55676 ;
+    ilx.anno.hasExactSynonym: "nucleus of the tractus solitarius",
+        "nucleus of tractus solitarius",
+        "nucleus tractus solitarii medullae oblongatae",
+        "solitary nucleus",
+        "solitary tract nucleus" ;
+    ilx.anno.hasRelatedSynonym: "Geschmackskern@de",
+        "nuclei tractus solitarii",
+        "nucleus of the solitary tract",
+        "nucleus solitarius",
+        "nucleus tracti solitarii",
+        "nucleus tractus solitarii",
+        "solitary nuclear complex",
+        "solitary nucleus" ;
+    ilx.hasDbXref: "BAMS:NTS",
+        "BAMS:Sol",
+        "BM:Me-NS",
+        "BTO:0003963",
+        "DHBA:12557",
+        "EMAPA:35787",
+        "EV:0100288",
+        "FMA:256691",
+        "GAID:593",
+        "HBA:9653",
+        "MA:0001052",
+        "MBA:651",
+        "MESH:D017552",
+        "NCIT:C13067",
+        "ncithesaurus:Nucleus_of_the_Solitary_Tract",
+        "UMLS:C0175518",
+        BIRNLEX:1429,
+        <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=742>,
+        <http://en.wikipedia.org/wiki/Solitary_nucleus>,
+        <http://linkedlifedata.com/resource/umls/id/C0175518>,
+        NLXWIKI:birnlex_1429 ;
+    ilx.hasRole: FMA:54501 ;
+    ilx.partOf: FMA:62004 ;
+    ILX:0112773 NLX:143568 ;
+    ILX:0738303 "36381" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:1429,
+        FMA:256691,
+        ILX:0110729,
+        UBERON:0009050 ;
+    ilxtr:hasExternalId BIRNLEX:1429,
+        FMA:256691,
+        UBERON:0009050 ;
+    ilxtr:hasIlxId ILX:0110729 ;
+    ilxtr:hasIlxPreferredId UBERON:0009050 .
 
 FMA:305751 a owl:Class ;
     rdfs:label "anatomical structure" ;
@@ -1079,16 +1422,14 @@ ILX:0738436 a owl:Class ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738436 ;
     ilxtr:hasIlxId ILX:0738436 ;
-    ilxtr:hasIlxPreferredId ILX:0738436 ;
-    ilxtr:includedForSPARCUnder FMA:9903 .
+    ilxtr:hasIlxPreferredId ILX:0738436 .
 
 ILX:0738443 a owl:Class ;
     rdfs:label "Fascicle of vagus nerve" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738443 ;
     ilxtr:hasIlxId ILX:0738443 ;
-    ilxtr:hasIlxPreferredId ILX:0738443 ;
-    ilxtr:includedForSPARCUnder FMA:9903 .
+    ilxtr:hasIlxPreferredId ILX:0738443 .
 
 ILX:0738444 a owl:Class ;
     rdfs:label "interscapular brown adipose tissue" ;
@@ -1096,5 +1437,105 @@ ILX:0738444 a owl:Class ;
     ilxtr:hasExistingId ILX:0738444 ;
     ilxtr:hasIlxId ILX:0738444 ;
     ilxtr:hasIlxPreferredId ILX:0738444 .
+
+ILX:0739222 a owl:Class ;
+    rdfs:label "middle pulmonary vein" ;
+    definition: "The vein that drains at least one lung and returns blood to the heart. The connection of the middle pulmonary vein to the left atrium sits between the connections of the left and right pulmonary veins when viewing the dorsal side of the heart. This vein has been documented to exist in mouse, rat, and rabbit. It may occur more broadly in those taxa." ;
+    rdfs:subClassOf FMA:66643 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0739222 ;
+    ilxtr:hasIlxId ILX:0739222 ;
+    ilxtr:hasIlxPreferredId ILX:0739222 .
+
+NLX:64503 a owl:Class ;
+    rdfs:label "CUMBO term" ;
+    ilxtr:hasExistingId ILX:0102661,
+        NLX:64503 ;
+    ilxtr:hasExternalId NLX:64503 ;
+    ilxtr:hasIlxId ILX:0102661 ;
+    ilxtr:hasIlxPreferredId NLX:64503 .
+
+NLX:143568 a owl:Class ;
+    rdfs:label "Thyroarytenoid muscle" ;
+    ilxtr:hasExistingId ILX:0111730,
+        NLX:143568 ;
+    ilxtr:hasExternalId NLX:143568 ;
+    ilxtr:hasIlxId ILX:0111730 ;
+    ilxtr:hasIlxPreferredId NLX:143568 .
+
+UBERON:0004851 a owl:Class ;
+    rdfs:label "aorta endothelium" ;
+    definition: "the thin layer of flat cells that line the aorta and form a barrier between circulating blood in the lumen and the rest of the vessel wall" ;
+    ilx.anno.hasExactSynonym: "adult aorta endothelium",
+        "endothelium of adult aorta",
+        "endothelium of aorta",
+        "endothelium of trunk of aortic tree",
+        "endothelium of trunk of systemic arterial tree",
+        "trunk of aortic tree endothelium",
+        "trunk of systemic arterial tree endothelium" ;
+    ilx.anno.hasRelatedSynonym: "aortic endothelium" ;
+    ilx.hasDbXref: "BTO:0000394",
+        "CALOHA:TS-0047",
+        "EFO:0002597",
+        "EMAPA:35134",
+        "MA:0000701",
+        "NCIT:C49190",
+        "UMLS:C1706824",
+        <http://linkedlifedata.com/resource/umls/id/C1706824> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0726903,
+        UBERON:0004851 ;
+    ilxtr:hasExternalId UBERON:0004851 ;
+    ilxtr:hasIlxId ILX:0726903 ;
+    ilxtr:hasIlxPreferredId UBERON:0004851 ;
+    oboInOwl:hasExactSynonym "adult aorta endothelium",
+        "endothelium of adult aorta",
+        "endothelium of aorta",
+        "endothelium of trunk of aortic tree",
+        "endothelium of trunk of systemic arterial tree",
+        "trunk of aortic tree endothelium",
+        "trunk of systemic arterial tree endothelium" ;
+    oboInOwl:hasRelatedSynonym "aortic endothelium" .
+
+UBERON:0009030 a owl:Class ;
+    rdfs:label "left pulmonary vein" ;
+    definition: "Vein that drains left lung and returns blood to the heart." ;
+    ilx.hasDbXref: "EMAPA:37165",
+        "MA:0002207",
+        "NCIT:C48946",
+        "UMLS:C0226670",
+        <http://linkedlifedata.com/resource/umls/id/C0226670>,
+        <http://www.snomedbrowser.com/Codes/Details/304057004> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0733186,
+        UBERON:0009030 ;
+    ilxtr:hasExternalId UBERON:0009030 ;
+    ilxtr:hasIlxId ILX:0733186 ;
+    ilxtr:hasIlxPreferredId UBERON:0009030 .
+
+UBERON:0009032 a owl:Class ;
+    rdfs:label "right pulmonary vein" ;
+    definition: "Vein that drains right lung and returns blood to the heart." ;
+    ilx.hasDbXref: "EMAPA:37379",
+        "MA:0002208",
+        "NCIT:C48947",
+        "UMLS:C0226669",
+        <http://linkedlifedata.com/resource/umls/id/C0226669>,
+        <http://www.snomedbrowser.com/Codes/Details/304056008> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0729203,
+        UBERON:0009032 ;
+    ilxtr:hasExternalId UBERON:0009032 ;
+    ilxtr:hasIlxId ILX:0729203 ;
+    ilxtr:hasIlxPreferredId UBERON:0009032 .
+
+### Axioms
+
+[] a owl:Axiom ;
+    owl:annotatedSource FMA:9903 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "PNS" ;
+    ilxtr:MISSING_ILX_ID true ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
 
 ### Serialized using the ttlser deterministic serializer v1.2.0
