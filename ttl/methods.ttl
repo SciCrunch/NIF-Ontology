@@ -6,28 +6,30 @@
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 @prefix GO: <http://purl.obolibrary.org/obo/GO_> .
 @prefix hasInput: <http://purl.obolibrary.org/obo/RO_0002233> .
-@prefix hasOutput: <http://purl.obolibrary.org/obo/RO_0002234> .
 @prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
 @prefix hasParticipant: <http://purl.obolibrary.org/obo/RO_0000057> .
 @prefix hasRole: <http://purl.obolibrary.org/obo/RO_0000087> .
 @prefix HBP_MEM: <http://www.hbp.FIXME.org/hbp_measurement_methods/> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix locatedIn: <http://purl.obolibrary.org/obo/RO_0001025> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix NLX: <http://uri.neuinfo.org/nif/nifstd/nlx_> .
 @prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix PR: <http://purl.obolibrary.org/obo/PR_> .
 @prefix prot: <http://uri.interlex.org/tgbugs/uris/readable/protocol/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix realizes: <http://purl.obolibrary.org/obo/BFO_0000055> .
+@prefix replacedBy: <http://purl.obolibrary.org/obo/IAO_0100001> .
 @prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix SO: <http://purl.obolibrary.org/obo/SO_> .
 @prefix tech: <http://uri.interlex.org/tgbugs/uris/readable/technique/> .
 @prefix TEMP: <http://uri.interlex.org/temp/uris/> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods.ttl> a owl:Ontology ;
@@ -36,8 +38,8 @@
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-core.ttl>,
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-helper.ttl> ;
     rdfs:comment "The ontology of techniques and methods." ;
-    owl:versionInfo "2018-11-03" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/c896f45515b888c5adc7dd729c99b28a41cf0f80/pyontutils/core.py#L1124> .
+    owl:versionInfo "2020-05-05" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/e26380129c35c63ac3d0523d52a09bbd41291905/nifstd/nifstd_tools/methods/__init__.py> .
 
 ### Classes
 
@@ -1013,6 +1015,65 @@ tech:lightMicroscopy a owl:Class ;
     rdfs:label "light microscopy technique" ;
     NIFRID:synonym "light microscopy" .
 
+tech:lightsheetMicroscopy a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:lightSheetMicroscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:visibleLight ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "light sheet microscopy technique" ;
+    NIFRID:synonym "light sheet microscopy" .
+
+tech:lightSheetMicroscopyFluorescent a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:fluorescentMolecule ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:lightSheetMicroscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:visibleLight ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "light sheet fluorescence microscopy technique" ;
+    NIFRID:synonym "light sheet fluorescence microscopy",
+        "LSFM" .
+
+tech:lightSheetTomographyOblique a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:lightsheetMicroscopy ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:tomography ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom TEMP:363.5 ] ) ] ;
+    rdfs:label "oblique light sheet tomographic technique" ;
+    NIFRID:synonym "oblique light sheet tomography",
+        "OLST" .
+
 tech:localization a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
@@ -1486,7 +1547,8 @@ tech:smartSeq a owl:Class ;
                         owl:onProperty ilxtr:isConstrainedBy ;
                         owl:someValuesFrom prot:SMARTSeq ] ) ] ;
     rdfs:label "SMART-seq" ;
-    NIFRID:synonym "Smart-seqSMART-Seq®",
+    NIFRID:synonym "Smart-seq",
+        "SMART-Seq®",
         "Switching Mechanism at 5' End of RNA Template sequencing" ;
     rdfs:comment "This space is completely loony. See https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5449089/ for a review. This is also a great example of the conflation of protocol with technique." .
 
@@ -1614,9 +1676,13 @@ tech:twoPhoton a owl:Class ;
             owl:intersectionOf (
                     ilxtr:technique
                     [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:twoPhotonMicroscope ]
+                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:360 ] ) ] ;
-    rdfs:label "two-photon microscopy technique" .
+    rdfs:label "two-photon microscopy technique" ;
+    NIFRID:synonym "two-photon microscopy" .
 
 tech:unfinished a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -2372,7 +2438,7 @@ TEMP:76 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryParticipant ;
                         owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+                                owl:onProperty locatedIn: ;
                                 owl:someValuesFrom ilxtr:uterus ] ] ) ] ;
     rdfs:label "in utero electroporation technique" .
 
@@ -2936,7 +3002,7 @@ TEMP:124 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryParticipant ;
                         owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty <http://purl.obolibrary.org/obo/RO_0001025> ;
+                                owl:onProperty locatedIn: ;
                                 owl:someValuesFrom ilxtr:uterus ] ] ) ] ;
     rdfs:label "in utero technique" ;
     NIFRID:synonym "in utero" .
@@ -3229,7 +3295,7 @@ TEMP:156 a owl:Class ;
                         owl:someValuesFrom ilxtr:highFatDiet ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasConstrainingAspect ;
-                        owl:someValuesFrom <http://purl.obolibrary.org/obo/PATO_0000011> ]
+                        owl:someValuesFrom PATO:0000011 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryAspectActualized ;
                         owl:someValuesFrom asp:weight ]
@@ -4663,7 +4729,7 @@ TEMP:316 a owl:Class ;
                         owl:someValuesFrom asp:epitopePresent ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom <http://purl.obolibrary.org/obo/PR_000000001> ]
+                        owl:someValuesFrom PR:000000001 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasProbe ;
                         owl:someValuesFrom BIRNLEX:2110 ] ) ] ;
@@ -4974,16 +5040,8 @@ TEMP:358 a owl:Class ;
     rdfs:label "microendoscopic technique" .
 
 TEMP:361 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:tomography ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:twoPhoton ] ) ] ;
-    rdfs:label "two-photon tomographic technique" .
+    owl:deprecated true ;
+    replacedBy: TEMP:362 .
 
 TEMP:362 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -4998,8 +5056,9 @@ TEMP:362 a owl:Class ;
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom TEMP:363 ] ) ] ;
-    rdfs:label "serial two-photon tomography" ;
-    NIFRID:synonym "STPT" .
+    rdfs:label "two-photon tomographic technique" ;
+    NIFRID:synonym "serial two-photon tomography",
+        "STPT" .
 
 TEMP:364 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -5285,6 +5344,8 @@ TEMP:360 rdfs:subClassOf TEMP:temp .
 
 TEMP:363 rdfs:subClassOf TEMP:temp .
 
+TEMP:363.5 rdfs:subClassOf TEMP:temp .
+
 TEMP:365 rdfs:subClassOf TEMP:temp .
 
 TEMP:367 rdfs:subClassOf TEMP:temp .
@@ -5293,4 +5354,4 @@ TEMP:369 rdfs:subClassOf TEMP:temp .
 
 TEMP:temp rdfs:subClassOf TEMP:temp .
 
-### Serialized using the pyontutils deterministic serializer v1.2.0
+### Serialized using the ttlser deterministic serializer v1.2.0

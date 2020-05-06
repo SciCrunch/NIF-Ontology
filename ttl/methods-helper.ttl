@@ -5,36 +5,26 @@
 @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 @prefix GO: <http://purl.obolibrary.org/obo/GO_> .
-@prefix hasInput: <http://purl.obolibrary.org/obo/RO_0002233> .
-@prefix hasOutput: <http://purl.obolibrary.org/obo/RO_0002234> .
 @prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
-@prefix hasParticipant: <http://purl.obolibrary.org/obo/RO_0000057> .
-@prefix hasRole: <http://purl.obolibrary.org/obo/RO_0000087> .
-@prefix HBP_MEM: <http://www.hbp.FIXME.org/hbp_measurement_methods/> .
 @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
-@prefix NLX: <http://uri.neuinfo.org/nif/nifstd/nlx_> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prot: <http://uri.interlex.org/tgbugs/uris/readable/protocol/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix realizes: <http://purl.obolibrary.org/obo/BFO_0000055> .
-@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
 @prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix SO: <http://purl.obolibrary.org/obo/SO_> .
 @prefix tech: <http://uri.interlex.org/tgbugs/uris/readable/technique/> .
-@prefix TEMP: <http://uri.interlex.org/temp/uris/> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-helper.ttl> a owl:Ontology ;
     owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-core.ttl> ;
     rdfs:comment "helper for methods development" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/b57bc2f6ef1b257627cfe144155d8ba95e5a7089/pyontutils/core.py#L1061> .
+    owl:versionInfo "2020-05-05" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/e26380129c35c63ac3d0523d52a09bbd41291905/nifstd/nifstd_tools/methods/helper.py> .
 
 ### Object Properties
 
@@ -364,6 +354,12 @@ asp:physiological a owl:Class ;
 asp:PlankAspect a owl:Class ;
     rdfs:subClassOf ilxtr:aspect .
 
+asp:position a owl:Class ;
+    rdfs:subClassOf asp:spatial,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasMaterialContext ;
+            owl:someValuesFrom ilxtr:measurableReferenceFrame ] .
+
 asp:proportion a owl:Class ;
     rdfs:subClassOf asp:allocation .
 
@@ -538,7 +534,7 @@ ilxtr:AAVretro a owl:Class ;
 
 ilxtr:activeLabel a owl:Class ;
     rdfs:subClassOf ilxtr:cellLabel ;
-    owl:disjointWith ilxtr:interLabel ;
+    owl:disjointWith ilxtr:inertLabel ;
     ilxtr:hasDeliveryVector ilxtr:someVector .
 
 ilxtr:acuteBrainSlice a owl:Class ;
@@ -601,9 +597,6 @@ ilxtr:commonCoordinateFramework a owl:Class ;
     rdfs:subClassOf ilxtr:parcellationCoordinateSystem .
 
 ilxtr:compositeMaterialEntity a owl:Class ;
-    rdfs:subClassOf ilxtr:materialEntity .
-
-ilxtr:contrastAgen a owl:Class ;
     rdfs:subClassOf ilxtr:materialEntity .
 
 ilxtr:contrastAgent a owl:Class ;
@@ -714,6 +707,9 @@ ilxtr:laminarProbe a owl:Class ;
 ilxtr:lightMicroscope a owl:Class ;
     owl:equivalentClass BIRNLEX:2112 ;
     rdfs:subClassOf ilxtr:microscope .
+
+ilxtr:lightSheetMicroscope a owl:Class ;
+    rdfs:subClassOf ilxtr:lightMicroscope .
 
 ilxtr:magneticField a owl:Class ;
     rdfs:subClassOf ilxtr:physicalForce .
@@ -1137,4 +1133,4 @@ ilxtr:RNA owl:equivalentClass CHEBI:33697 ;
 
 tech:injection owl:equivalentClass BIRNLEX:2135 .
 
-### Serialized using the pyontutils deterministic serializer v1.2.0
+### Serialized using the ttlser deterministic serializer v1.2.0
