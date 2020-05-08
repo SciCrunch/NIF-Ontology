@@ -11,6 +11,7 @@
 @prefix hasRole: <http://purl.obolibrary.org/obo/RO_0000087> .
 @prefix HBP_MEM: <http://www.hbp.FIXME.org/hbp_measurement_methods/> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix local: <http://uri.interlex.org/temp/uris/> .
 @prefix locatedIn: <http://purl.obolibrary.org/obo/RO_0001025> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
@@ -28,7 +29,6 @@
 @prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix SO: <http://purl.obolibrary.org/obo/SO_> .
 @prefix tech: <http://uri.interlex.org/tgbugs/uris/readable/technique/> .
-@prefix local: <http://uri.interlex.org/temp/uris/> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
@@ -178,1554 +178,6 @@ ilxtr:xrayImaging a owl:Class ;
                         owl:onProperty ilxtr:hasPrimaryParticipant ;
                         owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
     rdfs:label "x-ray imaging" .
-
-NLX:inv_20090609 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:tissue ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:178 ] ) ] ;
-    rdfs:label "immunohistochemical technique" ;
-    NIFRID:synonym "immunohistochemistry",
-        "immunohistochemistry technique" ;
-    ilxtr:hasTempId HBP_MEM:0000115 .
-
-tech:_naSeq a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:_naSeq ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:informationArtifact ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:sequence ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom ilxtr:_NApolymer ] ) ] ;
-    rdfs:label "nucleic acid sequencing technique" .
-
-tech:activityModulation a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:boundFunctionalAspect ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasProbe ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "activity modulation technique" ;
-    NIFRID:synonym "activity modulation",
-        "modulation",
-        "modulation technique" .
-
-tech:actualizing a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasParticipantPartPrimaryAspectActualized ;
-                        owl:someValuesFrom ilxtr:aspect ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                        owl:someValuesFrom ilxtr:aspect ] ) ] ;
-    rdfs:label "actualizing technique" ;
-    NIFRID:synonym "actualize" ;
-    definition: "a technique that realizes a value of some aspect" .
-
-tech:aliquoting a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:213 ] ) ] ;
-    rdfs:label "aliquoting technique" .
-
-tech:allocating a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                        owl:someValuesFrom asp:location ] ) ],
-        [ owl:intersectionOf (
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty hasPart: ;
-                                owl:someValuesFrom [ a owl:Restriction ;
-                                        owl:onProperty ilxtr:primaryParticipantIn ;
-                                        owl:someValuesFrom ilxtr:allocatingProcessPart ] ] ] ) ] ;
-    rdfs:label "allocating technique" ;
-    definition: "Allocating techniques move things around without changing how their participants are named. More accurately they move them around without changing any part of their functional defintions which are invariant as a function of their location." ;
-    owl:disjointWith tech:ising,
-        tech:measuring,
-        tech:probing .
-
-tech:amplification a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:count ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:positive ] ) ] ;
-    rdfs:label "amplification technique" ;
-    definition: "increase number" .
-
-tech:anaesthesia a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:anestheticAdministration ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasParticipant: ;
-                        owl:someValuesFrom NCBITaxon:33208 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:nervousResponsiveness ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:negative ] ) ] ;
-    rdfs:label "anaesthesia technique" ;
-    NIFRID:synonym "anaesthesia" .
-
-tech:analysis a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty realizes: ;
-                        owl:someValuesFrom ilxtr:analysisRole ] ) ] ;
-    rdfs:label "analysis technique" ;
-    NIFRID:synonym "analysis" .
-
-tech:anestheticAdministration a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom CHEBI:38867 ] ) ] ;
-    rdfs:label "anesthetic adminstration technique" .
-
-tech:animal a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasConstrainingAspect ;
-                        owl:someValuesFrom asp:livingness ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasConstrainingAspect_value ;
-                        owl:hasValue true ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom NCBITaxon:33208 ] ) ] ;
-    rdfs:label "in vivo animal technique" .
-
-tech:ATACseq a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:libraryPrep ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:sequencing ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:21 ] ) ] ;
-    rdfs:label "ATAC-seq" .
-
-tech:cellCulture a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryInputOutput ;
-                        owl:someValuesFrom SAO:1813327414 ] ) ] ;
-    rdfs:label "cell culture technique" ;
-    NIFRID:synonym "cell culture" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty hasInput: ;
-            owl:someValuesFrom ilxtr:cultureMedia ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasConstrainingAspect ;
-            owl:someValuesFrom asp:temperature ] .
-
-tech:cellPatching a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:patchPipette ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom [ owl:unionOf (
-                                        ilxtr:cellMembrane
-                                        [ a owl:Restriction ;
-                                            owl:onProperty BFO:0000050 ;
-                                            owl:someValuesFrom ilxtr:cellMembrane ] ) ] ] ) ] ;
-    rdfs:label "cell patching technique" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty hasInput: ;
-            owl:someValuesFrom ilxtr:inVitroEphysRig ] .
-
-tech:chromium3p a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:dropSep ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:rnaSeq ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasParticipant: ;
-                        owl:someValuesFrom ilxtr:chromium3pkit ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:30 ] ) ] ;
-    rdfs:label "chromium 3' sequencing" ;
-    NIFRID:synonym "10x",
-        "10x Chromium 3' chemsitry",
-        "10x chromium 3' sequencing",
-        "10x Genomics sequencing",
-        "10x sequencing",
-        "chromium 3' assay",
-        "Chromium sequencing10x 3' chemistry",
-        "Chromium Single Cell 3' Library" ;
-    definition: "a droplet based sequencing library preparation technique" .
-
-tech:chromium3pv1 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    tech:chromium3p
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:rnaSeq ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasParticipant: ;
-                        owl:someValuesFrom ilxtr:chromium3pv1kit ] ) ] ;
-    rdfs:label "chromium 3' sequencing v1" ;
-    NIFRID:synonym "10x chromium 3' v1 sequencing",
-        "10x Chromium Single Cell 3' Solution v1" ;
-    owl:disjointWith tech:chromium3pv2 ;
-    rdfs:comment "different versions of the chromium 3' chemistry use different barcoding strategies and require different processing pipelines." .
-
-tech:chromium3pv2 a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    tech:chromium3p
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:rnaSeq ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasParticipant: ;
-                        owl:someValuesFrom ilxtr:chromium3pv2kit ] ) ] ;
-    rdfs:label "chromium 3' sequencing v2" ;
-    NIFRID:synonym "10x chromium 3' v2 sequencing",
-        "10x Chromium Single Cell 3' Solution v2" ;
-    rdfs:comment "different versions of the chromium 3' chemistry use different barcoding strategies and require different processing pipelines." .
-
-tech:contrastDetection a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:contrast ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdS ;
-                        owl:someValuesFrom ilxtr:nonZero ] ) ] ;
-    rdfs:label "contrast detection technique" ;
-    NIFRID:synonym "contrast detection" .
-
-tech:contrastEnhancement a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasParticipantPartPrimaryAspect ;
-                        owl:someValuesFrom ilxtr:aspect ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPartNotPart ;
-                        owl:someValuesFrom [ owl:intersectionOf (
-                                        [ a owl:Restriction ;
-                                            owl:onProperty ilxtr:hasConstrainingAspect ;
-                                            owl:someValuesFrom ilxtr:aspect ;
-                                            owl:minCardinality 1 ]
-                                        [ a owl:Restriction ;
-                                            owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                                            owl:someValuesFrom asp:location ] ) ] ] ) ] ;
-    rdfs:label "contrast enhancement technique" ;
-    NIFRID:synonym "contrast enhancement",
-        "material contrast enhancement technique" .
-
-tech:creating a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:is ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:positiveNonZero ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryOutput ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "creating technique" ;
-    NIFRID:synonym "synthesis technique" ;
-    owl:disjointWith tech:destroying .
-
-tech:cutting a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom ilxtr:cuttingTool ] ) ] ;
-    rdfs:label "cutting technique" .
-
-tech:delivery a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasConstrainingAspect ;
-                        owl:someValuesFrom asp:endLocation ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasConstrainingAspect ;
-                        owl:someValuesFrom asp:startLocation ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                        owl:someValuesFrom asp:location ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "delivery technique" ;
-    definition: "A technique for moving something from point a to point b." .
-
-tech:destroying a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:is ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:negativeNonZero ] ) ] ;
-    rdfs:label "destroying technique" .
-
-tech:dissection a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryOutput ;
-                        owl:someValuesFrom ilxtr:partOfSomePrimaryInput ] ) ] ;
-    rdfs:label "dissection technique" ;
-    NIFRID:synonym "dissection" ;
-    rdfs:comment """
-       # FIXME need to implement the dual for this
-       # hasDualTechnique -> hasPrimaryInput -> hasPart <-> removal invariant aka wasPartOf
-       # vs extraction technique ...
-       # note that dissection may not actually be a destroying technique in all cases
-       # for example microdissection or biopsy techniques
-       """ .
-
-tech:dropSep a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:26 ] ) ] ;
-    rdfs:label "droplet based separation technique" ;
-    NIFRID:synonym "droplet based sequencing technique",
-        "droplet sequencing",
-        "Droplet-Sequencing" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty hasParticipant: ;
-            owl:someValuesFrom ilxtr:dropletFormingMicrofluidicsDevice ] .
-
-tech:DTI a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:MRIScanner ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/process/diffusion> ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:DTI_ImageProcessing ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:dwMRI ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom prot:DTI ] ) ] ;
-    rdfs:label "diffusion tensor imaging" ;
-    NIFRID:synonym "DTI" .
-
-tech:DTI_ImageProcessing a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasDirectInformationInput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:230 ] ) ] ;
-    rdfs:label "diffusion tensor image processing" .
-
-tech:dwMRI a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:dwMRI_ImageProcessing ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:MRI ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom prot:dwMRI ] ) ] ;
-    rdfs:label "diffusion weighted magnetic resonance imaging" ;
-    NIFRID:synonym "diffusion weighted nuclear magnetic resonance imaging",
-        "dwMRI" .
-
-tech:dwMRI_ImageProcessing a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasDirectInformationInput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:229 ] ) ] ;
-    rdfs:label "diffusion weighted MRI image processing" .
-
-tech:eClamp a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:recordingElectrode ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasConstrainingAspect ;
-                        owl:someValuesFrom asp:electrical ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:electrical ] ) ] ;
-    rdfs:label "electrical clamping technique" .
-
-tech:electronMicroscopy a owl:Class ;
-    oboInOwl:hasDbXref NLX:82779 ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom BIRNLEX:2041 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:detects ;
-                        owl:someValuesFrom CHEBI:10545 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "electron microscopy technique" ;
-    NIFRID:synonym "electron microscopy" .
-
-tech:electrophoresis a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasParticipantPartConstrainingAspect ;
-                        owl:someValuesFrom asp:bindingAffinity ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasParticipantPartConstrainingAspect ;
-                        owl:someValuesFrom asp:charge ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasParticipantPartConstrainingAspect ;
-                        owl:someValuesFrom asp:size ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasParticipantPartPrimaryAspectActualized ;
-                        owl:someValuesFrom asp:location ] ) ] ;
-    rdfs:label "electrophoresis technique" ;
-    NIFRID:synonym "electrophoresis" .
-
-tech:electroporation a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:electroporation ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasParticipant: ;
-                        owl:someValuesFrom ilxtr:electricalField ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                        owl:someValuesFrom asp:permeability ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:cellMembrane ] ) ] ;
-    rdfs:label "electroporation technique" ;
-    NIFRID:synonym "electropermeabilization technique" .
-
-tech:enrichment a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:proportion ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:positive ] ) ] ;
-    rdfs:label "enrichment technique" ;
-    definition: "increase proporation" .
-
-tech:ephys a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:ephysRig ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:electromagnetic ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:physiologicalSystem ] ) ] ;
-    rdfs:label "electrophysiology technique" ;
-    NIFRID:synonym "electrophysiological technique",
-        "electrophysiology" ;
-    ilxtr:hasTempId HBP_MEM:0000014 .
-
-tech:ephysRecording a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:timeSeries ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:electrical ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:physiologicalSystem ] ) ] ;
-    rdfs:label "electrophysiology recording technique" ;
-    NIFRID:synonym "electrophysiology recording" .
-
-tech:euthanasia a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:aliveness ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:negativeNonZero ] ) ] ;
-    rdfs:label "euthanasia technique" ;
-    NIFRID:synonym "euthanasia" .
-
-tech:extracellularEphys a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:electrical ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom GO:0005615 ] ) ] ;
-    rdfs:label "extracellular electrophysiology technique" ;
-    ilxtr:hasTempId HBP_MEM:0000015 .
-
-tech:FISH a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:fluorescentMolecule ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:ISH ] ) ] ;
-    rdfs:label "fluorescence in situ hybridization technique" ;
-    NIFRID:synonym "FISH",
-        "fluorescence in situ hybridization" .
-
-tech:fixation a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Class ;
-                        owl:unionOf (
-                                [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                                    owl:someValuesFrom asp:elasticity ]
-                                [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                                    owl:someValuesFrom asp:spontaneousChangeInStructure ]
-                                [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                                    owl:someValuesFrom asp:stiffness ] ) ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:negativeNonZero ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                        owl:someValuesFrom asp:spontaneousChangeInStructure ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasConstrainingAspect ;
-                        owl:someValuesFrom asp:fixedness ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasConstrainingAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:positiveNonZero ] ) ] ;
-    rdfs:label "fixation technique" ;
-    NIFRID:synonym "fixation" .
-
-tech:fMRI a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:fMRI_ImageProcessing ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:MRI ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom prot:fMRI ] ) ] ;
-    rdfs:label "functional magnetic resonance imaging" ;
-    rdfs:comment "In contrast to previous definitions of fMRI technqiues, here we try to remain agnostic as possible about the actual phenomena that is being detected since it is still a matter of scientific exploration. The key is that the process follows a protocol that sets the proper parameters on the scanner (and uses the proper scanner)." .
-
-tech:fMRI_ImageProcessing a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasDirectInformationInput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:228 ] ) ] ;
-    rdfs:label "fMRI image processing" .
-
-tech:histology a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:tissue ] ) ] ;
-    rdfs:label "histological technique" ;
-    NIFRID:synonym "hisology" .
-
-tech:imaging a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom ilxtr:aspect ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "imaging technique" ;
-    NIFRID:synonym "imaging" ;
-    definition: "Imaging is the process of forming an image." .
-
-tech:inSitu a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPartPriParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:122 ] ) ] ;
-    rdfs:label "in situ technique" ;
-    NIFRID:synonym "in situ" ;
-    owl:disjointWith tech:inVitro .
-
-tech:inVitro a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasParticipant: ;
-                        owl:someValuesFrom ilxtr:somethingThatIsAliveAndIsInAGlassContainer ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:physiologicalSystemDisjointWithLivingOrganism ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:125 ] ) ] ;
-    rdfs:label "in vitro technique" ;
-    NIFRID:synonym "in vitro" .
-
-tech:IRDIC a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:DICmicroscope ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:IRCamera ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:detects ;
-                        owl:someValuesFrom ilxtr:infaredLight ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "IR DIC video microscopy" .
-
-tech:ISH a owl:Class ;
-    owl:equivalentClass [ a owl:Restriction ;
-            owl:onProperty hasPart: ;
-            owl:someValuesFrom tech:ISH ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:hybridizationProbe ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPartPriParticipant ;
-                        owl:someValuesFrom ilxtr:RNApolymer ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:complementSequencePresent ] ) ] ;
-    rdfs:label "in situ hybridization technique" ;
-    NIFRID:synonym "in situ hybridization",
-        "ISH" .
-
-tech:ising a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:is ] ) ] ;
-    rdfs:label "ising technique" ;
-    definition: "Ising techniques are techniques that affect whether a thing 'is' or not. Whether they primary participant 'is' in this context must shall be determined by whether measurements made on the putative primary particiant provide data that meet the necessary and sufficient criteria for the putative primary participant to be assigned the categorical name as defined by the primary particiant's owl:Class. For example if the primary particiant of a technique is 100ml of liquid water, then a boiling technique which produces gaseous water from liquid water negatively affects the isness of the 100ml of liquid water because we can no longer assign the name liquid water to the steam that is produced by boiling." ;
-    owl:disjointWith tech:measuring,
-        tech:probing ;
-    rdfs:comment "Because 'isness' or 'being' is modelled as an aspect it is implied that 'being' in this context depends entirely on some measurement process and some additional process for classifying or categorizing the object based on that measurement, so that it can be assigned a name. The objective here is to demistify the process of assigning a name to a thing so that it will be possible to provide exact provenance for how the assignment of the name was determined." .
-
-tech:killing a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:aliveness ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:negativeNonZero ] ) ] ;
-    rdfs:label "killing technique" .
-
-tech:libraryPrep a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryOutput ;
-                        owl:someValuesFrom ilxtr:nucleicAcidLibrary ] ) ] ;
-    rdfs:label "nucleic acid library preparation technique" ;
-    NIFRID:synonym "library prep",
-        "library preparation" .
-
-tech:lightMicroscopy a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom BIRNLEX:2112 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:detects ;
-                        owl:someValuesFrom ilxtr:visibleLight ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "light microscopy technique" ;
-    NIFRID:synonym "light microscopy" .
-
-tech:lightsheetMicroscopy a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:lightSheetMicroscope ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:detects ;
-                        owl:someValuesFrom ilxtr:visibleLight ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "light sheet microscopy technique" ;
-    NIFRID:synonym "light sheet microscopy" .
-
-tech:lightSheetMicroscopyFluorescent a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:fluorescentMolecule ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:lightSheetMicroscope ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:detects ;
-                        owl:someValuesFrom ilxtr:visibleLight ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "light sheet fluorescence microscopy technique" ;
-    NIFRID:synonym "light sheet fluorescence microscopy",
-        "LSFM" .
-
-tech:lightSheetTomographyOblique a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:lightsheetMicroscopy ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:tomography ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:363.5 ] ) ] ;
-    rdfs:label "oblique light sheet tomographic technique" ;
-    NIFRID:synonym "oblique light sheet tomography",
-        "OLST" .
-
-tech:localization a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:104 ] ) ] ;
-    rdfs:label "localization technique" .
-
-tech:maintaining a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:is ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:zero ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryInputOutput ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "maintaining technique" ;
-    NIFRID:synonym "maintenance technique" .
-
-tech:mcSeq a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:libraryPrep ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:informationArtifact ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:methylationSequence ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom ilxtr:DNApolymer ] ) ] ;
-    rdfs:label "mC-seq" ;
-    definition: "non CG methylation" .
-
-tech:measuring a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:informationEntity ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom ilxtr:aspect ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "measuring technique" ;
-    NIFRID:synonym "measure",
-        "measurment technique" ;
-    owl:disjointWith tech:probing .
-
-tech:MERFISH a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:fluorescentMolecule ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:ISH ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:41 ] ) ] ;
-    rdfs:label "multiplexed error-robust fluorescence in situ hybridization technique" ;
-    NIFRID:synonym "MERFISH",
-        "multiplexed error robust FISH",
-        "multiplexed error robust fluorescence in situ hybridization",
-        "multiplexed error-robust FISH",
-        "multiplexed error-robust fluorescence in situ hybridization" .
-
-tech:microscopy a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:microscope ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "microscopy technique" ;
-    NIFRID:synonym "microscopy" .
-
-tech:MRI a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:MRIScanner ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:MRI_ImageProcessing ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:nuclearMagneticResonance ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:MRI ] ) ] ;
-    rdfs:label "magnetic resonance imaging" ;
-    NIFRID:synonym "MRI",
-        "nuclear magnetic resonance imaging" .
-
-tech:MRI_ImageProcessing a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasDirectInformationInput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:spatialFrequencyImageStack ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:contrast ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdS ;
-                        owl:someValuesFrom ilxtr:nonZero ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:227 ] ) ] ;
-    rdfs:label "magnetic resonance image processing" .
-
-tech:multiElectrodeEphys a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:multiElectrode ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:electrical ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom GO:0005615 ] ) ] ;
-    rdfs:label "multi electrode extracellular electrophysiology technique" ;
-    NIFRID:synonym "extracellular multi electrode technique" .
-
-tech:naming a owl:Class ;
-    rdfs:label "naming" ;
-    definition: "Naming is an assertional process that is orthogonal to measuring.Names may be assigned as a product of measurements, but the assignment of a name can only be based on aspects of the thing, the name can never be an aspect of the thing. Names may also be assigned based on aspects of the process that produced the thing, or the prvious state of the thing. For example a protein dissociated from its original cell/tissue no longer contains sufficient information to reconsturct where it came from based on any measurements that can be made on it beyond the species that it came from and maybe where the individual lived if there are enough atoms to do an isotope test.A cell on the other hand may very well have enough information in its RNA and DNA to allow for a bottom up assignment of a name based on its gene expression pattern." ;
-    rdfs:subClassOf ilxtr:technique .
-
-tech:opticalImaging a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:detects ;
-                        owl:someValuesFrom ilxtr:visibleLight ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "optical imaging" ;
-    NIFRID:synonym "light imaging",
-        "visible light imaging" ;
-    ilxtr:hasTempId HBP_MEM:0000013 .
-
-tech:patchClamp a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:patchElectrode ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:cellPatching ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:electrical ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:patchClamp ] ) ] ;
-    rdfs:label "patch clamp technique" ;
-    ilxtr:hasTempId HBP_MEM:0000017 .
-
-tech:perfusion a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:238 ] ) ] ;
-    rdfs:label "perfusion technique" .
-
-tech:poration a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                        owl:someValuesFrom asp:permeability ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:cellMembrane ] ) ] ;
-    rdfs:label "poration technique" ;
-    NIFRID:synonym "membrane poration technique",
-        "permeabilization technique" ;
-    definition: "a technique for making holes in things" .
-
-tech:positronEmissionImaging a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:detects ;
-                        owl:someValuesFrom ilxtr:positron ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:detects ;
-                        owl:someValuesFrom ilxtr:positron ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "positron emission imaging" .
-
-tech:precipitation a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasParticipant: ;
-                        owl:someValuesFrom ilxtr:precipitate ] ) ] ;
-    rdfs:label "precipitation technique" .
-
-tech:probing a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasProbe ;
-                        owl:someValuesFrom owl:Thing ] ) ] ;
-    rdfs:label "probing technique" ;
-    definition: "Probing techniques attempt (intende) to change the state of a thing without changing how it is named. Hitting something with just enough light to excite but not to bleach would be one example, as would poking something with a non-pointy stick." .
-
-tech:rnaSeq a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:libraryPrep ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:informationArtifact ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:sequence ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom ilxtr:RNApolymer ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:rnaSeq ] ) ] ;
-    rdfs:label "RNA-seq" ;
-    NIFRID:synonym "RNAseq" .
-
-tech:scanningElectronMicroscopy a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom BIRNLEX:2044 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:detects ;
-                        owl:someValuesFrom CHEBI:10545 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
-    rdfs:label "scanning electron microscopy technique" ;
-    NIFRID:synonym "scanning electron microscopy",
-        "SEM" .
-
-tech:scSeq a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:sequencing ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom SAO:1813327414 ;
-                        owl:maxCardinality 1 ] ) ] ;
-    rdfs:label "single cell sequencing technique" ;
-    NIFRID:synonym "single cell sequencing" ;
-    owl:disjointWith tech:snSeq .
-
-tech:sectioning a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryOutput ;
-                        owl:someValuesFrom ilxtr:section ] ) ] ;
-    rdfs:label "sectioning technique" ;
-    NIFRID:synonym "sectioning" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasDualInputTechnique ;
-            owl:someValuesFrom tech:destroying ] .
-
-tech:sedation a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasParticipant: ;
-                        owl:someValuesFrom NCBITaxon:33208 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:behavioralActivity ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:negative ] ) ] ;
-    rdfs:label "sedation technique" ;
-    NIFRID:synonym "sedation" ;
-    rdfs:comment "QUESTION: what is the difference between sedation and anaesthesia?" .
-
-tech:separating a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
-                        owl:someValuesFrom ilxtr:negativeNonZero ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                        owl:someValuesFrom asp:homogenaity ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty hasPart: ;
-                                owl:someValuesFrom [ a owl:Restriction ;
-                                        owl:onProperty ilxtr:primaryParticipantIn ;
-                                        owl:someValuesFrom ilxtr:separationProcessPart ] ] ] ) ] ;
-    rdfs:label "separating technique" .
-
-tech:separation a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty hasPart: ;
-                                owl:someValuesFrom [ a owl:Restriction ;
-                                        owl:onProperty ilxtr:primaryParticipantIn ;
-                                        owl:someValuesFrom ilxtr:separationProcessPart ] ] ] ) ] ;
-    rdfs:label "separation technique (old)" .
-
-tech:sequencing a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:sequencing ] ) ],
-        [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:informationArtifact ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:sequence ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom ilxtr:thingWithSequence ] ) ] ;
-    rdfs:label "sequencing technique" .
-
-tech:sharpElectrodeEphys a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:sharpElectrode ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:electrical ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom GO:0005622 ] ) ] ;
-    rdfs:label "sharp intracellular electrode technique" ;
-    NIFRID:synonym "sharp electrode technique" ;
-    ilxtr:hasTempId HBP_MEM:0000023 .
-
-tech:sharpElectrodeTechnique a owl:Class ;
-    owl:equivalentClass [ owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:sharpMicroPipette ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:cell ] ) ] ;
-    rdfs:label "sharp electrode technique" .
-
-tech:sigproc a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasDirectInformationInput ;
-                        owl:someValuesFrom ilxtr:timeSeries ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:timeSeries ] ) ] ;
-    rdfs:label "signal processing technique" ;
-    NIFRID:synonym "signal processing" .
-
-tech:singleElectrodeEphys a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:singleElectrode ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:electrical ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom GO:0005615 ] ) ] ;
-    rdfs:label "single electrode extracellular electrophysiology technique" ;
-    NIFRID:synonym "extracellular single electrode technique" ;
-    ilxtr:hasTempId HBP_MEM:0000019 .
-
-tech:smartSeq a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:SMARTSeqKit ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:rnaSeq ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom prot:SMARTSeq ] ) ] ;
-    rdfs:label "SMART-seq" ;
-    NIFRID:synonym "Smart-seq",
-        "SMART-Seq®",
-        "Switching Mechanism at 5' End of RNA Template sequencing" ;
-    rdfs:comment "This space is completely loony. See https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5449089/ for a review. This is also a great example of the conflation of protocol with technique." .
-
-tech:smFISH a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:fluorescentMolecule ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:ISH ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:40 ] ) ] ;
-    rdfs:label "single-molecule fluorescence in situ hybridization technique" ;
-    NIFRID:synonym "single molecule FISH",
-        "single molecule fluorescence in situ hybridization",
-        "single-molecule FISH",
-        "single-molecule fluorescence in situ hybridization",
-        "smFISH" .
-
-tech:snSeq a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:sequencing ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryInput ;
-                        owl:someValuesFrom GO:0005634 ;
-                        owl:maxCardinality 1 ] ) ] ;
-    rdfs:label "single nucleus sequencing technique" ;
-    NIFRID:synonym "single nucleus sequencing" .
-
-tech:stateBasedContrastEnhancement a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:183 ] ) ] ;
-    rdfs:label "state based contrast enhancement technique" .
-
-tech:statistics a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasDirectInformationInput ;
-                        owl:someValuesFrom ilxtr:informationEntity ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:informationEntity ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom ilxtr:statisticalAlgorithm ] ) ] ;
-    rdfs:label "statistical technique" .
-
-tech:stim_Magnetic a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:magnetic ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasProbe ;
-                        owl:someValuesFrom ilxtr:magneticField ] ) ] ;
-    rdfs:label "magnetic stimulation technique" .
-
-tech:surgical a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasPart: ;
-                        owl:someValuesFrom tech:cutting ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:279 ] ) ] ;
-    rdfs:label "surgical technique" ;
-    NIFRID:synonym "surgery" .
-
-tech:thermalporation a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    [ a owl:Class ;
-                        owl:intersectionOf (
-                                ilxtr:technique
-                                [ a owl:Restriction ;
-                                    owl:onProperty hasPart: ;
-                                    owl:someValuesFrom [ a owl:Restriction ;
-                                            owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                                            owl:someValuesFrom asp:temperature ] ]
-                                [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPrimaryAspectActualized ;
-                                    owl:someValuesFrom asp:permeability ]
-                                [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPrimaryParticipant ;
-                                    owl:someValuesFrom ilxtr:cellMembrane ] ) ] ) ] ;
-    rdfs:label "thermalporation technique" ;
-    NIFRID:synonym "heatshock",
-        "heatshock poration technique" .
-
-tech:tomography a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasDirectInformationInput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasInformationOutput ;
-                        owl:someValuesFrom ilxtr:image ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:isConstrainedBy ;
-                        owl:someValuesFrom ilxtr:radonTransform ] ) ] ;
-    rdfs:label "tomographic technique" ;
-    NIFRID:synonym "tomography" .
-
-tech:twoPhoton a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:twoPhotonMicroscope ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:360 ] ) ] ;
-    rdfs:label "two-photon microscopy technique" ;
-    NIFRID:synonym "two-photon microscopy" .
-
-tech:unfinished a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:temp ] ) ] ;
-    rdfs:label "Unfinished techniques" ;
-    NIFRID:synonym "incompletely modeled techniques" .
-
-tech:vClamp a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:recordingElectrode ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasConstrainingAspect ;
-                        owl:someValuesFrom asp:voltage ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryAspect ;
-                        owl:someValuesFrom asp:current ] ) ] ;
-    rdfs:label "voltage clamp technique" .
-
-tech:wholeCellPatch a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf (
-                    ilxtr:technique
-                    [ a owl:Restriction ;
-                        owl:onProperty hasInput: ;
-                        owl:someValuesFrom ilxtr:patchPipette ]
-                    [ a owl:Restriction ;
-                        owl:onProperty hasParticipant: ;
-                        owl:someValuesFrom GO:0005622 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasPrimaryParticipant ;
-                        owl:someValuesFrom ilxtr:cellMembrane ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomething ;
-                        owl:someValuesFrom local:331 ] ) ] ;
-    rdfs:label "whole cell patch technique" .
 
 local:0 a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -5086,6 +3538,1554 @@ local:368 a owl:Class ;
                         owl:onProperty ilxtr:hasSomething ;
                         owl:someValuesFrom local:369 ] ) ] ;
     rdfs:label "gene characterization technique" .
+
+NLX:inv_20090609 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:tissue ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:178 ] ) ] ;
+    rdfs:label "immunohistochemical technique" ;
+    NIFRID:synonym "immunohistochemistry",
+        "immunohistochemistry technique" ;
+    ilxtr:hasTempId HBP_MEM:0000115 .
+
+tech:_naSeq a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:_naSeq ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:informationArtifact ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:sequence ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryInput ;
+                        owl:someValuesFrom ilxtr:_NApolymer ] ) ] ;
+    rdfs:label "nucleic acid sequencing technique" .
+
+tech:activityModulation a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:boundFunctionalAspect ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasProbe ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "activity modulation technique" ;
+    NIFRID:synonym "activity modulation",
+        "modulation",
+        "modulation technique" .
+
+tech:actualizing a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasParticipantPartPrimaryAspectActualized ;
+                        owl:someValuesFrom ilxtr:aspect ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                        owl:someValuesFrom ilxtr:aspect ] ) ] ;
+    rdfs:label "actualizing technique" ;
+    NIFRID:synonym "actualize" ;
+    definition: "a technique that realizes a value of some aspect" .
+
+tech:aliquoting a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:213 ] ) ] ;
+    rdfs:label "aliquoting technique" .
+
+tech:allocating a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                        owl:someValuesFrom asp:location ] ) ],
+        [ owl:intersectionOf (
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom [ a owl:Restriction ;
+                                owl:onProperty hasPart: ;
+                                owl:someValuesFrom [ a owl:Restriction ;
+                                        owl:onProperty ilxtr:primaryParticipantIn ;
+                                        owl:someValuesFrom ilxtr:allocatingProcessPart ] ] ] ) ] ;
+    rdfs:label "allocating technique" ;
+    definition: "Allocating techniques move things around without changing how their participants are named. More accurately they move them around without changing any part of their functional defintions which are invariant as a function of their location." ;
+    owl:disjointWith tech:ising,
+        tech:measuring,
+        tech:probing .
+
+tech:amplification a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:count ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:positive ] ) ] ;
+    rdfs:label "amplification technique" ;
+    definition: "increase number" .
+
+tech:anaesthesia a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:anestheticAdministration ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom NCBITaxon:33208 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:nervousResponsiveness ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negative ] ) ] ;
+    rdfs:label "anaesthesia technique" ;
+    NIFRID:synonym "anaesthesia" .
+
+tech:analysis a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty realizes: ;
+                        owl:someValuesFrom ilxtr:analysisRole ] ) ] ;
+    rdfs:label "analysis technique" ;
+    NIFRID:synonym "analysis" .
+
+tech:anestheticAdministration a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom CHEBI:38867 ] ) ] ;
+    rdfs:label "anesthetic adminstration technique" .
+
+tech:animal a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasConstrainingAspect ;
+                        owl:someValuesFrom asp:livingness ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasConstrainingAspect_value ;
+                        owl:hasValue true ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom NCBITaxon:33208 ] ) ] ;
+    rdfs:label "in vivo animal technique" .
+
+tech:ATACseq a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:libraryPrep ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:sequencing ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:21 ] ) ] ;
+    rdfs:label "ATAC-seq" .
+
+tech:cellCulture a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryInputOutput ;
+                        owl:someValuesFrom SAO:1813327414 ] ) ] ;
+    rdfs:label "cell culture technique" ;
+    NIFRID:synonym "cell culture" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty hasInput: ;
+            owl:someValuesFrom ilxtr:cultureMedia ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasConstrainingAspect ;
+            owl:someValuesFrom asp:temperature ] .
+
+tech:cellPatching a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:patchPipette ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom [ owl:unionOf (
+                                        ilxtr:cellMembrane
+                                        [ a owl:Restriction ;
+                                            owl:onProperty BFO:0000050 ;
+                                            owl:someValuesFrom ilxtr:cellMembrane ] ) ] ] ) ] ;
+    rdfs:label "cell patching technique" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty hasInput: ;
+            owl:someValuesFrom ilxtr:inVitroEphysRig ] .
+
+tech:chromium3p a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:dropSep ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:rnaSeq ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:chromium3pkit ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:30 ] ) ] ;
+    rdfs:label "chromium 3' sequencing" ;
+    NIFRID:synonym "10x",
+        "10x Chromium 3' chemsitry",
+        "10x chromium 3' sequencing",
+        "10x Genomics sequencing",
+        "10x sequencing",
+        "chromium 3' assay",
+        "Chromium sequencing10x 3' chemistry",
+        "Chromium Single Cell 3' Library" ;
+    definition: "a droplet based sequencing library preparation technique" .
+
+tech:chromium3pv1 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    tech:chromium3p
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:rnaSeq ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:chromium3pv1kit ] ) ] ;
+    rdfs:label "chromium 3' sequencing v1" ;
+    NIFRID:synonym "10x chromium 3' v1 sequencing",
+        "10x Chromium Single Cell 3' Solution v1" ;
+    owl:disjointWith tech:chromium3pv2 ;
+    rdfs:comment "different versions of the chromium 3' chemistry use different barcoding strategies and require different processing pipelines." .
+
+tech:chromium3pv2 a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    tech:chromium3p
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:rnaSeq ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:chromium3pv2kit ] ) ] ;
+    rdfs:label "chromium 3' sequencing v2" ;
+    NIFRID:synonym "10x chromium 3' v2 sequencing",
+        "10x Chromium Single Cell 3' Solution v2" ;
+    rdfs:comment "different versions of the chromium 3' chemistry use different barcoding strategies and require different processing pipelines." .
+
+tech:contrastDetection a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:contrast ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdS ;
+                        owl:someValuesFrom ilxtr:nonZero ] ) ] ;
+    rdfs:label "contrast detection technique" ;
+    NIFRID:synonym "contrast detection" .
+
+tech:contrastEnhancement a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasParticipantPartPrimaryAspect ;
+                        owl:someValuesFrom ilxtr:aspect ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPartNotPart ;
+                        owl:someValuesFrom [ owl:intersectionOf (
+                                        [ a owl:Restriction ;
+                                            owl:onProperty ilxtr:hasConstrainingAspect ;
+                                            owl:someValuesFrom ilxtr:aspect ;
+                                            owl:minCardinality 1 ]
+                                        [ a owl:Restriction ;
+                                            owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                                            owl:someValuesFrom asp:location ] ) ] ] ) ] ;
+    rdfs:label "contrast enhancement technique" ;
+    NIFRID:synonym "contrast enhancement",
+        "material contrast enhancement technique" .
+
+tech:creating a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:is ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:positiveNonZero ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryOutput ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "creating technique" ;
+    NIFRID:synonym "synthesis technique" ;
+    owl:disjointWith tech:destroying .
+
+tech:cutting a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryInput ;
+                        owl:someValuesFrom ilxtr:cuttingTool ] ) ] ;
+    rdfs:label "cutting technique" .
+
+tech:delivery a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasConstrainingAspect ;
+                        owl:someValuesFrom asp:endLocation ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasConstrainingAspect ;
+                        owl:someValuesFrom asp:startLocation ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                        owl:someValuesFrom asp:location ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "delivery technique" ;
+    definition: "A technique for moving something from point a to point b." .
+
+tech:destroying a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:is ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negativeNonZero ] ) ] ;
+    rdfs:label "destroying technique" .
+
+tech:dissection a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryOutput ;
+                        owl:someValuesFrom ilxtr:partOfSomePrimaryInput ] ) ] ;
+    rdfs:label "dissection technique" ;
+    NIFRID:synonym "dissection" ;
+    rdfs:comment """
+       # FIXME need to implement the dual for this
+       # hasDualTechnique -> hasPrimaryInput -> hasPart <-> removal invariant aka wasPartOf
+       # vs extraction technique ...
+       # note that dissection may not actually be a destroying technique in all cases
+       # for example microdissection or biopsy techniques
+       """ .
+
+tech:dropSep a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:26 ] ) ] ;
+    rdfs:label "droplet based separation technique" ;
+    NIFRID:synonym "droplet based sequencing technique",
+        "droplet sequencing",
+        "Droplet-Sequencing" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty hasParticipant: ;
+            owl:someValuesFrom ilxtr:dropletFormingMicrofluidicsDevice ] .
+
+tech:DTI a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:MRIScanner ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom <http://uri.interlex.org/tgbugs/uris/readable/process/diffusion> ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:DTI_ImageProcessing ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:dwMRI ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom prot:DTI ] ) ] ;
+    rdfs:label "diffusion tensor imaging" ;
+    NIFRID:synonym "DTI" .
+
+tech:DTI_ImageProcessing a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasDirectInformationInput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:230 ] ) ] ;
+    rdfs:label "diffusion tensor image processing" .
+
+tech:dwMRI a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:dwMRI_ImageProcessing ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:MRI ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom prot:dwMRI ] ) ] ;
+    rdfs:label "diffusion weighted magnetic resonance imaging" ;
+    NIFRID:synonym "diffusion weighted nuclear magnetic resonance imaging",
+        "dwMRI" .
+
+tech:dwMRI_ImageProcessing a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasDirectInformationInput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:229 ] ) ] ;
+    rdfs:label "diffusion weighted MRI image processing" .
+
+tech:eClamp a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:recordingElectrode ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasConstrainingAspect ;
+                        owl:someValuesFrom asp:electrical ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:electrical ] ) ] ;
+    rdfs:label "electrical clamping technique" .
+
+tech:electronMicroscopy a owl:Class ;
+    oboInOwl:hasDbXref NLX:82779 ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom BIRNLEX:2041 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom CHEBI:10545 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "electron microscopy technique" ;
+    NIFRID:synonym "electron microscopy" .
+
+tech:electrophoresis a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasParticipantPartConstrainingAspect ;
+                        owl:someValuesFrom asp:bindingAffinity ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasParticipantPartConstrainingAspect ;
+                        owl:someValuesFrom asp:charge ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasParticipantPartConstrainingAspect ;
+                        owl:someValuesFrom asp:size ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasParticipantPartPrimaryAspectActualized ;
+                        owl:someValuesFrom asp:location ] ) ] ;
+    rdfs:label "electrophoresis technique" ;
+    NIFRID:synonym "electrophoresis" .
+
+tech:electroporation a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:electroporation ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:electricalField ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                        owl:someValuesFrom asp:permeability ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:cellMembrane ] ) ] ;
+    rdfs:label "electroporation technique" ;
+    NIFRID:synonym "electropermeabilization technique" .
+
+tech:enrichment a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:proportion ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:positive ] ) ] ;
+    rdfs:label "enrichment technique" ;
+    definition: "increase proporation" .
+
+tech:ephys a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:ephysRig ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:electromagnetic ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:physiologicalSystem ] ) ] ;
+    rdfs:label "electrophysiology technique" ;
+    NIFRID:synonym "electrophysiological technique",
+        "electrophysiology" ;
+    ilxtr:hasTempId HBP_MEM:0000014 .
+
+tech:ephysRecording a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:timeSeries ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:electrical ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:physiologicalSystem ] ) ] ;
+    rdfs:label "electrophysiology recording technique" ;
+    NIFRID:synonym "electrophysiology recording" .
+
+tech:euthanasia a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:aliveness ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negativeNonZero ] ) ] ;
+    rdfs:label "euthanasia technique" ;
+    NIFRID:synonym "euthanasia" .
+
+tech:extracellularEphys a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:electrical ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom GO:0005615 ] ) ] ;
+    rdfs:label "extracellular electrophysiology technique" ;
+    ilxtr:hasTempId HBP_MEM:0000015 .
+
+tech:FISH a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:fluorescentMolecule ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:ISH ] ) ] ;
+    rdfs:label "fluorescence in situ hybridization technique" ;
+    NIFRID:synonym "FISH",
+        "fluorescence in situ hybridization" .
+
+tech:fixation a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                                    owl:someValuesFrom asp:elasticity ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                                    owl:someValuesFrom asp:spontaneousChangeInStructure ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                                    owl:someValuesFrom asp:stiffness ] ) ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negativeNonZero ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                        owl:someValuesFrom asp:spontaneousChangeInStructure ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasConstrainingAspect ;
+                        owl:someValuesFrom asp:fixedness ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasConstrainingAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:positiveNonZero ] ) ] ;
+    rdfs:label "fixation technique" ;
+    NIFRID:synonym "fixation" .
+
+tech:fMRI a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:fMRI_ImageProcessing ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:MRI ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom prot:fMRI ] ) ] ;
+    rdfs:label "functional magnetic resonance imaging" ;
+    rdfs:comment "In contrast to previous definitions of fMRI technqiues, here we try to remain agnostic as possible about the actual phenomena that is being detected since it is still a matter of scientific exploration. The key is that the process follows a protocol that sets the proper parameters on the scanner (and uses the proper scanner)." .
+
+tech:fMRI_ImageProcessing a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasDirectInformationInput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:228 ] ) ] ;
+    rdfs:label "fMRI image processing" .
+
+tech:histology a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:tissue ] ) ] ;
+    rdfs:label "histological technique" ;
+    NIFRID:synonym "hisology" .
+
+tech:imaging a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom ilxtr:aspect ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "imaging technique" ;
+    NIFRID:synonym "imaging" ;
+    definition: "Imaging is the process of forming an image." .
+
+tech:inSitu a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPartPriParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:122 ] ) ] ;
+    rdfs:label "in situ technique" ;
+    NIFRID:synonym "in situ" ;
+    owl:disjointWith tech:inVitro .
+
+tech:inVitro a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:somethingThatIsAliveAndIsInAGlassContainer ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:physiologicalSystemDisjointWithLivingOrganism ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:125 ] ) ] ;
+    rdfs:label "in vitro technique" ;
+    NIFRID:synonym "in vitro" .
+
+tech:IRDIC a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:DICmicroscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:IRCamera ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:infaredLight ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "IR DIC video microscopy" .
+
+tech:ISH a owl:Class ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hasPart: ;
+            owl:someValuesFrom tech:ISH ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:hybridizationProbe ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPartPriParticipant ;
+                        owl:someValuesFrom ilxtr:RNApolymer ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:complementSequencePresent ] ) ] ;
+    rdfs:label "in situ hybridization technique" ;
+    NIFRID:synonym "in situ hybridization",
+        "ISH" .
+
+tech:ising a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:is ] ) ] ;
+    rdfs:label "ising technique" ;
+    definition: "Ising techniques are techniques that affect whether a thing 'is' or not. Whether they primary participant 'is' in this context must shall be determined by whether measurements made on the putative primary particiant provide data that meet the necessary and sufficient criteria for the putative primary participant to be assigned the categorical name as defined by the primary particiant's owl:Class. For example if the primary particiant of a technique is 100ml of liquid water, then a boiling technique which produces gaseous water from liquid water negatively affects the isness of the 100ml of liquid water because we can no longer assign the name liquid water to the steam that is produced by boiling." ;
+    owl:disjointWith tech:measuring,
+        tech:probing ;
+    rdfs:comment "Because 'isness' or 'being' is modelled as an aspect it is implied that 'being' in this context depends entirely on some measurement process and some additional process for classifying or categorizing the object based on that measurement, so that it can be assigned a name. The objective here is to demistify the process of assigning a name to a thing so that it will be possible to provide exact provenance for how the assignment of the name was determined." .
+
+tech:killing a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:aliveness ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negativeNonZero ] ) ] ;
+    rdfs:label "killing technique" .
+
+tech:libraryPrep a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryOutput ;
+                        owl:someValuesFrom ilxtr:nucleicAcidLibrary ] ) ] ;
+    rdfs:label "nucleic acid library preparation technique" ;
+    NIFRID:synonym "library prep",
+        "library preparation" .
+
+tech:lightMicroscopy a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom BIRNLEX:2112 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:visibleLight ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "light microscopy technique" ;
+    NIFRID:synonym "light microscopy" .
+
+tech:lightsheetMicroscopy a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:lightSheetMicroscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:visibleLight ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "light sheet microscopy technique" ;
+    NIFRID:synonym "light sheet microscopy" .
+
+tech:lightSheetMicroscopyFluorescent a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:fluorescentMolecule ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:lightSheetMicroscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:visibleLight ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "light sheet fluorescence microscopy technique" ;
+    NIFRID:synonym "light sheet fluorescence microscopy",
+        "LSFM" .
+
+tech:lightSheetTomographyOblique a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:lightsheetMicroscopy ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:tomography ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:363.5 ] ) ] ;
+    rdfs:label "oblique light sheet tomographic technique" ;
+    NIFRID:synonym "oblique light sheet tomography",
+        "OLST" .
+
+tech:localization a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:104 ] ) ] ;
+    rdfs:label "localization technique" .
+
+tech:maintaining a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:is ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:zero ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryInputOutput ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "maintaining technique" ;
+    NIFRID:synonym "maintenance technique" .
+
+tech:mcSeq a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:libraryPrep ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:informationArtifact ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:methylationSequence ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryInput ;
+                        owl:someValuesFrom ilxtr:DNApolymer ] ) ] ;
+    rdfs:label "mC-seq" ;
+    definition: "non CG methylation" .
+
+tech:measuring a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:informationEntity ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom ilxtr:aspect ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "measuring technique" ;
+    NIFRID:synonym "measure",
+        "measurment technique" ;
+    owl:disjointWith tech:probing .
+
+tech:MERFISH a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:fluorescentMolecule ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:ISH ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:41 ] ) ] ;
+    rdfs:label "multiplexed error-robust fluorescence in situ hybridization technique" ;
+    NIFRID:synonym "MERFISH",
+        "multiplexed error robust FISH",
+        "multiplexed error robust fluorescence in situ hybridization",
+        "multiplexed error-robust FISH",
+        "multiplexed error-robust fluorescence in situ hybridization" .
+
+tech:microscopy a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:microscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "microscopy technique" ;
+    NIFRID:synonym "microscopy" .
+
+tech:MRI a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:MRIScanner ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:MRI_ImageProcessing ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:nuclearMagneticResonance ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:MRI ] ) ] ;
+    rdfs:label "magnetic resonance imaging" ;
+    NIFRID:synonym "MRI",
+        "nuclear magnetic resonance imaging" .
+
+tech:MRI_ImageProcessing a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasDirectInformationInput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:spatialFrequencyImageStack ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:contrast ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdS ;
+                        owl:someValuesFrom ilxtr:nonZero ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:227 ] ) ] ;
+    rdfs:label "magnetic resonance image processing" .
+
+tech:multiElectrodeEphys a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:multiElectrode ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:electrical ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom GO:0005615 ] ) ] ;
+    rdfs:label "multi electrode extracellular electrophysiology technique" ;
+    NIFRID:synonym "extracellular multi electrode technique" .
+
+tech:naming a owl:Class ;
+    rdfs:label "naming" ;
+    definition: "Naming is an assertional process that is orthogonal to measuring.Names may be assigned as a product of measurements, but the assignment of a name can only be based on aspects of the thing, the name can never be an aspect of the thing. Names may also be assigned based on aspects of the process that produced the thing, or the prvious state of the thing. For example a protein dissociated from its original cell/tissue no longer contains sufficient information to reconsturct where it came from based on any measurements that can be made on it beyond the species that it came from and maybe where the individual lived if there are enough atoms to do an isotope test.A cell on the other hand may very well have enough information in its RNA and DNA to allow for a bottom up assignment of a name based on its gene expression pattern." ;
+    rdfs:subClassOf ilxtr:technique .
+
+tech:opticalImaging a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:visibleLight ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "optical imaging" ;
+    NIFRID:synonym "light imaging",
+        "visible light imaging" ;
+    ilxtr:hasTempId HBP_MEM:0000013 .
+
+tech:patchClamp a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:patchElectrode ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:cellPatching ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:electrical ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:patchClamp ] ) ] ;
+    rdfs:label "patch clamp technique" ;
+    ilxtr:hasTempId HBP_MEM:0000017 .
+
+tech:perfusion a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:238 ] ) ] ;
+    rdfs:label "perfusion technique" .
+
+tech:poration a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                        owl:someValuesFrom asp:permeability ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:cellMembrane ] ) ] ;
+    rdfs:label "poration technique" ;
+    NIFRID:synonym "membrane poration technique",
+        "permeabilization technique" ;
+    definition: "a technique for making holes in things" .
+
+tech:positronEmissionImaging a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:positron ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom ilxtr:positron ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "positron emission imaging" .
+
+tech:precipitation a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom ilxtr:precipitate ] ) ] ;
+    rdfs:label "precipitation technique" .
+
+tech:probing a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasProbe ;
+                        owl:someValuesFrom owl:Thing ] ) ] ;
+    rdfs:label "probing technique" ;
+    definition: "Probing techniques attempt (intende) to change the state of a thing without changing how it is named. Hitting something with just enough light to excite but not to bleach would be one example, as would poking something with a non-pointy stick." .
+
+tech:rnaSeq a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:libraryPrep ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:informationArtifact ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:sequence ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryInput ;
+                        owl:someValuesFrom ilxtr:RNApolymer ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:rnaSeq ] ) ] ;
+    rdfs:label "RNA-seq" ;
+    NIFRID:synonym "RNAseq" .
+
+tech:scanningElectronMicroscopy a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom BIRNLEX:2044 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:detects ;
+                        owl:someValuesFrom CHEBI:10545 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:materialEntity ] ) ] ;
+    rdfs:label "scanning electron microscopy technique" ;
+    NIFRID:synonym "scanning electron microscopy",
+        "SEM" .
+
+tech:scSeq a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:sequencing ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryInput ;
+                        owl:someValuesFrom SAO:1813327414 ;
+                        owl:maxCardinality 1 ] ) ] ;
+    rdfs:label "single cell sequencing technique" ;
+    NIFRID:synonym "single cell sequencing" ;
+    owl:disjointWith tech:snSeq .
+
+tech:sectioning a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryOutput ;
+                        owl:someValuesFrom ilxtr:section ] ) ] ;
+    rdfs:label "sectioning technique" ;
+    NIFRID:synonym "sectioning" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ilxtr:hasDualInputTechnique ;
+            owl:someValuesFrom tech:destroying ] .
+
+tech:sedation a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom NCBITaxon:33208 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:behavioralActivity ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negative ] ) ] ;
+    rdfs:label "sedation technique" ;
+    NIFRID:synonym "sedation" ;
+    rdfs:comment "QUESTION: what is the difference between sedation and anaesthesia?" .
+
+tech:separating a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect_dAdT ;
+                        owl:someValuesFrom ilxtr:negativeNonZero ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                        owl:someValuesFrom asp:homogenaity ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom [ a owl:Restriction ;
+                                owl:onProperty hasPart: ;
+                                owl:someValuesFrom [ a owl:Restriction ;
+                                        owl:onProperty ilxtr:primaryParticipantIn ;
+                                        owl:someValuesFrom ilxtr:separationProcessPart ] ] ] ) ] ;
+    rdfs:label "separating technique" .
+
+tech:separation a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom [ a owl:Restriction ;
+                                owl:onProperty hasPart: ;
+                                owl:someValuesFrom [ a owl:Restriction ;
+                                        owl:onProperty ilxtr:primaryParticipantIn ;
+                                        owl:someValuesFrom ilxtr:separationProcessPart ] ] ] ) ] ;
+    rdfs:label "separation technique (old)" .
+
+tech:sequencing a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:sequencing ] ) ],
+        [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:informationArtifact ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:sequence ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryInput ;
+                        owl:someValuesFrom ilxtr:thingWithSequence ] ) ] ;
+    rdfs:label "sequencing technique" .
+
+tech:sharpElectrodeEphys a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:sharpElectrode ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:electrical ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom GO:0005622 ] ) ] ;
+    rdfs:label "sharp intracellular electrode technique" ;
+    NIFRID:synonym "sharp electrode technique" ;
+    ilxtr:hasTempId HBP_MEM:0000023 .
+
+tech:sharpElectrodeTechnique a owl:Class ;
+    owl:equivalentClass [ owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:sharpMicroPipette ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:cell ] ) ] ;
+    rdfs:label "sharp electrode technique" .
+
+tech:sigproc a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasDirectInformationInput ;
+                        owl:someValuesFrom ilxtr:timeSeries ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:timeSeries ] ) ] ;
+    rdfs:label "signal processing technique" ;
+    NIFRID:synonym "signal processing" .
+
+tech:singleElectrodeEphys a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:singleElectrode ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:electrical ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom GO:0005615 ] ) ] ;
+    rdfs:label "single electrode extracellular electrophysiology technique" ;
+    NIFRID:synonym "extracellular single electrode technique" ;
+    ilxtr:hasTempId HBP_MEM:0000019 .
+
+tech:smartSeq a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:SMARTSeqKit ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:rnaSeq ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom prot:SMARTSeq ] ) ] ;
+    rdfs:label "SMART-seq" ;
+    NIFRID:synonym "Smart-seq",
+        "SMART-Seq®",
+        "Switching Mechanism at 5' End of RNA Template sequencing" ;
+    rdfs:comment "This space is completely loony. See https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5449089/ for a review. This is also a great example of the conflation of protocol with technique." .
+
+tech:smFISH a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:fluorescentMolecule ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:ISH ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:40 ] ) ] ;
+    rdfs:label "single-molecule fluorescence in situ hybridization technique" ;
+    NIFRID:synonym "single molecule FISH",
+        "single molecule fluorescence in situ hybridization",
+        "single-molecule FISH",
+        "single-molecule fluorescence in situ hybridization",
+        "smFISH" .
+
+tech:snSeq a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:sequencing ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryInput ;
+                        owl:someValuesFrom GO:0005634 ;
+                        owl:maxCardinality 1 ] ) ] ;
+    rdfs:label "single nucleus sequencing technique" ;
+    NIFRID:synonym "single nucleus sequencing" .
+
+tech:stateBasedContrastEnhancement a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:183 ] ) ] ;
+    rdfs:label "state based contrast enhancement technique" .
+
+tech:statistics a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasDirectInformationInput ;
+                        owl:someValuesFrom ilxtr:informationEntity ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:informationEntity ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom ilxtr:statisticalAlgorithm ] ) ] ;
+    rdfs:label "statistical technique" .
+
+tech:stim_Magnetic a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:magnetic ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasProbe ;
+                        owl:someValuesFrom ilxtr:magneticField ] ) ] ;
+    rdfs:label "magnetic stimulation technique" .
+
+tech:surgical a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasPart: ;
+                        owl:someValuesFrom tech:cutting ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:279 ] ) ] ;
+    rdfs:label "surgical technique" ;
+    NIFRID:synonym "surgery" .
+
+tech:thermalporation a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    [ a owl:Class ;
+                        owl:intersectionOf (
+                                ilxtr:technique
+                                [ a owl:Restriction ;
+                                    owl:onProperty hasPart: ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                                            owl:someValuesFrom asp:temperature ] ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasPrimaryAspectActualized ;
+                                    owl:someValuesFrom asp:permeability ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasPrimaryParticipant ;
+                                    owl:someValuesFrom ilxtr:cellMembrane ] ) ] ) ] ;
+    rdfs:label "thermalporation technique" ;
+    NIFRID:synonym "heatshock",
+        "heatshock poration technique" .
+
+tech:tomography a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasDirectInformationInput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasInformationOutput ;
+                        owl:someValuesFrom ilxtr:image ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:isConstrainedBy ;
+                        owl:someValuesFrom ilxtr:radonTransform ] ) ] ;
+    rdfs:label "tomographic technique" ;
+    NIFRID:synonym "tomography" .
+
+tech:twoPhoton a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:twoPhotonMicroscope ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:360 ] ) ] ;
+    rdfs:label "two-photon microscopy technique" ;
+    NIFRID:synonym "two-photon microscopy" .
+
+tech:unfinished a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:temp ] ) ] ;
+    rdfs:label "Unfinished techniques" ;
+    NIFRID:synonym "incompletely modeled techniques" .
+
+tech:vClamp a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:recordingElectrode ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasConstrainingAspect ;
+                        owl:someValuesFrom asp:voltage ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryAspect ;
+                        owl:someValuesFrom asp:current ] ) ] ;
+    rdfs:label "voltage clamp technique" .
+
+tech:wholeCellPatch a owl:Class ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf (
+                    ilxtr:technique
+                    [ a owl:Restriction ;
+                        owl:onProperty hasInput: ;
+                        owl:someValuesFrom ilxtr:patchPipette ]
+                    [ a owl:Restriction ;
+                        owl:onProperty hasParticipant: ;
+                        owl:someValuesFrom GO:0005622 ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasPrimaryParticipant ;
+                        owl:someValuesFrom ilxtr:cellMembrane ]
+                    [ a owl:Restriction ;
+                        owl:onProperty ilxtr:hasSomething ;
+                        owl:someValuesFrom local:331 ] ) ] ;
+    rdfs:label "whole cell patch technique" .
 
 [] a owl:Class ;
     owl:equivalentClass [ a owl:Restriction ;
