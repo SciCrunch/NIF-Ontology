@@ -11,6 +11,7 @@
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix partOf: <http://purl.obolibrary.org/obo/BFO_0000050> .
 @prefix prot: <http://uri.interlex.org/tgbugs/uris/readable/protocol/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -23,8 +24,8 @@
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-helper.ttl> a owl:Ontology ;
     owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-core.ttl> ;
     rdfs:comment "helper for methods development" ;
-    owl:versionInfo "2020-05-05" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/e26380129c35c63ac3d0523d52a09bbd41291905/nifstd/nifstd_tools/methods/helper.py> .
+    owl:versionInfo "2020-05-08" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/682ff2c3f9a9a000acd17fcbf4c6f20ba66667bb/nifstd/nifstd_tools/methods/helper.py> .
 
 ### Object Properties
 
@@ -805,7 +806,7 @@ ilxtr:partOfSomePrimaryInput a owl:Class ;
     owl:equivalentClass [ owl:intersectionOf (
                     ilxtr:materialEntity
                     [ a owl:Restriction ;
-                        owl:onProperty BFO:0000050 ;
+                        owl:onProperty partOf: ;
                         owl:someValuesFrom [ a owl:Restriction ;
                                 owl:onProperty ilxtr:primaryInputIn ;
                                 owl:someValuesFrom ilxtr:technique ] ] ) ] .
@@ -845,7 +846,7 @@ ilxtr:physiologicalSystem a owl:Class ;
     owl:unionOf (
             NCBITaxon:1
             [ a owl:Restriction ;
-                owl:onProperty BFO:0000050 ;
+                owl:onProperty partOf: ;
                 owl:someValuesFrom NCBITaxon:1 ] ) .
 
 ilxtr:plasmidDNA a owl:Class ;
@@ -905,11 +906,11 @@ ilxtr:section a owl:Class ;
     owl:intersectionOf (
             ilxtr:partOfSomePrimaryInput
             [ a owl:Restriction ;
-                owl:onProperty BFO:0000050 ;
-                owl:someValuesFrom ilxtr:primaryInputOfThisInstanceOfTechnique ]
-            [ a owl:Restriction ;
                 owl:onProperty ilxtr:hasAspect ;
-                owl:someValuesFrom asp:flatness ] ) .
+                owl:someValuesFrom asp:flatness ]
+            [ a owl:Restriction ;
+                owl:onProperty partOf: ;
+                owl:someValuesFrom ilxtr:primaryInputOfThisInstanceOfTechnique ] ) .
 
 ilxtr:serialBlockfaceMicrotome a owl:Class ;
     rdfs:subClassOf ilxtr:microtome .
