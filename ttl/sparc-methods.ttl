@@ -1218,6 +1218,14 @@ sparc:CounterStaining a owl:Class ;
     rdfs:subClassOf sparc:Staining ;
     editorNote: "could not find in example protocols and data" .
 
+sparc:Dataset a owl:Class ;
+    definition: "The atomic unit of publication of a nested collection of files and folders. Within SPARC this also implies that the dataset should follow the SPARC Data Structure (SDS). Metadata may be shared between datasets but all metadata relevant to a the scientific content of the dataset must be contained inside of it so that it is at least minimally self describing." ;
+    rdfs:subClassOf sparc:Folder .
+
+sparc:DatasetContribution a owl:Class ;
+    definition: "This is a class that represents the specific roles and contributions made by a person to a specific dataset." ;
+    ilxtr:replaces TEMP:DatasetContributor .
+
 sparc:ElectricalAcquisition a owl:Class ;
     replacedBy: tech:ephysRecording ;
     rdfs:subClassOf sparc:Acquisition .
@@ -1266,6 +1274,15 @@ sparc:ExperimentOnTissueDerivatives a owl:Class ;
 sparc:Extraction a owl:Class ;
     replacedBy: tech:dissection ;
     rdfs:comment "at the moment the underlying definition of dissection is just that the technique has as a primary output some part of the primary input of the 'dual' technique" .
+
+sparc:File a owl:Class ;
+    definition: "An atomic unit of data that can be identified or addressed. Can be though of as a stream of known length." ;
+    rdfs:subClassOf sparc:Resource .
+
+sparc:Folder a owl:Class ;
+    definition: "Any identified collection of zero or more files or folders of arbitrary depth. This could also be called collection but I am trying to avoid using all the collection related terms as much as possible since the semantics are unclear and mostly we don't care." ;
+    rdfs:subClassOf sparc:Resource ;
+    editorNote: "This can be used with other types as needed to indicate some additional properties beyond the file system tree structure. For example I am explicitly not creating a sparc:Project class because determining the semantics of what is or is not a project with regards to arbitrary collections of datasets is simply not worth the effort. DANDI is envisioning something like a virtual dataset where parts are mixed, matched, combined, etc. and the provenance needed for that is far beyond what any top level assertion that a set of datasets came from the same \"project\" (whatever that means) could possibly entail. If we want to indicate that a folder corresponds to a bf:organization then we should just do that instead of trying to create new terms to capture ill defined concepts. The only exception to this is the dataset level because that a unit of identification and of publication that has special semantics that bridge across multiple systems." .
 
 sparc:FreezingVsChemicalFixation a owl:Class ;
     rdfs:subClassOf sparc:TissuePreparationForMicroscopy .
@@ -1316,6 +1333,9 @@ sparc:OrganismSubject a owl:Class ;
 
 sparc:Organization a owl:Class .
 
+sparc:Person a owl:Class ;
+    definition: "An agentous being of some variety, usually classified as such because they are participating in activities modeled by this ontology in some way." .
+
 sparc:Procedure a owl:Class ;
     replacedBy: ilxtr:technique .
 
@@ -1329,7 +1349,8 @@ sparc:RadiologcalAcquistion a owl:Class ;
 
 sparc:RadiologicalImagingProtocol a owl:Class .
 
-sparc:Researcher a owl:Class .
+sparc:Researcher a owl:Class ;
+    rdfs:subClassOf sparc:Person .
 
 sparc:Resource a owl:Class ;
     replacedBy: NLX:63400 ;
@@ -1431,4 +1452,4 @@ sparc:TranscriptomicsExperiment a owl:Class ;
             sparc:StemCellExperiment
             sparc:TissueExperiment ) .
 
-### Serialized using the pyontutils deterministic serializer v1.2.0
+### Serialized using the ttlser deterministic serializer v1.2.0
