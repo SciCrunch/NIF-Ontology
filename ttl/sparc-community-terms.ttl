@@ -3,6 +3,7 @@
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 @prefix EMAPA: <http://purl.obolibrary.org/obo/EMAPA_> .
 @prefix FMA: <http://purl.org/sig/ont/fma/fma> .
+@prefix ilx: <http://uri.interlex.org/> .
 @prefix ILX: <http://uri.interlex.org/base/ilx_> .
 @prefix ilx.anno.hasBroadSynonym: <http://uri.interlex.org/base/ilx_0737164> .
 @prefix ilx.anno.hasExactSynonym: <http://uri.interlex.org/base/ilx_0737161> .
@@ -28,8 +29,8 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://uri.interlex.org/sparc/ontologies/community-terms> a owl:Ontology ;
-    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/community-terms/version/1591686448.022882/community-terms> ;
-    owl:versionInfo "2020-06-09T00:07:28.022882" .
+    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/community-terms/version/1593475803.054923/community-terms> ;
+    owl:versionInfo "2020-06-29T17:10:03.054923" .
 
 ### Object Properties
 
@@ -93,14 +94,6 @@ ILX:0739272 a owl:ObjectProperty ;
     ilxtr:hasIlxId ILX:0739272 ;
     ilxtr:hasIlxPreferredId ILX:0739272 .
 
-ILX:0739292 a owl:ObjectProperty ;
-    rdfs:label "hasDefinitionSource" ;
-    definition: "source of definition" ;
-    ilxr:type ilx.type:relationship ;
-    ilxtr:hasExistingId ILX:0739292 ;
-    ilxtr:hasIlxId ILX:0739292 ;
-    ilxtr:hasIlxPreferredId ILX:0739292 .
-
 ### Annotation Properties
 
 ILX:0381449 a owl:AnnotationProperty ;
@@ -128,6 +121,14 @@ ILX:0739239 a owl:AnnotationProperty ;
     ilxtr:hasExistingId ILX:0739239 ;
     ilxtr:hasIlxId ILX:0739239 ;
     ilxtr:hasIlxPreferredId ILX:0739239 .
+
+ILX:0739292 a owl:AnnotationProperty ;
+    rdfs:label "hasDefinitionSource" ;
+    definition: "source of definition" ;
+    ilxr:type ilx.type:annotation ;
+    ilxtr:hasExistingId ILX:0739292 ;
+    ilxtr:hasIlxId ILX:0739292 ;
+    ilxtr:hasIlxPreferredId ILX:0739292 .
 
 ### Classes
 
@@ -298,10 +299,11 @@ EMAPA:36079 a owl:Class ;
 
 EMAPA:36080 a owl:Class ;
     rdfs:label "ureter junction of bladder trigone" ;
-    definition: "The anatomical junction between the ureter and the bladder trigone." ;
+    definition: "The anatomical junction between the ureter and the bladder trigone. This junction is located at the upper right and left angles of the bladder trigone on the posterior aspect of the organ where the ureters merge with the bladder wall." ;
     rdfs:subClassOf FMA:305751 ;
     ILX:0739272 FMA:9704,
         FMA:15910 ;
+    ILX:0739292 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36080,
         ILX:0738403 ;
@@ -311,11 +313,12 @@ EMAPA:36080 a owl:Class ;
     ilxtr:includedForSPARCUnder FMA:15900 .
 
 EMAPA:36081 a owl:Class ;
-    rdfs:label "urethra junction of bladder trigone" ;
-    definition: "The anatomical junction between the urethra and the bladder trigone." ;
+    rdfs:label "urethra junction with bladder trigone" ;
+    definition: "The anatomical junction between the urethra and the bladder trigone. This junction is located at the apex of the bladder trigone where the urethra forms." ;
     rdfs:subClassOf FMA:305751 ;
     ILX:0739272 FMA:15910,
         FMA:19667 ;
+    ILX:0739292 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36081,
         ILX:0738411 ;
@@ -326,10 +329,11 @@ EMAPA:36081 a owl:Class ;
 
 EMAPA:36084 a owl:Class ;
     rdfs:label "urethra junction of ventral bladder neck" ;
-    definition: "The anatomical junction between the urethra and the ventral bladder neck." ;
+    definition: "The anatomical junction between the urethra and ventral bladder neck. This junction is in the region at the inferior aspect of the bladder where the the urethra begins." ;
     rdfs:subClassOf FMA:305751 ;
     ILX:0739272 EMAPA:36079,
         FMA:19667 ;
+    ILX:0739292 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36084,
         ILX:0738410 ;
@@ -410,6 +414,7 @@ FMA:5898 a owl:Class ;
 
 FMA:5915 a owl:Class ;
     rdfs:label "myelinated nerve fiber" ;
+    NIFRID:synonym "[]" ;
     definition: "Axons of neurons encased in a lipoproteinaceous material called myelin. (MeSH)" ;
     ilx.hasDbXref: "FMA:5915",
         "GAID:745",
@@ -443,6 +448,7 @@ FMA:6037 a owl:Class ;
         "Thoracic spinal nerve 1" ;
     definition: "The thoracic spinal nerve 1 (T1) is a spinal nerve of the thoracic segment.[1]. It originates from the spinal column from below the thoracic vertebra 1 (T1). (from Wikipedia)" ;
     rdfs:subClassOf FMA:5860 ;
+    <fma:synonym> "First thoracic spinal nerve" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6037,
         ILX:0738397 ;
@@ -457,11 +463,13 @@ FMA:6169 a owl:Class ;
         "Thoracic spinal nerve 2" ;
     definition: "The thoracic spinal nerve 2 (T2) is a spinal nerve of the thoracic segment.[1]. It originates from the spinal column from below the thoracic vertebra 2 (T2). (from Wikipedia)" ;
     rdfs:subClassOf FMA:5860 ;
+    <fma:synonym> "Second thoracic spinal nerve" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6169,
         ILX:0739243 ;
     ilxtr:hasExternalId FMA:6169 ;
-    ilxtr:hasIlxId ILX:0739243 .
+    ilxtr:hasIlxId ILX:0739243 ;
+    ilxtr:hasIlxPreferredId FMA:6169 .
 
 FMA:6171 a owl:Class ;
     rdfs:label "Third thoracic nerve" ;
@@ -469,11 +477,13 @@ FMA:6171 a owl:Class ;
         "Thoracic spinal nerve 3" ;
     definition: "The thoracic spinal nerve 3 (T3) is a spinal nerve of the thoracic segment. It originates from the spinal column from below the thoracic vertebra 3 (T3). (from Wikipedia)." ;
     rdfs:subClassOf FMA:5860 ;
+    <fma:synonym> "Third thoracic spinal nerve" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6171,
         ILX:0739246 ;
     ilxtr:hasExternalId FMA:6171 ;
-    ilxtr:hasIlxId ILX:0739246 .
+    ilxtr:hasIlxId ILX:0739246 ;
+    ilxtr:hasIlxPreferredId FMA:6171 .
 
 FMA:6262 a owl:Class ;
     rdfs:label "thoracic sympathetic nerve trunk" ;
@@ -521,11 +531,14 @@ FMA:6449 a owl:Class ;
     NIFRID:synonym "C8 Nerve ",
         "Eighth cervical nerve" ;
     definition: "The cervical spinal nerve 8 (C8) is a spinal nerve of the cervical segment.[1] It originates from the spinal column from below the cervical vertebra 7 (C7) From Wikipedia" ;
+    <fma:synonym> "C8 spinal nerve",
+        "Eighth cervical spinal nerve" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6449,
         ILX:0739245 ;
     ilxtr:hasExternalId FMA:6449 ;
-    ilxtr:hasIlxId ILX:0739245 .
+    ilxtr:hasIlxId ILX:0739245 ;
+    ilxtr:hasIlxPreferredId FMA:6449 .
 
 FMA:6469 a owl:Class ;
     rdfs:label "cervicothoracic ganglion" ;
@@ -544,10 +557,12 @@ FMA:6469 a owl:Class ;
         <http://en.wikipedia.org/wiki/Cervicothoracic_ganglion>,
         <http://www.snomedbrowser.com/Codes/Details/181101006> ;
     ilxr:type ilx.type:term ;
-    ilxtr:hasExistingId FMA:6469,
+    ilxtr:hasExistingId EMAPA:18226,
+        FMA:6469,
         ILX:0733799,
         UBERON:0002441 ;
-    ilxtr:hasExternalId FMA:6469,
+    ilxtr:hasExternalId EMAPA:18226,
+        FMA:6469,
         UBERON:0002441 ;
     ilxtr:hasIlxId ILX:0733799 ;
     ilxtr:hasIlxPreferredId UBERON:0002441 ;
@@ -571,12 +586,14 @@ FMA:6582 a owl:Class ;
     rdfs:label "Ansa subclavia" ;
     NIFRID:synonym "Subclavian loop" ;
     definition: "A nerve cord that connects the middle cervical and inferior cervical sympathetic ganglia, forming a loop around the subclavian artery (from PMID: 18828096)" ;
+    <fma:synonym> "Nerve of Vieussens" ;
     ILX:0381449 "PMID: 18828096" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6582,
         ILX:0739241 ;
     ilxtr:hasExternalId FMA:6582 ;
-    ilxtr:hasIlxId ILX:0739241 .
+    ilxtr:hasIlxId ILX:0739241 ;
+    ilxtr:hasIlxPreferredId FMA:6582 .
 
 FMA:6628 a owl:Class ;
     rdfs:label "cardiac nerve plexus" ;
@@ -682,6 +699,7 @@ FMA:7471 a owl:Class ;
     rdfs:label "tracheal mucosa" ;
     NIFRID:synonym "Mucosa of trachea " ;
     definition: "A mucosa that is part of a respiratory airway." ;
+    <fma:synonym> "Tracheal mucosa" ;
     ilx.anno.hasExactSynonym: "mucosa of organ of trachea",
         "mucosa of organ of windpipe",
         "mucosa of trachea",
@@ -705,6 +723,7 @@ FMA:7471 a owl:Class ;
         "FMA:7471",
         <http://www.snomedbrowser.com/Codes/Details/660006> ;
     ILX:0738303 "36381" ;
+    ILX:0739292 UBERON:0000379 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:7471,
         ILX:0724678,
@@ -837,7 +856,9 @@ FMA:9903 a owl:Class ;
         FMA:68867,
         FMA:68868,
         FMA:68869,
+        FMA:68870,
         FMA:68871,
+        FMA:73915,
         FMA:74019,
         ILX:0738420,
         ILX:0738421,
@@ -861,6 +882,11 @@ FMA:9903 a owl:Class ;
         ILX:0739269,
         ILX:0739271,
         ILX:0739274,
+        ILX:0739301,
+        ILX:0739302,
+        ILX:0739303,
+        ILX:0739304,
+        ILX:0739305,
         UBERON:0011776 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1111,
@@ -871,7 +897,9 @@ FMA:9903 a owl:Class ;
         FMA:9903,
         UBERON:0000010 ;
     ilxtr:hasIlxId ILX:0108735 ;
-    ilxtr:hasIlxPreferredId UBERON:0000010 .
+    ilxtr:hasIlxPreferredId UBERON:0000010 ;
+    oboInOwl:hasExactSynonym "pars peripherica",
+        "systema nervosum periphericum" .
 
 FMA:10951 a owl:Class ;
     rdfs:label "posterior vena cava" ;
@@ -928,42 +956,52 @@ FMA:15042 a owl:Class ;
     rdfs:label "taenia mesocolica" ;
     NIFRID:synonym "taenia mesocolica of the taenia coli",
         "tenia mesocolica" ;
-    definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon. This tenia coli is named by reference to its topographical situation in relation to the transverse colon. It is situated on the posterosuperior surface of the transverse colon at the line of attachment of the transverse mesocolon. This relationship is not maintained on the ascending and descending portions but continuity of the tenia coli allows it to be traced along the ascending and descending colon from the transverse colon. (Meyers MA, Volberg F, Katzen B, Abbott G. Haustral anatomy and pathology: a new look. II. Roentgen interpretation of pathological alterations. Radiology. 1973;108(3):505‐512. doi:10.1148/108.3.505;  Krstić, R. V. (1991). Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag.)" ;
+    definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon. This tenia coli is named by reference to its topographical situation in relation to the transverse colon. It is situated on the posterosuperior surface of the transverse colon at the line of attachment of the transverse mesocolon. This relationship is not maintained on the ascending and descending portions but continuity of the tenia coli allows it to be traced along the ascending and descending colon from the transverse colon. (Meyers MA, Volberg F, Katzen B, Abbott G. Haustral anatomy and pathology: a new look. II. Roentgen interpretation of pathological alterations." ;
     rdfs:subClassOf FMA:15041 ;
+    ILX:0381449 "doi:10.1148/108.3.505" ;
+    ILX:0739292 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:15042,
         ILX:0739284 ;
     ilxtr:hasExternalId FMA:15042 ;
-    ilxtr:hasIlxId ILX:0739284 .
+    ilxtr:hasIlxId ILX:0739284 ;
+    ilxtr:hasIlxPreferredId FMA:15042 .
 
 FMA:15043 a owl:Class ;
     rdfs:label "taenia omentalis" ;
     NIFRID:synonym "taenia omentalis of the taenia coli",
         "tenia omentalis" ;
-    definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon.  This tenia coli is named by reference to its topographical situation in relation to the transverse colon. It runs along the anterosuperior surface of the transverse colon and is in relation to the line of attachment of the greater omentum extending inferiorly, and of the gastrocolic ligament above. This relationship is not maintained on the ascending and descending portions but the continuity of the tenia coli allows it to be traced along the ascending and descending colon from the transverse colon. (Meyers MA, Volberg F, Katzen B, Abbott G. Haustral anatomy and pathology: a new look. II. Roentgen interpretation of pathological alterations. Radiology. 1973;108(3):505‐512. doi:10.1148/108.3.505; Krstić, R. V. (1991). Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag.)" ;
+    definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon.  This tenia coli is named by reference to its topographical situation in relation to the transverse colon. It runs along the anterosuperior surface of the transverse colon and is in relation to the line of attachment of the greater omentum extending inferiorly, and of the gastrocolic ligament above. This relationship is not maintained on the ascending and descending portions but the continuity of the tenia coli allows it to be traced along the ascending and descending colon from the transverse colon. (Meyers MA, Volberg F, Katzen B, Abbott G. Haustral anatomy and pathology: a new look. II. Roentgen interpretation of pathological alterations." ;
     rdfs:subClassOf FMA:15041 ;
+    ILX:0381449 "doi:10.1148/108.3.505" ;
+    ILX:0739292 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:15043,
         ILX:0739286 ;
     ilxtr:hasExternalId FMA:15043 ;
-    ilxtr:hasIlxId ILX:0739286 .
+    ilxtr:hasIlxId ILX:0739286 ;
+    ilxtr:hasIlxPreferredId FMA:15043 .
 
 FMA:15044 a owl:Class ;
     rdfs:label "taenia libera" ;
     NIFRID:synonym "free taenia",
         "taenia libera of the taenia coli",
         "tenia libera" ;
-    definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon.  This tenia coli is named by reference to its topographical situation in relation to the transverse colon.  It is the remaining free tenia coli that is not related to any mesenteric or omental attachment and is found on the posteroinferior aspect of the transverse colon. This relationship is not maintained on the ascending and descending portions but the continuity of the teniac coli allows it to be traced along the ascending and descending colon from the transverse colon. (Meyers MA, Volberg F, Katzen B, Abbott G. Haustral anatomy and pathology: a new look. II. Roentgen interpretation of pathological alterations. Radiology. 1973;108(3):505‐512. doi:10.1148/108.3.505; Krstić, R. V. (1991). Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag.)" ;
+    definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon.  This tenia coli is named by reference to its topographical situation in relation to the transverse colon.  It is the remaining free tenia coli that is not related to any mesenteric or omental attachment and is found on the posteroinferior aspect of the transverse colon. This relationship is not maintained on the ascending and descending portions but the continuity of the teniac coli allows it to be traced along the ascending and descending colon from the transverse colon." ;
     rdfs:subClassOf FMA:15041 ;
+    ILX:0381449 "doi:10.1148/108.3.505" ;
+    ILX:0739292 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:15044,
         ILX:0739285 ;
     ilxtr:hasExternalId FMA:15044 ;
-    ilxtr:hasIlxId ILX:0739285 .
+    ilxtr:hasIlxId ILX:0739285 ;
+    ilxtr:hasIlxPreferredId FMA:15044 .
 
 FMA:15897 a owl:Class ;
     rdfs:label "urothelium of ureter" ;
     definition: "The luminal epithelium of the tube that conducts the urine from the renal pelvis to the bladder[MP]" ;
+    <fma:synonym> "Urothelium of ureter" ;
     ilx.anno.hasExactSynonym: "transitional epithelium of ureter",
         "ureter transitional epithelium",
         "ureter urothelium" ;
@@ -1022,6 +1060,7 @@ FMA:15900 a owl:Class ;
         EMAPA:36080,
         EMAPA:36081,
         EMAPA:36084,
+        FMA:15900,
         FMA:15936,
         ILX:0739248,
         ILX:0739249,
@@ -1031,6 +1070,7 @@ FMA:15900 a owl:Class ;
         ILX:0739254,
         ILX:0739255,
         ILX:0739257,
+        ILX:0739276,
         ILX:0739278,
         ILX:0739279,
         ILX:0739280,
@@ -1044,6 +1084,7 @@ FMA:15900 a owl:Class ;
         UBERON:0001255 ;
     ilxtr:hasIlxId ILX:0735377 ;
     ilxtr:hasIlxPreferredId UBERON:0001255 ;
+    ilxtr:includedForSPARCUnder FMA:15900 ;
     oboInOwl:hasBroadSynonym "bladder" ;
     oboInOwl:hasExactSynonym "vesica urinaria" ;
     oboInOwl:hasRelatedSynonym "urocyst",
@@ -1128,6 +1169,7 @@ FMA:15936 a owl:Class ;
 
 FMA:17873 a owl:Class ;
     rdfs:label "lumen of neck of urinary bladder" ;
+    <fma:synonym> "Cavity of neck of urinary bladder" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:17873,
         ILX:0739256 ;
@@ -1260,6 +1302,7 @@ FMA:21118 a owl:Class ;
 
 FMA:45659 a owl:Class ;
     rdfs:label "lower urinary tract" ;
+    NIFRID:synonym "[]" ;
     definition: "Subdivision of urinary system which consists of the urinary bladder and the urethra." ;
     ilx.hasDbXref: "FMA:45659",
         "galen:LowerUrinaryTract",
@@ -1285,7 +1328,8 @@ FMA:45659 a owl:Class ;
         ILX:0739260,
         ILX:0739261,
         ILX:0739282,
-        ILX:0739283 ;
+        ILX:0739283,
+        ILX:0739306 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:45659,
         ILX:0725452,
@@ -1365,7 +1409,9 @@ FMA:62421 a owl:Class ;
         FMA:62421,
         UBERON:0006457 ;
     ilxtr:hasIlxId ILX:0104262 ;
-    ilxtr:hasIlxPreferredId UBERON:0006457 .
+    ilxtr:hasIlxPreferredId UBERON:0006457 ;
+    oboInOwl:hasExactSynonym "first thoracic spinal cord segment",
+        "t1 segment" .
 
 FMA:62422 a owl:Class ;
     rdfs:label "Second thoracic spinal cord segment" ;
@@ -1389,7 +1435,9 @@ FMA:62422 a owl:Class ;
         FMA:62422,
         UBERON:0006458 ;
     ilxtr:hasIlxId ILX:0110433 ;
-    ilxtr:hasIlxPreferredId UBERON:0006458 .
+    ilxtr:hasIlxPreferredId UBERON:0006458 ;
+    oboInOwl:hasExactSynonym "second thoracic spinal cord segment",
+        "t2 segment" .
 
 FMA:62980 a owl:Class ;
     rdfs:label "Schwann cell nucleus" ;
@@ -1454,7 +1502,9 @@ FMA:68862 a owl:Class ;
         UBERON:0006118 ;
     ilxtr:hasIlxId ILX:0105978 ;
     ilxtr:hasIlxPreferredId UBERON:0006118 ;
-    ilxtr:includedForSPARCUnder FMA:9903 .
+    ilxtr:includedForSPARCUnder FMA:9903 ;
+    oboInOwl:hasExactSynonym "lamina i of gray matter of spinal cord",
+        "lamina spinalis i" .
 
 FMA:68864 a owl:Class ;
     rdfs:label "lamina III of gray matter of spinal cord" ;
@@ -1651,9 +1701,27 @@ FMA:68869 a owl:Class ;
         "lamina VIII",
         "Rexed's lamina VIII" .
 
+FMA:68870 a owl:Class ;
+    rdfs:label "lamina IX of gray matter of spinal cord" ;
+    ilx.anno.hasExactSynonym: "rexed lamina IX",
+        "spinal lamina IX" ;
+    ilx.hasDbXref: "FMA:68870" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:68870,
+        ILX:0733130,
+        UBERON:0016580 ;
+    ilxtr:hasExternalId FMA:68870,
+        UBERON:0016580 ;
+    ilxtr:hasIlxId ILX:0733130 ;
+    ilxtr:hasIlxPreferredId UBERON:0016580 ;
+    ilxtr:includedForSPARCUnder FMA:9903 ;
+    oboInOwl:hasExactSynonym "rexed lamina IX",
+        "spinal lamina IX" .
+
 FMA:68871 a owl:Class ;
     rdfs:label "Spinal cord gray commissure" ;
     NIFRID:synonym "lamina X of gray matter of spinal cord " ;
+    definition: "the band of grey substance spanning the midline of the spinal cord that surrounds the central canal" ;
     rdfs:subClassOf UBERON:0001948 ;
     ilx.anno.hasExactSynonym: "area spinalis X",
         "gray commissure of spinal cord",
@@ -1704,7 +1772,29 @@ FMA:68871 a owl:Class ;
         UBERON:0004677 ;
     ilxtr:hasIlxId ILX:0110919 ;
     ilxtr:hasIlxPreferredId UBERON:0004677 ;
-    ilxtr:includedForSPARCUnder FMA:9903 .
+    ilxtr:includedForSPARCUnder FMA:9903 ;
+    oboInOwl:hasExactSynonym "area spinalis X",
+        "gray commissure of spinal cord",
+        "lamina X",
+        "rexed lamina X",
+        "spinal area X",
+        "spinal cord gray commissure",
+        "spinal cord grey commissure",
+        "spinal lamina X" ;
+    oboInOwl:hasRelatedSynonym "central gelatinous substance",
+        "central glial substance",
+        "commissura grisea anaterior medullae spinalis",
+        "commissura grisea posterior medulla spinalis",
+        "grey commissure",
+        "grey commissure of spinal cord",
+        "lamina 10",
+        "lamina spinalis X",
+        "lamina X",
+        "Rexed's lamina X",
+        "substantia gelatinosa centralis",
+        "substantia gelatinosa spinalis",
+        "substantia gelationsa centralis",
+        "substantia gliosa (spinalis)" .
 
 FMA:71169 a owl:Class ;
     rdfs:label "Third thoracic spinal cord segment" ;
@@ -1728,10 +1818,12 @@ FMA:71169 a owl:Class ;
         FMA:71169,
         UBERON:0006459 ;
     ilxtr:hasIlxId ILX:0111706 ;
-    ilxtr:hasIlxPreferredId UBERON:0006459 .
+    ilxtr:hasIlxPreferredId UBERON:0006459 ;
+    oboInOwl:hasExactSynonym "t3 segment",
+        "third thoracic spinal cord segment" .
 
 FMA:71170 a owl:Class ;
-    rdfs:label "Forth thoracic spinal cord segment" ;
+    rdfs:label "Fourth thoracic spinal cord segment" ;
     NIFRID:synonym "T4 spinal cord segment" ;
     rdfs:subClassOf FMA:256655 ;
     ilx.anno.hasExactSynonym: "T4 segment",
@@ -1751,7 +1843,8 @@ FMA:71170 a owl:Class ;
         FMA:71170,
         UBERON:0006452 ;
     ilxtr:hasIlxId ILX:0104370 ;
-    ilxtr:hasIlxPreferredId UBERON:0006452 .
+    ilxtr:hasIlxPreferredId UBERON:0006452 ;
+    oboInOwl:hasExactSynonym "T4 segment" .
 
 FMA:71171 a owl:Class ;
     rdfs:label "Fifth thoracic spinal cord segment" ;
@@ -1775,7 +1868,9 @@ FMA:71171 a owl:Class ;
         FMA:71171,
         UBERON:0006453 ;
     ilxtr:hasIlxId ILX:0104222 ;
-    ilxtr:hasIlxPreferredId UBERON:0006453 .
+    ilxtr:hasIlxPreferredId UBERON:0006453 ;
+    oboInOwl:hasExactSynonym "fifth thoracic spinal cord segment",
+        "t5 segment" .
 
 FMA:71172 a owl:Class ;
     rdfs:label "Sixth thoracic spinal cord segment" ;
@@ -1799,7 +1894,9 @@ FMA:71172 a owl:Class ;
         FMA:71172,
         UBERON:0006454 ;
     ilxtr:hasIlxId ILX:0110653 ;
-    ilxtr:hasIlxPreferredId UBERON:0006454 .
+    ilxtr:hasIlxPreferredId UBERON:0006454 ;
+    oboInOwl:hasExactSynonym "sixth thoracic spinal cord segment",
+        "t6 segment" .
 
 FMA:71173 a owl:Class ;
     rdfs:label "Seventh thoracic spinal cord segment" ;
@@ -1823,7 +1920,9 @@ FMA:71173 a owl:Class ;
         FMA:71173,
         UBERON:0006455 ;
     ilxtr:hasIlxId ILX:0110587 ;
-    ilxtr:hasIlxPreferredId UBERON:0006455 .
+    ilxtr:hasIlxPreferredId UBERON:0006455 ;
+    oboInOwl:hasExactSynonym "seventh thoracic spinal cord segment",
+        "t7 segment" .
 
 FMA:71174 a owl:Class ;
     rdfs:label "Eighth thoracic spinal cord segment" ;
@@ -1847,7 +1946,9 @@ FMA:71174 a owl:Class ;
         FMA:71174,
         UBERON:0006456 ;
     ilxtr:hasIlxId ILX:0103688 ;
-    ilxtr:hasIlxPreferredId UBERON:0006456 .
+    ilxtr:hasIlxPreferredId UBERON:0006456 ;
+    oboInOwl:hasExactSynonym "eighth thoracic spinal cord segment",
+        "t8 segment" .
 
 FMA:71175 a owl:Class ;
     rdfs:label "Ninth thoracic spinal cord segment" ;
@@ -1871,7 +1972,9 @@ FMA:71175 a owl:Class ;
         FMA:71175,
         UBERON:0006465 ;
     ilxtr:hasIlxId ILX:0107599 ;
-    ilxtr:hasIlxPreferredId UBERON:0006465 .
+    ilxtr:hasIlxPreferredId UBERON:0006465 ;
+    oboInOwl:hasExactSynonym "ninth thoracic spinal cord segment",
+        "t9 segment" .
 
 FMA:71176 a owl:Class ;
     rdfs:label "Tenth thoracic spinal cord segment" ;
@@ -1895,7 +1998,9 @@ FMA:71176 a owl:Class ;
         FMA:71176,
         UBERON:0006466 ;
     ilxtr:hasIlxId ILX:0111609 ;
-    ilxtr:hasIlxPreferredId UBERON:0006466 .
+    ilxtr:hasIlxPreferredId UBERON:0006466 ;
+    oboInOwl:hasExactSynonym "t10 segment",
+        "tenth thoracic spinal cord segment" .
 
 FMA:71177 a owl:Class ;
     rdfs:label "Eleventh thoracic spinal cord segment" ;
@@ -1919,7 +2024,9 @@ FMA:71177 a owl:Class ;
         FMA:71177,
         UBERON:0006467 ;
     ilxtr:hasIlxId ILX:0103732 ;
-    ilxtr:hasIlxPreferredId UBERON:0006467 .
+    ilxtr:hasIlxPreferredId UBERON:0006467 ;
+    oboInOwl:hasExactSynonym "eleventh thoracic spinal cord segment",
+        "t11 segment" .
 
 FMA:71178 a owl:Class ;
     rdfs:label "Twelfth thoracic spinal cord segment" ;
@@ -1943,11 +2050,14 @@ FMA:71178 a owl:Class ;
         FMA:71178,
         UBERON:0006468 ;
     ilxtr:hasIlxId ILX:0112074 ;
-    ilxtr:hasIlxPreferredId UBERON:0006468 .
+    ilxtr:hasIlxPreferredId UBERON:0006468 ;
+    oboInOwl:hasExactSynonym "t12 segment",
+        "twelfth thoracic spinal cord segment" .
 
 FMA:71179 a owl:Class ;
     rdfs:label "First cervical spinal cord segment" ;
     NIFRID:synonym "C1 spinal cord segment" ;
+    definition: "The segment of the spinal cord that corresponds to the first cervical vertebra in most mammals." ;
     rdfs:subClassOf FMA:256653 ;
     ilx.anno.hasExactSynonym: "C1 cervical spinal cord",
         "C1 segment",
@@ -1968,11 +2078,15 @@ FMA:71179 a owl:Class ;
         FMA:71179,
         UBERON:0006469 ;
     ilxtr:hasIlxId ILX:0104252 ;
-    ilxtr:hasIlxPreferredId UBERON:0006469 .
+    ilxtr:hasIlxPreferredId UBERON:0006469 ;
+    oboInOwl:hasExactSynonym "C1 cervical spinal cord",
+        "C1 segment",
+        "first cervical spinal cord segment" .
 
 FMA:71180 a owl:Class ;
     rdfs:label "Second cervical spinal cord segment" ;
     NIFRID:synonym "C2 spinal cord segment" ;
+    definition: "The segment of the spinal cord that corresponds to the second cervical vertebra in most mammals." ;
     rdfs:subClassOf FMA:256653 ;
     ilx.anno.hasExactSynonym: "C2 segment",
         "C2 spinal cord segment",
@@ -1992,11 +2106,14 @@ FMA:71180 a owl:Class ;
         FMA:71180,
         UBERON:0006489 ;
     ilxtr:hasIlxId ILX:0110427 ;
-    ilxtr:hasIlxPreferredId UBERON:0006489 .
+    ilxtr:hasIlxPreferredId UBERON:0006489 ;
+    oboInOwl:hasExactSynonym "C2 segment",
+        "second cervical spinal cord segment" .
 
 FMA:71181 a owl:Class ;
     rdfs:label "Third cervical spinal cord segment" ;
     NIFRID:synonym "C3 spinal cord segment" ;
+    definition: "The segment of the spinal cord that corresponds to the third cervical vertebra in most mammals." ;
     rdfs:subClassOf FMA:256653 ;
     ilx.anno.hasExactSynonym: "C3 segment",
         "C3 spinal cord segment",
@@ -2016,11 +2133,14 @@ FMA:71181 a owl:Class ;
         FMA:71181,
         UBERON:0006488 ;
     ilxtr:hasIlxId ILX:0111700 ;
-    ilxtr:hasIlxPreferredId UBERON:0006488 .
+    ilxtr:hasIlxPreferredId UBERON:0006488 ;
+    oboInOwl:hasExactSynonym "C3 segment",
+        "third cervical spinal cord segment" .
 
 FMA:71182 a owl:Class ;
     rdfs:label "Forth cervical spinal cord segment" ;
     NIFRID:synonym "C4 spinal cord segment" ;
+    definition: "The segment of the spinal cord that corresponds to the fourth cervical vertebra in most mammals." ;
     rdfs:subClassOf FMA:256653 ;
     ilx.anno.hasExactSynonym: "C4 segment",
         "C4 spinal cord segment",
@@ -2040,11 +2160,14 @@ FMA:71182 a owl:Class ;
         FMA:71182,
         UBERON:0006490 ;
     ilxtr:hasIlxId ILX:0104364 ;
-    ilxtr:hasIlxPreferredId UBERON:0006490 .
+    ilxtr:hasIlxPreferredId UBERON:0006490 ;
+    oboInOwl:hasExactSynonym "C4 segment",
+        "forth cervical spinal cord segment" .
 
 FMA:71183 a owl:Class ;
     rdfs:label "Fifth cervical spinal cord segment" ;
     NIFRID:synonym "C5 spinal cord segment" ;
+    definition: "The segment of the spinal cord that corresponds to the fifth cervical vertebra in most mammals." ;
     rdfs:subClassOf FMA:256653 ;
     ilx.anno.hasExactSynonym: "C5 segment",
         "C5 spinal cord segment",
@@ -2064,11 +2187,14 @@ FMA:71183 a owl:Class ;
         FMA:71183,
         UBERON:0006491 ;
     ilxtr:hasIlxId ILX:0104216 ;
-    ilxtr:hasIlxPreferredId UBERON:0006491 .
+    ilxtr:hasIlxPreferredId UBERON:0006491 ;
+    oboInOwl:hasExactSynonym "C5 segment",
+        "fifth cervical spinal cord segment" .
 
 FMA:71184 a owl:Class ;
     rdfs:label "Sixth cervical spinal cord segment" ;
     NIFRID:synonym "C6 spinal cord segment" ;
+    definition: "The segment of the spinal cord that corresponds to the sixth cervical vertebra in most mammals." ;
     rdfs:subClassOf FMA:256653 ;
     ilx.anno.hasExactSynonym: "C6 segment",
         "C6 spinal cord segment",
@@ -2088,11 +2214,14 @@ FMA:71184 a owl:Class ;
         FMA:71184,
         UBERON:0006492 ;
     ilxtr:hasIlxId ILX:0110651 ;
-    ilxtr:hasIlxPreferredId UBERON:0006492 .
+    ilxtr:hasIlxPreferredId UBERON:0006492 ;
+    oboInOwl:hasExactSynonym "C6 segment",
+        "sixth cervical spinal cord segment" .
 
 FMA:71185 a owl:Class ;
     rdfs:label "Seventh cervical spinal cord segment" ;
     NIFRID:synonym "C7 spinal cord segment" ;
+    definition: "The segment of the spinal cord that corresponds to the seventh cervical vertebra in most mammals." ;
     rdfs:subClassOf FMA:256653 ;
     ilx.anno.hasExactSynonym: "C7 segment",
         "C7 spinal cord segment",
@@ -2112,7 +2241,9 @@ FMA:71185 a owl:Class ;
         FMA:71185,
         UBERON:0006493 ;
     ilxtr:hasIlxId ILX:0110585 ;
-    ilxtr:hasIlxPreferredId UBERON:0006493 .
+    ilxtr:hasIlxPreferredId UBERON:0006493 ;
+    oboInOwl:hasExactSynonym "C7 segment",
+        "seventh cervical spinal cord segment" .
 
 FMA:71186 a owl:Class ;
     rdfs:label "Eighth cervical spinal cord segment" ;
@@ -2136,7 +2267,9 @@ FMA:71186 a owl:Class ;
         FMA:71186,
         UBERON:0006470 ;
     ilxtr:hasIlxId ILX:0103686 ;
-    ilxtr:hasIlxPreferredId UBERON:0006470 .
+    ilxtr:hasIlxPreferredId UBERON:0006470 ;
+    oboInOwl:hasExactSynonym "C8 segment",
+        "eighth cervical spinal cord segment" .
 
 FMA:71187 a owl:Class ;
     rdfs:label "First lumbar spinal cord segment" ;
@@ -2160,7 +2293,9 @@ FMA:71187 a owl:Class ;
         FMA:71187,
         UBERON:0006448 ;
     ilxtr:hasIlxId ILX:0104254 ;
-    ilxtr:hasIlxPreferredId UBERON:0006448 .
+    ilxtr:hasIlxPreferredId UBERON:0006448 ;
+    oboInOwl:hasExactSynonym "first lumbar spinal cord segment",
+        "L1 segment" .
 
 FMA:71188 a owl:Class ;
     rdfs:label "Second lumbar spinal cord segment" ;
@@ -2184,7 +2319,9 @@ FMA:71188 a owl:Class ;
         FMA:71188,
         UBERON:0006450 ;
     ilxtr:hasIlxId ILX:0110429 ;
-    ilxtr:hasIlxPreferredId UBERON:0006450 .
+    ilxtr:hasIlxPreferredId UBERON:0006450 ;
+    oboInOwl:hasExactSynonym "l2 segment",
+        "second lumbar spinal cord segment" .
 
 FMA:71189 a owl:Class ;
     rdfs:label "Third lumbar spinal cord segment" ;
@@ -2208,7 +2345,9 @@ FMA:71189 a owl:Class ;
         FMA:71189,
         UBERON:0006449 ;
     ilxtr:hasIlxId ILX:0111702 ;
-    ilxtr:hasIlxPreferredId UBERON:0006449 .
+    ilxtr:hasIlxPreferredId UBERON:0006449 ;
+    oboInOwl:hasExactSynonym "L3 segment",
+        "third lumbar spinal cord segment" .
 
 FMA:71190 a owl:Class ;
     rdfs:label "Forth lumbar spinal cord segment" ;
@@ -2231,7 +2370,8 @@ FMA:71190 a owl:Class ;
         FMA:71190,
         UBERON:0006451 ;
     ilxtr:hasIlxId ILX:0104366 ;
-    ilxtr:hasIlxPreferredId UBERON:0006451 .
+    ilxtr:hasIlxPreferredId UBERON:0006451 ;
+    oboInOwl:hasExactSynonym "L4 segment" .
 
 FMA:71191 a owl:Class ;
     rdfs:label "Fifth lumbar spinal cord segment" ;
@@ -2255,7 +2395,34 @@ FMA:71191 a owl:Class ;
         FMA:71191,
         UBERON:0006447 ;
     ilxtr:hasIlxId ILX:0104218 ;
-    ilxtr:hasIlxPreferredId UBERON:0006447 .
+    ilxtr:hasIlxPreferredId UBERON:0006447 ;
+    oboInOwl:hasExactSynonym "fifth lumbar spinal cord segment",
+        "L5 segment" .
+
+FMA:73915 a owl:Class ;
+    rdfs:label "intermediolateral nucleus" ;
+    definition: "The intermediolateral nucleus is a region of gray matter found in Rexed lamina VII of the spinal column. Rexed Lamina VII contains several well defined nuclei including the nucleus dorsalis, the intermediolateral cell column (lateral gray horn), and the sacral autonomic nucleus. It extends from the first thoracic through the third lumbar segment, and contains the autonomic motor neurons that give rise to the preganglionic fibers of the sympathetic system. [WP,unvetted]." ;
+    ilx.anno.hasExactSynonym: "intermediolateral nucleus of spinal cord",
+        "nucleus intermediolateralis medullae spinalis",
+        "spinal cord intermediolateral nucleus" ;
+    ilx.anno.hasRelatedSynonym: "nucleus intermediolateralis medullae spinalis" ;
+    ilx.hasDbXref: "EMAPA:36565",
+        "FMA:73915",
+        "MA:0002753",
+        <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=1667>,
+        <http://en.wikipedia.org/wiki/Intermediolateral_nucleus> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:73915,
+        ILX:0724323,
+        UBERON:0002175 ;
+    ilxtr:hasExternalId FMA:73915,
+        UBERON:0002175 ;
+    ilxtr:hasIlxId ILX:0724323 ;
+    ilxtr:hasIlxPreferredId UBERON:0002175 ;
+    ilxtr:includedForSPARCUnder FMA:9903 ;
+    oboInOwl:hasExactSynonym "intermediolateral nucleus of spinal cord",
+        "spinal cord intermediolateral nucleus" ;
+    oboInOwl:hasRelatedSynonym "nucleus intermediolateralis medullae spinalis" .
 
 FMA:74019 a owl:Class ;
     rdfs:label "Substantia gelatinosa" ;
@@ -2379,7 +2546,9 @@ FMA:256625 a owl:Class ;
         FMA:256625,
         UBERON:0006460 ;
     ilxtr:hasIlxId ILX:0104259 ;
-    ilxtr:hasIlxPreferredId UBERON:0006460 .
+    ilxtr:hasIlxPreferredId UBERON:0006460 ;
+    oboInOwl:hasExactSynonym "first sacral spinal cord segment",
+        "S1 segment" .
 
 FMA:256627 a owl:Class ;
     rdfs:label "Second sacral spinal cord segment" ;
@@ -2403,7 +2572,9 @@ FMA:256627 a owl:Class ;
         FMA:256627,
         UBERON:0006461 ;
     ilxtr:hasIlxId ILX:0110431 ;
-    ilxtr:hasIlxPreferredId UBERON:0006461 .
+    ilxtr:hasIlxPreferredId UBERON:0006461 ;
+    oboInOwl:hasExactSynonym "S2 segment",
+        "second sacral spinal cord segment" .
 
 FMA:256629 a owl:Class ;
     rdfs:label "Third sacral spinal cord segment" ;
@@ -2427,7 +2598,9 @@ FMA:256629 a owl:Class ;
         FMA:256629,
         UBERON:0006462 ;
     ilxtr:hasIlxId ILX:0111704 ;
-    ilxtr:hasIlxPreferredId UBERON:0006462 .
+    ilxtr:hasIlxPreferredId UBERON:0006462 ;
+    oboInOwl:hasExactSynonym "S3 segment",
+        "third sacral spinal cord segment" .
 
 FMA:256631 a owl:Class ;
     rdfs:label "Forth sacral spinal cord segment" ;
@@ -2450,7 +2623,8 @@ FMA:256631 a owl:Class ;
         FMA:256631,
         UBERON:0006463 ;
     ilxtr:hasIlxId ILX:0104368 ;
-    ilxtr:hasIlxPreferredId UBERON:0006463 .
+    ilxtr:hasIlxPreferredId UBERON:0006463 ;
+    oboInOwl:hasExactSynonym "S4 segment" .
 
 FMA:256633 a owl:Class ;
     rdfs:label "Fifth sacral spinal cord segment" ;
@@ -2474,7 +2648,9 @@ FMA:256633 a owl:Class ;
         FMA:256633,
         UBERON:0006464 ;
     ilxtr:hasIlxId ILX:0104220 ;
-    ilxtr:hasIlxPreferredId UBERON:0006464 .
+    ilxtr:hasIlxPreferredId UBERON:0006464 ;
+    oboInOwl:hasExactSynonym "fifth sacral spinal cord segment",
+        "S5 segment" .
 
 FMA:256635 a owl:Class ;
     rdfs:label "caudal segment of spinal cord" ;
@@ -2556,6 +2732,7 @@ FMA:256691 a owl:Class ;
         "nucleus of the tractus solitarius",
         "Nucleus solitary tract",
         "Nucleus tractus solitarius" ;
+    definition: "A neural nucleus that is part of the solitary tract nuclear complex. The solitary tract and nucleus are structures in the brainstem that carry and receive visceral sensation and taste from the facial (VII), glossopharyngeal (IX) and vagus (X) cranial nerves. [WP,unvetted]." ;
     rdfs:subClassOf FMA:55676 ;
     ilx.anno.hasExactSynonym: "nucleus of the tractus solitarius",
         "nucleus of tractus solitarius",
@@ -2604,7 +2781,18 @@ FMA:256691 a owl:Class ;
         FMA:256691,
         UBERON:0009050 ;
     ilxtr:hasIlxId ILX:0110729 ;
-    ilxtr:hasIlxPreferredId UBERON:0009050 .
+    ilxtr:hasIlxPreferredId UBERON:0009050 ;
+    oboInOwl:hasExactSynonym "nucleus of tractus solitarius",
+        "nucleus tractus solitarii medullae oblongatae",
+        "solitary nucleus",
+        "solitary tract nucleus" ;
+    oboInOwl:hasRelatedSynonym "Geschmackskern@de",
+        "nuclei tractus solitarii",
+        "nucleus solitarius",
+        "nucleus tracti solitarii",
+        "nucleus tractus solitarii",
+        "solitary nuclear complex",
+        "solitary nucleus" .
 
 FMA:305751 a owl:Class ;
     rdfs:label "anatomical structure" ;
@@ -3443,7 +3631,7 @@ ILX:0739268 a owl:Class ;
     ilxtr:includedForSPARCUnder FMA:9903 .
 
 ILX:0739269 a owl:Class ;
-    rdfs:label "Junction between cervical spinal nerve 8 and cervicothoracic ganglion" ;
+    rdfs:label "Junction between gray communicating ramus to eighth cervical spinal nerve and cervicothoracic ganglion" ;
     definition: "Origin of the nerve as it intersects with the stellate ganglia. Should be a single point at the center of the axonal bundle. Represented by a single point ( x, y, and z location)." ;
     ILX:0739265 FMA:6449,
         FMA:6469 ;
@@ -3455,6 +3643,7 @@ ILX:0739269 a owl:Class ;
 
 ILX:0739271 a owl:Class ;
     rdfs:label "gray communicating ramus of first thoracic nerve" ;
+    definition: "Communicating nerve branching off of the first thoracic nerve to the chain ganglia." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739271 ;
     ilxtr:hasIlxId ILX:0739271 ;
@@ -3484,10 +3673,13 @@ ILX:0739276 a owl:Class ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739276 ;
     ilxtr:hasIlxId ILX:0739276 ;
-    ilxtr:hasIlxPreferredId ILX:0739276 .
+    ilxtr:hasIlxPreferredId ILX:0739276 ;
+    ilxtr:includedForSPARCUnder FMA:15900 .
 
 ILX:0739277 a owl:Class ;
     rdfs:label "serosa of neck of urinary bladder" ;
+    ILX:0739238 FMA:15912 ;
+    ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739277 ;
     ilxtr:hasIlxId ILX:0739277 ;
     ilxtr:hasIlxPreferredId ILX:0739277 .
@@ -3593,6 +3785,74 @@ ILX:0739298 a owl:Class ;
     ilxtr:hasExistingId ILX:0739298 ;
     ilxtr:hasIlxId ILX:0739298 ;
     ilxtr:hasIlxPreferredId ILX:0739298 .
+
+ILX:0739299 a owl:Class ;
+    rdfs:label "Gray communicating ramus of sixth lumbar nerve" ;
+    NIFRID:synonym "L6 gray ramus" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0739299 ;
+    ilxtr:hasIlxId ILX:0739299 ;
+    ilxtr:hasIlxPreferredId ILX:0739299 .
+
+ILX:0739301 a owl:Class ;
+    rdfs:label "Junction between gray communicating ramus of first thoracic nerve and cervicothoracic ganglion" ;
+    ILX:0739265 FMA:6469,
+        ILX:0739271 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0739301 ;
+    ilxtr:hasIlxId ILX:0739301 ;
+    ilxtr:hasIlxPreferredId ILX:0739301 ;
+    ilxtr:includedForSPARCUnder FMA:9903 .
+
+ILX:0739302 a owl:Class ;
+    rdfs:label "Junction between gray communicating ramus of second thoracic nerve and cervicothoracic ganglion" ;
+    definition: "Origin of the nerve as it intersects with the cervicothoracic ganglion (stellate ganglia). Should be a single point at the center of the axonal bundle. Represented by a single point ( x, y, and z location)." ;
+    ILX:0739265 FMA:6469,
+        ILX:0739303 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0739302 ;
+    ilxtr:hasIlxId ILX:0739302 ;
+    ilxtr:hasIlxPreferredId ILX:0739302 ;
+    ilxtr:includedForSPARCUnder FMA:9903 .
+
+ILX:0739303 a owl:Class ;
+    rdfs:label "gray communicating ramus of second thoracic nerve" ;
+    definition: "Communicating nerve branching off of the second thoracic nerve to the chain ganglia" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0739303 ;
+    ilxtr:hasIlxId ILX:0739303 ;
+    ilxtr:hasIlxPreferredId ILX:0739303 ;
+    ilxtr:includedForSPARCUnder FMA:9903 .
+
+ILX:0739304 a owl:Class ;
+    rdfs:label "gray communicating ramus of third thoracic nerve" ;
+    definition: "Communicating nerve branching off of the third thoracic nerve to the chain ganglia" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0739304 ;
+    ilxtr:hasIlxId ILX:0739304 ;
+    ilxtr:hasIlxPreferredId ILX:0739304 ;
+    ilxtr:includedForSPARCUnder FMA:9903 .
+
+ILX:0739305 a owl:Class ;
+    rdfs:label "Junction between gray communicating ramus of third thoracic nerve and cervicothoracic ganglion" ;
+    definition: "Origin of the nerve as it intersects with the cervicothoracic ganglion (stellate ganglia). Should be a single point at the center of the axonal bundle. Represented by a single point ( x, y, and z location)." ;
+    ILX:0739265 FMA:6469,
+        ILX:0739304 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0739305 ;
+    ilxtr:hasIlxId ILX:0739305 ;
+    ilxtr:hasIlxPreferredId ILX:0739305 ;
+    ilxtr:includedForSPARCUnder FMA:9903 .
+
+ILX:0739306 a owl:Class ;
+    rdfs:label "ventral part of serosa of urethra" ;
+    ILX:0739238 ILX:0112359,
+        ILX:0739282 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0739306 ;
+    ilxtr:hasIlxId ILX:0739306 ;
+    ilxtr:hasIlxPreferredId ILX:0739306 ;
+    ilxtr:includedForSPARCUnder FMA:45659 .
 
 NLX:64503 a owl:Class ;
     rdfs:label "CUMBO term" ;
@@ -3767,6 +4027,7 @@ UBERON:0009032 a owl:Class ;
 
 UBERON:0011776 a owl:Class ;
     rdfs:label "Dorsal commissural nucleus" ;
+    definition: "A continuous column of gray matter along the midline in the dorsal gray commissure that sends fibers to the hypogastric nerve." ;
     rdfs:subClassOf FMA:83686 ;
     ilx.anno.hasBroadSynonym: "spinal cord dorsal commissural nucleus" ;
     ilx.hasDbXref: "EMAPA:37748",
@@ -3782,7 +4043,8 @@ UBERON:0011776 a owl:Class ;
         UBERON:0011776 ;
     ilxtr:hasIlxId ILX:0103430 ;
     ilxtr:hasIlxPreferredId UBERON:0011776 ;
-    ilxtr:includedForSPARCUnder FMA:9903 .
+    ilxtr:includedForSPARCUnder FMA:9903 ;
+    oboInOwl:hasBroadSynonym "spinal cord dorsal commissural nucleus" .
 
 ### Axioms
 
