@@ -12,6 +12,7 @@ The easiest way to use the NIF Ontology is through our SciGraph [REST API](https
 You will need a SciCunch API key.  
 You can get one by [registering for a SciCrunch account](https://scicrunch.org/register)
 and then [creating an api key](https://scicrunch.org/account/developer).
+For several example queries, see [http://ontology.neuinfo.org/trees/examples](http://ontology.neuinfo.org/trees/examples).
 
 # Contributing
 ## Ontology files
