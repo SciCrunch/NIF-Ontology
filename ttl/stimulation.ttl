@@ -214,14 +214,79 @@
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/estim/stimulation.ttl> a owl:Ontology .
 
-ilxtr:FunctionFamily a owl:Class .  # FIXME ilxtr: -> stim:
 ilxtr:hasBeenImplementedForEstim a owl:AnnotationProperty .
 
-ilxtr:OneD a owl:Class .
+ilxtr:hasState a owl:ObjectProperty ;
+    rdfs:subPropertyOf hasPart: ;
+    rdfs:comment "I opted for state here because state occurrence has to do with the measurement of the occurrence of that state whereas here we are talking about the specification of the reference waveform in which refers to states directly" ;
+    rdfs:domain ilxtr:Waveform ;
+    rdfs:range ilxtr:WaveformState .
 
-ilxtr:PeriodicFunction a owl:Class .  # https://en.wikipedia.org/wiki/List_of_periodic_functions
+ilxtr:hasFirstState a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasState .
+
+ilxtr:hasSecondState a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasState .
+
+ilxtr:hasTransition a owl:ObjectProperty ;
+    rdfs:subPropertyOf hasPart: ;
+    rdfs:domain ilxtr:Waveform ;
+    rdfs:range ilxtr:WaveformTransition .
+
+ilxtr:hasFirstTransition a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasTransition .
+
+ilxtr:hasSecondTransition a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasTransition .
+
+ilxtr:hasReferenceLevel a owl:DatatypeProperty ;
+    rdfs:domain ilxtr:Waveform .
+
+ilxtr:hasConnectedState a owl:ObjectProperty ;
+    rdfs:comment "useful to consider how this could be used to describe transients? the thing that transitions and transients have in common is that they leave the originating state ..." ;
+    rdfs:domain ilxtr:WaveformTransition ;
+    rdfs:range ilxtr:WaveformState .
+
+ilxtr:hasOriginatingState a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasConnectedState .
+
+ilxtr:hasTerminatingState a owl:ObjectProperty ;
+    rdfs:subPropertyOf ilxtr:hasConnectedState .
+
+ilxtr:hasConnectedLevel a owl:DatatypeProperty ;
+    rdfs:domain ilxtr:WaveformTransition ;
+    rdfs:range owl:real .
+
+ilxtr:hasOriginatingLevel a owl:DatatypeProperty ;
+    owl:propertyChainAxiom (
+        ilxtr:hasOriginatingState
+        ilxtr:hasReferenceLevel ) ;
+    rdfs:subPropertyOf ilxtr:hasConnectedLevel .
+
+ilxtr:hasTerminatingLevel a owl:DatatypeProperty ;
+    owl:propertyChainAxiom (
+        ilxtr:hasTerminatingState
+        ilxtr:hasReferenceLevel ) ;
+    rdfs:subPropertyOf ilxtr:hasConnectedLevel .
+
+# FIXME ilxtr: -> stim:
+
+# functions
+ilxtr:Function a owl:Class .
+
+ilxtr:ConstantFunction a owl:Class ;
+    ilxtr:functionDefinition "(lambda (x) 1)"^^ilxtr:s-expression ;
+    ilxtr:combinatorDefinition "(lambda (level) (lambda (x) level))"^^ilxtr:s-expression ;
+    rdfs:comment "for practical purposes assume that this is the function 1 everywhere and then multiply by your levels" .
+
+# periodic functions
+ilxtr:PeriodicFunction a owl:Class ;  # https://en.wikipedia.org/wiki/List_of_periodic_functions
+    rdfs:subClassOf ilxtr:Function .
 
 :sine a owl:Class ;
+    rdfs:comment "prefer to use sinpi as the base for sin/cos" ;
+    ilxtr:functionDefinition "(lambda (x) (sin x))"^^ilxtr:s-expression ;
+    ilxtr:combinatorDefinition "(lambda (a o c s) (lambda (x) (+ o (* a (sin (- (* c x) s))))))"^^ilxtr:s-expression ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "sine" .
 
@@ -318,87 +383,76 @@ ilxtr:PeriodicFunction a owl:Class .  # https://en.wikipedia.org/wiki/List_of_pe
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "PulseWave" .
 
-
-ilxtr:EpochType a owl:Class ;
-    rdfs:label "EpochType" .
-
-ilxtr:Ramp a owl:Class ;
-    rdfs:label "Ramp" .
-
-ilxtr:Pulse a owl:Class ;
-    rdfs:label "Pulse" .
+# noise functions
 
 ilxtr:Noise a owl:Class ;
+    rdfs:subClassOf ilxtr:Function ;
     rdfs:label "Noise" .
 
-ilxtr:NoiseType a owl:Class ;
-    rdfs:label "NoiseType" .
-
 ilxtr:OneOverFNoise a owl:Class ;
-    rdfs:subClassOf ilxtr:NoiseType ;
+    rdfs:subClassOf ilxtr:Noise ;
     rdfs:label "OneOverFNoise" .
 
 ilxtr:WhiteNoise a owl:Class ;
-    rdfs:subClassOf ilxtr:NoiseType ;
+    rdfs:subClassOf ilxtr:Noise ;
     rdfs:label "WhiteNoise" .
 
 ilxtr:PinkNoise a owl:Class ;
-    rdfs:subClassOf ilxtr:NoiseType ;
+    rdfs:subClassOf ilxtr:Noise ;
     rdfs:label "PinkNoise" .
 
-ilxtr:PulseType a owl:Class ;
-    rdfs:label "PulseType" .
 
-ilxtr:SquarePulse a owl:Class ;
-    rdfs:subClassOf ilxtr:PulseType ;
-    rdfs:label "SquarePulse" .
-
-
-ilxtr:TwoD a owl:Class ;
-    rdfs:label "TwoD" .
+# 2-d generating functions
+ilxtr:PeriodicFunction2d a owl:Class ;
+    rdfs:comment "NOTE unlike the 1d periodic functions these are NOT the time varying versions, they are the (usually) spatial version, static gratings vs dynamic/drifting gratings are orthognal" ;
+    rdfs:label "2d periodic function" .
 
 :SquareGrating a owl:Class ;
+    rdfs:subClassOf ilxtr:PeriodicFunction2d ;
     rdfs:label "SquareGrating" .
 
 :Plaid a owl:Class ;
+    rdfs:subClassOf ilxtr:PeriodicFunction2d ;
     rdfs:label "Plaid" .
 
 
-ilxtr:StimulationTarget a owl:Class ;
-    rdfs:label "StimulationTarget" .
+# function parameters
 
-
-ilxtr:FunctionParameters a owl:Class ;
-    rdfs:label "FunctionParameters" .
+ilxtr:FunctionParameter a owl:Class ;
+    rdfs:label "FunctionParameter" .
 
 :period a owl:Class ;
-    rdfs:subClassOf ilxtr:FunctionParameters ;
+    rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "period" .
 
 :frequency a owl:Class ;
-    rdfs:subClassOf ilxtr:FunctionParameters ;
+    rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "frequency" .
 
 :wavelength a owl:Class ;
-    rdfs:subClassOf ilxtr:FunctionParameters ;
+    rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "wavelength" .
 
 :amplitude a owl:Class ;
-    rdfs:subClassOf ilxtr:FunctionParameters ;
+    rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "amplitude" .
 
 :offset a owl:Class ;
-    rdfs:subClassOf ilxtr:FunctionParameters ;
-    rdfs:label "offset" .  # temporal vs dimensional  181 uses dimensional i.e., between states
+    rdfs:subClassOf ilxtr:FunctionParameter ;
+    rdfs:comment "temporal vs dimensional  181 uses dimensional i.e., between states",
+        "should probably be CycleOffset ?" ;
+    rdfs:label "offset" .
 
 :baseline a owl:Class ;
-    rdfs:subClassOf ilxtr:FunctionParameters ;
+    rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "baseline" .
 
 :duration a owl:Class ;
-    rdfs:subClassOf ilxtr:FunctionParameters ;
+    rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "duration" .  # epoch
 
+
+# composition
 
 ilxtr:CompositionRule a owl:Class ;
     rdfs:label "CompositionRule" .
@@ -428,69 +482,223 @@ ilxtr:Concatenation a owl:Class ;
     rdfs:label "Concatenation" .
 
 
+# waveforms
+
+ilxtr:WaveformEpoch a owl:Class ;
+    ilxtr:xref IEEE181-2011:waveform-epoch ;
+    rdfs:label "WaveformEpoch" .
+
 ilxtr:Waveform a owl:Class ;
+    rdfs:comment "the standard requires ilxtr:Quantity with matching units as the range for ilxtr:hasLevel but going to leave dealing with the mechanics of that in owl for later since units and owl are always an issue",
+        "a compound waveform may have more than one reference level, but the ontology won't be able to map which level belongs to which state/time point",
+        "FIXME we may need a notion of an atomic waveform ... which is actually waveform state ... the transition points at different time points may have different reference levels ... so maybe it is better to model transitions as having starting states and ending states?" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty ilxtr:hasReferenceLevel ;
+        owl:someValuesFrom owl:real ;
+        ] ;
     rdfs:label "Waveform" .
 
-:step a owl:Class ;
-    rdfs:label "step" .
+ilxtr:ReferenceWaveform a owl:Class ;
+    rdfs:subClassOf ilxtr:Waveform ;
+    rdfs:label "ReferenceWaveform" .
 
-:linear a owl:Class ;
-    rdfs:label "linear" .
+ilxtr:WaveformState a owl:Class ;
+    rdfs:comment "waveform where the reference level at t1 and t2 are the same" ;
+    rdfs:subClassOf ilxtr:Waveform ;
+    owl:disjointWith ilxtr:WaveformTransition ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:intersectionOf (
+            [ a owl:Restriction ;
+                owl:onProperty ilxtr:hasReferenceLevel ;
+                owl:cardinality 1 ]
+            [ a owl:Restriction ;
+                owl:onProperty ilxtr:hasGeneratingFunction ;
+                owl:cardinality 1 ]
+            ) ];
+    ilxtr:xref IEEE181-2011:state .
 
-:exponential a owl:Class ;
-    rdfs:label "exponential" .
+ilxtr:BaseState a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformState ;
+    rdfs:label "BaseState" .
 
-:impulse a owl:Class ;
-    rdfs:label "impulse" .
+ilxtr:S1 a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformState ;
+    rdfs:label "state 1" ;
+    rdfs:comment "the first state in an epoch" ;
+    NIFRID:abbrev "S1" .
 
+ilxtr:S2 a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformState ;
+    rdfs:label "state 2" ;
+    rdfs:comment "the second state in an epoch" ;
+    NIFRID:abbrev "S2" .
 
-ilxtr:DutyFactor a owl:Class ;
-    NIFRID:synonym "DutyCycle" ;  # deprecated by 181-2011 due to naming conflict
-    rdfs:label "DutyFactor" .
+ilxtr:WaveformTransition a owl:Class ;
+    rdfs:subClassOf ilxtr:Waveform ;
+    ilxtr:xref IEEE181-2011:transition ;
+    rdfs:comment "easier to specify card 2 than to say s1 != s2 or t1 -> s1 and t2 -> s2" ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:intersectionOf (
+            [ a owl:Restriction ;
+                owl:onProperty ilxtr:hasConnectedState ;
+                owl:cardinality 2 ]
+            [ a owl:Restriction ;
+                owl:onProperty ilxtr:hasOriginatingState ;
+                owl:cardinality 1 ]
+            [ a owl:Restriction ;
+                owl:onProperty ilxtr:hasTerminatingState ;
+                owl:cardinality 1 ]
+        ) ];
+    rdfs:label "Transition" .
 
+ilxtr:WaveformTransitionPositiveGoing a owl:Class ;
+    rdfs:comment "orig state level < term state level",
+        "unfortunately no easy way to implement this in pure owl I'm using the conventions described in https://www.w3.org/2007/OWL/wiki/Data_Range_Extension:_Linear_Equations with a tweak to use s-expressions instead of mathml since if there is no implementation support then using extremely verbose xml markup seems pointless (same story with unit expressions)" ;
+    owl:equivalentClass [ a owl:Restriction ;
+        owl:allValuesFrom [ a owl:DataComparison ;
+            rdf:value "(lambda (o t) (< o t))"^^ilxtr:s-expression ] ;
+        owl:onProperties ( ilxtr:hasOriginatingLevel ilxtr:hasTerminatingLevel ) ] ;
+    rdfs:subClassOf ilxtr:WaveformTransition .
 
-ilxtr:PulseWaveform a owl:Class ;
-    rdfs:label "PulseWaveform" .
+ilxtr:WaveformTransitionNegativeGoing a owl:Class ;
+    rdfs:comment "orig state level > term state level" ;
+    owl:equivalentClass [ a owl:Restriction ;
+        owl:allValuesFrom [ a owl:DataComparison ;
+            # FIXME needs a more granular type since we can't do what mathml does an use the
+            # attributes in the tree to indicate that it is mathml though any lisp should
+            # be able to evaluate this correctly ...
+            rdf:value "(lambda (o t) (> o t))"^^ilxtr:s-expression ] ;
+        owl:onProperties ( ilxtr:hasOriginatingLevel ilxtr:hasTerminatingLevel ) ] ;
+    rdfs:subClassOf ilxtr:WaveformTransition .
 
+ilxtr:StepTransition a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformTransition ;
+    rdfs:label "Step Transition Waveform" .
+
+ilxtr:LinearTransition a owl:Class ;
+    rdfs:comment "step transition where t1 != t2" ;
+    rdfs:subClassOf ilxtr:WaveformTransition ;
+    rdfs:label "Linear Transition Waveform" .
+
+ilxtr:LinearTransitionNegativeGoing a owl:Class .
+
+ilxtr:LinearTransitionPositiveGoing a owl:Class .
+
+ilxtr:ExponentialTransition a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformTransition ;
+    rdfs:label "Exponential Transition Waveform" .
+
+ilxtr:WaveformPulse a owl:Class ;
+    ilxtr:xref IEEE181-2011:pulse-waveform ;
+    # equivalent to waveform with two transitions where the second transition returns to the original state ...
+    # cardinality two?
+    rdfs:subClassOf ilxtr:Waveform ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:intersectionOf (
+            [ a owl:Restriction ;
+              owl:onProperty ilxtr:hasState ;
+              owl:cardinality 2 ]
+            [ a owl:Restriction ;
+              owl:onProperty ilxtr:hasState ;
+              owl:someValuesFrom ilxtr:WaveformState ]
+            [ a owl:Restriction ;
+              owl:onProperty ilxtr:hasTransition ;
+              owl:cardinality 2 ]
+            [ a owl:Restriction ;
+              owl:onProperty ilxtr:hasTransition ;
+              owl:someValuesFrom ilxtr:WaveformTransition ]
+            ) ] ;
+    rdfs:label "pulse waveform" .
+
+# trapezoidal family pulse waveforms
 # these three are all part of one spec which is basically linear vs step transition and peak duration
-:rectangular a owl:Class ;
-    rdfs:label "rectangular" .
+ilxtr:WaveformPulseTrapezoidal a owl:Class ;
+    rdfs:comment "the trapezoidal spec clearly allows for t1 <= t2 suggesting that rectangular pulses are technically subClassOf trapezoidal pulse according to the standard" ;
+    rdfs:subClassOf ilxtr:WaveformPulse ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:intersectionOf (
+            [ a owl:Restriction ;
+              owl:onProperty ilxtr:hasGeneratingFunction ;
+              owl:someValuesFrom ilxtr:Constant ]
+            [ a owl:Restriction ;
+              owl:onProperty ilxtr:hasTransition ;
+              owl:someValuesFrom ilxtr:WaveformTransition ]
+            ) ] ;
+    rdfs:label "trapezoidal pulse" .
 
-:trapezoidal a owl:Class ;
-    rdfs:label "trapezoidal" .
+ilxtr:WaveformPulseRectangular a owl:Class ;
+    rdfs:comment "equivalent ways to model this, 1. 2 states 2 square transitions, 2. 2 states 2 linear transitions where the slope is infinite (note that in our representation the slope will never be explicit because it should be calculated from state :level and transition duration, which can be specified directly or as t1 and t2), 3. 2 states trapezoidal where t1 == t2 and t3 == t4" ;
+    rdfs:subClassOf ilxtr:WaveformPulse ;
+    NIFRID:synonym "square pulse" ;
+    rdfs:label "rectangular pulse" .
 
-:triangular a owl:Class ;
+ilxtr:WaveformPulseTriangular a owl:Class ;
+    rdfs:comment "trapezoidal with zero duration for s2" ;
+    rdfs:subClassOf ilxtr:WaveformPulse ;
     rdfs:label "triangular" .
 
-:exponential a owl:Class ;
-    rdfs:label "exponential" .
+ilxtr:WaveformPulseExponential a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformPulse ;
+    rdfs:label "exponential pulse" .
 
-# composition
+ilxtr:WaveformPulseImpulseLike a owl:Class ;
+    rdfs:comment "trapezoidal with infinitesimal duration for s2 and t1 == t2 < t3 == t4, aka rectangular with infinitesimal s2 duration, or t1 == t2 == t3 == t4, step transitions" ;
+    rdfs:subClassOf ilxtr:WaveformPulse ;
+    rdfs:label "impulse-like pulse" .
+
+ilxtr:WaveformPulseRamp a owl:Class ;
+    rdfs:comment "triangular pulse with a linear first transition and step second transition " ;
+    rdfs:subClassOf ilxtr:WaveformPulse ;
+    rdfs:label "ramp pulse" .
+
+# composed waveforms
+
 :double-pulse a owl:Class ;
+    rdfs:subClassOf ilxtr:Waveform ;
+    rdfs:comment "by definition is not a pulse since it has too many transitions" ;
     rdfs:label "double pulse" . # n pulse
 
 :bipolare-pulse a owl:Class ;
-    rdfs:label "bipolare pulse" .
+    rdfs:subClassOf ilxtr:Waveform ;
+    rdfs:comment "a double pulse where the pulse states have opposite sign with respect to the base state" ;
+    rdfs:label "bipolar pulse" .
 
 :staircase a owl:Class ;
+    rdfs:subClassOf ilxtr:Waveform ;
     rdfs:label "staircase" .  # this one is a bit more complex if you want terse entry
 
 :pulse-train a owl:Class ;
+    rdfs:subClassOf ilxtr:Waveform ;
     rdfs:label "pulse train" .  # pulse train with varying peak and width similar if you want terse entry
 
 
-ilxtr:TransitionType a owl:Class ;
-    rdfs:label "TransitionType" .
+# waveform parameters
 
-ilxtr:StepTransition a owl:Class ;
-    rdfs:label "StepTransition" .
+ilxtr:WaveformParameter a owl:Class .
 
-ilxtr:LinearTransition a owl:Class ;
-    rdfs:label "LinearTransition" .
+ilxtr:DutyFactor a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformParameter ;
+    NIFRID:synonym "DutyCycle" ;  # deprecated by 181-2011 due to naming conflict
+    rdfs:label "DutyFactor" .
 
-ilxtr:ExponentialTransition a owl:Class ;
-    rdfs:label "ExponentialTransition" .
+ilxtr:PulsePeriod a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformParameter ;
+    rdfs:label "PulsePeriod" .
 
+ilxtr:PulseSeparation a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformParameter ;
+    rdfs:label "PulseSeparation" .
+
+ilxtr:PulseDuration a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformParameter ;
+    rdfs:label "PulseDuration" .
+
+ilxtr:50percentReferenceLevel a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformParameter ;
+    rdfs:label "50percentReferenceLevel" .
+
+
+# effector sensory modality
 
 ilxtr:EffectorSensoryModality a owl:Class ;
     rdfs:label "EffectorSensoryModality" .
@@ -511,6 +719,7 @@ ilxtr:Visual a owl:Class ;
     rdfs:subClassOf ilxtr:EffectorSensoryModality ;
     rdfs:label "Visual" .
 
+# mediating effector phenomena
 
 ilxtr:EffectorPhenomenon a owl:Class ;
     rdfs:label "EffectorPhenomenon" .  # mediating physical property
@@ -539,32 +748,52 @@ ilxtr:Chemical a owl:Class ;
     rdfs:subClassOf ilxtr:EffectorPhenomenon ;
     rdfs:label "Chemical" .
 
+# stimulation targets
+
+ilxtr:StimulationTarget a owl:Class ;
+    rdfs:label "StimulationTarget" .
+
+# implementation programs
+
+ilxtr:SoftwareComponent a owl:Class .
 
 ilxtr:SourceProgram a owl:Class ;
+    rdfs:subClassOf ilxtr:SoftwareComponent ;
     rdfs:label "SourceProgram" .
 
-ilxtr:MIES a owl:Class ;
-    rdfs:subClassOf ilxtr:SourceProgram ;
+ilxtr:MIES a owl:NamedIndividual,
+    ilxtr:SourceProgram ;
     rdfs:label "MIES" .
 
-ilxtr:Heka a owl:Class ;
-    rdfs:subClassOf ilxtr:SourceProgram ;
+ilxtr:Heka a owl:NamedIndividual,
+    ilxtr:SourceProgram ;
     rdfs:label "Heka" .
 
+ilxtr:Validator a owl:Class ;
+    rdfs:subClassOf ilxtr:SoftwareComponent ;
+    rdfs:label "Validator" .
+
+ilxtr:Visualizer a owl:Class ;
+    rdfs:subClassOf ilxtr:SoftwareComponent ;
+    rdfs:label "Visualizer" .
+
+# representations
 
 ilxtr:RepresentationFileFormat a owl:Class ;
     rdfs:label "RepresentationFileFormat" .
 
-ilxtr:RepresentationType a owl:Class ;
-    rdfs:label "RepresentationType" .
+ilxtr:WaveformRepresentation a owl:Class .
 
-ilxtr:Continuous a owl:Class ;
+ilxtr:ContinuousRepresentation a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformRepresentation ;
     rdfs:label "Continuous" .
 
-ilxtr:Discrete a owl:Class ;
+ilxtr:DiscreteRepresentation a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformRepresentation ;
     rdfs:label "Discrete" .
 
 
+# control systems
 ilxtr:ControlSystem a owl:Class ;
     rdfs:label "ControlSystem" .
 
@@ -577,12 +806,7 @@ ilxtr:AdaptiveControl a owl:Class ;
     rdfs:label "AdaptiveControl" .
 
 
-ilxtr:Validator a owl:Class ;
-    rdfs:label "Validator" .
-
-ilxtr:Visualizer a owl:Class ;
-    rdfs:label "Visualizer" .
-
+# rasterization
 
 ilxtr:RasterizationParameters a owl:Class ;
     rdfs:label "RasterizationParameters" .
@@ -604,58 +828,35 @@ ilxtr:RastBitDepth a owl:Class ;
     rdfs:label "RastBitDepth" .
 
 
-# from 181-2011 figure 8 and 9
-ilxtr:ReferenceWaveform a owl:Class ;
-    rdfs:label "ReferenceWaveform" .   # this is critical: it is what we are describing, distinct from what is actually produced
-
-ilxtr:PulsePeriod a owl:Class ;
-    rdfs:label "PulsePeriod" .
-
-ilxtr:PulseSeparation a owl:Class ;
-    rdfs:label "PulseSeparation" .
-
-ilxtr:PulseDuration a owl:Class ;
-    rdfs:label "PulseDuration" .
-
-ilxtr:WaveformEpoch a owl:Class ;
-    rdfs:label "WaveformEpoch" .
-
-ilxtr:BaseState a owl:Class ;
-    rdfs:label "BaseState" .
-
-ilxtr:50percentReferenceLevel a owl:Class ;
-    rdfs:label "50percentReferenceLevel" .
-
-ilxtr:S1 a owl:Class ;
-    rdfs:label "state 2" ;
-    NIFRID:abbrev "S1" .
-
-ilxtr:Transition a owl:Class ;
-    rdfs:label "Transition" .
-
-ilxtr:S2 a owl:Class ;
-    rdfs:label "state 1" ;
-    NIFRID:abbrev "S2" .
+ilxtr:ThingsThatHappenToRealWaveforms a owl:Class ;
+    rdfs:comment "some of these aren't things so much as temporal regions where things happen" .
 
 ilxtr:PreTransitionOvershoot a owl:Class ;
+    rdfs:subClassOf ilxtr:ThingsThatHappenToRealWaveforms ;
     rdfs:label "PreTransitionOvershoot" .
 
 ilxtr:PreTransitionUndershoot a owl:Class ;
+    rdfs:subClassOf ilxtr:ThingsThatHappenToRealWaveforms ;
     rdfs:label "PreTransitionUndershoot" .
 
 ilxtr:PreTransitionAbberationRegion a owl:Class ;
+    rdfs:subClassOf ilxtr:ThingsThatHappenToRealWaveforms ;
     rdfs:label "PreTransitionAbberationRegion" .
 
 ilxtr:PostTransitionOvershoot a owl:Class ;
+    rdfs:subClassOf ilxtr:ThingsThatHappenToRealWaveforms ;
     rdfs:label "PostTransitionOvershoot" .
 
 ilxtr:PostTransitionUndershoot a owl:Class ;
+    rdfs:subClassOf ilxtr:ThingsThatHappenToRealWaveforms ;
     rdfs:label "PostTransitionUndershoot" .
 
 ilxtr:PostTransitionAbberationRegion a owl:Class ;
+    rdfs:subClassOf ilxtr:ThingsThatHappenToRealWaveforms ;
     rdfs:label "PostTransitionAbberationRegion" .
 
 ilxtr:PeakToPeakWaveformAbberation a owl:Class ;
+    rdfs:subClassOf ilxtr:ThingsThatHappenToRealWaveforms ;
     rdfs:label "PeakToPeakWaveformAbberation" .
 
 
