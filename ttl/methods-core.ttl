@@ -2,11 +2,16 @@
 @prefix asp: <http://uri.interlex.org/tgbugs/uris/readable/aspect/> .
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
+@prefix hasInput: <http://purl.obolibrary.org/obo/RO_0002233> .
+@prefix hasOutput: <http://purl.obolibrary.org/obo/RO_0002234> .
+@prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
 @prefix hasParticipant: <http://purl.obolibrary.org/obo/RO_0000057> .
 @prefix HBP_MEM: <http://www.hbp.FIXME.org/hbp_measurement_methods/> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix NIFTTL: <http://ontology.neuinfo.org/NIF/ttl/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix partOf: <http://purl.obolibrary.org/obo/BFO_0000050> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -14,12 +19,26 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-core.ttl> a owl:Ontology ;
-    owl:imports <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> ;
+    owl:imports NIFTTL:nif_backend.ttl ;
     rdfs:comment "The core components for modelling techniques and methods." ;
-    owl:versionInfo "2020-05-05" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/e26380129c35c63ac3d0523d52a09bbd41291905/nifstd/nifstd_tools/methods/core.py> .
+    owl:versionInfo "2020-06-09" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/385ed445f12c557a75a29979406eb51311c7af20/nifstd/nifstd_tools/methods/core.py> .
 
 ### Object Properties
+
+hasInput: a owl:ObjectProperty ;
+    rdfs:label "has input" ;
+    rdfs:subPropertyOf ilxtr:hasInputOutput ;
+    owl:propertyChainAxiom (
+            hasPart:
+            hasInput: ) .
+
+hasOutput: a owl:ObjectProperty ;
+    rdfs:label "has output" ;
+    rdfs:subPropertyOf ilxtr:hasInputOutput ;
+    owl:propertyChainAxiom (
+            hasPart:
+            hasOutput: ) .
 
 hasParticipant: a owl:ObjectProperty ;
     rdfs:label "has participant" ;
@@ -147,10 +166,10 @@ ilxtr:hasInformationInput a owl:ObjectProperty ;
     rdfs:domain ilxtr:technique ;
     rdfs:range ilxtr:informationEntity ;
     owl:propertyChainAxiom (
-            BFO:0000051
+            hasPart:
             ilxtr:hasDirectInformationInput ),
         (
-            BFO:0000051
+            hasPart:
             ilxtr:hasInformationInput ) ;
     rdfs:comment "This can be though of as the known variables of a process, or the runtime information that cannot be known prior to process execution." .
 
@@ -162,10 +181,10 @@ ilxtr:hasInformationOutput a owl:ObjectProperty ;
     rdfs:domain ilxtr:technique ;
     rdfs:range ilxtr:informationEntity ;
     owl:propertyChainAxiom (
-            BFO:0000051
+            hasPart:
             ilxtr:hasDirectInformationOutput ),
         (
-            BFO:0000051
+            hasPart:
             ilxtr:hasInformationOutput ) .
 
 ilxtr:hasInformationParticipant a owl:ObjectProperty ;
@@ -173,10 +192,10 @@ ilxtr:hasInformationParticipant a owl:ObjectProperty ;
     NIFRID:synonym "has symbolic participant" ;
     definition: "The relationship between a process and some information that participates in it. When this this points to a real thing it is interpreted to mean the informationcontent of the artifact, not the artifact itself." ;
     owl:propertyChainAxiom (
-            BFO:0000051
+            hasPart:
             ilxtr:hasDirectInformationParticipant ),
         (
-            BFO:0000051
+            hasPart:
             ilxtr:hasInformationParticipant ) ;
     rdfs:comment "This is distinct from RO:0000057 in that we are using RO:0000057 explicitly for real things in the world. Information must be symbolized by something in the world but it is not the scratches on the paper that constrain a process, it is their implication." .
 
@@ -204,14 +223,14 @@ ilxtr:hasOperationDefinition a owl:ObjectProperty .
 ilxtr:hasParentPrimaryAspect a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:processHasAspect ;
     owl:propertyChainAxiom (
-            BFO:0000050
+            partOf:
             ilxtr:hasPrimaryParticipant
             ilxtr:hasExpAspect ) .
 
 ilxtr:hasPartAspectInvariant a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:processHasAspect ;
     owl:propertyChainAxiom (
-            BFO:0000051
+            hasPart:
             ilxtr:hasConstrainingAspect ),
         (
             ilxtr:hasPrimaryParticipant
@@ -221,7 +240,7 @@ ilxtr:hasParticipantPartConstrainingAspect a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:processHasAspect ;
     owl:propertyChainAxiom (
             ilxtr:hasPrimaryParticipant
-            BFO:0000051
+            hasPart:
             ilxtr:hasExpAspect ),
         (
             ilxtr:hasSubProcess
@@ -231,11 +250,11 @@ ilxtr:hasParticipantPartPrimaryAspect a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:processHasAspect ;
     owl:propertyChainAxiom (
             ilxtr:hasPrimaryParticipant
-            BFO:0000051
+            hasPart:
             ilxtr:hasExpAspect ),
         (
             ilxtr:hasPrimaryParticipant
-            BFO:0000051
+            hasPart:
             ilxtr:hasExpAspect ),
         (
             ilxtr:hasSubProcess
@@ -246,12 +265,12 @@ ilxtr:hasParticipantPartPrimaryAspectActualized a owl:ObjectProperty ;
         ilxtr:processActualizesAspect .
 
 ilxtr:hasPartNotPart a owl:ObjectProperty ;
-    rdfs:subPropertyOf BFO:0000051 ;
+    rdfs:subPropertyOf hasPart: ;
     rdfs:domain BFO:0000015 ;
     rdfs:range BFO:0000015 .
 
 ilxtr:hasPartPart a owl:ObjectProperty ;
-    rdfs:subPropertyOf BFO:0000051 ;
+    rdfs:subPropertyOf hasPart: ;
     rdfs:domain BFO:0000015 ;
     rdfs:range BFO:0000015 ;
     owl:propertyDisjointWith ilxtr:hasPartNotPart .
@@ -259,16 +278,16 @@ ilxtr:hasPartPart a owl:ObjectProperty ;
 ilxtr:hasPartPriAspect a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:processHasAspect ;
     owl:propertyChainAxiom (
-            BFO:0000051
+            hasPart:
             ilxtr:hasPrimaryAspect ) .
 
 ilxtr:hasPartPriParticipant a owl:ObjectProperty ;
     owl:propertyChainAxiom (
-            BFO:0000051
+            hasPart:
             ilxtr:hasPrimaryParticipant ),
         (
             ilxtr:hasPrimaryParticipant
-            BFO:0000051 ) .
+            hasPart: ) .
 
 ilxtr:hasPrimaryAspect a owl:ObjectProperty ;
     rdfs:label "has primary aspect" ;
@@ -306,8 +325,8 @@ ilxtr:hasPrimaryAspectMeasured a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:hasPrimaryAspect .
 
 ilxtr:hasPrimaryInput a owl:ObjectProperty ;
-    rdfs:subPropertyOf ilxtr:hasPrimaryParticipant,
-        RO:0002233 .
+    rdfs:subPropertyOf hasInput:,
+        ilxtr:hasPrimaryParticipant .
 
 ilxtr:hasPrimaryInputOutput a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:hasInputOutput,
@@ -318,9 +337,9 @@ ilxtr:hasPrimaryInputUnbinding a owl:ObjectProperty ;
     owl:propertyDisjointWith ilxtr:hasPrimaryOutput .
 
 ilxtr:hasPrimaryOutput a owl:ObjectProperty ;
-    rdfs:subPropertyOf ilxtr:hasIntention,
-        ilxtr:hasPrimaryParticipant,
-        RO:0002234 .
+    rdfs:subPropertyOf hasOutput:,
+        ilxtr:hasIntention,
+        ilxtr:hasPrimaryParticipant .
 
 ilxtr:hasPrimaryOutputNoInput a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:hasPrimaryOutput ;
@@ -374,7 +393,7 @@ ilxtr:hasQualifiedForm a owl:ObjectProperty ;
     owl:inverseOf ilxtr:isQualifiedFormOf .
 
 ilxtr:hasSubProcess a owl:ObjectProperty ;
-    rdfs:subPropertyOf BFO:0000051 .
+    rdfs:subPropertyOf hasPart: .
 
 ilxtr:hasTechniqueContext a owl:ObjectProperty ;
     rdfs:subPropertyOf ilxtr:hasContext ;
@@ -389,7 +408,7 @@ ilxtr:isConstrainedBy a owl:ObjectProperty ;
     definition: "The relationship between a process and prior information that constrains it. For example the code that is compiled to create a piece of analysis software." ;
     rdfs:subPropertyOf ilxtr:hasInformationParticipant ;
     owl:propertyChainAxiom (
-            BFO:0000051
+            hasPart:
             ilxtr:isConstrainedBy ) ;
     rdfs:comment """These look like free variables inside a process.
 (define (my-process free-variables)
@@ -439,7 +458,7 @@ ilxtr:processHasAspect a owl:ObjectProperty ;
     rdfs:domain BFO:0000015 ;
     rdfs:range ilxtr:aspect ;
     owl:propertyChainAxiom (
-            BFO:0000051
+            hasPart:
             ilxtr:processHasAspect ),
         (
             ilxtr:hasConstrainingAspect ),
@@ -463,20 +482,6 @@ ilxtr:wasDiscoveredBy a owl:ObjectProperty ;
     rdfs:label "was discovered by" ;
     NIFRID:synonym "was invented by" ;
     definition: "The relationship between a process and the person who discovered it." .
-
-RO:0002233 a owl:ObjectProperty ;
-    rdfs:label "has input" ;
-    rdfs:subPropertyOf ilxtr:hasInputOutput ;
-    owl:propertyChainAxiom (
-            BFO:0000051
-            RO:0002233 ) .
-
-RO:0002234 a owl:ObjectProperty ;
-    rdfs:label "has output" ;
-    rdfs:subPropertyOf ilxtr:hasInputOutput ;
-    owl:propertyChainAxiom (
-            BFO:0000051
-            RO:0002234 ) .
 
 ### Data Properties
 
@@ -520,11 +525,26 @@ ilxtr:aspect a owl:Class ;
     rdfs:comment "PATO has good coverage of many of these aspects though their naming is not alway consistent. And their definition is perhaps overly broad.",
         "To illustrate with an example. The location of a thing cannot be an aspect of that thing because location requires knowing the spatial realtionship between that thing any measurement device. Said in yet another way, (measure thing location) -> here for all values of thing. Aspects all assume an inertial reference frame centered on their named inputs. Location thus can only ever be computed on some part of a larger named system.Therefore, in order to accomodate measurements on composite beings such as the number of geese in a flock or the location of a missing set of keys possibly in the house, we split aspects into signular and composite. The composite are indeed aspects of a single nameable thing, but they make measurements on or between parts of that thing. The simplest version is nearly always named thing plus implied complement of that thing. Note also that the number of geese in a flock is different from the number of things in existence that are geese by the isness aspect. The asp/isness/count can be determined entirely locally because the definition of what a goose is is independent of time and place (where and when). Time dependent or place dependent definitions of geese (such as in the game of duck duck goose) require additional information and thus are not what/singular aspects." .
 
+ilxtr:BehavioralParadigm a owl:Class ;
+    rdfs:label "behavioral paradigm" .
+
+ilxtr:BehavioralReadout a owl:Class ;
+    rdfs:label "behavioral readout" .
+
+ilxtr:BehavioralTask a owl:Class ;
+    rdfs:label "behavioral task" .
+
 ilxtr:executor a owl:Class ;
     rdfs:label "executor" ;
     NIFRID:synonym "executing agent" ;
     definition: "An executor is the primary agentous being that participates in a technique and is usually the vehicle by which prior information constrains a technique. Human beings usually play this role, but computers and robots can be considered to be executors when the prior information has been encoded directly into them and their behavior." ;
     rdfs:subClassOf ilxtr:materialEntity .
+
+ilxtr:ExperimentalModality a owl:Class ;
+    rdfs:label "experimental modality" .
+
+ilxtr:ExperimentalPreparation a owl:Class ;
+    rdfs:label "experimental preparation" .
 
 ilxtr:technique a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -559,7 +579,7 @@ ilxtr:technique a owl:Class ;
     owl:intersectionOf (
             ilxtr:materialEntity
             [ a owl:Restriction ;
-                owl:onProperty BFO:0000050 ;
+                owl:onProperty partOf: ;
                 owl:someValuesFrom ilxtr:compositeMaterialEntity ] ) .
 
 [] a owl:Class ;
