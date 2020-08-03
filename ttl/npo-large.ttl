@@ -14,7 +14,7 @@
 @prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
 
-<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/neuron-development-big.ttl> a owl:Ontology ;
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/npo-large.ttl> a owl:Ontology ;
     owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/bridge/chemical-bridge.ttl>,
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/bridge/neuron-bridge.ttl>,
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/parcellation-artifacts.ttl>,
@@ -23,9 +23,9 @@
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/parcellation/paxinos-rat-labels.ttl>,
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/uberon-parcellation-mappings.ttl>,
         obo:uberon.owl ;
-    rdfs:label "Utility ontology for neuron development" ;
-    owl:versionInfo "2019-08-06" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/5b64cde8993f7bac978dd7a7f9f28e406dfbb106/neurondm/neurondm/build.py#L1357> .
+    rdfs:label "The Neuron Phenotype Ontology with a significantly larger import chain." ;
+    owl:versionInfo "2020-08-03" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/fc6ff66def292998696b03536f295aa2a43ad2d3/neurondm/neurondm/build.py#L1414> .
 
 ### Classes
 
@@ -45,13 +45,11 @@ ilxtr:glutamateReceptor a owl:Class ;
 
 ### Annotations
 
-CHEBI:18234 rdfs:label "α,α'-trehalose 6-mycolate" .
-
-ilxtr:labelPartOf rdfs:subPropertyOf partOf: .
-
 ilxtr:parcellationLabel rdfs:subClassOf UBERON:0001062 .
 
 ilxtr:Phenotype rdfs:subClassOf BFO:0000016 .
+
+partOf: rdfs:label "part of" .
 
 PAXRAT:794 rdfs:subClassOf UBERON:0008933,
         [ a owl:Restriction ;
@@ -62,4 +60,4 @@ UBERON:0008933 rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty ilxtr:delineates ;
             owl:someValuesFrom PAXRAT:794 ] .
 
-### Serialized using the pyontutils deterministic serializer v1.2.0
+### Serialized using the ttlser deterministic serializer v1.2.0

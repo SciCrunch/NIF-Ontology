@@ -18,9 +18,12 @@
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-indicators.ttl> a owl:Ontology ;
     rdfs:label "Phenotype indicators" ;
-    owl:versionInfo "2019-10-03" .
+    owl:versionInfo "2020-05-12" .
 
 ### Classes
+
+ilxtr:PhenotypeIndicator a owl:Class ;
+    rdfs:label "phenotype indicator" .
 
 TEMPIND:ACh a owl:Class ;
     rdfs:label "ACh (indicator)" ;
@@ -43,14 +46,16 @@ TEMPIND:Calb a owl:Class ;
     rdfs:label "Calb (indicator)" ;
     NIFRID:synonym "Calb1",
         "Calbindin",
-        "calbindin 1" ;
+        "calbindin 1",
+        "CB" ;
     rdfs:subClassOf ilxtr:PhenotypeIndicator ;
     skos:hiddenLabel "Calb" .
 
 TEMPIND:Calb2 a owl:Class ;
     rdfs:label "Calb2 (indicator)" ;
     NIFRID:synonym "Calbindin 2",
-        "calretinin" ;
+        "calretinin",
+        "CR" ;
     rdfs:subClassOf ilxtr:PhenotypeIndicator ;
     skos:hiddenLabel "Calb2" .
 
@@ -91,6 +96,32 @@ TEMPIND:Cort a owl:Class ;
     rdfs:subClassOf ilxtr:PhenotypeIndicator ;
     skos:hiddenLabel "Cort" .
 
+TEMPIND:CreDependentProteinFluorescingInSpectrumRed a owl:Class ;
+    rdfs:label "CreDependentProteinFluorescingInSpectrumRed (indicator)" ;
+    NIFRID:synonym "Ai14",
+        "Ai14(RCL-tdT)",
+        "Ai14(RCL-tdT)-D",
+        "Ai14D" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator ;
+    skos:hiddenLabel "CreRFP" .
+
+TEMPIND:CreFlpDependentProteinFluorescingInSpectrumRed a owl:Class ;
+    rdfs:label "CreFlpDependentProteinFluorescingInSpectrumRed (indicator)" ;
+    NIFRID:synonym "Ai65",
+        "Ai65(RCFL-tdT)",
+        "Ai65(RCFL-tdT)-D",
+        "Ai65D" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator ;
+    skos:hiddenLabel "CreFlpRFP" .
+
+TEMPIND:CRF a owl:Class ;
+    rdfs:label "CRF (indicator)" ;
+    NIFRID:synonym "corticoliberin",
+        "corticotropin releasing factor",
+        "corticotropin releasing hormone" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator ;
+    skos:hiddenLabel "CRF" .
+
 TEMPIND:Crh a owl:Class ;
     rdfs:label "Crh (indicator)" ;
     NIFRID:synonym "corticoliberin" ;
@@ -113,6 +144,18 @@ TEMPIND:GABA a owl:Class ;
         "VGAT" ;
     rdfs:subClassOf ilxtr:PhenotypeIndicator ;
     skos:hiddenLabel "GABA" .
+
+TEMPIND:GABAR a owl:Class ;
+    rdfs:label "GABAR (indicator)" ;
+    NIFRID:synonym "GABA receptor" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator ;
+    skos:hiddenLabel "GABAR" .
+
+TEMPIND:GluR a owl:Class ;
+    rdfs:label "GluR (indicator)" ;
+    NIFRID:synonym "Glutamate receptor" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator ;
+    skos:hiddenLabel "GluR" .
 
 TEMPIND:Glutamate a owl:Class ;
     rdfs:label "Glutamate (indicator)" ;
@@ -163,6 +206,16 @@ TEMPIND:Penk a owl:Class ;
         "preproenkephalin" ;
     rdfs:subClassOf ilxtr:PhenotypeIndicator ;
     skos:hiddenLabel "Penk" .
+
+TEMPIND:ProteinFluorescingInSpectrumRed a owl:Class ;
+    rdfs:label "ProteinFluorescingInSpectrumRed (indicator)" ;
+    NIFRID:synonym "DsRed",
+        "mCherry",
+        "RFP",
+        "tdT",
+        "tdTomato" ;
+    rdfs:subClassOf ilxtr:PhenotypeIndicator ;
+    skos:hiddenLabel "RFP" .
 
 TEMPIND:Pvalb a owl:Class ;
     rdfs:label "parvalbumin (indicator)" ;
@@ -231,7 +284,15 @@ CHEBI:16865 rdfs:subClassOf TEMPIND:GABA .
 
 CHEBI:28790 rdfs:subClassOf TEMPIND:Serotonin .
 
+<http://www.jax.org/strain/007914> rdfs:subClassOf TEMPIND:CreDependentProteinFluorescingInSpectrumRed .
+
+<http://www.jax.org/strain/021875> rdfs:subClassOf TEMPIND:CreFlpDependentProteinFluorescingInSpectrumRed .
+
 ilxtr:CCK-cre rdfs:subClassOf TEMPIND:Cck .
+
+ilxtr:GABAReceptor rdfs:subClassOf TEMPIND:GABAR .
+
+ilxtr:glutamateReceptor rdfs:subClassOf TEMPIND:GluR .
 
 ilxtr:NOS1-creER rdfs:subClassOf TEMPIND:Nos1 .
 
@@ -295,7 +356,8 @@ NCBIGene:12801 rdfs:subClassOf TEMPIND:Cnr1 .
 
 NCBIGene:12854 rdfs:subClassOf TEMPIND:Cort .
 
-NCBIGene:12918 rdfs:subClassOf TEMPIND:Crh .
+NCBIGene:12918 rdfs:subClassOf TEMPIND:CRF,
+        TEMPIND:Crh .
 
 NCBIGene:13616 rdfs:subClassOf TEMPIND:Edn3 .
 
@@ -347,13 +409,19 @@ NIFEXT:5096 rdfs:subClassOf TEMPIND:Penk .
 
 NIFEXT:5116 rdfs:subClassOf TEMPIND:Sst .
 
+NIFEXT:5137 rdfs:subClassOf TEMPIND:CRF .
+
 NIFEXT:5148 rdfs:subClassOf TEMPIND:VIP .
+
+NIFEXT:5239 rdfs:subClassOf TEMPIND:GluR .
 
 NLXMOL:1006006 rdfs:subClassOf TEMPIND:Calb .
 
 NLXMOL:1006008 rdfs:subClassOf TEMPIND:ACh .
 
 NLXMOL:1006009 rdfs:subClassOf TEMPIND:Glutamate .
+
+NLXMOL:20090604 rdfs:subClassOf TEMPIND:GABAR .
 
 PR:000001125 rdfs:subClassOf TEMPIND:Cnr1 .
 
@@ -429,4 +497,4 @@ SAO:722953401 rdfs:subClassOf TEMPIND:ACh .
 
 SAO:1744435799 rdfs:subClassOf TEMPIND:Glutamate .
 
-### Serialized using the pyontutils deterministic serializer v1.2.0
+### Serialized using the ttlser deterministic serializer v1.2.0
