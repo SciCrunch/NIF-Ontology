@@ -67,7 +67,7 @@ that mangles the iris in nifstd ttl files when you try to save your changes.
 **NIFSTD is a very large ontology which requires more memory than the Protege defaults.**
 
 Modify `run.sh` (or equivalent) so that it launches java with `jre/bin/java -Xmx8G -Xms500M \`
-(or similar). If you do not you will see the following line in the protege logs:  
+(or similar). The full Protoge instructions for setting the memory size (heap size) for different platforms are [here](https://protegewiki.stanford.edu/wiki/Setting_Heap_Size). If you do not you will see the following line in the protege logs:  
 `An error occurred whilst loading the ontology at Java heap space. Cause: {}`.
 
 Make sure that **Expand trees by default is disabled** in menu `File -> Preferences -> General`
