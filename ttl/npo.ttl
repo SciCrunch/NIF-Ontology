@@ -3,11 +3,14 @@
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
 @prefix hasRole: <http://purl.obolibrary.org/obo/RO_0000087> .
 @prefix ILX: <http://uri.interlex.org/base/ilx_> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix MIRO: <http://uri.interlex.org/MIRO/uris/readable/> .
 @prefix NCBIGene: <http://www.ncbi.nlm.nih.gov/gene/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix NIFEXT: <http://uri.neuinfo.org/nif/nifstd/nifext_> .
@@ -15,6 +18,7 @@
 @prefix NLX: <http://uri.neuinfo.org/nif/nifstd/nlx_> .
 @prefix NLXMOL: <http://uri.neuinfo.org/nif/nifstd/nlx_mol_> .
 @prefix NLXORG: <http://uri.neuinfo.org/nif/nifstd/nlx_organ_> .
+@prefix npokb: <http://uri.interlex.org/npo/uris/neurons/> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix obo: <http://purl.obolibrary.org/obo/> .
 @prefix overlaps: <http://purl.obolibrary.org/obo/RO_0002131> .
@@ -39,12 +43,39 @@
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/parcellation/mbaslim.ttl>,
         obo:bfo.owl ;
     rdfs:label "The Neuron Phenotype Ontology" ;
+    dc:title "The Neuron Phenotype Ontology" ;
+    dc:description "An ontology of neuron types based on the phenotypic dimensions of cells that can be measure experimentally." ;
     owl:versionInfo "2020-08-03" ;
     dc:contributor "Mohameth François Sy - https://orcid.org/0000-0002-4603-9838",
         "Shreejoy Tripathy - https://orcid.org/0000-0002-1007-9061" ;
     dc:creator "Maryann Martone - https://orcid.org/0000-0002-8406-3871",
         "Sean Hill - https://orcid.org/0000-0001-8055-860X",
         "Tom Gillespie - https://orcid.org/0000-0002-7509-4801" ;
+    dcterms:license <http://spdx.org/licenses/CC-BY-4.0> ;
+    doap:audience "researchers working on cell types and their phenotypes, whether they are collecting raw data, organizing existing data, or creating simulations of cell types" ;
+    doap:bug-database <https://github.com/SciCrunch/NIF-Ontology/issues> ;
+    doap:GitRespository <https://github.com/SciCrunch/NIF-Ontology> ;
+    ilxtr:indexNamespace npokb: ;
+    MIRO:axiom_patterns <https://github.com/tgbugs/pyontutils/blob/master/neurondm/docs/basic-model.org> ;
+    MIRO:competition <https://github.com/obophenotype/cell-ontology> ;
+    MIRO:dereferenceable_iris "`npokb:' and `ilxtr:' identifiers are not currently dereferenceable, but they are planned to be." ;
+    MIRO:development_community <https://github.com/SciCrunch/NIF-Ontology> ;
+    MIRO:development_environment "Protégé, FaCT++, ELK, python, pyontutils, neurondm" ;
+    MIRO:entity_deprecation_strategy "Specific ontology ids are never deprecated. If you need to know whether the modeling of a class has changed, neurondm can be used to regenerate the deterministic identifiers that appear as `ilxtr:hasTemporaryId'." ;
+    MIRO:entity_metadata_policy "`rdfs:label' must be present. `skos:prefLabel' must be present for common usage types, and should be present when possible for evidence based models. Since the constituent ontology files that make up the npo are generated using python, provenance is primarily stored in the git repository pointed to via the `prov:wasGeneratedBy' predicate in the `owl:Ontology' header for individual files, in this case that repository is `<https://github.com/tgbugs/pyontutils>'" ;
+    MIRO:entity_naming_convention "`rdfs:label' must be automatically generated using neurondm. Labels are generated from the labels of the constituent phenotype values. Only restrictions specifying necessary criteria for defining the type (i.e. those that are contained in an `owl:equivalentClass' statement) are included when generating the name. The ordering of the dimensions is specified in https://github.com/tgbugs/pyontutils/blob/a5e9fcc70d56870e692c17cb7fadce735a281d02/neurondm/neurondm/core.py#L135-L389" ;
+    MIRO:evaluation "No external evaluation has been conducted. See TODO-preprint" ;
+    MIRO:example_of_use "TODO-preprint" ;
+    MIRO:identifier_generation_policy "`npokb:[0-9]+' identifiers are assigned sequentially via https://github.com/tgbugs/pyontutils/blob/a5e9fcc70d56870e692c17cb7fadce735a281d02/nifstd/nifstd_tools/map-identifiers.py#L20-L49. An index of issued identifiers is retained at https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/generated/neurons/npokb-index.ttl. Note that the current implementation currently does not correctly handles cases where the constituent phenotypes of a class change." ;
+    MIRO:knowledge_acquisition_methodology "TODO-preprint" ;
+    MIRO:knowledge_representation_language <http://www.w3.org/2002/07/owl> ;
+    MIRO:methodological_framework "TODO-preprint" ;
+    MIRO:need "There is a need to bridge the gap between historical definitions of cell types from the literature, with cell types being defined using a wide variety of new techniques. There is also a need to be able to bridge and reconcile the wide variety of local terminology used across laboratories and place them on more solid foundations derived from the methodology used to make measurements on cells." ;
+    MIRO:scope_and_coverage "Scope: neuron types, and the dimensions and values of their constituent phenotypes. Coverage: an inventory of common usage types from existing sources, as well as three examples of evidence based models of cell types from recent publications." ;
+    MIRO:source_knowledge_location "TODO-preprint" ;
+    MIRO:sustainability_plan "The npo is maintained as part of the NIF-Ontology." ;
+    MIRO:testing "See `MIRO:axiom_patterns' and paper TODO-preprint" ;
+    MIRO:versioning_policy "Development versions of the ontology are released continuously and are identified by their git commit hashes. Stable versions are released periodically and can be accessed by their git tag." ;
     prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/a84680f3d7d2eb031d0bdd684ee90cbddbcd3926/neurondm/neurondm/build.py#L1320> .
 
 ### Object Properties
