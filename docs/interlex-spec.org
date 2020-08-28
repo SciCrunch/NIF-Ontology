@@ -1,276 +1,317 @@
+# -*- org-adapt-indentation: nil; org-edit-src-content-indentation: 0; -*-
 #+TITLE: InterLex Design Specification
 #+AUTHOR: Tom Gillespie
 #+DATE: [2017-12-06 Wed]
-#+SETUPFILE: theme-readtheorg.setup
 #+DESCRIPTION: Design specs for InterLex uri schemes and serialization options.
 #+HTML_HEAD: <meta name="version" content="0.0.1" />
 #+OPTIONS: num:nil html-preamble:t H:2
 
 * default 'users' (namespaces) for basic interlex functionality
 ** latest
-   uncurated from whichever user made the latest change
+uncurated from whichever user made the latest change
 ** origin
-   latest from the original defining source (user?)
+latest from the original defining source (user?)
 *** TODO import chains
-    In addition to rdfs:isDefinedBy we need to have inImportChainOf for anything
-    that appears as an object in rdfs:isDefinedBy and preferably targets of
-    rdfs:isDefinedBy which use version iris in addition to canonical iris
-    should probably follow scigraph here (tagging every triple) and it looks
-    like they get around this by simply adding the ontology that was actually
-    loaded with isDefinedBy as well which would probably work
+In addition to rdfs:isDefinedBy we need to have inImportChainOf for anything
+that appears as an object in rdfs:isDefinedBy and preferably targets of
+rdfs:isDefinedBy which use version iris in addition to canonical iris
+should probably follow scigraph here (tagging every triple) and it looks
+like they get around this by simply adding the ontology that was actually
+loaded with isDefinedBy as well which would probably work
 
-    #+NAME: table:tidb
-    #+CAPTION: ~terms_is_defined_by~
-    | sid | pid | oid | isDefinedBy                                                        |
-    |-----+-----+-----+--------------------------------------------------------------------+
-    |   0 |   1 |   2 | http://ontology.neuinfo.org/NIF/ttl/nif.ttl                        |
-    |   0 |   1 |   2 | http://ontology.neuinfo.org/NIF/ttl/nif/version/2018-01-01/nif.ttl |
-    |   0 |   1 |   2 | http://ontology.neuinfo.org/NIF/ttl/NIF-Investigation.ttl          |
+#+NAME: table:tidb
+#+CAPTION: ~terms_is_defined_by~
+| sid | pid | oid | isDefinedBy                                                        |
+|-----+-----+-----+--------------------------------------------------------------------+
+|   0 |   1 |   2 | http://ontology.neuinfo.org/NIF/ttl/nif.ttl                        |
+|   0 |   1 |   2 | http://ontology.neuinfo.org/NIF/ttl/nif/version/2018-01-01/nif.ttl |
+|   0 |   1 |   2 | http://ontology.neuinfo.org/NIF/ttl/NIF-Investigation.ttl          |
 
 **** Thoughts
-     'isDefinedBy' lists all files that contain a specific triple
-     an import closure does not add each importing ontology to isDefinedBy 
-     imagine a case where we import an ontology that imports an old version of IAO
-     if we have imported a newer version then the full set of triples in interlex
-     will probably not reason, since the meaning of an iri may have changed
-     (sigh OR strikes again) so we would need some way to tag when a triple was
-     added or removed from the graph (or rather which import chains it is known to
-     participate in)
+'isDefinedBy' lists all files that contain a specific triple
+an import closure does not add each importing ontology to isDefinedBy 
+imagine a case where we import an ontology that imports an old version of IAO
+if we have imported a newer version then the full set of triples in interlex
+will probably not reason, since the meaning of an iri may have changed
+(sigh OR strikes again) so we would need some way to tag when a triple was
+added or removed from the graph (or rather which import chains it is known to
+participate in)
 *** TODO user/ontology
-    this suggests that we should have a user per ontology that we load
-    since not every ontology will pull in the 'latest' version of imports
-    which will lead to conflicts
+this suggests that we should have a user per ontology that we load
+since not every ontology will pull in the 'latest' version of imports
+which will lead to conflicts
 ** default
-   latest from the approved set of terms
+latest from the approved set of terms
 ** curated
-   latest from the curated set of terms
+latest from the curated set of terms
 ** reasonable
-   a subset of the database that is known to be reasonable
+a subset of the database that is known to be reasonable
 ** base
-   This 'user' is retained in order to provide a canonical prefix for =ilx_1234567=
-   fragments that does not have any information attached to it.
-   This form is used only as a reference and should have no predicates attached to it
-   besides those used to map to other namespaces. It will not have its own user view
-   but will redirect to one of the other builtin namespaces, probably =curated=.
+This 'user' is retained in order to provide a canonical prefix for =ilx_1234567=
+fragments that does not have any information attached to it.
+This form is used only as a reference and should have no predicates attached to it
+besides those used to map to other namespaces. It will not have its own user view
+but will redirect to one of the other builtin namespaces, probably =curated=.
 * URI resolver structure =uri.interlex.org=
 ** Mapping between the canonical =http://uri.interlex.org/base/ilx_1234567= identifiers and =/uris/=
-   As outlined below, =/uris/= is free form except that InterLex enforces a 1:1 mapping
-   when serializing an ontology.
+As outlined below, =/uris/= is free form except that InterLex enforces a 1:1 mapping
+when serializing an ontology.
 
-   The simplest and probably most sensible thing to do is to not allow any remapping of
-   =/uris/= identifiers once they have been made public.
+The simplest and probably most sensible thing to do is to not allow any remapping of
+=/uris/= identifiers once they have been made public.
 
-   In order for no remapping to be viable in development workflows InterLex needs to 
-   to allow users/orgs to mark parts of =/uris/= as 'beta' so that they 404 for anyone
-   who is not properly authorized. This can help prevent uris with potentially unstable
-   mappings from leaking into use while still allowing for beta testing.
+In order for no remapping to be viable in development workflows InterLex needs to 
+to allow users/orgs to mark parts of =/uris/= as 'beta' so that they 404 for anyone
+who is not properly authorized. This can help prevent uris with potentially unstable
+mappings from leaking into use while still allowing for beta testing.
 *** old thinking about alternative solutions                       :noexport:
-    By default InterLex provides only the latest mapping to a given ilx identifier in a
-    users =/uris/= namespace when serializing but will continue to resolve old =/uris/=
-    identifiers that map to the same ilx identifier. We may need a way to allow users to
-    change these mappings given some criteria, such as that there have not been any requests
-    for the old uri and/or no one other than the user has serialized an ontology file with that uri.
+By default InterLex provides only the latest mapping to a given ilx identifier in a
+users =/uris/= namespace when serializing but will continue to resolve old =/uris/=
+identifiers that map to the same ilx identifier. We may need a way to allow users to
+change these mappings given some criteria, such as that there have not been any requests
+for the old uri and/or no one other than the user has serialized an ontology file with that uri.
   
-    One exception to this is if a =/uris/= identifier is used in a source ontology when
-    creating a new ilx identifier. In this case no remapping will be allowed, though the
-    =/uris/= form can be replaced with another one, InterLex will always resolve the original
-    identifier to the same ilx identifier.
+One exception to this is if a =/uris/= identifier is used in a source ontology when
+creating a new ilx identifier. In this case no remapping will be allowed, though the
+=/uris/= form can be replaced with another one, InterLex will always resolve the original
+identifier to the same ilx identifier.
    
 ** builtin namespaces uri structure
 *** =http://uri.interlex.org/base/=
 *** =http://uri.interlex.org/base/ilx_{1234567}= :terminal:
 *** =http://uri.interlex.org/base/readable/{word}= :terminal:
-    Entities listed here need to be in a 1:1 mapping from ilx_ to readable.
-    These will resolve to the corresponding numeric ilx identifier page.
-    We enforce 1:1 here to avoid confusion and needless multiplcation.
-    Only curators may add readables to the global readable space.
-    An alternate way to enable readability is to use qnames to a complete iri.
-    For example in turtle =@prefix myPrefix: <http://uri.interlex.org/base/ilx_1234567> .=.
-    IF we make this 1:many then we will require the selection of a preferred readable
-    and the exact way to serialize will have a couple of choices as a result.
-    See [[* serialization choices][serialization choices]] for more.
+Entities listed here need to be in a 1:1 mapping from ilx_ to readable.
+These will resolve to the corresponding numeric ilx identifier page.
+We enforce 1:1 here to avoid confusion and needless multiplcation.
+Only curators may add readables to the global readable space.
+An alternate way to enable readability is to use qnames to a complete iri.
+For example in turtle =@prefix myPrefix: <http://uri.interlex.org/base/ilx_1234567> .=.
+IF we make this 1:many then we will require the selection of a preferred readable
+and the exact way to serialize will have a couple of choices as a result.
+See [[#serialization-choices][serialization choices]] for more.
+*** =http://uri.interlex.org/base/lexical/{label}= :terminal:
+This endpoint represents a mapping of all labels to escaped uri fragments.
+If there are duplicate labels then the page resolves to a wikipedia like disambiguation page.
+This is the foundation for redlinks, which are in a sense the 'ambiguation' page for a term.
+
+It is not clear whether we should support lexical resolution inside of a user's =/uris/=.
+The thing that would seem to make the most sense is for there to be a way for users to
+choose which ambiguous term they personally want to resolve to. Since there is only a single
+possible set of purely lexical terms, this means that =/uris/= will NOT have a lexical subheading.
+Instead the user can define _on the global ambiguous terms_ which term they want to resolve to.
+
+There is a potential issue, which is that when there is a _single_ ambiguous term then it will
+resolve to the users definition of that term as with readable. The difference is that with lexical
+all of the labels by definition are conflated, so we have to include the mapping to an individual term.
+Unlike in the =/readable/= namespace, InterLex SHALL NOT define default mappings for ambiguous labels.
+**** Logic
+| result count | action              |
+|            0 | ambiguate term      |
+|            1 | resolve directly    |
+|          > 1 | disambiguation page |
+**** When the user is wrong
+The reason for taking the approach outlined above is that when a user enters a label for a term
+if they concept they are thinking of is not defined, but there is another concept with the same
+label masquerading as such, then we need a way to warn the user. For labels that appear on only
+a single term, a purely lexical reference will not be allowed. In fact, lexical references will
+only be allowed as redlinks and should be hastily mapped to an existing ilx_id or to a new term.
 ** user uri structure
-*** =http://uri.interlex.org/{user}/=
-*** =http://uri.interlex.org/{user}/versions/=
-*** =http://uri.interlex.org/{user}/versions/{epoch}=
-*** =http://uri.interlex.org/{user}/versions/{version-string}=
-    View the version of a particular term, accessible via all the usual paths.
-*** =http://uri.interlex.org/{user}/versions/{epoch}/ilx_{1234567}= :terminal:
-*** =http://uri.interlex.org/{user}/versions/{epoch}/readable/{word}= :terminal:
-*** =http://uri.interlex.org/{user}/versions/{epoch}/uris/readable/{word}= :terminal:
-*** =http://uri.interlex.org/{user}/ontologies/= :terminal:
-    This subbranch represents the common reference names for ontology files
-    that are actually generated by InterLex in the same way that =/readable= and =/ilx_= do.
-*** =http://uri.interlex.org/{user}/ontologies/{hash_of_bound_name}= :terminal:
-    ={consecutive integers}= is another possibility here, but the hash seems like
-    it would ultimately be much cheaper, the alternative of course being that
-    we could try to just stick the bound name in there directly ...
-    Also a possibility =http://uri.interlex.org/{user}/ontologies/{qualifier}=
-    but conflates and confuses matters
-*** =http://uri.interlex.org/{user}/ontologies/ilx_{1234567}=      :terminal:
-    Used for providing a bound name when a single term is serialized.
-*** =http://uri.interlex.org/{user}/ontologies/ilx_{1234567}/version/{epoch}/ilx_{1234567}= :terminal:
-    Version iri for single term ontologies.
-*** =http://uri.interlex.org/{user}/ontologies/{path/}filename{.ext}= :terminal:
-    Need to consider naming, but this is where automatically generated ontology files could live.
-    =files= or =graphs= are reasonable alternative names?
-*** =http://uri.interlex.org/{user}/ontologies/{path/}filename/version/{epoch}/filename{.ext}= :terminal:
-    Access to versions of auto-generated ontology files.
-    This may be hard to pull off for arbitrary dates.
-*** =http://uri.interlex.org/{user}/ontologies/{path/}filename/version/{version-string}/filename{.ext}= :terminal:
-    This is easier to pull off for things like uberon.
-*** =http://uri.interlex.org/{user}/ixl_{1234567}= :terminal:
-*** =http://uri.interlex.org/{user}/readable/{word}= :terminal:
-    Entities listed here need to be in a 1:1 mapping from ilx_ to readable.
-    They map to the user's view of the underlying ilx identifier.
-    These are not resolved dynamically, they must be explicitly defined.
-*** =http://uri.interlex.org/{user}/curies/=
-    Curies are local identifiers. They identify the abbreviation that a user wishes to use for a longer identifier.
-    Because abbreviations are so short, they inevitably collide. While in an ideal world users would all conform to
-    community norms, the curie spec does not require that. Therefore the =/curies/= branch is provided to make it
-    possible for user local curies to have globally unique identifiers.
-    
-    This branch is an endpoint when accessed as =/curies= or =/curies/= which when given no further arguments should return
-    the full curie mapping for the user, possibly with additional information about the source of the mapping, i.e. whether
-    it is the default or whether it is their own definition.
-    
-*** =http://uri.interlex.org/{user}/curies/{prefix}=
-    Return the iri prefix for a given curie prefix. e.g. =/curies/ilxtr= -> =http://uri.interlex.org/tgbugs/uris/readable/= \\
-    Does not resolve (adding a =:= will trigger the resolver).
-    NOTE: curies are case sensitive so this endpoint MUST 404 if there is not an exact match.
-*** =http://uri.interlex.org/{user}/curies/{iri}=
-    Convert an iri into a curie.
-    Can also be used to obtain prefixes (with a =:= attached).
-    Potentially could return more than one curie depending on whether we decide to allow for multiple curie mappings (probably no). \\
-    NOTE: iris passed in as =curies/http://uri.interlex.org/...= without url encoding them will require special handling but
-    it should be possible.
-*** =http://uri.interlex.org/{user}/curies/{curie}=
-    If the curie matches, resolves to the mapped iri.
-    We probably also want a way to returns the expanded iri maybe using content type?
-    The curie =http:= and an iri can be distinguished because in the iri the =:= must
-    be followed by =//= whereas in a curie it cannot (or if it can we won't support
-    that part of the spec). \\
-    NOTE: this endpoint is case sensitive.
-*** =http://uri.interlex.org/{user}/uris/=
-    =/uris/= is a containment mechanism for user/org specific resolvable ontology identifiers.
-    We use this so that there is zero chance of collision between interlex defined paths and user
-    paths. This also lets us immediately determine that this was a user defined path.
-    Synonyms for this would be ~user defined uris~ ~user defined urls~ or ~user defined iris~.
-    Despite the markings as =:terminal:= below, the structure of =/uris/= is completely unrestricted,
-    though we do have best-practices suggestions for how to use them effectively.
-    One key implementation detail is that path elements may be used as identifiers, but there shall be
-    an =owl:sameAs= relationship between =uris/path/= and =uris/path=. =uris/path= shall resolve to =uris/path/=
-    if it is a path element. In the event that a terminal is converted into branch (a common pattern if
-    the url hierarchy reflects the subClassOf hierarchy, not that it should) then the node shall resolve to
-    =uris/wasterminal/=. This means that interlex needs to track the non-terminal nodes under =/uris/=.
-    The only other place users have some control over paths is in defining the locations of their ontologies.
-*** =http://uri.interlex.org/{user}/uris/{path}/{local_alphanumeric_id}= :terminal:
-    Ideally =local_alphanumeric_id= should be a number, but there are cases, for example
-    with the DICOM terms, that are alphanumeric local ids so we need to support that.
-    This means that we leave the decision about what is 'readable' to the discretion of
-    the user.
+*** =http://uri.interlex.org/{group}/=
+*** =http://uri.interlex.org/{group}/versions/=
+*** =http://uri.interlex.org/{group}/versions/{epoch}=
+*** =http://uri.interlex.org/{group}/versions/{version-string}=
+View the version of a particular term, accessible via all the usual paths.
+*** =http://uri.interlex.org/{group}/versions/{epoch}/ilx_{1234567}= :terminal:
+*** =http://uri.interlex.org/{group}/versions/{epoch}/readable/{word}= :terminal:
+*** =http://uri.interlex.org/{group}/versions/{epoch}/uris/readable/{word}= :terminal:
+*** =http://uri.interlex.org/{group}/ontologies/= :terminal:
+This subbranch represents the common reference names for ontology files
+that are actually generated by InterLex in the same way that =/readable= and =/ilx_= do.
+*** =http://uri.interlex.org/{group}/ontologies/interlex/{path/}filename{.ext}= :terminal:
 
-    Examples of how to use this.
-    =http://uri.interlex.org/hcp/uris/mmp/labels/{local_alphanumeric_id}=
-    =http://uri.interlex.org/hcp/uris/mmp/versions/{local_alphanumeric_id}=
-    Implicitly terminology.
-    =http://uri.interlex.org/aibs/uris/mouse/versions/{local_alphanumeric_id}=
-    Implicitly the terminology source, which also happens to be the atlas in this case.
-    =http://uri.interlex.org/paxinos/uris/mouse/versions/{local_alphanumeric_id}=
-    Explicitly the physical atlas.
-    =http://uri.interlex.org/aibs/uris/atlases/mouse/versions/{local_alphanumeric_id}=
-    A case where we are using external identifiers but need a valid root class in the
-    ontology. This suggests that we should probably allow intermediate nodes to be
-    used, though trickier to enforce safely when there are no numeric leaves.
-    =http://uri.interlex.org/aibs/uris/mouse/labels/=
-    Using the 'null' label as the root including the trailing slash has the additional
-    nice effect that the URL will shorten and appear first in a ttl file.
+Builtin ontologies whose included classes are based on the group and whose serialization
+is determined by the group settings as well. Use =/{group}/own/{other-group}/ontologies/interlex/=
+to re-serialize according to your own rules, e.g. using a different curie ranking rule.
+*** =http://uri.interlex.org/{group}/ontologies/interlex/{path/}filename/version/{epoch}/filename{.ext}= :terminal:
+*** =http://uri.interlex.org/{group}/ontologies/{hash_of_bound_name}= :terminal:
+={consecutive integers}= is another possibility here, but the hash seems like
+it would ultimately be much cheaper, the alternative of course being that
+we could try to just stick the bound name in there directly ...
+Also a possibility =http://uri.interlex.org/{group}/ontologies/{qualifier}=
+but conflates and confuses matters
+*** =http://uri.interlex.org/{group}/ontologies/ilx_{1234567}=      :terminal:
+Used for providing a bound name when a single term is serialized.
+*** =http://uri.interlex.org/{group}/ontologies/ilx_{1234567}/version/{epoch}/ilx_{1234567}= :terminal:
+Version iri for single term ontologies.
+*** =http://uri.interlex.org/{group}/ontologies/{path/}filename{.ext}= :terminal:
+Need to consider naming, but this is where automatically generated ontology files could live.
+=files= or =graphs= are reasonable alternative names?
+*** =http://uri.interlex.org/{group}/ontologies/{path/}filename/version/{epoch}/filename{.ext}= :terminal:
+Access to versions of auto-generated ontology files.
+This may be hard to pull off for arbitrary dates.
+*** =http://uri.interlex.org/{group}/ontologies/{path/}filename/version/{version-string}/filename{.ext}= :terminal:
+This is easier to pull off for things like uberon.
 
-*** =http://uri.interlex.org/{user}/uris/readable/{word}= :terminal:
-    This path isolates user readable definitions from the default readable definitions.
-    This prevents strangeness when switching between users.
-    For example =user1/readable/brain= and =user2/readable/brain= and =default/readable/brain=
-    should all point to =ILX:1234567=. However =user1/uris/readable/brain= and =user2/uris/readable/brain=
-    could point to other interlex identifiers entirely.
-*** =http://uri.interlex.org/{user}/uris/ontologies/{path/}filename{.ext}= :terminal:
-*** =http://uri.interlex.org/{user}/uris/ontologies/{path/}filename/version/{epoch}/filename{.ext}= :terminal:
-*** =http://uri.interlex.org/{user}/uris/ontologies/{path/}filename/version/{version-string}/filename{.ext}= :terminal:
-*** =http://uri.interlex.org/{user}/own/=
-*** =http://uri.interlex.org/{user}/own/{other-user}/uris/=
-    =/own/= is provided so that users can have access to their view of other
-    users identifiers. This cannot be provided by mirroring =/uris/= across all
-    users because =/uris/= must be isolated on a per user basis to prevent naming conflicts.
-    For example =http://uri.interlex.org/tgbugs/uris/0= and =http://uri.interlex.org/nifstd/uris/0=
-    must be different by default so that both users can lift their locally unique
-    integer identifiers into a globally unique space without conflicts.
-    
-    Practically this is important so that it is possible to enable the following
-    =http://uri.interlex.org/default/ilx_1234567= has defining user
-    =http://uri.interlex.org/tgbugs/ilx_1234567= which is mapped to
-    =http://uri.interlex.org/tgbugs/uris/terms/0= which is
-    given the curie =MSTL:0=. There are many cases where =MSTL:0= is 
-    a recognized identifier in a community and users would like to be able
-    to easily and transparently see their own view of those terms without
-    having to manually map =http://uri.interlex.org/default/ilx_1234567=
-    to =http://uri.interlex.org/otheruser/uris/tgbugs/terms/0= and create their
-    own curie for =MSTL=. In this case I am imagining that =otheruser/uris/terms/0=
-    is already taken, as in many cases it will be. Consider for example the fact
-    that obo ontologies almost all have CURIE:0000000 which would have a pattern in
-    InterLex akin to =uberon/uris/0000000= =go/uris/0000000=. If GO wanted to have
-    a GO specific definitions for an Uberon terms to facilitate understanding by
-    non-anatomists trying to use them, they would inevitably run into a case where
-    there was an identifier conflict.
-    
-    =/own/= makes this whole process completely transparent. Any user can reference
-    any other user's locally unique names and see their own version of the term.
-    
-    One potential wrinkle we could introduce into how we resolve =/own/= is to keep track
-    of ={other-user}= and make it possible to easily load up a diff.
-    
-*** =http://uri.interlex.org/{user}/own/{other-user}/curies/=
-    Like user =/uris/= curies are local identifiers. Therefore it is useful for a user
-    to be able to see their own view of terms using the names (curies) defined by another user. \\
-*** =http://uri.interlex.org/{user}/own/{other-user}/curies/{curie}=
-    This endpoint returns ={user}= version of the term resolved to by
-    the curie defined by ={other-user}=. This is useful functionality even if a user
-    has defined curies that map to many other user's views. So for example
-    =http://uri.interlex.org/tgbugs/own/{other-user}/curies/ILX:1234567= and
-    =http://uri.interlex.org/tgbugs/own/{other-user}/curies/defaultILX:1234567= would
-    both resolve to =http://uri.interlex.org/tgbugs/ilx_1234567= as indented.
-*** =http://uri.interlex.org/{user}/own/{other-user}/curies/{iri}=
-*** =http://uri.interlex.org/{user}/own/{other-user}/curies/{prefix}=
-*** =http://uri.interlex.org/{user}/diff/=
-    Like =/own/= but instead of resolving to a single version of a term
-    resolves to a diff of the two terms.
-*** =http://uri.interlex.org/{user}/diff/{other-user}/uris/=
-*** =http://uri.interlex.org/{user}/diff/{other-user}/curies/=
+*** =http://uri.interlex.org/{group}/ontologies/uris/=
+Sandboxing of group ontology iris.
+*** =http://uri.interlex.org/{group}/ontologies/uris/{path/}filename{.ext}= :terminal:
+*** =http://uri.interlex.org/{group}/ontologies/uris/{path/}filename/version/{epoch}/filename{.ext}= :terminal:
+*** =http://uri.interlex.org/{group}/ontologies/uris/{path/}filename/version/{version-string}/filename{.ext}= :terminal:
 
+*** =http://uri.interlex.org/{group}/ilx_{1234567}=                 :terminal:
+*** =http://uri.interlex.org/{group}/readable/{word}= :terminal:
+Entities listed here need to be in a 1:1 mapping from ilx_ to readable.
+They map to the user's view of the underlying ilx identifier.
+These are not resolved dynamically, they must be explicitly defined.
+*** =http://uri.interlex.org/{group}/curies/=
+Curies are local identifiers. They identify the abbreviation that a user wishes to use for a longer identifier.
+Because abbreviations are so short, they inevitably collide. While in an ideal world users would all conform to
+community norms, the curie spec does not require that. Therefore the =/curies/= branch is provided to make it
+possible for user local curies to have globally unique identifiers.
+    
+This branch is an endpoint when accessed as =/curies= or =/curies/= which when given no further arguments should return
+the full curie mapping for the user, possibly with additional information about the source of the mapping, i.e. whether
+it is the default or whether it is their own definition.
+    
+*** =http://uri.interlex.org/{group}/curies/{prefix}=
+Return the iri prefix for a given curie prefix. e.g. =/curies/ilxtr= -> =http://uri.interlex.org/tgbugs/uris/readable/= \\
+Does not resolve (adding a =:= will trigger the resolver).
+NOTE: curies are case sensitive so this endpoint MUST 404 if there is not an exact match.
+*** =http://uri.interlex.org/{group}/curies/{iri}=
+Convert an iri into a curie.
+Can also be used to obtain prefixes (with a =:= attached).
+Potentially could return more than one curie depending on whether we decide to allow for multiple curie mappings (probably no). \\
+NOTE: iris passed in as =curies/http://uri.interlex.org/...= without url encoding them will require special handling but
+it should be possible.
+*** =http://uri.interlex.org/{group}/curies/{curie}=
+If the curie matches, resolves to the mapped iri.
+We probably also want a way to returns the expanded iri maybe using content type?
+The curie =http:= and an iri can be distinguished because in the iri the =:= must
+be followed by =//= whereas in a curie it cannot (or if it can we won't support
+that part of the spec). \\
+NOTE: this endpoint is case sensitive.
+*** =http://uri.interlex.org/{group}/uris/=
+=/uris/= is a containment mechanism for user/org specific resolvable ontology identifiers.
+We use this so that there is zero chance of collision between interlex defined paths and user
+paths. This also lets us immediately determine that this was a user defined path.
+Synonyms for this would be ~user defined uris~ ~user defined urls~ or ~user defined iris~.
+Despite the markings as =:terminal:= below, the structure of =/uris/= is completely unrestricted,
+though we do have best-practices suggestions for how to use them effectively.
+One key implementation detail is that path elements may be used as identifiers, but there shall be
+an =owl:sameAs= relationship between =uris/path/= and =uris/path=. =uris/path= shall resolve to =uris/path/=
+if it is a path element. In the event that a terminal is converted into branch (a common pattern if
+the url hierarchy reflects the subClassOf hierarchy, not that it should) then the node shall resolve to
+=uris/wasterminal/=. This means that interlex needs to track the non-terminal nodes under =/uris/=.
+The only other place users have some control over paths is in defining the locations of their ontologies.
+*** =http://uri.interlex.org/{group}/uris/{path}/{local_alphanumeric_id}= :terminal:
+Ideally =local_alphanumeric_id= should be a number, but there are cases, for example
+with the DICOM terms, that are alphanumeric local ids so we need to support that.
+This means that we leave the decision about what is 'readable' to the discretion of
+the user.
+
+Examples of how to use this.
+=http://uri.interlex.org/hcp/uris/mmp/labels/{local_alphanumeric_id}=
+=http://uri.interlex.org/hcp/uris/mmp/versions/{local_alphanumeric_id}=
+Implicitly terminology.
+=http://uri.interlex.org/aibs/uris/mouse/versions/{local_alphanumeric_id}=
+Implicitly the terminology source, which also happens to be the atlas in this case.
+=http://uri.interlex.org/paxinos/uris/mouse/versions/{local_alphanumeric_id}=
+Explicitly the physical atlas.
+=http://uri.interlex.org/aibs/uris/atlases/mouse/versions/{local_alphanumeric_id}=
+A case where we are using external identifiers but need a valid root class in the
+ontology. This suggests that we should probably allow intermediate nodes to be
+used, though trickier to enforce safely when there are no numeric leaves.
+=http://uri.interlex.org/aibs/uris/mouse/labels/=
+Using the 'null' label as the root including the trailing slash has the additional
+nice effect that the URL will shorten and appear first in a ttl file.
+
+*** =http://uri.interlex.org/{group}/uris/readable/{word}= :terminal:
+This path isolates user readable definitions from the default readable definitions.
+This prevents strangeness when switching between users.
+For example =user1/readable/brain= and =user2/readable/brain= and =default/readable/brain=
+should all point to =ILX:1234567=. However =user1/uris/readable/brain= and =user2/uris/readable/brain=
+could point to other interlex identifiers entirely.
+*** =http://uri.interlex.org/{group}/uris/ontologies/{path/}filename{.ext}= :terminal:
+*** =http://uri.interlex.org/{group}/uris/ontologies/{path/}filename/version/{epoch}/filename{.ext}= :terminal:
+*** =http://uri.interlex.org/{group}/uris/ontologies/{path/}filename/version/{version-string}/filename{.ext}= :terminal:
+*** =http://uri.interlex.org/{group}/own/=
+*** =http://uri.interlex.org/{group}/own/{other-user}/uris/=
+=/own/= is provided so that users can have access to their view of other
+users identifiers. This cannot be provided by mirroring =/uris/= across all
+users because =/uris/= must be isolated on a per user basis to prevent naming conflicts.
+For example =http://uri.interlex.org/tgbugs/uris/0= and =http://uri.interlex.org/nifstd/uris/0=
+must be different by default so that both users can lift their locally unique
+integer identifiers into a globally unique space without conflicts.
+    
+Practically this is important so that it is possible to enable the following
+=http://uri.interlex.org/default/ilx_1234567= has defining user
+=http://uri.interlex.org/tgbugs/ilx_1234567= which is mapped to
+=http://uri.interlex.org/tgbugs/uris/terms/0= which is
+given the curie =MSTL:0=. There are many cases where =MSTL:0= is 
+a recognized identifier in a community and users would like to be able
+to easily and transparently see their own view of those terms without
+having to manually map =http://uri.interlex.org/default/ilx_1234567=
+to =http://uri.interlex.org/otheruser/uris/tgbugs/terms/0= and create their
+own curie for =MSTL=. In this case I am imagining that =otheruser/uris/terms/0=
+is already taken, as in many cases it will be. Consider for example the fact
+that obo ontologies almost all have CURIE:0000000 which would have a pattern in
+InterLex akin to =uberon/uris/0000000= =go/uris/0000000=. If GO wanted to have
+a GO specific definitions for an Uberon terms to facilitate understanding by
+non-anatomists trying to use them, they would inevitably run into a case where
+there was an identifier conflict.
+    
+=/own/= makes this whole process completely transparent. Any user can reference
+any other user's locally unique names and see their own version of the term.
+    
+One potential wrinkle we could introduce into how we resolve =/own/= is to keep track
+of ={other-user}= and make it possible to easily load up a diff.
+    
+*** =http://uri.interlex.org/{group}/own/{other-user}/curies/=
+Like user =/uris/= curies are local identifiers. Therefore it is useful for a user
+to be able to see their own view of terms using the names (curies) defined by another user. \\
+*** =http://uri.interlex.org/{group}/own/{other-user}/curies/{curie}=
+This endpoint returns ={group}= version of the term resolved to by
+the curie defined by ={other-user}=. This is useful functionality even if a user
+has defined curies that map to many other user's views. So for example
+=http://uri.interlex.org/tgbugs/own/{other-user}/curies/ILX:1234567= and
+=http://uri.interlex.org/tgbugs/own/{other-user}/curies/defaultILX:1234567= would
+both resolve to =http://uri.interlex.org/tgbugs/ilx_1234567= as indented.
+*** =http://uri.interlex.org/{group}/own/{other-user}/curies/{iri}=
+*** =http://uri.interlex.org/{group}/own/{other-user}/curies/{prefix}=
+*** =http://uri.interlex.org/{group}/own/{other-user}/ontologies/=
+*** =http://uri.interlex.org/{group}/diff/=
+Like =/own/= but instead of resolving to a single version of a term
+resolves to a diff of the two terms.
+*** =http://uri.interlex.org/{group}/diff/{other-user}/uris/=
+*** =http://uri.interlex.org/{group}/diff/{other-user}/curies/=
+
+*** =http://uri.interlex.org/{group}/diff/{other-user}/ontologies/=
 * CURIE resolver structure =resolver.interlex.org=
-  *NOTE: This section is still highly provisional.*
-  Since =uri.interlex.org= is intended to manage resolvable ontology identifiers
-  InterLex needs another endpoint to make it easy to resolve community defined curies.
-  In order to prevent conflation of InterLex users and organizations with curies (which
-  often have the same name with some case variants) this will be provided through a different
-  subdomain: =resolver.interlex.org=.
+*NOTE: This section is still highly provisional.*
+Since =uri.interlex.org= is intended to manage resolvable ontology identifiers
+InterLex needs another endpoint to make it easy to resolve community defined curies.
+In order to prevent conflation of InterLex users and organizations with curies (which
+often have the same name with some case variants) this will be provided through a different
+subdomain: =resolver.interlex.org=.
 
-  An alternate, and probably clearer name for this endpoint would be =curies.interlex.org= or
-  since =resolver.interlex.org= is fairly ambiguous with regard to what it is actually resolving.
-  This would also match the naming for =http://uri.interlex.org/{user}/curies/=.
+An alternate, and probably clearer name for this endpoint would be =curies.interlex.org= or
+since =resolver.interlex.org= is fairly ambiguous with regard to what it is actually resolving.
+This would also match the naming for =http://uri.interlex.org/{group}/curies/=.
 ** Resolving to alternate CURIE mappings
-   Users who are technical enough to want the ability to resolve their own curies
-   should instead select the =/{user}/ilx_{1234567}=, or =/{user}/own/= versions
-   of the identifier for serialization and map the prefix to the curie they wish
-   to formally resolve. If users just want to resolve a curie as a local identifier
-   defined by a particular user the =http://uri.interlex.org/{user}/curies/{curie}=
-   endpoint provides that functionality.
+Users who are technical enough to want the ability to resolve their own curies
+should instead select the =/{group}/ilx_{1234567}=, or =/{group}/own/= versions
+of the identifier for serialization and map the prefix to the curie they wish
+to formally resolve. If users just want to resolve a curie as a local identifier
+defined by a particular user the =http://uri.interlex.org/{group}/curies/{curie}=
+endpoint provides that functionality.
 
-   *NOTE:* =resolver.interlex.org= and =uri.interlex.org/{user}/curies/{curie}= urls are not
-   appropriate for use as ontology identifiers and are disallowed as iri prefixes to prevent
-   confusion. The reason for this is that curie resolvers impose semantics a local identifiers
-   which can be ambiguous, and in the case of user curies, can change without warning.
+*NOTE:* =resolver.interlex.org= and =uri.interlex.org/{group}/curies/{curie}= urls are not
+appropriate for use as ontology identifiers and are disallowed as iri prefixes to prevent
+confusion. The reason for this is that curie resolvers impose semantics a local identifiers
+which can be ambiguous, and in the case of user curies, can change without warning.
 ** resolver uri structure
 *** =http://resolver.interlex.org/{curie}=
-    This is the only endpoint and it shall only resolve community approved curies using InterLex default curie mappings.
+This is the only endpoint and it shall only resolve community approved curies using InterLex default curie mappings.
    
 * TODO Existing users and URI paths
 ** tgbugs
@@ -278,8 +319,11 @@
 ** paxinos
 ** TODO more...
 * serialization choices
+:PROPERTIES:
+:CUSTOM_ID: serialization-choices
+:END:
 ** Serialization schemes
-   only numeric iris may use prefixes to the full iri
+only numeric iris may use prefixes to the full iri
 *** entity choices
 **** all
 **** all entities from this ontology file
@@ -289,39 +333,41 @@
 ***** by tag
 ***** by created by user
 ***** by rule
-      too slow, download the full dump if they want this
+too slow, download the full dump if they want this
 *** predicate choices
 **** action
 ***** normalize
-      normalize partOf: to ilxr:partOf
+normalize partOf: to ilxr:partOf
 ***** exclude
-      include (not used)
-      all are included by default, you may only remove
-      no removing using one rule and adding back, if you need that get the full dump
+include (not used)
+all are included by default, you may only remove
+no removing using one rule and adding back, if you need that get the full dump
 ***** include
-      Used as part of compound rules such as
-      =p include value is oboInOwl:hasRelatedSynonym, o include value length-less-than 3=
-      this probably will not be used as part of predicate queries in the serialization context.
+Used as part of compound rules such as
+=p include value is oboInOwl:hasRelatedSynonym, o include value length-less-than 3=
+this probably will not be used as part of predicate queries in the serialization context.
 **** filter by
 ***** type
 ***** value
 **** operators
 ***** is
-      (define (is type-or-value test-value)
-        (if (= type-or-value test-value)
-	    true
-	    false))
+#+begin_src racket
+(define (is type-or-value test-value)
+  (if (= type-or-value test-value)
+      true
+      false))
+#+end_src
 ***** in
-      set membership
+set membership
 ***** to
-      only applies in the normalize context
+only applies in the normalize context
 ***** lenght-less-than
-      (define (length-less-than value n) (< (len value) n))
+(define (length-less-than value n) (< (len value) n))
 ***** rule
-      too slow, download the full dump if they want this
+too slow, download the full dump if they want this
 **** targets
 ***** subject
-      this is done in the entity choices
+this is done in the entity choices
 ***** predicate
 ****** 'action type is AnnotationProperty
 ****** 'action type is ObjectProperty
@@ -331,10 +377,10 @@
 ****** 'action type is URIRef
 ****** 'action value length-less-than n
 *** user namespace choices
-    Might want to enable this for both numeric and readable...?
+Might want to enable this for both numeric and readable...?
 **** always this user
-     choose this if you are planning to make local changes
-     to the terms you are going to select
+choose this if you are planning to make local changes
+to the terms you are going to select
 **** failover to user (includes base/default/latest etc)
 **** failover to 'some-builtin but serialize as the user who modified to that version
 **** failover to users in order
@@ -346,7 +392,7 @@
 **** prefer full
 **** prefer normal
 *** prov choices
-    users, isDefinedBy, InterLexCurationStatus
+users, isDefinedBy, InterLexCurationStatus
 **** include
 ***** none
 ***** same file
@@ -361,12 +407,12 @@
 *** 'prefix' to full numeric iri
 *** use readable iris with consistent prefix
 ** intersection
-   | vIRI >CURIE | prefix-full | prefix-normal | readable |
-   |-------------+-------------+---------------+----------|
-   | numeric     | yes         | yes           | no       |
-   | readable    | no          | yes           | yes      |
+| vIRI >CURIE | prefix-full | prefix-normal | readable |
+|-------------+-------------+---------------+----------|
+| numeric     | yes         | yes           | no       |
+| readable    | no          | yes           | yes      |
      
-   | iri      | how redable  |
-   |----------+--------------|
-   | numeric  | curie-full   |
-   | readable | curie-normal |
+| iri      | how redable  |
+|----------+--------------|
+| numeric  | curie-full   |
+| readable | curie-normal |
