@@ -1,38 +1,26 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix asp: <http://uri.interlex.org/tgbugs/uris/readable/aspect/> .
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
-@prefix BIRNLEX: <http://uri.neuinfo.org/nif/nifstd/birnlex_> .
 @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 @prefix editorNote: <http://purl.obolibrary.org/obo/IAO_0000116> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix GO: <http://purl.obolibrary.org/obo/GO_> .
 @prefix hasInput: <http://purl.obolibrary.org/obo/RO_0002233> .
-@prefix hasOutput: <http://purl.obolibrary.org/obo/RO_0002234> .
 @prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
 @prefix hasParticipant: <http://purl.obolibrary.org/obo/RO_0000057> .
-@prefix hasRole: <http://purl.obolibrary.org/obo/RO_0000087> .
-@prefix HBP_MEM: <http://www.hbp.FIXME.org/hbp_measurement_methods/> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
-@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix NLX: <http://uri.neuinfo.org/nif/nifstd/nlx_> .
-@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix prot: <http://uri.interlex.org/tgbugs/uris/readable/protocol/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix realizes: <http://purl.obolibrary.org/obo/BFO_0000055> .
 @prefix replacedBy: <http://purl.obolibrary.org/obo/IAO_0100001> .
-@prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
-@prefix SO: <http://purl.obolibrary.org/obo/SO_> .
 @prefix sparc: <http://uri.interlex.org/tgbugs/uris/readable/sparc/> .
 @prefix tech: <http://uri.interlex.org/tgbugs/uris/readable/technique/> .
 @prefix TEMP: <http://uri.interlex.org/temp/uris/> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/sparc/ttl/sparc-methods.ttl> a owl:Ontology .
@@ -199,6 +187,21 @@ sparc:hemodynamicHemostasis a owl:ObjectProperty ;
     rdfs:domain sparc:ExperimentOnLiveOrganism ;
     rdfs:range sparc:Resource ;
     rdfs:comment "for the data entry side of this, this could simply be obtained by filling in ilxtr:hasAspect without the need to be overly specific, the result would then have ilxtr:resultAspect which would match, otherwise we will wind up with the usual cartesian explosion of terms in our schema" .
+
+sparc:includesFlatmap a owl:ObjectProperty ;
+    rdfs:subPropertyOf hasPart: ;
+    rdfs:domain sparc:Resource ;
+    rdfs:range sparc:Flatmap .
+
+sparc:includesPath a owl:ObjectProperty ;
+    rdfs:subPropertyOf hasPart: ;
+    rdfs:domain sparc:Resource ;
+    rdfs:range sparc:Path .
+
+sparc:includesScaffold a owl:ObjectProperty ;
+    rdfs:subPropertyOf hasPart: ;
+    rdfs:domain sparc:Resource ;
+    rdfs:range sparc:Scaffold .
 
 sparc:isInputSpecimenForExtraction a owl:FunctionalProperty,
         owl:ObjectProperty ;
@@ -1280,6 +1283,9 @@ sparc:File a owl:Class ;
     definition: "An atomic unit of data that can be identified or addressed. Can be though of as a stream of known length." ;
     rdfs:subClassOf sparc:Path .
 
+sparc:Flatmap a owl:Class ;
+    rdfs:subClassOf sparc:Resource .
+
 sparc:Folder a owl:Class ;
     definition: "Any identified collection of zero or more files or folders of arbitrary depth. This could also be called collection but I am trying to avoid using all the collection related terms as much as possible since the semantics are unclear and mostly we don't care." ;
     rdfs:subClassOf sparc:Path ;
@@ -1377,6 +1383,9 @@ sparc:RRIDs a owl:Class ;
 
 sparc:Sample a owl:Class ;
     rdfs:subClassOf sparc:Specimen .
+
+sparc:Scaffold a owl:Class ;
+    rdfs:subClassOf sparc:Resource .
 
 sparc:Sectioning a owl:Class ;
     rdfs:subClassOf sparc:TissuePreparationSteps ;
