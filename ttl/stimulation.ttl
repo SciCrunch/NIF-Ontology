@@ -481,6 +481,8 @@ ilxtr:Concatenation a owl:Class ;
     rdfs:subClassOf ilxtr:CompositionRule ;
     rdfs:label "Concatenation" .
 
+ilxtr:VariableParameterization a owl:Class ;
+    rdfs:comment "If we do this then each function might have to have all its parameters explicitly modeled in the ontology." .
 
 # waveforms
 
@@ -672,6 +674,21 @@ ilxtr:WaveformPulseRamp a owl:Class ;
     rdfs:label "pulse train" .  # pulse train with varying peak and width similar if you want terse entry
 
 
+# complex waveforms
+
+ilxtr:WaveformChirp a owl:Class ;
+    rdfs:comment "TODO equivalentClass hasFrequencyModulatingFunctionFamily hasModulatedFunctionFamily" ;
+    rdfs:subClassOf ilxtr:Waveform .
+
+ilxtr:WaveformChirpLinear a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformChirp .
+
+ilxtr:WaveformChirpExponential a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformChirp .
+
+ilxtr:WaveformExponentialDouble a owl:Class ;
+    rdfs:subClassOf ilxtr:Waveform .
+
 # waveform parameters
 
 ilxtr:WaveformParameter a owl:Class .
@@ -697,6 +714,16 @@ ilxtr:50percentReferenceLevel a owl:Class ;
     rdfs:subClassOf ilxtr:WaveformParameter ;
     rdfs:label "50percentReferenceLevel" .
 
+
+# epoch ordering
+
+ilxtr:EpochOrdering a owl:Class .
+
+ilxtr:EpochOrderingLinear a owl:Class ;
+    rdfs:subClassOf ilxtr:EpochOrdering .
+
+ilxtr:EpochOrderingRandom a owl:Class ;
+    rdfs:subClassOf ilxtr:EpochOrdering .
 
 # effector sensory modality
 
@@ -859,6 +886,16 @@ ilxtr:PeakToPeakWaveformAbberation a owl:Class ;
     rdfs:subClassOf ilxtr:ThingsThatHappenToRealWaveforms ;
     rdfs:label "PeakToPeakWaveformAbberation" .
 
+
+# visualization
+
+ilxtr:WaveformVisualizationConvention a owl:Class .
+
+ilxtr:VizTimeAsModular a owl:Class ;
+    ilxtr:WaveformVisualizationConvention .
+
+ilxtr:VizTimeAsContinuous a owl:Class ;
+    ilxtr:WaveformVisualizationConvention .
 
 # 181 definitions # some are useful for specifying simulation parameters for generating more realistic fake signals
 IEEE181-2011:Term a owl:Class ;
