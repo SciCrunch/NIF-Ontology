@@ -1,5 +1,6 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix IEEE181-2011: <http://uri.interlex.org/tgbugs/uris/readable/IEEE181-2011/> .
+@prefix eCode: <http://uri.interlex.org/tgbugs/uris/readable/eCode/> .
 
 # other ns
 @prefix adjacentTo: <http://purl.obolibrary.org/obo/RO_0002220> .
@@ -256,6 +257,8 @@ ilxtr:hasTerminatingState a owl:ObjectProperty ;
 ilxtr:hasConnectedLevel a owl:DatatypeProperty ;
     rdfs:domain ilxtr:WaveformTransition ;
     rdfs:range owl:real .
+
+ilxtr:hasTemplateEpoch a owl:ObjectProperty .
 
 ilxtr:hasOriginatingLevel a owl:DatatypeProperty ;
     owl:propertyChainAxiom (
@@ -714,6 +717,16 @@ ilxtr:50percentReferenceLevel a owl:Class ;
     rdfs:subClassOf ilxtr:WaveformParameter ;
     rdfs:label "50percentReferenceLevel" .
 
+# common parameters to describe changes
+
+ilxtr:ReferenceLevel a owl:Class ;
+    rdfs:subClassOf ilxtr:WaveformParameter, ilxtr:Quantity .
+
+ilxtr:State1ReferenceLevel a owl:Class ;
+    rdfs:subClassOf ilxtr:ReferenceLevel .
+
+ilxtr:State2ReferenceLevel a owl:Class ;
+    rdfs:subClassOf ilxtr:ReferenceLevel .
 
 # epoch ordering
 
@@ -724,6 +737,25 @@ ilxtr:EpochOrderingLinear a owl:Class ;
 
 ilxtr:EpochOrderingRandom a owl:Class ;
     rdfs:subClassOf ilxtr:EpochOrdering .
+
+# epoch chains
+
+ilxtr:EpochChain a owl:Class .
+
+ilxtr:EpochChainTemplate a owl:Class ;
+    rdfs:subClassOf ilxtr:EpochChain ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      # hasTemplateEpoch is not a required property
+                      owl:onProperty ilxtr:hasTemplateEpoch ;
+                      owl:someValuesFrom ilxtr:Epoch ] ,
+                    [ a owl:Restriction ;
+                      owl:onProperty ilxtr:hasVariableParameter ;
+                      # state 2 reference level ... this is ... hard to describe
+                      # you can say what something is fairly easily, but
+                      # it is not easy to pinpoint the thing that varies
+                      # without making it an owl class
+                      owl:someValuesFrom owl:WaveformParameter ] ;
+    rdfs:comment "temporal concatenation of epochs" .
 
 # intention
 
@@ -1360,3 +1392,84 @@ IEEE181-2011:waveform-representation-sampled-aperiodically a owl:Class ;
 IEEE181-2011:waveform-representation-sampled-periodically a owl:Class ;
     rdfs:subClassOf IEEE181-2011:Term ;
     rdfs:label "waveform representation, sampled, periodically" .
+
+# individuals
+
+:DeHyperPol a owl:NamedIndividual, ilxtr:WaveformEpoch ;
+    ilxtr:includesWaveform :pulse1, :pulse2 .
+
+:s1 a ilxtr:WaveformState ;
+    ilxtr:hasReferenceLevel -0.75e-10 .
+
+:pulse0 a owl:NamedIndividual, ilxtr:WaveformPulseRectangularPositive ;
+    ilxtr:hasFirstTransition [ a owl:NamedIndividual, ilxtr:LinearTransitionPositiveGoing ] ;
+    ilxtr:hasSecondTransition [ a owl:NamedIndividual, ilxtr:LinearTransitionNegativeGoing ] ;
+    ilxtr:hasFirstTransitionTime :t1 ;
+    ilxtr:hasSecondTransitionTime :t2 .
+
+:pulse1 a owl:NamedIndividual, ilxtr:WaveformPulseRectangularPositive ;
+    ilxtr:hasFirstState :s1 ;
+    ilxtr:hasS1ReferenceLevel -0.75e-10 ;
+    ilxtr:hasS2ReferenceLevel 1.5e-10 ;
+    ilxtr:hasFirstTransitionTime 0.25s ;
+    ilxtr:hasSecondTransitionTime 0.79s .
+
+:pulse2 a owl:NamedIndividual, ilxtr:WaveformPulseRectangularNegative ;
+    ilxtr:hasS1ReferenceLevel -0.75e-10 ;
+    ilxtr:hasS2ReferenceLevel -1.25e-10 ;
+    ilxtr:hasFirstTransitionTime 0.79s ;
+    ilxtr:hasSecondTransitionTime 1.69s .
+
+# input representations (these need to be in the ontology)
+
+:pulse3 a owl:NamedIndividual, ilxtr:WaveformPulseRectangularPositive ;
+    ilxtr:hasS2LevelDelta 2.00e-10 ;
+    ilxtr:hasS2OnsetTime 0.25s ;
+    ilxtr:hasS2Duration 0.54s .
+
+# input layer
+
+eCode:TestCode a owl:Class .
+# square pulse
+eCode:APThreshold a owl:Class .
+# ramp
+eCode:IRest a owl:Class .
+# negative square
+eCode:IRhyperpol a owl:Class .
+# long negative square + short negative square
+eCode:IRdepol a owl:Class .
+# long positive square + short negative square
+eCode:IV a owl:Class .
+# square in steps modular view
+eCode:APWaveform a owl:Class .
+# positive square in steps modular view
+eCode:sAHP a owl:Class .
+# long positive square + short square in steps modular view
+eCode:IDrest a owl:Class .
+# positive square in steps modular view
+eCode:IDdepol a owl:Class .
+# long positive square + short positive square in steps modular view
+eCode:IDhyperpol a owl:Class .
+# long negative square + short positive square in steps modular view
+eCode:IDthresh a owl:Class .
+# positive square in steps modular view
+eCode:Spontaneous a owl:Class .
+# flatline
+eCode:HighResThResp a owl:Class .
+# positive square pulse
+eCode:SpontAPs a owl:Class .
+# positive square pulse
+eCode:Delta a owl:Class .
+# very short negative delta pulse
+eCode:ADHPdepol a owl:Class .
+eCode:ADHPhyperpol a owl:Class .
+eCode:ADHPrest a owl:Class .
+eCode:APDrop a owl:Class .
+eCode:SpikeRec a owl:Class .
+eCode:NoiseSpiking a owl:Class .
+eCode:SineSpec a owl:Class .
+eCode:NoisePP a owl:Class .
+eCode:Truenoise a owl:Class .
+eCode:HP a owl:Class .
+eCode:BridgeBalance a owl:Class .
+
