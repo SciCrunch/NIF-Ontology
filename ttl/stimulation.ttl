@@ -272,6 +272,24 @@ ilxtr:hasTerminatingLevel a owl:DatatypeProperty ;
         ilxtr:hasReferenceLevel ) ;
     rdfs:subPropertyOf ilxtr:hasConnectedLevel .
 
+ilxtr:containsWaveform a owl:ObjectProperty ;
+    # FIXME this might more accurately be containsWaveformFeature
+    # because the waveform is the representation of a signal
+    # it may make more sense to refer to features of that waveform
+    # that are discrete and defined rather than trying to talk about
+    # the whole extent of the waveform which could be a concatenation
+    # of many individual features over time, this will allow us to
+    # disambiguate concatentation from addition, because technically
+    # a waveform can contain multiple non-overlapping features and
+    # the ontology would be correct in equating cases where the
+    # features overlapped in time with those where the features do not
+    # therefore if we specify compound waveforms features as features
+    # it will be clear that two component waveforms must be addative
+    # not just concatenated, XXX this is incorrect, the only way to
+    # know for sure is to know the transition times
+    rdfs:domain ilxtr:Epoch ;
+    rdfs:range ilxtr:Waveform .
+
 # FIXME ilxtr: -> stim:
 
 # functions
@@ -496,7 +514,8 @@ ilxtr:WaveformEpoch a owl:Class ;
 ilxtr:Waveform a owl:Class ;
     rdfs:comment "the standard requires ilxtr:Quantity with matching units as the range for ilxtr:hasLevel but going to leave dealing with the mechanics of that in owl for later since units and owl are always an issue",
         "a compound waveform may have more than one reference level, but the ontology won't be able to map which level belongs to which state/time point",
-        "FIXME we may need a notion of an atomic waveform ... which is actually waveform state ... the transition points at different time points may have different reference levels ... so maybe it is better to model transitions as having starting states and ending states?" ;
+        "FIXME we may need a notion of an atomic waveform ... which is actually waveform state ... the transition points at different time points may have different reference levels ... so maybe it is better to model transitions as having starting states and ending states?" ,
+        "FIXME yet another issue is that the atomic waveform component probably isn't waveform state, instead it is waveform feature" ;
     rdfs:subClassOf [ a owl:Restriction ;
         owl:onProperty ilxtr:hasReferenceLevel ;
         owl:someValuesFrom owl:real ;
@@ -624,7 +643,7 @@ ilxtr:WaveformPulseTrapezoidal a owl:Class ;
         owl:intersectionOf (
             [ a owl:Restriction ;
               owl:onProperty ilxtr:hasGeneratingFunction ;
-              owl:someValuesFrom ilxtr:Constant ]
+              owl:someValuesFrom ilxtr:ConstantFunction ]
             [ a owl:Restriction ;
               owl:onProperty ilxtr:hasTransition ;
               owl:someValuesFrom ilxtr:WaveformTransition ]
@@ -633,13 +652,13 @@ ilxtr:WaveformPulseTrapezoidal a owl:Class ;
 
 ilxtr:WaveformPulseRectangular a owl:Class ;
     rdfs:comment "equivalent ways to model this, 1. 2 states 2 square transitions, 2. 2 states 2 linear transitions where the slope is infinite (note that in our representation the slope will never be explicit because it should be calculated from state :level and transition duration, which can be specified directly or as t1 and t2), 3. 2 states trapezoidal where t1 == t2 and t3 == t4" ;
-    rdfs:subClassOf ilxtr:WaveformPulse ;
+    rdfs:subClassOf ilxtr:WaveformPulseTrapezoidal ;
     NIFRID:synonym "square pulse" ;
     rdfs:label "rectangular pulse" .
 
 ilxtr:WaveformPulseTriangular a owl:Class ;
     rdfs:comment "trapezoidal with zero duration for s2" ;
-    rdfs:subClassOf ilxtr:WaveformPulse ;
+    rdfs:subClassOf ilxtr:WaveformPulseTrapezoidal ;
     rdfs:label "triangular" .
 
 ilxtr:WaveformPulseExponential a owl:Class ;
@@ -648,13 +667,24 @@ ilxtr:WaveformPulseExponential a owl:Class ;
 
 ilxtr:WaveformPulseImpulseLike a owl:Class ;
     rdfs:comment "trapezoidal with infinitesimal duration for s2 and t1 == t2 < t3 == t4, aka rectangular with infinitesimal s2 duration, or t1 == t2 == t3 == t4, step transitions" ;
-    rdfs:subClassOf ilxtr:WaveformPulse ;
-    rdfs:label "impulse-like pulse" .
+    rdfs:subClassOf ilxtr:WaveformPulseTrapezoidal ;
+    rdfs:label "impulse-like pulse" ;
+    NIFRID:synonym "delta pulse" .
 
 ilxtr:WaveformPulseRamp a owl:Class ;
     rdfs:comment "triangular pulse with a linear first transition and step second transition " ;
-    rdfs:subClassOf ilxtr:WaveformPulse ;
+    rdfs:subClassOf ilxtr:WaveformPulseTriangular ;
     rdfs:label "ramp pulse" .
+
+ilxtr:WaveformConstant a owl:Class ;
+    rdfs:comment "a constant waveform with only a single state and no transitions" ;
+    rdfs:subClassOf ilxtr:Waveform , [ a owl:Restriction ;
+        owl:onProperty ilxtr:hasGeneratingFunction ;
+        owl:someValuesFrom ilxtr:ConstantFunction ] ;
+    owl:disjointWith [ a owl:Restriction ;
+        owl:onProperty ilxtr:hasTransition ;
+        owl:someValuesFrom ilxtr:WaveformTransition ] ;
+    rdfs:label "constant waveform" .
 
 # composed waveforms
 
@@ -740,7 +770,7 @@ ilxtr:EpochOrderingRandom a owl:Class ;
 
 # epoch chains
 
-ilxtr:EpochChain a owl:Class .
+ilxtr:EpochChain a owl:Class .  # TODO consider name ilxtr:WaveformFeatureChain
 
 ilxtr:EpochChainTemplate a owl:Class ;
     rdfs:subClassOf ilxtr:EpochChain ;
@@ -1411,65 +1441,173 @@ IEEE181-2011:waveform-representation-sampled-periodically a owl:Class ;
     ilxtr:hasFirstState :s1 ;
     ilxtr:hasS1ReferenceLevel -0.75e-10 ;
     ilxtr:hasS2ReferenceLevel 1.5e-10 ;
-    ilxtr:hasFirstTransitionTime 0.25s ;
-    ilxtr:hasSecondTransitionTime 0.79s .
+    ilxtr:hasFirstTransitionTime "0.25s" ;
+    ilxtr:hasSecondTransitionTime "0.79s" .
 
 :pulse2 a owl:NamedIndividual, ilxtr:WaveformPulseRectangularNegative ;
     ilxtr:hasS1ReferenceLevel -0.75e-10 ;
     ilxtr:hasS2ReferenceLevel -1.25e-10 ;
-    ilxtr:hasFirstTransitionTime 0.79s ;
-    ilxtr:hasSecondTransitionTime 1.69s .
+    ilxtr:hasFirstTransitionTime "0.79s" ;
+    ilxtr:hasSecondTransitionTime "1.69s" .
 
 # input representations (these need to be in the ontology)
 
 :pulse3 a owl:NamedIndividual, ilxtr:WaveformPulseRectangularPositive ;
     ilxtr:hasS2LevelDelta 2.00e-10 ;
-    ilxtr:hasS2OnsetTime 0.25s ;
-    ilxtr:hasS2Duration 0.54s .
+    ilxtr:hasS2OnsetTime "0.25s" ;
+    ilxtr:hasS2Duration "0.54s" .
 
 # input layer
 
-eCode:TestCode a owl:Class .
+# not quite right?  the eCode things describe epochs ?  hrm, the epoch
+# is just the duration not the delimited process, which makes this a
+# bit of an issue because in principle it is possible for a waveform
+# to extend beyond the bounds of the epoch under consideration
+# waveform feature might make more sense, the waveform feature that
+# has the same duration as the epoch under consideration, the issue is
+# that despite being defined as an interval, the text of the ieee
+# standard uses waveform-epoch in ways that make it seem like more
+# than just the time interval because they use words like "includes"
+# instead of "event happens during" e.g. consider the sentence "Select
+# a waveform epoch or subepoch that contains exactly one pulse
+# waveform." The term is being used as if it were a process, not just
+# a time interval, so our modeling is reasonable.
+
+eCode:TestCode a owl:Class ;
 # square pulse
-eCode:APThreshold a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular
+        ] .
+eCode:APThreshold a owl:Class ;
 # ramp
-eCode:IRest a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRamp
+        ] .
+eCode:IRest a owl:Class ;
 # negative square
-eCode:IRhyperpol a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular # FIXME Negative
+        ] .
+eCode:IRhyperpol a owl:Class ;
 # long negative square + short negative square
-eCode:IRdepol a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular # FIXME Negative
+        ] .
+eCode:IRdepol a owl:Class ;
 # long positive square + short negative square
-eCode:IV a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular
+        # ilxtr:WaveformPulseRectangularNegative
+        ] .
+eCode:IV a owl:Class ;
 # square in steps modular view
-eCode:APWaveform a owl:Class .
+    # ilxtr:useDefaultVisualization ilxtr:VizTimeAsModular ;
+    # modular viz not useful unless used with epoch chain i think?
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular
+        ] .
+eCode:APWaveform a owl:Class ;
 # positive square in steps modular view
-eCode:sAHP a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular
+        ] .
+eCode:sAHP a owl:Class ;
 # long positive square + short square in steps modular view
-eCode:IDrest a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular
+        ] .
+eCode:IDrest a owl:Class ;
 # positive square in steps modular view
-eCode:IDdepol a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular
+        ] .
+eCode:IDdepol a owl:Class ;
 # long positive square + short positive square in steps modular view
-eCode:IDhyperpol a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular
+        ] .
+eCode:IDhyperpol a owl:Class ;
 # long negative square + short positive square in steps modular view
-eCode:IDthresh a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular
+        ] .
+eCode:IDthresh a owl:Class ;
 # positive square in steps modular view
-eCode:Spontaneous a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular
+        ] .
+eCode:Spontaneous a owl:Class ;
 # flatline
-eCode:HighResThResp a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformConstant
+        ] .
+eCode:HighResThResp a owl:Class ;
 # positive square pulse
-eCode:SpontAPs a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular
+        ] .
+eCode:SpontAPs a owl:Class ;
 # positive square pulse
-eCode:Delta a owl:Class .
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseRectangular
+        ] .
+eCode:Delta a owl:Class ;
 # very short negative delta pulse
+    rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
+        owl:onProperty ilxtr:containsWaveform ;
+        owl:someValuesFrom
+        ilxtr:WaveformPulseImpulseLike  # FIXME negative
+        ] .
 eCode:ADHPdepol a owl:Class .
+# this is not trivial to describe because max amps is constant for all
+# 3 and the first pulse isn't actually a pulse if it starts from rest
+
+# 3 short positive square pulse + long positive square pulse
+
 eCode:ADHPhyperpol a owl:Class .
+# 3 short positive square pulse + long negative square pulse
 eCode:ADHPrest a owl:Class .
+# 3 short positive square pulse
 eCode:APDrop a owl:Class .
+# positive square
 eCode:SpikeRec a owl:Class .
+# positive square pulse chain with increasing pulse separation
 eCode:NoiseSpiking a owl:Class .
 eCode:SineSpec a owl:Class .
 eCode:NoisePP a owl:Class .
 eCode:Truenoise a owl:Class .
 eCode:HP a owl:Class .
+# negative square pulse in steps modular view
 eCode:BridgeBalance a owl:Class .
+# negative square pulse
 
