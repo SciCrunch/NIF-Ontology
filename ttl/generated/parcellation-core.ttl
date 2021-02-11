@@ -13,7 +13,7 @@
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/parcellation-core.ttl> a owl:Ontology ;
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/atlas/ttl/generated/parcellation-core.ttl> a owl:Ontology ;
     owl:imports <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-artifacts.ttl> ;
     rdfs:label "Parcellation Core" ;
     rdfs:comment "Core OWL2 entities needed for parcellations" ;
@@ -126,6 +126,11 @@ parc:Anchoring a owl:Class ;
     rdfs:subClassOf parc:Process ;
     ilxtr:localName "anchoring" .
 
+parc:AnnotationSet a owl:Class ;
+    rdfs:label "parcellation annotation set" ;
+    ilxtr:localName "annotation set" ;
+    rdfs:subClassOf parc:Artifact .
+
 parc:Annotation a owl:Class ;
     rdfs:label "parcellation annotation" ;
     NIFRID:synonym "atlas annotation" ;
@@ -175,7 +180,7 @@ parc:Atlas a owl:Class ;
     rdfs:subClassOf parc:Artifact,
         [ a owl:Restriction ;
             owl:onProperty hasPart: ;
-            owl:someValuesFrom parc:Annotation ],
+            owl:someValuesFrom parc:AnnotationSet ],
         [ a owl:Restriction ;
             owl:onProperty hasPart: ;
             owl:someValuesFrom parc:Space ],
@@ -225,7 +230,7 @@ parc:CoordinatedDataset a owl:Class ;
     rdfs:subClassOf parc:Data,
         [ a owl:Restriction ;
             owl:onProperty parc:hasSpace ;
-            owl:someValuesFrom parc:ReferenceSpace ] ;
+            owl:someValuesFrom parc:Space ] ;
     ilxtr:localName "coordinated dataset" .
 
 parc:CoordinateSystemApplication a owl:Class ;
@@ -557,8 +562,6 @@ parc:Space a owl:Class ;
     editorNote: "To avoid problems like those encountered by nifti an anatomical reference space MUST define an anatomical axis alignment vector which states, for example, [X, Y, Z] -> [R, A, D] (left hand rule). This immediately indicates the three annotations required on any unoriented dataset as opposed to someone trying to apply the anatomical directions directly to the unoriented dataset" ;
     ilxtr:localName "space" .
     #ilxtr:localName "reference space" .
-
-
 
 parc:SpacePreservingLinearTransformation a owl:Class ;
     rdfs:subClassOf parc:LinearTransformation .
