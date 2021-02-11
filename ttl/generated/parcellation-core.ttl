@@ -1,6 +1,7 @@
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 @prefix editorNote: <http://purl.obolibrary.org/obo/IAO_0000116> .
+@prefix hasMember: <http://purl.obolibrary.org/obo/RO_0002351> .
 @prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
@@ -17,7 +18,7 @@
     owl:imports <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-artifacts.ttl> ;
     rdfs:label "Parcellation Core" ;
     rdfs:comment "Core OWL2 entities needed for parcellations" ;
-    owl:versionInfo "2019-10-03" ;
+    owl:versionInfo "2021-02-11" ;
     prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/305a5d3c5cc18870a9674647db7461bb8b2e70e4/nifstd/nifstd_tools/parcellation/__init__.py#L620> .
 
 ### Object Properties
@@ -126,11 +127,6 @@ parc:Anchoring a owl:Class ;
     rdfs:subClassOf parc:Process ;
     ilxtr:localName "anchoring" .
 
-parc:AnnotationSet a owl:Class ;
-    rdfs:label "parcellation annotation set" ;
-    ilxtr:localName "annotation set" ;
-    rdfs:subClassOf parc:Artifact .
-
 parc:Annotation a owl:Class ;
     rdfs:label "parcellation annotation" ;
     NIFRID:synonym "atlas annotation" ;
@@ -142,8 +138,10 @@ parc:Annotation a owl:Class ;
     ilxtr:localName "annotation" .
 
 parc:AnnotationCriteria a owl:Class ;
-    rdfs:label "parcellation annotation criteria" ;
-    NIFRID:synonym "anatomical annotation criteria" ;
+    rdfs:label "anatomical annotation criteria" ;
+    NIFRID:synonym "anatomical delineation criteria",
+        "delineation criteria",
+        "parcellation annotation criteria" ;
     rdfs:subClassOf parc:Artifact ;
     ilxtr:localName "annotation criteria" .
 
@@ -151,6 +149,18 @@ parc:AnnotationCriteriaApplication a owl:Class ;
     rdfs:label "annotation criteria application" ;
     rdfs:subClassOf parc:Process ;
     ilxtr:localName "annotation criteria application" .
+
+parc:AnnotationSet a owl:Class ;
+    rdfs:label "anatomical annotation set" ;
+    NIFRID:synonym "annotation set",
+        "parcellation annotation set" ;
+    definition: "A set of anatomical annotations that are anchored in the same space." ;
+    rdfs:subClassOf parc:Artifact,
+        [ a owl:Restriction ;
+            owl:onProperty hasMember: ;
+            owl:someValuesFrom parc:Annotation ] ;
+    editorNote: "It is probably the case that the hasMember Annotation restriction could be an equivalent class axiom." ;
+    ilxtr:localName "annotation set" .
 
 parc:Anterior a owl:Class ;
     rdfs:subClassOf parc:AnatomicalDirection,
@@ -197,6 +207,10 @@ parc:Axis a owl:Class ;
 
 parc:AxisDirectionMatrix a owl:Class ;
     rdfs:subClassOf parc:Matrix .
+
+parc:AxisOrigin a owl:Class ;
+    rdfs:subClassOf parc:Vector ;
+    editorNote: "" .
 
 parc:Border a owl:Class ;
     rdfs:label "anatomical border" ;
@@ -424,7 +438,7 @@ parc:Parcellation a owl:Class ;
     rdfs:label "anatomical parcellation" ;
     NIFRID:synonym "anatomical parcellation scheme",
         "parcellation scheme" ;
-    rdfs:subClassOf parc:Artifact ;
+    rdfs:subClassOf parc:AnnotationSet ;
     ilxtr:localName "parcellation" .
 
 parc:Point a owl:Class ;
@@ -529,24 +543,21 @@ parc:Scaling a owl:Class ;
     rdfs:subClassOf parc:LinearTransformation .
 
 parc:Segmentation a owl:Class ;
-    rdfs:subClassOf parc:Artifact .
-
-parc:AxisOrigin a owl:Class ;
-    rdfs:subClassOf parc:Vector ;
-    editorNote: "" .
+    rdfs:label "anatomical segmentation" ;
+    definition: "an annotation set that may or may not have an explicit bounding region but that does break or separate the area or volume into distinct segments" ;
+    rdfs:subClassOf parc:AnnotationSet ;
+    editorNote: "This isn't really distinct from an annotation set." ;
+    ilxtr:localName "segmentation" .
 
 parc:Space a owl:Class ;
     rdfs:label "anatomical space" ;
-    rdfs:subClassOf parc:Artifact ;
     NIFRID:synonym "anatomical coordinate space",
         "atlas space",
         "common coordinate space",
         "parameterized coordinate space",
-        "physical space"
-        # "image space",
-        # "reference space",
-    ;
-    rdfs:subClassOf parc:Space,
+        "physical space" ;
+    rdfs:subClassOf parc:Artifact,
+        parc:Space,
         [ a owl:Restriction ;
             owl:onProperty hasPart: ;
             owl:someValuesFrom parc:AnatomicalAxisAlignmentVector ],
@@ -561,7 +572,6 @@ parc:Space a owl:Class ;
             owl:someValuesFrom parc:spaceUnit ] ;
     editorNote: "To avoid problems like those encountered by nifti an anatomical reference space MUST define an anatomical axis alignment vector which states, for example, [X, Y, Z] -> [R, A, D] (left hand rule). This immediately indicates the three annotations required on any unoriented dataset as opposed to someone trying to apply the anatomical directions directly to the unoriented dataset" ;
     ilxtr:localName "space" .
-    #ilxtr:localName "reference space" .
 
 parc:SpacePreservingLinearTransformation a owl:Class ;
     rdfs:subClassOf parc:LinearTransformation .
@@ -586,7 +596,13 @@ parc:Terminology a owl:Class ;
     ilxtr:localName "terminology" .
 
 parc:Tiling a owl:Class ;
-    rdfs:subClassOf parc:Artifact .
+    rdfs:label "anatomical tiling parcellation" ;
+    NIFRID:synonym "tiling annotation set",
+        "tiling parcellation" ;
+    definition: "an annotation set that forms a non-overlapping cover of a single bounding annotation" ;
+    rdfs:subClassOf parc:AnnotationSet ;
+    editorNote: "closure axioms related to the bounding annotation need to be considered" ;
+    ilxtr:localName "tiling" .
 
 parc:Transformation a owl:Class ;
     rdfs:label "spatial transformation" ;
