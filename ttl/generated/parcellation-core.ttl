@@ -89,6 +89,7 @@ parc:Alignment a owl:Class ;
     ilxtr:localName "alignment" .
 
 parc:AnatomicalAxis a owl:Class ;
+    definition: "an anatomical axis, e.g. rostral caudal, dorsal ventral, etc. is composed of two colinear and opposed anatomical directions" ;
     rdfs:subClassOf parc:Axis .
 
 parc:AnatomicalAxisAlignmentVector a owl:Class ;
@@ -190,6 +191,7 @@ parc:Atlas a owl:Class ;
     owl:equivalentClass ilxtr:parcellationAtlas ;
     rdfs:label "parcellation atlas" ;
     NIFRID:synonym "anatomical reference atlas" ;
+    definition: "An anatomical reference atlas is information content entity that contains minimally a notion of space and one of an annotation set or an unannotated but registered set of source data, the space may be explicit or implicit. An atlas is anything that is used to guide experiments or deal with some spatial relation between things or the location of things. For example a feature atlas may have only a boolean mask of stained/unstained for a given marker across the whole brain. On the other hand there may be purely schematic or conceptual atlases that show the relative positions of landmarks that are useful for guiding surgical procedures that have an intentionally distorted or schematic representation of space but that nonetheless capture real an critical spatial relations between regions. Reference atlases usually have additional parts that make them more useful in certain situations, such as a well defined coordinate system, delineations indicating the boundaries of various regions or cell populations, landmarks, and labels and names to make it easier to communicate about well known and useful locations." ;
     rdfs:subClassOf parc:Artifact,
         [ a owl:Restriction ;
             owl:onProperty hasPart: ;
@@ -218,15 +220,19 @@ parc:AxisOrigin a owl:Class ;
 
 parc:Border a owl:Class ;
     rdfs:label "anatomical border" ;
+    definition: "A border is a spatial entities that when projected into two dimensions forms a line (line in 2d or plane in 3d). The border may be of finite length, and may occupy a subsegment of a longer closed boundary.",
+        "A border is topologically equivalent to a point. A finite point, line, or plane. It can be used to define notions of nearness and relative position in the context of another landmark. For example if there are two points you can talk about a third point being on one side of the border point relative to the landmark point." ;
     rdfs:subClassOf parc:Line ;
     ilxtr:localName "border" .
 
 parc:Boundary a owl:Class ;
     rdfs:label "anatomical boundary" ;
+    definition: "A boundary is a closed curve or surface that is topologically equivalent to a circle, it defines an inside and an outside that are disconnected." ;
     rdfs:subClassOf parc:ClosedCurve ;
     ilxtr:localName "boundary" .
 
 parc:Caudal a owl:Class ;
+    definition: "toward the tail" ;
     rdfs:subClassOf parc:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty parc:hasOppositeDirection ;
@@ -234,11 +240,13 @@ parc:Caudal a owl:Class ;
 
 parc:Centroid a owl:Class ;
     rdfs:label "anatomical centroid" ;
+    definition: "a point surrounded by an indeterminate/unknown/probabilistic (but closed) boundary where the indeterminateness of said boundary is usually due to the fact that the context in which a label associated with the centroid is being used does not admit a single operational defintion, i.e. that there is not agreement on the exact definition of the term but there is some agreement that it exists" ;
     rdfs:subClassOf parc:Point ;
     ilxtr:localName "centroid" .
 
 parc:ClosedCurve a owl:Class ;
     rdfs:label "anatomical closed curve" ;
+    definition: "curves that are topologically equivalent to a circle" ;
     rdfs:subClassOf parc:Annotation ;
     ilxtr:localName "closed curve" .
 
@@ -270,6 +278,7 @@ parc:CoordinateSystemDefinition a owl:Class ;
 
 parc:Data a owl:Class ;
     rdfs:label "anatomical data" ;
+    definition: "Some specialized data that is about some organism." ;
     rdfs:subClassOf parc:Artifact,
         [ a owl:Restriction ;
             owl:onProperty parc:hasResolution ;
@@ -292,12 +301,14 @@ parc:Delineation a owl:Class ;
 parc:Direction a owl:Class .
 
 parc:Dorsal a owl:Class ;
+    definition: "toward the back or toward the top of the skull in organisms where development has twisted things (humans)" ;
     rdfs:subClassOf parc:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty parc:hasOppositeDirection ;
             owl:someValuesFrom parc:Ventral ] .
 
 parc:DorsalVentralAxis a owl:Class ;
+    definition: "the anatomical axis from back to belly" ;
     rdfs:subClassOf parc:AnatomicalAxis,
         [ a owl:Restriction ;
             owl:onProperty parc:hasDirection ;
@@ -317,6 +328,7 @@ parc:ImageSpace a owl:Class ;
         "intrinsic space",
         "sample space",
         "specimen space" ;
+    definition: "an image space is the intrinsic or implicit space that is defined by an image, in digital images it is usually discretized as matrix, it usually euclidean and supports a cartesian distance metric, however in cases where there is a non-uniformly sampling sensor or if the image was collected in the frequency domain (e.g. for MRI images) then the image space has different dimensions which may non-spatial (FIXME need some clarity about data captured in the frequency domain)" ;
     rdfs:subClassOf parc:Space ;
     ilxtr:editorQuestion "are specimen/individual space different from image/dataset space?" ;
     ilxtr:localName "image space" .
@@ -347,10 +359,12 @@ parc:Label a owl:Class ;
 
 parc:Landmark a owl:Class ;
     rdfs:label "anatomical landmark" ;
+    definition: "Any annotation that is not closed (topologically equivalent to a point)." ;
     rdfs:subClassOf parc:Annotation ;
     ilxtr:localName "landmark" .
 
 parc:Lateral a owl:Class ;
+    definition: "direction away from the midline" ;
     rdfs:subClassOf parc:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty parc:hasOppositeDirection ;
@@ -390,6 +404,7 @@ parc:Matrix a owl:Class ;
     ilxtr:localName "matrix" .
 
 parc:Medial a owl:Class ;
+    definition: "toward the midline" ;
     rdfs:subClassOf parc:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty parc:hasOppositeDirection ;
@@ -434,7 +449,8 @@ parc:NonLinearTransformation a owl:Class ;
 parc:Orienting a owl:Class ;
     rdfs:label "spatial orienting" ;
     NIFRID:synonym "orienting" ;
-    definition: "axis -> axis" ;
+    definition: "axis -> axis",
+        "Orienting is the process of changing the relative position of two axes so that they become aligned for some definition of alignment." ;
     rdfs:subClassOf parc:Alignment ;
     ilxtr:localName "orienting" .
 
@@ -447,6 +463,7 @@ parc:Parcellation a owl:Class ;
 
 parc:Point a owl:Class ;
     rdfs:label "anatomical point" ;
+    definition: "a 1d point defined by a single vector having the same dimensions as the space in which it is defined" ;
     rdfs:subClassOf parc:Annotation ;
     ilxtr:localName "point" .
 
@@ -469,6 +486,7 @@ parc:PositiveZ a owl:Class ;
             owl:someValuesFrom parc:NegativeZ ] .
 
 parc:Posterior a owl:Class ;
+    definition: "toward the buttocks" ;
     rdfs:subClassOf parc:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty parc:hasOppositeDirection ;
@@ -492,7 +510,8 @@ parc:Region a owl:Class ;
 
 parc:Registration a owl:Class ;
     rdfs:label "spatial registration" ;
-    definition: "dataset -> dataset, rotation, translation, scaling, or some nonlinear transformation" ;
+    definition: "dataset -> dataset, rotation, translation, scaling, or some nonlinear transformation",
+        "Registration is the process of changing the relative position and/or scaling of two datasets so that they become aligned for some definition of alignment." ;
     rdfs:subClassOf parc:Alignment,
         [ a owl:Restriction ;
             owl:onProperty hasPart: ;
@@ -523,12 +542,14 @@ parc:Right a owl:Class ;
             owl:someValuesFrom parc:Left ] .
 
 parc:Rostral a owl:Class ;
+    definition: "toward the snount" ;
     rdfs:subClassOf parc:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty parc:hasOppositeDirection ;
             owl:someValuesFrom parc:Caudal ] .
 
 parc:RostralCaudalAxis a owl:Class ;
+    definition: "The snout to tail axis." ;
     rdfs:subClassOf parc:AnatomicalAxis,
         [ a owl:Restriction ;
             owl:onProperty parc:hasDirection ;
@@ -560,6 +581,7 @@ parc:Space a owl:Class ;
         "common coordinate space",
         "parameterized coordinate space",
         "physical space" ;
+    definition: "An anatomical space is a combination of a mathematical space with an anatomical space such that there is a defined mapping between the anatomical axes and the mathematical axes. A mathematical coordinate space by itself is NOT an anatomical space because it admits all possible orientations and reflections of the anatomical space, so for example a brain can be rotated in all directions and still be in that mathematical coordinate space. Such spaces are called unoriented spaces and are a source of significant pain when dealing with anatomical datasets." ;
     rdfs:subClassOf parc:Artifact,
         parc:Space,
         [ a owl:Restriction ;
@@ -597,6 +619,7 @@ parc:Terminology a owl:Class ;
     owl:equivalentClass ilxtr:parcellationTerminology ;
     rdfs:label "parcellation terminology" ;
     NIFRID:synonym "controlled vocabulary" ;
+    definition: "a collection of terms that can be used to name annotations in an atlas" ;
     rdfs:subClassOf parc:Artifact ;
     ilxtr:hasIlxId ILX:0777107 ;
     ilxtr:localName "terminology" .
@@ -639,11 +662,16 @@ parc:TransformationRule a owl:Class ;
 parc:Translation a owl:Class ;
     rdfs:subClassOf parc:SpacePreservingLinearTransformation .
 
+parc:UnorientedSpace a owl:Class ;
+    definition: "A mathematical space that is not equipped with an explicit mapping between spatial and anatomical axes. In such spaces it is not possible to determine whether an anatomical dataset is correctly oriented even if that dataset has been annotated with landmarks that can be used to determine the anatomical axes." ;
+    ilxtr:localName "unoriented space" .
+
 parc:Vector a owl:Class ;
     rdfs:label "vector" ;
     ilxtr:localName "vector" .
 
 parc:Ventral a owl:Class ;
+    definition: "toward the belly" ;
     rdfs:subClassOf parc:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty parc:hasOppositeDirection ;
