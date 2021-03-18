@@ -562,6 +562,8 @@ ilxtr:Waveform a owl:Class ;
     rdfs:subClassOf BFO:0000144 ;
     rdfs:label "Waveform" .
 
+BFO:0000144 editorNote: "My understanding of a process profile is that it is a projection from the unimaginably high dimensional space of the full process down into a closed or definite number of dimensions (or qualities). This provides a clean way to talk about the change in the membrane potential in a way that is distinct from the whole underlying process that gives rise to it. It also makes it clear that there is ambiguity in the mapping from any particular process profile back to the parent process in which it is embedded, and that there are many possible actual processes that could produce the same process profile. Further it is also the case that the cell membrane potential measured or clamped at the location of a patch pipette is almost certainly not the membrane potential at other locations on the membrane, one might go so far as to say that there isn't a single cell membrane potential, rather that there is a potential at each point on the whole membrane." .
+
 ilxtr:WaveformCompound a owl:Class ;
     definition: "Any waveform with more complexity in number of states + number of transitions than a pulse." ;
     owl:disjointWith ilxtr:WaveformPulse ;
@@ -1564,15 +1566,19 @@ eCode:IRest a owl:Class ;
 # negative square
     rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
         owl:onProperty ilxtr:containsWaveform ;
-        owl:someValuesFrom
-        ilxtr:WaveformPulseRectangular # FIXME Negative
+        owl:someValuesFrom [ a owl:Class ;
+            owl:intersectionOf (
+                ilxtr:WaveformPulseRectangular # FIXME Negative
+                ilxtr:WaveformPulseNegative) ]
         ] .
 eCode:IRhyperpol a owl:Class ;
 # long negative square + short negative square
     rdfs:subClassOf ilxtr:WaveformEpoch , [ a owl:Restriction ;
         owl:onProperty ilxtr:containsWaveform ;
-        owl:someValuesFrom
-        ilxtr:WaveformPulseRectangular # FIXME Negative
+        owl:someValuesFrom [ a owl:Class ;
+            owl:intersectionOf (
+                ilxtr:WaveformPulseRectangular # FIXME Negative
+                ilxtr:WaveformPulseNegative) ]
         ] .
 eCode:IRdepol a owl:Class ;
 # long positive square + short negative square
