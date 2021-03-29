@@ -143,6 +143,11 @@ but conflates and confuses matters
 Used for providing a bound name when a single term is serialized.
 *** =http://uri.interlex.org/{group}/ontologies/ilx_{1234567}/version/{epoch}/ilx_{1234567}= :terminal:
 Version iri for single term ontologies.
+*** +=http://uri.interlex.org/{group}/ontologies/ilx_{1234567}/perspective/{perspective/}ilx_{1234567}=+ :terminal:mistake:
+*** +=http://uri.interlex.org/{group}/ontologies/ilx_{1234567}/perspective/{perspective/}ilx_{1234567}/version/{epoch}/ilx_{1234567}=+ :terminal:mistake:
+Perspective always comes last? Unless we allow perspectives to have
+versions as well? In which case the addressing scheme is going to get
+pretty long.
 *** =http://uri.interlex.org/{group}/ontologies/{path/}filename{.ext}= :terminal:
 Need to consider naming, but this is where automatically generated ontology files could live.
 =files= or =graphs= are reasonable alternative names?
@@ -231,9 +236,14 @@ This prevents strangeness when switching between users.
 For example =user1/readable/brain= and =user2/readable/brain= and =default/readable/brain=
 should all point to =ILX:1234567=. However =user1/uris/readable/brain= and =user2/uris/readable/brain=
 could point to other interlex identifiers entirely.
-*** =http://uri.interlex.org/{group}/uris/ontologies/{path/}filename{.ext}= :terminal:
-*** =http://uri.interlex.org/{group}/uris/ontologies/{path/}filename/version/{epoch}/filename{.ext}= :terminal:
-*** =http://uri.interlex.org/{group}/uris/ontologies/{path/}filename/version/{version-string}/filename{.ext}= :terminal:
+*** +=http://uri.interlex.org/{group}/uris/ontologies/{path/}filename{.ext}=+ :terminal:mistake:
+Use ={group}/ontologies/uris=. Users could do this, but they would
+have to do the mapping manually.  We just need to make sure that it is
+possible to map ={group}/uris= to internal endpoints as well.
+*** +=http://uri.interlex.org/{group}/uris/ontologies/{path/}filename/version/{epoch}/filename{.ext}=+ :terminal:mistake:
+See note above.
+*** +=http://uri.interlex.org/{group}/uris/ontologies/{path/}filename/version/{version-string}/filename{.ext}=+ :terminal:mistake:
+See note above.
 *** =http://uri.interlex.org/{group}/own/=
 *** =http://uri.interlex.org/{group}/own/{other-user}/uris/=
 =/own/= is provided so that users can have access to their view of other
