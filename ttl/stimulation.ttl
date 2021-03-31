@@ -1,6 +1,8 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix IEEE181-2011: <http://uri.interlex.org/tgbugs/uris/readable/IEEE181-2011/> .
 @prefix eCode: <http://uri.interlex.org/tgbugs/uris/readable/eCode/> .
+@prefix stim: <http://uri.interlex.org/tgbugs/uris/readable/stimulation/> .
+@prefix pfunc: <http://uri.interlex.org/tgbugs/uris/readable/periodic-function/> .
 
 # other ns
 @prefix adjacentTo: <http://purl.obolibrary.org/obo/RO_0002220> .
@@ -213,7 +215,8 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/estim/stimulation.ttl> a owl:Ontology .
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/estim/stimulation.ttl> a owl:Ontology;
+    rdfs:comment "The electrophysiology stimulation ontology. Contains classes representing abstract waveform shapes, parameters, effector phenomena, sensory modalities, and more. This file also contains a minimal representation of IEEE181-2011 glossary terms that form the basis for most of the work here. The core ontology is based on the waveform, transition, and state representations that are defined by the standard." .
 
 ilxtr:hasBeenImplementedForEstim a owl:AnnotationProperty .
 
@@ -313,7 +316,8 @@ ilxtr:containsWaveform a owl:ObjectProperty ;
 # FIXME ilxtr: -> stim:
 
 # functions
-ilxtr:Function a owl:Class .
+ilxtr:Function a owl:Class;
+    rdfs:label "mathematical function" .
 
 ilxtr:ConstantFunction a owl:Class ;
     ilxtr:functionDefinition "(lambda (x) 1)"^^ilxtr:s-expression ;
@@ -324,110 +328,112 @@ ilxtr:ConstantFunction a owl:Class ;
 ilxtr:PeriodicFunction a owl:Class ;  # https://en.wikipedia.org/wiki/List_of_periodic_functions
     rdfs:subClassOf ilxtr:Function .
 
-:sine a owl:Class ;
+pfunc:sine a owl:Class ;
     rdfs:comment "prefer to use sinpi as the base for sin/cos" ;
     ilxtr:functionDefinition "(lambda (x) (sin x))"^^ilxtr:s-expression ;
     ilxtr:combinatorDefinition "(lambda (a o c s) (lambda (x) (+ o (* a (sin (- (* c x) s))))))"^^ilxtr:s-expression ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "sine" .
 
-:cas a owl:Class ;
+pfunc:cas a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
+    ilxtr:functionDefinition "(lambda (x) (+ (sin x) (cos x)))"^^ilxtr:s-expression ;
     rdfs:label "cas" .
 
-:cosine a owl:Class ;
+pfunc:cosine a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "cosine" .
 
-:cis a owl:Class ;
+pfunc:cis a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
+    ilxtr:functionDefinition "(lambda (x) (+ (* i (sin x)) (cos x)))"^^ilxtr:s-expression ;
     rdfs:label "cis" .
 
-:tangent a owl:Class ;
+pfunc:tangent a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "tangent" .
 
-:cotangent a owl:Class ;
+pfunc:cotangent a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "cotangent" .
 
-:secant a owl:Class ;
+pfunc:secant a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "secant" .
 
-:cosecant a owl:Class ;
+pfunc:cosecant a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "cosecant" .
 
-:exsecant a owl:Class ;
+pfunc:exsecant a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "exsecant" .
 
-:versine a owl:Class ;
+pfunc:versine a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "versine" .
 
-:vercosine a owl:Class ;
+pfunc:vercosine a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "vercosine" .
 
-:coversine a owl:Class ;
+pfunc:coversine a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "coversine" .
 
-:covercosine a owl:Class ;
+pfunc:covercosine a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "covercosine" .
 
-:haversine a owl:Class ;
+pfunc:haversine a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "haversine" .
 
-:havercosine a owl:Class ;
+pfunc:havercosine a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "havercosine" .
 
-:hacoversine a owl:Class ;
+pfunc:hacoversine a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "hacoversine" .
 
-:hacovercosine a owl:Class ;
+pfunc:hacovercosine a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "hacovercosine" .
 
-:trochoid a owl:Class ;
+pfunc:trochoid a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "trochoid" .
 
-:cycloid a owl:Class ;
+pfunc:cycloid a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "cycloid" .
 
-:clausen a owl:Class ;
+pfunc:clausen a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "clausen" .
 
 
-:TriangleWave a owl:Class ;
+pfunc:TriangleWave a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "TriangleWave" .
 
-:SawtoothWave a owl:Class ;
+pfunc:SawtoothWave a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     definition: "A sawtooth composed of positive going ramps." ;
     rdfs:label "sawtooth wave" .
 
-:ReverseSawtoothWave a owl:Class ;
+pfunc:ReverseSawtoothWave a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     definition: "A sawtooth composed of negative going ramps." ;
     NIFRID:synonym "inverse sawtooth" ;
     rdfs:label "reverse sawtooth wave" .
 
-:SquareWave a owl:Class ;
+pfunc:SquareWave a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "SquareWave" .
 
-:PulseWave a owl:Class ;
+pfunc:PulseWave a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction ;
     rdfs:label "PulseWave" .
 
@@ -456,14 +462,15 @@ ilxtr:PinkNoise a owl:Class ;
 
 # 2-d generating functions
 ilxtr:PeriodicFunction2d a owl:Class ;
+    rdfs:subClassOf ilxtr:Function ;
     rdfs:comment "NOTE unlike the 1d periodic functions these are NOT the time varying versions, they are the (usually) spatial version, static gratings vs dynamic/drifting gratings are orthognal" ;
     rdfs:label "2d periodic function" .
 
-:SquareGrating a owl:Class ;
+stim:SquareGrating a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction2d ;
     rdfs:label "SquareGrating" .
 
-:Plaid a owl:Class ;
+stim:Plaid a owl:Class ;
     rdfs:subClassOf ilxtr:PeriodicFunction2d ;
     rdfs:label "Plaid" .
 
@@ -473,39 +480,52 @@ ilxtr:PeriodicFunction2d a owl:Class ;
 ilxtr:FunctionParameter a owl:Class ;
     rdfs:label "FunctionParameter" .
 
-:period a owl:Class ;
+stim:period a owl:Class ;
     rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "period" .
 
-:frequency a owl:Class ;
+stim:frequency a owl:Class ;
     rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "frequency" .
 
-:wavelength a owl:Class ;
+stim:wavelength a owl:Class ;
     rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "wavelength" .
 
-:amplitude a owl:Class ;
+stim:amplitude a owl:Class ;
     rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "amplitude" .
 
-:offset a owl:Class ;
+stim:offset a owl:Class ;
     rdfs:subClassOf ilxtr:FunctionParameter ;
-    rdfs:comment "temporal vs dimensional  181 uses dimensional i.e., between states",
-        "should probably be CycleOffset ?" ;
+    definition: "the dimensional (e.g. voltage, pressure, temperature) offset from a baseline level, usually the y axis" ;
+    rdfs:comment "temporal vs dimensional  181 uses dimensional i.e., between states" ;
     rdfs:label "offset" .
 
-:baseline a owl:Class ;
+stim:baseline a owl:Class ;
     rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "baseline" .
 
-:duration a owl:Class ;
+stim:duration a owl:Class ;
     rdfs:subClassOf ilxtr:FunctionParameter ;
     rdfs:label "duration" .  # epoch
 
-:shift a owl:Class .
+stim:shift a owl:Class ;
+    rdfs:label "shift" ;
+    definition: "the shift in time of a function, usually the x axis" ;
+    rdfs:comment "There is some potential for confusion here because there is absolute shift and relative shift. Phase shift is relative shift within the phase of a function, so in theory that phase could always be reported in relative coordinates normalized to 1. There is then absolute shift, which specifies the actual unitized shift, usually in time. In theory these types can be inferred based on whether the quantity has units or is dimensionless, however when constructing a data collection form it is critical to be clear whether the shift is relative or absolute." .
 
-:epochDuration a owl:Class .
+stim:AbsoluteShift a owl:Class ;
+    rdfs:label "absolute shift" ;
+    rdfs:subClassOf stim:shift ;
+    rdfs:comment "and has units some not-dimensionless unit, usually time" .
+
+stim:RelativeShift a owl:Class ;
+    rdfs:label "relative shift" ;
+    rdfs:subClassOf stim:shift ;
+    rdfs:comment "and has units some dimensionless (not)unit, usually phase" .
+
+stim:epochDuration a owl:Class .
 
 # composition
 
@@ -755,21 +775,21 @@ ilxtr:WaveformConstant a owl:Class ;
 
 # composed waveforms
 
-:double-pulse a owl:Class ;
+stim:double-pulse a owl:Class ;
     rdfs:subClassOf ilxtr:Waveform ;
     rdfs:comment "by definition is not a pulse since it has too many transitions" ;
     rdfs:label "double pulse" . # n pulse
 
-:bipolare-pulse a owl:Class ;
+stim:bipolare-pulse a owl:Class ;
     rdfs:subClassOf ilxtr:Waveform ;
     rdfs:comment "a double pulse where the pulse states have opposite sign with respect to the base state" ;
     rdfs:label "bipolar pulse" .
 
-:staircase a owl:Class ;
+stim:staircase a owl:Class ;
     rdfs:subClassOf ilxtr:Waveform ;
     rdfs:label "staircase" .  # this one is a bit more complex if you want terse entry
 
-:pulse-train a owl:Class ;
+stim:pulse-train a owl:Class ;
     rdfs:subClassOf ilxtr:Waveform ;
     rdfs:label "pulse train" .  # pulse train with varying peak and width similar if you want terse entry
 
@@ -943,6 +963,7 @@ ilxtr:SourceProgram a owl:Class ;
 
 ilxtr:MIES a owl:NamedIndividual,
     ilxtr:SourceProgram ;
+    ilxtr:xref SCR:016443 ;
     rdfs:label "MIES" .
 
 ilxtr:Heka a owl:NamedIndividual,
