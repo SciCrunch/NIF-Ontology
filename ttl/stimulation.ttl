@@ -592,10 +592,11 @@ ilxtr:WaveformCompound a owl:Class ;
 
 ilxtr:ReferenceWaveform a owl:Class ;
     rdfs:subClassOf ilxtr:Waveform ;
-    rdfs:label "ReferenceWaveform" .
+    rdfs:label "Reference Waveform" .
 
 ilxtr:WaveformState a owl:Class ;
     rdfs:comment "waveform where the reference level at t1 and t2 are the same" ;
+    rdfs:label "waveform state" ;
     rdfs:subClassOf ilxtr:Waveform ;
     owl:disjointWith ilxtr:WaveformTransition ;
     owl:equivalentClass [ a owl:Class ;
@@ -633,6 +634,7 @@ ilxtr:S2 a owl:Class ;
 ilxtr:WaveformTransition a owl:Class ;
     rdfs:subClassOf ilxtr:Waveform ;
     ilxtr:xref IEEE181-2011:transition ;
+    rdfs:label "waveform transition" ;
     rdfs:comment "easier to specify card 2 than to say s1 != s2 or t1 -> s1 and t2 -> s2" ;
     owl:equivalentClass [ a owl:Class ;
         owl:intersectionOf (
@@ -651,6 +653,7 @@ ilxtr:WaveformTransition a owl:Class ;
 ilxtr:WaveformTransitionPositiveGoing a owl:Class ;
     rdfs:comment "orig state level < term state level",
         "unfortunately no easy way to implement this in pure owl I'm using the conventions described in https://www.w3.org/2007/OWL/wiki/Data_Range_Extension:_Linear_Equations with a tweak to use s-expressions instead of mathml since if there is no implementation support then using extremely verbose xml markup seems pointless (same story with unit expressions)" ;
+    rdfs:label "positive going waveform transition" ;
     owl:equivalentClass [ a owl:Restriction ;
         owl:allValuesFrom [ a owl:DataComparison ;
             rdf:value "(lambda (o t) (< o t))"^^ilxtr:s-expression ] ;
@@ -659,6 +662,7 @@ ilxtr:WaveformTransitionPositiveGoing a owl:Class ;
 
 ilxtr:WaveformTransitionNegativeGoing a owl:Class ;
     rdfs:comment "orig state level > term state level" ;
+    rdfs:label "negative going waveform transition" ;
     owl:equivalentClass [ a owl:Restriction ;
         owl:allValuesFrom [ a owl:DataComparison ;
             # FIXME needs a more granular type since we can't do what mathml does an use the
@@ -677,9 +681,11 @@ ilxtr:LinearTransition a owl:Class ;
     rdfs:subClassOf ilxtr:WaveformTransition ;
     rdfs:label "Linear Transition Waveform" .
 
-ilxtr:LinearTransitionNegativeGoing a owl:Class .
+ilxtr:LinearTransitionNegativeGoing a owl:Class ;
+    rdfs:subClassOf ilxtr:LinearTransition .  # TODO equivalent class statement
 
-ilxtr:LinearTransitionPositiveGoing a owl:Class .
+ilxtr:LinearTransitionPositiveGoing a owl:Class ;
+    rdfs:subClassOf ilxtr:LinearTransition .  # TODO equivalent class statement
 
 ilxtr:ExponentialTransition a owl:Class ;
     rdfs:subClassOf ilxtr:WaveformTransition ;
@@ -799,23 +805,29 @@ stim:pulse-train a owl:Class ;
 
 ilxtr:WaveformChirp a owl:Class ;
     rdfs:comment "TODO equivalentClass hasFrequencyModulatingFunctionFamily hasModulatedFunctionFamily" ;
+    rdfs:label "chirp waveform" ;
     rdfs:subClassOf ilxtr:Waveform .
 
 ilxtr:WaveformChirpUp a owl:Class ;
+    rdfs:label "up chirp waveform" ;
     definition: "A chirp where the frequency increases with time." ;
     rdfs:subClassOf ilxtr:WaveformChirp .
 
 ilxtr:WaveformChirpDown a owl:Class ;
+    rdfs:label "down chirp waveform" ;
     definition: "A chirp where the frequency decreases with time." ;
     rdfs:subClassOf ilxtr:WaveformChirp .
 
 ilxtr:WaveformChirpLinear a owl:Class ;
+    rdfs:label "linear chirp waveform" ;
     rdfs:subClassOf ilxtr:WaveformChirp .
 
 ilxtr:WaveformChirpExponential a owl:Class ;
+    rdfs:label "exponential chirp waveform" ;
     rdfs:subClassOf ilxtr:WaveformChirp .
 
 ilxtr:WaveformExponentialDouble a owl:Class ;
+    rdfs:label "double exponential waveform" ;
     rdfs:subClassOf ilxtr:Waveform .
 
 # waveform parameters
@@ -824,28 +836,29 @@ ilxtr:WaveformParameter a owl:Class .
 
 ilxtr:DutyFactor a owl:Class ;
     rdfs:subClassOf ilxtr:WaveformParameter ;
-    NIFRID:synonym "DutyCycle" ;  # deprecated by 181-2011 due to naming conflict
-    rdfs:label "DutyFactor" .
+    NIFRID:synonym "Duty Cycle" ;  # deprecated by 181-2011 due to naming conflict
+    rdfs:label "Duty Factor" .
 
 ilxtr:PulsePeriod a owl:Class ;
     rdfs:subClassOf ilxtr:WaveformParameter ;
-    rdfs:label "PulsePeriod" .
+    rdfs:label "Pulse Period" .
 
 ilxtr:PulseSeparation a owl:Class ;
     rdfs:subClassOf ilxtr:WaveformParameter ;
-    rdfs:label "PulseSeparation" .
+    rdfs:label "Pulse Separation" .
 
 ilxtr:PulseDuration a owl:Class ;
     rdfs:subClassOf ilxtr:WaveformParameter ;
-    rdfs:label "PulseDuration" .
+    rdfs:label "Pulse Duration" .
 
 ilxtr:50percentReferenceLevel a owl:Class ;
     rdfs:subClassOf ilxtr:WaveformParameter ;
-    rdfs:label "50percentReferenceLevel" .
+    rdfs:label "50 percent Reference Level" .
 
 # common parameters to describe changes
 
 ilxtr:ReferenceLevel a owl:Class ;
+    rdfs:label "reference level" ;
     rdfs:subClassOf ilxtr:WaveformParameter, ilxtr:Quantity .
 
 ilxtr:State1ReferenceLevel a owl:Class ;
