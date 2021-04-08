@@ -1,0 +1,77 @@
+# https://travis-ci.org/tgbugs/pyontutils
+sudo: false
+language: python
+cache:
+  directories:
+  - $HOME/.cache/pip
+  - $HOME/.m2
+  - ${TRAVIS_BUILD_DIR}/../SciGraph
+branches:
+  only:
+    - dev
+    - master
+  git:
+    depth: 10
+
+python:
+  - 3.7
+
+env:
+  global:
+    - ONTOLOGY=$(git show --first-parent --name-only --pretty='' HEAD | grep '\.ttl$')
+    - DOCS=$(git show --first-parent --name-only --pretty='' HEAD | grep '^docs\/')
+    - TRAVIS=$(git show --first-parent --name-only --pretty='' HEAD | grep '^\.travis.yml$')
+
+before_install:
+  - if [[ -n $DOCS && $TRAVIS_BRANCH = master ]];then echo trigger docs build; fi
+  - git checkout ${TRAVIS_BRANCH}  # ontload doesn't currently work if git is in detached head mode
+  - mkdir build
+  - pushd build
+  - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/nifstd/scigraph/graphload-base-template.yaml
+  - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/nifstd/scigraph/ontologies-nifstd.yaml
+  - popd
+
+install:
+  - pip install pyontutils
+  - >
+    ontload scigraph
+    --scigraph-quiet
+    --scigraph-org SciGraph
+    --scigraph-branch master
+    --zip-location "${TRAVIS_BUILD_DIR}/build"
+    --git-local $(realpath "${TRAVIS_BUILD_DIR}/../")
+
+script:
+  - >
+    ontload graph NIF-Ontology NIF
+    --scigraph-quiet
+    --path-build-scigraph $(realpath "${TRAVIS_BUILD_DIR}/../")
+    --scigraph-org SciGraph
+    --scigraph-branch master
+    --zip-location "${TRAVIS_BUILD_DIR}/build"
+    --git-local $(realpath "${TRAVIS_BUILD_DIR}/../")
+    --branch ${TRAVIS_BRANCH}
+    --graphload-config "${TRAVIS_BUILD_DIR}/build/graphload-base-template.yaml"
+    --graphload-ontologies "${TRAVIS_BUILD_DIR}/build/ontologies-nifstd.yaml"
+
+after_success:
+  - echo ""
+
+before_deploy:
+  - git config --local user.name "Travis Build Bot"
+  - git config --local user.email "tgbugs+build@gmail.com"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-${TRAVIS_BRANCH}-${TRAVIS_BUILD_NUMBER}}
+  - if [[ -n $ONTOLOGY || -n $TRAVIS ]];then git tag $TRAVIS_TAG; fi
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "CK0fvltjiIAiJ0fDlqzyHG0XpvoROODdRZc7LLwajxNAfRMl9TjH5jD9zVsaH3dt11grweoknRS8WcAzZ2kwDePEbTKON20Ay2tvf73fIzxpA+szg+zJF+sH23bx3xEQrjW/9SQTYx7dOGrvJwhI9GPqctFjPpSwy40/+nMBJ7gocF8TG1ZSswa1anFsM6LNtcSb+qRduIto8z8XkIyi7/BV6yfXrPj/HAeDUoDTVaIQj85DONWmV9h4vrkHBgcqFtWwVvt5uIRCscwFUPYhGcPCBE9sGGeCOaYLiwGzmBwoR4DPuc8Qns4WY/JqBa/IbhmuenybWxlTpgwW+NCs8VcmOrcP9plBxf52nVYNIT4u+k+2h4LwLu3fuJMA0YhQuwnok18b6wS4Yf0E04s03YiouM7kzDAQ6Y8ZESmcJ0CeileGDoxBeI4HIs+xohMsNbpj+KcxcBVQF9tvpBw9ysZodpiYPgO8fnVcIa7li4gtRcDgQGw0NeIEC/VU4wiZJQsQp1W6wqFI6fkZ6dsN9q/zO1nhkyhUChFWQAoQWaMZNhsS6xQiuZkjSrPtyFFEYR0rbzFIMIEk2fzbqwnE4pHyok2vTBDTVGdZGez+O0fLJPs1ojgS0BprciYZqeT8JRu+jv/MZ89lhdilwt1xsJH5+3dYtghAyUv8UfkgIss="
+  file_glob: true
+  file: "${TRAVIS_BUILD_DIR}/build/NIF-Ontology-${TRAVIS_BRANCH}-graph-*.zip"
+  skip_cleanup: true
+  prerelease: true
+  draft: true
+  on:
+    all_branches: true
+    condition: -n $ONTOLOGY
