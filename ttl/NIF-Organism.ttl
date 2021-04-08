@@ -2,7 +2,9 @@
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix BIRNLEX: <http://uri.neuinfo.org/nif/nifstd/birnlex_> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix editorNote: <http://purl.obolibrary.org/obo/IAO_0000116> .
 @prefix inheresIn: <http://purl.obolibrary.org/obo/RO_0000052> .
+@prefix JAX: <http://jaxmice.jax.org/strain/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix NLXORG: <http://uri.neuinfo.org/nif/nifstd/nlx_organ_> .
@@ -10,6 +12,7 @@
 @prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix replacedBy: <http://purl.obolibrary.org/obo/IAO_0100001> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -4289,7 +4292,6 @@ BIRNLEX:334 a owl:Class ;
     rdfs:label "Protostomia"^^xsd:string ;
     skos:prefLabel "Protostomia"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:606 ;
-    owl:disjointWith BIRNLEX:527 ;
     NIFRID:createdDate "2007-08-03"^^xsd:string ;
     NIFRID:modifiedDate "2007-08-03"^^xsd:string ;
     NIFRID:hasBirnlexCurator NIFRID:Bill_Bug ;
@@ -7263,7 +7265,7 @@ Generation: F96 (14-DEC-06)
 Appearance: albino
 Related Genotype: A/A Tyrc/Tyrc"""^^xsd:string ;
     NIFRID:bonfireID "BF_T0000377"^^xsd:string ;
-    NIFRID:definingCitationURI <http://jaxmice.jax.org/strain/001800.html> ;
+    NIFRID:definingCitationURI JAX:001800.html ;
     NIFRID:hasBirnlexCurator NIFRID:Bill_Bug,
         NIFRID:Maryann_Martone,
         NIFRID:Rob_Williams ;
@@ -7733,7 +7735,7 @@ BIRNLEX:526 a owl:Class ;
 BIRNLEX:527 a owl:Class ;
     rdfs:label "Panarthropoda"^^xsd:string ;
     skos:prefLabel "Panarthropoda"^^xsd:string ;
-    rdfs:subClassOf BIRNLEX:606 ;
+    rdfs:subClassOf BIRNLEX:334 ;
     NIFRID:createdDate "2007-08-03"^^xsd:string ;
     NIFRID:modifiedDate "2007-08-03"^^xsd:string ;
     NIFRID:hasBirnlexCurator NIFRID:Bill_Bug ;
@@ -7848,11 +7850,14 @@ BIRNLEX:533 a owl:Class ;
     NIFRID:UmlsCui "C0020410"^^xsd:string .
 
 BIRNLEX:534 a owl:Class ;
+    owl:deprecated true ;
+    replacedBy: BIRNLEX:334 ;
     rdfs:label "Protostomia"^^xsd:string ;
     skos:prefLabel "Protostomia"^^xsd:string ;
     rdfs:subClassOf BIRNLEX:527 ;
     NIFRID:createdDate "2007-08-03"^^xsd:string ;
     NIFRID:modifiedDate "2007-08-03"^^xsd:string ;
+    editorNote: "seems to have been a copy paste error and should not exist" ;
     NIFRID:hasBirnlexCurator NIFRID:Bill_Bug ;
     NIFRID:hasCurationStatus NIFRID:pending_final_vetting ;
     NIFRID:hasExternalSource NIFRID:NCBI_Taxonomy ;
@@ -7969,7 +7974,7 @@ BIRNLEX:541 a owl:Class ;
     owl:equivalentClass NCBITaxon:6656 ;
     rdfs:label "Arthropoda"^^xsd:string ;
     skos:prefLabel "Arthropoda"^^xsd:string ;
-    rdfs:subClassOf BIRNLEX:534 ;
+    rdfs:subClassOf BIRNLEX:527 ;
     NIFRID:createdDate "2007-08-03"^^xsd:string ;
     NIFRID:modifiedDate "2007-08-03"^^xsd:string ;
     NIFRID:externallySourcedDefinition """* Members of the phylum Arthropoda of the animal kingdom, composed of organisms having a hard, jointed exoskeleton and paired jointed legs, and including among other classes, the ARACHNIDA and INSECTS, many species of which are important medically as parasites or as vectors of organisms capable of causing disease in man. (Dorland, 27th ed) (MSH)
@@ -8252,7 +8257,7 @@ BIRNLEX:556 a owl:Class ;
     NIFRID:hasCurationStatus NIFRID:pending_final_vetting ;
     NIFRID:hasExternalSource NIFRID:NCBI_Taxonomy ;
     NIFRID:hasTaxonRank BIRNLEX:7097 ;
-    NIFRID:ncbiTaxID "30225"^^xsd:string ;
+    NIFRID:ncbiTaxID "132200"^^xsd:string ;
     NIFRID:ncbiTaxScientificName "Arctiinae"^^xsd:string ;
     NIFRID:UmlsCui "C1090493"^^xsd:string .
 
@@ -9228,6 +9233,7 @@ BIRNLEX:606 a owl:Class ;
     owl:disjointWith BIRNLEX:7198 ;
     NIFRID:createdDate "2007-06-03"^^xsd:string ;
     NIFRID:modifiedDate "2007-08-03"^^xsd:string ;
+    editorNote: "Colemata was never technically a phylogentic taxonomic class. See https://en.wikipedia.org/w/index.php?title=Coelom&oldid=858721355 -> Classification in zoology. Note that the use of subClassOf here is technically correct in a ontological sense, however it breaks the implicit use of subClassOf which implies phylogeny. If disjointness axioms on NCBITaxon ids are included this should result in reasoning errors." ;
     NIFRID:hasBirnlexCurator NIFRID:Bill_Bug ;
     NIFRID:hasCurationStatus NIFRID:pending_final_vetting ;
     NIFRID:hasExternalSource NIFRID:NCBI_Taxonomy ;
@@ -13272,7 +13278,7 @@ Development A YAC containing a full-length human huntingtin gene was modified wi
     owl:versionInfo "105954"^^xsd:string ;
     NIFRID:createdDate "August 23, 2010"^^xsd:string ;
     dc:contributor "Sarah Maynard"^^xsd:string ;
-    NIFRID:definingCitationURI <http://jaxmice.jax.org/strain/004938.html> .
+    NIFRID:definingCitationURI JAX:004938.html .
 
 NLXORG:100802 a owl:Class ;
     rdfs:label "B6.Cg-Tg(Nes-cre)1Kln/J"^^xsd:string ;
@@ -13281,7 +13287,7 @@ NLXORG:100802 a owl:Class ;
     owl:versionInfo "105955"^^xsd:string ;
     NIFRID:createdDate "August 23, 2010"^^xsd:string ;
     dc:contributor "Sarah Maynard"^^xsd:string ;
-    NIFRID:definingCitationURI <http://jaxmice.jax.org/strain/003771.html> .
+    NIFRID:definingCitationURI JAX:003771.html .
 
 NLXORG:100803 a owl:Class ;
     rdfs:label "STOCK Htttm5Mem/J"^^xsd:string ;
@@ -13291,7 +13297,7 @@ Development A targeting vector containing neomycin resistance and herpes simplex
     rdfs:subClassOf BIRNLEX:388 ;
     owl:versionInfo "105956"^^xsd:string ;
     NIFRID:createdDate "August 23, 2010"^^xsd:string ;
-    NIFRID:definingCitationURI <http://jaxmice.jax.org/strain/003456.html> .
+    NIFRID:definingCitationURI JAX:003456.html .
 
 NLXORG:100804 a owl:Class ;
     rdfs:label "B6CBA-Tg(HDexon1)62Gpb/3J"^^xsd:string ;
@@ -13308,7 +13314,7 @@ The cryo-recovered line will be named B6CBA-Tg(HDexon1)62Gpb/1J (Stock No. 00281
     owl:versionInfo "105957"^^xsd:string ;
     NIFRID:createdDate "August 23, 2010"^^xsd:string ;
     dc:contributor "Sarah Maynard"^^xsd:string ;
-    NIFRID:definingCitationURI <http://jaxmice.jax.org/strain/006494.html> .
+    NIFRID:definingCitationURI JAX:006494.html .
 
 NLXORG:101199 a owl:Class ;
     rdfs:label "B6.129-Smn1tm1Jme/J"^^xsd:string ;
@@ -13326,7 +13332,7 @@ Development
 A targeting vector was used to insert a neomycin resistance gene within intron 6 and place loxP sites immediately flanking exon 7 of the endogenous gene. This construct was electroporated into "129Sv" embryonic stem (ES) cells. Correctly targeted cells were injected into blastocysts. The resulting chimeric males were bred to C57BL/6J females. Heterozygous offspring were bred to generate homozygous mice. Homozygotes on this mixed B6;129 background were bred together for approximately 5 years before arrival at The Jackson Laboratory. After arriving, mutant mice were backcrossed to C57BL/6J inbred mice (Stock No. 000664) for 5-10 generations. After this, heterozygotes were bred together to generate this homozygous congenic colony. (http://jaxmice.jax.org/strain/006146.html)[1]"""^^xsd:string ;
     rdfs:subClassOf BIRNLEX:388 ;
     NIFRID:createdDate "November 5, 2010"^^xsd:string ;
-    NIFRID:definingCitation <http://jaxmice.jax.org/strain/006146.html> .
+    NIFRID:definingCitation JAX:006146.html .
 
 NLXORG:110506 a owl:Class ;
     owl:equivalentClass BIRNLEX:2 .
@@ -13349,7 +13355,7 @@ NLXORG:20090201 a owl:Class ;
     NIFRID:createdDate "February 12, 2009"^^xsd:string ;
     dc:contributor "Sarah M. Maynard"^^xsd:string ;
     NIFRID:birnlexDefinition "Mice hemizygous for this SOD1-G93A (also called G93A-SOD1) transgene are viable and fertile, with transgenic expression of a G93A mutant form of human SOD1. This founder line (often referred to as G1H) is reported to have high transgene copy number. Hemizygotes exhibit a phenotype similar to amyotrophic lateral sclerosis (ALS) in humans; becoming paralyzed in one or more limbs with paralysis due to loss of motor neurons from the spinal cord. Transgenic mice have a life span of approximately 19-23 weeks. These SOD1-G93A (also called G93A-SOD1) transgenic mice may be useful in studying neuromuscular disorders, including Amyotrophic Lateral Sclerosis (ALS or Lou Gehrig's Disease)."^^xsd:string ;
-    NIFRID:externalSourceURI <http://jaxmice.jax.org/strain/002726.html> .
+    NIFRID:externalSourceURI JAX:002726.html .
 
 NLXORG:20090202 a owl:Class ;
     rdfs:label "B6SJL-Tg(APPSwFILon,PSEN1*M146L*L286V)6799Vas"^^xsd:string ;
@@ -13360,7 +13366,7 @@ NLXORG:20090202 a owl:Class ;
     NIFRID:birnlexDefinition """Hemizygous mice are viable and fertile. These "5XFAD" transgenic mice overexpress both mutant human APP(695) with the Swedish (K670N, M671L), Florida (I716V), and London (V717I) Familial Alzheimer's Disease (FAD) mutations and human PS1 harboring two FAD mutations, M146L and L286V. Expression of both transgenes is regulated by neural-specific elements of the mouse Thy1 promoter to drive overexpression in the brain. Mice from this founder line have high APP expression correlating with high burden and accelerated accumulation of the 42 amino acid species of beta-amyloid (Abeta-42). 5XFAD mice generate Abeta-42 almost exclusively and rapidly accumulate massive cerebral levels. Intraneuronal Abeta-42 accumulation is observed starting at 1.5 months of age, just prior to amyloid deposition and gliosis, which begins at two months of age. In addition, these mice have reduced synaptic marker protein levels, increased p25 levels, neuron loss, and memory impairment in the Y-maze test. 5XFAD transgenic mice rapidly recapitulate major features of Alzheimer's Disease amyloid pathology and may be useful models of intraneuronal Abeta-42 induced neurodegeneration and amyloid plaque formation.
 
 This strain is homozygous/segregating for the retinal degeneration allele Pde6brd1."""^^xsd:string ;
-    NIFRID:externalSourceURI <http://jaxmice.jax.org/strain/006554.html> .
+    NIFRID:externalSourceURI JAX:006554.html .
 
 NLXORG:20090203 a owl:Class ;
     rdfs:label "B6;C3-Tg(Prnp-MAPT*P301S)PS19Vle/J"^^xsd:string ;
@@ -13369,7 +13375,7 @@ NLXORG:20090203 a owl:Class ;
     NIFRID:createdDate "February 12, 2009"^^xsd:string ;
     dc:contributor "Sarah M. Maynard"^^xsd:string ;
     NIFRID:birnlexDefinition "These transgenic mice express the P301S mutant human microtubule-associated protein tau, MAPT, under the direction of the mouse prion protein, Prnp, promoter. The expression of the mutant human MAPT is five-fold higher than the expression of the endogenous mouse MAPT protein. Hyperphosphorylated, insoluble mutant human MAPT protein in the brain accumulates with age causing decreased microtubule binding. At three months of age, transgenic mice exhibit clasping and limb retraction when lifted by the tail, which progresses to limb weakness. By 10 months of age the mice exhibit a hunched back and paralysis, followed by inability to feed. Transgenic mice have a median lifespan of approximately nine months with approximately 80% dying by 12 months. Histological analysis reveals neuron degeneration in hippocampus and ventricular dilatation (brain atrophy) by eight months of age, although significant neuron degeneration in the hippocampus occurs at approximately nine months of age. Neuron loss spreads to the amygdala, neocortex and entorhinal cortex by 12 months of age. Defective translocation of endoplasmic reticulum proteins in affected neurons is observed as early as three months of age. The onset of neurofibrillay tangle formation in the neocortex, amygdala, hippocampus, brain stem and spinal cord is five months of age. Transgenic mice display neuroinflammation with microglial activation and astrogliosis. The ultrastructure of the neurofibrillay tangle-like lesions detected is similar to that found in brain lesions of human Alzheimer's disease and tauopathy patients. Degradation of synaptic function is significant by six months of age. These mice cannot be bred to homozygosity, homozygous females do not mate. This mutant mouse strain may be useful in studies of neurodegenerative tauopathy and Alzheimer's disease."^^xsd:string ;
-    NIFRID:externalSourceURI <http://jaxmice.jax.org/strain/008169.html> .
+    NIFRID:externalSourceURI JAX:008169.html .
 
 NLXORG:20090204 a owl:Class ;
     rdfs:label "B6;C3-Tg(Prnp-SNCA*A53T)83Vle/J"^^xsd:string ;
@@ -13378,7 +13384,7 @@ NLXORG:20090204 a owl:Class ;
     NIFRID:createdDate "February 12, 2009"^^xsd:string ;
     dc:contributor "Sarah M. Maynard"^^xsd:string ;
     NIFRID:birnlexDefinition "Mice homozygous for the transgenic insert are viable and normal in size. These transgenic mice express human A53T variant alpha-synuclein (full-length, 140 amino acid isoform) under the direction of the mouse prion protein promoter. At eight months of age, some homozygous mice develop a progressively severe motor phenotype. Presentation of the phenotype may manifest at 14-15 months of age (on average). Lax grooming, weight loss and diminished mobility precede movement impairment, partial limb paralysis, trembling and inability to stand. Immunohistochemistry analysis of mutants between eight to 12 months of age reveals widely distributed alpha-synuclein inclusions, with dense accumulation in the spinal cord, brainstem, cerebellum and thalamus. The appearance of alpha-synuclein aggregate inclusions parallels the onset of the motor impairment phenotype. Axons and myelin sheaths exhibit progressive ultrastructural degeneration. Immunoelectron microscopy and biochemical analysis show the inclusions in neurons are comprised primarily of 10-16 nm fibrils of alpha-synuclein. The structure, location and onset of the inclusions seen in the mutant mice resemble characteristics seen in human neuronal alpha-synucleinopathies, such as familial Parkinson's Disease. Mice hemizygous for the transgenic insert develop similar phenotypic traits, but onset occurslater, between 22 and 28 months of age. Homozygous mice have a high incidence of nonproductive matings. This mutant mouse strain represents a model that may be useful in studies of Parkinson's Disease."^^xsd:string ;
-    NIFRID:externalSourceURI <http://jaxmice.jax.org/strain/004479.html> .
+    NIFRID:externalSourceURI JAX:004479.html .
 
 NLXORG:20090205 a owl:Class ;
     rdfs:label "B6CBA-Tg(HDexon1)62Gpb/1J"^^xsd:string ;
@@ -13387,7 +13393,7 @@ NLXORG:20090205 a owl:Class ;
 Transgenic mice develop hyperglycemia by 12 weeks of age with a corresponding decrease in insulin levels. Pancreatic beta cells develop huntingtin inclusions as early as seven weeks of age, by 12 weeks more than 95% of beta cells have inclusions. Pancreatic alpha and delta cells also exhibit some inclusions (24% and 6% of cells, respectively) by 12 weeks. Pancreatic islets become hypotonic and beta cells are dramatically reduced in number by 12 weeks. Beta cells contain very few insulin secretory vesicles. (Bjorkquvist M et al. 2005)"""^^xsd:string ;
     rdfs:subClassOf BIRNLEX:388 ;
     NIFRID:createdDate "February 24, 2009"^^xsd:string ;
-    NIFRID:externalSourceURI <http://jaxmice.jax.org/strain/002810.html> ;
+    NIFRID:externalSourceURI JAX:002810.html ;
     NIFRID:hasCurationStatus NIFRID:pending_final_vetting .
 
 NLXORG:20090401 a owl:Class ;
@@ -16473,7 +16479,7 @@ NIFRID:third_trimester a BIRNLEX:240,
 
 ### Axioms
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7021
             BIRNLEX:7022
@@ -16502,9 +16508,9 @@ NIFRID:third_trimester a BIRNLEX:240,
             BIRNLEX:7045
             BIRNLEX:7046
             BIRNLEX:7047
-            BIRNLEX:7048 ) ] .
+            BIRNLEX:7048 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7049
             BIRNLEX:7050
@@ -16540,9 +16546,9 @@ NIFRID:third_trimester a BIRNLEX:240,
             BIRNLEX:7080
             BIRNLEX:7081
             BIRNLEX:7082
-            BIRNLEX:7083 ) ] .
+            BIRNLEX:7083 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7084
             BIRNLEX:7085
@@ -16589,143 +16595,143 @@ NIFRID:third_trimester a BIRNLEX:240,
             BIRNLEX:7126
             BIRNLEX:7127
             BIRNLEX:7128
-            BIRNLEX:7129 ) ] .
+            BIRNLEX:7129 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7304
             BIRNLEX:7305
-            BIRNLEX:7306 ) ] .
+            BIRNLEX:7306 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7308
-            BIRNLEX:7309 ) ] .
+            BIRNLEX:7309 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7311
-            BIRNLEX:7312 ) ] .
+            BIRNLEX:7312 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7314
-            BIRNLEX:7315 ) ] .
+            BIRNLEX:7315 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7317
             BIRNLEX:7318
-            BIRNLEX:7319 ) ] .
+            BIRNLEX:7319 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7321
-            BIRNLEX:7322 ) ] .
+            BIRNLEX:7322 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7324
-            BIRNLEX:7325 ) ] .
+            BIRNLEX:7325 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7327
-            BIRNLEX:7328 ) ] .
+            BIRNLEX:7328 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7330
-            BIRNLEX:7331 ) ] .
+            BIRNLEX:7331 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7333
-            BIRNLEX:7334 ) ] .
+            BIRNLEX:7334 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7336
             BIRNLEX:7337
-            BIRNLEX:7338 ) ] .
+            BIRNLEX:7338 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7340
-            BIRNLEX:7341 ) ] .
+            BIRNLEX:7341 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7343
-            BIRNLEX:7344 ) ] .
+            BIRNLEX:7344 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7346
-            BIRNLEX:7347 ) ] .
+            BIRNLEX:7347 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7349
-            BIRNLEX:7350 ) ] .
+            BIRNLEX:7350 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7352
             BIRNLEX:7353
-            BIRNLEX:7354 ) ] .
+            BIRNLEX:7354 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7356
-            BIRNLEX:7357 ) ] .
+            BIRNLEX:7357 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7359
-            BIRNLEX:7360 ) ] .
+            BIRNLEX:7360 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7362
-            BIRNLEX:7363 ) ] .
+            BIRNLEX:7363 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7365
             BIRNLEX:7366
-            BIRNLEX:7367 ) ] .
+            BIRNLEX:7367 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7369
-            BIRNLEX:7370 ) ] .
+            BIRNLEX:7370 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7372
-            BIRNLEX:7373 ) ] .
+            BIRNLEX:7373 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7375
             BIRNLEX:7376
-            BIRNLEX:7377 ) ] .
+            BIRNLEX:7377 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7379
-            BIRNLEX:7380 ) ] .
+            BIRNLEX:7380 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             BIRNLEX:7382
-            BIRNLEX:7383 ) ] .
+            BIRNLEX:7383 ) .
 
-[ a owl:AllDifferent ;
+[] a owl:AllDifferent ;
     owl:distinctMembers (
             NIFRID:first_trimester
             NIFRID:second_trimester
-            NIFRID:third_trimester ) ] .
+            NIFRID:third_trimester ) .
 
-### Serialized using the pyontutils deterministic serializer v1.1.3
+### Serialized using the pyontutils deterministic serializer v1.2.0
