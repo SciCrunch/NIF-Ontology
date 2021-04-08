@@ -2,6 +2,7 @@
 @prefix asp: <http://uri.interlex.org/tgbugs/uris/readable/aspect/> .
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
+@prefix editorNote: <http://purl.obolibrary.org/obo/IAO_0000116> .
 @prefix hasInput: <http://purl.obolibrary.org/obo/RO_0002233> .
 @prefix hasOutput: <http://purl.obolibrary.org/obo/RO_0002234> .
 @prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
@@ -15,14 +16,15 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix replacedBy: <http://purl.obolibrary.org/obo/IAO_0100001> .
 @prefix RO: <http://purl.obolibrary.org/obo/RO_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/methods-core.ttl> a owl:Ontology ;
     owl:imports NIFTTL:nif_backend.ttl ;
     rdfs:comment "The core components for modelling techniques and methods." ;
-    owl:versionInfo "2020-06-09" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/385ed445f12c557a75a29979406eb51311c7af20/nifstd/nifstd_tools/methods/core.py> .
+    owl:versionInfo "2021-04-06" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/05dc32b092b015233f4a6cefa6c157577d029a40/nifstd/nifstd_tools/methods/core.py> .
 
 ### Object Properties
 
@@ -540,8 +542,15 @@ ilxtr:executor a owl:Class ;
     definition: "An executor is the primary agentous being that participates in a technique and is usually the vehicle by which prior information constrains a technique. Human beings usually play this role, but computers and robots can be considered to be executors when the prior information has been encoded directly into them and their behavior." ;
     rdfs:subClassOf ilxtr:materialEntity .
 
+ilxtr:ExperimentalApproach a owl:Class ;
+    rdfs:label "experimental approach" ;
+    NIFRID:synonym "experimental modality" ;
+    definition: "The general experimental approach used to answer a scientific question. Approaches often define whole research disciplines." .
+
 ilxtr:ExperimentalModality a owl:Class ;
-    rdfs:label "experimental modality" .
+    owl:deprecated true ;
+    replacedBy: ilxtr:ExperimentalApproach ;
+    editorNote: "For clarity switch to use ilxtr:ExperimentalApproach since we are changing the preferred terminology. Hopefully keeping the id aligned will prevent confusion down the line. Follow replacedBy: to find the new id." .
 
 ilxtr:ExperimentalPreparation a owl:Class ;
     rdfs:label "experimental preparation" .
