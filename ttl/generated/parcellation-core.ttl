@@ -93,8 +93,11 @@ parc:AnatomicalAxis a owl:Class ;
     rdfs:subClassOf parc:Axis .
 
 parc:AnatomicalAxisAlignmentVector a owl:Class ;
-    rdfs:label "anatomical axis alignment vector" ;
-    rdfs:subClassOf parc:Vector,
+    rdfs:label "anatomical axis alignment vector" .
+
+parc:AnatomicalAxisAlignmentVectorCartesian a owl:Class ;
+    rdfs:label "cartesian anatomical axis alignment vector" ;
+    rdfs:subClassOf parc:AnatomicalAxisAlignmentVector,
         [ a owl:Restriction ;
             owl:onProperty parc:hasDirectionMappedToPositiveX ;
             owl:someValuesFrom parc:AnatomicalDirection ],
@@ -329,7 +332,7 @@ parc:ImageSpace a owl:Class ;
         "sample space",
         "specimen space" ;
     definition: "an image space is the intrinsic or implicit space that is defined by an image, in digital images it is usually discretized as matrix, it usually euclidean and supports a cartesian distance metric, however in cases where there is a non-uniformly sampling sensor or if the image was collected in the frequency domain (e.g. for MRI images) then the image space has different dimensions which may non-spatial (FIXME need some clarity about data captured in the frequency domain)" ;
-    rdfs:subClassOf parc:Space ;
+    rdfs:subClassOf parc:Space ; # FIXME this is NOT an anatomical space
     ilxtr:editorQuestion "are specimen/individual space different from image/dataset space?" ;
     ilxtr:localName "image space" .
 
@@ -531,11 +534,13 @@ parc:Resolution a owl:Class ;
             owl:onProperty parc:hasResolutionZ ;
             owl:someValuesFrom owl:real ],
         [ a owl:Restriction ;
-            owl:onProperty parc:hasUnit ;
+        # discretization unit (vs microscopy unit)
+            owl:onProperty parc:hasUnit ;  # FIXME probably a ratio
             owl:someValuesFrom parc:spaceUnit ] ;
     ilxtr:localName "resolution" .
 
 parc:Right a owl:Class ;
+    # FIXME add orthognoality relation
     rdfs:subClassOf parc:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty parc:hasOppositeDirection ;
@@ -592,9 +597,10 @@ parc:Space a owl:Class ;
             owl:someValuesFrom parc:AxisDirectionMatrix ],
         [ a owl:Restriction ;
             owl:onProperty hasPart: ;
-            owl:someValuesFrom parc:AxisOrigin ],
+            owl:someValuesFrom parc:AxisOrigin ],  # this is the index in the voxelized but ideally should be the mapping AnatomicalOriginVector in the anatomical space it is always 0 0 0
         [ a owl:Restriction ;
             owl:onProperty parc:hasUnit ;
+            # FIXME or hasDimension arbitrary spatial units
             owl:someValuesFrom parc:spaceUnit ] ;
     editorNote: "To avoid problems like those encountered by nifti an anatomical reference space MUST define an anatomical axis alignment vector which states, for example, [X, Y, Z] -> [R, A, D] (left hand rule). This immediately indicates the three annotations required on any unoriented dataset as opposed to someone trying to apply the anatomical directions directly to the unoriented dataset" ;
     ilxtr:hasIlxId ILX:0777106 ;
