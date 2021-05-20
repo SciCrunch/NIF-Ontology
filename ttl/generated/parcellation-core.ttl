@@ -1,3 +1,4 @@
+@prefix atom: <http://uri.interlex.org/tgbugs/uris/readable/atlas/> .
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 @prefix editorNote: <http://purl.obolibrary.org/obo/IAO_0000116> .
@@ -8,8 +9,6 @@
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix atom: <http://uri.interlex.org/tgbugs/uris/readable/atlas/> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
@@ -21,10 +20,6 @@
     owl:versionInfo "2021-05-20" .
 
 ### Object Properties
-
-ilxtr:labelPartOf a owl:ObjectProperty,
-        owl:TransitiveProperty ;
-    rdfs:subPropertyOf BFO:0000050 .
 
 atom:annotates a owl:ObjectProperty ;
     rdfs:label "annotates" ;
@@ -58,6 +53,10 @@ atom:transforms a owl:ObjectProperty ;
     rdfs:domain atom:TransformationRule ;
     rdfs:range atom:Space .
 
+ilxtr:labelPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:subPropertyOf BFO:0000050 .
+
 ### Data Properties
 
 atom:hasResolutionX a owl:DatatypeProperty .
@@ -67,12 +66,6 @@ atom:hasResolutionY a owl:DatatypeProperty .
 atom:hasResolutionZ a owl:DatatypeProperty .
 
 ### Classes
-
-ilxtr:parcellationLabel a owl:Class ;
-    owl:equivalentClass atom:Label .
-
-ilxtr:parcellationRegion a owl:Class ;
-    owl:equivalentClass atom:Region .
 
 atom:Alignment a owl:Class ;
     rdfs:label "spatial alignment" ;
@@ -330,7 +323,7 @@ atom:ImageSpace a owl:Class ;
         "sample space",
         "specimen space" ;
     definition: "an image space is the intrinsic or implicit space that is defined by an image, in digital images it is usually discretized as matrix, it usually euclidean and supports a cartesian distance metric, however in cases where there is a non-uniformly sampling sensor or if the image was collected in the frequency domain (e.g. for MRI images) then the image space has different dimensions which may non-spatial (FIXME need some clarity about data captured in the frequency domain)" ;
-    rdfs:subClassOf atom:Space ; # FIXME this is NOT an anatomical space
+    rdfs:subClassOf atom:Space ;
     ilxtr:editorQuestion "are specimen/individual space different from image/dataset space?" ;
     ilxtr:localName "image space" .
 
@@ -532,13 +525,11 @@ atom:Resolution a owl:Class ;
             owl:onProperty atom:hasResolutionZ ;
             owl:someValuesFrom owl:real ],
         [ a owl:Restriction ;
-        # discretization unit (vs microscopy unit)
-            owl:onProperty atom:hasUnit ;  # FIXME probably a ratio
+            owl:onProperty atom:hasUnit ;
             owl:someValuesFrom atom:spaceUnit ] ;
     ilxtr:localName "resolution" .
 
 atom:Right a owl:Class ;
-    # FIXME add orthognoality relation
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
@@ -588,6 +579,9 @@ atom:Space a owl:Class ;
     rdfs:subClassOf atom:Artifact,
         atom:Space,
         [ a owl:Restriction ;
+            owl:onProperty atom:hasUnit ;
+            owl:someValuesFrom atom:spaceUnit ],
+        [ a owl:Restriction ;
             owl:onProperty hasPart: ;
             owl:someValuesFrom atom:AnatomicalAxisAlignmentVector ],
         [ a owl:Restriction ;
@@ -595,11 +589,7 @@ atom:Space a owl:Class ;
             owl:someValuesFrom atom:AxisDirectionMatrix ],
         [ a owl:Restriction ;
             owl:onProperty hasPart: ;
-            owl:someValuesFrom atom:AxisOrigin ],  # this is the index in the voxelized but ideally should be the mapping AnatomicalOriginVector in the anatomical space it is always 0 0 0
-        [ a owl:Restriction ;
-            owl:onProperty atom:hasUnit ;
-            # FIXME or hasDimension arbitrary spatial units
-            owl:someValuesFrom atom:spaceUnit ] ;
+            owl:someValuesFrom atom:AxisOrigin ] ;
     editorNote: "To avoid problems like those encountered by nifti an anatomical reference space MUST define an anatomical axis alignment vector which states, for example, [X, Y, Z] -> [R, A, D] (left hand rule). This immediately indicates the three annotations required on any unoriented dataset as opposed to someone trying to apply the anatomical directions directly to the unoriented dataset" ;
     ilxtr:hasIlxId ILX:0777106 ;
     ilxtr:localName "space" .
@@ -707,5 +697,11 @@ atom:ZAxis a owl:Class ;
         [ a owl:Restriction ;
             owl:onProperty atom:hasDirection ;
             owl:someValuesFrom atom:PositiveZ ] .
+
+ilxtr:parcellationLabel a owl:Class ;
+    owl:equivalentClass atom:Label .
+
+ilxtr:parcellationRegion a owl:Class ;
+    owl:equivalentClass atom:Region .
 
 ### Serialized using the ttlser deterministic serializer v1.2.0
