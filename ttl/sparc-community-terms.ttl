@@ -2,10 +2,12 @@
 @prefix BIRNLEX: <http://uri.neuinfo.org/nif/nifstd/birnlex_> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 @prefix EMAPA: <http://purl.obolibrary.org/obo/EMAPA_> .
+@prefix fma: <http://purl.org/sig/ont/fma/> .
 @prefix FMA: <http://purl.org/sig/ont/fma/fma> .
 @prefix ilx: <http://uri.interlex.org/> .
 @prefix ILX: <http://uri.interlex.org/base/ilx_> .
 @prefix ilx.anno.hasBroadSynonym: <http://uri.interlex.org/base/ilx_0737164> .
+@prefix ilx.anno.hasDefinitionSource: <http://uri.interlex.org/base/ilx_0739292> .
 @prefix ilx.anno.hasExactSynonym: <http://uri.interlex.org/base/ilx_0737161> .
 @prefix ilx.anno.hasNarrowSynonym: <http://uri.interlex.org/base/ilx_0737163> .
 @prefix ilx.anno.hasRelatedSynonym: <http://uri.interlex.org/base/ilx_0737162> .
@@ -27,14 +29,23 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix SCR: <http://scicrunch.org/resolver/SCR_> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://uri.interlex.org/sparc/ontologies/community-terms> a owl:Ontology ;
-    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/community-terms/version/1615259150.18657/community-terms> ;
-    owl:versionInfo "2021-03-08T19:05:50.186570" .
+    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/community-terms/version/1622217034.14913/community-terms> ;
+    owl:versionInfo "2021-05-28T08:50:34.149130" .
 
 ### Object Properties
+
+ilx.anno.hasDefinitionSource: a owl:ObjectProperty ;
+    rdfs:label "hasDefinitionSource" ;
+    definition: "source of definition." ;
+    ilxr:type ilx.type:relationship ;
+    ilxtr:hasExistingId ilx.anno.hasDefinitionSource: ;
+    ilxtr:hasIlxId ilx.anno.hasDefinitionSource: ;
+    ilxtr:hasIlxPreferredId ilx.anno.hasDefinitionSource: .
 
 ilx.includeForSPARC: a owl:ObjectProperty ;
     rdfs:label "includeForSPARC" ;
@@ -90,7 +101,6 @@ ILX:0739265 a owl:ObjectProperty ;
 ILX:0739272 a owl:ObjectProperty ;
     rdfs:label "anatomicalJunctionOf" ;
     definition: "relationship between an anatomical junction and a part." ;
-    rdfs:subClassOf FMA:5898 ;
     ilxr:type ilx.type:relationship ;
     ilxtr:hasExistingId ILX:0739272 ;
     ilxtr:hasIlxId ILX:0739272 ;
@@ -124,13 +134,11 @@ ILX:0739239 a owl:AnnotationProperty ;
     ilxtr:hasIlxId ILX:0739239 ;
     ilxtr:hasIlxPreferredId ILX:0739239 .
 
-ILX:0739292 a owl:AnnotationProperty ;
-    rdfs:label "hasDefinitionSource" ;
-    definition: "source of definition" ;
-    ilxr:type ilx.type:annotation ;
-    ilxtr:hasExistingId ILX:0739292 ;
-    ilxtr:hasIlxId ILX:0739292 ;
-    ilxtr:hasIlxPreferredId ILX:0739292 .
+ILX:0777130 a owl:AnnotationProperty ;
+    rdfs:label "hasDefinitionSource (annotation)" ;
+    ilxtr:hasExistingId ILX:0777130 ;
+    ilxtr:hasIlxId ILX:0777130 ;
+    ilxtr:hasIlxPreferredId ILX:0777130 .
 
 ### Classes
 
@@ -150,7 +158,7 @@ EMAPA:19554 a owl:Class ;
     rdfs:label "thirteenth thoracic spinal cord segment" ;
     NIFRID:synonym "T13 vertebra" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the thirteenth thoracic spinal nerve." ;
-    ILX:0739292 ILX:0739291 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:19554,
         ILX:0738431 ;
@@ -306,9 +314,10 @@ EMAPA:36080 a owl:Class ;
     rdfs:label "ureter junction of bladder trigone" ;
     definition: "The anatomical junction between the ureter and the bladder trigone. This junction is located at the superior/rostral right and left angles of the base of the bladder trigone on the posterior aspect of the organ where the ureters merge with the bladder wall." ;
     rdfs:subClassOf FMA:305751 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0739272 FMA:9704,
         FMA:15910 ;
-    ILX:0739292 ilx:ilx_0739291 ;
+    ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36080,
         ILX:0738403 ;
@@ -321,9 +330,10 @@ EMAPA:36081 a owl:Class ;
     rdfs:label "urethra junction with bladder trigone" ;
     definition: "The anatomical junction between the urethra and the bladder trigone. This junction is located at the apex of the bladder trigone where the urethra forms." ;
     rdfs:subClassOf FMA:305751 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0739272 FMA:15910,
         FMA:19667 ;
-    ILX:0739292 ilx:ilx_0739291 ;
+    ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36081,
         ILX:0738411 ;
@@ -338,7 +348,7 @@ EMAPA:36084 a owl:Class ;
     rdfs:subClassOf FMA:305751 ;
     ILX:0739272 EMAPA:36079,
         FMA:19667 ;
-    ILX:0739292 ilx:ilx_0739291 ;
+    ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36084,
         ILX:0738410 ;
@@ -375,18 +385,19 @@ EMAPA:36140 a owl:Class ;
 
 EMAPA:36421 a owl:Class ;
     rdfs:label "urethral seam" ;
-    NIFRID:synonym "urethral raphe",
-        "ventral seam" ;
+    NIFRID:synonym "urethral raphe" ;
     definition: "A solid epithelial cord present deep to the skin along the ventral midline of the penis. Represents a remnant of a developmental process that closes the urethra." ;
     rdfs:subClassOf FMA:305751 ;
-    ILX:0739292 ilx:ilx_0739291 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
+    ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36421,
         ILX:0738407 ;
     ilxtr:hasExternalId EMAPA:36421 ;
     ilxtr:hasIlxId ILX:0738407 ;
     ilxtr:hasIlxPreferredId EMAPA:36421 ;
-    ilxtr:includedForSPARCUnder FMA:45659 .
+    ilxtr:includedForSPARCUnder FMA:45659 ;
+    oboInOwl:hasBroadSynonym "ventral seam" .
 
 FMA:5731 a owl:Class ;
     rdfs:label "vagus nerve" ;
@@ -417,16 +428,6 @@ FMA:5890 a owl:Class ;
         UBERON:0001806 ;
     ilxtr:hasIlxId ILX:0730966 ;
     ilxtr:hasIlxPreferredId UBERON:0001806 .
-
-FMA:5898 a owl:Class ;
-    rdfs:label "anatomical junction" ;
-    ilxtr:hasExistingId FMA:5898,
-        ILX:0734554,
-        UBERON:0007651 ;
-    ilxtr:hasExternalId FMA:5898,
-        UBERON:0007651 ;
-    ilxtr:hasIlxId ILX:0734554 ;
-    ilxtr:hasIlxPreferredId UBERON:0007651 .
 
 FMA:5915 a owl:Class ;
     rdfs:label "myelinated nerve fiber" ;
@@ -464,7 +465,7 @@ FMA:6037 a owl:Class ;
         "Thoracic spinal nerve 1" ;
     definition: "The thoracic spinal nerve 1 (T1) is a spinal nerve of the thoracic segment.[1]. It originates from the spinal column from below the thoracic vertebra 1 (T1). (from Wikipedia)" ;
     rdfs:subClassOf FMA:5860 ;
-    <fma:synonym> "First thoracic spinal nerve" ;
+    fma:synonym "First thoracic spinal nerve" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6037,
         ILX:0738397 ;
@@ -479,7 +480,7 @@ FMA:6169 a owl:Class ;
         "Thoracic spinal nerve 2" ;
     definition: "The thoracic spinal nerve 2 (T2) is a spinal nerve of the thoracic segment.[1]. It originates from the spinal column from below the thoracic vertebra 2 (T2). (from Wikipedia)" ;
     rdfs:subClassOf FMA:5860 ;
-    <fma:synonym> "Second thoracic spinal nerve" ;
+    fma:synonym "Second thoracic spinal nerve" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6169,
         ILX:0739243 ;
@@ -493,7 +494,7 @@ FMA:6171 a owl:Class ;
         "Thoracic spinal nerve 3" ;
     definition: "The thoracic spinal nerve 3 (T3) is a spinal nerve of the thoracic segment. It originates from the spinal column from below the thoracic vertebra 3 (T3). (from Wikipedia)." ;
     rdfs:subClassOf FMA:5860 ;
-    <fma:synonym> "Third thoracic spinal nerve" ;
+    fma:synonym "Third thoracic spinal nerve" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6171,
         ILX:0739246 ;
@@ -547,7 +548,7 @@ FMA:6449 a owl:Class ;
     NIFRID:synonym "C8 Nerve ",
         "Eighth cervical nerve" ;
     definition: "The cervical spinal nerve 8 (C8) is a spinal nerve of the cervical segment.[1] It originates from the spinal column from below the cervical vertebra 7 (C7) From Wikipedia" ;
-    <fma:synonym> "C8 spinal nerve",
+    fma:synonym "C8 spinal nerve",
         "Eighth cervical spinal nerve" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6449,
@@ -613,9 +614,8 @@ FMA:6582 a owl:Class ;
     NIFRID:synonym "Subclavian loop" ;
     definition: "A nerve cord that connects the middle cervical and inferior cervical sympathetic ganglia, forming a loop around the subclavian artery." ;
     rdfs:subClassOf FMA:6468 ;
-    <fma:synonym> "Nerve of Vieussens" ;
+    fma:synonym "Nerve of Vieussens" ;
     ILX:0381449 "PMID: 18828096" ;
-    ILX:0739292 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6582,
         ILX:0739241 ;
@@ -695,6 +695,8 @@ FMA:7088 a owl:Class ;
         FMA:7220,
         FMA:10951,
         ILX:0739222,
+        ILX:0778116,
+        ILX:0778117,
         UBERON:0004851,
         UBERON:0006765,
         UBERON:0006766,
@@ -772,6 +774,56 @@ FMA:7164 a owl:Class ;
         "cardiac apex",
         "heart apex" .
 
+FMA:7195 a owl:Class ;
+    rdfs:label "lung" ;
+    definition: "Respiration organ that develops as an oupocketing of the esophagus." ;
+    rdfs:subClassOf FMA:67498 ;
+    ilx.anno.hasExactSynonym: "pulmo" ;
+    ilx.hasDbXref: "AAO:0000275",
+        "AAO:0010567",
+        "BTO:0000763",
+        "CALOHA:TS-0568",
+        "EFO:0000934",
+        "EHDAA2:0001042",
+        "EHDAA:1554",
+        "EHDAA:2205",
+        "EMAPA:16728",
+        "EV:0100042",
+        "FMA:7195",
+        "GAID:345",
+        "galen:Lung",
+        "MA:0000415",
+        "MAT:0000135",
+        "MESH:D008168",
+        "MIAA:0000135",
+        "NCIT:C12468",
+        "OpenCyc:Mx4rvVjKy5wpEbGdrcN5Y29ycA",
+        "UMLS:C0024109",
+        "VHOG:0000310",
+        "XAO:0000119",
+        <http://en.wikipedia.org/wiki/Lung>,
+        <http://linkedlifedata.com/resource/umls/id/C0024109>,
+        <http://www.snomedbrowser.com/Codes/Details/181216001> ;
+    ilx.includeForSPARC: ILX:0778118,
+        ILX:0778119,
+        ILX:0778120,
+        ILX:0778121,
+        ILX:0778122,
+        ILX:0778123,
+        ILX:0778124,
+        ILX:0778125,
+        ILX:0778126,
+        ILX:0778127 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:7195,
+        ILX:0726937,
+        UBERON:0002048 ;
+    ilxtr:hasExternalId FMA:7195,
+        UBERON:0002048 ;
+    ilxtr:hasIlxId ILX:0726937 ;
+    ilxtr:hasIlxPreferredId UBERON:0002048 ;
+    oboInOwl:hasExactSynonym "pulmo" .
+
 FMA:7199 a owl:Class ;
     rdfs:label "intestine" ;
     ilxtr:hasExistingId FMA:7199,
@@ -816,11 +868,31 @@ FMA:7246 a owl:Class ;
     ilxtr:hasIlxId ILX:0730278 ;
     ilxtr:hasIlxPreferredId UBERON:0002146 .
 
+FMA:7281 a owl:Class ;
+    rdfs:label "right atrium endocardium" ;
+    ilxtr:hasExistingId FMA:7281,
+        ILX:0737129,
+        UBERON:0009129 ;
+    ilxtr:hasExternalId FMA:7281,
+        UBERON:0009129 ;
+    ilxtr:hasIlxId ILX:0737129 ;
+    ilxtr:hasIlxPreferredId UBERON:0009129 .
+
+FMA:7383 a owl:Class ;
+    rdfs:label "middle lobe of right lung" ;
+    ilxtr:hasExistingId FMA:7383,
+        ILX:0733737,
+        UBERON:0002174 ;
+    ilxtr:hasExternalId FMA:7383,
+        UBERON:0002174 ;
+    ilxtr:hasIlxId ILX:0733737 ;
+    ilxtr:hasIlxPreferredId UBERON:0002174 .
+
 FMA:7471 a owl:Class ;
     rdfs:label "tracheal mucosa" ;
     NIFRID:synonym "Mucosa of trachea " ;
     definition: "A mucosa that is part of a respiratory airway." ;
-    <fma:synonym> "Tracheal mucosa" ;
+    fma:synonym "Tracheal mucosa" ;
     ilx.anno.hasExactSynonym: "mucosa of organ of trachea",
         "mucosa of organ of windpipe",
         "mucosa of trachea",
@@ -844,7 +916,7 @@ FMA:7471 a owl:Class ;
         "FMA:7471",
         <http://www.snomedbrowser.com/Codes/Details/660006> ;
     ILX:0738303 "36381" ;
-    ILX:0739292 UBERON:0000379 ;
+    ILX:0777130 UBERON:0000379 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:7471,
         ILX:0724678,
@@ -1178,7 +1250,7 @@ FMA:15042 a owl:Class ;
     definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon. This tenia coli is named by reference to its topographical situation in relation to the transverse colon. It is situated on the posterosuperior surface of the transverse colon at the line of attachment of the transverse mesocolon. This relationship is not maintained on the ascending and descending portions but continuity of the tenia coli allows it to be traced along the ascending and descending colon from the transverse colon. (Meyers MA, Volberg F, Katzen B, Abbott G. Haustral anatomy and pathology: a new look. II. Roentgen interpretation of pathological alterations." ;
     rdfs:subClassOf FMA:15041 ;
     ILX:0381449 "doi:10.1148/108.3.505" ;
-    ILX:0739292 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
+    ILX:0777130 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:15042,
         ILX:0739284 ;
@@ -1194,7 +1266,7 @@ FMA:15043 a owl:Class ;
     definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon.  This tenia coli is named by reference to its topographical situation in relation to the transverse colon. It runs along the anterosuperior surface of the transverse colon and is in relation to the line of attachment of the greater omentum extending inferiorly, and of the gastrocolic ligament above. This relationship is not maintained on the ascending and descending portions but the continuity of the tenia coli allows it to be traced along the ascending and descending colon from the transverse colon. (Meyers MA, Volberg F, Katzen B, Abbott G. Haustral anatomy and pathology: a new look. II. Roentgen interpretation of pathological alterations." ;
     rdfs:subClassOf FMA:15041 ;
     ILX:0381449 "doi:10.1148/108.3.505" ;
-    ILX:0739292 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
+    ILX:0777130 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:15043,
         ILX:0739286 ;
@@ -1211,7 +1283,7 @@ FMA:15044 a owl:Class ;
     definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon.  This tenia coli is named by reference to its topographical situation in relation to the transverse colon.  It is the remaining free tenia coli that is not related to any mesenteric or omental attachment and is found on the posteroinferior aspect of the transverse colon. This relationship is not maintained on the ascending and descending portions but the continuity of the teniac coli allows it to be traced along the ascending and descending colon from the transverse colon." ;
     rdfs:subClassOf FMA:15041 ;
     ILX:0381449 "doi:10.1148/108.3.505" ;
-    ILX:0739292 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
+    ILX:0777130 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:15044,
         ILX:0739285 ;
@@ -1223,7 +1295,7 @@ FMA:15044 a owl:Class ;
 FMA:15897 a owl:Class ;
     rdfs:label "urothelium of ureter" ;
     definition: "The luminal epithelium of the tube that conducts the urine from the renal pelvis to the bladder[MP]" ;
-    <fma:synonym> "Urothelium of ureter" ;
+    fma:synonym "Urothelium of ureter" ;
     ilx.anno.hasExactSynonym: "transitional epithelium of ureter",
         "ureter transitional epithelium",
         "ureter urothelium" ;
@@ -1417,7 +1489,7 @@ FMA:15936 a owl:Class ;
 
 FMA:17873 a owl:Class ;
     rdfs:label "lumen of neck of urinary bladder" ;
-    <fma:synonym> "Cavity of neck of urinary bladder" ;
+    fma:synonym "Cavity of neck of urinary bladder" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:17873,
         ILX:0739256 ;
@@ -1736,6 +1808,7 @@ FMA:62421 a owl:Class ;
     NIFRID:synonym "T1 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the first thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "first thoracic spinal cord segment",
         "t1 segment",
         "T1 spinal cord segment" ;
@@ -1745,7 +1818,6 @@ FMA:62421 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457859>,
         <http://www.snomedbrowser.com/Codes/Details/278762008>,
         NLXWIKI:birnlex_1452 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1452,
         FMA:62421,
@@ -1764,6 +1836,7 @@ FMA:62422 a owl:Class ;
     NIFRID:synonym "T2 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the second thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "second thoracic spinal cord segment",
         "t2 segment",
         "T2 spinal cord segment" ;
@@ -1773,7 +1846,6 @@ FMA:62422 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457860>,
         <http://www.snomedbrowser.com/Codes/Details/278763003>,
         NLXWIKI:birnlex_1454 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1454,
         FMA:62422,
@@ -1817,6 +1889,18 @@ FMA:67473 a owl:Class ;
         UBERON:0035965 ;
     ilxtr:hasIlxId ILX:0727079 ;
     ilxtr:hasIlxPreferredId UBERON:0035965 .
+
+FMA:67498 a owl:Class ;
+    rdfs:label "Organ" ;
+    ilxtr:hasExistingId BIRNLEX:4,
+        FMA:67498,
+        ILX:0108124,
+        UBERON:0000062 ;
+    ilxtr:hasExternalId BIRNLEX:4,
+        FMA:67498,
+        UBERON:0000062 ;
+    ilxtr:hasIlxId ILX:0108124 ;
+    ilxtr:hasIlxPreferredId UBERON:0000062 .
 
 FMA:68862 a owl:Class ;
     rdfs:label "Lamina I of gray matter of spinal cord" ;
@@ -2149,6 +2233,7 @@ FMA:71169 a owl:Class ;
     NIFRID:synonym "T3 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the third thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "t3 segment",
         "T3 spinal cord segment",
         "third thoracic spinal cord segment" ;
@@ -2158,7 +2243,6 @@ FMA:71169 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457861>,
         <http://www.snomedbrowser.com/Codes/Details/278764009>,
         NLXWIKI:birnlex_1458 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1458,
         FMA:71169,
@@ -2177,6 +2261,7 @@ FMA:71170 a owl:Class ;
     NIFRID:synonym "T4 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the fourth thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "T4 segment",
         "T4 spinal cord segment" ;
     ilx.hasDbXref: "FMA:71170",
@@ -2185,7 +2270,6 @@ FMA:71170 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457862>,
         <http://www.snomedbrowser.com/Codes/Details/278766006>,
         NLXWIKI:birnlex_1378 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1378,
         FMA:71170,
@@ -2203,6 +2287,7 @@ FMA:71171 a owl:Class ;
     NIFRID:synonym "T5 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the fifth thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "fifth thoracic spinal cord segment",
         "t5 segment",
         "T5 spinal cord segment" ;
@@ -2212,7 +2297,6 @@ FMA:71171 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457863>,
         <http://www.snomedbrowser.com/Codes/Details/278767002>,
         NLXWIKI:birnlex_1383 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1383,
         FMA:71171,
@@ -2231,6 +2315,7 @@ FMA:71172 a owl:Class ;
     NIFRID:synonym "T6 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the sixth thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "sixth thoracic spinal cord segment",
         "t6 segment",
         "T6 spinal cord segment" ;
@@ -2240,7 +2325,6 @@ FMA:71172 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457864>,
         <http://www.snomedbrowser.com/Codes/Details/278768007>,
         NLXWIKI:birnlex_1387 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1387,
         FMA:71172,
@@ -2259,6 +2343,7 @@ FMA:71173 a owl:Class ;
     NIFRID:synonym "T7 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the seventh thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "seventh thoracic spinal cord segment",
         "t7 segment",
         "T7 spinal cord segment" ;
@@ -2268,7 +2353,6 @@ FMA:71173 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457865>,
         <http://www.snomedbrowser.com/Codes/Details/278769004>,
         NLXWIKI:birnlex_1392 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1392,
         FMA:71173,
@@ -2287,6 +2371,7 @@ FMA:71174 a owl:Class ;
     NIFRID:synonym "T8 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the eighth thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "eighth thoracic spinal cord segment",
         "t8 segment",
         "T8 spinal cord segment" ;
@@ -2296,7 +2381,6 @@ FMA:71174 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457866>,
         <http://www.snomedbrowser.com/Codes/Details/278770003>,
         NLXWIKI:birnlex_1398 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1398,
         FMA:71174,
@@ -2315,6 +2399,7 @@ FMA:71175 a owl:Class ;
     NIFRID:synonym "T9 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the ninth thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "ninth thoracic spinal cord segment",
         "t9 segment",
         "T9 spinal cord segment" ;
@@ -2324,7 +2409,6 @@ FMA:71175 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457867>,
         <http://www.snomedbrowser.com/Codes/Details/278771004>,
         NLXWIKI:birnlex_1584 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1584,
         FMA:71175,
@@ -2343,6 +2427,7 @@ FMA:71176 a owl:Class ;
     NIFRID:synonym "T10 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the tenth thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "t10 segment",
         "T10 spinal cord segment",
         "tenth thoracic spinal cord segment" ;
@@ -2352,7 +2437,6 @@ FMA:71176 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457868>,
         <http://www.snomedbrowser.com/Codes/Details/278772006>,
         NLXWIKI:birnlex_1591 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1591,
         FMA:71176,
@@ -2371,6 +2455,7 @@ FMA:71177 a owl:Class ;
     NIFRID:synonym "T11 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the eleventh thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "eleventh thoracic spinal cord segment",
         "t11 segment",
         "T11 spinal cord segment" ;
@@ -2380,7 +2465,6 @@ FMA:71177 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457869>,
         <http://www.snomedbrowser.com/Codes/Details/278773001>,
         NLXWIKI:birnlex_1596 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1596,
         FMA:71177,
@@ -2399,6 +2483,7 @@ FMA:71178 a owl:Class ;
     NIFRID:synonym "T12 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the twelfth thoracic spinal nerve." ;
     rdfs:subClassOf FMA:256655 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.anno.hasExactSynonym: "t12 segment",
         "T12 spinal cord segment",
         "twelfth thoracic spinal cord segment" ;
@@ -2408,7 +2493,6 @@ FMA:71178 a owl:Class ;
         <http://linkedlifedata.com/resource/umls/id/C0457870>,
         <http://www.snomedbrowser.com/Codes/Details/278774007>,
         NLXWIKI:birnlex_1598 ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1598,
         FMA:71178,
@@ -2868,6 +2952,17 @@ FMA:83686 a owl:Class ;
     ilxtr:hasIlxId ILX:0107752 ;
     ilxtr:hasIlxPreferredId UBERON:0000125 .
 
+FMA:86152 a owl:Class ;
+    rdfs:label "Basal zone of right lung" ;
+    NIFRID:synonym "Right lung base" ;
+    rdfs:subClassOf FMA:7195 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:86152,
+        ILX:0778138 ;
+    ilxtr:hasExternalId FMA:86152 ;
+    ilxtr:hasIlxId ILX:0778138 ;
+    ilxtr:hasIlxPreferredId FMA:86152 .
+
 FMA:256530 a owl:Class ;
     rdfs:label "Spinal cord dorsal horn" ;
     ilxtr:hasExistingId BIRNLEX:2667,
@@ -3230,9 +3325,10 @@ ILX:0485634 a owl:Class ;
 ILX:0738176 a owl:Class ;
     rdfs:label "Right atrial ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles identified mainly on the superior and the posterior surface of the right atrium." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI:10.1007/978-3-319-57571-1",
         "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
+    ILX:0777130 SCR:018709 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738176 ;
     ilxtr:hasIlxId ILX:0738176 ;
@@ -3256,8 +3352,8 @@ ILX:0738178 a owl:Class ;
 ILX:0738179 a owl:Class ;
     rdfs:label "Superior right atrial ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles located on the posterior surface of the right atrium adjacent to the junction of the superior vena cava and the right atrium." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738179 ;
     ilxtr:hasIlxId ILX:0738179 ;
@@ -3266,8 +3362,8 @@ ILX:0738179 a owl:Class ;
 ILX:0738180 a owl:Class ;
     rdfs:label "Posterior right atrial ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles on the posterior surface of the right atrium adjacent to the interatrial groove." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738180 ;
     ilxtr:hasIlxId ILX:0738180 ;
@@ -3276,7 +3372,7 @@ ILX:0738180 a owl:Class ;
 ILX:0738181 a owl:Class ;
     rdfs:label "Left atrial ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles mainly located on the superior surface of the left atrium, the posterior medial surface of the left atrium and the inferior and lateral aspect of the posterior left atrium." ;
-    ILX:0739292 ILX:0739291 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738181 ;
     ilxtr:hasIlxId ILX:0738181 ;
@@ -3285,8 +3381,8 @@ ILX:0738181 a owl:Class ;
 ILX:0738182 a owl:Class ;
     rdfs:label "Superior left atrial ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles identified on the posterior medial surface of the left atrium between the pulmonary veins." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738182 ;
     ilxtr:hasIlxId ILX:0738182 ;
@@ -3295,8 +3391,8 @@ ILX:0738182 a owl:Class ;
 ILX:0738183 a owl:Class ;
     rdfs:label "Posteromedial left atrial ganglionated plexus" ;
     definition: "A collection of ganglia on the posterior medial surface of the left atrium extending anteriorly into the interatrial septum." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738183 ;
     ilxtr:hasIlxId ILX:0738183 ;
@@ -3305,8 +3401,8 @@ ILX:0738183 a owl:Class ;
 ILX:0738184 a owl:Class ;
     rdfs:label "Posterolateral left atrial ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles on the posterior lateral surface of the left arterial base on the atrial side of the atrioventricular groove." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738184 ;
     ilxtr:hasIlxId ILX:0738184 ;
@@ -3315,9 +3411,9 @@ ILX:0738184 a owl:Class ;
 ILX:0738185 a owl:Class ;
     rdfs:label "Aortic root ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles surrounded by the aortic root fat and is intimately related to the nerves coursing along the coronary arteries, with its left component projected toward the origin of the circumflex coronary artery." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 """DOI:
 10.1007/978-3-319-57571-1,doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L""" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738185 ;
     ilxtr:hasIlxId ILX:0738185 ;
@@ -3326,8 +3422,8 @@ ILX:0738185 a owl:Class ;
 ILX:0738186 a owl:Class ;
     rdfs:label "Ventricular ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles found in both ventricular bases particularly on the superior aspects of the ventricles, the interventricular grooves and the origins of the marginal arteries." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738186 ;
     ilxtr:hasIlxId ILX:0738186 ;
@@ -3336,8 +3432,8 @@ ILX:0738186 a owl:Class ;
 ILX:0738187 a owl:Class ;
     rdfs:label "Anterior descending ventricular ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles at the origin of the anterior descending coronary artery." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738187 ;
     ilxtr:hasIlxId ILX:0738187 ;
@@ -3346,8 +3442,8 @@ ILX:0738187 a owl:Class ;
 ILX:0738188 a owl:Class ;
     rdfs:label "Posterior descending ventricular ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles that follows the trajectory of the posterior descending coronary artery." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738188 ;
     ilxtr:hasIlxId ILX:0738188 ;
@@ -3356,8 +3452,8 @@ ILX:0738188 a owl:Class ;
 ILX:0738189 a owl:Class ;
     rdfs:label "Right acute marginal ventricular ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles adjacent to the right acute marginal coronary artery." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738189 ;
     ilxtr:hasIlxId ILX:0738189 ;
@@ -3366,8 +3462,8 @@ ILX:0738189 a owl:Class ;
 ILX:0738190 a owl:Class ;
     rdfs:label "Obtuse marginal ventricular ganglionated plexus" ;
     definition: "A collection of ganglia interconnected by axon bundles adjacent to the left marginal coronary artery." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738190 ;
     ilxtr:hasIlxId ILX:0738190 ;
@@ -3383,8 +3479,8 @@ ILX:0738329 a owl:Class ;
 ILX:0738330 a owl:Class ;
     rdfs:label "caudal ventral respiratory group" ;
     definition: "Groups of contralaterally projecting respiratory ‘upper motor neurons’ located in nucleus retroambiguus (expiration) and para-ambiguus (inspiration)" ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "doi:10.1016/B978-0-7020-6294-0.00004-6" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738330 ;
     ilxtr:hasIlxId ILX:0738330 ;
@@ -3400,8 +3496,8 @@ ILX:0738331 a owl:Class ;
 ILX:0738332 a owl:Class ;
     rdfs:label "rostral ventral respiratory group" ;
     definition: "Groups of respiratory ‘upper motor neurons’ in the region of the nucleus ambiguus that regulate airway dilation involving the larynx, pharynx and tongue." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "doi:10.1016/B978-0-7020-6294-0.00004-6" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738332 ;
     ilxtr:hasIlxId ILX:0738332 ;
@@ -3438,7 +3534,7 @@ ILX:0738336 a owl:Class ;
 ILX:0738337 a owl:Class ;
     rdfs:label "Phrenic motor neuron" ;
     definition: "Somatic motor neurons in the upper cervical spinal cord that innervate the diaphragm via the phrenic nerve." ;
-    ILX:0739292 ILX:0739291 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738337 ;
     ilxtr:hasIlxId ILX:0738337 ;
@@ -3447,8 +3543,8 @@ ILX:0738337 a owl:Class ;
 ILX:0738338 a owl:Class ;
     rdfs:label "lumbar motor neuron" ;
     definition: "motor neurons located in the lumbar spinal cord." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
-    ILX:0739292 ILX:0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738338 ;
     ilxtr:hasIlxId ILX:0738338 ;
@@ -3783,8 +3879,8 @@ ILX:0738436 a owl:Class ;
     rdfs:label "anterior subdiaphragmatic vagus nerve" ;
     definition: "A nerve formed by the convergence of nerve bundles of the esophageal plexus that arise primarily from the left vagus nerve." ;
     rdfs:subClassOf FMA:5731 ;
-    ILX:0739292 ILX:0739291,
-        ilx:ilx_0739291 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
+    ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738436 ;
     ilxtr:hasIlxId ILX:0738436 ;
@@ -3803,7 +3899,8 @@ ILX:0738444 a owl:Class ;
     rdfs:label "interscapular brown adipose tissue" ;
     definition: "A collection of brown adipose tissue between the medial borders of the scapulae." ;
     rdfs:subClassOf FMA:20118 ;
-    ILX:0739292 ilx:ilx_0739291 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
+    ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738444,
         MA:0003062 ;
@@ -4183,17 +4280,6 @@ ILX:0739283 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0739283 ;
     ilxtr:includedForSPARCUnder FMA:45659 .
 
-ILX:0739291 a owl:Class ;
-    rdfs:label "SPARC Anatomical Working Group" ;
-    NIFRID:synonym "SAWG" ;
-    definition: "A group of anatomical experts who provide the necessary expertise and independent review of anatomical terminology used in SPARC" ;
-    ilxr:type ilx.type:term ;
-    ilxtr:hasExistingId <https://scicrunch.org/resolver/SCR_018709>,
-        ILX:0739291 ;
-    ilxtr:hasExternalId <https://scicrunch.org/resolver/SCR_018709> ;
-    ilxtr:hasIlxId ILX:0739291 ;
-    ilxtr:hasIlxPreferredId <https://scicrunch.org/resolver/SCR_018709> .
-
 ILX:0739295 a owl:Class ;
     rdfs:label "thirteenth thoracic ganglion" ;
     NIFRID:synonym "T13 sympathetic ganglion",
@@ -4338,13 +4424,44 @@ ILX:0739772 a owl:Class ;
     ilxtr:hasIlxId ILX:0739772 ;
     ilxtr:hasIlxPreferredId ILX:0739772 .
 
+ILX:0743311 a owl:Class ;
+    rdfs:label "inferior vena cava (TA98)" ;
+    ilxtr:hasExistingId <https://taviewer.openanatomy.org/?id=A12.3.09.001>,
+        ILX:0743311 ;
+    ilxtr:hasExternalId <https://taviewer.openanatomy.org/?id=A12.3.09.001> ;
+    ilxtr:hasIlxId ILX:0743311 ;
+    ilxtr:hasIlxPreferredId ILX:0743311 .
+
+ILX:0743544 a owl:Class ;
+    rdfs:label "base of lung (TA98)" ;
+    ilxtr:hasExistingId <https://taviewer.openanatomy.org/?id=A06.5.01.004>,
+        ILX:0743544 ;
+    ilxtr:hasExternalId <https://taviewer.openanatomy.org/?id=A06.5.01.004> ;
+    ilxtr:hasIlxId ILX:0743544 ;
+    ilxtr:hasIlxPreferredId ILX:0743544 .
+
+ILX:0743583 a owl:Class ;
+    rdfs:label "superior vena cava (TA98)" ;
+    ilxtr:hasExistingId <https://taviewer.openanatomy.org/?id=A12.3.03.001>,
+        ILX:0743583 ;
+    ilxtr:hasExternalId <https://taviewer.openanatomy.org/?id=A12.3.03.001> ;
+    ilxtr:hasIlxId ILX:0743583 ;
+    ilxtr:hasIlxPreferredId ILX:0743583 .
+
+ILX:0776034 a owl:Class ;
+    rdfs:label "Epicardium of left atrium" ;
+    ilxtr:hasExistingId ILX:0776034 ;
+    ilxtr:hasIlxId ILX:0776034 ;
+    ilxtr:hasIlxPreferredId ILX:0776034 .
+
 ILX:0777077 a owl:Class ;
     rdfs:label "inner submucosal nerve plexus" ;
     definition: "A sparse network of ganglia on the luminal side of the submucosa of the intestine, close to the muscularis mucosae muscle, in larger mammals." ;
     rdfs:subClassOf FMA:21542 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 <https://doi.org/10.1002/1097-0185(20010101)262:1%3C71::AID-AR1012%3E3.0.CO;2-A>,
         <https://doi.org/10.1007/s00418-009-0657-2> ;
-    ILX:0739292 ilx:ilx_0739291 ;
+    ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777077 ;
     ilxtr:hasIlxId ILX:0777077 ;
@@ -4355,10 +4472,11 @@ ILX:0777078 a owl:Class ;
     rdfs:label "outer submucosal nerve plexus" ;
     definition: "A dense network of ganglia in the submucosa, close to the circular muscle of the intestine in larger mammals." ;
     rdfs:subClassOf FMA:21542 ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.partOf: FMA:7199 ;
     ILX:0381449 "doi:10.1007/s00418-009-0657-2",
         "doi: 10.1002/1097-0185%2820010101%29262%3A1%3C71%3A%3AAID-AR1012%3E3.0.CO%3B2-A" ;
-    ILX:0739292 ilx:ilx_0739291 ;
+    ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777078 ;
     ilxtr:hasIlxId ILX:0777078 ;
@@ -4510,7 +4628,6 @@ ILX:0777099 a owl:Class ;
 ILX:0777100 a owl:Class ;
     rdfs:label "ganglia of the inner submucosal nerve plexus" ;
     definition: "Cluster of neurons in the inner submucosal nerve plexus of the intestine, in larger mammals" ;
-    rdfs:subClassOf ILX:0774420 ;
     ilx.partOf: ILX:0777077 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777100 ;
@@ -4532,7 +4649,6 @@ ILX:0777101 a owl:Class ;
 ILX:0777102 a owl:Class ;
     rdfs:label "junction between aortic valve and coronary vessel" ;
     definition: "A single point on the endothelium of the right cusp of the aortic semilunar valve leaflet, where the right coronary artery branches off the aorta. Represented by a single point (x, y, and z location)." ;
-    ilx.includeForSPARC: UBERON:0005985 ;
     ILX:0739265 FMA:7236 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777102 ;
@@ -4728,6 +4844,144 @@ ILX:0777129 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777129 ;
     ilxtr:includedForSPARCUnder FMA:15900 .
 
+ILX:0778116 a owl:Class ;
+    rdfs:label "left atrium epicardium venous midpoint" ;
+    definition: "Point at centre of pulmonary vein ostia on left atrium epicardium, on anterior/ventral side for rodents" ;
+    rdfs:subClassOf FMA:9658 ;
+    ILX:0739265 ILX:0776034 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778116 ;
+    ilxtr:hasIlxId ILX:0778116 ;
+    ilxtr:hasIlxPreferredId ILX:0778116 ;
+    ilxtr:includedForSPARCUnder FMA:7088 .
+
+ILX:0778117 a owl:Class ;
+    rdfs:label "right atrium epicardium venous midpoint" ;
+    definition: "Point at centre of inferior and superior vena cavae on right atrium epicardium" ;
+    rdfs:subClassOf FMA:9658 ;
+    ILX:0739265 FMA:7281,
+        ILX:0743311,
+        ILX:0743583 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778117 ;
+    ilxtr:hasIlxId ILX:0778117 ;
+    ilxtr:hasIlxPreferredId ILX:0778117 ;
+    ilxtr:includedForSPARCUnder FMA:7088 .
+
+ILX:0778118 a owl:Class ;
+    rdfs:label "Ventral base of left lung" ;
+    definition: "The ventral base of the left lung is the most ventral point at the oblique fissure of the left lung." ;
+    rdfs:subClassOf ILX:0743544 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778118 ;
+    ilxtr:hasIlxId ILX:0778118 ;
+    ilxtr:hasIlxPreferredId ILX:0778118 ;
+    ilxtr:includedForSPARCUnder FMA:7195 .
+
+ILX:0778119 a owl:Class ;
+    rdfs:label "Apex of right lung accessory lobe" ;
+    definition: "The apex of the accessory lobe is the highest superficial part of the accessory lobe in the right lung. It is located next to the heart and points cranially ." ;
+    rdfs:subClassOf UBERON:0004890 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778119 ;
+    ilxtr:hasIlxId ILX:0778119 ;
+    ilxtr:hasIlxPreferredId ILX:0778119 ;
+    ilxtr:includedForSPARCUnder FMA:7195 .
+
+ILX:0778120 a owl:Class ;
+    rdfs:label "Medial base of left lung" ;
+    definition: "The medial base of the left lung is the most medial point/corner sitting at the base of the left lung. It is close to the medial base of the right lung and pointing towards the right lung." ;
+    rdfs:subClassOf ILX:0743544 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778120 ;
+    ilxtr:hasIlxId ILX:0778120 ;
+    ilxtr:hasIlxPreferredId ILX:0778120 ;
+    ilxtr:includedForSPARCUnder FMA:7195 .
+
+ILX:0778121 a owl:Class ;
+    rdfs:label "Medial base of right lung" ;
+    definition: "The medial base of the right lung is the most medial point/corner sitting at the base of the right lung. It is close to the medial base of the left lung and pointing towards the left lung." ;
+    rdfs:subClassOf ILX:0743544 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778121 ;
+    ilxtr:hasIlxId ILX:0778121 ;
+    ilxtr:hasIlxPreferredId ILX:0778121 ;
+    ilxtr:includedForSPARCUnder FMA:7195 .
+
+ILX:0778122 a owl:Class ;
+    rdfs:label "Ventral base of right lung" ;
+    definition: "The ventral base of the right lung is the most ventral point sitting on the base of the right lung (In human, where the oblique fissure of the right lung is located. In rodent, where the ventral tip of the right lung is located)." ;
+    rdfs:subClassOf ILX:0743544 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778122 ;
+    ilxtr:hasIlxId ILX:0778122 ;
+    ilxtr:hasIlxPreferredId ILX:0778122 ;
+    ilxtr:includedForSPARCUnder FMA:7195 .
+
+ILX:0778123 a owl:Class ;
+    rdfs:label "Ventral base of right lung accessory lobe" ;
+    definition: "The ventral base of the accessory lobe is the most ventral point of the accessory lobe. It is adjacent to the ventral base of the right lung in rodents." ;
+    rdfs:subClassOf UBERON:0004890 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778123 ;
+    ilxtr:hasIlxId ILX:0778123 ;
+    ilxtr:hasIlxPreferredId ILX:0778123 ;
+    ilxtr:includedForSPARCUnder FMA:7195 .
+
+ILX:0778124 a owl:Class ;
+    rdfs:label "laterodorsal tip of middle lobe of right lung" ;
+    definition: "The laterodorsal tip of the middle lobe of the right lung is the most lateral/distal point of the right lung sitting on the junction of the horizontal and oblique fissures of the right lung." ;
+    rdfs:subClassOf FMA:7383 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778124 ;
+    ilxtr:hasIlxId ILX:0778124 ;
+    ilxtr:hasIlxPreferredId ILX:0778124 ;
+    ilxtr:includedForSPARCUnder FMA:7195 .
+
+ILX:0778125 a owl:Class ;
+    rdfs:label "dorsal base of right lung accessory lobe" ;
+    definition: "The dorsal base of the accessory lobe is the point sitting on the base of the accessory lobe, closest to the mediodorsal edge of the left lung." ;
+    rdfs:subClassOf UBERON:0004890 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778125 ;
+    ilxtr:hasIlxId ILX:0778125 ;
+    ilxtr:hasIlxPreferredId ILX:0778125 ;
+    ilxtr:includedForSPARCUnder FMA:7195 .
+
+ILX:0778126 a owl:Class ;
+    rdfs:label "dorsal base of left lung" ;
+    definition: "The dorsal base of the left lung is the most dorsal point/corner sitting at the base of the left lung. It points dorsally." ;
+    rdfs:subClassOf FMA:9658 ;
+    ILX:0739238 ILX:0103492,
+        ILX:0778139 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778126 ;
+    ilxtr:hasIlxId ILX:0778126 ;
+    ilxtr:hasIlxPreferredId ILX:0778126 ;
+    ilxtr:includedForSPARCUnder FMA:7195 .
+
+ILX:0778127 a owl:Class ;
+    rdfs:label "dorsal base of right lung" ;
+    definition: "The dorsal base of the right lung is the most dorsal point/corner sitting at the base of the right lung. It points dorsally." ;
+    rdfs:subClassOf FMA:9658 ;
+    ILX:0739238 FMA:86152,
+        ILX:0103492 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778127 ;
+    ilxtr:hasIlxId ILX:0778127 ;
+    ilxtr:hasIlxPreferredId ILX:0778127 ;
+    ilxtr:includedForSPARCUnder FMA:7195 .
+
+ILX:0778139 a owl:Class ;
+    rdfs:label "Basal zone of left lung" ;
+    NIFRID:synonym "base of left lung",
+        "Left lung base" ;
+    rdfs:subClassOf FMA:7195 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778139 ;
+    ilxtr:hasIlxId ILX:0778139 ;
+    ilxtr:hasIlxPreferredId ILX:0778139 .
+
 NCBITaxon:9821 a owl:Class ;
     rdfs:label "Suidae" ;
     ilxtr:hasExistingId ILX:0111243,
@@ -4751,6 +5005,7 @@ NCBITaxon:9823 a owl:Class ;
     NIFRID:synonym "pig",
         "swine",
         "wild boar" ;
+    definition: "A mammal of the artiodactyla order and genus sus." ;
     rdfs:subClassOf NCBITaxon:9822 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739765,
@@ -4765,6 +5020,7 @@ NCBITaxon:9825 a owl:Class ;
         "Sus domestica",
         "Sus domesticus",
         "Sus scrofa domestica" ;
+    definition: "A mammal of the artiodactyla order and genus sus." ;
     rdfs:subClassOf NCBITaxon:9823 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739770,
@@ -4818,6 +5074,17 @@ NLX:158477 a owl:Class ;
     ilxtr:hasExternalId NLX:158477 ;
     ilxtr:hasIlxId ILX:0101999 ;
     ilxtr:hasIlxPreferredId NLX:158477 .
+
+SCR:018709 a owl:Class ;
+    rdfs:label "SPARC Anatomical Working Group" ;
+    NIFRID:synonym "SAWG" ;
+    definition: "A group of anatomical experts who provide the necessary expertise and independent review of anatomical terminology used in SPARC" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0739291,
+        SCR:018709 ;
+    ilxtr:hasExternalId SCR:018709 ;
+    ilxtr:hasIlxId ILX:0739291 ;
+    ilxtr:hasIlxPreferredId SCR:018709 .
 
 UBERON:0000073 a owl:Class ;
     rdfs:label "Regional part of nervous system" ;
@@ -4882,6 +5149,14 @@ UBERON:0004851 a owl:Class ;
         "trunk of systemic arterial tree endothelium" ;
     oboInOwl:hasRelatedSynonym "aortic endothelium" .
 
+UBERON:0004890 a owl:Class ;
+    rdfs:label "right lung accessory lobe" ;
+    ilxtr:hasExistingId ILX:0728696,
+        UBERON:0004890 ;
+    ilxtr:hasExternalId UBERON:0004890 ;
+    ilxtr:hasIlxId ILX:0728696 ;
+    ilxtr:hasIlxPreferredId UBERON:0004890 .
+
 UBERON:0005181 a owl:Class ;
     rdfs:label "thoracic segment organ" ;
     ilxtr:hasExistingId ILX:0729836,
@@ -4889,19 +5164,6 @@ UBERON:0005181 a owl:Class ;
     ilxtr:hasExternalId UBERON:0005181 ;
     ilxtr:hasIlxId ILX:0729836 ;
     ilxtr:hasIlxPreferredId UBERON:0005181 .
-
-UBERON:0005985 a owl:Class ;
-    rdfs:label "coronary vessel" ;
-    definition: "Any of the arteries or veins that supply blood to the heart or return blood from the heart muscles to the circulation" ;
-    ilx.hasDbXref: "MESH:D003331",
-        <http://en.wikipedia.org/wiki/Coronary_circulation> ;
-    ilxr:type ilx.type:term ;
-    ilxtr:hasExistingId ILX:0735771,
-        UBERON:0005985 ;
-    ilxtr:hasExternalId UBERON:0005985 ;
-    ilxtr:hasIlxId ILX:0735771 ;
-    ilxtr:hasIlxPreferredId UBERON:0005985 ;
-    ilxtr:includedForSPARCUnder ILX:0777102 .
 
 UBERON:0006765 a owl:Class ;
     rdfs:label "left anterior vena cava" ;
@@ -4996,25 +5258,17 @@ UBERON:0011776 a owl:Class ;
     ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
 
 [] a owl:Axiom ;
-    owl:annotatedSource ILX:0739291 ;
-    owl:annotatedProperty NIFRID:synonym ;
-    owl:annotatedTarget "SAWG" ;
-    ilxtr:MISSING_ILX_ID true ;
-    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
-
-[] a owl:Axiom ;
     owl:annotatedSource NLX:158477 ;
     owl:annotatedProperty NIFRID:synonym ;
     owl:annotatedTarget "CSA" ;
     ilxtr:MISSING_ILX_ID true ;
     ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
 
-### Annotations
-
-ILX:0774420 a ilxr:TermSet ;
-    rdfs:label "Ganglia (TermSet)" ;
-    ilxtr:hasExistingId ILX:0774420 ;
-    ilxtr:hasIlxId ILX:0774420 ;
-    ilxtr:hasIlxPreferredId ILX:0774420 .
+[] a owl:Axiom ;
+    owl:annotatedSource SCR:018709 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "SAWG" ;
+    ilxtr:MISSING_ILX_ID true ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
 
 ### Serialized using the ttlser deterministic serializer v1.2.0
