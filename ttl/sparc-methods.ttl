@@ -8,6 +8,7 @@
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix replacedBy: <http://purl.obolibrary.org/obo/IAO_0100001> .
 @prefix sparc: <http://uri.interlex.org/tgbugs/uris/readable/sparc/> .
@@ -17,6 +18,19 @@
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/sparc/ttl/sparc-methods.ttl> a owl:Ontology .
 
 ### Object Properties
+
+sparc:animalSubjectIsOfSpecies a owl:ObjectProperty ;
+    rdfs:domain sparc:AnimalSubject ;
+    rdfs:range NCBITaxon:33208 .
+
+sparc:hasBiologicalSex a owl:ObjectProperty ;
+    rdfs:domain sparc:AnimalSubject ;
+    rdfs:range PATO:0000047 .
+
+sparc:hasORCIDId a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:domain sparc:Person ;
+    editorNote: "not clear that this is a functional property, though ideally it would be" .
 
 sparc:includesFlatmap a owl:ObjectProperty ;
     rdfs:subPropertyOf hasPart: ;
@@ -99,7 +113,9 @@ TEMP:hasAge a owl:AnnotationProperty .
 
 TEMP:hasAssignedGroup a owl:AnnotationProperty .
 
-TEMP:hasBiologicalSex a owl:AnnotationProperty .
+TEMP:hasBiologicalSex a owl:AnnotationProperty ;
+    owl:deprecated true ;
+    replacedBy: sparc:hasBiologicalSex .
 
 TEMP:hasDatasetTemplateSchemaVersion a owl:AnnotationProperty .
 
@@ -147,10 +163,6 @@ sparc:animalSubjectHasWeight a owl:DatatypeProperty ;
     rdfs:domain sparc:AnimalSubject ;
     rdfs:range xsd:string .
 
-sparc:animalSubjectIsOfSpecies a owl:DatatypeProperty ;
-    rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
-
 sparc:animalSubjectIsOfStrain a owl:DatatypeProperty ;
     rdfs:domain sparc:AnimalSubject ;
     rdfs:range xsd:string .
@@ -159,21 +171,11 @@ sparc:firstName a owl:DatatypeProperty ;
     rdfs:domain sparc:Person ;
     rdfs:range xsd:string .
 
-sparc:hasBiologicalSex a owl:DatatypeProperty ;
-    rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
-
 sparc:hasGender a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     rdfs:domain sparc:HumanSubject ;
     rdfs:range xsd:string ;
     editorNote: "have not found data related to human subjects in examples" .
-
-sparc:hasORCIDId a owl:DatatypeProperty,
-        owl:FunctionalProperty ;
-    rdfs:domain sparc:Person ;
-    rdfs:range xsd:string ;
-    editorNote: "not in data that we have" .
 
 sparc:isContactPerson a owl:DatatypeProperty .
 
@@ -264,7 +266,7 @@ sparc:Folder a owl:Class ;
 sparc:Group a owl:Class .
 
 sparc:HumanSubject a owl:Class ;
-    rdfs:subClassOf sparc:Subject .
+    rdfs:subClassOf sparc:AnimalSubject .
 
 sparc:Measurement a owl:Class .
 
