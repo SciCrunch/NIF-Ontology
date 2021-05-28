@@ -161,7 +161,7 @@ TEMP:wasUpdatedAtTime a owl:AnnotationProperty .
 
 sparc:animalSubjectHasWeight a owl:DatatypeProperty ;
     rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
+    editorNote: "range should be real > 0 but there isn't a reasoner aware type that handles that correct, it is also the case that xsd:integer is not a sub type of owl:real which is problematic, so we leave range out because it is also the case that we need to be able to support units which data types cannot do effectively" .
 
 sparc:animalSubjectIsOfStrain a owl:DatatypeProperty ;
     rdfs:domain sparc:AnimalSubject ;
@@ -188,7 +188,8 @@ sparc:lastName a owl:DatatypeProperty,
 
 sparc:specimenHasIdentifier a owl:DatatypeProperty ;
     rdfs:domain sparc:Specimen ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    editorNote: "identifiers that look like numbers are not numbers because their referents do not participate meaningfully in mathematical expressions and rules, there is a similar issue with pointers and pointer arithmetic being not-closed under addition and producing null pointers" .
 
 sparc:stimulatorUtilized a owl:DatatypeProperty ;
     rdfs:range xsd:string .
