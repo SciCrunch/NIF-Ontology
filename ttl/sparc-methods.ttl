@@ -225,17 +225,9 @@ TEMP:subjectHasWeight a owl:DatatypeProperty .
 
 ### Classes
 
-definition: a owl:Class .
-
-editorNote: a owl:Class .
-
 foaf:Person a owl:Class .
 
-<http://purl.obolibrary.org/obo/IAO_0000136> a owl:Class .
-
 <http://purl.org/ontology/bibo/Journal> a owl:Class .
-
-<http://uri.interlex.org/temp/uris/raw/> a owl:Class .
 
 ilxtr:MISPredicate a owl:Class .
 
@@ -272,12 +264,16 @@ sparc:Folder a owl:Class ;
 sparc:Group a owl:Class .
 
 sparc:HumanSubject a owl:Class ;
-    rdfs:subClassOf sparc:Specimen .
+    rdfs:subClassOf sparc:Subject .
 
 sparc:Measurement a owl:Class .
 
 sparc:Participant a owl:Class ;
     editorNote: "This is probably more accurately Material Entity, but one that we have data about since it is appearing in some information artifact. Despite the fact that we are using the word participant in the identifier this class is meant to abstract over atomic specimens and collective (but opaque) populations on which participate in some process. If there were a better term that subsumed both atomic and collective beings that wasn't material entity (object + object aggregate), we could go with that. Normally this would be role in BFO and this classification would be inferred, because technically all continuants participate in a dual occurent that places them in time I this is ok, if a bit pedantic. See https://github.com/SciCrunch/sparc-curation/blob/master/docs/participants.org for details." .
+
+sparc:ParticipantPopulation a owl:Class ;
+    owl:equivalentClass sparc:Population ;
+    editorNote: "this is the one that is equivalent to population" .
 
 sparc:Path a owl:Class ;
     definition: "Something equivalent to a file system path, the union of file and folder." ;
@@ -297,8 +293,14 @@ sparc:Population a owl:Class ;
     rdfs:subClassOf sparc:Participant,
         [ a owl:Restriction ;
             owl:onProperty hasMember: ;
-            owl:someValuesFrom sparc:Specimen ] ;
+            owl:someValuesFrom sparc:Participant ] ;
     editorNote: "More or less equivalent to object aggregate except that information about individual members is not known. Additional the relation between an individual member and some other object is not know. For example I may know exactly the 10 mice and brains from which 100 slices were taken, but I may not know exactly which brain an individual slice came from, there was an individual brain that it did come from, but in the data structure we can only say that it was one of these 10. The choice of word for the identifier is not the best, there are too many meanings in too many contexts. One additional constraint is that the members of a population must all be of the same type, even if that type is things-whose-mass-can-be-measured (which is likely a subClassOf things-with-mass), object aggregates do not carry this restriction." .
+
+sparc:PopulationPopulation a owl:Class ;
+    rdfs:subClassOf sparc:Population,
+        [ a owl:Restriction ;
+            owl:onProperty hasMember: ;
+            owl:someValuesFrom sparc:Population ] .
 
 sparc:Protocol a owl:Class ;
     replacedBy: ilxtr:protocol ;
@@ -309,13 +311,13 @@ sparc:Researcher a owl:Class ;
 
 sparc:Resource a owl:Class ;
     rdfs:comment "the usage here is a conflation between resources and prov entities/ methonds ontology results" ;
-    editorNote: "This class is NOT replacedBy: NLX:63400. It is distinct from the notion of research resource that is used in the RRID systems. It is more granular and may refer to any information artifact that is part of SPARC." .
+    editorNote: "This class is NOT replacedBy: NLX:63400. It is distinct from the notion of research resource that is used in the RRID systems. It is more granular and may refer to any information artifact that is part of SPARC. In terms of usage it is likely that sparc:Resource is equivalent to IAO:0000030 information content entity, given that nearly everything that is of type sparc:Resource can be dereference to its information content from the identifier we use as the primary subject in the ontology" .
 
 sparc:Sample a owl:Class ;
     rdfs:subClassOf sparc:Specimen .
 
 sparc:SamplePopulation a owl:Class ;
-    rdfs:subClassOf sparc:Population,
+    rdfs:subClassOf sparc:SpecimenPopulation,
         [ a owl:Restriction ;
             owl:onProperty hasMember: ;
             owl:someValuesFrom sparc:Sample ] .
@@ -327,14 +329,17 @@ sparc:Specimen a owl:Class ;
     rdfs:subClassOf sparc:Participant .
 
 sparc:SpecimenPopulation a owl:Class ;
-    owl:equivalentClass sparc:Population ;
-    editorNote: "equivalent to population, in that all populations are populations of some specimen, which is almost exactly the BFO definition" .
+    rdfs:subClassOf sparc:Population,
+        [ a owl:Restriction ;
+            owl:onProperty hasMember: ;
+            owl:someValuesFrom sparc:Specimen ] ;
+    editorNote: "this is NOT equivalent to population because operationally we need to be able to have populations of populations because we need to be able to attach metadata to sub-populations without being forced to assert a specific derivation chain" .
 
 sparc:Subject a owl:Class ;
     rdfs:subClassOf sparc:Specimen .
 
 sparc:SubjectPopulation a owl:Class ;
-    rdfs:subClassOf sparc:Population,
+    rdfs:subClassOf sparc:SpecimenPopulation,
         [ a owl:Restriction ;
             owl:onProperty hasMember: ;
             owl:someValuesFrom sparc:Subject ] .
