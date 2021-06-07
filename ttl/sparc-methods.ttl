@@ -13,6 +13,7 @@
 @prefix replacedBy: <http://purl.obolibrary.org/obo/IAO_0100001> .
 @prefix sparc: <http://uri.interlex.org/tgbugs/uris/readable/sparc/> .
 @prefix TEMP: <http://uri.interlex.org/temp/uris/> .
+@prefix TEMPRAW: <http://uri.interlex.org/temp/uris/raw/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/sparc/ttl/sparc-methods.ttl> a owl:Ontology .
@@ -20,211 +21,379 @@
 ### Object Properties
 
 sparc:animalSubjectIsOfSpecies a owl:ObjectProperty ;
+    definition: "The species of the subject." ;
     rdfs:domain sparc:AnimalSubject ;
-    rdfs:range NCBITaxon:33208 .
+    rdfs:range NCBITaxon:33208 ;
+    editorNote: "currently unaligned but a DatatypeProperty, which is undesireable" .
 
 sparc:hasBiologicalSex a owl:ObjectProperty ;
+    definition: "The biological sex of the subject." ;
     rdfs:domain sparc:AnimalSubject ;
     rdfs:range PATO:0000047 .
 
 sparc:hasORCIDId a owl:FunctionalProperty,
         owl:ObjectProperty ;
+    definition: "The ORCiD of the person." ;
     rdfs:domain sparc:Person ;
     editorNote: "not clear that this is a functional property, though ideally it would be" .
 
 sparc:includesFlatmap a owl:ObjectProperty ;
+    definition: "Indicates that a specific sparc:Dataset includes a specific sparc:Flatmap. The object in the relationship is the URI for the flatmap." ;
     rdfs:subPropertyOf hasPart: ;
     rdfs:domain sparc:Resource ;
     rdfs:range sparc:Flatmap .
 
 sparc:includesPath a owl:ObjectProperty ;
+    definition: "boolean variable dictating if the dataset includes pathing information" ;
     rdfs:subPropertyOf hasPart: ;
     rdfs:domain sparc:Resource ;
     rdfs:range sparc:Path .
 
 sparc:includesScaffold a owl:ObjectProperty ;
+    definition: "Indicates that a specific sparc:Dataset includes a specific sparc:Scaffold. The object in the relationship is the URI for the 3d scaffold." ;
     rdfs:subPropertyOf hasPart: ;
     rdfs:domain sparc:Resource ;
     rdfs:range sparc:Scaffold .
 
-sparc:spatialLocationOfModulator a owl:ObjectProperty .
+sparc:spatialLocationOfModulator a owl:ObjectProperty ;
+    definition: "A property that is used to report the location of some modulation device or reagent." .
 
-TEMP:aboutContributor a owl:ObjectProperty .
+TEMP:aboutContributor a owl:ObjectProperty ;
+    definition: "Property relating sparc:DatasetContribution to the sparc:Person" .
 
-TEMP:aboutDataset a owl:ObjectProperty .
+TEMP:aboutDataset a owl:ObjectProperty ;
+    definition: "Property relating sparc:DatasetContribution to the sparc:Dataset" .
 
-TEMP:contributorTo a owl:ObjectProperty .
+TEMP:contributorTo a owl:ObjectProperty ;
+    definition: "Property directly relating a person to datasets that they have contributed to." .
 
-TEMP:hasAgeCategory a owl:ObjectProperty .
+TEMP:dereferencesTo a owl:ObjectProperty ;
+    definition: "A property that indicates that one identifier dereferences to another. For example a doi dereferencing to a protocols.io url." ;
+    editorNote: "used to map identifier resolution e.g. doi -> protocols.io" .
 
-TEMP:hasAwardNumber a owl:ObjectProperty .
+TEMP:hasAgeCategory a owl:ObjectProperty ;
+    definition: "Property relating a subject to the life cycle stage it was at when the expeirment was conducted, i.e. adult vs infant" ;
+    editorNote: "currently unaligned, should be an object property" ;
+    ilxtr:futureType owl:ObjectProperty .
 
-TEMP:hasContactPerson a owl:ObjectProperty .
+TEMP:hasAwardNumber a owl:ObjectProperty ;
+    definition: "The SPARC award number that funded the generation of a dataset." ;
+    editorNote: "range should be funded research project" .
 
-TEMP:hasDerivedInformationAsParticipant a owl:ObjectProperty .
+TEMP:hasContactPerson a owl:ObjectProperty ;
+    definition: "Property relating a dataset to the contact person for that dataset." .
 
-TEMP:hasDigitalArtifactThatIsAboutIt a owl:ObjectProperty .
+TEMP:hasDerivedInformationAsParticipant a owl:ObjectProperty ;
+    definition: "Property directly relating a participant to a resource that contains information that was derrived from a processes they were involved in e.g. the performance of an experimental protocol." .
 
-TEMP:hasDoi a owl:ObjectProperty .
+TEMP:hasDoi a owl:ObjectProperty ;
+    definition: "The doi for a given resource. It may be the same is the identifier, or the doi may dereference to that identifier or an alias of that identifier (in the pointer aliasing sense)." .
 
-TEMP:hasFolderAboutIt a owl:ObjectProperty .
+TEMP:hasExperimentalModality a owl:AnnotationProperty,
+        owl:ObjectProperty ;
+    replacedBy: TEMP:hasExperimentalApproach ;
+    definition: "Deprecated. Use TEMP:hasExperimentalApproach." ;
+    editorNote: "should be objprop" .
 
-TEMP:hasProtocol a owl:ObjectProperty .
+TEMP:hasFolderAboutIt a owl:ObjectProperty ;
+    definition: "Property relating a participant to folders that contain data about it." .
 
-TEMP:hasResponsiblePrincipalInvestigator a owl:ObjectProperty .
+TEMP:hasProtocol a owl:ObjectProperty ;
+    definition: "Property relating a dataset to a protocol that specifies part of the process used to generate the dataset." .
 
-TEMP:hasRole a owl:ObjectProperty .
+TEMP:hasResponsiblePrincipalInvestigator a owl:ObjectProperty ;
+    definition: "Property relating a dataset to the principle investigator who is responsible for this dataset." .
 
-TEMP:hasUriApi a owl:ObjectProperty .
+TEMP:hasRole a owl:ObjectProperty ;
+    definition: "Used to indicate the contributor role(s) for a given dataset contribution." ;
+    editorNote: "could be replaced by hasContributorRole?" .
 
-TEMP:hasUriHuman a owl:ObjectProperty .
+TEMP:hasUnit a owl:AnnotationProperty,
+        owl:ObjectProperty ;
+    definition: "Used to provide the scientific units for a quantity." ;
+    editorNote: "this one is tricky because unit composition means that only simple units can have iris, complex units either need to be strings or we need some rdf based unit composition language" .
 
-TEMP:isAboutParticipant a owl:ObjectProperty .
+TEMP:hasUriApi a owl:ObjectProperty ;
+    definition: "A URI that points to an api endpoint." .
 
-TEMP:isDescribedBy a owl:ObjectProperty .
+TEMP:hasUriHuman a owl:ObjectProperty ;
+    definition: "A URI that points to a endpoint intended for human consumption." .
+
+TEMP:involvesAnatomicalRegion a owl:AnnotationProperty,
+        owl:ObjectProperty ;
+    definition: "Indicates that a protocol involves some anatomical region. This is closer to protocol mentions anatomical region in that the region may be incidental to the anatomical region that is actually being studied." ;
+    editorNote: "should be object property, may have some garbage in it though",
+        "should be objprop" .
+
+TEMP:isAboutParticipant a owl:ObjectProperty ;
+    definition: "Property directly relating a resource to a participant that it contains information about." .
+
+TEMP:isDescribedBy a owl:ObjectProperty ;
+    definition: "The DataCite relation between a resource and another resource that describes it." ;
+    editorNote: "maps to datacite usage" .
+
+TEMP:protocolEmploysTechnique a owl:AnnotationProperty,
+        owl:ObjectProperty ;
+    definition: "Property relating a protocol to the high level techniques that it uses." .
 
 TEMP:wasDerivedFromSubject a owl:ObjectProperty ;
+    definition: "Property directly relating a sample back to the subject that it was directly or transitively derived from." ;
     editorNote: "likely should be lifted to be wasDerivedFromSpecimen" .
 
 ### Annotation Properties
 
-TEMP:acknowledgements a owl:AnnotationProperty .
+ilxtr:annotationValue a owl:AnnotationProperty .
 
-TEMP:asBaseUnits a owl:AnnotationProperty .
+ilxtr:curationInternal a owl:AnnotationProperty ;
+    definition: "properties marked with this predicate where the object is true should not be exported, if the predicate is not present, assume that the property is not curation internal and should be exported" ;
+    ilxtr:curationInternal true .
 
-TEMP:collectionTitle a owl:AnnotationProperty .
+TEMP:acknowledgements a owl:AnnotationProperty ;
+    definition: "Free text acknowledging individuals and organizations that contributed to the work that are not officially listed in the contributors list." .
 
-TEMP:completenessOfDataset a owl:AnnotationProperty .
+TEMP:asBaseUnits a owl:AnnotationProperty ;
+    definition: "The magnitude of a quantity when the units are converted to base units (e.g. to the MGS system)." ;
+    editorNote: "points to normalized mgs units, not really working with owl at the moment" ;
+    ilxtr:futureType owl:ObjectPropert .
 
-TEMP:contentsWereUpdatedAtTime a owl:AnnotationProperty .
+TEMP:collectionTitle a owl:AnnotationProperty ;
+    definition: "The title of a larger collection of datasets to which this dataset belongs." .
 
-TEMP:curationIndex a owl:AnnotationProperty .
+TEMP:completenessOfDataset a owl:AnnotationProperty ;
+    definition: "Deprecated. Was used to indicate whether subsequent datasets following the same protocol were expected." .
 
-TEMP:dereferencesTo a owl:AnnotationProperty .
+TEMP:contentsWereUpdatedAtTime a owl:AnnotationProperty ;
+    definition: "The most recent updated time for the transitive closure of paths in a dataset." .
 
-TEMP:errorIndex a owl:AnnotationProperty .
+TEMP:curationIndex a owl:AnnotationProperty ;
+    definition: "The number of errors on a dataset that are attributed to problems in the curation process. These must be fixed by external submitters, and are expected to be fixed by submitters as part of future dataset templates." ;
+    editorNote: "total curation errors, pipelines and human" ;
+    ilxtr:curationInternal true .
 
-TEMP:hasAdditionalFundingInformation a owl:AnnotationProperty .
+TEMP:errorIndex a owl:AnnotationProperty ;
+    definition: "The total number of errors for the dataset. If this number is 9999 it means that the pipelines could not even make it to the stage where the number of errors could be counted. For example this can happen if a dataset contains no files or is malformed in some way." ;
+    editorNote: "total error count" ;
+    ilxtr:curationInternal true .
+
+TEMP:hasAdditionalFundingInformation a owl:AnnotationProperty ;
+    definition: "Any additional sources of funding for a dataset beyond the SPARC grant." .
 
 TEMP:hasAffiliation a owl:AnnotationProperty ;
-    editorNote: "Should be object property but usage is mixed." .
+    definition: "The academic affilation of the researcher in the context of a specific dataset." ;
+    editorNote: "Should be object property but usage is mixed.",
+        "target should always be a ror, current form also includes strings" ;
+    ilxtr:futureType owl:ObjectProperty .
 
-TEMP:hasAge a owl:AnnotationProperty .
+TEMP:hasAge a owl:AnnotationProperty ;
+    definition: "The age of a subject. Ideally this value would be associated with a performance, because subjects have multiple ages." ;
+    editorNote: "range is sparc:Measurement" .
 
-TEMP:hasAssignedGroup a owl:AnnotationProperty .
+TEMP:hasAssignedGroup a owl:AnnotationProperty ;
+    definition: "Property relating a participant to the experimental group that it is a member of." ;
+    ilxtr:futureType owl:ObjectProperty .
 
 TEMP:hasBiologicalSex a owl:AnnotationProperty ;
     owl:deprecated true ;
-    replacedBy: sparc:hasBiologicalSex .
+    replacedBy: sparc:hasBiologicalSex ;
+    definition: "Replaced by sparc:hasBiologicalSex." ;
+    editorNote: "currently an annotation property, should be aligned to pato probably" ;
+    ilxtr:futureType owl:ObjectProperty .
 
-TEMP:hasDatasetTemplateSchemaVersion a owl:AnnotationProperty .
+TEMP:hasDatasetTemplateSchemaVersion a owl:AnnotationProperty ;
+    definition: "The version of the dataset template that was used for submission." .
 
-TEMP:hasDigitalArtifactThatIsAboutItWithHash a owl:AnnotationProperty .
+TEMP:hasDigitalArtifactThatIsAboutIt a owl:AnnotationProperty ;
+    definition: "Property that comes from raw specimen metadata and is an investigator asserted mapping from subject to file." ;
+    editorNote: "should be TEMPRAW" ;
+    ilxtr:curationInternal true .
 
-TEMP:hasExperimentalModality a owl:AnnotationProperty ;
-    editorNote: "should be objprop" .
+TEMP:hasDigitalArtifactThatIsAboutItWithHash a owl:AnnotationProperty ;
+    definition: "The checksum for the contents of the path listed in hasDigitalArtifactThatIsAboutIt." ;
+    editorNote: "should be TEMPRAW" ;
+    ilxtr:curationInternal true .
 
-TEMP:hasGenotype a owl:AnnotationProperty .
+TEMP:hasGenotype a owl:AnnotationProperty ;
+    definition: "The genotype of a participant." ;
+    editorNote: "wildly uncontrolled" .
 
-TEMP:hasPoolId a owl:AnnotationProperty .
+TEMP:hasNumberOfContributors a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The number of unique contributors to a dataset." .
 
-TEMP:hasUnit a owl:AnnotationProperty .
+TEMP:hasNumberOfDirectories a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The number of directories that are contained in a dataset." ;
+    editorNote: "datatype property?" .
 
-TEMP:involvesAnatomicalRegion a owl:AnnotationProperty ;
-    editorNote: "should be objprop" .
+TEMP:hasNumberOfFiles a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The number of files that are contained in a dataset." ;
+    editorNote: "datatype property?" .
 
-TEMP:localExecutionNumber a owl:AnnotationProperty .
+TEMP:hasNumberOfProtcurAnnotations a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The number of hypothes.is annotations made on a protocol as part of the protcur curation workflow." ;
+    editorNote: "number of hypothes.is annotations with protcur tags" .
 
-TEMP:milestoneCompletionDate a owl:AnnotationProperty .
+TEMP:hasNumberOfSamples a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The actual number of unique samples listed in the samples table." .
 
-TEMP:participantInPerformanceOf a owl:AnnotationProperty .
+TEMP:hasNumberOfSubjects a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "Tha actual number of unique subjects listed in the subjects table." .
 
-TEMP:protocolEmploysTechnique a owl:AnnotationProperty .
+TEMP:hasPoolId a owl:AnnotationProperty ;
+    definition: "The pool that a subject or sample belongs to." .
 
-TEMP:protocolExecutionDate a owl:AnnotationProperty .
+TEMP:hasSizeInBytes a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The size of a dataset, file, or folder in bytes." ;
+    editorNote: "datatype property?" .
 
-TEMP:providerNote a owl:AnnotationProperty .
+TEMP:localExecutionNumber a owl:AnnotationProperty ;
+    owl:deprecated true ;
+    replacedBy: TEMP:localPerformanceNumber ;
+    definition: "Deprecated. Use TEMP:localPerformanceNumber." ;
+    editorNote: "replaced by localPerformanceNumber" .
 
-TEMP:statusOnPlatform a owl:AnnotationProperty .
+TEMP:localId a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The local, unqualified, unprefixed, and thus not-globally-unique identifier for something." ;
+    editorNote: "could be datatype property" .
 
-TEMP:submissionIndex a owl:AnnotationProperty .
+TEMP:localPerformanceNumber a owl:AnnotationProperty ;
+    definition: "The local, unqualified, unprefixed, and thus not-globally-unique identifier for the performance of some process." .
 
-TEMP:unclassifiedIndex a owl:AnnotationProperty .
+TEMP:middleName a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The middle name of the person." ;
+    editorNote: "datatype property like first and last name?" .
 
-TEMP:unclassifiedStages a owl:AnnotationProperty .
+TEMP:milestoneCompletionDate a owl:AnnotationProperty ;
+    definition: "The agreed upon date for data submission milestones." ;
+    ilxtr:curationInternal true .
 
-TEMP:wasCreatedAtTime a owl:AnnotationProperty .
+TEMP:participantInPerformanceOf a owl:AnnotationProperty ;
+    definition: "Property relating a participant to a protocol that constrained a performance that they were a participant in." .
 
-TEMP:wasUpdatedAtTime a owl:AnnotationProperty .
+TEMP:protocolExecutionDate a owl:AnnotationProperty ;
+    replacedBy: TEMP:protocolPerformanceDate ;
+    definition: "Deprecated. Use TEMP:protocolPerformanceDate." ;
+    editorNote: "should probably be a datatype property, but reasoners struggle with xsd:date" .
+
+TEMP:protocolHasNumberOfSteps a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The number of steps listed in a protocols.io protocol." ;
+    editorNote: "number of steps in a protocols.io protocol" .
+
+TEMP:protocolPerformanceDate a owl:AnnotationProperty ;
+    definition: "The date on which a protocol as performed." .
+
+TEMP:providerNote a owl:AnnotationProperty ;
+    definition: "Converted from the notes field of a specimen table." .
+
+TEMP:statusOnPlatform a owl:AnnotationProperty ;
+    definition: "The current status for a dataset from the Pennsieve internal platform." .
+
+TEMP:submissionIndex a owl:AnnotationProperty ;
+    definition: "The number of errors on a dataset that are attributed to problems with the submission i.e. are the responsibility of the data submitter to fix." ;
+    editorNote: "total submission errors" ;
+    ilxtr:curationInternal true .
+
+TEMP:TimestampExportStart a owl:AnnotationProperty ;
+    editorNote: "prov" .
+
+TEMP:TODO a owl:AnnotationProperty ;
+    definition: "Relationship unspecified, but one exists." ;
+    editorNote: "catchall for unmapped fields" ;
+    ilxtr:curationInternal true .
+
+TEMP:unclassifiedIndex a owl:AnnotationProperty ;
+    definition: "The number of errors on a dataset that have not been classified as being curation, submission, etc." .
+
+TEMP:unclassifiedStages a owl:AnnotationProperty ;
+    definition: "List of stages that have not been classified as producing errors that are curation, submission, etc." .
+
+TEMP:wasCreatedAtTime a owl:AnnotationProperty ;
+    definition: "The time at which a path was first known to exist in the system reporting the time. Not all systems contain this information, and it is only specific to the system in question, the file itself may have been created at an earlier time on another system. The cleanest inference from this would be know to exist at least after this point in time." ;
+    editorNote: "from blackfynn, should probably be a datatype property, but reasoners struggle with xsd:date" .
+
+TEMP:wasUpdatedAtTime a owl:AnnotationProperty ;
+    definition: "The time of the latest update to a path prior to the time a which the query was issued." ;
+    editorNote: "from blackfynn, should probably be a datatype property, but reasoners struggle with xsd:date" .
+
+TEMPRAW:wasExtractedFromAnatomicalRegion a owl:AnnotationProperty ;
+    ilxtr:curationInternal true .
 
 ### Data Properties
 
 sparc:animalSubjectHasWeight a owl:DatatypeProperty ;
+    definition: "The weight of the subject." ;
     rdfs:domain sparc:AnimalSubject ;
-    editorNote: "range should be real > 0 but there isn't a reasoner aware type that handles that correct, it is also the case that xsd:integer is not a sub type of owl:real which is problematic, so we leave range out because it is also the case that we need to be able to support units which data types cannot do effectively" .
+    editorNote: "range is sparc:Measurement",
+        "range should be real > 0 but there isn't a reasoner aware type that handles that correct, it is also the case that xsd:integer is not a sub type of owl:real which is problematic, so we leave range out because it is also the case that we need to be able to support units which data types cannot do effectively" .
 
 sparc:animalSubjectIsOfStrain a owl:DatatypeProperty ;
+    definition: "The strain of the subject." ;
     rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    editorNote: "currently unaligned but a DatatypeProperty, which is undesireable" .
 
 sparc:firstName a owl:DatatypeProperty ;
+    definition: "The first name of the person." ;
     rdfs:domain sparc:Person ;
     rdfs:range xsd:string .
 
 sparc:hasGender a owl:DatatypeProperty,
         owl:FunctionalProperty ;
+    definition: "The self reported gender of the human subject." ;
     rdfs:domain sparc:HumanSubject ;
     rdfs:range xsd:string ;
     editorNote: "have not found data related to human subjects in examples" .
 
-sparc:isContactPerson a owl:DatatypeProperty .
+sparc:isContactPerson a owl:DatatypeProperty ;
+    definition: "Boolean variable indicating whether a researcher is designated as the contact person." .
 
 sparc:lastName a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     replacedBy: foaf:familyName ;
+    definition: "The last name of the person." ;
     rdfs:domain sparc:Person ;
     rdfs:range xsd:string ;
     rdfs:comment "I highly reccomend not using this at all, and only using orcids since dealing with names is a complete nightmare" .
 
 sparc:specimenHasIdentifier a owl:DatatypeProperty ;
+    definition: "This is a legacy property that has strange usage. It is currently used not to identify the individual specimen, it is used to provide the RRID for the type of specimen." ;
     rdfs:domain sparc:Specimen ;
     rdfs:range xsd:string ;
-    editorNote: "identifiers that look like numbers are not numbers because their referents do not participate meaningfully in mathematical expressions and rules, there is a similar issue with pointers and pointer arithmetic being not-closed under addition and producing null pointers" .
+    editorNote: "identifiers that look like numbers are not numbers because their referents do not participate meaningfully in mathematical expressions and rules, there is a similar issue with pointers and pointer arithmetic being not-closed under addition and producing null pointers",
+        "note: in the current MIS this is a datatype property but is used as an object property" ;
+    ilxtr:futureType owl:ObjectProperty .
 
 sparc:stimulatorUtilized a owl:DatatypeProperty ;
+    definition: "A property that is used to report the type of stimulation device used." ;
     rdfs:range xsd:string .
 
-TEMP:contributorOrderIndex a owl:DatatypeProperty .
+TEMP:contributorOrderIndex a owl:DatatypeProperty ;
+    definition: "The position in which a contributor should appear in the author ordering." .
 
-TEMP:hasExpectedNumberOfSamples a owl:DatatypeProperty .
+TEMP:hasExpectedNumberOfSamples a owl:DatatypeProperty ;
+    definition: "The asserted number of samples in a datset based on the number provided in the dataset_description file." .
 
-TEMP:hasExpectedNumberOfSubjects a owl:DatatypeProperty .
+TEMP:hasExpectedNumberOfSubjects a owl:DatatypeProperty ;
+    definition: "The asserted number of subjects in a datset based on the number provided in the dataset_description file." .
 
-TEMP:hasNumberOfContributors a owl:DatatypeProperty .
+TEMP:localIdAlt a owl:DatatypeProperty ;
+    definition: "An alternative local identifier beyond one specified by localId" .
 
-TEMP:hasNumberOfDirectories a owl:DatatypeProperty .
+TEMP:subjectHasHeight a owl:DatatypeProperty ;
+    definition: "The height (tallness) of the subject." ;
+    editorNote: "range sparc:Measurement" .
 
-TEMP:hasNumberOfFiles a owl:DatatypeProperty .
-
-TEMP:hasNumberOfProtcurAnnotations a owl:DatatypeProperty .
-
-TEMP:hasNumberOfSamples a owl:DatatypeProperty .
-
-TEMP:hasNumberOfSubjects a owl:DatatypeProperty .
-
-TEMP:hasSizeInBytes a owl:DatatypeProperty .
-
-TEMP:localId a owl:DatatypeProperty .
-
-TEMP:localIdAlt a owl:DatatypeProperty .
-
-TEMP:middleName a owl:DatatypeProperty .
-
-TEMP:protocolHasNumberOfSteps a owl:DatatypeProperty .
-
-TEMP:subjectHasHeight a owl:DatatypeProperty .
-
-TEMP:subjectHasWeight a owl:DatatypeProperty .
+TEMP:subjectHasWeight a owl:DatatypeProperty ;
+    definition: "The weight or mass of the subject." ;
+    editorNote: "range sparc:Measurement" .
 
 ### Classes
 
@@ -242,34 +411,38 @@ ilxtr:Quantity a owl:Class .
 
 sparc:AnimalSubject a owl:Class ;
     replacedBy: NCBITaxon:33208 ;
+    definition: "Any metazoan subject including humans." ;
     rdfs:subClassOf sparc:Subject .
 
 sparc:Dataset a owl:Class ;
-    definition: "The atomic unit of publication of a nested collection of files and folders. Within SPARC this also implies that the dataset should follow the SPARC Data Structure (SDS). Metadata may be shared between datasets but all metadata relevant to a the scientific content of the dataset must be contained inside of it so that it is at least minimally self describing." ;
+    definition: "The atomic unit of publication of a nested collection of files and folders. Within SPARC this also implies that the dataset should follow the SPARC Data Structure (SDS). Metadata may be shared between datasets but all metadata relevant to a the scientific content of the dataset must be contained inside of it so that it is at least minimally self describing. For example a dataset as defined by the Pennsieve platform." ;
     rdfs:subClassOf sparc:Folder .
 
 sparc:DatasetContribution a owl:Class ;
-    definition: "This is a class that represents the specific roles and contributions made by a person to a specific dataset." ;
+    definition: "A record that maps a contributor to a specific dataset that they have contributed to. This is a class that represents the specific roles and contributions made by a person to a specific dataset." ;
     ilxtr:replaces TEMP:DatasetContributor .
 
 sparc:File a owl:Class ;
-    definition: "An atomic unit of data that can be identified or addressed. Can be though of as a stream of known length." ;
+    definition: "An atomic unit of data that can be identified or addressed. Can be though of as a stream of known length. A resource that is equivalent to a posix file (stream of bytes)." ;
     rdfs:subClassOf sparc:Path .
 
 sparc:Flatmap a owl:Class ;
+    definition: "A resource that is a wiring diagram for neural connectivity." ;
     rdfs:subClassOf sparc:Resource .
 
 sparc:Folder a owl:Class ;
-    definition: "Any identified collection of zero or more files or folders of arbitrary depth. This could also be called collection but I am trying to avoid using all the collection related terms as much as possible since the semantics are unclear and mostly we don't care." ;
+    definition: "A resource that is equivalent to a posix folder or directory. Any identified collection of zero or more files or folders of arbitrary depth. This could also be called collection but I am trying to avoid using all the collection related terms as much as possible since the semantics are unclear and mostly we don't care." ;
     rdfs:subClassOf sparc:Path ;
     editorNote: "This can be used with other types as needed to indicate some additional properties beyond the file system tree structure. For example I am explicitly not creating a sparc:Project class because determining the semantics of what is or is not a project with regards to arbitrary collections of datasets is simply not worth the effort. DANDI is envisioning something like a virtual dataset where parts are mixed, matched, combined, etc. and the provenance needed for that is far beyond what any top level assertion that a set of datasets came from the same \"project\" (whatever that means) could possibly entail. If we want to indicate that a folder corresponds to a bf:organization then we should just do that instead of trying to create new terms to capture ill defined concepts. The only exception to this is the dataset level because that a unit of identification and of publication that has special semantics that bridge across multiple systems." .
 
 sparc:Group a owl:Class .
 
 sparc:HumanSubject a owl:Class ;
+    definition: "A subject that is a member of the species homo spaiens sapiens NCBITaxon:9606" ;
     rdfs:subClassOf sparc:AnimalSubject .
 
-sparc:Measurement a owl:Class .
+sparc:Measurement a owl:Class ;
+    definition: "The resulting value of an experimental measurement, has units (TEMP:hasUnit) and magnitude (rdf:value)." .
 
 sparc:Participant a owl:Class ;
     editorNote: "This is probably more accurately Material Entity, but one that we have data about since it is appearing in some information artifact. Despite the fact that we are using the word participant in the identifier this class is meant to abstract over atomic specimens and collective (but opaque) populations on which participate in some process. If there were a better term that subsumed both atomic and collective beings that wasn't material entity (object + object aggregate), we could go with that. Normally this would be role in BFO and this classification would be inferred, because technically all continuants participate in a dual occurent that places them in time I this is ok, if a bit pedantic. See https://github.com/SciCrunch/sparc-curation/blob/master/docs/participants.org for details." .
@@ -279,7 +452,7 @@ sparc:ParticipantPopulation a owl:Class ;
     editorNote: "this is the one that is equivalent to population" .
 
 sparc:Path a owl:Class ;
-    definition: "Something equivalent to a file system path, the union of file and folder." ;
+    definition: "Something equivalent to a file system path, the union of file and folder. For example, a sparc:Folder or a sparc:File." ;
     rdfs:subClassOf sparc:Resource .
 
 sparc:Performance a owl:Class ;
@@ -307,16 +480,21 @@ sparc:PopulationPopulation a owl:Class ;
 
 sparc:Protocol a owl:Class ;
     replacedBy: ilxtr:protocol ;
+    definition: "An information content entity that contains instructions for performing a scientific experiment or procedure. Protocols are prior informational constraints on scientific processes." ;
     rdfs:subClassOf sparc:Resource .
 
 sparc:Researcher a owl:Class ;
+    replacedBy: sparc:Person ;
+    definition: "A legacy class that indicates that the person in question has a role as a researcher." ;
     rdfs:subClassOf sparc:Person .
 
 sparc:Resource a owl:Class ;
+    definition: "Any digital artifact. Closely follows the RDF meaning of resources. Examples of subclasses are, file, folder, and dataset." ;
     rdfs:comment "the usage here is a conflation between resources and prov entities/ methonds ontology results" ;
     editorNote: "This class is NOT replacedBy: NLX:63400. It is distinct from the notion of research resource that is used in the RRID systems. It is more granular and may refer to any information artifact that is part of SPARC. In terms of usage it is likely that sparc:Resource is equivalent to IAO:0000030 information content entity, given that nearly everything that is of type sparc:Resource can be dereference to its information content from the identifier we use as the primary subject in the ontology" .
 
 sparc:Sample a owl:Class ;
+    definition: "A part of some subject or other sample that has been derived (extracted, separated) from its original parent. Examples are tissue, cells, and slices." ;
     rdfs:subClassOf sparc:Specimen .
 
 sparc:SamplePopulation a owl:Class ;
@@ -326,9 +504,11 @@ sparc:SamplePopulation a owl:Class ;
             owl:someValuesFrom sparc:Sample ] .
 
 sparc:Scaffold a owl:Class ;
+    definition: "A resource that provides a three dimensional coordinate system for an organ or other anatomical entity." ;
     rdfs:subClassOf sparc:Resource .
 
 sparc:Specimen a owl:Class ;
+    definition: "Any atomic participant in a scientific protocol, includes both subjects and samples. The use of specimen for subjects is based on the notion of a type specimen e.g. Carl Linnaus is the type specimen for homo spaiens sapiens." ;
     rdfs:subClassOf sparc:Participant .
 
 sparc:SpecimenPopulation a owl:Class ;
@@ -339,6 +519,7 @@ sparc:SpecimenPopulation a owl:Class ;
     editorNote: "this is NOT equivalent to population because operationally we need to be able to have populations of populations because we need to be able to attach metadata to sub-populations without being forced to assert a specific derivation chain" .
 
 sparc:Subject a owl:Class ;
+    definition: "Any intact, complete, and usually (though not always) living biological organism that is the primary organismal participant in a scientific protocol performance. Edge cases are cell lines which have long since been existing outside their original host organism and single celled organisms." ;
     rdfs:subClassOf sparc:Specimen .
 
 sparc:SubjectPopulation a owl:Class ;
@@ -348,27 +529,58 @@ sparc:SubjectPopulation a owl:Class ;
             owl:someValuesFrom sparc:Subject ] .
 
 TEMP:article-journal a owl:Class ;
-    editorNote: "from ??? maybe doi" .
+    replacedBy: TEMP:ArticleJournal ;
+    definition: "Journal article type from DOI records." ;
+    editorNote: "from ??? maybe doi",
+        "mistake, already fixed in new releases" ;
+    ilxtr:curationInternal true .
 
 TEMP:ArticleJournal a owl:Class ;
+    definition: "Journal article type from DOI records." ;
     editorNote: "from doi" .
 
 TEMP:CoreFacility a owl:Class ;
-    editorNote: "from ror" .
+    definition: "A physical plant resource, such as a microscopy core, sequencing core, coherant neutron source, etc. From ror." ;
+    editorNote: "from ror",
+        "used for rors" .
 
 TEMP:Dataset a owl:Class ;
-    editorNote: "this is from the doi metadata, technically not a sparc dataset though they often resolve to sparc datasets if you get a doi from this file" .
+    definition: "The DataCite doi dataset type." ;
+    editorNote: "this is from the doi metadata, technically not a sparc dataset though they often resolve to sparc datasets if you get a doi from this file",
+        "used for datacite dois" .
 
 TEMP:FundedResearchProject a owl:Class ;
+    definition: "A funded research project. This is the ontological entitie that corresponds to a grant number." ;
     editorNote: "these are identified by award number" .
 
 TEMP:Institution a owl:Class ;
-    editorNote: "from ror" .
+    definition: "Institution organization type from ror." ;
+    editorNote: "from ror",
+        "used for rors" .
 
 TEMP:Nonprofit a owl:Class ;
-    editorNote: "from ror" .
+    definition: "Nonprofit organization type from ror." ;
+    editorNote: "from ror",
+        "used for rors" .
 
 TEMP:posted-content a owl:Class ;
+    definition: "Posted content type from DOI records." ;
     editorNote: "from ??? maybe doi" .
+
+TEMP:Protocol a owl:Class ;
+    replacedBy: sparc:Protocol ;
+    editorNote: "replaced by sparc:Protocol" .
+
+### Annotations
+
+TEMP:DatasetContributor owl:deprecated true ;
+    replacedBy: sparc:DatasetContribution .
+
+TEMP:hasExperimentalApproach owl:deprecated true ;
+    definition: "A property relating a dataset to the experimental approaches that were used when generating it." .
+
+TEMPRAW: a ilxtr:Namespace ;
+    editorNote: "any predicate or type that has TEMPRAW as a prefix should be excluded" ;
+    ilxtr:curationInternal true .
 
 ### Serialized using the ttlser deterministic serializer v1.2.0
