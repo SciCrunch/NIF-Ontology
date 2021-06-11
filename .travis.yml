@@ -1,5 +1,4 @@
 # https://travis-ci.org/tgbugs/pyontutils
-sudo: false
 language: python
 cache:
   directories:
@@ -10,17 +9,20 @@ branches:
   only:
     - dev
     - master
-  git:
-    depth: 10
+git:
+  depth: 10
 
 python:
-  - 3.7
+  - 3.9
 
 env:
   global:
     - ONTOLOGY=$(git show --first-parent --name-only --pretty='' HEAD | grep '\.ttl$')
     - DOCS=$(git show --first-parent --name-only --pretty='' HEAD | grep '^docs\/')
     - TRAVIS=$(git show --first-parent --name-only --pretty='' HEAD | grep '^\.travis.yml$')
+  matrix:
+    - ONT_CONFIG=nifstd
+    - ONT_CONFIG=sparc
 
 before_install:
   - if [[ -n $DOCS && $TRAVIS_BRANCH = master ]];then echo trigger docs build; fi
@@ -28,11 +30,14 @@ before_install:
   - mkdir build
   - pushd build
   - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/nifstd/scigraph/graphload-base-template.yaml
-  - wget https://raw.githubusercontent.com/tgbugs/pyontutils/master/nifstd/scigraph/ontologies-nifstd.yaml
+  - >
+    case ${ONT_CONFIG} in
+    nifstd) curl -O ontologies.yaml https://raw.githubusercontent.com/tgbugs/pyontutils/master/nifstd/scigraph/ontologies-nifstd.yaml ;;
+    sparc)  curl -O ontologies.yaml https://raw.githubusercontent.com/SciCrunch/sparc-curation/master/resources/scigraph/ontologies-sparc.yaml ;;
   - popd
 
 install:
-  - pip install pyontutils
+  - pip install git+https://github.com/tgbugs/pyontutils.git
   - >
     ontload scigraph
     --scigraph-quiet
@@ -52,7 +57,11 @@ script:
     --git-local $(realpath "${TRAVIS_BUILD_DIR}/../")
     --branch ${TRAVIS_BRANCH}
     --graphload-config "${TRAVIS_BUILD_DIR}/build/graphload-base-template.yaml"
-    --graphload-ontologies "${TRAVIS_BUILD_DIR}/build/ontologies-nifstd.yaml"
+    --graphload-ontologies "${TRAVIS_BUILD_DIR}/build/ontologies.yaml"
+  - >
+    mv
+    "${TRAVIS_BUILD_DIR}/build/NIF-Ontology-${TRAVIS_BRANCH}-graph-*.zip"
+    "$(filename=$(basename $(realpath NIF-Ontology-dev-graph-*.zip)); echo "${filename%.*}-${ONT_CONFIG}.zip")"
 
 after_success:
   - echo ""
@@ -69,7 +78,6 @@ deploy:
     secure: "CK0fvltjiIAiJ0fDlqzyHG0XpvoROODdRZc7LLwajxNAfRMl9TjH5jD9zVsaH3dt11grweoknRS8WcAzZ2kwDePEbTKON20Ay2tvf73fIzxpA+szg+zJF+sH23bx3xEQrjW/9SQTYx7dOGrvJwhI9GPqctFjPpSwy40/+nMBJ7gocF8TG1ZSswa1anFsM6LNtcSb+qRduIto8z8XkIyi7/BV6yfXrPj/HAeDUoDTVaIQj85DONWmV9h4vrkHBgcqFtWwVvt5uIRCscwFUPYhGcPCBE9sGGeCOaYLiwGzmBwoR4DPuc8Qns4WY/JqBa/IbhmuenybWxlTpgwW+NCs8VcmOrcP9plBxf52nVYNIT4u+k+2h4LwLu3fuJMA0YhQuwnok18b6wS4Yf0E04s03YiouM7kzDAQ6Y8ZESmcJ0CeileGDoxBeI4HIs+xohMsNbpj+KcxcBVQF9tvpBw9ysZodpiYPgO8fnVcIa7li4gtRcDgQGw0NeIEC/VU4wiZJQsQp1W6wqFI6fkZ6dsN9q/zO1nhkyhUChFWQAoQWaMZNhsS6xQiuZkjSrPtyFFEYR0rbzFIMIEk2fzbqwnE4pHyok2vTBDTVGdZGez+O0fLJPs1ojgS0BprciYZqeT8JRu+jv/MZ89lhdilwt1xsJH5+3dYtghAyUv8UfkgIss="
   file_glob: true
   file: "${TRAVIS_BUILD_DIR}/build/NIF-Ontology-${TRAVIS_BRANCH}-graph-*.zip"
-  skip_cleanup: true
   prerelease: true
   draft: true
   on:
