@@ -1,1481 +1,586 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
-@prefix asp: <http://uri.interlex.org/tgbugs/uris/readable/aspect/> .
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
-@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 @prefix editorNote: <http://purl.obolibrary.org/obo/IAO_0000116> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix hasInput: <http://purl.obolibrary.org/obo/RO_0002233> .
+@prefix hasMember: <http://purl.obolibrary.org/obo/RO_0002351> .
 @prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
-@prefix hasParticipant: <http://purl.obolibrary.org/obo/RO_0000057> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
-@prefix NLX: <http://uri.neuinfo.org/nif/nifstd/nlx_> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix replacedBy: <http://purl.obolibrary.org/obo/IAO_0100001> .
 @prefix sparc: <http://uri.interlex.org/tgbugs/uris/readable/sparc/> .
-@prefix tech: <http://uri.interlex.org/tgbugs/uris/readable/technique/> .
 @prefix TEMP: <http://uri.interlex.org/temp/uris/> .
-@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+@prefix TEMPRAW: <http://uri.interlex.org/temp/uris/raw/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/sparc/ttl/sparc-methods.ttl> a owl:Ontology .
 
 ### Object Properties
 
-sparc:acidBaseHemostasis a owl:ObjectProperty ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasResult ;
-            owl:someValuesFrom [ a owl:Restriction ;
-                    owl:onProperty ilxtr:resultAspect ;
-                    owl:someValuesFrom asp:acidBaseHomeostasis ] ] ;
-    rdfs:subPropertyOf sparc:environmentLogsForLiveOrganism ;
-    rdfs:domain sparc:ExperimentOnLiveOrganism ;
-    rdfs:range sparc:Resource .
+sparc:animalSubjectIsOfSpecies a owl:ObjectProperty ;
+    definition: "The species of the subject." ;
+    rdfs:domain sparc:AnimalSubject ;
+    rdfs:range NCBITaxon:33208 ;
+    editorNote: "currently unaligned but a DatatypeProperty, which is undesireable" .
 
-sparc:acquisitionData a owl:ObjectProperty ;
-    replacedBy: prov:generated ;
-    rdfs:domain sparc:Acquisition ;
-    rdfs:range sparc:Resource .
+sparc:hasBiologicalSex a owl:ObjectProperty ;
+    definition: "The biological sex of the subject." ;
+    rdfs:domain sparc:AnimalSubject ;
+    rdfs:range PATO:0000047 .
 
-sparc:anatomicalOriginOfSample a owl:ObjectProperty ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty prov:wasDerivedFrom ;
-            owl:someValuesFrom UBERON:0001062 ] ;
-    rdfs:domain sparc:TissueSample ;
-    rdfs:range sparc:AnatomicalLocation ;
-    rdfs:comment "in all likelihood what we really want to know here is the intended target of dissection, so we need to look at the chain, wasGeneratedBy -> ilxtr:hadConstrainingAspect or more likely ilxtr:hasPrimaryParticipant because "^^xsd:string .
-
-sparc:bloodGasHemostasis a owl:ObjectProperty ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasResult ;
-            owl:someValuesFrom [ a owl:Restriction ;
-                    owl:onProperty ilxtr:resultAspect ;
-                    owl:someValuesFrom asp:acidBaseHomeostasis ] ] ;
-    rdfs:subPropertyOf sparc:environmentLogsForLiveOrganism ;
-    rdfs:domain sparc:ExperimentOnLiveOrganism ;
-    rdfs:range sparc:Resource .
-
-sparc:carriedOutAccordingToProtocol a owl:ObjectProperty ;
-    replacedBy: ilxtr:isConstrainedBy ;
-    rdfs:domain sparc:Acquisition,
-        sparc:Anesthesia,
-        sparc:Experiment,
-        sparc:Extraction,
-        sparc:Modulation,
-        sparc:Procedure,
-        sparc:Sedation ;
-    rdfs:range sparc:Protocol .
-
-sparc:carriedOutBy a owl:ObjectProperty ;
-    replacedBy: ilxtr:hasExecutor ;
-    rdfs:domain sparc:Experiment ;
-    rdfs:range sparc:Person .
-
-sparc:concentrationOfChemicalInSolution a owl:ObjectProperty ;
-    replacedBy: asp:concentration ;
-    rdfs:domain sparc:ChemicalInSolution ;
-    rdfs:range sparc:Measurement .
-
-sparc:environmentForTissueDerivatives a owl:ObjectProperty ;
-    replacedBy: ilxtr:processHasContext,
-        prov:atLocation ;
-    rdfs:domain sparc:ExperimentOnTissueDerivatives .
-
-sparc:environmentLogsForLiveOrganism a owl:ObjectProperty ;
-    replacedBy: prov:generated ;
-    rdfs:domain sparc:ExperimentOnLiveOrganism ;
-    rdfs:range sparc:Resource ;
-    rdfs:comment "the named individual should also ilxtr:hasPrimaryParticipant NCBITaxon:1 and ilxtr:hasConstrainingAspect asp:aliveness" .
-
-sparc:experimentCarriedOutInEnvironment a owl:ObjectProperty ;
-    replacedBy: ilxtr:processHasContext,
-        prov:atLocation ;
-    rdfs:domain sparc:Experiment ;
-    rdfs:range sparc:Environment ;
-    rdfs:comment "prov:atLocation is probably the correct one because processHasContext would be an invariant across all executions of the technique" .
-
-sparc:experimentCarriedOutOn a owl:FunctionalProperty,
+sparc:hasORCIDId a owl:FunctionalProperty,
         owl:ObjectProperty ;
-    replacedBy: ilxtr:hasPrimaryParticipant ;
-    rdfs:domain sparc:Experiment ;
-    rdfs:range sparc:Specimen .
-
-sparc:experimentCarriedOutProcedure a owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    replacedBy: hasPart: ;
-    rdfs:domain sparc:Experiment ;
-    rdfs:range sparc:Procedure .
-
-sparc:experimentHasEthicalApprovalDocument a owl:ObjectProperty ;
-    rdfs:domain sparc:Experiment ;
-    rdfs:range sparc:Resource ;
-    rdfs:comment "TODO this should probably be hasEthicsApprovalDocument and domain should be ilxtr:protocol not an experiment or technique, because IACUCs and IRBs must review the actual protocol artifact. By associating specific protocol instances with techniques we will then be able to show people which techniques have approved protocols." .
-
-sparc:experimentHasSubjectUnderAnesthesia a owl:ObjectProperty ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty hasPart: ;
-            owl:someValuesFrom tech:anaesthesia ] ;
-    rdfs:domain sparc:AnimalExperiment,
-        sparc:ClinicalExperiment ;
-    rdfs:range sparc:Anesthesia ;
-    rdfs:comment "used on a named individual experiment (composite techniqe) this is just myExperiment: hasPart: tech:anaesthesia" ;
-    editorNote: "Should be inferred" .
-
-sparc:experimentHasSubjectUnderSedation a owl:ObjectProperty ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty hasPart: ;
-            owl:someValuesFrom tech:sedation ] ;
-    rdfs:subPropertyOf owl:topObjectProperty ;
-    rdfs:domain sparc:AnimalExperiment,
-        sparc:ClinicalExperiment ;
-    rdfs:range sparc:Sedation ;
-    editorNote: "Should be inferred" .
-
-sparc:extractionGeneratedOutputSpecimen a owl:ObjectProperty ;
-    replacedBy: ilxtr:hasPrimaryOutput ;
-    rdfs:domain sparc:Extraction ;
-    rdfs:range sparc:CellCulture,
-        sparc:StemCells,
-        sparc:TissueSample ;
-    rdfs:comment "could also be replaced by hasOutput, worth considering that this could be modelled with a restriction so that named individuals simply list hasPrimaryOutput mytissuesample, but this seems to be conflating the spec of the expeirment with its execution trace..." .
-
-sparc:fMRIHasStimulusFile a owl:ObjectProperty ;
-    rdfs:domain sparc:FunctionalMRIFeatures ;
-    rdfs:range sparc:Resource .
-
-sparc:generalMRISequenceHasImagedBodyPart a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range sparc:AnatomicalLocation .
-
-sparc:growthTemperature a owl:ObjectProperty ;
-    replacedBy: asp:temperature,
-        tech:cellCulture ;
-    rdfs:domain sparc:CellCulture,
-        sparc:EngineeredTissue,
-        sparc:StemCells ;
-    rdfs:range sparc:Measurement .
-
-sparc:hasGeneratedLogFile a owl:ObjectProperty ;
-    replacedBy: prov:generated ;
-    rdfs:domain sparc:Acquisition,
-        sparc:Anesthesia,
-        sparc:Experiment,
-        sparc:Extraction,
-        sparc:Modulation,
-        sparc:Procedure,
-        sparc:Sedation ;
-    rdfs:range sparc:Resource .
-
-sparc:hasMember a owl:ObjectProperty ;
-    rdfs:domain sparc:Organization ;
-    rdfs:range sparc:Person .
-
-sparc:hemodynamicHemostasis a owl:ObjectProperty ;
-    replacedBy: ilxtr:hasAspect,
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasResult ;
-            owl:someValuesFrom [ a owl:Restriction ;
-                    owl:onProperty ilxtr:resultAspect ;
-                    owl:someValuesFrom asp:hemodynamicHomeostasis ] ] ;
-    rdfs:subPropertyOf sparc:environmentLogsForLiveOrganism ;
-    rdfs:domain sparc:ExperimentOnLiveOrganism ;
-    rdfs:range sparc:Resource ;
-    rdfs:comment "for the data entry side of this, this could simply be obtained by filling in ilxtr:hasAspect without the need to be overly specific, the result would then have ilxtr:resultAspect which would match, otherwise we will wind up with the usual cartesian explosion of terms in our schema" .
+    definition: "The ORCiD of the person." ;
+    rdfs:domain sparc:Person ;
+    editorNote: "not clear that this is a functional property, though ideally it would be" .
 
 sparc:includesFlatmap a owl:ObjectProperty ;
+    definition: "Indicates that a specific sparc:Dataset includes a specific sparc:Flatmap. The object in the relationship is the URI for the flatmap." ;
     rdfs:subPropertyOf hasPart: ;
     rdfs:domain sparc:Resource ;
     rdfs:range sparc:Flatmap .
 
 sparc:includesPath a owl:ObjectProperty ;
+    definition: "boolean variable dictating if the dataset includes pathing information" ;
     rdfs:subPropertyOf hasPart: ;
     rdfs:domain sparc:Resource ;
     rdfs:range sparc:Path .
 
 sparc:includesScaffold a owl:ObjectProperty ;
+    definition: "Indicates that a specific sparc:Dataset includes a specific sparc:Scaffold. The object in the relationship is the URI for the 3d scaffold." ;
     rdfs:subPropertyOf hasPart: ;
     rdfs:domain sparc:Resource ;
     rdfs:range sparc:Scaffold .
 
-sparc:isInputSpecimenForExtraction a owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    replacedBy: ilxtr:hasPrimaryInput ;
-    rdfs:domain sparc:Specimen ;
-    rdfs:range sparc:Extraction .
-
-sparc:memberOf a owl:ObjectProperty ;
-    rdfs:domain sparc:Person ;
-    rdfs:range sparc:Organization .
-
-sparc:perfusionProtocol a owl:ObjectProperty ;
-    replacedBy: tech:perfusion ;
-    rdfs:domain sparc:TissueSample ;
-    rdfs:range sparc:Protocol .
-
-sparc:procedureCarriedOutAcquisition a owl:ObjectProperty ;
-    replacedBy: ilxtr:hasPrimaryAspectMeasured,
-        [ a owl:Restriction ;
-            owl:onProperty hasPart: ;
-            owl:someValuesFrom tech:measuring ] ;
-    rdfs:domain sparc:Procedure ;
-    rdfs:range sparc:Acquisition ;
-    rdfs:comment "in the new model this relationship doesn't exist because measurements/acquisitions are simply treated as any other technique, the other possibility here is probably just to use hasPart:" .
-
-sparc:procedureCarriedOutAnalysis a owl:ObjectProperty ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty hasPart: ;
-            owl:someValuesFrom tech:analysis ] ;
-    rdfs:domain sparc:Procedure ;
-    rdfs:range sparc:Analysis ;
-    rdfs:comment "this could also be hasPart: -> hasRole: some analysis, analysis is essentially an asserted intention of the activity which can be orthogonal to things like using statistical or computational methods which could be employed for some other end" .
-
-sparc:procedureCarriedOutModulation a owl:ObjectProperty ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty hasPart: ;
-            owl:someValuesFrom tech:activityModulation ] ;
-    rdfs:domain sparc:Procedure ;
-    rdfs:range sparc:Modulation .
-
-sparc:procedureTriggeredCorollaryExperiments a owl:ObjectProperty ;
-    rdfs:domain sparc:Procedure ;
-    rdfs:range sparc:Experiment .
-
-sparc:procedureTriggeredExtraction a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty ;
-    rdfs:domain sparc:Procedure ;
-    rdfs:range sparc:Extraction .
-
-sparc:protocolDescribedInResource a owl:ObjectProperty ;
-    owl:deprecated true ;
-    rdfs:domain sparc:Protocol ;
-    rdfs:range sparc:Resource ;
-    editorNote: "For sake of simplicity protocols are resources since there isn't anything concrete that we can point to for a protocol if it is not made to be equivalent to the artifact that defines it. It is possible to point to a sparc:Performance (aka protocol execution) which was constrained by prior information, some of which may have been contained in a protocol, some of which may have been contained only in the brain of the person performing. If there is an identifiable protocol that was followed we identify it as such, even if it is just a picture of a sticky note in a lab, or a page in a lab notebook, but we have to be able to point to it. Long story short: this object property is no longer needed because protocols for all intents and purposes are resources and not the platonic ideal of what the investigator was trying to carry out." .
-
-sparc:protocolToAssessBlockEfficacy a owl:ObjectProperty ;
-    rdfs:domain sparc:BioelectronicNerveBlockingModulation ;
-    rdfs:range sparc:Protocol .
-
-sparc:radiologicalImagingProtocolHasFeatures a owl:ObjectProperty ;
-    rdfs:domain sparc:RadiologicalImagingProtocol ;
-    rdfs:range sparc:FunctionalMRIFeatures,
-        sparc:GeneralMRISequence .
-
-sparc:radiologicalImagingProtocolHasProtocol a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty ;
-    rdfs:domain sparc:RadiologicalImagingProtocol ;
-    rdfs:range sparc:Protocol .
-
-sparc:radioloigcalAcquisitionHasImagingProtocol a owl:ObjectProperty ;
-    rdfs:domain sparc:RadiologcalAcquistion ;
-    rdfs:range sparc:RadiologicalImagingProtocol .
-
-sparc:respiratoryHemostasis a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentLogsForLiveOrganism ;
-    rdfs:domain sparc:ExperimentOnLiveOrganism ;
-    rdfs:range sparc:Resource .
-
-sparc:solutionBathVolume a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentForTissueDerivatives ;
-    rdfs:domain sparc:ExperimentOnTissueDerivatives ;
-    rdfs:range sparc:Measurement .
-
-sparc:solutionBuffer a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentForTissueDerivatives ;
-    rdfs:domain sparc:ExperimentOnTissueDerivatives ;
-    rdfs:range sparc:ChemicalInSolution .
-
-sparc:solutionChemicalComposition a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentForTissueDerivatives ;
-    rdfs:domain sparc:ExperimentOnTissueDerivatives ;
-    rdfs:range sparc:ChemicalInSolution ;
-    rdfs:comment "the domain here does not seem correct?" ;
-    editorNote: "redundant?" .
-
-sparc:solutionCO2PartialPressure a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentForTissueDerivatives ;
-    rdfs:domain sparc:ExperimentOnTissueDerivatives ;
-    rdfs:range sparc:Measurement .
-
-sparc:solutionFlowRate a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentForTissueDerivatives ;
-    rdfs:domain sparc:ExperimentOnTissueDerivatives ;
-    rdfs:range sparc:Measurement .
-
-sparc:solutionOsmolality a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentForTissueDerivatives ;
-    rdfs:domain sparc:ExperimentOnTissueDerivatives ;
-    rdfs:range sparc:Measurement .
-
-sparc:solutionOxygenPartialPressure a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentForTissueDerivatives ;
-    rdfs:domain sparc:ExperimentOnTissueDerivatives ;
-    rdfs:range sparc:Measurement .
-
-sparc:solutionPH a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentForTissueDerivatives ;
-    rdfs:domain sparc:ExperimentOnTissueDerivatives ;
-    rdfs:range sparc:Measurement .
-
-sparc:solutionTemperature a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentForTissueDerivatives ;
-    rdfs:domain sparc:ExperimentOnTissueDerivatives ;
-    rdfs:range sparc:Measurement .
-
 sparc:spatialLocationOfModulator a owl:ObjectProperty ;
-    rdfs:domain sparc:Modulation ;
-    rdfs:range sparc:AnatomicalLocation .
+    definition: "A property that is used to report the location of some modulation device or reagent." .
 
-sparc:spatialLocationOfSensor a owl:ObjectProperty ;
-    rdfs:domain sparc:Acquisition ;
-    rdfs:range sparc:AnatomicalLocation .
+TEMP:aboutContributor a owl:ObjectProperty ;
+    definition: "Property relating sparc:DatasetContribution to the sparc:Person" .
 
-sparc:temperatureHemostasis a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentLogsForLiveOrganism ;
-    rdfs:domain sparc:ExperimentOnLiveOrganism ;
-    rdfs:range sparc:Resource .
+TEMP:aboutDataset a owl:ObjectProperty ;
+    definition: "Property relating sparc:DatasetContribution to the sparc:Dataset" .
 
-sparc:tissuePreparationCarriedOutForMicroscopyAcquisition a owl:ObjectProperty ;
-    rdfs:domain sparc:TissuePreparationForMicroscopy ;
-    rdfs:range sparc:MicroscopyAcquisition .
+TEMP:contributorTo a owl:ObjectProperty ;
+    definition: "Property directly relating a person to datasets that they have contributed to." .
 
-sparc:tissuePreparationHasStep a owl:ObjectProperty ;
-    rdfs:domain sparc:TissuePreparationForMicroscopy ;
-    rdfs:range sparc:TissuePreparationSteps .
+TEMP:dereferencesTo a owl:ObjectProperty ;
+    definition: "A property that indicates that one identifier dereferences to another. For example a doi dereferencing to a protocols.io url." ;
+    editorNote: "used to map identifier resolution e.g. doi -> protocols.io" .
 
-sparc:tissueSampleForTissuePreparationForMicroscopy a owl:ObjectProperty ;
-    rdfs:domain sparc:TissueSample ;
-    rdfs:range sparc:TissuePreparationForMicroscopy .
+TEMP:hasAgeCategory a owl:ObjectProperty ;
+    definition: "Property relating a subject to the life cycle stage it was at when the expeirment was conducted, i.e. adult vs infant" ;
+    editorNote: "currently unaligned, should be an object property" ;
+    ilxtr:futureType owl:ObjectProperty .
 
-sparc:volumeHemostasis a owl:ObjectProperty ;
-    rdfs:subPropertyOf sparc:environmentLogsForLiveOrganism ;
-    rdfs:domain sparc:ExperimentOnLiveOrganism ;
-    rdfs:range sparc:Resource .
+TEMP:hasAwardNumber a owl:ObjectProperty ;
+    definition: "The SPARC award number that funded the generation of a dataset." ;
+    editorNote: "range should be funded research project" .
+
+TEMP:hasContactPerson a owl:ObjectProperty ;
+    definition: "Property relating a dataset to the contact person for that dataset." .
+
+TEMP:hasDerivedInformationAsParticipant a owl:ObjectProperty ;
+    definition: "Property directly relating a participant to a resource that contains information that was derrived from a processes they were involved in e.g. the performance of an experimental protocol." .
+
+TEMP:hasDoi a owl:ObjectProperty ;
+    definition: "The doi for a given resource. It may be the same is the identifier, or the doi may dereference to that identifier or an alias of that identifier (in the pointer aliasing sense)." .
+
+TEMP:hasExperimentalModality a owl:AnnotationProperty,
+        owl:ObjectProperty ;
+    replacedBy: TEMP:hasExperimentalApproach ;
+    definition: "Deprecated. Use TEMP:hasExperimentalApproach." ;
+    editorNote: "should be objprop" .
+
+TEMP:hasFolderAboutIt a owl:ObjectProperty ;
+    definition: "Property relating a participant to folders that contain data about it." .
+
+TEMP:hasProtocol a owl:ObjectProperty ;
+    definition: "Property relating a dataset to a protocol that specifies part of the process used to generate the dataset." .
+
+TEMP:hasResponsiblePrincipalInvestigator a owl:ObjectProperty ;
+    definition: "Property relating a dataset to the principle investigator who is responsible for this dataset." .
+
+TEMP:hasRole a owl:ObjectProperty ;
+    definition: "Used to indicate the contributor role(s) for a given dataset contribution." ;
+    editorNote: "could be replaced by hasContributorRole?" .
+
+TEMP:hasUnit a owl:AnnotationProperty,
+        owl:ObjectProperty ;
+    definition: "Used to provide the scientific units for a quantity." ;
+    editorNote: "this one is tricky because unit composition means that only simple units can have iris, complex units either need to be strings or we need some rdf based unit composition language" .
+
+TEMP:hasUriApi a owl:ObjectProperty ;
+    definition: "A URI that points to an api endpoint." .
+
+TEMP:hasUriHuman a owl:ObjectProperty ;
+    definition: "A URI that points to a endpoint intended for human consumption." .
+
+TEMP:involvesAnatomicalRegion a owl:AnnotationProperty,
+        owl:ObjectProperty ;
+    definition: "Indicates that a protocol involves some anatomical region. This is closer to protocol mentions anatomical region in that the region may be incidental to the anatomical region that is actually being studied." ;
+    editorNote: "should be object property, may have some garbage in it though",
+        "should be objprop" .
+
+TEMP:isAboutParticipant a owl:ObjectProperty ;
+    definition: "Property directly relating a resource to a participant that it contains information about." .
+
+TEMP:isDescribedBy a owl:ObjectProperty ;
+    definition: "The DataCite relation between a resource and another resource that describes it." ;
+    editorNote: "maps to datacite usage" .
+
+TEMP:protocolEmploysTechnique a owl:AnnotationProperty,
+        owl:ObjectProperty ;
+    definition: "Property relating a protocol to the high level techniques that it uses." .
+
+TEMP:wasDerivedFromSubject a owl:ObjectProperty ;
+    definition: "Property directly relating a sample back to the subject that it was directly or transitively derived from." ;
+    editorNote: "likely should be lifted to be wasDerivedFromSpecimen" .
 
 ### Annotation Properties
 
-replacedBy: a owl:AnnotationProperty .
+ilxtr:annotationValue a owl:AnnotationProperty .
+
+ilxtr:curationInternal a owl:AnnotationProperty ;
+    definition: "properties marked with this predicate where the object is true should not be exported, if the predicate is not present, assume that the property is not curation internal and should be exported" ;
+    ilxtr:curationInternal true .
+
+TEMP:acknowledgements a owl:AnnotationProperty ;
+    definition: "Free text acknowledging individuals and organizations that contributed to the work that are not officially listed in the contributors list." .
+
+TEMP:asBaseUnits a owl:AnnotationProperty ;
+    definition: "The magnitude of a quantity when the units are converted to base units (e.g. to the MGS system)." ;
+    editorNote: "points to normalized mgs units, not really working with owl at the moment" ;
+    ilxtr:futureType owl:ObjectPropert .
+
+TEMP:collectionTitle a owl:AnnotationProperty ;
+    definition: "The title of a larger collection of datasets to which this dataset belongs." .
+
+TEMP:completenessOfDataset a owl:AnnotationProperty ;
+    definition: "Deprecated. Was used to indicate whether subsequent datasets following the same protocol were expected." .
+
+TEMP:contentsWereUpdatedAtTime a owl:AnnotationProperty ;
+    definition: "The most recent updated time for the transitive closure of paths in a dataset." .
+
+TEMP:curationIndex a owl:AnnotationProperty ;
+    definition: "The number of errors on a dataset that are attributed to problems in the curation process. These must be fixed by external submitters, and are expected to be fixed by submitters as part of future dataset templates." ;
+    editorNote: "total curation errors, pipelines and human" ;
+    ilxtr:curationInternal true .
+
+TEMP:errorIndex a owl:AnnotationProperty ;
+    definition: "The total number of errors for the dataset. If this number is 9999 it means that the pipelines could not even make it to the stage where the number of errors could be counted. For example this can happen if a dataset contains no files or is malformed in some way." ;
+    editorNote: "total error count" ;
+    ilxtr:curationInternal true .
+
+TEMP:hasAdditionalFundingInformation a owl:AnnotationProperty ;
+    definition: "Any additional sources of funding for a dataset beyond the SPARC grant." .
+
+TEMP:hasAffiliation a owl:AnnotationProperty ;
+    definition: "The academic affilation of the researcher in the context of a specific dataset." ;
+    editorNote: "Should be object property but usage is mixed.",
+        "target should always be a ror, current form also includes strings" ;
+    ilxtr:futureType owl:ObjectProperty .
+
+TEMP:hasAge a owl:AnnotationProperty ;
+    definition: "The age of a subject. Ideally this value would be associated with a performance, because subjects have multiple ages." ;
+    editorNote: "range is sparc:Measurement" .
+
+TEMP:hasAssignedGroup a owl:AnnotationProperty ;
+    definition: "Property relating a participant to the experimental group that it is a member of." ;
+    ilxtr:futureType owl:ObjectProperty .
+
+TEMP:hasBiologicalSex a owl:AnnotationProperty ;
+    owl:deprecated true ;
+    replacedBy: sparc:hasBiologicalSex ;
+    definition: "Replaced by sparc:hasBiologicalSex." ;
+    editorNote: "currently an annotation property, should be aligned to pato probably" ;
+    ilxtr:futureType owl:ObjectProperty .
+
+TEMP:hasDatasetTemplateSchemaVersion a owl:AnnotationProperty ;
+    definition: "The version of the dataset template that was used for submission." .
+
+TEMP:hasDigitalArtifactThatIsAboutIt a owl:AnnotationProperty ;
+    definition: "Property that comes from raw specimen metadata and is an investigator asserted mapping from subject to file." ;
+    editorNote: "should be TEMPRAW" ;
+    ilxtr:curationInternal true .
+
+TEMP:hasDigitalArtifactThatIsAboutItWithHash a owl:AnnotationProperty ;
+    definition: "The checksum for the contents of the path listed in hasDigitalArtifactThatIsAboutIt." ;
+    editorNote: "should be TEMPRAW" ;
+    ilxtr:curationInternal true .
+
+TEMP:hasGenotype a owl:AnnotationProperty ;
+    definition: "The genotype of a participant." ;
+    editorNote: "wildly uncontrolled" .
+
+TEMP:hasNumberOfContributors a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The number of unique contributors to a dataset." .
+
+TEMP:hasNumberOfDirectories a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The number of directories that are contained in a dataset." ;
+    editorNote: "datatype property?" .
+
+TEMP:hasNumberOfFiles a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The number of files that are contained in a dataset." ;
+    editorNote: "datatype property?" .
+
+TEMP:hasNumberOfProtcurAnnotations a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The number of hypothes.is annotations made on a protocol as part of the protcur curation workflow." ;
+    editorNote: "number of hypothes.is annotations with protcur tags" .
+
+TEMP:hasNumberOfSamples a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The actual number of unique samples listed in the samples table." .
+
+TEMP:hasNumberOfSubjects a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "Tha actual number of unique subjects listed in the subjects table." .
+
+TEMP:hasPoolId a owl:AnnotationProperty ;
+    definition: "The pool that a subject or sample belongs to." .
+
+TEMP:hasSizeInBytes a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The size of a dataset, file, or folder in bytes." ;
+    editorNote: "datatype property?" .
+
+TEMP:localExecutionNumber a owl:AnnotationProperty ;
+    owl:deprecated true ;
+    replacedBy: TEMP:localPerformanceNumber ;
+    definition: "Deprecated. Use TEMP:localPerformanceNumber." ;
+    editorNote: "replaced by localPerformanceNumber" .
+
+TEMP:localId a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The local, unqualified, unprefixed, and thus not-globally-unique identifier for something." ;
+    editorNote: "could be datatype property" .
+
+TEMP:localPerformanceNumber a owl:AnnotationProperty ;
+    definition: "The local, unqualified, unprefixed, and thus not-globally-unique identifier for the performance of some process." .
+
+TEMP:middleName a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The middle name of the person." ;
+    editorNote: "datatype property like first and last name?" .
+
+TEMP:milestoneCompletionDate a owl:AnnotationProperty ;
+    definition: "The agreed upon date for data submission milestones." ;
+    ilxtr:curationInternal true .
+
+TEMP:participantInPerformanceOf a owl:AnnotationProperty ;
+    definition: "Property relating a participant to a protocol that constrained a performance that they were a participant in." .
+
+TEMP:protocolExecutionDate a owl:AnnotationProperty ;
+    replacedBy: TEMP:protocolPerformanceDate ;
+    definition: "Deprecated. Use TEMP:protocolPerformanceDate." ;
+    editorNote: "should probably be a datatype property, but reasoners struggle with xsd:date" .
+
+TEMP:protocolHasNumberOfSteps a owl:AnnotationProperty,
+        owl:DatatypeProperty ;
+    definition: "The number of steps listed in a protocols.io protocol." ;
+    editorNote: "number of steps in a protocols.io protocol" .
+
+TEMP:protocolPerformanceDate a owl:AnnotationProperty ;
+    definition: "The date on which a protocol as performed." .
+
+TEMP:providerNote a owl:AnnotationProperty ;
+    definition: "Converted from the notes field of a specimen table." .
+
+TEMP:statusOnPlatform a owl:AnnotationProperty ;
+    definition: "The current status for a dataset from the Pennsieve internal platform." .
+
+TEMP:submissionIndex a owl:AnnotationProperty ;
+    definition: "The number of errors on a dataset that are attributed to problems with the submission i.e. are the responsibility of the data submitter to fix." ;
+    editorNote: "total submission errors" ;
+    ilxtr:curationInternal true .
+
+TEMP:TimestampExportStart a owl:AnnotationProperty ;
+    editorNote: "prov" .
+
+TEMP:TODO a owl:AnnotationProperty ;
+    definition: "Relationship unspecified, but one exists." ;
+    editorNote: "catchall for unmapped fields" ;
+    ilxtr:curationInternal true .
+
+TEMP:unclassifiedIndex a owl:AnnotationProperty ;
+    definition: "The number of errors on a dataset that have not been classified as being curation, submission, etc." .
+
+TEMP:unclassifiedStages a owl:AnnotationProperty ;
+    definition: "List of stages that have not been classified as producing errors that are curation, submission, etc." .
+
+TEMP:wasCreatedAtTime a owl:AnnotationProperty ;
+    definition: "The time at which a path was first known to exist in the system reporting the time. Not all systems contain this information, and it is only specific to the system in question, the file itself may have been created at an earlier time on another system. The cleanest inference from this would be know to exist at least after this point in time." ;
+    editorNote: "from blackfynn, should probably be a datatype property, but reasoners struggle with xsd:date" .
+
+TEMP:wasUpdatedAtTime a owl:AnnotationProperty ;
+    definition: "The time of the latest update to a path prior to the time a which the query was issued." ;
+    editorNote: "from blackfynn, should probably be a datatype property, but reasoners struggle with xsd:date" .
+
+TEMPRAW:wasExtractedFromAnatomicalRegion a owl:AnnotationProperty ;
+    ilxtr:curationInternal true .
 
 ### Data Properties
 
-sparc:administrationDose a owl:DatatypeProperty ;
-    rdfs:domain sparc:Anesthesia,
-        sparc:Sedation ;
-    rdfs:range xsd:string .
-
-sparc:administrationFrequency a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty ;
-    rdfs:domain sparc:Anesthesia,
-        sparc:Sedation ;
-    rdfs:range xsd:string .
-
-sparc:administrationRoute a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty ;
-    rdfs:domain sparc:Anesthesia,
-        sparc:Sedation ;
-    rdfs:range xsd:string .
-
-sparc:administrationStartTime a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty ;
-    rdfs:domain sparc:Anesthesia,
-        sparc:Sedation ;
-    rdfs:range xsd:string ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:administrationStopTime a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty ;
-    rdfs:domain sparc:Anesthesia,
-        sparc:Sedation ;
-    rdfs:range xsd:string ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:administrationVehicle a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty ;
-    rdfs:domain sparc:Anesthesia,
-        sparc:Sedation ;
-    rdfs:range xsd:string ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:anesthesiaWasSourcedFrom a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty ;
-    rdfs:domain sparc:Anesthesia ;
-    rdfs:range xsd:string ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:animalHasGeneticVariation a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfAnimalSubject ;
-    rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string ;
-    editorNote: "all example data is on wild type" .
-
 sparc:animalSubjectHasWeight a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfAnimalSubject ;
-    rdfs:domain sparc:AnimalExperiment,
-        sparc:AnimalSubject ;
-    rdfs:range xsd:string .
-
-sparc:animalSubjectIsOfGenus a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfAnimalSubject ;
+    definition: "The weight of the subject." ;
     rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
-
-sparc:animalSubjectIsOfSpecies a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfAnimalSubject ;
-    rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
+    editorNote: "range is sparc:Measurement",
+        "range should be real > 0 but there isn't a reasoner aware type that handles that correct, it is also the case that xsd:integer is not a sub type of owl:real which is problematic, so we leave range out because it is also the case that we need to be able to support units which data types cannot do effectively" .
 
 sparc:animalSubjectIsOfStrain a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfAnimalSubject ;
+    definition: "The strain of the subject." ;
     rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
-
-sparc:animalSupplier a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfAnimalSubject ;
-    rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
-
-sparc:bioreactor a owl:DatatypeProperty ;
-    rdfs:domain sparc:CellCulture,
-        sparc:EngineeredTissue,
-        sparc:StemCells ;
     rdfs:range xsd:string ;
-    editorNote: "no cell culture data sets" .
-
-sparc:cameraSettings a owl:DatatypeProperty ;
-    rdfs:domain sparc:MicroscopyAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:cameraType a owl:DatatypeProperty ;
-    rdfs:domain sparc:MicroscopyAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:cellLine a owl:DatatypeProperty ;
-    rdfs:domain sparc:CellCulture ;
-    rdfs:range xsd:string ;
-    rdfs:comment "RRID:CVCL_" ;
-    editorNote: "no cell culture data sets" .
-
-sparc:cellSelectionProcessForAcquisition a owl:DatatypeProperty ;
-    rdfs:domain sparc:CellCulture,
-        sparc:EngineeredTissue,
-        sparc:StemCells ;
-    rdfs:range xsd:string ;
-    editorNote: "no cell culture data sets" .
-
-sparc:characterisiticsOfACStimulation a owl:DatatypeProperty ;
-    rdfs:domain sparc:BioelectronicNerveBlockingModulation ;
-    rdfs:range xsd:string ;
-    editorNote: "there are references to electrical stimulation but AC vs DC is never explicitly mentioned" .
-
-sparc:characteristicsOfDCStimulation a owl:DatatypeProperty ;
-    rdfs:domain sparc:BioelectronicNerveBlockingModulation ;
-    rdfs:range xsd:string ;
-    editorNote: "there are references to electrical stimulation but AC vs DC is never explicitly mentioned" .
-
-sparc:characteristicsOfEnergyDelivered a owl:DatatypeProperty ;
-    rdfs:domain sparc:IREnergyModulation,
-        sparc:ThermalEnergyModulation ;
-    rdfs:range xsd:string ;
-    editorNote: "no data sets" .
-
-sparc:characteristicsOfInterfaceToBiologicalTarget a owl:DatatypeProperty ;
-    rdfs:domain sparc:Modulation ;
-    rdfs:range xsd:string ;
-    editorNote: "usage unclear" .
-
-sparc:characteristicsOfOpticalMappingSystem a owl:DatatypeProperty ;
-    rdfs:domain sparc:OpticalAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "no data sets" .
-
-sparc:characteristicsOfStimulation a owl:DatatypeProperty ;
-    rdfs:domain sparc:ElectricalModulation ;
-    rdfs:range xsd:string .
-
-sparc:charactersiticsOfPreamplifierAndAmplifier a owl:DatatypeProperty ;
-    rdfs:domain sparc:ChemicalAcquisition,
-        sparc:ElectricalAcquisition,
-        sparc:MechanicalAcquisition ;
-    editorNote: "models are listed but specs are not provided" .
-
-sparc:compositionCellularAndAcellular a owl:DatatypeProperty ;
-    rdfs:domain sparc:EngineeredTissue ;
-    rdfs:range xsd:string ;
-    editorNote: "no cell culture data sets" .
-
-sparc:conversionAD a owl:DatatypeProperty ;
-    rdfs:domain sparc:ChemicalAcquisition,
-        sparc:ElectricalAcquisition,
-        sparc:MechanicalAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "usage unclear" .
-
-sparc:criteriaForStimulusEfficacy a owl:DatatypeProperty ;
-    rdfs:domain sparc:ElectricalModulation ;
-    rdfs:range xsd:string ;
-    editorNote: "I think the statistical significance statement is what we are going for here?" .
-
-sparc:descriptionAndCharacteristicsOfSensor a owl:DatatypeProperty ;
-    rdfs:domain sparc:ChemicalAcquisition,
-        sparc:ElectricalAcquisition,
-        sparc:MechanicalAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:deviceHasMagnetFieldStrength a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfRadiologicalAcquisition ;
-    rdfs:domain sparc:RadiologcalAcquistion ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:deviceHasManufacturer a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfRadiologicalAcquisition ;
-    rdfs:domain sparc:RadiologcalAcquistion ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:deviceHasMRReceiveCoilSequence a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfRadiologicalAcquisition ;
-    rdfs:domain sparc:RadiologcalAcquistion ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:deviceHasReceiveCoilName a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfRadiologicalAcquisition ;
-    rdfs:domain sparc:RadiologcalAcquistion ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:deviceHasReceiveCoilType a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfRadiologicalAcquisition ;
-    rdfs:domain sparc:RadiologcalAcquistion ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:deviceHasSoftwareVersion a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfRadiologicalAcquisition ;
-    rdfs:domain sparc:RadiologcalAcquistion ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:emailAddress a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty ;
-    rdfs:domain sparc:Person ;
-    rdfs:range xsd:string ;
-    editorNote: "trivial, included in structured data that was not annotated, and intentionally excluded for privacy reasons" .
-
-sparc:energyDeliveryDeviceUtilized a owl:DatatypeProperty ;
-    rdfs:domain sparc:IREnergyModulation,
-        sparc:ThermalEnergyModulation ;
-    rdfs:range xsd:string .
-
-sparc:experimentHasOverallDesign a owl:DatatypeProperty ;
-    rdfs:domain sparc:Experiment ;
-    rdfs:range xsd:string ;
-    editorNote: "usage unclear, there are some potential candidates but I'm not sure what level of detail or depth is desired" .
-
-sparc:experimentHasSummary a owl:DatatypeProperty ;
-    rdfs:domain sparc:Experiment ;
-    rdfs:range xsd:string .
-
-sparc:experimentHasTitle a owl:DatatypeProperty ;
-    rdfs:domain sparc:Experiment ;
-    rdfs:range xsd:string .
+    editorNote: "currently unaligned but a DatatypeProperty, which is undesireable" .
 
 sparc:firstName a owl:DatatypeProperty ;
+    definition: "The first name of the person." ;
     rdfs:domain sparc:Person ;
     rdfs:range xsd:string .
-
-sparc:growthMedia a owl:DatatypeProperty ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty hasInput: ;
-            owl:someValuesFrom ilxtr:cultureMedia ] ;
-    rdfs:domain sparc:CellCulture,
-        sparc:EngineeredTissue,
-        sparc:StemCells ;
-    rdfs:range xsd:string ;
-    rdfs:comment "we can't quite model it this way because cell lines can in theory be grown in many different media and it is not a relationship between the line and the media, but rather between the line, the technique, and the media, for a single instance in a data oriented view this would make sense, but we need to enable the cartesian product here" ;
-    editorNote: "no cell culture data sets" .
-
-sparc:growthStimulation a owl:DatatypeProperty ;
-    replacedBy: hasInput: ;
-    rdfs:domain sparc:CellCulture,
-        sparc:EngineeredTissue,
-        sparc:StemCells ;
-    rdfs:range xsd:string ;
-    rdfs:comment "example?" ;
-    editorNote: "no cell culture data sets" .
-
-sparc:growthSubstrate a owl:DatatypeProperty ;
-    replacedBy: hasInput: ;
-    rdfs:domain sparc:CellCulture,
-        sparc:EngineeredTissue,
-        sparc:StemCells ;
-    rdfs:range xsd:string ;
-    editorNote: "no cell culture data sets" .
-
-sparc:growthSupplements a owl:DatatypeProperty ;
-    replacedBy: hasInput: ;
-    rdfs:domain sparc:CellCulture,
-        sparc:EngineeredTissue,
-        sparc:StemCells ;
-    rdfs:range xsd:string ;
-    rdfs:comment "note to self: the reason to shift to the technique centric approach is because otherwise we end up having to assert that entities have properties that would seem to be intrinsic whereas they are accidental by virtue of the environment they have been exposed to -- there may be some change that is induced in the cells as a result of those accidents, but those need to be independent from the accidentals" ;
-    editorNote: "no cell culture data sets" .
-
-sparc:growthTime a owl:DatatypeProperty ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasConstrainingAspect ;
-            owl:someValuesFrom asp:duration ] ;
-    rdfs:subPropertyOf owl:topDataProperty ;
-    rdfs:domain sparc:CellCulture,
-        sparc:EngineeredTissue,
-        sparc:StemCells ;
-    rdfs:range xsd:string ;
-    editorNote: "no cell culture data sets" .
-
-sparc:hardwareBasedDataProcessing a owl:DatatypeProperty ;
-    rdfs:domain sparc:Acquisition ;
-    rdfs:range xsd:string .
-
-sparc:hasAcquisitionMatrixDimensions a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasBiologicalSex a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfAnimalSubject ;
-    rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
-
-sparc:hasBodyMassIndex a owl:DatatypeProperty,
-        owl:FunctionalProperty ;
-    replacedBy: asp:BMI,
-        ilxtr:hasAspect ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
-    rdfs:domain sparc:HumanSubject ;
-    rdfs:range owl:real ;
-    rdfs:comment "these are results of measurements, if we annotate the data with aspect + value that should be sufficient, we can 'pun' the aspects as edges, or we can generate an edge that is the intersection of the aspect with the implementation used to measure it see comment on ilxtr:hasResult" ;
-    editorNote: "have not found data related to human subjects in examples" .
-
-sparc:hasClinicalInformation a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
-    rdfs:domain sparc:HumanSubject ;
-    rdfs:range xsd:string ;
-    editorNote: "have not found data related to human subjects in examples" .
-
-sparc:hasDateAndTimeStamp a owl:DatatypeProperty,
-        owl:FunctionalProperty ;
-    rdfs:domain sparc:Acquisition,
-        sparc:Anesthesia,
-        sparc:Experiment,
-        sparc:Extraction,
-        sparc:Measurement,
-        sparc:Procedure,
-        sparc:Sedation ;
-    rdfs:range xsd:string .
-
-sparc:hasDesignType a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfFunctionalMRI ;
-    rdfs:domain sparc:FunctionalMRIFeatures ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasDiseaseInformation a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
-    rdfs:domain sparc:HumanSubject ;
-    rdfs:range xsd:string ;
-    editorNote: "have not found data related to human subjects in examples" .
-
-sparc:hasDrugInformation a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
-    rdfs:domain sparc:HumanSubject ;
-    rdfs:range xsd:string ;
-    editorNote: "have not found data related to human subjects in examples" .
-
-sparc:hasEchoTime a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasFamilyHistory a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
-    rdfs:domain sparc:HumanSubject ;
-    rdfs:range xsd:string ;
-    editorNote: "have not found data related to human subjects in examples" .
-
-sparc:hasFieldOfViewSequence a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasFileName a owl:DatatypeProperty,
-        owl:FunctionalProperty ;
-    rdfs:domain sparc:Resource ;
-    rdfs:range xsd:string ;
-    editorNote: "in data file registry" .
-
-sparc:hasFlipAngle a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
 
 sparc:hasGender a owl:DatatypeProperty,
         owl:FunctionalProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
+    definition: "The self reported gender of the human subject." ;
     rdfs:domain sparc:HumanSubject ;
     rdfs:range xsd:string ;
     editorNote: "have not found data related to human subjects in examples" .
 
-sparc:hasImageOrientationWRTPatient a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasImagePosition a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasInPlanePhaseEncodingDirection a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasInversionTime a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasNumberOfBlocks a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfFunctionalMRI ;
-    rdfs:domain sparc:FunctionalMRIFeatures ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasNumberOfDummyScans a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfFunctionalMRI ;
-    rdfs:domain sparc:FunctionalMRIFeatures ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasNumberOfSlices a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasNumberOfVolumesCollected a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfFunctionalMRI ;
-    rdfs:domain sparc:FunctionalMRIFeatures ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasORCIDId a owl:DatatypeProperty,
-        owl:FunctionalProperty ;
-    rdfs:domain sparc:Person ;
-    rdfs:range xsd:string ;
-    editorNote: "not in data that we have" .
-
-sparc:hasParallelReductionFactorInPlane a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasParallelReductionFactorOutOfPlane a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasPatientOrientation a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasPhenotypicSex a owl:DatatypeProperty,
-        owl:FunctionalProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
-    rdfs:domain sparc:HumanSubject ;
-    rdfs:range xsd:string ;
-    editorNote: "have not found data related to human subjects in examples" .
-
-sparc:hasPixelBandwidth a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasPulseSequenceName a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasRepetitionTime a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasSliceThickness a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfGeneralMRISequence ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasSubjectPerformTask a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfFunctionalMRI ;
-    rdfs:domain sparc:FunctionalMRIFeatures ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:hasTotalDuration a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfFunctionalMRI ;
-    rdfs:domain sparc:FunctionalMRIFeatures ;
-    rdfs:range xsd:string ;
-    editorNote: "TODO" .
-
-sparc:howModulatorAffixedToBiologicalTarget a owl:DatatypeProperty ;
-    rdfs:domain sparc:Modulation ;
-    rdfs:range xsd:string ;
-    editorNote: "there are multiple references to modulators and sensors but no explanation of how" .
-
-sparc:howSensorAffixedToBiologicalTarget a owl:DatatypeProperty ;
-    rdfs:domain sparc:Acquisition,
-        sparc:ChemicalAcquisition,
-        sparc:ElectricalAcquisition,
-        sparc:MechanicalAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "there are SensorModulators out there ..." .
-
-sparc:husbandryDetails a owl:DatatypeProperty ;
-    replacedBy: ilxtr:wasParticipantIn ;
-    rdfs:subPropertyOf sparc:propertiesOfAnimalSubject ;
-    rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
-
-sparc:imageResolution a owl:DatatypeProperty ;
-    rdfs:domain sparc:MicroscopyAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:indicesForAssessmentOfViability a owl:DatatypeProperty ;
-    rdfs:domain sparc:TissueSample ;
-    rdfs:range xsd:string ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:isDiseaseModelOf a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfAnimalSubject ;
-    rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
-
-sparc:isOfAge a owl:DatatypeProperty,
-        owl:FunctionalProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
-    rdfs:domain sparc:AnimalSubject,
-        sparc:HumanSubject ;
-    rdfs:range xsd:string ;
-    editorNote: "have not found data related to human subjects in examples" .
-
-sparc:isOfDevelopmentalStage a owl:DatatypeProperty,
-        owl:FunctionalProperty ;
-    replacedBy: ilxtr:hasDevelopmentalStage ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
-    rdfs:domain sparc:HumanSubject ;
-    rdfs:range xsd:string ;
-    rdfs:comment "hasDevelopmentalStage can be used for many many things, and should be modelled as an objectProperty to control the values, data properties on strings invariably lead to unhappyness because they are deadends that allow no additional information to be attached to the term, for example, how the value was determined" ;
-    editorNote: "have not found data related to human subjects in examples" .
-
-sparc:isOfEthnicity a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
-    rdfs:domain sparc:HumanSubject ;
-    rdfs:range xsd:string ;
-    editorNote: "have not found data related to human subjects in examples" .
-
-sparc:isOfFileType a owl:DatatypeProperty,
-        owl:FunctionalProperty ;
-    replacedBy: dc:format ;
-    rdfs:domain sparc:Resource ;
-    rdfs:range xsd:string ;
-    rdfs:comment "the domain here is incorrect, because many, many resources are not file-like the range should be mimetypes, butacross many initiatives there still isn't a good solution for enforcing that via data types" .
-
-sparc:isOfHandedness a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
-    rdfs:domain sparc:HumanSubject ;
-    rdfs:range xsd:string ;
-    editorNote: "have not found data related to human subjects in examples" .
-
-sparc:isOfRace a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfHumanSubject ;
-    rdfs:domain sparc:HumanSubject ;
-    rdfs:range xsd:string ;
-    editorNote: "have not found data related to human subjects in examples" .
-
-sparc:isolationProcedureForOrgan a owl:DatatypeProperty ;
-    replacedBy: ilxtr:isConstrainedBy,
-        prov:wasGeneratedBy ;
-    rdfs:domain sparc:TissueSample ;
-    rdfs:range xsd:string .
+sparc:isContactPerson a owl:DatatypeProperty ;
+    definition: "Boolean variable indicating whether a researcher is designated as the contact person." .
 
 sparc:lastName a owl:DatatypeProperty,
         owl:FunctionalProperty ;
     replacedBy: foaf:familyName ;
+    definition: "The last name of the person." ;
     rdfs:domain sparc:Person ;
     rdfs:range xsd:string ;
     rdfs:comment "I highly reccomend not using this at all, and only using orcids since dealing with names is a complete nightmare" .
 
-sparc:methodOfEuthanasia a owl:DatatypeProperty ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty prov:wasGeneratedBy ;
-            owl:someValuesFrom [ a owl:Restriction ;
-                    owl:onProperty hasPart: ;
-                    owl:someValuesFrom tech:euthanasia ] ] ;
-    rdfs:subPropertyOf sparc:propertiesOfAnimalSubject ;
-    rdfs:domain sparc:AnimalSubject ;
-    rdfs:range xsd:string .
-
-sparc:microscopeSettings a owl:DatatypeProperty ;
-    rdfs:domain sparc:MicroscopyAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:nameOfChemicalInSolution a owl:DatatypeProperty ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty hasParticipant: ;
-            owl:someValuesFrom [ a owl:Restriction ;
-                    owl:onProperty hasPart: ;
-                    owl:someValuesFrom CHEBI:24431 ] ] ;
-    rdfs:domain sparc:ChemicalInSolution ;
-    rdfs:range xsd:string ;
-    rdfs:comment "I'm translating this into the underlying model of the solutions that will need to be created. The scheme that we use for describing solutions for the curators/experimentalists will be much simpler." .
-
-sparc:nameOfInstitution a owl:DatatypeProperty ;
-    rdfs:domain sparc:Organization ;
-    rdfs:range xsd:string .
-
-sparc:nameOfRadiologicalDevice a owl:DatatypeProperty ;
-    rdfs:subPropertyOf sparc:propertiesOfRadiologicalAcquisition ;
-    rdfs:domain sparc:RadiologcalAcquistion ;
-    rdfs:range xsd:string .
-
-sparc:organismSubjectHasGenotype a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty ;
-    rdfs:domain sparc:OrganismSubject ;
-    rdfs:range xsd:string .
-
-sparc:originOfSample a owl:DatatypeProperty ;
-    rdfs:domain sparc:CellCulture,
-        sparc:StemCells ;
-    rdfs:range xsd:string ;
-    editorNote: "no cell culture data sets" .
-
-sparc:passage a owl:DatatypeProperty ;
-    rdfs:domain sparc:CellCulture,
-        sparc:StemCells ;
-    rdfs:range xsd:string ;
-    rdfs:comment "I have no idea what this means" ;
-    editorNote: "no cell culture data sets" .
-
-sparc:propertiesOfAnimalSubject a owl:DatatypeProperty ;
-    rdfs:domain sparc:AnimalSubject ;
-    editorNote: "Parent class." .
-
-sparc:propertiesOfFunctionalMRI a owl:DatatypeProperty ;
-    rdfs:domain sparc:FunctionalMRIFeatures ;
-    editorNote: "Parent class." .
-
-sparc:propertiesOfGeneralMRISequence a owl:DatatypeProperty ;
-    rdfs:domain sparc:GeneralMRISequence ;
-    editorNote: "Parent class." .
-
-sparc:propertiesOfHumanSubject a owl:DatatypeProperty ;
-    rdfs:domain sparc:HumanSubject ;
-    editorNote: "Parent class." .
-
-sparc:propertiesOfRadiologicalAcquisition a owl:DatatypeProperty ;
-    rdfs:domain sparc:RadiologcalAcquistion ;
-    editorNote: "Parent class." .
-
-sparc:rnaSeqSpecimenHasSampleNumber a owl:DatatypeProperty ;
-    rdfs:domain sparc:RNASeqSpecimen ;
-    rdfs:range xsd:string .
-
-sparc:rnaSeqSpecimenHasSourceName a owl:DatatypeProperty ;
-    rdfs:domain sparc:RNASeqSpecimen ;
-    rdfs:range xsd:string .
-
-sparc:rnaSeqSpecimenHasTotalCellNumber a owl:DatatypeProperty ;
-    rdfs:domain sparc:RNASeqSpecimen ;
-    rdfs:range xsd:string .
-
-sparc:rnaSeqSpecimenWasPreparedWithExtractProtocol a owl:DatatypeProperty ;
-    rdfs:domain sparc:RNASeqSpecimen ;
-    rdfs:range xsd:string .
-
-sparc:rnaSeqSpecimenWasPreparedWithGrowthProtocol a owl:DatatypeProperty ;
-    rdfs:domain sparc:RNASeqSpecimen ;
-    rdfs:range xsd:string ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:rnaSeqSpecimenWasPreparedWithTreatmentProtocol a owl:DatatypeProperty ;
-    rdfs:domain sparc:RNASeqSpecimen ;
-    rdfs:range xsd:string ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:samplingResolution a owl:DatatypeProperty ;
-    rdfs:domain sparc:OpticalAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:scaleBarVsSpatial a owl:DatatypeProperty ;
-    rdfs:domain sparc:MicroscopyAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:sedationWasSourcedFrom a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty ;
-    rdfs:domain sparc:Sedation ;
-    rdfs:range xsd:string .
-
-sparc:settingForDetection a owl:DatatypeProperty ;
-    rdfs:domain sparc:OpticalAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:sizeOfScannedField a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty ;
-    rdfs:domain sparc:OpticalAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:softwareEnvironmentForAcquisition a owl:DatatypeProperty ;
-    rdfs:domain sparc:Acquisition ;
-    rdfs:range xsd:string .
-
-sparc:solutionMethodOfDeliveryForDrugsChemicalsDyes a owl:DatatypeProperty ;
-    rdfs:domain sparc:EnvironmentForTissueDerivatives ;
-    rdfs:range xsd:string .
-
-sparc:solventOfChemicalIntoSolution a owl:DatatypeProperty ;
-    rdfs:domain sparc:ChemicalInSolution ;
-    rdfs:range xsd:string .
-
-sparc:sourceOfChemicalInSolution a owl:DatatypeProperty ;
-    rdfs:domain sparc:ChemicalInSolution ;
-    rdfs:range xsd:string .
-
 sparc:specimenHasIdentifier a owl:DatatypeProperty ;
+    definition: "This is a legacy property that has strange usage. It is currently used not to identify the individual specimen, it is used to provide the RRID for the type of specimen." ;
     rdfs:domain sparc:Specimen ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    editorNote: "identifiers that look like numbers are not numbers because their referents do not participate meaningfully in mathematical expressions and rules, there is a similar issue with pointers and pointer arithmetic being not-closed under addition and producing null pointers",
+        "note: in the current MIS this is a datatype property but is used as an object property" ;
+    ilxtr:futureType owl:ObjectProperty .
 
 sparc:stimulatorUtilized a owl:DatatypeProperty ;
-    rdfs:domain sparc:BioelectronicNerveBlockingModulation,
-        sparc:ElectricalModulation ;
+    definition: "A property that is used to report the type of stimulation device used." ;
     rdfs:range xsd:string .
 
-sparc:subjectHasTimePointOnCircadianClock a owl:DatatypeProperty,
-        owl:FunctionalProperty ;
-    rdfs:domain sparc:AnimalExperiment,
-        sparc:ClinicalExperiment ;
-    rdfs:range xsd:string .
+TEMP:contributorOrderIndex a owl:DatatypeProperty ;
+    definition: "The position in which a contributor should appear in the author ordering." .
 
-sparc:subjectHasTimePointOnOestrousCycle a owl:DatatypeProperty,
-        owl:FunctionalProperty ;
-    rdfs:domain sparc:AnimalExperiment,
-        sparc:ClinicalExperiment ;
-    rdfs:range xsd:string .
+TEMP:hasExpectedNumberOfSamples a owl:DatatypeProperty ;
+    definition: "The asserted number of samples in a datset based on the number provided in the dataset_description file." .
 
-sparc:timestampsForCalibration a owl:DatatypeProperty ;
-    rdfs:domain sparc:Acquisition ;
-    rdfs:range xsd:string .
+TEMP:hasExpectedNumberOfSubjects a owl:DatatypeProperty ;
+    definition: "The asserted number of subjects in a datset based on the number provided in the dataset_description file." .
 
-sparc:timingControlFeaturesForMultipleRecordingSystems a owl:DatatypeProperty ;
-    rdfs:domain sparc:Acquisition ;
-    rdfs:range xsd:string .
+TEMP:localIdAlt a owl:DatatypeProperty ;
+    definition: "An alternative local identifier beyond one specified by localId" .
 
-sparc:tissuePreparationStepHasDescription a owl:DatatypeProperty ;
-    rdfs:domain sparc:TissuePreparationSteps ;
-    rdfs:range xsd:string .
+TEMP:subjectHasHeight a owl:DatatypeProperty ;
+    definition: "The height (tallness) of the subject." ;
+    editorNote: "range sparc:Measurement" .
 
-sparc:transcriptomicsAcquisitionDealsWithMolecule a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:transcriptomicsAcquisitionHasDescription a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "Redundant with experiment summary?" .
-
-sparc:transcriptomicsAcquisitionHasLabel a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "Not clear how this is to be used. There is a title field but it is redundant with organ." .
-
-sparc:transcriptomicsAcquisitionHasRunNumber a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "Field is present but blank." .
-
-sparc:transcriptomicsAcquisitionHasSequencingDepth a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "Field is present but blank." .
-
-sparc:transcriptomicsAcquisitionUsedLabelProtocol a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:transcriptomicsAcquisitionUsedLibraryConstructionProtocol a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:transcriptomicsAcquisitionUsedLibrarySelection a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:transcriptomicsAcquisitionUsedLibrarySource a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:transcriptomicsAcquisitionUsedLibraryStrategy a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:transcriptomicsAcquisitionUsedPlatform a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:transcriptomicsAcquisitionUsedRNAIsolationMethod a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string ;
-    editorNote: "Not clear how this is distinct from sparc:rnaSeqSpecimenWasPreparedWithExtractProtocol" .
-
-sparc:transcriptomicsAcquisitionUsedScanProtocol a owl:DatatypeProperty ;
-    rdfs:domain sparc:TranscriptomicsAcquisition ;
-    rdfs:range xsd:string .
-
-sparc:typeOfMicroscope a owl:DatatypeProperty ;
-    rdfs:domain sparc:MicroscopyAcquisition ;
-    rdfs:range xsd:string .
+TEMP:subjectHasWeight a owl:DatatypeProperty ;
+    definition: "The weight or mass of the subject." ;
+    editorNote: "range sparc:Measurement" .
 
 ### Classes
 
-sparc:Acquisition a owl:Class ;
-    replacedBy: tech:measuring .
+foaf:Person a owl:Class .
 
-sparc:Analysis a owl:Class ;
-    replacedBy: tech:analsysis .
+<http://purl.org/ontology/bibo/Journal> a owl:Class .
 
-sparc:AnatomicalLocation a owl:Class ;
-    replacedBy: UBERON:0001062 .
+ilxtr:MISPredicate a owl:Class .
 
-sparc:Anesthesia a owl:Class ;
-    replacedBy: tech:anaesthesia .
+ilxtr:MISType a owl:Class .
 
-sparc:AnimalExperiment a owl:Class ;
-    replacedBy: tech:animal ;
-    rdfs:subClassOf sparc:ExperimentOnLiveOrganism ;
-    owl:disjointWith sparc:ClinicalExperiment ;
-    rdfs:comment "TODO need additional input on how we think about animal technique vs animal experiment" .
+ilxtr:Namespace a owl:Class .
+
+ilxtr:Quantity a owl:Class .
 
 sparc:AnimalSubject a owl:Class ;
     replacedBy: NCBITaxon:33208 ;
-    rdfs:subClassOf sparc:OrganismSubject ;
-    owl:disjointWith sparc:RNASeqSpecimen .
-
-sparc:BioelectronicNerveBlockingModulation a owl:Class ;
-    rdfs:subClassOf sparc:Modulation .
-
-sparc:BulkRNASeqSpecimen a owl:Class ;
-    rdfs:subClassOf sparc:RNASeqSpecimen .
-
-sparc:CellCulture a owl:Class ;
-    rdfs:subClassOf sparc:Sample ;
-    owl:disjointWith sparc:RNASeqSpecimen .
-
-sparc:CellCultureExperiment a owl:Class ;
-    rdfs:subClassOf sparc:ExperimentOnTissueDerivatives ;
-    owl:disjointWith sparc:TranscriptomicsExperiment .
-
-sparc:ChemicalAcquisition a owl:Class ;
-    rdfs:subClassOf sparc:Acquisition .
-
-sparc:ChemicalInSolution a owl:Class .
-
-sparc:ClinicalExperiment a owl:Class ;
-    rdfs:subClassOf sparc:ExperimentOnLiveOrganism .
-
-sparc:CounterStaining a owl:Class ;
-    rdfs:subClassOf sparc:Staining ;
-    editorNote: "could not find in example protocols and data" .
+    definition: "Any metazoan subject including humans." ;
+    rdfs:subClassOf sparc:Subject .
 
 sparc:Dataset a owl:Class ;
-    definition: "The atomic unit of publication of a nested collection of files and folders. Within SPARC this also implies that the dataset should follow the SPARC Data Structure (SDS). Metadata may be shared between datasets but all metadata relevant to a the scientific content of the dataset must be contained inside of it so that it is at least minimally self describing." ;
+    definition: "The atomic unit of publication of a nested collection of files and folders. Within SPARC this also implies that the dataset should follow the SPARC Data Structure (SDS). Metadata may be shared between datasets but all metadata relevant to a the scientific content of the dataset must be contained inside of it so that it is at least minimally self describing. For example a dataset as defined by the Pennsieve platform." ;
     rdfs:subClassOf sparc:Folder .
 
 sparc:DatasetContribution a owl:Class ;
-    definition: "This is a class that represents the specific roles and contributions made by a person to a specific dataset." ;
+    definition: "A record that maps a contributor to a specific dataset that they have contributed to. This is a class that represents the specific roles and contributions made by a person to a specific dataset." ;
     ilxtr:replaces TEMP:DatasetContributor .
 
-sparc:ElectricalAcquisition a owl:Class ;
-    replacedBy: tech:ephysRecording ;
-    rdfs:subClassOf sparc:Acquisition .
-
-sparc:ElectricalModulation a owl:Class ;
-    rdfs:subClassOf sparc:Modulation .
-
-sparc:Embedding a owl:Class ;
-    rdfs:subClassOf sparc:TissuePreparationSteps ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:EmbeddingMedia a owl:Class ;
-    rdfs:subClassOf sparc:Embedding ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:EndogenousReporters a owl:Class ;
-    rdfs:subClassOf sparc:Staining ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:EngineeredTissue a owl:Class ;
-    rdfs:subClassOf sparc:TissueSample .
-
-sparc:Environment a owl:Class .
-
-sparc:EnvironmentForLiveOrganism a owl:Class ;
-    rdfs:subClassOf sparc:Environment .
-
-sparc:EnvironmentForTissueDerivatives a owl:Class ;
-    rdfs:subClassOf sparc:Environment .
-
-sparc:Experiment a owl:Class ;
-    replacedBy: ilxtr:technique ;
-    rdfs:comment "we probably need something that is more than just composite techniques, but actually reflects the fact that it is the expression of a fully specified protocol related question: is this a protocolExecution, or is it the full set of all protocol executions?" .
-
-sparc:ExperimentOnLiveOrganism a owl:Class ;
-    rdfs:subClassOf sparc:Experiment ;
-    owl:disjointWith sparc:ExperimentOnTissueDerivatives .
-
-sparc:ExperimentOnTissueDerivatives a owl:Class ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasPrimaryInput ;
-            owl:someValuesFrom ilxtr:TODO ] ;
-    rdfs:subClassOf sparc:Experiment ;
-    rdfs:comment "TODO this is the good old ex vivo modelling problem where the definition of the technique is based on the fact that the input was the output of a preceeding technique that had certain properties" .
-
-sparc:Extraction a owl:Class ;
-    replacedBy: tech:dissection ;
-    rdfs:comment "at the moment the underlying definition of dissection is just that the technique has as a primary output some part of the primary input of the 'dual' technique" .
-
 sparc:File a owl:Class ;
-    definition: "An atomic unit of data that can be identified or addressed. Can be though of as a stream of known length." ;
+    definition: "An atomic unit of data that can be identified or addressed. Can be though of as a stream of known length. A resource that is equivalent to a posix file (stream of bytes)." ;
     rdfs:subClassOf sparc:Path .
 
 sparc:Flatmap a owl:Class ;
+    definition: "A resource that is a wiring diagram for neural connectivity." ;
     rdfs:subClassOf sparc:Resource .
 
 sparc:Folder a owl:Class ;
-    definition: "Any identified collection of zero or more files or folders of arbitrary depth. This could also be called collection but I am trying to avoid using all the collection related terms as much as possible since the semantics are unclear and mostly we don't care." ;
+    definition: "A resource that is equivalent to a posix folder or directory. Any identified collection of zero or more files or folders of arbitrary depth. This could also be called collection but I am trying to avoid using all the collection related terms as much as possible since the semantics are unclear and mostly we don't care." ;
     rdfs:subClassOf sparc:Path ;
     editorNote: "This can be used with other types as needed to indicate some additional properties beyond the file system tree structure. For example I am explicitly not creating a sparc:Project class because determining the semantics of what is or is not a project with regards to arbitrary collections of datasets is simply not worth the effort. DANDI is envisioning something like a virtual dataset where parts are mixed, matched, combined, etc. and the provenance needed for that is far beyond what any top level assertion that a set of datasets came from the same \"project\" (whatever that means) could possibly entail. If we want to indicate that a folder corresponds to a bf:organization then we should just do that instead of trying to create new terms to capture ill defined concepts. The only exception to this is the dataset level because that a unit of identification and of publication that has special semantics that bridge across multiple systems." .
 
-sparc:FreezingVsChemicalFixation a owl:Class ;
-    rdfs:subClassOf sparc:TissuePreparationForMicroscopy .
-
-sparc:FunctionalMRIFeatures a owl:Class .
-
-sparc:GeneralMRISequence a owl:Class .
-
-sparc:Histochemistry a owl:Class ;
-    rdfs:subClassOf sparc:Staining ;
-    editorNote: "sparc:Immunohistochemistry is used, but is not related to sparc:Histochemistry under the current model" .
+sparc:Group a owl:Class .
 
 sparc:HumanSubject a owl:Class ;
-    rdfs:subClassOf sparc:OrganismSubject,
-        sparc:Specimen ;
-    owl:disjointWith sparc:RNASeqSpecimen .
+    definition: "A subject that is a member of the species homo spaiens sapiens NCBITaxon:9606" ;
+    rdfs:subClassOf sparc:AnimalSubject .
 
-sparc:IDISCO a owl:Class ;
-    rdfs:subClassOf sparc:TissueClearance ;
-    rdfs:comment "This is probably overly specific for minimal metadata, I assume this should go in the methods ontology." ;
-    editorNote: "could not find in example protocols and data" .
+sparc:Measurement a owl:Class ;
+    definition: "The resulting value of an experimental measurement, has units (TEMP:hasUnit) and magnitude (rdf:value)." .
 
-sparc:Immunohistochemistry a owl:Class ;
-    rdfs:subClassOf sparc:Staining .
+sparc:Participant a owl:Class ;
+    editorNote: "This is probably more accurately Material Entity, but one that we have data about since it is appearing in some information artifact. Despite the fact that we are using the word participant in the identifier this class is meant to abstract over atomic specimens and collective (but opaque) populations on which participate in some process. If there were a better term that subsumed both atomic and collective beings that wasn't material entity (object + object aggregate), we could go with that. Normally this would be role in BFO and this classification would be inferred, because technically all continuants participate in a dual occurent that places them in time I this is ok, if a bit pedantic. See https://github.com/SciCrunch/sparc-curation/blob/master/docs/participants.org for details." .
 
-sparc:IREnergyModulation a owl:Class ;
-    rdfs:subClassOf sparc:Modulation .
-
-sparc:Measurement a owl:Class .
-
-sparc:MechanicalAcquisition a owl:Class ;
-    rdfs:subClassOf sparc:Acquisition .
-
-sparc:MicroscopyAcquisition a owl:Class ;
-    rdfs:subClassOf sparc:Acquisition .
-
-sparc:Modulation a owl:Class ;
-    replacedBy: tech:activityModulation .
-
-sparc:MountVsSections a owl:Class ;
-    rdfs:subClassOf sparc:TissueMounting .
-
-sparc:OpticalAcquisition a owl:Class ;
-    rdfs:subClassOf sparc:Acquisition .
-
-sparc:OrganismSubject a owl:Class ;
-    rdfs:subClassOf sparc:Subject .
-
-sparc:Organization a owl:Class .
+sparc:ParticipantPopulation a owl:Class ;
+    owl:equivalentClass sparc:Population ;
+    editorNote: "this is the one that is equivalent to population" .
 
 sparc:Path a owl:Class ;
-    definition: "Something equivalent to a file system path, the union of file and folder." ;
+    definition: "Something equivalent to a file system path, the union of file and folder. For example, a sparc:Folder or a sparc:File." ;
     rdfs:subClassOf sparc:Resource .
 
 sparc:Performance a owl:Class ;
     definition: "A single performance of a scientific protocol. A process that is constrained by some prior information, usually a protocol artifact. Performances of the same protocol are extremely common in science, though there are some long running performances that are not repeated sequentially in time but rather run in parallel, e.g. longitudinal studies. Performances thus may be ongoing, though reporting of data about ongoing performances does require an identifiable sub-performance that has come to a close. Performances may produce any combination of data, material, or modified subjects. Critically, performances always happen at some point in time and are the key element of the data model which ensures that repeated performances of the same protocol can be distinguished by the data system. While this may seem obvious (e.g. asking someone their age every year)." ;
     rdfs:subClassOf BFO:0000015 ;
-    editorNote: "This editor is aware of multiple data models that have made the mistake of using data model where age is asserted to be a property of a subject universally, not just a subject at a point in time. The concept of a performance is one way avoid a multiplication of universals that can occur if one were to multiplying identifiers along the lines of person-1-at-time-1, person-1-at-time-2 etc. to accommodate multiple measurements of the same value on the same subject at different times." .
+    editorNote: "This editor is aware of multiple data models that have made the mistake of using data model where age is asserted to be a property of a subject universally, not just a subject at a point in time. The concept of a performance is one way to avoid a multiplication of universals that can occur if one were to multiplying identifiers along the lines of person-1-at-time-1, person-1-at-time-2 etc. to accommodate multiple measurements of the same value on the same subject at different times." .
 
 sparc:Person a owl:Class ;
     definition: "An agentous being of some variety, usually classified as such because they are participating in activities modeled by this ontology in some way." .
 
-sparc:Procedure a owl:Class ;
-    replacedBy: ilxtr:technique .
+sparc:Pool a owl:Class .
+
+sparc:Population a owl:Class ;
+    rdfs:subClassOf sparc:Participant,
+        [ a owl:Restriction ;
+            owl:onProperty hasMember: ;
+            owl:someValuesFrom sparc:Participant ] ;
+    editorNote: "More or less equivalent to object aggregate except that information about individual members is not known. Additional the relation between an individual member and some other object is not know. For example I may know exactly the 10 mice and brains from which 100 slices were taken, but I may not know exactly which brain an individual slice came from, there was an individual brain that it did come from, but in the data structure we can only say that it was one of these 10. The choice of word for the identifier is not the best, there are too many meanings in too many contexts. One additional constraint is that the members of a population must all be of the same type, even if that type is things-whose-mass-can-be-measured (which is likely a subClassOf things-with-mass), object aggregates do not carry this restriction." .
+
+sparc:PopulationPopulation a owl:Class ;
+    rdfs:subClassOf sparc:Population,
+        [ a owl:Restriction ;
+            owl:onProperty hasMember: ;
+            owl:someValuesFrom sparc:Population ] .
 
 sparc:Protocol a owl:Class ;
     replacedBy: ilxtr:protocol ;
+    definition: "An information content entity that contains instructions for performing a scientific experiment or procedure. Protocols are prior informational constraints on scientific processes." ;
     rdfs:subClassOf sparc:Resource .
 
-sparc:RadiologcalAcquistion a owl:Class ;
-    replacedBy: tech:imaging ;
-    rdfs:subClassOf sparc:Acquisition ;
-    rdfs:comment "TODO not fine grained enough" .
-
-sparc:RadiologicalImagingProtocol a owl:Class .
-
 sparc:Researcher a owl:Class ;
+    replacedBy: sparc:Person ;
+    definition: "A legacy class that indicates that the person in question has a role as a researcher." ;
     rdfs:subClassOf sparc:Person .
 
 sparc:Resource a owl:Class ;
-    replacedBy: NLX:63400 ;
-    rdfs:comment "the usage here is a conflation between resources and prov entities/ methonds ontology results" .
-
-sparc:RNASeqSpecimen a owl:Class ;
-    rdfs:subClassOf sparc:Sample ;
-    owl:disjointWith sparc:StemCells,
-        sparc:TissueSample .
-
-sparc:RRIDs a owl:Class ;
-    rdfs:subClassOf sparc:Staining .
+    definition: "Any digital artifact. Closely follows the RDF meaning of resources. Examples of subclasses are, file, folder, and dataset." ;
+    rdfs:comment "the usage here is a conflation between resources and prov entities/ methonds ontology results" ;
+    editorNote: "This class is NOT replacedBy: NLX:63400. It is distinct from the notion of research resource that is used in the RRID systems. It is more granular and may refer to any information artifact that is part of SPARC. In terms of usage it is likely that sparc:Resource is equivalent to IAO:0000030 information content entity, given that nearly everything that is of type sparc:Resource can be dereference to its information content from the identifier we use as the primary subject in the ontology" .
 
 sparc:Sample a owl:Class ;
+    definition: "A part of some subject or other sample that has been derived (extracted, separated) from its original parent. Examples are tissue, cells, and slices." ;
     rdfs:subClassOf sparc:Specimen .
+
+sparc:SamplePopulation a owl:Class ;
+    rdfs:subClassOf sparc:SpecimenPopulation,
+        [ a owl:Restriction ;
+            owl:onProperty hasMember: ;
+            owl:someValuesFrom sparc:Sample ] .
 
 sparc:Scaffold a owl:Class ;
+    definition: "A resource that provides a three dimensional coordinate system for an organ or other anatomical entity." ;
     rdfs:subClassOf sparc:Resource .
 
-sparc:Sectioning a owl:Class ;
-    rdfs:subClassOf sparc:TissuePreparationSteps ;
-    editorNote: "could not find in example protocols and data" .
+sparc:Specimen a owl:Class ;
+    definition: "Any atomic participant in a scientific protocol, includes both subjects and samples. The use of specimen for subjects is based on the notion of a type specimen e.g. Carl Linnaus is the type specimen for homo spaiens sapiens." ;
+    rdfs:subClassOf sparc:Participant .
 
-sparc:SectioningDevice a owl:Class ;
-    rdfs:subClassOf sparc:Sectioning ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:SectionThickness a owl:Class ;
-    rdfs:subClassOf sparc:Sectioning ;
-    editorNote: "could not find in example protocols and data" .
-
-sparc:Sedation a owl:Class ;
-    replacedBy: tech:sedation .
-
-sparc:SingleCellRNASeqSpecimen a owl:Class ;
-    rdfs:subClassOf sparc:RNASeqSpecimen .
-
-sparc:SlidesVsGrid a owl:Class ;
-    rdfs:subClassOf sparc:TissueMounting .
-
-sparc:Specimen a owl:Class .
-
-sparc:Staining a owl:Class ;
-    rdfs:subClassOf sparc:TissuePreparationSteps .
-
-sparc:StemCellExperiment a owl:Class ;
-    rdfs:subClassOf sparc:ExperimentOnTissueDerivatives ;
-    owl:disjointWith sparc:TranscriptomicsExperiment .
-
-sparc:StemCells a owl:Class ;
-    rdfs:subClassOf sparc:Specimen .
+sparc:SpecimenPopulation a owl:Class ;
+    rdfs:subClassOf sparc:Population,
+        [ a owl:Restriction ;
+            owl:onProperty hasMember: ;
+            owl:someValuesFrom sparc:Specimen ] ;
+    editorNote: "this is NOT equivalent to population because operationally we need to be able to have populations of populations because we need to be able to attach metadata to sub-populations without being forced to assert a specific derivation chain" .
 
 sparc:Subject a owl:Class ;
+    definition: "Any intact, complete, and usually (though not always) living biological organism that is the primary organismal participant in a scientific protocol performance. Edge cases are cell lines which have long since been existing outside their original host organism and single celled organisms." ;
     rdfs:subClassOf sparc:Specimen .
 
-sparc:ThermalEnergyModulation a owl:Class ;
-    rdfs:subClassOf sparc:Modulation .
+sparc:SubjectPopulation a owl:Class ;
+    rdfs:subClassOf sparc:SpecimenPopulation,
+        [ a owl:Restriction ;
+            owl:onProperty hasMember: ;
+            owl:someValuesFrom sparc:Subject ] .
 
-sparc:TissueClearance a owl:Class ;
-    rdfs:subClassOf sparc:TissuePreparationSteps ;
-    editorNote: "could not find in example protocols and data" .
+TEMP:article-journal a owl:Class ;
+    replacedBy: TEMP:ArticleJournal ;
+    definition: "Journal article type from DOI records." ;
+    editorNote: "from ??? maybe doi",
+        "mistake, already fixed in new releases" ;
+    ilxtr:curationInternal true .
 
-sparc:TissueClearing a owl:Class ;
-    rdfs:subClassOf sparc:Embedding ;
-    editorNote: "could not find in example protocols and data" .
+TEMP:ArticleJournal a owl:Class ;
+    definition: "Journal article type from DOI records." ;
+    editorNote: "from doi" .
 
-sparc:TissueExperiment a owl:Class ;
-    replacedBy: [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasPrimaryParticipant ;
-            owl:someValuesFrom ilxtr:tissue ] ;
-    rdfs:subClassOf sparc:ExperimentOnTissueDerivatives ;
-    owl:disjointWith sparc:TranscriptomicsExperiment ;
-    rdfs:comment "TODO tissue experiment vs tissue technique ..." .
+TEMP:CoreFacility a owl:Class ;
+    definition: "A physical plant resource, such as a microscopy core, sequencing core, coherant neutron source, etc. From ror." ;
+    editorNote: "from ror",
+        "used for rors" .
 
-sparc:TissueMounting a owl:Class ;
-    rdfs:subClassOf sparc:TissuePreparationSteps .
+TEMP:Dataset a owl:Class ;
+    definition: "The DataCite doi dataset type." ;
+    editorNote: "this is from the doi metadata, technically not a sparc dataset though they often resolve to sparc datasets if you get a doi from this file",
+        "used for datacite dois" .
 
-sparc:TissuePreparationForMicroscopy a owl:Class .
+TEMP:FundedResearchProject a owl:Class ;
+    definition: "A funded research project. This is the ontological entitie that corresponds to a grant number." ;
+    editorNote: "these are identified by award number" .
 
-sparc:TissuePreparationSteps a owl:Class .
+TEMP:Institution a owl:Class ;
+    definition: "Institution organization type from ror." ;
+    editorNote: "from ror",
+        "used for rors" .
 
-sparc:TissuePreservation a owl:Class ;
-    rdfs:subClassOf sparc:TissuePreparationSteps .
+TEMP:Nonprofit a owl:Class ;
+    definition: "Nonprofit organization type from ror." ;
+    editorNote: "from ror",
+        "used for rors" .
 
-sparc:TissueSample a owl:Class ;
-    replacedBy: ilxtr:tissue ;
-    rdfs:subClassOf sparc:Sample .
+TEMP:posted-content a owl:Class ;
+    definition: "Posted content type from DOI records." ;
+    editorNote: "from ??? maybe doi" .
 
-sparc:TranscriptomicsAcquisition a owl:Class ;
-    rdfs:subClassOf sparc:Acquisition .
+TEMP:Protocol a owl:Class ;
+    replacedBy: sparc:Protocol ;
+    editorNote: "replaced by sparc:Protocol" .
 
-sparc:TranscriptomicsExperiment a owl:Class ;
-    rdfs:subClassOf sparc:ExperimentOnTissueDerivatives .
+### Annotations
 
-### Axioms
+TEMP:DatasetContributor owl:deprecated true ;
+    replacedBy: sparc:DatasetContribution .
 
-[] a owl:AllDisjointClasses ;
-    owl:members (
-            sparc:AnimalSubject
-            sparc:CellCulture
-            sparc:HumanSubject
-            sparc:StemCells
-            sparc:TissueSample ) .
+TEMP:hasExperimentalApproach owl:deprecated true ;
+    definition: "A property relating a dataset to the experimental approaches that were used when generating it." .
 
-[] a owl:AllDisjointClasses ;
-    owl:members (
-            sparc:CellCultureExperiment
-            sparc:StemCellExperiment
-            sparc:TissueExperiment ) .
+TEMPRAW: a ilxtr:Namespace ;
+    editorNote: "any predicate or type that has TEMPRAW as a prefix should be excluded" ;
+    ilxtr:curationInternal true .
 
 ### Serialized using the ttlser deterministic serializer v1.2.0
