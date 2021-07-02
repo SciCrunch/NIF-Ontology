@@ -15,11 +15,15 @@
     owl:imports <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-core.ttl> ;
     rdfs:label "Waxholm Sprague Dawley Atlas Labels" ;
     skos:altLabel "whssd" ;
-    owl:versionInfo "2018-02-25" ;
-    ilxtr:hasSourceArtifact <http://uri.interlex.org/waxholm/uris/sd/versions/2> ;
+    owl:versionInfo "2019-05-21" ;
+    ilxtr:hasSourceArtifact <http://uri.interlex.org/waxholm/uris/sd/versions/1>,
+        <http://uri.interlex.org/waxholm/uris/sd/versions/2> ;
     ilxtr:rootClass WHSSD: ;
-    prov:wasDerivedFrom <https://github.com/tgbugs/pyontutils/blob/1c18b4fe6548dd48d18e1c9dbae1321c9b106bf9/pyontutils/resources/WHS_SD_rat_atlas_v2.label> ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/32ab4fa1efad87f6421eb488b28bec81734b41de/pyontutils/parcellation.py#L2044> .
+    prov:wasDerivedFrom <https://github.com/tgbugs/pyontutils/blob/687cd746a1f73e14894c519e841f83cc16fd4b1f/nifstd/resources/WHS_SD_rat_atlas_v1.label>,
+        <https://github.com/tgbugs/pyontutils/blob/687cd746a1f73e14894c519e841f83cc16fd4b1f/nifstd/resources/WHS_SD_rat_atlas_v1_labels.ilf>,
+        <https://github.com/tgbugs/pyontutils/blob/687cd746a1f73e14894c519e841f83cc16fd4b1f/nifstd/resources/WHS_SD_rat_atlas_v2.label>,
+        <https://github.com/tgbugs/pyontutils/blob/687cd746a1f73e14894c519e841f83cc16fd4b1f/nifstd/resources/WHS_SD_rat_atlas_v2_labels.ilf> ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/f73ca012ddfdf1c8c1c56ed9ce733a6c77bde8f4/nifstd/nifstd_tools/parcellation/whs.py#L124> .
 
 ### Classes
 
@@ -29,7 +33,10 @@ WHSSD: a owl:Class ;
     rdfs:subClassOf ilxtr:parcellationLabel,
         [ a owl:Restriction ;
             owl:onProperty ilxtr:isDefinedBy ;
-            owl:allValuesFrom <http://uri.interlex.org/waxholm/uris/sd/versions/2> ] .
+            owl:someValuesFrom <http://uri.interlex.org/waxholm/uris/sd/versions/1> ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDefinedBy ;
+            owl:someValuesFrom <http://uri.interlex.org/waxholm/uris/sd/versions/2> ] .
 
 WHSSD:0 a owl:Class ;
     rdfs:label "Clear Label (whssd)" ;
@@ -37,59 +44,157 @@ WHSSD:0 a owl:Class ;
     rdfs:subClassOf WHSSD: .
 
 WHSSD:1 a owl:Class ;
-    rdfs:label "descending corticofugal pathways (whssd)" ;
-    skos:prefLabel "descending corticofugal pathways" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "corticofugal pathways (whssd)",
+        "descending corticofugal pathways (whssd)" ;
+    skos:prefLabel "corticofugal pathways",
+        "descending corticofugal pathways" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:103 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1003 ] .
 
 WHSSD:2 a owl:Class ;
-    rdfs:label "substantia nigra (whssd)" ;
-    skos:prefLabel "substantia nigra" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "Gray matter (whssd)",
+        "substantia nigra (whssd)" ;
+    skos:prefLabel "Gray matter",
+        "substantia nigra" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:3 a owl:Class ;
     rdfs:label "subthalamic nucleus (whssd)" ;
     skos:prefLabel "subthalamic nucleus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:4 a owl:Class ;
-    rdfs:label "molecular layer of the cerebellum (whssd)" ;
-    skos:prefLabel "molecular layer of the cerebellum" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "molecular cell layer of the cerebellum (whssd)",
+        "molecular layer of the cerebellum (whssd)" ;
+    skos:prefLabel "molecular cell layer of the cerebellum",
+        "molecular layer of the cerebellum" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:114 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1014 ] .
 
 WHSSD:5 a owl:Class ;
-    rdfs:label "granule cell level of the cerebellum (whssd)" ;
-    skos:prefLabel "granule cell level of the cerebellum" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "deeper cerebellum (whssd)",
+        "granule cell level of the cerebellum (whssd)" ;
+    skos:prefLabel "deeper cerebellum",
+        "granule cell level of the cerebellum" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:114 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1014 ] .
 
 WHSSD:6 a owl:Class ;
     rdfs:label "alveus of the hippocampus (whssd)" ;
     skos:prefLabel "alveus of the hippocampus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:102 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1002 ] .
 
 WHSSD:7 a owl:Class ;
     rdfs:label "inferior cerebellar peduncle (whssd)" ;
     skos:prefLabel "inferior cerebellar peduncle" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:109 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1009 ] .
 
 WHSSD:10 a owl:Class ;
     rdfs:label "cingulate cortex, area 2 (whssd)" ;
     skos:prefLabel "cingulate cortex, area 2" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
+
+WHSSD:14 a owl:Class ;
+    rdfs:label "dorsal-lateral entorhinal area (whssd)" ;
+    skos:prefLabel "dorsal-lateral entorhinal area" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ] .
+
+WHSSD:15 a owl:Class ;
+    rdfs:label "dorsal-intermediate entorhinal area (whssd)" ;
+    skos:prefLabel "dorsal-intermediate entorhinal area" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ] .
+
+WHSSD:17 a owl:Class ;
+    rdfs:label "perirhinal cortex (whssd)" ;
+    skos:prefLabel "perirhinal cortex" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ] .
 
 WHSSD:30 a owl:Class ;
     rdfs:label "striatum (whssd)" ;
     skos:prefLabel "striatum" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:31 a owl:Class ;
     rdfs:label "globus pallidus (whssd)" ;
     skos:prefLabel "globus pallidus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:32 a owl:Class ;
     rdfs:label "entopeduncular nucleus (whssd)" ;
     skos:prefLabel "entopeduncular nucleus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:33 a owl:Class ;
     rdfs:label "ventricular system (whssd)" ;
@@ -99,52 +204,112 @@ WHSSD:33 a owl:Class ;
 WHSSD:34 a owl:Class ;
     rdfs:label "medial lemniscus (whssd)" ;
     skos:prefLabel "medial lemniscus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:104 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1004 ] .
 
 WHSSD:35 a owl:Class ;
     rdfs:label "facial nerve (whssd)" ;
     skos:prefLabel "facial nerve" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:106 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1006 ] .
 
 WHSSD:36 a owl:Class ;
     rdfs:label "anterior commissure, anterior part (whssd)" ;
     skos:prefLabel "anterior commissure, anterior part" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:101 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1001 ] .
 
 WHSSD:37 a owl:Class ;
     rdfs:label "anterior commissure, posterior part (whssd)" ;
     skos:prefLabel "anterior commissure, posterior part" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:101 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1001 ] .
 
 WHSSD:38 a owl:Class ;
     rdfs:label "ventral hippocampal commissure (whssd)" ;
     skos:prefLabel "ventral hippocampal commissure" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:102 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1002 ] .
 
 WHSSD:39 a owl:Class ;
     rdfs:label "thalamus (whssd)" ;
     skos:prefLabel "thalamus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:40 a owl:Class ;
     rdfs:label "septal region (whssd)" ;
     skos:prefLabel "septal region" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:41 a owl:Class ;
     rdfs:label "optic nerve (whssd)" ;
     skos:prefLabel "optic nerve" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:107 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1007 ] .
 
 WHSSD:42 a owl:Class ;
     rdfs:label "optic tract and optic chiasm (whssd)" ;
     skos:prefLabel "optic tract and optic chiasm" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:107 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1007 ] .
 
 WHSSD:43 a owl:Class ;
     rdfs:label "pineal gland (whssd)" ;
     skos:prefLabel "pineal gland" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:44 a owl:Class ;
     rdfs:label "inner ear (whssd)" ;
@@ -154,290 +319,875 @@ WHSSD:44 a owl:Class ;
 WHSSD:45 a owl:Class ;
     rdfs:label "spinal cord (whssd)" ;
     skos:prefLabel "spinal cord" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:115 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1015 ] .
 
 WHSSD:46 a owl:Class ;
     rdfs:label "commissure of the superior colliculus (whssd)" ;
     skos:prefLabel "commissure of the superior colliculus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:108 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1008 ] .
 
 WHSSD:47 a owl:Class ;
-    rdfs:label "brainstem (whssd)" ;
-    skos:prefLabel "brainstem" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "brain stem (whssd)",
+        "brainstem (whssd)" ;
+    skos:prefLabel "brain stem",
+        "brainstem" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:48 a owl:Class ;
     rdfs:label "hypothalamic region (whssd)" ;
     skos:prefLabel "hypothalamic region" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:49 a owl:Class ;
     rdfs:label "inferior colliculus (whssd)" ;
     skos:prefLabel "inferior colliculus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1013 ] .
 
 WHSSD:50 a owl:Class ;
     rdfs:label "superficial gray layer of the superior colliculus (whssd)" ;
     skos:prefLabel "superficial gray layer of the superior colliculus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1013 ] .
 
 WHSSD:51 a owl:Class ;
     rdfs:label "periaqueductal gray (whssd)" ;
     skos:prefLabel "periaqueductal gray" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:52 a owl:Class ;
     rdfs:label "fornix (whssd)" ;
     skos:prefLabel "fornix" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:102 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1002 ] .
 
 WHSSD:53 a owl:Class ;
     rdfs:label "mammillothalamic tract (whssd)" ;
     skos:prefLabel "mammillothalamic tract" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:105 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1005 ] .
 
 WHSSD:54 a owl:Class ;
     rdfs:label "commissural stria terminalis (whssd)" ;
     skos:prefLabel "commissural stria terminalis" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:105 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1005 ] .
 
 WHSSD:55 a owl:Class ;
     rdfs:label "deeper layers of the superior colliculus (whssd)" ;
     skos:prefLabel "deeper layers of the superior colliculus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1013 ] .
 
 WHSSD:56 a owl:Class ;
     rdfs:label "periventricular gray (whssd)" ;
     skos:prefLabel "periventricular gray" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:57 a owl:Class ;
     rdfs:label "genu of the facial nerve (whssd)" ;
     skos:prefLabel "genu of the facial nerve" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:106 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1006 ] .
 
 WHSSD:58 a owl:Class ;
     rdfs:label "pontine nuclei (whssd)" ;
     skos:prefLabel "pontine nuclei" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:59 a owl:Class ;
     rdfs:label "fimbria of the hippocampus (whssd)" ;
     skos:prefLabel "fimbria of the hippocampus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:102 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1002 ] .
 
 WHSSD:60 a owl:Class ;
     rdfs:label "fasciculus retroflexus (whssd)" ;
     skos:prefLabel "fasciculus retroflexus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:105 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1005 ] .
 
 WHSSD:61 a owl:Class ;
     rdfs:label "stria medullaris of the thalamus (whssd)" ;
     skos:prefLabel "stria medullaris of the thalamus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:105 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1005 ] .
 
 WHSSD:62 a owl:Class ;
     rdfs:label "stria terminalis (whssd)" ;
     skos:prefLabel "stria terminalis" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:105 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1005 ] .
 
 WHSSD:63 a owl:Class ;
     rdfs:label "posterior commissure (whssd)" ;
     skos:prefLabel "posterior commissure" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
 
 WHSSD:64 a owl:Class ;
     rdfs:label "glomerular layer of the accessory olfactory bulb (whssd)" ;
     skos:prefLabel "glomerular layer of the accessory olfactory bulb" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:111 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1011 ] .
 
 WHSSD:65 a owl:Class ;
     rdfs:label "glomerular layer of the olfactory bulb (whssd)" ;
     skos:prefLabel "glomerular layer of the olfactory bulb" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:111 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1011 ] .
 
 WHSSD:66 a owl:Class ;
     rdfs:label "olfactory bulb (whssd)" ;
     skos:prefLabel "olfactory bulb" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:111 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1011 ] .
 
 WHSSD:67 a owl:Class ;
     rdfs:label "corpus callosum and associated subcortical white matter (whssd)" ;
     skos:prefLabel "corpus callosum and associated subcortical white matter" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
 
 WHSSD:68 a owl:Class ;
     rdfs:label "brachium of the superior colliculus (whssd)" ;
     skos:prefLabel "brachium of the superior colliculus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:108 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1008 ] .
 
 WHSSD:69 a owl:Class ;
     rdfs:label "commissure of the inferior colliculus (whssd)" ;
     skos:prefLabel "commissure of the inferior colliculus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:108 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1008 ] .
 
 WHSSD:70 a owl:Class ;
     rdfs:label "central canal (whssd)" ;
     skos:prefLabel "central canal" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:115 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1015 ] .
 
 WHSSD:71 a owl:Class ;
     rdfs:label "interpeduncular nucleus (whssd)" ;
     skos:prefLabel "interpeduncular nucleus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:72 a owl:Class ;
     rdfs:label "ascending fibers of the facial nerve (whssd)" ;
     skos:prefLabel "ascending fibers of the facial nerve" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:106 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1006 ] .
 
 WHSSD:73 a owl:Class ;
-    rdfs:label "anterior commissure (whssd)" ;
-    skos:prefLabel "anterior commissure" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "anterior commissure (whssd)",
+        "anterior commissure, intrabulbar part (whssd)" ;
+    skos:prefLabel "anterior commissure",
+        "anterior commissure, intrabulbar part" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:101 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1001 ] .
 
 WHSSD:74 a owl:Class ;
     rdfs:label "inferior olive (whssd)" ;
     skos:prefLabel "inferior olive" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:75 a owl:Class ;
-    rdfs:label "spinal trigeminal nuclus (whssd)" ;
-    skos:prefLabel "spinal trigeminal nuclus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "spinal trigeminal nucleus (whssd)",
+        "spinal trigeminal nuclus (whssd)" ;
+    skos:prefLabel "spinal trigeminal nucleus",
+        "spinal trigeminal nuclus" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:76 a owl:Class ;
     rdfs:label "spinal trigeminal tract (whssd)" ;
     skos:prefLabel "spinal trigeminal tract" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
 
 WHSSD:77 a owl:Class ;
-    rdfs:label "frontal associiation cortex (whssd)" ;
-    skos:prefLabel "frontal associiation cortex" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "frontal association cortex (whssd)",
+        "frontal associiation cortex (whssd)" ;
+    skos:prefLabel "frontal association cortex",
+        "frontal associiation cortex" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:78 a owl:Class ;
     rdfs:label "middle cerebellar peduncle (whssd)" ;
     skos:prefLabel "middle cerebellar peduncle" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:109 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1009 ] .
 
 WHSSD:79 a owl:Class ;
     rdfs:label "transverse fibers of the pons (whssd)" ;
     skos:prefLabel "transverse fibers of the pons" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:109 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1009 ] .
 
 WHSSD:80 a owl:Class ;
     rdfs:label "habenular commissure (whssd)" ;
     skos:prefLabel "habenular commissure" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:105 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1005 ] .
 
 WHSSD:81 a owl:Class ;
     rdfs:label "nucleus of the stria medullaris (whssd)" ;
     skos:prefLabel "nucleus of the stria medullaris" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:82 a owl:Class ;
     rdfs:label "basal forebrain region (whssd)" ;
     skos:prefLabel "basal forebrain region" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:83 a owl:Class ;
     rdfs:label "supraoptic decussation (whssd)" ;
     skos:prefLabel "supraoptic decussation" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:107 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1007 ] .
 
 WHSSD:84 a owl:Class ;
     rdfs:label "medial lemniscus decussation (whssd)" ;
     skos:prefLabel "medial lemniscus decussation" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:104 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1004 ] .
 
 WHSSD:85 a owl:Class ;
     rdfs:label "pyramidal decussation (whssd)" ;
     skos:prefLabel "pyramidal decussation" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:103 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1003 ] .
+
+WHSSD:86 a owl:Class ;
+    rdfs:label "hippocampal formation (whssd)" ;
+    skos:prefLabel "hippocampal formation" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ] .
+
+WHSSD:87 a owl:Class ;
+    rdfs:label "subiculum (whssd)" ;
+    skos:prefLabel "subiculum" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ] .
+
+WHSSD:88 a owl:Class ;
+    rdfs:label "postrhinal cortex (whssd)" ;
+    skos:prefLabel "postrhinal cortex" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ] .
+
+WHSSD:89 a owl:Class ;
+    rdfs:label "ventral-intermediate entorhinal area (whssd)" ;
+    skos:prefLabel "ventral-intermediate entorhinal area" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ] .
+
+WHSSD:90 a owl:Class ;
+    rdfs:label "medial entorhinal field (whssd)" ;
+    skos:prefLabel "medial entorhinal field" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ] .
+
+WHSSD:91 a owl:Class ;
+    rdfs:label "caudal entorhinal field (whssd)" ;
+    skos:prefLabel "caudal entorhinal field" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ] .
 
 WHSSD:92 a owl:Class ;
     rdfs:label "neocortex (whssd)" ;
     skos:prefLabel "neocortex" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:112 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:93 a owl:Class ;
     rdfs:label "bed nucleus of the stria terminalis (whssd)" ;
     skos:prefLabel "bed nucleus of the stria terminalis" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
 
 WHSSD:94 a owl:Class ;
     rdfs:label "pretectal region (whssd)" ;
     skos:prefLabel "pretectal region" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:113 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1013 ] .
 
 WHSSD:95 a owl:Class ;
-    rdfs:label "cornu ammonis 3 (whssd)" ;
-    skos:prefLabel "cornu ammonis 3" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "cornu ammonis 1 (whssd)",
+        "cornu ammonis 3 (whssd)" ;
+    skos:prefLabel "cornu ammonis 1",
+        "cornu ammonis 3" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:96 a owl:Class ;
     rdfs:label "dentate gyrus (whssd)" ;
     skos:prefLabel "dentate gyrus" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:97 a owl:Class ;
     rdfs:label "cornu ammonis 2 (whssd)" ;
     skos:prefLabel "cornu ammonis 2" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:98 a owl:Class ;
-    rdfs:label "cornu ammonis 1 (whssd)" ;
-    skos:prefLabel "cornu ammonis 1" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "cornu ammonis 1 (whssd)",
+        "cornu ammonis 3 (whssd)" ;
+    skos:prefLabel "cornu ammonis 1",
+        "cornu ammonis 3" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:99 a owl:Class ;
     rdfs:label "fasciola cinereum (whssd)" ;
     skos:prefLabel "fasciola cinereum" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:100 a owl:Class ;
-    rdfs:label "subiculum (whssd)" ;
-    skos:prefLabel "subiculum" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "subiculum (whssd)",
+        "White matter (whssd)" ;
+    skos:prefLabel "subiculum",
+        "White matter" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
+
+WHSSD:101 a owl:Class ;
+    rdfs:label "Anterior commissure (whssd)" ;
+    skos:prefLabel "Anterior commissure" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ] .
+
+WHSSD:102 a owl:Class ;
+    rdfs:label "Hippocampal white matter (whssd)" ;
+    skos:prefLabel "Hippocampal white matter" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ] .
+
+WHSSD:103 a owl:Class ;
+    rdfs:label "Corticofugal pathways (whssd)" ;
+    skos:prefLabel "Corticofugal pathways" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ] .
+
+WHSSD:104 a owl:Class ;
+    rdfs:label "Medial lemniscus (whssd)" ;
+    skos:prefLabel "Medial lemniscus" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ] .
+
+WHSSD:105 a owl:Class ;
+    rdfs:label "Thalamic tracts (whssd)" ;
+    skos:prefLabel "Thalamic tracts" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ] .
+
+WHSSD:106 a owl:Class ;
+    rdfs:label "Facial nerve (whssd)" ;
+    skos:prefLabel "Facial nerve" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ] .
+
+WHSSD:107 a owl:Class ;
+    rdfs:label "Optic fiber system and supraoptic decussation (whssd)" ;
+    skos:prefLabel "Optic fiber system and supraoptic decussation" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ] .
 
 WHSSD:108 a owl:Class ;
-    rdfs:label "postrhinal cortex (whssd)" ;
-    skos:prefLabel "postrhinal cortex" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "postrhinal cortex (whssd)",
+        "White matter of the tectum (whssd)" ;
+    skos:prefLabel "postrhinal cortex",
+        "White matter of the tectum" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:109 a owl:Class ;
-    rdfs:label "presubiculum (whssd)" ;
-    skos:prefLabel "presubiculum" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "Cerebellar and precerebellar white matter (whssd)",
+        "presubiculum (whssd)" ;
+    skos:prefLabel "Cerebellar and precerebellar white matter",
+        "presubiculum" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:100 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:110 a owl:Class ;
     rdfs:label "parasubiculum (whssd)" ;
     skos:prefLabel "parasubiculum" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
+
+WHSSD:111 a owl:Class ;
+    rdfs:label "Olfactory system (whssd)" ;
+    skos:prefLabel "Olfactory system" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ] .
 
 WHSSD:112 a owl:Class ;
-    rdfs:label "perirhinal area 35 (whssd)" ;
-    skos:prefLabel "perirhinal area 35" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "Cerebral cortex including the neocortex and the hippocampus (whssd)",
+        "perirhinal area 35 (whssd)" ;
+    skos:prefLabel "Cerebral cortex including the neocortex and the hippocampus",
+        "perirhinal area 35" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:113 a owl:Class ;
-    rdfs:label "perirhinal area 36 (whssd)" ;
-    skos:prefLabel "perirhinal area 36" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "perirhinal area 36 (whssd)",
+        "Tectum (whssd)" ;
+    skos:prefLabel "perirhinal area 36",
+        "Tectum" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:114 a owl:Class ;
-    rdfs:label "entorhinal cortex (whssd)" ;
-    skos:prefLabel "entorhinal cortex" ;
-    rdfs:subClassOf WHSSD: .
+    rdfs:label "Cerebellum (whssd)",
+        "entorhinal cortex (whssd)" ;
+    skos:prefLabel "Cerebellum",
+        "entorhinal cortex" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-1 ;
+            owl:someValuesFrom WHSSD:2 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
 
 WHSSD:115 a owl:Class ;
-    rdfs:label "lateral entorhinal cortex (whssd)" ;
-    skos:prefLabel "lateral entorhinal cortex" ;
+    rdfs:label "lateral entorhinal cortex (whssd)",
+        "Spinal cord (whssd)" ;
+    skos:prefLabel "lateral entorhinal cortex",
+        "Spinal cord" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1012 ] .
+
+WHSSD:1000 a owl:Class ;
+    rdfs:label "White matter (structure) (whssd)" ;
+    skos:prefLabel "White matter (structure)" ;
+    rdfs:subClassOf WHSSD: .
+
+WHSSD:1001 a owl:Class ;
+    rdfs:label "Anterior commissure (structure) (whssd)" ;
+    skos:prefLabel "Anterior commissure (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
+
+WHSSD:1002 a owl:Class ;
+    rdfs:label "Hippocampal white matter (structure) (whssd)" ;
+    skos:prefLabel "Hippocampal white matter (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
+
+WHSSD:1003 a owl:Class ;
+    rdfs:label "Corticofugal pathways (structure) (whssd)" ;
+    skos:prefLabel "Corticofugal pathways (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
+
+WHSSD:1004 a owl:Class ;
+    rdfs:label "Medial lemniscus (structure) (whssd)" ;
+    skos:prefLabel "Medial lemniscus (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
+
+WHSSD:1005 a owl:Class ;
+    rdfs:label "Thalamic tracts (structure) (whssd)" ;
+    skos:prefLabel "Thalamic tracts (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
+
+WHSSD:1006 a owl:Class ;
+    rdfs:label "Facial nerve (structure) (whssd)" ;
+    skos:prefLabel "Facial nerve (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
+
+WHSSD:1007 a owl:Class ;
+    rdfs:label "Optic fiber system and supraoptic decussation (structure) (whssd)" ;
+    skos:prefLabel "Optic fiber system and supraoptic decussation (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
+
+WHSSD:1008 a owl:Class ;
+    rdfs:label "White matter of the tectum (structure) (whssd)" ;
+    skos:prefLabel "White matter of the tectum (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
+
+WHSSD:1009 a owl:Class ;
+    rdfs:label "Cerebellar and precerebellar white matter (structure) (whssd)" ;
+    skos:prefLabel "Cerebellar and precerebellar white matter (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1000 ] .
+
+WHSSD:1010 a owl:Class ;
+    rdfs:label "Gray matter (structure) (whssd)" ;
+    skos:prefLabel "Gray matter (structure)" ;
+    rdfs:subClassOf WHSSD: .
+
+WHSSD:1011 a owl:Class ;
+    rdfs:label "Olfactory system (structure) (whssd)" ;
+    skos:prefLabel "Olfactory system (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
+
+WHSSD:1012 a owl:Class ;
+    rdfs:label "Cerebral cortex including the neocortex and the hippocampus (structure) (whssd)" ;
+    skos:prefLabel "Cerebral cortex including the neocortex and the hippocampus (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
+
+WHSSD:1013 a owl:Class ;
+    rdfs:label "Tectum (structure) (whssd)" ;
+    skos:prefLabel "Tectum (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
+
+WHSSD:1014 a owl:Class ;
+    rdfs:label "Cerebellum (structure) (whssd)" ;
+    skos:prefLabel "Cerebellum (structure)" ;
+    rdfs:subClassOf WHSSD:,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:labelPartOf-whssd-2 ;
+            owl:someValuesFrom WHSSD:1010 ] .
+
+WHSSD:1015 a owl:Class ;
+    rdfs:label "Spinal cord (structure) (whssd)" ;
+    skos:prefLabel "Spinal cord (structure)" ;
     rdfs:subClassOf WHSSD: .
 
 ### Annotations
 
-<https://github.com/tgbugs/pyontutils/blob/1c18b4fe6548dd48d18e1c9dbae1321c9b106bf9/pyontutils/resources/WHS_SD_rat_atlas_v2.label> dcterms:isVersionOf <https://github.com/tgbugs/pyontutils/blob/master/pyontutils/resources/WHS_SD_rat_atlas_v2.label> .
+<https://github.com/tgbugs/pyontutils/blob/687cd746a1f73e14894c519e841f83cc16fd4b1f/nifstd/resources/WHS_SD_rat_atlas_v1.label> dcterms:isVersionOf <https://github.com/tgbugs/pyontutils/blob/master/nifstd/resources/WHS_SD_rat_atlas_v1.label> .
 
-### Serialized using the pyontutils deterministic serializer v1.1.3
+<https://github.com/tgbugs/pyontutils/blob/687cd746a1f73e14894c519e841f83cc16fd4b1f/nifstd/resources/WHS_SD_rat_atlas_v1_labels.ilf> dcterms:isVersionOf <https://github.com/tgbugs/pyontutils/blob/master/nifstd/resources/WHS_SD_rat_atlas_v1_labels.ilf> .
+
+<https://github.com/tgbugs/pyontutils/blob/687cd746a1f73e14894c519e841f83cc16fd4b1f/nifstd/resources/WHS_SD_rat_atlas_v2.label> dcterms:isVersionOf <https://github.com/tgbugs/pyontutils/blob/master/nifstd/resources/WHS_SD_rat_atlas_v2.label> .
+
+<https://github.com/tgbugs/pyontutils/blob/687cd746a1f73e14894c519e841f83cc16fd4b1f/nifstd/resources/WHS_SD_rat_atlas_v2_labels.ilf> dcterms:isVersionOf <https://github.com/tgbugs/pyontutils/blob/master/nifstd/resources/WHS_SD_rat_atlas_v2_labels.ilf> .
+
+ilxtr:labelPartOf-whssd-1 rdfs:subPropertyOf ilxtr:labelPartOf .
+
+ilxtr:labelPartOf-whssd-2 rdfs:subPropertyOf ilxtr:labelPartOf .
+
+### Serialized using the pyontutils deterministic serializer v1.2.0

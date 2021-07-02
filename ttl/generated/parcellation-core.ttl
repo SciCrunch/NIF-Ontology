@@ -1,23 +1,23 @@
-@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
-@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-core.ttl> a owl:Ontology ;
-    owl:imports <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-artifacts.ttl>,
-        <http://ontology.neuinfo.org/NIF/ttl/nif_backend.ttl> ;
+
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/generated/parcellation-core.ttl> a owl:Ontology ;
+    owl:imports <http://ontology.neuinfo.org/NIF/ttl/generated/parcellation-artifacts.ttl> ;
     rdfs:label "Parcellation Core" ;
     rdfs:comment "Core OWL2 entities needed for parcellations" ;
-    owl:versionInfo "2018-02-25" ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/32ab4fa1efad87f6421eb488b28bec81734b41de/pyontutils/parcellation.py#L1024> .
+    owl:versionInfo "2019-10-03" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/305a5d3c5cc18870a9674647db7461bb8b2e70e4/nifstd/nifstd_tools/parcellation/__init__.py#L620> .
+
+### Object Properties
+
+ilxtr:labelPartOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:subPropertyOf BFO:0000050 .
 
 ### Classes
 
@@ -29,4 +29,4 @@ ilxtr:parcellationRegion a owl:Class ;
     rdfs:label "Parcellation Region" ;
     skos:definition "Parcellation regions are 'anatomical entities' that correspond to some part of a real biological system and are equivalent to an intersection between a parcellation label and a specific version of an atlas that defines or uses that label and that provides a definitive (0, 1, or probabilistic) way to determine whether a particular sample corresponds to any given region. " .
 
-### Serialized using the pyontutils deterministic serializer v1.1.3
+### Serialized using the pyontutils deterministic serializer v1.2.0

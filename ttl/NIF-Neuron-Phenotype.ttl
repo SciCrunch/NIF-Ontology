@@ -1,0 +1,399 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix ILX: <http://uri.interlex.org/base/ilx_> .
+@prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@prefix NIFCELL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Cell.owl#> .
+@prefix NIFMOL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Molecule.owl#> .
+@prefix NIFQUAL: <http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Quality.owl#> .
+@prefix nsu: <http://www.FIXME.org/nsupper#> .
+@prefix OBOANN: <http://ontology.neuinfo.org/NIF/Backend/OBO_annotation_properties.owl#> .
+@prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix PR: <http://purl.obolibrary.org/obo/PR_> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://ontology.neuinfo.org/NIF/ttl/NIF-Neuron-Phenotype.ttl> a owl:Ontology ;
+    rdfs:label "NIF Neuron phenotypes" ;
+    rdfs:comment "The NIF Neuron phenotype ontology holds neuron phenotypes." .
+
+### Object Properties
+
+ilxtr:hasAxonLocatedIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasAxonLocatedIn" ;
+    rdfs:subPropertyOf ilxtr:hasLocationPhenotype .
+
+ilxtr:hasDendriteLocatedIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasDendriteLocatedIn" ;
+    rdfs:subPropertyOf ilxtr:hasLocationPhenotype .
+
+ilxtr:hasDevelopmentalOrigin a owl:ObjectProperty ;
+    rdfs:label "hasDevelopmentalOrigin" ;
+    skos:definition "Expresses a relationship between a neuron type and a developmental cell population. This should be used when a neuron develops from an identified developmental cell population." .
+
+ilxtr:hasElectrophysiologicalPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasElectrophysiologicalPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and an electrophysiological phenotype concept. This should be used when a neuron type is described using a high level electrophysiological concept class." ;
+    rdfs:subPropertyOf ilxtr:hasIntrinsicPhenotype .
+
+ilxtr:hasExpressionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasExpressionPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a gene type. This should be used for detection of RNAs that code for proteins which may or may not have been detected directly." ;
+    rdfs:subPropertyOf ilxtr:hasIntrinsicPhenotype .
+
+ilxtr:hasExtrinsicPhenotype a owl:ObjectProperty ;
+    rdfs:label "hasExtrinsicPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasInstanceInSpecies a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasInstanceInSpecies" ;
+    skos:definition "Expresses a relationship between a neuron type and a species. This should be used when a neuron type has been observed in a specific species." ;
+    rdfs:subPropertyOf ilxtr:hasExtrinsicPhenotype .
+
+ilxtr:hasIntrinsicPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasIntrinsicPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasLayerLocationPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasLayerLocationPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a laminer brain region." ;
+    rdfs:subPropertyOf ilxtr:hasLocationPhenotype .
+
+ilxtr:hasLocationPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasLocationPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a brain region. This is a superProperty and should not be used directly." ;
+    rdfs:subPropertyOf ilxtr:hasExtrinsicPhenotype .
+
+ilxtr:hasMolecularPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasMolecularPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a molecule type. This should be used for direct detection of the molecule, whether it is a small molecule or a peptide." ;
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype .
+
+ilxtr:hasMorphologicalPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasMorphologicalPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a morphological phenotype concept. This should be used when a neuron type is described using a high level morphological concept class." ;
+    rdfs:subPropertyOf ilxtr:hasIntrinsicPhenotype .
+
+ilxtr:hasNeurotransmitterPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasNeurotransmitterPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype .
+
+ilxtr:hasPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasPhenotype" ;
+    owl:inverseOf ilxtr:phenotypeOf .
+
+ilxtr:hasPresynapticTerminalsIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasPresynapticTerminalsIn" .
+
+ilxtr:hasProjectionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasProjectionPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a brain region that said neuron type sends axons to." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasSomaLocatedIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasSomaLocatedIn" ;
+    rdfs:subPropertyOf ilxtr:hasLocationPhenotype .
+
+ilxtr:hasSpikingPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasSpikingPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasElectrophysiologicalPhenotype .
+
+ilxtr:hasTaxonRank a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasTaxonRank" ;
+    skos:definition "Expresses a relationship between a neuron type and a taxon. This should be used when a neuron type is thought to have been present in the last common ancestor of the taxon." ;
+    rdfs:subPropertyOf ilxtr:hasExtrinsicPhenotype .
+
+ilxtr:phenotypeCooccuresWith a owl:ObjectProperty ;
+    rdfs:label "phenotypeCooccuresWith" ;
+    skos:definition "Expresses a relationship between a phenotype and a phenotype. This should be used when two phenotypes commonly cooccure." .
+
+ilxtr:phenotypeObservedInBrainRegion a owl:ObjectProperty ;
+    rdfs:label "phenotypeObservedInBrainRegion" ;
+    skos:definition "Expresses a relationship between a phenotype and a brain region. This should be used when a neuron phenotype is observed in specific brain regions." .
+
+ilxtr:phenotypeOf a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "phenotypeOf" .
+
+### Classes
+
+ilxtr:AccomodatingSpikingPhenotype a owl:Class ;
+    rdfs:label "Accomodating Spiking Phenotype" ;
+    rdfs:subClassOf ilxtr:SpikingPhenotype ;
+    owl:disjointWith ilxtr:NonAccomodatingSpikingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Accomodating Spiking" .
+
+ilxtr:AxonMorphologicalPhenotype a owl:Class ;
+    rdfs:label "Axon Morphological Phenotype" ;
+    rdfs:subClassOf ilxtr:AxonPhenotype .
+
+ilxtr:AxonPhenotype a owl:Class ;
+    rdfs:label "Axon Phenotype" .
+
+ilxtr:BasketPhenotype a owl:Class ;
+    rdfs:label "Basket Phenotype" ;
+    rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
+    owl:disjointWith ilxtr:BipolarPhenotype,
+        ilxtr:BituftedPhenotype,
+        ilxtr:ChandelierPhenotype,
+        ilxtr:DoubleBouquetPhenotype,
+        ilxtr:NeurogliaformPhenotype,
+        ilxtr:PyramidalPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Basket" .
+
+ilxtr:BipolarPhenotype a owl:Class ;
+    rdfs:label "Bipolar Phenotype" ;
+    rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Bipolar" .
+
+ilxtr:BituftedPhenotype a owl:Class ;
+    rdfs:label "Bitufted Phenotype" ;
+    rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
+    owl:disjointWith ilxtr:BipolarPhenotype,
+        ilxtr:ChandelierPhenotype,
+        ilxtr:DoubleBouquetPhenotype,
+        ilxtr:NeurogliaformPhenotype,
+        ilxtr:PyramidalPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Bitufted" .
+
+ilxtr:CellPhenotype a owl:Class ;
+    rdfs:label "Cell Phenotype" .
+
+ilxtr:ChandelierPhenotype a owl:Class ;
+    rdfs:label "Chandelier Phenotype" ;
+    rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
+    owl:disjointWith ilxtr:BipolarPhenotype,
+        ilxtr:NeurogliaformPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Chandelier" .
+
+ilxtr:DendriteMorphologicalPhenotype a owl:Class ;
+    rdfs:label "Dendrite Morphological Phenotype" ;
+    rdfs:subClassOf ilxtr:DendritePhenotype .
+
+ilxtr:DendritePhenotype a owl:Class ;
+    rdfs:label "Dendrite Phenotype" .
+
+ilxtr:DoubleBouquetPhenotype a owl:Class ;
+    rdfs:label "Double Bouquet Phenotype" ;
+    rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
+    owl:disjointWith ilxtr:BipolarPhenotype,
+        ilxtr:ChandelierPhenotype,
+        ilxtr:NeurogliaformPhenotype,
+        ilxtr:PyramidalPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Double Bouquet" .
+
+ilxtr:ElectrophysiologicalPhenotype a owl:Class ;
+    rdfs:label "Electrophysiological Phenotype" ;
+    rdfs:subClassOf ilxtr:NeuronPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Electrophysiological" .
+
+ilxtr:FastSpikingPhenotype a owl:Class ;
+    rdfs:label "Fast Spiking Phenotype" ;
+    rdfs:subClassOf ilxtr:SpikingPhenotype ;
+    owl:disjointWith ilxtr:RegularSpikingNonPyramidalPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Fast Spiking" .
+
+ilxtr:LargeBasketPhenotype a owl:Class ;
+    rdfs:label "Large Basket Phenotype" ;
+    rdfs:subClassOf ilxtr:BasketPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Large Basket" .
+
+ilxtr:MartinottiPhenotype a owl:Class ;
+    rdfs:label "Martinotti Phenotype" ;
+    rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
+    owl:disjointWith ilxtr:BasketPhenotype,
+        ilxtr:BipolarPhenotype,
+        ilxtr:BituftedPhenotype,
+        ilxtr:ChandelierPhenotype,
+        ilxtr:DoubleBouquetPhenotype,
+        ilxtr:NeurogliaformPhenotype,
+        ilxtr:PyramidalPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Martinotti" .
+
+ilxtr:MorphologicalPhenotype a owl:Class ;
+    rdfs:label "Morphological Phenotype" ;
+    rdfs:subClassOf ilxtr:NeuronPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Morphological" .
+
+ilxtr:NestBasketPhenotype a owl:Class ;
+    rdfs:label "Nest Basket Phenotype" ;
+    rdfs:subClassOf ilxtr:BasketPhenotype ;
+    owl:disjointWith ilxtr:LargeBasketPhenotype,
+        ilxtr:SmallBasketPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Nest Basket" .
+
+ilxtr:NeurogliaformPhenotype a owl:Class ;
+    rdfs:label "Neurogliaform Phenotype" ;
+    rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
+    owl:disjointWith ilxtr:BipolarPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Neurogliaform" .
+
+ilxtr:NeuronPhenotype a owl:Class ;
+    rdfs:label "Neuron Phenotype" ;
+    rdfs:subClassOf ilxtr:CellPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasPhenotype .
+
+ilxtr:NonAccomodatingSpikingPhenotype a owl:Class ;
+    rdfs:label "Non Accomodating Spiking Phenotype" ;
+    rdfs:subClassOf ilxtr:SpikingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Non Accomodating Spiking" .
+
+ilxtr:PetillaInitialBurstSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Burst Spiking Phenotype" ;
+    OBOANN:synonym "petilla b" ;
+    rdfs:subClassOf ilxtr:PetillaInitialSpikingPhenotype ;
+    owl:disjointWith ilxtr:PetillaInitialClassicalSpikingPhenotype,
+        ilxtr:PetillaInitialDelayedSpikingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Burst Spiking" .
+
+ilxtr:PetillaInitialClassicalSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Classical Spiking Phenotype" ;
+    OBOANN:synonym "petilla c" ;
+    rdfs:subClassOf ilxtr:PetillaInitialSpikingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Classical Spiking" .
+
+ilxtr:PetillaInitialDelayedSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Delayed Spiking Phenotype" ;
+    OBOANN:synonym "petilla d" ;
+    rdfs:subClassOf ilxtr:PetillaInitialSpikingPhenotype ;
+    owl:disjointWith ilxtr:PetillaInitialClassicalSpikingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Delayed Spiking" .
+
+ilxtr:PetillaInitialSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Initial Spiking Phenotype" ;
+    rdfs:subClassOf ilxtr:SpikingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Initial Spiking" .
+
+ilxtr:PetillaSustainedAccomodatingPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Accomodating Phenotype" ;
+    OBOANN:synonym "petilla ac" ;
+    rdfs:subClassOf ilxtr:PetillaSustainedSpikingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Accomodating" .
+
+ilxtr:PetillaSustainedIrregularPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Irregular Phenotype" ;
+    OBOANN:synonym "petilla ir" ;
+    rdfs:subClassOf ilxtr:PetillaSustainedSpikingPhenotype ;
+    owl:disjointWith ilxtr:PetillaSustainedAccomodatingPhenotype,
+        ilxtr:PetillaSustainedNonAccomodatingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Irregular" .
+
+ilxtr:PetillaSustainedNonAccomodatingPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Non Accomodating Phenotype" ;
+    OBOANN:synonym "petilla nac" ;
+    rdfs:subClassOf ilxtr:PetillaSustainedSpikingPhenotype ;
+    owl:disjointWith ilxtr:PetillaSustainedAccomodatingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Non Accomodating" .
+
+ilxtr:PetillaSustainedSpikingPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Spiking Phenotype" ;
+    rdfs:subClassOf ilxtr:SpikingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Spiking" .
+
+ilxtr:PetillaSustainedStutteringPhenotype a owl:Class ;
+    rdfs:label "Petilla Sustained Stuttering Phenotype" ;
+    OBOANN:synonym "petilla stut" ;
+    rdfs:subClassOf ilxtr:PetillaSustainedSpikingPhenotype ;
+    owl:disjointWith ilxtr:PetillaSustainedAccomodatingPhenotype,
+        ilxtr:PetillaSustainedIrregularPhenotype,
+        ilxtr:PetillaSustainedNonAccomodatingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Petilla Sustained Stuttering" .
+
+ilxtr:PyramidalPhenotype a owl:Class ;
+    rdfs:label "Pyramidal Phenotype" ;
+    rdfs:subClassOf ilxtr:MorphologicalPhenotype ;
+    owl:disjointWith ilxtr:BipolarPhenotype,
+        ilxtr:ChandelierPhenotype,
+        ilxtr:NeurogliaformPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Pyramidal" .
+
+ilxtr:RegularSpikingNonPyramidalPhenotype a owl:Class ;
+    rdfs:label "Regular Spiking Non Pyramidal Phenotype" ;
+    rdfs:subClassOf ilxtr:SpikingPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Regular Spiking Non Pyramidal" .
+
+ilxtr:SmallBasketPhenotype a owl:Class ;
+    rdfs:label "Small Basket Phenotype" ;
+    rdfs:subClassOf ilxtr:BasketPhenotype ;
+    owl:disjointWith ilxtr:LargeBasketPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasMorphologicalPhenotype ;
+    skos:hiddenLabel "Small Basket" .
+
+ilxtr:SomaMorphologicalPhenotype a owl:Class ;
+    rdfs:label "Soma Morphological Phenotype" ;
+    rdfs:subClassOf ilxtr:SomaPhenotype .
+
+ilxtr:SomaPhenotype a owl:Class ;
+    rdfs:label "Soma Phenotype" .
+
+ilxtr:SpikingPhenotype a owl:Class ;
+    rdfs:label "Spiking Phenotype" ;
+    rdfs:subClassOf ilxtr:ElectrophysiologicalPhenotype ;
+    ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
+    skos:hiddenLabel "Spiking" .
+
+### Serialized using the nifstd custom serializer v1.0.1

@@ -1,0 +1,402 @@
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-core.ttl> a owl:Ontology ;
+    rdfs:label "NIF Phenotype core" ;
+    rdfs:comment "This is the core set of predicates used to model phenotypes and the parent class for phenotypes." .
+
+### Object Properties
+
+ilxtr:hasAxonLocatedIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasAxonLocatedIn" ;
+    rdfs:subPropertyOf ilxtr:hasProcessLocatedIn .
+
+ilxtr:hasAxonMorphologicalPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasAxonMorphologicalPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasMorphologicalPhenotype ;
+    rdfs:comment "not clear whether this should be subPropertyOf hasMorphologicalPhenotype" .
+
+ilxtr:hasAxonPhenotype a owl:ObjectProperty ;
+    rdfs:label "hasAxonPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and some phenotype of its axon." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "Use to provide clarity about where a generic phenotype is attached in the event that the object is not qualified. The alternative is to precompose the subcompartments e.g. SmallSomaPhenotype and SmallAxonPhenotype." .
+
+ilxtr:hasAxonPresynapticElementIn a owl:ObjectProperty ;
+    rdfs:label "hasAxonPresynapticElementIn" ;
+    rdfs:subPropertyOf ilxtr:hasAxonLocatedIn,
+        ilxtr:hasPresynapticElementIn .
+
+ilxtr:hasBiologicalSex a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasBiologicalSex" ;
+    skos:definition "Expresses a relationship between a neuron type and a biological sex. This should be used when a neuron type has been observed in a specific sex." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasCircuitRolePhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasCircuitRolePhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "needs work" .
+
+ilxtr:hasClassificationPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasClassificationPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and an opaque symbol that is used by experts to distinguish subtypes." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "Use this when numbers or letters have been assigned to disambiguate naming." .
+
+ilxtr:hasComputedMolecularPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasComputedMolecularPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a type computed from only molecular data." ;
+    rdfs:subPropertyOf ilxtr:hasComputedPhenotype,
+        ilxtr:hasMolecularPhenotype .
+
+ilxtr:hasComputedMolecularPhenotypeFromDNA a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasComputedMolecularPhenotypeFromDNA" ;
+    skos:definition "Expresses a relationship between a neuron type and a type computed from only DNA data (e.g. epigenetics data)." ;
+    rdfs:subPropertyOf ilxtr:hasComputedMolecularPhenotype .
+
+ilxtr:hasComputedMolecularPhenotypeFromProtein a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasComputedMolecularPhenotypeFromProtein" ;
+    skos:definition "Expresses a relationship between a neuron type and a type computed from only Protein expression data." ;
+    rdfs:subPropertyOf ilxtr:hasComputedMolecularPhenotype .
+
+ilxtr:hasComputedMolecularPhenotypeFromRNA a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasComputedMolecularPhenotypeFromRNA" ;
+    skos:definition "Expresses a relationship between a neuron type and a type computed from only RNA expression data." ;
+    rdfs:subPropertyOf ilxtr:hasComputedMolecularPhenotype .
+
+ilxtr:hasComputedPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasComputedPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a type computed from some combination of primary data types." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasConnectionDeterminedByCellFilling a owl:ObjectProperty ;
+    rdfs:label "hasConnectionDeterminedByCellFilling" ;
+    rdfs:subPropertyOf ilxtr:hasForwardConnectionPhenotype .
+
+ilxtr:hasConnectionDeterminedByElectronMicroscopy a owl:ObjectProperty ;
+    rdfs:label "hasConnectionDeterminedByElectronMicroscopy" ;
+    rdfs:subPropertyOf ilxtr:hasForwardConnectionPhenotype ;
+    rdfs:comment "traditionally harder to get granular types here?" .
+
+ilxtr:hasConnectionDeterminedByElectrophysiology a owl:ObjectProperty ;
+    rdfs:label "hasConnectionDeterminedByElectrophysiology" ;
+    rdfs:subPropertyOf ilxtr:hasForwardConnectionPhenotype ;
+    rdfs:comment "anything from estim to in vitro slice" .
+
+ilxtr:hasConnectionDeterminedByPharmacology a owl:ObjectProperty ;
+    rdfs:label "hasConnectionDeterminedByPharmacology" ;
+    rdfs:subPropertyOf ilxtr:hasConnectionDeterminedByElectrophysiology ;
+    rdfs:comment "specificity of connections often require pharm" .
+
+ilxtr:hasConnectionDeterminedBySynapticPhysiology a owl:ObjectProperty ;
+    rdfs:label "hasConnectionDeterminedBySynapticPhysiology" ;
+    rdfs:subPropertyOf ilxtr:hasConnectionDeterminedByElectrophysiology ;
+    rdfs:comment "ephys or ca2+" .
+
+ilxtr:hasConnectionDeterminedByViralTracing a owl:ObjectProperty ;
+    rdfs:label "hasConnectionDeterminedByViralTracing" ;
+    rdfs:subPropertyOf ilxtr:hasForwardConnectionPhenotype ;
+    rdfs:comment "transsynaptic?" .
+
+ilxtr:hasConnectionPhenotype a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "hasConnectionPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a neuron type or a neuron type and a subcompartment of a neuron type some members are connected with eachother." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "Absent a specific subcompartment we can only infer hasProjectionPhenotype at the granularity of soma + dendrite location. NOTE: This relationship does not imply direction. If you need direction please choose a subproperty." .
+
+ilxtr:hasDendriteLocatedIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasDendriteLocatedIn" ;
+    rdfs:subPropertyOf ilxtr:hasProcessLocatedIn .
+
+ilxtr:hasDendriteMorphologicalPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasDendriteMorphologicalPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron and a dendrite phenotype. This should be used when a neuron type is described by the morphology of its dendrites." ;
+    rdfs:subPropertyOf ilxtr:hasMorphologicalPhenotype ;
+    rdfs:comment "not clear whether this should be subPropertyOf hasMorphologicalPhenotype" .
+
+ilxtr:hasDendritePhenotype a owl:ObjectProperty ;
+    rdfs:label "hasDendritePhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and some phenotype of its dendrite." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "Use to provide clarity about where a generic phenotype is attached in the event that the object is not qualified. The alternative is to precompose the subcompartments e.g. SmallSomaPhenotype and SmallAxonPhenotype." .
+
+ilxtr:hasDevelopmentalStage a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasDevelopmentalStage" ;
+    skos:definition "Expresses a relationship between a neuron type and a developmental stage. This should be used when a neuron type has been observed during a developmental stage." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasDevelopmentalStructure a owl:ObjectProperty ;
+    rdfs:label "hasDevelopmentalStructure" ;
+    skos:definition "Expresses a relationship between a neuron type and a developmental cell population. This should be used when a neuron develops from an identified developmental anatomical entity." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "needs work" .
+
+ilxtr:hasDevelopmentalType a owl:ObjectProperty ;
+    rdfs:label "hasDevelopmentalType" ;
+    skos:definition "Expresses a relationship between a neuron type and a developmental cell population. This should be used when a neuron develops from an identified developmental cell type." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasDriverExpressionConstitutivePhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasDriverExpressionConstitutivePhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasDriverExpressionPhenotype .
+
+ilxtr:hasDriverExpressionInducedPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasDriverExpressionInducedPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasDriverExpressionPhenotype ;
+    rdfs:comment "Use for things like cre-ER" .
+
+ilxtr:hasDriverExpressionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasDriverExpressionPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype .
+
+ilxtr:hasElectrophysiologicalPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasElectrophysiologicalPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and an electrophysiological phenotype concept. This should be used when a neuron type is described using a high level electrophysiological concept class." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasExperimentalPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasExperimentalPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron and an experimental condition. This should be used when a neuron type is described by some experimental condition or functional designation." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "This needs a better name. It is clear what it means when you see examples of the usage." .
+
+ilxtr:hasExpressionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasExpressionPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a gene type including any gene products." ;
+    rdfs:subPropertyOf ilxtr:hasMolecularPhenotype ;
+    rdfs:comment "This may also include the products of molecular synthesis pathways that are indirectly supported by genes, however it seems likely that that relationship should not be though of as an expression phenotype." .
+
+ilxtr:hasForwardConnectionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasForwardConnectionPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasConnectionPhenotype ;
+    owl:inverseOf ilxtr:hasReverseConnectionPhenotype ;
+    rdfs:comment "can be inferred from symmetric connection + projects to" .
+
+ilxtr:hasInstanceInSpecies a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasInstanceInSpecies" ;
+    skos:definition "Expresses a relationship between a neuron type and a species. This should be used when a neuron type has been observed in a specific species." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "should rarely be used, even if dealing with evidence based models because it is an extremely weak assertion, possibly rename to hasBeenObservedInAtLeastOneIndividualInSpecies or something like that" .
+
+ilxtr:hasInstanceInTaxon a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasInstanceInTaxon" ;
+    skos:definition "Expresses a relationship between a neuron type and a taxon. When dealing with both EBMs and CUTs this is the predicate that should be used." ;
+    rdfs:subPropertyOf ilxtr:hasInstanceInSpecies ;
+    rdfs:comment "this is the weakest assertion we have available at a taxon level, hasInstanceInSpecies is even weaker since it does not propagage" .
+
+ilxtr:hasLayerLocationPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasLayerLocationPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a laminar brain region." ;
+    rdfs:subPropertyOf ilxtr:hasLocationPhenotype ;
+    rdfs:comment "May need hasSomaLayerLocation or something, do we really even need this?? if axioms are missing in parcellation schemes and uberon then it should be easy enough to add them, or at least we won't get disjointness issues because layers of cortex are orthogonal to parts of cortex (eg) and thus we shouldnt get reasoning errors" .
+
+ilxtr:hasLocationPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasLocationPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a brain region or brain parcel. This is a superProperty and should not be used directly." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "This property should not be used directly." .
+
+ilxtr:hasMolecularPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasMolecularPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a molecule type, a gene type, or a gene product type." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "This can be used for detection of the molecule or gene by any means." .
+
+ilxtr:hasMorphologicalPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasMorphologicalPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a morphological phenotype concept. This should be used when a neuron type is described using a high level morphological concept class." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype .
+
+ilxtr:hasNeurotransmitterPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasNeurotransmitterPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasMolecularPhenotype ;
+    rdfs:comment "includes small molecule and peptide, not entirely sure if we need this one" .
+
+ilxtr:hasNucleicAcidExpressionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasNucleicAcidExpressionPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype ;
+    rdfs:comment "This should be used for detection of RNAs that code for proteins which may or may not have been detected directly." .
+
+ilxtr:hasPhenotype a owl:ObjectProperty ;
+    rdfs:label "hasPhenotype" ;
+    owl:inverseOf ilxtr:phenotypeOf .
+
+ilxtr:hasPhenotypeModifier a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasPhenotypeModifier" ;
+    skos:definition "Expresses a restriction that modifies all phenotypes associated with a neuron type or a logical phenotype, only meaningful when used inside of owl:intersectionOf" .
+
+ilxtr:hasPresynapticElementIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasPresynapticElementIn" ;
+    rdfs:subPropertyOf ilxtr:hasProcessLocatedIn ;
+    rdfs:comment "projectsTo does not work because of dendrodentritic synapses, for the same reason this cannot be a subProperty of hasAxonLocatedIn" .
+
+ilxtr:hasPresynapticTerminalsIn a owl:ObjectProperty ;
+    rdfs:label "hasPresynapticTerminalsIn" ;
+    rdfs:subPropertyOf ilxtr:hasPresynapticElementIn ;
+    rdfs:comment "Are there cases where there are boutons that form on dendrites?" .
+
+ilxtr:hasProcessLocatedIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasProcessLocatedIn" ;
+    rdfs:subPropertyOf ilxtr:hasLocationPhenotype .
+
+ilxtr:hasProjectionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasProjectionPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and a brain region that said neuron type sends axons to." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "this might be clearer than hasCircuitRole but might confuse with projectsTo or the like, excitatory/inhibitory shouldn't be handled here? The way that projection vs intrinsic is modelled relates whether axons leave the brain region that contains the soma or not, this is not fully modelled at the moment" .
+
+ilxtr:hasProteinExpressionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasProteinExpressionPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype .
+
+ilxtr:hasReporterExpressionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasReporterExpressionPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasExpressionPhenotype .
+
+ilxtr:hasReverseConnectionPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasReverseConnectionPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasConnectionPhenotype ;
+    owl:inverseOf ilxtr:hasForwardConnectionPhenotype .
+
+ilxtr:hasSmallMoleculePhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasSmallMoleculePhenotype" ;
+    skos:definition "Expresses a relationship between a neuron and a small molecule that is the product of some molecular pathway that may or may not be expressed in the neuron in question." ;
+    rdfs:subPropertyOf ilxtr:hasMolecularPhenotype ;
+    rdfs:comment "This would probably be used to indicate the detection of the machinery for the synthesis pathway. If just the molecule is detected then hasMolecularPhenotype should be used since expression cannot be inferred (for neurotransmitters)." .
+
+ilxtr:hasSomaLocatedIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasSomaLocatedIn" ;
+    rdfs:subPropertyOf ilxtr:hasLocationPhenotype .
+
+ilxtr:hasSomaLocatedInLayer a owl:ObjectProperty ;
+    rdfs:label "hasSomaLocatedInLayer" ;
+    rdfs:subPropertyOf ilxtr:hasLayerLocationPhenotype,
+        ilxtr:hasSomaLocatedIn .
+
+ilxtr:hasSomaLocationLaterality a owl:ObjectProperty ;
+    rdfs:label "hasSomaLocationLaterality" ;
+    rdfs:subPropertyOf ilxtr:hasSomaLocatedIn .
+
+ilxtr:hasSomaPhenotype a owl:ObjectProperty ;
+    rdfs:label "hasSomaPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron type and some phenotype of its soma." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "Use to provide clarity about where a generic phenotype is attached in the event that the object is not qualified. The alternative is to precompose the subcompartments e.g. SmallSomaPhenotype and SmallAxonPhenotype." .
+
+ilxtr:hasTaxonRank a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasTaxonRank" ;
+    skos:definition "Expresses a relationship between a neuron type and a taxon. This should be used when a neuron type is thought to have been present in the last common ancestor of the taxon." ;
+    rdfs:subPropertyOf ilxtr:hasInstanceInTaxon ;
+    rdfs:comment "note that this is a subPropertyOf hasInstanceInTaxon NOT the other way around, aka isAncestralInTaxon, even stronger claim than instance and propagates downward implying that instances were present in all members except those specifically marked (which owl can't really support)" .
+
+ilxtr:phenotypeCooccuresWith a owl:ObjectProperty ;
+    rdfs:label "phenotypeCooccuresWith" ;
+    skos:definition "Expresses a relationship between a phenotype and a phenotype. This should be used when two phenotypes commonly cooccure." ;
+    rdfs:comment "this is not the right way to pull this off, need something akin to disjointness" .
+
+ilxtr:phenotypeObservedInBrainRegion a owl:ObjectProperty ;
+    rdfs:label "phenotypeObservedInBrainRegion" ;
+    skos:definition "Expresses a relationship between a phenotype and a brain region. This should be used when a neuron phenotype is observed in specific brain regions." ;
+    rdfs:comment "existential not universal" .
+
+ilxtr:phenotypeOf a owl:ObjectProperty ;
+    rdfs:label "phenotypeOf" ;
+    rdfs:comment "of course this can never be universal, so is mostly useful for the python representation" .
+
+### Classes
+
+ilxtr:NeuronCUT a owl:Class ;
+    rdfs:subClassOf SAO:1417703748 .
+
+ilxtr:NeuronEBM a owl:Class ;
+    rdfs:subClassOf SAO:1417703748 .
+
+ilxtr:Phenotype a owl:Class ;
+    rdfs:label "Phenotype" ;
+    skos:definition "A Phenotype is a binary property of a biological entity. Phenotypes are derived from measurements made on the subject of interest. While Phenotype is not currently placed within the BFO hierarchy, if we were to place it, it would fall under BFO:0000016 -> disposition, since these phenotypes are contingent on the experimental conditions under which measurements were made and are NOT qualities. For consideration: in theory this would mean that disjointness does not make sense, even for things that would seem to be obviously disjoint such as Accomodating and Non-Accomodating. However, this information can still be captured on a subject by subject basis by asserting that for this particular entity, coocurrance of phenotypes is not possible. This still leaves the question of whether the class of biological entities that correspond to the bag of phenotypes is implicitly bounded/limited only to the extrinsic and unspecified experimental conditions, some of which are not and cannot be included in a bag of phenotypes. The way to deal with this when we want to include 2 'same time' disjoint phenotypes, is to use a logical phenotype to wrap them with an auxiliary variable that we think accounts for the difference." .
+
+### Annotations
+
+ilxtr:delineates owl:inverseOf ilxtr:isDelineatedBy .
+
+### Serialized using the ttlser deterministic serializer v1.2.0
