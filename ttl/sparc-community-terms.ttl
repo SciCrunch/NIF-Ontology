@@ -28,14 +28,16 @@
 @prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix PAXRAT: <http://uri.interlex.org/paxinos/uris/rat/labels/> .
+@prefix PAXSPN: <http://uri.interlex.org/paxinos/uris/spine/labels/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix SCR: <http://scicrunch.org/resolver/SCR_> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://uri.interlex.org/sparc/ontologies/community-terms> a owl:Ontology ;
-    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/community-terms/version/1622217034.14913/community-terms> ;
-    owl:versionInfo "2021-05-28T08:50:34.149130" .
+    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/community-terms/version/1625801697.203574/community-terms> ;
+    owl:versionInfo "2021-07-08T20:34:57.203574" .
 
 ### Object Properties
 
@@ -139,6 +141,12 @@ ILX:0777130 a owl:AnnotationProperty ;
     ilxtr:hasExistingId ILX:0777130 ;
     ilxtr:hasIlxId ILX:0777130 ;
     ilxtr:hasIlxPreferredId ILX:0777130 .
+
+ILX:0778161 a owl:AnnotationProperty ;
+    rdfs:label "subClassOf" ;
+    ilxtr:hasExistingId ILX:0778161 ;
+    ilxtr:hasIlxId ILX:0778161 ;
+    ilxtr:hasIlxPreferredId ILX:0778161 .
 
 ### Classes
 
@@ -1118,6 +1126,8 @@ FMA:9903 a owl:Class ;
         ILX:0777125,
         ILX:0777126,
         ILX:0777127,
+        ILX:0784215,
+        PAXSPN:23,
         UBERON:0011776 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1111,
@@ -1292,6 +1302,26 @@ FMA:15044 a owl:Class ;
     ilxtr:hasIlxPreferredId FMA:15044 ;
     ilxtr:includedForSPARCUnder FMA:14543 .
 
+FMA:15571 a owl:Class ;
+    rdfs:label "right ureter" ;
+    ilxtr:hasExistingId FMA:15571,
+        ILX:0725425,
+        UBERON:0001222 ;
+    ilxtr:hasExternalId FMA:15571,
+        UBERON:0001222 ;
+    ilxtr:hasIlxId ILX:0725425 ;
+    ilxtr:hasIlxPreferredId UBERON:0001222 .
+
+FMA:15572 a owl:Class ;
+    rdfs:label "left ureter" ;
+    ilxtr:hasExistingId FMA:15572,
+        ILX:0736906,
+        UBERON:0001223 ;
+    ilxtr:hasExternalId FMA:15572,
+        UBERON:0001223 ;
+    ilxtr:hasIlxId ILX:0736906 ;
+    ilxtr:hasIlxPreferredId UBERON:0001223 .
+
 FMA:15897 a owl:Class ;
     rdfs:label "urothelium of ureter" ;
     definition: "The luminal epithelium of the tube that conducts the urine from the renal pelvis to the bladder[MP]" ;
@@ -1322,6 +1352,7 @@ FMA:15897 a owl:Class ;
 FMA:15900 a owl:Class ;
     rdfs:label "urinary bladder" ;
     definition: "distensible musculomembranous organ situated in the anterior part of the pelvic cavity in which urine collects before excretion[MP]." ;
+    rdfs:subClassOf FMA:45659 ;
     ilx.anno.hasBroadSynonym: "bladder" ;
     ilx.anno.hasExactSynonym: "vesica urinaria" ;
     ilx.anno.hasRelatedSynonym: "urocyst",
@@ -1719,6 +1750,7 @@ FMA:45659 a owl:Class ;
     rdfs:label "lower urinary tract" ;
     NIFRID:synonym "[]" ;
     definition: "Subdivision of urinary system which consists of the urinary bladder and the urethra." ;
+    rdfs:subClassOf FMA:49443 ;
     ilx.hasDbXref: "FMA:45659",
         "galen:LowerUrinaryTract",
         "MA:0002636",
@@ -1745,7 +1777,12 @@ FMA:45659 a owl:Class ;
         ILX:0739277,
         ILX:0739282,
         ILX:0739283,
-        ILX:0739306 ;
+        ILX:0739306,
+        ILX:0778142,
+        ILX:0778143,
+        ILX:0778154,
+        ILX:0778155,
+        ILX:0778156 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:45659,
         ILX:0725452,
@@ -1754,6 +1791,16 @@ FMA:45659 a owl:Class ;
         UBERON:0001556 ;
     ilxtr:hasIlxId ILX:0725452 ;
     ilxtr:hasIlxPreferredId UBERON:0001556 .
+
+FMA:49443 a owl:Class ;
+    rdfs:label "anatomical cluster" ;
+    ilxtr:hasExistingId FMA:49443,
+        ILX:0724385,
+        UBERON:0000477 ;
+    ilxtr:hasExternalId FMA:49443,
+        UBERON:0000477 ;
+    ilxtr:hasIlxId ILX:0724385 ;
+    ilxtr:hasIlxPreferredId UBERON:0000477 .
 
 FMA:52585 a owl:Class ;
     rdfs:label "Perineurium" ;
@@ -2875,6 +2922,28 @@ FMA:73915 a owl:Class ;
     oboInOwl:hasExactSynonym "intermediolateral nucleus of spinal cord",
         "spinal cord intermediolateral nucleus" ;
     oboInOwl:hasRelatedSynonym "nucleus intermediolateralis medullae spinalis" .
+
+FMA:73938 a owl:Class ;
+    rdfs:label "gracile fasciculus of spinal cord" ;
+    definition: "A gracile fasciculus that is part of a spinal cord." ;
+    ilx.anno.hasExactSynonym: "fasciculus gracilis (medulla spinalis)",
+        "gracile fascicle of spinal cord",
+        "spinal cord segment of fasciculus gracilis",
+        "spinal cord segment of gracile fasciculus" ;
+    ilx.hasDbXref: "FMA:73938",
+        <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=1664> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:73938,
+        ILX:0727090,
+        UBERON:0005826 ;
+    ilxtr:hasExternalId FMA:73938,
+        UBERON:0005826 ;
+    ilxtr:hasIlxId ILX:0727090 ;
+    ilxtr:hasIlxPreferredId UBERON:0005826 ;
+    oboInOwl:hasExactSynonym "fasciculus gracilis (medulla spinalis)",
+        "gracile fascicle of spinal cord",
+        "spinal cord segment of fasciculus gracilis",
+        "spinal cord segment of gracile fasciculus" .
 
 FMA:74019 a owl:Class ;
     rdfs:label "Substantia gelatinosa" ;
@@ -4982,6 +5051,77 @@ ILX:0778139 a owl:Class ;
     ilxtr:hasIlxId ILX:0778139 ;
     ilxtr:hasIlxPreferredId ILX:0778139 .
 
+ILX:0778142 a owl:Class ;
+    rdfs:label "left ureter junction with bladder" ;
+    definition: "The junction between the left ureter and the bladder. This junction is located at the bladder lumen where the left ureter merges with the bladder wall." ;
+    rdfs:subClassOf FMA:9658 ;
+    ILX:0739265 FMA:15572,
+        FMA:15900 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778142 ;
+    ilxtr:hasIlxId ILX:0778142 ;
+    ilxtr:hasIlxPreferredId ILX:0778142 ;
+    ilxtr:includedForSPARCUnder FMA:45659 .
+
+ILX:0778143 a owl:Class ;
+    rdfs:label "right ureter junction with bladder" ;
+    definition: "The junction between the right ureter and the bladder. This junction is located at the bladder lumen where the right ureter merges with the bladder wall." ;
+    rdfs:subClassOf FMA:9658 ;
+    ILX:0739265 FMA:15571,
+        FMA:15900 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778143 ;
+    ilxtr:hasIlxId ILX:0778143 ;
+    ilxtr:hasIlxPreferredId ILX:0778143 ;
+    ilxtr:includedForSPARCUnder FMA:45659 .
+
+ILX:0778154 a owl:Class ;
+    rdfs:label "urethra junction of dorsal bladder neck" ;
+    definition: "The anatomical junction between the urethra and dorsal bladder neck. This junction is located at the dorsal part of the bladder lumen where the urethra begins." ;
+    rdfs:subClassOf FMA:9658 ;
+    ILX:0739265 FMA:19667,
+        ILX:0739253 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778154 ;
+    ilxtr:hasIlxId ILX:0778154 ;
+    ilxtr:hasIlxPreferredId ILX:0778154 ;
+    ilxtr:includedForSPARCUnder FMA:45659 .
+
+ILX:0778155 a owl:Class ;
+    rdfs:label "dorsal part of bladder" ;
+    definition: "The dorsal portion of the whole bladder organ, including both the body and the neck of the bladder." ;
+    ILX:0739238 FMA:15900,
+        ILX:0103492 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778155 ;
+    ilxtr:hasIlxId ILX:0778155 ;
+    ilxtr:hasIlxPreferredId ILX:0778155 ;
+    ilxtr:includedForSPARCUnder FMA:45659 .
+
+ILX:0778156 a owl:Class ;
+    rdfs:label "ventral part of bladder" ;
+    definition: "The ventral portion of the whole bladder organ, including both the body and the neck of the bladder." ;
+    ILX:0739238 FMA:15900,
+        ILX:0112359 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0778156 ;
+    ilxtr:hasIlxId ILX:0778156 ;
+    ilxtr:hasIlxPreferredId ILX:0778156 ;
+    ilxtr:includedForSPARCUnder FMA:45659 .
+
+ILX:0784215 a owl:Class ;
+    rdfs:label "intraganglionic laminar endings" ;
+    NIFRID:synonym "IGLEs" ;
+    definition: "Vagal afferent nerve endings with branching, flattened processes that are found in the myenteric plexus of esophagus and stomach." ;
+    rdfs:subClassOf UBERON:0012453 ;
+    ILX:0381449 <https://doi.org/10.1007/s004290050037>,
+        <https://doi.org/10.1111/j.1469-7793.2001.00255.x> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0784215 ;
+    ilxtr:hasIlxId ILX:0784215 ;
+    ilxtr:hasIlxPreferredId ILX:0784215 ;
+    ilxtr:includedForSPARCUnder FMA:9903 .
+
 NCBITaxon:9821 a owl:Class ;
     rdfs:label "Suidae" ;
     ilxtr:hasExistingId ILX:0111243,
@@ -5074,6 +5214,50 @@ NLX:158477 a owl:Class ;
     ilxtr:hasExternalId NLX:158477 ;
     ilxtr:hasIlxId ILX:0101999 ;
     ilxtr:hasIlxPreferredId NLX:158477 .
+
+PAXSPN:23 a owl:Class ;
+    rdfs:label "dorsolateral fasciculus (paxspn)" ;
+    NIFRID:synonym "DLF",
+        "Dorsolateral fasciculus",
+        "Tract of Lissauer" ;
+    definition: "A small bundle of fibers running longitudinally in the white matter between the dorsolateral edge of the dorsal horn and the entrance of the dorsal roots. This is synonymous with the ‘Tract of Lissauer’ and contains both small diameter primary afferents and axons from neurons in the dorsal lamina providing intraspinal connections." ;
+    ilx.anno.hasDefinitionSource: SCR:018709 ;
+    ilx.hasDbXref: BIRNLEX:1267,
+        FMA:72616,
+        PAXRAT:274,
+        UBERON:0002649 ;
+    ILX:0381449 <https://doi.org/10.1016/B978-0-12-374245-2.00005-X> ;
+    ILX:0778161 PAXSPN: ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0772919,
+        PAXSPN:23 ;
+    ilxtr:hasIlxId ILX:0772919 ;
+    ilxtr:hasIlxPreferredId PAXSPN:23 ;
+    ilxtr:includedForSPARCUnder FMA:9903 .
+
+PAXSPN:65 a owl:Class ;
+    rdfs:label "lumbar dorsal commissural nucleus (paxspn)" ;
+    NIFRID:synonym "lumbar dorsal commissural nucleus" ;
+    definition: "A large cluster of round, oval, or spindle shaped neurons located in lamina VII of T11–L1 along the midline, in the dorsal gray commissure." ;
+    ILX:0381449 <https://doi.org/10.1002/ar.22450>,
+        <https://doi.org/10.1016/B978-0-12-374247-6.50010-9> ;
+    ILX:0778161 PAXSPN: ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0784294,
+        PAXSPN:65 ;
+    ilxtr:hasIlxId ILX:0784294 ;
+    ilxtr:hasIlxPreferredId PAXSPN:65 .
+
+PAXSPN:79 a owl:Class ;
+    rdfs:label "sacral dorsal commissural nucleus (paxspn)" ;
+    NIFRID:synonym "sacral dorsal commissural nucleus" ;
+    definition: "A large cluster of small neurons located in the grey matter dorsal to the central canal in the lower lumbar and sacral spinal cord." ;
+    ILX:0778161 PAXSPN: ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0784250,
+        PAXSPN:79 ;
+    ilxtr:hasIlxId ILX:0784250 ;
+    ilxtr:hasIlxPreferredId PAXSPN:79 .
 
 SCR:018709 a owl:Class ;
     rdfs:label "SPARC Anatomical Working Group" ;
@@ -5248,6 +5432,14 @@ UBERON:0011776 a owl:Class ;
     ilxtr:includedForSPARCUnder FMA:9903 ;
     oboInOwl:hasBroadSynonym "spinal cord dorsal commissural nucleus" .
 
+UBERON:0012453 a owl:Class ;
+    rdfs:label "nerve ending" ;
+    ilxtr:hasExistingId ILX:0736198,
+        UBERON:0012453 ;
+    ilxtr:hasExternalId UBERON:0012453 ;
+    ilxtr:hasIlxId ILX:0736198 ;
+    ilxtr:hasIlxPreferredId UBERON:0012453 .
+
 ### Axioms
 
 [] a owl:Axiom ;
@@ -5258,9 +5450,30 @@ UBERON:0011776 a owl:Class ;
     ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
 
 [] a owl:Axiom ;
+    owl:annotatedSource ILX:0784215 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "IGLEs" ;
+    ilxtr:MISSING_ILX_ID true ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
+
+[] a owl:Axiom ;
+    owl:annotatedSource ILX:0784215 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "IGLEs" ;
+    ilxtr:MISSING_ILX_ID true ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
+
+[] a owl:Axiom ;
     owl:annotatedSource NLX:158477 ;
     owl:annotatedProperty NIFRID:synonym ;
     owl:annotatedTarget "CSA" ;
+    ilxtr:MISSING_ILX_ID true ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
+
+[] a owl:Axiom ;
+    owl:annotatedSource PAXSPN:23 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "DLF" ;
     ilxtr:MISSING_ILX_ID true ;
     ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
 
