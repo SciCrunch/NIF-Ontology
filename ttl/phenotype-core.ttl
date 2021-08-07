@@ -305,6 +305,14 @@ ilxtr:hasProcessLocatedIn a owl:AsymmetricProperty,
     rdfs:label "hasProcessLocatedIn" ;
     rdfs:subPropertyOf ilxtr:hasLocationPhenotype .
 
+ilxtr:hasProjectionLaterality a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasProjectionLaterality" ;
+    skos:definition "Expresses a relationship between a neuron type and whether the target region it projects to is on the same, opposite, or both sides of the brain." ;
+    rdfs:subPropertyOf ilxtr:hasProjectionPhenotype ;
+    rdfs:comment "ispilateral, contralateral, and bilateral are kind of like cortico thalamic but they are lifted to an invariant form that doesn’t care about the exact starting side, unilateral is the union of ipsi and contra but I’m fairly certain that unilateral should never be reported because it is ambiguous, this is primarily a convenience relation for neurons that have a single projection laterality, however there are plenty of examples where there are neurons that project to two different regions one of which is ipsi and the other of which is contra, those cases require the composition to happen on the object of the restriction, so you wind up with has projection phenotype some ipsilateral region, otherwise all our definitions are consistent with bilateral and unilateral projections, which is something we will probably have to fix, right now we are using the PATO laterality terms but the modelling isn’t really what we want because we need to have ipsilateral disjoint from contralateral and disjoint from bilateral" .
+
 ilxtr:hasProjectionPhenotype a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
         owl:ObjectProperty ;
@@ -331,6 +339,14 @@ ilxtr:hasReverseConnectionPhenotype a owl:AsymmetricProperty,
     rdfs:label "hasReverseConnectionPhenotype" ;
     rdfs:subPropertyOf ilxtr:hasConnectionPhenotype ;
     owl:inverseOf ilxtr:hasForwardConnectionPhenotype .
+
+ilxtr:hasSensorySubcellularElementIn a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasSensorySubcellularElementIn" ;
+    skos:definition "Expresses a relationship between a neuron and a nervous system region where that neuron has a part which is involved in the direct detection of sensory stimuli." ;
+    rdfs:subPropertyOf ilxtr:hasDendriteLocatedIn ;
+    rdfs:comment "This is the equivalent of axon terminals for sensory dendrites in the peripheral nervous system. Not 100% sure on the modeling, but some mechanosensory neurons this would be the anatomcal region(s) where the Pacinian corpuscle are located." .
 
 ilxtr:hasSmallMoleculePhenotype a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
@@ -382,6 +398,14 @@ ilxtr:phenotypeObservedInBrainRegion a owl:ObjectProperty ;
 ilxtr:phenotypeOf a owl:ObjectProperty ;
     rdfs:label "phenotypeOf" ;
     rdfs:comment "of course this can never be universal, so is mostly useful for the python representation" .
+
+ilxtr:receivesProjectionFrom a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "receivesProjectionFrom" ;
+    skos:definition "Expresses a relationship between a neuron type and a brain region where said neuron type has a reverse connection phenotype with some neuron type that has its soma located in said brain region." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "this is essentially hasReverseProjectionPhenotype, however, unlike for connection phenotypes where forward and reverse are not ambiguous, a reverse projection is a confusing concept and thus not used" .
 
 ### Classes
 
