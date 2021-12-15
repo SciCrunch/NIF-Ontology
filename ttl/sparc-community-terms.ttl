@@ -15,6 +15,7 @@
 @prefix ilx.hasRole: <http://uri.interlex.org/base/ilx_0112784> .
 @prefix ilx.includeForSPARC: <http://uri.interlex.org/base/ilx_0738400> .
 @prefix ilx.partOf: <http://uri.interlex.org/base/ilx_0112785> .
+@prefix ilx.relatedTo: <http://uri.interlex.org/base/ilx_0112796> .
 @prefix ilx.type: <http://uri.interlex.org/base/readable/type/> .
 @prefix ilxr: <http://uri.interlex.org/base/readable/> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
@@ -31,13 +32,14 @@
 @prefix PAXRAT: <http://uri.interlex.org/paxinos/uris/rat/labels/> .
 @prefix PAXSPN: <http://uri.interlex.org/paxinos/uris/spine/labels/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix replacedBy: <http://purl.obolibrary.org/obo/IAO_0100001> .
 @prefix SCR: <http://scicrunch.org/resolver/SCR_> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://uri.interlex.org/sparc/ontologies/community-terms> a owl:Ontology ;
-    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/community-terms/version/1625801697.203574/community-terms> ;
-    owl:versionInfo "2021-07-08T20:34:57.203574" .
+    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/community-terms/version/1639626073.315545/community-terms> ;
+    owl:versionInfo "2021-12-15T19:41:13.315545" .
 
 ### Object Properties
 
@@ -71,9 +73,11 @@ ILX:0112794 a owl:ObjectProperty ;
 
 ILX:0383242 a owl:ObjectProperty ;
     rdfs:label "replacedBy" ;
-    ilxtr:hasExistingId ILX:0383242 ;
+    ilxtr:hasExistingId ILX:0383242,
+        replacedBy: ;
+    ilxtr:hasExternalId replacedBy: ;
     ilxtr:hasIlxId ILX:0383242 ;
-    ilxtr:hasIlxPreferredId ILX:0383242 .
+    ilxtr:hasIlxPreferredId replacedBy: .
 
 ILX:0739233 a owl:ObjectProperty ;
     rdfs:label "crossProductOf" ;
@@ -148,12 +152,22 @@ ILX:0778161 a owl:AnnotationProperty ;
     ilxtr:hasIlxId ILX:0778161 ;
     ilxtr:hasIlxPreferredId ILX:0778161 .
 
+ILX:0793129 a owl:AnnotationProperty ;
+    rdfs:label "anterior border of right lung" ;
+    definition: "The anterior border of the lung is formed by the convergence of the mediastinal and costal surfaces." ;
+    rdfs:subClassOf FMA:7309 ;
+    ilxr:type ilx.type:annotation ;
+    ilxtr:hasExistingId ILX:0793129 ;
+    ilxtr:hasIlxId ILX:0793129 ;
+    ilxtr:hasIlxPreferredId ILX:0793129 .
+
 ### Classes
 
 EMAPA:18995 a owl:Class ;
     rdfs:label "pelvic urethra of male" ;
     definition: "The pelvic urethra of male (PLUR) (TS23-TS28) is part of urethra of male. Cranially joined to the bladder and caudally joined to the phallic urethra of male (TS23-TS27) which becomes the penile urethra (TS28). Comprised of epithelium (subdivided into 3 layers), mesenchymal layer (subdivided into lamina propria, muscularis mucosa, submucosa (TS25-TS28) and also contains mesenchymal pad of male (TS25-TS27)), muscle layer and adventitia. Also contains vasculature and nerve of pelvic urethra of male, and neural crest derivative of pelvic urethra of male (TS25-TS27). Also contains ventral epithelial bud of male and male urethral gland bud (TS24-TS26), which become urethral gland of male pelvic urethra (TS27), which develop from the epithelium of pelvic urethra of male. The pelvic urethra of female (TS28) also contains a rhabdosphincter as part of the muscle layer of pelvic uretha of female. In the TS28 male, the rhabdophincter is part of the prostatic urethra." ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:18995,
         ILX:0738415 ;
@@ -172,17 +186,8 @@ EMAPA:19554 a owl:Class ;
         ILX:0738431 ;
     ilxtr:hasExternalId EMAPA:19554 ;
     ilxtr:hasIlxId ILX:0738431 ;
-    ilxtr:hasIlxPreferredId EMAPA:19554 .
-
-EMAPA:19574 a owl:Class ;
-    rdfs:label "Sixth lumbar spinal cord segment" ;
-    NIFRID:synonym "L6" ;
-    ilxr:type ilx.type:term ;
-    ilxtr:hasExistingId EMAPA:19574,
-        ILX:0738432 ;
-    ilxtr:hasExternalId EMAPA:19574 ;
-    ilxtr:hasIlxId ILX:0738432 ;
-    ilxtr:hasIlxPreferredId EMAPA:19574 .
+    ilxtr:hasIlxPreferredId EMAPA:19554 ;
+    ilxtr:includedForSPARCUnder FMA:7647 .
 
 EMAPA:25169 a owl:Class ;
     rdfs:label "sixth lumbar dorsal root ganglion" ;
@@ -197,6 +202,7 @@ EMAPA:28697 a owl:Class ;
     rdfs:label "epithelium of pelvic urethra of male" ;
     definition: "The epithelium of pelvic urethra of male (TS23-TS28) is the innermost layer of the pelvic urethra, a stratified epithelium lining the lumen. It is subdivided into dorsal and ventral. It is also subdivided into three epithelial cell layers; superficial, intermediate and basal cell layer of dorsal/ventral pelvic urethra.  At TS23, the epithelium of dorsal pelvic urethra of male is also comprised of urogenital sinus ridge of male and rest of dorsal epithelium of pelvic urethra of male. The urogenital sinus ridge becomes the verumontanum in males from TS24. Cytokeratin 14 and Cadherin 1 are markers of all layers of the epithelium." ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:28697,
         ILX:0738401 ;
@@ -212,6 +218,7 @@ EMAPA:28753 a owl:Class ;
         "internal urethra" ;
     definition: "The pelvic urethra of female (PLUR) (syn: cranial urethra, internal urethra) (TS23-TS28) is part of urethra of female. Cranially joined to the bladder and caudally joined to the phallic urethra of female (TS23-TS27) which becomes the clitoral urethra (TS28). Comprised of epithelium (subdivided into 3 layers), mesenchymal layer (subdivided into lamina propria, muscularis mucosa, submucosa (TS25-28) and also contains mesenchymal pad of female (TS25-TS27)), muscle layer and adventitia. Also contains vasculature and nerve of pelvic urethra of female, and neural crest derivative of pelvic urethra of female (TS25-TS27). Also contains ventral epithelial bud of female and female urethral gland bud (TS24-TS26), which become urethral gland of female pelvic urethra (TS27), which develop from the epithelium of pelvic urethra of female. The pelvic urethra of female (TS28) also contains a rhabdosphincter as part of the muscle layer of pelvic uretha of female. In the TS28 male, the rhabdophincter is part of the prostatic urethra." ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:28753,
         ILX:0738402 ;
@@ -224,6 +231,7 @@ EMAPA:28759 a owl:Class ;
     rdfs:label "epithelium of pelvic urethra of female" ;
     definition: "The epithelium of pelvic urethra of female (TS23-TS28) is the innermost layer of the pelvic urethra, a stratified epithelium lining the lumen. It is subdivided into dorsal and ventral. It is also subdivided into three epithelial cell layers; superficial, intermediate and basal cell layer of dorsal/ventral pelvic urethra.  At TS23, the epithelium of dorsal pelvic urethra of female is also comprised of urogenital sinus ridge of female and rest of dorsal epithelium of pelvic urethra of female. The urogenital sinus ridge becomes the sinovaginal bulb in females from TS24. Cytokeratin 14 and Cadherin 1 are markers of all layers of the epithelium." ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:28759,
         ILX:0738417 ;
@@ -237,6 +245,7 @@ EMAPA:30917 a owl:Class ;
     NIFRID:synonym "external urethra of female" ;
     definition: "The clitoral urethra (CLUR) (syn: external urethra of female) (TS25-TS28) is comprised of epithelium of clitoral urethra. Epithelium of clitoral urethra (TS25-28) derived from epithelium of phallic urethra of male/female (TS21-24). At TS25, the epithelium is subdivided into along its distal-proximal length into urethral plate epithelium (distal) and urethral tube epithelium (proximal). The urethral plate epithelium of female (syn: distal urethral epithelium of female; urethral plate of female) is no longer present from TS26. The clitoral urethra is open proximally at the proximal urethral meatus (present to P7) (syn: proximal urethral opening of female or urethral duct) located at the base of the clitoris. The proximal urethral meatus closes after birth (closed by P8). In adults and from birth, the urethra of female is open externally at the urethral meatus of clitoral urethra (syn: distal urethral opening of female) which is anatomically located within the clitoris. (This is different to humans, where the urethral opening is located between the clitoris and vagina). The clitoral urethra is anatomically located ventrally within the clitoris and is surrounded by the tissue of the clitoris, therefore only the epithelial components are necessary parts of clitoral urethra." ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:30917,
         ILX:0738413 ;
@@ -248,6 +257,7 @@ EMAPA:30917 a owl:Class ;
 EMAPA:30930 a owl:Class ;
     rdfs:label "epithelium of clitoral urethra" ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:30930,
         ILX:0738418 ;
@@ -262,6 +272,7 @@ EMAPA:30944 a owl:Class ;
     definition: "The penile urethra (PNUR) (syn: external urethra of male) (TS25-TS28) is comprised of epithelium of penile urethra. Epithelium of penile urethra (TS25-TS28) derived from epithelium of phallic urethra of male/female (TS21-TS24). The urethral plate epithelium of male (syn: distal urethral epithelium of male; urethral plate) completely canalises by TS25 and the plate is no longer present in males from TS25. By TS25, the penile urethra opens at the urethral meatus of penile urethra (syn: urethral opening of male) and the proximal urethral meatus has closed. The penile urethra is anatomically located, centrally within the penis and is surrounded by the tissue of the penis, therefore only the epithelial components are necessary parts of penile urethra." ;
     rdfs:subClassOf FMA:305751 ;
     ILX:0383242 FMA:19675 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:30944,
         ILX:0738409 ;
@@ -273,6 +284,7 @@ EMAPA:30944 a owl:Class ;
 EMAPA:30946 a owl:Class ;
     rdfs:label "epithelium of penile urethra" ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:30946,
         ILX:0738414 ;
@@ -286,6 +298,7 @@ EMAPA:32269 a owl:Class ;
     NIFRID:synonym "striated muscle layer of prostatic urethra" ;
     definition: "The rhabdosphincter of male (syn: striated muscle layer of prostatic urethra) (TS28-28) is the striated muscle layer towards the outside of the prostatic urethra. Part of the prostatic urethra, part of the urethra of male. Marked by proteins expressed by skeletal muscle cells, such as skeletal muscle alpha actin (Acta1)." ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:32269,
         ILX:0738408 ;
@@ -298,6 +311,7 @@ EMAPA:36077 a owl:Class ;
     rdfs:label "outer layer of bladder" ;
     definition: "The outer layer of bladder (olbl) (TS22-TS28) is the outermost layer of the bladder, subdivided into serosa of bladder (TS22-TS28) and adventitia of bladder (TS22-TS28). Most of the bladder is covered by serosa, a serous-fluid-secreting outer epithelial surface of the bladder in contact with the coelomic cavity. The fundus (or dome) is surrounded by serosa, the rest of the bladder, in contact with the adjacent connective tissue, is covered by adventitia. The adventitia refers to the outer part of the bladder that is not exposed to the peritoneal cavity but is a connective tissue layer that binds it to the adventitia of adjacent organs. The proportion of the bladder covered by serosa and adventitia is stage dependant, with adventita covering more of the bladder early in development, and the majority covered by serosa later in development. Contains nerve of bladder serosa/adventitia (TS22-TS28)." ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36077,
         ILX:0738406 ;
@@ -310,6 +324,7 @@ EMAPA:36079 a owl:Class ;
     rdfs:label "ventral bladder neck" ;
     definition: "The ventral bladder neck (TS22-TS28) is the ventral region of the narrow open end of the bladder, located between the ureter orifices and the opening of the pelvic urethra (the dorsal region of the bladder neck is the bladder trigone). Comprised of urothelium, lamina propria, detrusor muscle and adventitia of ventral bladder neck." ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36079,
         ILX:0738405 ;
@@ -323,6 +338,7 @@ EMAPA:36080 a owl:Class ;
     definition: "The anatomical junction between the ureter and the bladder trigone. This junction is located at the superior/rostral right and left angles of the base of the bladder trigone on the posterior aspect of the organ where the ureters merge with the bladder wall." ;
     rdfs:subClassOf FMA:305751 ;
     ilx.anno.hasDefinitionSource: SCR:018709 ;
+    ILX:0739239 "True" ;
     ILX:0739272 FMA:9704,
         FMA:15910 ;
     ILX:0777130 ilx:ilx_0739291 ;
@@ -339,6 +355,7 @@ EMAPA:36081 a owl:Class ;
     definition: "The anatomical junction between the urethra and the bladder trigone. This junction is located at the apex of the bladder trigone where the urethra forms." ;
     rdfs:subClassOf FMA:305751 ;
     ilx.anno.hasDefinitionSource: SCR:018709 ;
+    ILX:0739239 "True" ;
     ILX:0739272 FMA:15910,
         FMA:19667 ;
     ILX:0777130 ilx:ilx_0739291 ;
@@ -354,6 +371,7 @@ EMAPA:36084 a owl:Class ;
     rdfs:label "urethra junction of ventral bladder neck" ;
     definition: "The anatomical junction between the urethra and ventral bladder neck. This junction is in the region at the inferior aspect of the bladder where the urethra begins." ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ILX:0739272 EMAPA:36079,
         FMA:19667 ;
     ILX:0777130 ilx:ilx_0739291 ;
@@ -370,6 +388,7 @@ EMAPA:36117 a owl:Class ;
     NIFRID:synonym "striated muscle layer of pelvic urethra of female" ;
     definition: "The rhabdosphincter of female (syn: striated muscle layer of pelvic urethra of female) (TS28) is the striated muscle layer towards the outside of the pelvic urethra of female. Part of the pelvic urethra, part of the urethra of female. Marked by proteins expressed by skeletal muscle cells, such as skeletal muscle alpha actin (Acta1)." ;
     rdfs:subClassOf FMA:305751 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36117,
         ILX:0738416 ;
@@ -383,6 +402,7 @@ EMAPA:36140 a owl:Class ;
     definition: "The adventitia of prostatic urethra (TS28) is the outer connective tissue layer of the prostatic urethra. The prostatic urethra is not surrounded by an outer serous membrane or serosa." ;
     rdfs:subClassOf FMA:305751 ;
     ILX:0383242 FMA:74267 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36140,
         ILX:0738412 ;
@@ -397,6 +417,7 @@ EMAPA:36421 a owl:Class ;
     definition: "A solid epithelial cord present deep to the skin along the ventral midline of the penis. Represents a remnant of a developmental process that closes the urethra." ;
     rdfs:subClassOf FMA:305751 ;
     ilx.anno.hasDefinitionSource: SCR:018709 ;
+    ILX:0739239 "True" ;
     ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:36421,
@@ -406,6 +427,48 @@ EMAPA:36421 a owl:Class ;
     ilxtr:hasIlxPreferredId EMAPA:36421 ;
     ilxtr:includedForSPARCUnder FMA:45659 ;
     oboInOwl:hasBroadSynonym "ventral seam" .
+
+FMA:3734 a owl:Class ;
+    rdfs:label "aorta" ;
+    definition: "The main trunk of the systemic arterial system that carries blood from the heart to all the organs and other structures of the body, bringing oxygenated blood to all parts of the body in the systemic circulation" ;
+    ilx.anno.hasExactSynonym: "trunk of aortic tree",
+        "trunk of systemic arterial tree" ;
+    ilx.anno.hasNarrowSynonym: "dorsal aorta" ;
+    ilx.anno.hasRelatedSynonym: "arteria maxima" ;
+    ilx.hasDbXref: "AAO:0010213",
+        "BTO:0000135",
+        "CALOHA:TS-0046",
+        "EFO:0000265",
+        "EMAPA:18601",
+        "EV:0100027",
+        "FMA:3734",
+        "GAID:469",
+        "galen:Aorta",
+        "MA:0000062",
+        "MAT:0000035",
+        "MESH:D001011",
+        "MIAA:0000035",
+        "NCIT:C12669",
+        "OpenCyc:Mx4rvVjvTpwpEbGdrcN5Y29ycA",
+        "UMLS:C0003483",
+        "VHOG:0001523",
+        "XAO:0003010",
+        <http://en.wikipedia.org/wiki/Aorta>,
+        <http://linkedlifedata.com/resource/umls/id/C0003483>,
+        <http://www.snomedbrowser.com/Codes/Details/181298001> ;
+    ILX:0739239 "True" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:3734,
+        ILX:0724082,
+        UBERON:0000947 ;
+    ilxtr:hasExternalId FMA:3734,
+        UBERON:0000947 ;
+    ilxtr:hasIlxId ILX:0724082 ;
+    ilxtr:hasIlxPreferredId UBERON:0000947 ;
+    oboInOwl:hasExactSynonym "trunk of aortic tree",
+        "trunk of systemic arterial tree" ;
+    oboInOwl:hasNarrowSynonym "dorsal aorta" ;
+    oboInOwl:hasRelatedSynonym "arteria maxima" .
 
 FMA:5731 a owl:Class ;
     rdfs:label "vagus nerve" ;
@@ -474,6 +537,7 @@ FMA:6037 a owl:Class ;
     definition: "The thoracic spinal nerve 1 (T1) is a spinal nerve of the thoracic segment.[1]. It originates from the spinal column from below the thoracic vertebra 1 (T1). (from Wikipedia)" ;
     rdfs:subClassOf FMA:5860 ;
     fma:synonym "First thoracic spinal nerve" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6037,
         ILX:0738397 ;
@@ -489,6 +553,7 @@ FMA:6169 a owl:Class ;
     definition: "The thoracic spinal nerve 2 (T2) is a spinal nerve of the thoracic segment.[1]. It originates from the spinal column from below the thoracic vertebra 2 (T2). (from Wikipedia)" ;
     rdfs:subClassOf FMA:5860 ;
     fma:synonym "Second thoracic spinal nerve" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6169,
         ILX:0739243 ;
@@ -503,6 +568,7 @@ FMA:6171 a owl:Class ;
     definition: "The thoracic spinal nerve 3 (T3) is a spinal nerve of the thoracic segment. It originates from the spinal column from below the thoracic vertebra 3 (T3). (from Wikipedia)." ;
     rdfs:subClassOf FMA:5860 ;
     fma:synonym "Third thoracic spinal nerve" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6171,
         ILX:0739246 ;
@@ -530,6 +596,7 @@ FMA:6262 a owl:Class ;
         "NCIT:C52827",
         "UMLS:C1710393",
         <http://linkedlifedata.com/resource/umls/id/C1710393> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6262,
         ILX:0730031,
@@ -553,27 +620,48 @@ FMA:6262 a owl:Class ;
 
 FMA:6449 a owl:Class ;
     rdfs:label "Eighth cervical nerve" ;
-    NIFRID:synonym "C8 Nerve ",
+    NIFRID:synonym "C8 Nerve",
         "Eighth cervical nerve" ;
     definition: "The cervical spinal nerve 8 (C8) is a spinal nerve of the cervical segment.[1] It originates from the spinal column from below the cervical vertebra 7 (C7) From Wikipedia" ;
     fma:synonym "C8 spinal nerve",
         "Eighth cervical spinal nerve" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6449,
         ILX:0739245 ;
     ilxtr:hasExternalId FMA:6449 ;
     ilxtr:hasIlxId ILX:0739245 ;
-    ilxtr:hasIlxPreferredId FMA:6449 .
+    ilxtr:hasIlxPreferredId FMA:6449 ;
+    ilxtr:includedForSPARCUnder FMA:7647 .
 
 FMA:6468 a owl:Class ;
     rdfs:label "middle cervical ganglion" ;
+    definition: "the small ganglion located at the level of the cricoid cartilage of the laryngeal wall" ;
+    ilx.anno.hasExactSynonym: "middle cervical sympathetic ganglion" ;
+    ilx.anno.hasRelatedSynonym: "ganglion cervicale medium" ;
+    ilx.hasDbXref: "BAMS:GMC",
+        "BTO:0000359",
+        "EHDAA:8941",
+        "EMAPA:18440",
+        "FMA:6468",
+        "MA:0001155",
+        "NCIT:C92212",
+        "RETIRED_EHDAA2:0001180",
+        "UMLS:C0228999",
+        <http://en.wikipedia.org/wiki/Middle_cervical_ganglion>,
+        <http://linkedlifedata.com/resource/umls/id/C0228999>,
+        <http://www.snomedbrowser.com/Codes/Details/279279005> ;
+    ILX:0739239 "True" ;
+    ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:6468,
         ILX:0726454,
         UBERON:0001990 ;
     ilxtr:hasExternalId FMA:6468,
         UBERON:0001990 ;
     ilxtr:hasIlxId ILX:0726454 ;
-    ilxtr:hasIlxPreferredId UBERON:0001990 .
+    ilxtr:hasIlxPreferredId UBERON:0001990 ;
+    oboInOwl:hasExactSynonym "middle cervical sympathetic ganglion" ;
+    oboInOwl:hasRelatedSynonym "ganglion cervicale medium" .
 
 FMA:6469 a owl:Class ;
     rdfs:label "cervicothoracic ganglion" ;
@@ -591,6 +679,7 @@ FMA:6469 a owl:Class ;
         "MESH:D013233",
         <http://en.wikipedia.org/wiki/Cervicothoracic_ganglion>,
         <http://www.snomedbrowser.com/Codes/Details/181101006> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:18226,
         FMA:6469,
@@ -744,6 +833,143 @@ FMA:7098 a owl:Class ;
     ilxtr:hasIlxId ILX:0724874 ;
     ilxtr:hasIlxPreferredId UBERON:0002080 .
 
+FMA:7131 a owl:Class ;
+    rdfs:label "esophagus" ;
+    definition: "Tube that connects the pharynx to the stomach. " ;
+    ilx.anno.hasExactSynonym: "gullet",
+        "oesophagus" ;
+    ilx.hasDbXref: "AAO:0000145",
+        "ANISEED:1235301",
+        "BTO:0000959",
+        "CALOHA:TS-0700",
+        "EFO:0000835",
+        "EHDAA2:0001285",
+        "EHDAA:2937",
+        "EMAPA:16833",
+        "EV:0100069",
+        "FMA:7131",
+        "GAID:291",
+        "galen:Esophagus",
+        "MA:0000352",
+        "MAT:0000048",
+        "MESH:A03.365",
+        "MIAA:0000048",
+        "NCIT:C12389",
+        "OpenCyc:Mx4rvVj9Q5wpEbGdrcN5Y29ycA",
+        "TAO:0000204",
+        "UMLS:C0014876",
+        "VHOG:0000450",
+        "XAO:0000127",
+        "ZFA:0000204",
+        <http://en.wikipedia.org/wiki/Esophagus>,
+        <http://linkedlifedata.com/resource/umls/id/C0014876>,
+        <http://www.snomedbrowser.com/Codes/Details/181245004> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:7131,
+        ILX:0735017,
+        UBERON:0001043 ;
+    ilxtr:hasExternalId FMA:7131,
+        UBERON:0001043 ;
+    ilxtr:hasIlxId ILX:0735017 ;
+    ilxtr:hasIlxPreferredId UBERON:0001043 ;
+    ilxtr:includedForSPARCUnder ILX:0793091,
+        ILX:0793098,
+        ILX:0793099,
+        ILX:0793100,
+        ILX:0793101,
+        ILX:0793102,
+        ILX:0793103,
+        ILX:0793122 ;
+    oboInOwl:hasExactSynonym "gullet",
+        "oesophagus" .
+
+FMA:7148 a owl:Class ;
+    rdfs:label "stomach" ;
+    definition: "An expanded region of the vertebrate alimentary tract that serves as a food storage compartment and digestive organ. A stomach is lined, in whole or in part by a glandular epithelium." ;
+    ilx.anno.hasNarrowSynonym: "stomach chamber" ;
+    ilx.anno.hasRelatedSynonym: "anterior intestine",
+        "gaster",
+        "mesenteron",
+        "ventriculus" ;
+    ilx.hasDbXref: "AAO:0000579",
+        "ANISEED:1235297",
+        "BTO:0001307",
+        "CALOHA:TS-0980",
+        "EFO:0000837",
+        "EHDAA2:0001915",
+        "EHDAA:2993",
+        "EMAPA:17021",
+        "EV:0100070",
+        "FMA:7148",
+        "GAID:293",
+        "galen:Stomach",
+        "MA:0000353",
+        "MAT:0000051",
+        "MESH:A03.492.766",
+        "MIAA:0000051",
+        "NCIT:C12391",
+        "OpenCyc:Mx4rvVjlqpwpEbGdrcN5Y29ycA",
+        "TAO:0002121",
+        "UMLS:C0038351",
+        "VHOG:0000408",
+        "XAO:0000128",
+        <http://en.wikipedia.org/wiki/Stomach>,
+        <http://linkedlifedata.com/resource/umls/id/C0038351>,
+        <http://www.snomedbrowser.com/Codes/Details/181246003> ;
+    ilx.includeForSPARC: ILX:0793085,
+        ILX:0793086 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:7148,
+        ILX:0736697,
+        UBERON:0000945 ;
+    ilxtr:hasExternalId FMA:7148,
+        UBERON:0000945 ;
+    ilxtr:hasIlxId ILX:0736697 ;
+    ilxtr:hasIlxPreferredId UBERON:0000945 ;
+    ilxtr:includedForSPARCUnder ILX:0793087,
+        ILX:0793088,
+        ILX:0793089,
+        ILX:0793092,
+        ILX:0793093,
+        ILX:0793094,
+        ILX:0793095,
+        ILX:0793096,
+        ILX:0793097,
+        ILX:0793098,
+        ILX:0793099,
+        ILX:0793100,
+        ILX:0793101,
+        ILX:0793102,
+        ILX:0793103,
+        ILX:0793104,
+        ILX:0793105,
+        ILX:0793106,
+        ILX:0793107,
+        ILX:0793108,
+        ILX:0793109,
+        ILX:0793110,
+        ILX:0793111,
+        ILX:0793112,
+        ILX:0793113,
+        ILX:0793114,
+        ILX:0793115,
+        ILX:0793116,
+        ILX:0793117,
+        ILX:0793118,
+        ILX:0793119,
+        ILX:0793120,
+        ILX:0793123,
+        ILX:0793124,
+        ILX:0793125,
+        ILX:0793126,
+        ILX:0793127,
+        ILX:0793128 ;
+    oboInOwl:hasNarrowSynonym "stomach chamber" ;
+    oboInOwl:hasRelatedSynonym "anterior intestine",
+        "gaster",
+        "mesenteron",
+        "ventriculus" .
+
 FMA:7157 a owl:Class ;
     rdfs:label "Nervous system" ;
     ilxtr:hasExistingId BIRNLEX:844,
@@ -842,12 +1068,59 @@ FMA:7199 a owl:Class ;
     ilxtr:hasIlxId ILX:0724796 ;
     ilxtr:hasIlxPreferredId UBERON:0000160 .
 
+FMA:7206 a owl:Class ;
+    rdfs:label "duodenum" ;
+    definition: "The first part of the small intestine. At the junction of the stomach and the duodenum the alimentary canal is inflected. The duodenum first goes anteriorly for a short distance, turns dorsally, and eventually caudally, thus it is a U-shaped structure with two horizontal sections (a ventral and a dorsal one)." ;
+    ilx.anno.hasRelatedSynonym: "proximal intestine",
+        "upper intestine" ;
+    ilx.hasDbXref: "AAO:0010402",
+        "BTO:0000365",
+        "CALOHA:TS-0214",
+        "EFO:0000851",
+        "EMAPA:18852",
+        "EV:0100073",
+        "FMA:7206",
+        "GAID:284",
+        "galen:Duodenum",
+        "MA:0000338",
+        "MAT:0000044",
+        "MESH:A03.492.411.620.270",
+        "MIAA:0000044",
+        "NCIT:C12263",
+        "OpenCyc:Mx4rv4LJDpwpEbGdrcN5Y29ycA",
+        "UMLS:C0013303",
+        "VHOG:0000052",
+        "XAO:0000236",
+        <http://en.wikipedia.org/wiki/Duodenum>,
+        <http://linkedlifedata.com/resource/umls/id/C0013303>,
+        <http://www.snomedbrowser.com/Codes/Details/181247007> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:7206,
+        ILX:0726125,
+        UBERON:0002114 ;
+    ilxtr:hasExternalId FMA:7206,
+        UBERON:0002114 ;
+    ilxtr:hasIlxId ILX:0726125 ;
+    ilxtr:hasIlxPreferredId UBERON:0002114 ;
+    ilxtr:includedForSPARCUnder ILX:0793090,
+        ILX:0793093,
+        ILX:0793107,
+        ILX:0793108,
+        ILX:0793109,
+        ILX:0793110,
+        ILX:0793111,
+        ILX:0793112,
+        ILX:0793121 ;
+    oboInOwl:hasRelatedSynonym "proximal intestine",
+        "upper intestine" .
+
 FMA:7220 a owl:Class ;
     rdfs:label "crux cordis" ;
     NIFRID:synonym "Crux of heart" ;
     definition: "An anatomical landmark on the heart. The junction of the interatrial and interventricular septa, the atrioventricular valves, and of the four chambers of the heart. Represented by a single point (x, y, and z location)." ;
     rdfs:subClassOf FMA:9658 ;
     ilx.partOf: FMA:7088 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:7220,
         ILX:0777104 ;
@@ -885,6 +1158,26 @@ FMA:7281 a owl:Class ;
         UBERON:0009129 ;
     ilxtr:hasIlxId ILX:0737129 ;
     ilxtr:hasIlxPreferredId UBERON:0009129 .
+
+FMA:7309 a owl:Class ;
+    rdfs:label "right lung" ;
+    ilxtr:hasExistingId FMA:7309,
+        ILX:0729582,
+        UBERON:0002167 ;
+    ilxtr:hasExternalId FMA:7309,
+        UBERON:0002167 ;
+    ilxtr:hasIlxId ILX:0729582 ;
+    ilxtr:hasIlxPreferredId UBERON:0002167 .
+
+FMA:7310 a owl:Class ;
+    rdfs:label "left lung" ;
+    ilxtr:hasExistingId FMA:7310,
+        ILX:0733450,
+        UBERON:0002168 ;
+    ilxtr:hasExternalId FMA:7310,
+        UBERON:0002168 ;
+    ilxtr:hasIlxId ILX:0733450 ;
+    ilxtr:hasIlxPreferredId UBERON:0002168 .
 
 FMA:7383 a owl:Class ;
     rdfs:label "middle lobe of right lung" ;
@@ -955,6 +1248,97 @@ FMA:7471 a owl:Class ;
 
 FMA:7647 a owl:Class ;
     rdfs:label "Spinal cord" ;
+    NIFRID:synonym "Medulla spinalis",
+        "SP",
+        "Spinal marrow" ;
+    definition: "Part of the central nervous system located in the vertebral canal continuous with and caudal to the brain; demarcated from brain by plane of foramen magnum. It is composed of an inner core of gray matter in which nerve cells predominate, and an outer layer of white matter in which myelinated nerve fibers predominate, and surrounds the central canal. (CUMBO).The caudal topographic division of the cerebrospinal axis. The usual criterion for distinguishing the two divisions in the adult is that the vertebrate brain lies within the skull whereas the spinal cord lies within the spinal (vertebral) column, although this is a difficult problem in practice; see Crosby et al. (1962, pp. 112-120). Definite knowledge of the spinal cord dates to Hippocrates in Fleshes (see translation by Potter, 1995, p. 139), and Galen (c162-c176) used the term specifically-see translation by De Lacy (1978, p. 85)." ;
+    rdfs:subClassOf FMA:67498 ;
+    ilx.anno.hasRelatedSynonym: "cerebro-cerebellar fissure",
+        "cerebrocerebellar fissure",
+        "fissura cerebro-cerebellaris",
+        "fissura cerebrocerebellaris",
+        "medulla spinalis",
+        "SpC",
+        "spinal cord structure",
+        "spinal medulla" ;
+    ilx.hasDbXref: "AAO:0010151",
+        "BAMS:SP",
+        "BAMS:Spinal",
+        "BM:SpC",
+        "BTO:0001279",
+        "CALOHA:TS-0953",
+        "DHBA:12890",
+        "DMBA:17651",
+        "EFO:0000110",
+        "EHDAA2:0001255",
+        "EHDAA:2863",
+        "EMAPA:17577",
+        "EV:0100316",
+        "FMA:7647",
+        "GAID:695",
+        "MA:0000216",
+        "MAT:0000183",
+        "MESH:D013116",
+        "MIAA:0000183",
+        "NCIT:C12464",
+        "OpenCyc:Mx4rvVjjk5wpEbGdrcN5Y29ycA",
+        "TAO:0000075",
+        "UMLS:C0037925",
+        "VHOG:0000601",
+        "XAO:0000020",
+        "ZFA:0000075",
+        BIRNLEX:1709,
+        <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=22>,
+        <http://en.wikipedia.org/wiki/Spinal_cord>,
+        <http://linkedlifedata.com/resource/umls/id/C0037925>,
+        <http://www.snomedbrowser.com/Codes/Details/180959008>,
+        NLXWIKI:birnlex_1709 ;
+    ilx.includeForSPARC: EMAPA:19554,
+        FMA:6449,
+        FMA:62421,
+        FMA:62422,
+        FMA:68864,
+        FMA:68865,
+        FMA:68866,
+        FMA:68867,
+        FMA:68868,
+        FMA:68869,
+        FMA:68871,
+        FMA:71169,
+        FMA:71170,
+        FMA:71171,
+        FMA:71172,
+        FMA:71173,
+        FMA:71174,
+        FMA:71175,
+        FMA:71176,
+        FMA:71177,
+        FMA:71178,
+        FMA:71179,
+        FMA:71180,
+        FMA:71181,
+        FMA:71182,
+        FMA:71183,
+        FMA:71184,
+        FMA:71185,
+        FMA:71186,
+        FMA:71187,
+        FMA:71188,
+        FMA:71189,
+        FMA:71190,
+        FMA:71191,
+        FMA:256625,
+        FMA:256627,
+        FMA:256629,
+        FMA:256631,
+        FMA:256633,
+        FMA:256635,
+        FMA:258416,
+        ILX:0738432,
+        PAXSPN:65,
+        PAXSPN:79 ;
+    ilx.partOf: NLX:158477 ;
+    ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:1709,
         FMA:7647,
         ILX:0110909,
@@ -963,7 +1347,42 @@ FMA:7647 a owl:Class ;
         FMA:7647,
         UBERON:0002240 ;
     ilxtr:hasIlxId ILX:0110909 ;
-    ilxtr:hasIlxPreferredId UBERON:0002240 .
+    ilxtr:hasIlxPreferredId UBERON:0002240 ;
+    oboInOwl:hasRelatedSynonym "cerebro-cerebellar fissure",
+        "cerebrocerebellar fissure",
+        "fissura cerebro-cerebellaris",
+        "fissura cerebrocerebellaris",
+        "SpC",
+        "spinal cord structure",
+        "spinal medulla" .
+
+FMA:8612 a owl:Class ;
+    rdfs:label "pulmonary trunk" ;
+    definition: "An arterial trunk which is continuous with the heart and branches into the pulmonary arteries." ;
+    ilx.anno.hasExactSynonym: "pulmonary artery (trunk)",
+        "trunk of pulmonary arterial tree" ;
+    ilx.anno.hasRelatedSynonym: "main pulmonary artery" ;
+    ilx.hasDbXref: "EHDAA2:0001576",
+        "EHDAA:9831",
+        "EMAPA:17015",
+        "FMA:8612",
+        "galen:PulmonaryTrunk",
+        "MA:0002033",
+        "NCIT:C116918",
+        "OpenCyc:Mx4rv-6d0ZwpEbGdrcN5Y29ycA",
+        "VHOG:0001134" ;
+    ILX:0739239 "True" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:8612,
+        ILX:0732462,
+        UBERON:0002333 ;
+    ilxtr:hasExternalId FMA:8612,
+        UBERON:0002333 ;
+    ilxtr:hasIlxId ILX:0732462 ;
+    ilxtr:hasIlxPreferredId UBERON:0002333 ;
+    oboInOwl:hasExactSynonym "pulmonary artery (trunk)",
+        "trunk of pulmonary arterial tree" ;
+    oboInOwl:hasRelatedSynonym "main pulmonary artery" .
 
 FMA:9658 a owl:Class ;
     rdfs:label "anatomical point" ;
@@ -1002,6 +1421,7 @@ FMA:9704 a owl:Class ;
         <http://en.wikipedia.org/wiki/Ureter>,
         <http://linkedlifedata.com/resource/umls/id/C0041951>,
         <http://www.snomedbrowser.com/Codes/Details/302511008> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:17950,
         FMA:9704,
@@ -1167,6 +1587,7 @@ FMA:10951 a owl:Class ;
         <http://en.wikipedia.org/wiki/Inferior_vena_cava>,
         <http://linkedlifedata.com/resource/umls/id/C0042458>,
         <http://www.snomedbrowser.com/Codes/Details/181369003> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:10951,
         ILX:0736019,
@@ -1230,7 +1651,8 @@ FMA:14543 a owl:Class ;
         ILX:0777124,
         ILX:0777125,
         ILX:0777126,
-        ILX:0777127 ;
+        ILX:0777127,
+        ILX:0793083 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:14543,
         ILX:0736005,
@@ -1242,6 +1664,18 @@ FMA:14543 a owl:Class ;
     oboInOwl:hasExactSynonym "large bowel" ;
     oboInOwl:hasNarrowSynonym "posterior intestine" ;
     oboInOwl:hasRelatedSynonym "hindgut" .
+
+FMA:14984 a owl:Class ;
+    rdfs:label "colonic mucosa" ;
+    ilxtr:hasExistingId FMA:14984,
+        FMA:85388,
+        ILX:0731046,
+        UBERON:0000317 ;
+    ilxtr:hasExternalId FMA:14984,
+        FMA:85388,
+        UBERON:0000317 ;
+    ilxtr:hasIlxId ILX:0731046 ;
+    ilxtr:hasIlxPreferredId UBERON:0000317 .
 
 FMA:15041 a owl:Class ;
     rdfs:label "taenia coli" ;
@@ -1260,6 +1694,7 @@ FMA:15042 a owl:Class ;
     definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon. This tenia coli is named by reference to its topographical situation in relation to the transverse colon. It is situated on the posterosuperior surface of the transverse colon at the line of attachment of the transverse mesocolon. This relationship is not maintained on the ascending and descending portions but continuity of the tenia coli allows it to be traced along the ascending and descending colon from the transverse colon. (Meyers MA, Volberg F, Katzen B, Abbott G. Haustral anatomy and pathology: a new look. II. Roentgen interpretation of pathological alterations." ;
     rdfs:subClassOf FMA:15041 ;
     ILX:0381449 "doi:10.1148/108.3.505" ;
+    ILX:0739239 "True" ;
     ILX:0777130 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:15042,
@@ -1276,6 +1711,7 @@ FMA:15043 a owl:Class ;
     definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon.  This tenia coli is named by reference to its topographical situation in relation to the transverse colon. It runs along the anterosuperior surface of the transverse colon and is in relation to the line of attachment of the greater omentum extending inferiorly, and of the gastrocolic ligament above. This relationship is not maintained on the ascending and descending portions but the continuity of the tenia coli allows it to be traced along the ascending and descending colon from the transverse colon. (Meyers MA, Volberg F, Katzen B, Abbott G. Haustral anatomy and pathology: a new look. II. Roentgen interpretation of pathological alterations." ;
     rdfs:subClassOf FMA:15041 ;
     ILX:0381449 "doi:10.1148/108.3.505" ;
+    ILX:0739239 "True" ;
     ILX:0777130 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:15043,
@@ -1293,6 +1729,7 @@ FMA:15044 a owl:Class ;
     definition: "One of the three tenia coli found in human from the ascending colon to the sigmoid colon.  This tenia coli is named by reference to its topographical situation in relation to the transverse colon.  It is the remaining free tenia coli that is not related to any mesenteric or omental attachment and is found on the posteroinferior aspect of the transverse colon. This relationship is not maintained on the ascending and descending portions but the continuity of the teniac coli allows it to be traced along the ascending and descending colon from the transverse colon." ;
     rdfs:subClassOf FMA:15041 ;
     ILX:0381449 "doi:10.1148/108.3.505" ;
+    ILX:0739239 "True" ;
     ILX:0777130 "Human microscopic anatomy: An atlas for students of medicine and biology. Berlin: Springer-Verlag" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:15044,
@@ -1333,6 +1770,7 @@ FMA:15897 a owl:Class ;
     ilx.hasDbXref: "EMAPA:28089",
         "FMA:15897",
         "MA:0002655" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:28089,
         FMA:15897,
@@ -1447,6 +1885,7 @@ FMA:15924 a owl:Class ;
         "FMA:15924",
         "galen:UrinaryBladderCavity",
         <http://www.snomedbrowser.com/Codes/Details/279405003> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:15924,
         ILX:0736593,
@@ -1472,13 +1911,9 @@ FMA:15932 a owl:Class ;
     ilxtr:hasIlxPreferredId UBERON:0001260 .
 
 FMA:15936 a owl:Class ;
-    rdfs:label "urinary bladder urothelium",
-        "urothelium of bladder" ;
-    NIFRID:synonym "epithelium of bladder",
-        "urothelium of bladder" ;
-    definition: "The epithelial lining of the luminal space of the urinary bladder.",
-        "The urothelium of bladder (ubl) (syn: epithelium of bladder) (TS22-TS28) is the innermost layer of the bladder lining the bladder lumen, comprised of a stratified epithelium of three epithelial cell layers containing different epithelial cell types. Contains blood vessels and nerve of urothelium of bladder (TS22-28). Comprised of three cellular layers; superficial, intermediate and basal cell layers. Distinct epithelial cell types reside within the layers of urothelium and are stage dependant. It is possible to annotate urothelium cell layer without knowing the cell type. In the adult bladder, Krt5-expressing basal cells of bladder urothelium make up 90% of the mature urothelium, while intermediate and superficial cells of bladder urothelium each make up about 5%." ;
-    rdfs:subClassOf FMA:305751 ;
+    rdfs:label "urinary bladder urothelium" ;
+    NIFRID:synonym "urothelium of bladder" ;
+    definition: "The epithelial lining of the luminal space of the urinary bladder." ;
     ilx.anno.hasBroadSynonym: "urothelium" ;
     ilx.anno.hasExactSynonym: "bladder transitional cell epithelium",
         "transitional epithelium of urinary bladder",
@@ -1495,20 +1930,17 @@ FMA:15936 a owl:Class ;
         "UMLS:C0225339",
         <http://linkedlifedata.com/resource/umls/id/C0225339>,
         <http://www.snomedbrowser.com/Codes/Details/25631003> ;
-    ILX:0383241 "Already exists here http://purl.obolibrary.org/obo/UBERON_0004645" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:28601,
         FMA:15936,
         ILX:0729492,
-        ILX:0738404,
         UBERON:0004645 ;
     ilxtr:hasExternalId EMAPA:28601,
         FMA:15936,
         UBERON:0004645 ;
-    ilxtr:hasIlxId ILX:0729492,
-        ILX:0738404 ;
-    ilxtr:hasIlxPreferredId FMA:15936,
-        UBERON:0004645 ;
+    ilxtr:hasIlxId ILX:0729492 ;
+    ilxtr:hasIlxPreferredId UBERON:0004645 ;
     ilxtr:includedForSPARCUnder FMA:15900 ;
     oboInOwl:hasBroadSynonym "urothelium" ;
     oboInOwl:hasExactSynonym "bladder transitional cell epithelium",
@@ -1521,6 +1953,7 @@ FMA:15936 a owl:Class ;
 FMA:17873 a owl:Class ;
     rdfs:label "lumen of neck of urinary bladder" ;
     fma:synonym "Cavity of neck of urinary bladder" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:17873,
         ILX:0739256 ;
@@ -1530,7 +1963,7 @@ FMA:17873 a owl:Class ;
 
 FMA:18175 a owl:Class ;
     rdfs:label "right cervical vagus nerve" ;
-    definition: "Portion of the vagus nerve passing inferiorly between the right common carotid artery and left internal jugular vein." ;
+    definition: "parasympathetic and sympathetic fibers that pass inferiorly between the right common carotid and right subclavian arteries." ;
     ilx.partOf: FMA:5731 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:18175,
@@ -1544,6 +1977,7 @@ FMA:18176 a owl:Class ;
     NIFRID:synonym "Cervical part of trunk of left vagus nerve",
         "Left cervical vagus nerve" ;
     ilx.partOf: FMA:5731 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:18176,
         ILX:0738429 ;
@@ -1577,6 +2011,7 @@ FMA:19034 a owl:Class ;
         <http://en.wikipedia.org/wiki/Sciatic_nerve>,
         <http://linkedlifedata.com/resource/umls/id/C0036394>,
         <http://www.snomedbrowser.com/Codes/Details/181050003> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:19034,
         ILX:0736222,
@@ -1618,6 +2053,7 @@ FMA:19673 a owl:Class ;
         <http://en.wikipedia.org/wiki/Prostatic_urethra>,
         <http://linkedlifedata.com/resource/umls/id/C0458450>,
         <http://www.snomedbrowser.com/Codes/Details/279434009> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId EMAPA:30942,
         FMA:19673,
@@ -1674,6 +2110,7 @@ FMA:20117 a owl:Class ;
         "UMLS:C1704223",
         <http://en.wikipedia.org/wiki/White_adipose_tissue>,
         <http://linkedlifedata.com/resource/umls/id/C1704223> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:20117,
         ILX:0728977,
@@ -1712,6 +2149,7 @@ FMA:20118 a owl:Class ;
         <http://en.wikipedia.org/wiki/Brown_adipose_tissue>,
         <http://linkedlifedata.com/resource/umls/id/C0006298>,
         <http://www.snomedbrowser.com/Codes/Details/15965003> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:20118,
         ILX:0725625,
@@ -1745,6 +2183,16 @@ FMA:21542 a owl:Class ;
         UBERON:0005304 ;
     ilxtr:hasIlxId ILX:0736047 ;
     ilxtr:hasIlxPreferredId UBERON:0005304 .
+
+FMA:24137 a owl:Class ;
+    rdfs:label "anatomical surface" ;
+    ilxtr:hasExistingId FMA:24137,
+        ILX:0726119,
+        UBERON:0006984 ;
+    ilxtr:hasExternalId FMA:24137,
+        UBERON:0006984 ;
+    ilxtr:hasIlxId ILX:0726119 ;
+    ilxtr:hasIlxPreferredId UBERON:0006984 .
 
 FMA:45659 a owl:Class ;
     rdfs:label "lower urinary tract" ;
@@ -1802,6 +2250,62 @@ FMA:49443 a owl:Class ;
     ilxtr:hasIlxId ILX:0724385 ;
     ilxtr:hasIlxPreferredId UBERON:0000477 .
 
+FMA:50872 a owl:Class ;
+    rdfs:label "right pulmonary artery" ;
+    definition: "The pulmonary artery that supplies the right lung." ;
+    ilx.anno.hasExactSynonym: "right main pulmonary artery",
+        "right pulmonary arterial tree" ;
+    ilx.anno.hasRelatedSynonym: "arteria pulmonalis dextra" ;
+    ilx.hasDbXref: "EMAPA:37378",
+        "FMA:50872",
+        "galen:RightPulmonaryArtery",
+        "MA:0002500",
+        "NCIT:C33489",
+        "UMLS:C0923924",
+        <http://en.wikipedia.org/wiki/Right_pulmonary_artery>,
+        <http://linkedlifedata.com/resource/umls/id/C0923924>,
+        <http://www.snomedbrowser.com/Codes/Details/244235003> ;
+    ILX:0739239 "True" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:50872,
+        ILX:0726023,
+        UBERON:0001651 ;
+    ilxtr:hasExternalId FMA:50872,
+        UBERON:0001651 ;
+    ilxtr:hasIlxId ILX:0726023 ;
+    ilxtr:hasIlxPreferredId UBERON:0001651 ;
+    oboInOwl:hasExactSynonym "right main pulmonary artery",
+        "right pulmonary arterial tree" ;
+    oboInOwl:hasRelatedSynonym "arteria pulmonalis dextra" .
+
+FMA:50873 a owl:Class ;
+    rdfs:label "left pulmonary artery" ;
+    definition: "The pulmonary artery that supplies the left lung." ;
+    ilx.anno.hasExactSynonym: "left main pulmonary artery",
+        "left pulmonary arterial tree" ;
+    ilx.anno.hasRelatedSynonym: "arteria pulmonalis sinistra" ;
+    ilx.hasDbXref: "EMAPA:37097",
+        "FMA:50873",
+        "galen:LeftPulmonaryArtery",
+        "MA:0002032",
+        "NCIT:C32971",
+        "UMLS:C0923925",
+        <http://en.wikipedia.org/wiki/Left_pulmonary_artery>,
+        <http://linkedlifedata.com/resource/umls/id/C0923925>,
+        <http://www.snomedbrowser.com/Codes/Details/244234004> ;
+    ILX:0739239 "True" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:50873,
+        ILX:0724256,
+        UBERON:0001652 ;
+    ilxtr:hasExternalId FMA:50873,
+        UBERON:0001652 ;
+    ilxtr:hasIlxId ILX:0724256 ;
+    ilxtr:hasIlxPreferredId UBERON:0001652 ;
+    oboInOwl:hasExactSynonym "left main pulmonary artery",
+        "left pulmonary arterial tree" ;
+    oboInOwl:hasRelatedSynonym "arteria pulmonalis sinistra" .
+
 FMA:52585 a owl:Class ;
     rdfs:label "Perineurium" ;
     ilxtr:hasExistingId FMA:52585,
@@ -1840,6 +2344,57 @@ FMA:55676 a owl:Class ;
 
 FMA:62004 a owl:Class ;
     rdfs:label "Medulla oblongata" ;
+    NIFRID:synonym "Afterbrain",
+        "Bulb",
+        "Epencephalon",
+        "Metencephalon" ;
+    definition: "The lower portion of the hindbrain and brainstem located between the pons and spinal cord. This structure contains several descending and ascending tracts, lower cranial nerve nuclei, a significant proportion of the reticular system of the brainstem and other structures (adapted from NCI Thesaurus).The topographic division of the cerebrospinal axis between pons and spinal cord. It was clearly described and illustrated for macrodissected adult humans by Piccolomini (1586, pp. 265, 269; his intracranial medulla oblongata), while the term medulla was used by Winslow (1733, Sect. X, p. 42) and Haller (1747, see translation by Mihles, 1754, pp. 287, 286), and more recently in the classic textbooks of for example Mettler (1948, p. 76) and Carpenter (1976, p. 60)." ;
+    rdfs:subClassOf FMA:55676 ;
+    ilx.anno.hasBroadSynonym: "bulb",
+        "medulla" ;
+    ilx.anno.hasExactSynonym: "bulbus" ;
+    ilx.anno.hasRelatedSynonym: "medulla oblonzata",
+        "metepencephalon" ;
+    ilx.hasDbXref: "AAO:0010486",
+        "BAMS:Md",
+        "BAMS:MY",
+        "BM:Me",
+        "BTO:0000041",
+        "CALOHA:TS-0607",
+        "DMBA:17352",
+        "EFO:0000924",
+        "EHDAA2:0001088",
+        "EHDAA:7588",
+        "EMAPA:17550",
+        "EV:0100275",
+        "FMA:62004",
+        "GAID:590",
+        "MA:0000206",
+        "MAT:0000111",
+        "MAT:0000367",
+        "MBA:354",
+        "MESH:D008526",
+        "MIAA:0000111",
+        "NCIT:C12442",
+        "OpenCyc:Mx4rvVjxSJwpEbGdrcN5Y29ycA",
+        "OpenCyc:Mx4rwCqnXJwpEbGdrcN5Y29ycA",
+        "TAO:0000545",
+        "UMLS:C0025148",
+        "UMLS:C1269575",
+        "VHOG:0000181",
+        "XAO:0003100",
+        "ZFA:0000545",
+        BIRNLEX:957,
+        <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=698>,
+        <http://en.wikipedia.org/wiki/Bone_marrow_of_ovary_oblongata>,
+        <http://linkedlifedata.com/resource/umls/id/C0025148>,
+        <http://linkedlifedata.com/resource/umls/id/C1269575>,
+        <http://www.snomedbrowser.com/Codes/Details/279104005>,
+        NLXWIKI:birnlex_957 ;
+    ilx.partOf: NLX:158477 ;
+    ilx.relatedTo: FMA:67687 ;
+    ILX:0739239 "True" ;
+    ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:957,
         FMA:62004,
         ILX:0106736,
@@ -1848,7 +2403,11 @@ FMA:62004 a owl:Class ;
         FMA:62004,
         UBERON:0001896 ;
     ilxtr:hasIlxId ILX:0106736 ;
-    ilxtr:hasIlxPreferredId UBERON:0001896 .
+    ilxtr:hasIlxPreferredId UBERON:0001896 ;
+    oboInOwl:hasBroadSynonym "medulla" ;
+    oboInOwl:hasExactSynonym "bulbus" ;
+    oboInOwl:hasRelatedSynonym "medulla oblonzata",
+        "metepencephalon" .
 
 FMA:62421 a owl:Class ;
     rdfs:label "First thoracic spinal cord segment" ;
@@ -1875,6 +2434,7 @@ FMA:62421 a owl:Class ;
         UBERON:0006457 ;
     ilxtr:hasIlxId ILX:0104262 ;
     ilxtr:hasIlxPreferredId UBERON:0006457 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "first thoracic spinal cord segment",
         "t1 segment" .
 
@@ -1903,12 +2463,14 @@ FMA:62422 a owl:Class ;
         UBERON:0006458 ;
     ilxtr:hasIlxId ILX:0110433 ;
     ilxtr:hasIlxPreferredId UBERON:0006458 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "second thoracic spinal cord segment",
         "t2 segment" .
 
 FMA:62980 a owl:Class ;
     rdfs:label "Schwann cell nucleus" ;
     definition: "Nucleus of a Schwann Cell" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:62980,
         ILX:0738419 ;
@@ -1949,6 +2511,18 @@ FMA:67498 a owl:Class ;
     ilxtr:hasIlxId ILX:0108124 ;
     ilxtr:hasIlxPreferredId UBERON:0000062 .
 
+FMA:67687 a owl:Class ;
+    rdfs:label "Hindbrain" ;
+    ilxtr:hasExistingId BIRNLEX:942,
+        FMA:67687,
+        ILX:0105004,
+        UBERON:0002028 ;
+    ilxtr:hasExternalId BIRNLEX:942,
+        FMA:67687,
+        UBERON:0002028 ;
+    ilxtr:hasIlxId ILX:0105004 ;
+    ilxtr:hasIlxPreferredId UBERON:0002028 .
+
 FMA:68862 a owl:Class ;
     rdfs:label "Lamina I of gray matter of spinal cord" ;
     NIFRID:synonym "lamina I",
@@ -1971,6 +2545,7 @@ FMA:68862 a owl:Class ;
         NLXANAT:100203,
         NLXWIKI:nlx_anat_100203 ;
     ILX:0112794 FMA:256530 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:68862,
         ILX:0105978,
@@ -1996,6 +2571,7 @@ FMA:68864 a owl:Class ;
         "Rexed's lamina III" ;
     ilx.hasDbXref: "FMA:68864",
         <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=1695> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:68864,
         ILX:0727135,
@@ -2004,7 +2580,8 @@ FMA:68864 a owl:Class ;
         UBERON:0016574 ;
     ilxtr:hasIlxId ILX:0727135 ;
     ilxtr:hasIlxPreferredId UBERON:0016574 ;
-    ilxtr:includedForSPARCUnder FMA:9903 ;
+    ilxtr:includedForSPARCUnder FMA:7647,
+        FMA:9903 ;
     oboInOwl:hasExactSynonym "lamina spinale III",
         "rexed lamina III",
         "spinal lamina III" ;
@@ -2026,6 +2603,7 @@ FMA:68865 a owl:Class ;
         "Rexed's lamina IV" ;
     ilx.hasDbXref: "FMA:68865",
         <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=1696> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:68865,
         ILX:0726681,
@@ -2034,7 +2612,8 @@ FMA:68865 a owl:Class ;
         UBERON:0016575 ;
     ilxtr:hasIlxId ILX:0726681 ;
     ilxtr:hasIlxPreferredId UBERON:0016575 ;
-    ilxtr:includedForSPARCUnder FMA:9903 ;
+    ilxtr:includedForSPARCUnder FMA:7647,
+        FMA:9903 ;
     oboInOwl:hasExactSynonym "lamina spinale IV",
         "rexed lamina IV",
         "spinal lamina IV" ;
@@ -2058,6 +2637,7 @@ FMA:68866 a owl:Class ;
     ilx.hasDbXref: "FMA:68866",
         <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=1698>,
         <http://en.wikipedia.org/wiki/Spinal_lamina_V> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:68866,
         ILX:0732441,
@@ -2066,7 +2646,8 @@ FMA:68866 a owl:Class ;
         UBERON:0016576 ;
     ilxtr:hasIlxId ILX:0732441 ;
     ilxtr:hasIlxPreferredId UBERON:0016576 ;
-    ilxtr:includedForSPARCUnder FMA:9903 ;
+    ilxtr:includedForSPARCUnder FMA:7647,
+        FMA:9903 ;
     oboInOwl:hasExactSynonym "rexed lamina V",
         "spinal lamina V" ;
     oboInOwl:hasRelatedSynonym "lamina 5",
@@ -2101,6 +2682,7 @@ FMA:68867 a owl:Class ;
         <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=1699>,
         <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=2007>,
         <http://en.wikipedia.org/wiki/Spinal_lamina_VI> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:68867,
         ILX:0733285,
@@ -2109,7 +2691,8 @@ FMA:68867 a owl:Class ;
         UBERON:0016577 ;
     ilxtr:hasIlxId ILX:0733285 ;
     ilxtr:hasIlxPreferredId UBERON:0016577 ;
-    ilxtr:includedForSPARCUnder FMA:9903 ;
+    ilxtr:includedForSPARCUnder FMA:7647,
+        FMA:9903 ;
     oboInOwl:hasExactSynonym "rexed lamina VI",
         "spinal lamina VI" ;
     oboInOwl:hasRelatedSynonym "basal nucleus of the dorsal horn",
@@ -2138,6 +2721,7 @@ FMA:68868 a owl:Class ;
         "Rexed's lamina VII" ;
     ilx.hasDbXref: "FMA:68868",
         <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=1700> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:68868,
         ILX:0727035,
@@ -2146,7 +2730,8 @@ FMA:68868 a owl:Class ;
         UBERON:0016578 ;
     ilxtr:hasIlxId ILX:0727035 ;
     ilxtr:hasIlxPreferredId UBERON:0016578 ;
-    ilxtr:includedForSPARCUnder FMA:9903 ;
+    ilxtr:includedForSPARCUnder FMA:7647,
+        FMA:9903 ;
     oboInOwl:hasExactSynonym "rexed lamina VII",
         "spinal lamina VII" ;
     oboInOwl:hasRelatedSynonym "lamina 7",
@@ -2164,6 +2749,7 @@ FMA:68869 a owl:Class ;
         "Rexed's lamina VIII" ;
     ilx.hasDbXref: "FMA:68869",
         <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=1701> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:68869,
         ILX:0724580,
@@ -2172,7 +2758,8 @@ FMA:68869 a owl:Class ;
         UBERON:0016579 ;
     ilxtr:hasIlxId ILX:0724580 ;
     ilxtr:hasIlxPreferredId UBERON:0016579 ;
-    ilxtr:includedForSPARCUnder FMA:9903 ;
+    ilxtr:includedForSPARCUnder FMA:7647,
+        FMA:9903 ;
     oboInOwl:hasExactSynonym "rexed lamina VIII",
         "spinal lamina VIII" ;
     oboInOwl:hasRelatedSynonym "lamina 8",
@@ -2185,6 +2772,7 @@ FMA:68870 a owl:Class ;
     ilx.anno.hasExactSynonym: "rexed lamina IX",
         "spinal lamina IX" ;
     ilx.hasDbXref: "FMA:68870" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:68870,
         ILX:0733130,
@@ -2239,6 +2827,7 @@ FMA:68871 a owl:Class ;
         <http://www.snomedbrowser.com/Codes/Details/362427009>,
         NLXWIKI:birnlex_2669 ;
     ilx.partOf: FMA:256580 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId BIRNLEX:2669,
         FMA:68871,
@@ -2251,7 +2840,8 @@ FMA:68871 a owl:Class ;
         UBERON:0004677 ;
     ilxtr:hasIlxId ILX:0110919 ;
     ilxtr:hasIlxPreferredId UBERON:0004677 ;
-    ilxtr:includedForSPARCUnder FMA:9903 ;
+    ilxtr:includedForSPARCUnder FMA:7647,
+        FMA:9903 ;
     oboInOwl:hasExactSynonym "area spinalis X",
         "gray commissure of spinal cord",
         "lamina X",
@@ -2300,6 +2890,7 @@ FMA:71169 a owl:Class ;
         UBERON:0006459 ;
     ilxtr:hasIlxId ILX:0111706 ;
     ilxtr:hasIlxPreferredId UBERON:0006459 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "t3 segment",
         "third thoracic spinal cord segment" .
 
@@ -2327,6 +2918,7 @@ FMA:71170 a owl:Class ;
         UBERON:0006452 ;
     ilxtr:hasIlxId ILX:0104370 ;
     ilxtr:hasIlxPreferredId UBERON:0006452 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "T4 segment" .
 
 FMA:71171 a owl:Class ;
@@ -2354,6 +2946,7 @@ FMA:71171 a owl:Class ;
         UBERON:0006453 ;
     ilxtr:hasIlxId ILX:0104222 ;
     ilxtr:hasIlxPreferredId UBERON:0006453 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "fifth thoracic spinal cord segment",
         "t5 segment" .
 
@@ -2382,6 +2975,7 @@ FMA:71172 a owl:Class ;
         UBERON:0006454 ;
     ilxtr:hasIlxId ILX:0110653 ;
     ilxtr:hasIlxPreferredId UBERON:0006454 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "sixth thoracic spinal cord segment",
         "t6 segment" .
 
@@ -2410,6 +3004,7 @@ FMA:71173 a owl:Class ;
         UBERON:0006455 ;
     ilxtr:hasIlxId ILX:0110587 ;
     ilxtr:hasIlxPreferredId UBERON:0006455 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "seventh thoracic spinal cord segment",
         "t7 segment" .
 
@@ -2438,6 +3033,7 @@ FMA:71174 a owl:Class ;
         UBERON:0006456 ;
     ilxtr:hasIlxId ILX:0103688 ;
     ilxtr:hasIlxPreferredId UBERON:0006456 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "eighth thoracic spinal cord segment",
         "t8 segment" .
 
@@ -2466,6 +3062,7 @@ FMA:71175 a owl:Class ;
         UBERON:0006465 ;
     ilxtr:hasIlxId ILX:0107599 ;
     ilxtr:hasIlxPreferredId UBERON:0006465 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "ninth thoracic spinal cord segment",
         "t9 segment" .
 
@@ -2494,6 +3091,7 @@ FMA:71176 a owl:Class ;
         UBERON:0006466 ;
     ilxtr:hasIlxId ILX:0111609 ;
     ilxtr:hasIlxPreferredId UBERON:0006466 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "t10 segment",
         "tenth thoracic spinal cord segment" .
 
@@ -2522,6 +3120,7 @@ FMA:71177 a owl:Class ;
         UBERON:0006467 ;
     ilxtr:hasIlxId ILX:0103732 ;
     ilxtr:hasIlxPreferredId UBERON:0006467 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "eleventh thoracic spinal cord segment",
         "t11 segment" .
 
@@ -2550,6 +3149,7 @@ FMA:71178 a owl:Class ;
         UBERON:0006468 ;
     ilxtr:hasIlxId ILX:0112074 ;
     ilxtr:hasIlxPreferredId UBERON:0006468 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "t12 segment",
         "twelfth thoracic spinal cord segment" .
 
@@ -2578,6 +3178,7 @@ FMA:71179 a owl:Class ;
         UBERON:0006469 ;
     ilxtr:hasIlxId ILX:0104252 ;
     ilxtr:hasIlxPreferredId UBERON:0006469 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "C1 cervical spinal cord",
         "C1 segment",
         "first cervical spinal cord segment" .
@@ -2606,6 +3207,7 @@ FMA:71180 a owl:Class ;
         UBERON:0006489 ;
     ilxtr:hasIlxId ILX:0110427 ;
     ilxtr:hasIlxPreferredId UBERON:0006489 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "C2 segment",
         "second cervical spinal cord segment" .
 
@@ -2633,6 +3235,7 @@ FMA:71181 a owl:Class ;
         UBERON:0006488 ;
     ilxtr:hasIlxId ILX:0111700 ;
     ilxtr:hasIlxPreferredId UBERON:0006488 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "C3 segment",
         "third cervical spinal cord segment" .
 
@@ -2660,6 +3263,7 @@ FMA:71182 a owl:Class ;
         UBERON:0006490 ;
     ilxtr:hasIlxId ILX:0104364 ;
     ilxtr:hasIlxPreferredId UBERON:0006490 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "C4 segment",
         "forth cervical spinal cord segment" .
 
@@ -2687,6 +3291,7 @@ FMA:71183 a owl:Class ;
         UBERON:0006491 ;
     ilxtr:hasIlxId ILX:0104216 ;
     ilxtr:hasIlxPreferredId UBERON:0006491 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "C5 segment",
         "fifth cervical spinal cord segment" .
 
@@ -2714,6 +3319,7 @@ FMA:71184 a owl:Class ;
         UBERON:0006492 ;
     ilxtr:hasIlxId ILX:0110651 ;
     ilxtr:hasIlxPreferredId UBERON:0006492 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "C6 segment",
         "sixth cervical spinal cord segment" .
 
@@ -2741,6 +3347,7 @@ FMA:71185 a owl:Class ;
         UBERON:0006493 ;
     ilxtr:hasIlxId ILX:0110585 ;
     ilxtr:hasIlxPreferredId UBERON:0006493 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "C7 segment",
         "seventh cervical spinal cord segment" .
 
@@ -2767,6 +3374,7 @@ FMA:71186 a owl:Class ;
         UBERON:0006470 ;
     ilxtr:hasIlxId ILX:0103686 ;
     ilxtr:hasIlxPreferredId UBERON:0006470 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "C8 segment",
         "eighth cervical spinal cord segment" .
 
@@ -2793,12 +3401,14 @@ FMA:71187 a owl:Class ;
         UBERON:0006448 ;
     ilxtr:hasIlxId ILX:0104254 ;
     ilxtr:hasIlxPreferredId UBERON:0006448 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "first lumbar spinal cord segment",
         "L1 segment" .
 
 FMA:71188 a owl:Class ;
     rdfs:label "Second lumbar spinal cord segment" ;
     NIFRID:synonym "L2 spinal cord segment" ;
+    definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the second lumbar spinal nerve." ;
     rdfs:subClassOf FMA:256657 ;
     ilx.anno.hasExactSynonym: "l2 segment",
         "L2 spinal cord segment",
@@ -2819,12 +3429,14 @@ FMA:71188 a owl:Class ;
         UBERON:0006450 ;
     ilxtr:hasIlxId ILX:0110429 ;
     ilxtr:hasIlxPreferredId UBERON:0006450 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "l2 segment",
         "second lumbar spinal cord segment" .
 
 FMA:71189 a owl:Class ;
     rdfs:label "Third lumbar spinal cord segment" ;
     NIFRID:synonym "L3 spinal cord segment" ;
+    definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the third lumbar spinal nerve." ;
     rdfs:subClassOf FMA:256657 ;
     ilx.anno.hasExactSynonym: "L3 segment",
         "L3 spinal cord segment",
@@ -2845,12 +3457,14 @@ FMA:71189 a owl:Class ;
         UBERON:0006449 ;
     ilxtr:hasIlxId ILX:0111702 ;
     ilxtr:hasIlxPreferredId UBERON:0006449 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "L3 segment",
         "third lumbar spinal cord segment" .
 
 FMA:71190 a owl:Class ;
     rdfs:label "Fourth lumbar spinal cord segment" ;
     NIFRID:synonym "L4 spinal cord segment" ;
+    definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the fourth lumbar spinal nerve." ;
     rdfs:subClassOf FMA:256657 ;
     ilx.anno.hasExactSynonym: "L4 segment",
         "L4 spinal cord segment" ;
@@ -2870,11 +3484,13 @@ FMA:71190 a owl:Class ;
         UBERON:0006451 ;
     ilxtr:hasIlxId ILX:0104366 ;
     ilxtr:hasIlxPreferredId UBERON:0006451 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "L4 segment" .
 
 FMA:71191 a owl:Class ;
     rdfs:label "Fifth lumbar spinal cord segment" ;
     NIFRID:synonym "L5 spinal cord segment" ;
+    definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the fifth lumbar spinal nerve." ;
     rdfs:subClassOf FMA:256657 ;
     ilx.anno.hasExactSynonym: "fifth lumbar spinal cord segment",
         "L5 segment",
@@ -2895,6 +3511,7 @@ FMA:71191 a owl:Class ;
         UBERON:0006447 ;
     ilxtr:hasIlxId ILX:0104218 ;
     ilxtr:hasIlxPreferredId UBERON:0006447 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "fifth lumbar spinal cord segment",
         "L5 segment" .
 
@@ -2910,6 +3527,7 @@ FMA:73915 a owl:Class ;
         "MA:0002753",
         <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=1667>,
         <http://en.wikipedia.org/wiki/Intermediolateral_nucleus> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:73915,
         ILX:0724323,
@@ -2977,6 +3595,7 @@ FMA:74019 a owl:Class ;
         NLXWIKI:nlx_259 ;
     ilx.partOf: FMA:256530 ;
     ILX:0112794 NLX:143976 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:74019,
         ILX:0111207,
@@ -3025,6 +3644,7 @@ FMA:86152 a owl:Class ;
     rdfs:label "Basal zone of right lung" ;
     NIFRID:synonym "Right lung base" ;
     rdfs:subClassOf FMA:7195 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId FMA:86152,
         ILX:0778138 ;
@@ -3080,12 +3700,14 @@ FMA:256625 a owl:Class ;
         UBERON:0006460 ;
     ilxtr:hasIlxId ILX:0104259 ;
     ilxtr:hasIlxPreferredId UBERON:0006460 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "first sacral spinal cord segment",
         "S1 segment" .
 
 FMA:256627 a owl:Class ;
     rdfs:label "Second sacral spinal cord segment" ;
     NIFRID:synonym "S2 spinal cord segment" ;
+    definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the second sacral spinal nerve." ;
     rdfs:subClassOf FMA:256659 ;
     ilx.anno.hasExactSynonym: "S2 segment",
         "S2 spinal cord segment",
@@ -3106,12 +3728,14 @@ FMA:256627 a owl:Class ;
         UBERON:0006461 ;
     ilxtr:hasIlxId ILX:0110431 ;
     ilxtr:hasIlxPreferredId UBERON:0006461 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "S2 segment",
         "second sacral spinal cord segment" .
 
 FMA:256629 a owl:Class ;
     rdfs:label "Third sacral spinal cord segment" ;
     NIFRID:synonym "S3 spinal cord segment" ;
+    definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the third sacral spinal nerve." ;
     rdfs:subClassOf FMA:256659 ;
     ilx.anno.hasExactSynonym: "S3 segment",
         "S3 spinal cord segment",
@@ -3132,12 +3756,14 @@ FMA:256629 a owl:Class ;
         UBERON:0006462 ;
     ilxtr:hasIlxId ILX:0111704 ;
     ilxtr:hasIlxPreferredId UBERON:0006462 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "S3 segment",
         "third sacral spinal cord segment" .
 
 FMA:256631 a owl:Class ;
     rdfs:label "Fourth sacral spinal cord segment" ;
     NIFRID:synonym "S4 spinal cord segment" ;
+    definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the fourth sacral spinal nerve." ;
     rdfs:subClassOf FMA:256659 ;
     ilx.anno.hasExactSynonym: "S4 segment",
         "S4 spinal cord segment" ;
@@ -3157,11 +3783,13 @@ FMA:256631 a owl:Class ;
         UBERON:0006463 ;
     ilxtr:hasIlxId ILX:0104368 ;
     ilxtr:hasIlxPreferredId UBERON:0006463 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "S4 segment" .
 
 FMA:256633 a owl:Class ;
     rdfs:label "Fifth sacral spinal cord segment" ;
     NIFRID:synonym "S5 spinal cord segment" ;
+    definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the fourth sacral spinal nerve." ;
     rdfs:subClassOf FMA:256659 ;
     ilx.anno.hasExactSynonym: "fifth sacral spinal cord segment",
         "S5 segment",
@@ -3182,6 +3810,7 @@ FMA:256633 a owl:Class ;
         UBERON:0006464 ;
     ilxtr:hasIlxId ILX:0104220 ;
     ilxtr:hasIlxPreferredId UBERON:0006464 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "fifth sacral spinal cord segment",
         "S5 segment" .
 
@@ -3205,6 +3834,7 @@ FMA:256635 a owl:Class ;
         UBERON:0005845 ;
     ilxtr:hasIlxId ILX:0725272 ;
     ilxtr:hasIlxPreferredId UBERON:0005845 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
     oboInOwl:hasExactSynonym "coccygeal segment of spinal cord",
         "coccygeal segments of spinal cord [1-3]",
         "pars coccygea medullae spinalis",
@@ -3327,6 +3957,57 @@ FMA:256691 a owl:Class ;
         "solitary nuclear complex",
         "solitary nucleus" .
 
+FMA:258416 a owl:Class ;
+    rdfs:label "Gracile fasciculus" ;
+    NIFRID:synonym "GF",
+        "Gl9 gracile fasciculus" ;
+    NIFRID:abbrev "gr",
+        "gracile fasciculus (paxspn)" ;
+    definition: "Axon bundle arising largely from the dorsal root ganglia of the lower spinal cord, ascending in humans in the dorsal funiculus, synapsing within the nucleus gracilis of the lower medulla." ;
+    rdfs:subClassOf FMA:55676 ;
+    ilx.anno.hasExactSynonym: "fasciculus gracilis",
+        "gracile fascicle",
+        "gracilis tract" ;
+    ilx.anno.hasRelatedSynonym: "f. gracilis medullae spinalis",
+        "gracile column",
+        "gracile tract",
+        "tract of Goll" ;
+    ilx.hasDbXref: "BAMS:gr",
+        "BAMS:grf",
+        "BM:Me-GF",
+        "DHBA:12739",
+        "FMA:258416",
+        "HBA:265505586",
+        "MBA:388",
+        "NCIT:C33799",
+        "UMLS:C0228522",
+        <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=2440>,
+        <http://en.wikipedia.org/wiki/Gracile_fasciculus>,
+        <http://linkedlifedata.com/resource/umls/id/C0228522>,
+        <http://www.snomedbrowser.com/Codes/Details/369079001>,
+        NLXWIKI:nlx_144039 ;
+    ILX:0739239 "True" ;
+    ILX:0778161 PAXSPN: ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:258416,
+        ILX:0104726,
+        NLX:144039,
+        PAXSPN:30,
+        UBERON:0005821 ;
+    ilxtr:hasExternalId FMA:258416,
+        NLX:144039,
+        UBERON:0005821 ;
+    ilxtr:hasIlxId ILX:0104726 ;
+    ilxtr:hasIlxPreferredId UBERON:0005821 ;
+    ilxtr:includedForSPARCUnder FMA:7647 ;
+    oboInOwl:hasExactSynonym "fasciculus gracilis",
+        "gracile fascicle",
+        "gracilis tract" ;
+    oboInOwl:hasRelatedSynonym "f. gracilis medullae spinalis",
+        "gracile column",
+        "gracile tract",
+        "tract of Goll" .
+
 FMA:305751 a owl:Class ;
     rdfs:label "anatomical structure" ;
     definition: "Material anatomical entity that is a single connected structure with inherent 3D shape generated by coordinated expression of the organism's own genome." ;
@@ -3397,6 +4078,7 @@ ILX:0738176 a owl:Class ;
     ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 "DOI:10.1007/978-3-319-57571-1",
         "DOI: 10.1007/978-3-319-57571-1, doi:10.1002/(SICI)1097-0185(199702)247:2&lt;289::AID-AR15&gt;3.0.CO;2-L" ;
+    ILX:0739239 "True" ;
     ILX:0777130 SCR:018709 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738176 ;
@@ -3406,6 +4088,7 @@ ILX:0738176 a owl:Class ;
 
 ILX:0738177 a owl:Class ;
     rdfs:label "Aortic chemoreceptor" ;
+    definition: "A sensory receptor that is distributed along the aorta, pulmonary arterial trunk, and subclavian arteries which detects chemical stimulus within the body." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738177 ;
     ilxtr:hasIlxId ILX:0738177 ;
@@ -3540,6 +4223,7 @@ ILX:0738190 a owl:Class ;
 
 ILX:0738329 a owl:Class ;
     rdfs:label "Bötzinger complex" ;
+    definition: "A group of expiratory neurons located the most rostral end of the ventral respiratory group and contains neurons that inhibit most inspiratory neurons during expiration." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738329 ;
     ilxtr:hasIlxId ILX:0738329 ;
@@ -3574,6 +4258,7 @@ ILX:0738332 a owl:Class ;
 
 ILX:0738333 a owl:Class ;
     rdfs:label "Lamina IX of C2" ;
+    definition: "Rexed lamina IX of the C2 segment of cervical spinal cord." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738333 ;
     ilxtr:hasIlxId ILX:0738333 ;
@@ -3581,6 +4266,7 @@ ILX:0738333 a owl:Class ;
 
 ILX:0738334 a owl:Class ;
     rdfs:label "Lamina IX of C3" ;
+    definition: "Rexed lamina IX of the C3 segment of cervical spinal cord." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738334 ;
     ilxtr:hasIlxId ILX:0738334 ;
@@ -3621,6 +4307,7 @@ ILX:0738338 a owl:Class ;
 
 ILX:0738339 a owl:Class ;
     rdfs:label "Rexed Lamina VII of T2" ;
+    definition: "Rexed lamina VII of the T2 segment of thoracic spinal cord." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738339 ;
     ilxtr:hasIlxId ILX:0738339 ;
@@ -3628,6 +4315,7 @@ ILX:0738339 a owl:Class ;
 
 ILX:0738340 a owl:Class ;
     rdfs:label "Rexed Lamina VII of T3" ;
+    definition: "Rexed lamina VII of the T3 segment of thoracic spinal cord." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738340 ;
     ilxtr:hasIlxId ILX:0738340 ;
@@ -3642,6 +4330,7 @@ ILX:0738341 a owl:Class ;
 
 ILX:0738342 a owl:Class ;
     rdfs:label "T1 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the first thoracic vertebral column." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738342 ;
     ilxtr:hasIlxId ILX:0738342 ;
@@ -3649,6 +4338,7 @@ ILX:0738342 a owl:Class ;
 
 ILX:0738343 a owl:Class ;
     rdfs:label "T10 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the tenth thoracic vertebral column." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738343 ;
     ilxtr:hasIlxId ILX:0738343 ;
@@ -3656,6 +4346,7 @@ ILX:0738343 a owl:Class ;
 
 ILX:0738344 a owl:Class ;
     rdfs:label "T11 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the eleventh thoracic vertebral column." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738344 ;
     ilxtr:hasIlxId ILX:0738344 ;
@@ -3663,6 +4354,7 @@ ILX:0738344 a owl:Class ;
 
 ILX:0738345 a owl:Class ;
     rdfs:label "T12 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the first twelfth vertebral column." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738345 ;
     ilxtr:hasIlxId ILX:0738345 ;
@@ -3670,6 +4362,7 @@ ILX:0738345 a owl:Class ;
 
 ILX:0738346 a owl:Class ;
     rdfs:label "T2 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the second thoracic vertebral column." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738346 ;
     ilxtr:hasIlxId ILX:0738346 ;
@@ -3677,6 +4370,8 @@ ILX:0738346 a owl:Class ;
 
 ILX:0738347 a owl:Class ;
     rdfs:label "T3 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the third thoracic vertebral column." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738347 ;
     ilxtr:hasIlxId ILX:0738347 ;
@@ -3684,6 +4379,7 @@ ILX:0738347 a owl:Class ;
 
 ILX:0738348 a owl:Class ;
     rdfs:label "T4 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the fourth thoracic vertebral column." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738348 ;
     ilxtr:hasIlxId ILX:0738348 ;
@@ -3691,6 +4387,7 @@ ILX:0738348 a owl:Class ;
 
 ILX:0738349 a owl:Class ;
     rdfs:label "T5 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the fifth thoracic vertebral column." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738349 ;
     ilxtr:hasIlxId ILX:0738349 ;
@@ -3698,6 +4395,7 @@ ILX:0738349 a owl:Class ;
 
 ILX:0738350 a owl:Class ;
     rdfs:label "T6 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the sixth thoracic vertebral column." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738350 ;
     ilxtr:hasIlxId ILX:0738350 ;
@@ -3705,6 +4403,7 @@ ILX:0738350 a owl:Class ;
 
 ILX:0738351 a owl:Class ;
     rdfs:label "T7 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the seventh thoracic vertebral column." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738351 ;
     ilxtr:hasIlxId ILX:0738351 ;
@@ -3712,6 +4411,7 @@ ILX:0738351 a owl:Class ;
 
 ILX:0738352 a owl:Class ;
     rdfs:label "T8 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the eighth thoracic vertebral column." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738352 ;
     ilxtr:hasIlxId ILX:0738352 ;
@@ -3719,6 +4419,7 @@ ILX:0738352 a owl:Class ;
 
 ILX:0738353 a owl:Class ;
     rdfs:label "T9 paravertebral ganglion" ;
+    definition: "A group of neuron cell bodies that lie bilaterally along the dorsal body wall ventrolateral to the ninth thoracic vertebral column." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738353 ;
     ilxtr:hasIlxId ILX:0738353 ;
@@ -3726,8 +4427,11 @@ ILX:0738353 a owl:Class ;
 
 ILX:0738354 a owl:Class ;
     rdfs:label "anterior cusp of pulmonary valve" ;
+    definition: "The triangular segments of the pulmonary valve that is attached to the anterior of the cardiac septum." ;
     ilxr:type ilx.type:term ;
-    ilxtr:hasExistingId ILX:0738354 ;
+    ilxtr:hasExistingId ILX:0738354,
+        obo:NCIT_C127673 ;
+    ilxtr:hasExternalId obo:NCIT_C127673 ;
     ilxtr:hasIlxId ILX:0738354 ;
     ilxtr:hasIlxPreferredId ILX:0738354 .
 
@@ -3740,6 +4444,7 @@ ILX:0738355 a owl:Class ;
 
 ILX:0738356 a owl:Class ;
     rdfs:label "chemoreceptors" ;
+    definition: "Sensory receptors that detect chemical stimulus within the body." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738356 ;
     ilxtr:hasIlxId ILX:0738356 ;
@@ -3768,6 +4473,7 @@ ILX:0738359 a owl:Class ;
 
 ILX:0738360 a owl:Class ;
     rdfs:label "left cusp of pulmonary valve" ;
+    definition: "The triangular segments of the pulmonary valve that is attached to the left side of the cardiac septum." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738360 ;
     ilxtr:hasIlxId ILX:0738360 ;
@@ -3775,6 +4481,8 @@ ILX:0738360 a owl:Class ;
 
 ILX:0738361 a owl:Class ;
     rdfs:label "left fibrous ring" ;
+    NIFRID:synonym "Left fibrous ring of heart" ;
+    definition: "A band of elastic tissue that surrounds the bicuspid valve of the heart." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738361 ;
     ilxtr:hasIlxId ILX:0738361 ;
@@ -3782,6 +4490,7 @@ ILX:0738361 a owl:Class ;
 
 ILX:0738362 a owl:Class ;
     rdfs:label "left posterior papillary muscle" ;
+    definition: "Nipple-shaped muscles, originating from the diaphragmatic wall of the left ventricle, and attaching to the posteromedial and anterior mitral valve leaflets via the and the chordae tendonae." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738362 ;
     ilxtr:hasIlxId ILX:0738362 ;
@@ -3789,6 +4498,7 @@ ILX:0738362 a owl:Class ;
 
 ILX:0738363 a owl:Class ;
     rdfs:label "right anterior papillary muscle" ;
+    definition: "Nipple-shaped muscles, originating from the anterior wall, and attaching to the anterior and posterior tricuspid valve leaflets via the chordae tendinae." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738363 ;
     ilxtr:hasIlxId ILX:0738363 ;
@@ -3803,6 +4513,7 @@ ILX:0738364 a owl:Class ;
 
 ILX:0738365 a owl:Class ;
     rdfs:label "right posterior papillary muscle" ;
+    definition: "Nipple-shaped muscles, originating from the inferior wall, and attaching to the posterior and septal tricuspid valve leaflets via the chordae tendinae." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738365 ;
     ilxtr:hasIlxId ILX:0738365 ;
@@ -3847,16 +4558,41 @@ ILX:0738370 a owl:Class ;
 
 ILX:0738391 a owl:Class ;
     rdfs:label "Inferior cardiac nerve" ;
+    NIFRID:synonym "cardiac nerve" ;
     definition: "Cardiac branch of cervicothoracic ganglion to deep cardiac plexus (FMA)" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738391 ;
     ilxtr:hasIlxId ILX:0738391 ;
     ilxtr:hasIlxPreferredId ILX:0738391 .
 
+ILX:0738396 a owl:Class ;
+    rdfs:label "intrinisic cardiac ganglionated plexus" ;
+    rdfs:subClassOf FMA:5860 ;
+    ILX:0383242 FMA:6628 ;
+    ILX:0739239 "True" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0738396 ;
+    ilxtr:hasIlxId ILX:0738396 ;
+    ilxtr:hasIlxPreferredId ILX:0738396 .
+
+ILX:0738404 a owl:Class ;
+    rdfs:label "urothelium of bladder" ;
+    NIFRID:synonym "epithelium of bladder" ;
+    definition: "The urothelium of bladder (ubl) (syn: epithelium of bladder) (TS22-TS28) is the innermost layer of the bladder lining the bladder lumen, comprised of a stratified epithelium of three epithelial cell layers containing different epithelial cell types. Contains blood vessels and nerve of urothelium of bladder (TS22-28). Comprised of three cellular layers; superficial, intermediate and basal cell layers. Distinct epithelial cell types reside within the layers of urothelium and are stage dependant. It is possible to annotate urothelium cell layer without knowing the cell type. In the adult bladder, Krt5-expressing basal cells of bladder urothelium make up 90% of the mature urothelium, while intermediate and superficial cells of bladder urothelium each make up about 5%." ;
+    rdfs:subClassOf FMA:305751 ;
+    ILX:0383241 "Already exists here http://purl.obolibrary.org/obo/UBERON_0004645" ;
+    ILX:0383242 FMA:15936 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0738404 ;
+    ilxtr:hasIlxId ILX:0738404 ;
+    ilxtr:hasIlxPreferredId ILX:0738404 .
+
 ILX:0738420 a owl:Class ;
     rdfs:label "Myelinated axon of the peripheral nervous system" ;
     definition: "A myelinated nerve fiber in the peripheral nervous system" ;
     rdfs:subClassOf FMA:5915 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738420 ;
     ilxtr:hasIlxId ILX:0738420 ;
@@ -3866,6 +4602,7 @@ ILX:0738420 a owl:Class ;
 ILX:0738421 a owl:Class ;
     rdfs:label "Axon component of PNS myelinated axon" ;
     definition: "The surface of a PNS axon encompassed by a myelin layer" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738421 ;
     ilxtr:hasIlxId ILX:0738421 ;
@@ -3876,6 +4613,7 @@ ILX:0738422 a owl:Class ;
     rdfs:label "Outer surface of blood vessel" ;
     definition: "The outer, ablumenal surface of a blood vessel wall" ;
     ilx.partOf: FMA:67473 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738422 ;
     ilxtr:hasIlxId ILX:0738422 ;
@@ -3886,6 +4624,7 @@ ILX:0738423 a owl:Class ;
     rdfs:label "Inner surface of blood vessel" ;
     definition: "Lumenal surface of blood vessel wall" ;
     ilx.partOf: FMA:67473 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738423 ;
     ilxtr:hasIlxId ILX:0738423 ;
@@ -3896,6 +4635,7 @@ ILX:0738425 a owl:Class ;
     rdfs:label "Unmyelinated axon of the peripheral nervous system" ;
     definition: "An unmyelinated nerve fiber in the peripheral nervous system" ;
     rdfs:subClassOf FMA:5916 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738425 ;
     ilxtr:hasIlxId ILX:0738425 ;
@@ -3905,6 +4645,7 @@ ILX:0738425 a owl:Class ;
 ILX:0738426 a owl:Class ;
     rdfs:label "Fascicle" ;
     definition: "A small bundle of nerve fibers nerve fibers surrounded by an epineurium at the peripheral surface" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738426 ;
     ilxtr:hasIlxId ILX:0738426 ;
@@ -3914,6 +4655,7 @@ ILX:0738426 a owl:Class ;
 ILX:0738427 a owl:Class ;
     rdfs:label "Non-biological empty space" ;
     definition: "Artificial space created during tissue handling, such as fixation and dehydration, that may shrink various tissue types differently." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738427 ;
     ilxtr:hasIlxId ILX:0738427 ;
@@ -3923,11 +4665,21 @@ ILX:0738427 a owl:Class ;
 ILX:0738428 a owl:Class ;
     rdfs:label "Sub-fascicle" ;
     definition: "A structure within a fascicle of a nerve that is surrounded by a perineurium." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738428 ;
     ilxtr:hasIlxId ILX:0738428 ;
     ilxtr:hasIlxPreferredId ILX:0738428 ;
     ilxtr:includedForSPARCUnder FMA:9903 .
+
+ILX:0738432 a owl:Class ;
+    rdfs:label "Sixth lumbar spinal cord segment" ;
+    NIFRID:synonym "L6" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0738432 ;
+    ilxtr:hasIlxId ILX:0738432 ;
+    ilxtr:hasIlxPreferredId ILX:0738432 ;
+    ilxtr:includedForSPARCUnder FMA:7647 .
 
 ILX:0738433 a owl:Class ;
     rdfs:label "Dome of the Bladder" ;
@@ -3939,6 +4691,7 @@ ILX:0738433 a owl:Class ;
 
 ILX:0738434 a owl:Class ;
     rdfs:label "Thirteenth thoracic dorsal root ganglion" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738434 ;
     ilxtr:hasIlxId ILX:0738434 ;
@@ -3949,6 +4702,7 @@ ILX:0738436 a owl:Class ;
     definition: "A nerve formed by the convergence of nerve bundles of the esophageal plexus that arise primarily from the left vagus nerve." ;
     rdfs:subClassOf FMA:5731 ;
     ilx.anno.hasDefinitionSource: SCR:018709 ;
+    ILX:0739239 "True" ;
     ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738436 ;
@@ -3958,6 +4712,7 @@ ILX:0738436 a owl:Class ;
 
 ILX:0738443 a owl:Class ;
     rdfs:label "Fascicle of vagus nerve" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738443 ;
     ilxtr:hasIlxId ILX:0738443 ;
@@ -3969,6 +4724,7 @@ ILX:0738444 a owl:Class ;
     definition: "A collection of brown adipose tissue between the medial borders of the scapulae." ;
     rdfs:subClassOf FMA:20118 ;
     ilx.anno.hasDefinitionSource: SCR:018709 ;
+    ILX:0739239 "True" ;
     ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0738444,
@@ -3982,6 +4738,7 @@ ILX:0739222 a owl:Class ;
     rdfs:label "middle pulmonary vein" ;
     definition: "The vein that drains at least one lung and returns blood to the heart. The connection of the middle pulmonary vein to the left atrium sits between the connections of the left and right pulmonary veins when viewing the dorsal side of the heart. This vein has been documented to exist in mouse, rat, and rabbit. It may occur more broadly in those taxa." ;
     rdfs:subClassOf FMA:66643 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739222 ;
     ilxtr:hasIlxId ILX:0739222 ;
@@ -4001,6 +4758,7 @@ ILX:0739232 a owl:Class ;
 ILX:0739234 a owl:Class ;
     rdfs:label "perineurium of vagus nerve (inner edge)" ;
     ILX:0739238 ILX:0739232 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739234 ;
     ilxtr:hasIlxId ILX:0739234 ;
@@ -4010,6 +4768,7 @@ ILX:0739234 a owl:Class ;
 ILX:0739235 a owl:Class ;
     rdfs:label "perineurium of vagus nerve (outer edge)" ;
     ILX:0739238 ILX:0739232 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739235 ;
     ilxtr:hasIlxId ILX:0739235 ;
@@ -4021,6 +4780,7 @@ ILX:0739242 a owl:Class ;
     NIFRID:synonym "Ventral Ansa " ;
     definition: "Ventral part of the ansa subclavia, a branch of the middle cervical ganglion" ;
     ILX:0739238 FMA:6582 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739242 ;
     ilxtr:hasIlxId ILX:0739242 ;
@@ -4032,6 +4792,7 @@ ILX:0739244 a owl:Class ;
     NIFRID:synonym "Dorsal Ansa" ;
     definition: "Dorsal part of the ansa subclavia, a branch of the middle cervical ganglion." ;
     ILX:0739238 FMA:6582 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739244 ;
     ilxtr:hasIlxId ILX:0739244 ;
@@ -4050,6 +4811,7 @@ ILX:0739248 a owl:Class ;
     rdfs:label "Dorsal part of serosa of urinary bladder" ;
     ILX:0739238 FMA:15932,
         ILX:0103492 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739248 ;
     ilxtr:hasIlxId ILX:0739248 ;
@@ -4060,6 +4822,7 @@ ILX:0739249 a owl:Class ;
     rdfs:label "Ventral part of serosa of urinary bladder" ;
     ILX:0739238 FMA:15932,
         ILX:0112359 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739249 ;
     ilxtr:hasIlxId ILX:0739249 ;
@@ -4070,6 +4833,7 @@ ILX:0739250 a owl:Class ;
     rdfs:label "Dorsal part of lumen of body of urinary bladder" ;
     ILX:0739238 ILX:0103492,
         ILX:0739252 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739250 ;
     ilxtr:hasIlxId ILX:0739250 ;
@@ -4080,6 +4844,7 @@ ILX:0739251 a owl:Class ;
     rdfs:label "Ventral part of lumen of body of urinary bladder" ;
     ILX:0739238 ILX:0112359,
         ILX:0739252 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739251 ;
     ilxtr:hasIlxId ILX:0739251 ;
@@ -4097,6 +4862,7 @@ ILX:0739253 a owl:Class ;
     rdfs:label "Dorsal part of neck of urinary bladder" ;
     ILX:0739238 FMA:15912,
         ILX:0103492 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739253 ;
     ilxtr:hasIlxId ILX:0739253 ;
@@ -4107,6 +4873,7 @@ ILX:0739254 a owl:Class ;
     rdfs:label "Ventral part of neck of urinary bladder" ;
     ILX:0739238 FMA:15912,
         ILX:0112359 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739254 ;
     ilxtr:hasIlxId ILX:0739254 ;
@@ -4117,6 +4884,7 @@ ILX:0739255 a owl:Class ;
     rdfs:label "Dorsal part of lumen of neck of urinary bladder" ;
     ILX:0739238 FMA:17873,
         ILX:0103492 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739255 ;
     ilxtr:hasIlxId ILX:0739255 ;
@@ -4127,6 +4895,7 @@ ILX:0739257 a owl:Class ;
     rdfs:label "Ventral part of lumen of neck of urinary bladder" ;
     ILX:0739238 FMA:17873,
         ILX:0112359 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739257 ;
     ilxtr:hasIlxId ILX:0739257 ;
@@ -4137,6 +4906,7 @@ ILX:0739258 a owl:Class ;
     rdfs:label "Dorsal part of urethra" ;
     ILX:0739238 FMA:19667,
         ILX:0103492 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739258 ;
     ilxtr:hasIlxId ILX:0739258 ;
@@ -4147,6 +4917,7 @@ ILX:0739259 a owl:Class ;
     rdfs:label "Ventral part of urethra" ;
     ILX:0739238 FMA:19667,
         ILX:0112359 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739259 ;
     ilxtr:hasIlxId ILX:0739259 ;
@@ -4157,6 +4928,7 @@ ILX:0739260 a owl:Class ;
     rdfs:label "Dorsal part of lumen of urethra" ;
     ILX:0739238 FMA:19709,
         ILX:0103492 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739260 ;
     ilxtr:hasIlxId ILX:0739260 ;
@@ -4167,6 +4939,7 @@ ILX:0739261 a owl:Class ;
     rdfs:label "Ventral part of lumen of urethra" ;
     ILX:0739238 FMA:19709,
         ILX:0112359 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739261 ;
     ilxtr:hasIlxId ILX:0739261 ;
@@ -4177,6 +4950,7 @@ ILX:0739262 a owl:Class ;
     rdfs:label "Medial collateral projection" ;
     definition: "The projection of primary afferent axons that originate from the most medial portion of Lissauer's tract and project along the medial border of the dorsal horn towards the dorsal  commissural nucleus." ;
     rdfs:subClassOf UBERON:0000073 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739262 ;
     ilxtr:hasIlxId ILX:0739262 ;
@@ -4186,6 +4960,7 @@ ILX:0739262 a owl:Class ;
 ILX:0739263 a owl:Class ;
     rdfs:label "Lateral collateral projection" ;
     definition: "The projection of primary afferent axons that originate from the most lateral part of Lissauer's tract and project along the lateral border of the dorsal horn towards the intermediolateral nucleus as well as the most lateral portion of lamina V." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739263 ;
     ilxtr:hasIlxId ILX:0739263 ;
@@ -4195,6 +4970,7 @@ ILX:0739263 a owl:Class ;
 ILX:0739264 a owl:Class ;
     rdfs:label "Junction between thoracic sympathetic nerve trunk and cervicothoracic ganglion" ;
     definition: "Origin of the nerve as it intersects with the cervicothoracic ganglion (stellate ganglion). Should be a single point at the center of the axonal bundle. Represented by a single point ( x, y, and z location)." ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:6469,
         UBERON:0004295 ;
     ilxr:type ilx.type:term ;
@@ -4206,6 +4982,7 @@ ILX:0739264 a owl:Class ;
 ILX:0739266 a owl:Class ;
     rdfs:label "Junction between ventral ansa subclavia and cervicothoracic ganglion" ;
     definition: "Origin of the nerve as it intersects with the cervicothoracic ganglion (stellate ganglia). Should be a single point at the center of the axonal bundle. Represented by a single point ( x, y, and z location)." ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:6469,
         ILX:0739242 ;
     ilxr:type ilx.type:term ;
@@ -4217,6 +4994,7 @@ ILX:0739266 a owl:Class ;
 ILX:0739267 a owl:Class ;
     rdfs:label "Junction between inferior cardiac nerve and cervicothoracic ganglion" ;
     definition: "Origin of the nerve as it intersects with the cervicothoracic ganglion (stellate ganglia). Should be a single point at the center of the axonal bundle. Represented by a single point ( x, y, and z location)." ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:6469,
         ILX:0738391 ;
     ilxr:type ilx.type:term ;
@@ -4228,6 +5006,7 @@ ILX:0739267 a owl:Class ;
 ILX:0739268 a owl:Class ;
     rdfs:label "Junction between dorsal ansa subclavia and cervicothoracic ganglion" ;
     definition: "Origin of the nerve as it intersects with the cervicothoracic ganglion (stellate ganglia). Should be a single point at the center of the axonal bundle. Represented by a single point ( x, y, and z location)." ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:6469,
         ILX:0739244 ;
     ilxr:type ilx.type:term ;
@@ -4239,6 +5018,7 @@ ILX:0739268 a owl:Class ;
 ILX:0739269 a owl:Class ;
     rdfs:label "Junction between gray communicating ramus to eighth cervical spinal nerve and cervicothoracic ganglion" ;
     definition: "Origin of the nerve as it intersects with the stellate ganglia. Should be a single point at the center of the axonal bundle. Represented by a single point ( x, y, and z location)." ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:6449,
         FMA:6469 ;
     ilxr:type ilx.type:term ;
@@ -4250,6 +5030,7 @@ ILX:0739269 a owl:Class ;
 ILX:0739271 a owl:Class ;
     rdfs:label "gray communicating ramus of first thoracic nerve" ;
     definition: "Communicating nerve branching off of the first thoracic nerve to the chain ganglia." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739271 ;
     ilxtr:hasIlxId ILX:0739271 ;
@@ -4260,6 +5041,7 @@ ILX:0739274 a owl:Class ;
     definition: "A small bundle of nerve fibers in the sciatic nerve" ;
     ILX:0739238 FMA:19034,
         ILX:0738426 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739274 ;
     ilxtr:hasIlxId ILX:0739274 ;
@@ -4268,6 +5050,7 @@ ILX:0739274 a owl:Class ;
 
 ILX:0739275 a owl:Class ;
     rdfs:label "body of urinary bladder" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739275 ;
     ilxtr:hasIlxId ILX:0739275 ;
@@ -4276,6 +5059,7 @@ ILX:0739275 a owl:Class ;
 ILX:0739276 a owl:Class ;
     rdfs:label "serosa of body of urinary bladder" ;
     ILX:0739238 ILX:0739275 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739276 ;
     ilxtr:hasIlxId ILX:0739276 ;
@@ -4285,6 +5069,7 @@ ILX:0739276 a owl:Class ;
 ILX:0739277 a owl:Class ;
     rdfs:label "serosa of neck of urinary bladder" ;
     ILX:0739238 FMA:15912 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739277 ;
     ilxtr:hasIlxId ILX:0739277 ;
@@ -4295,6 +5080,7 @@ ILX:0739278 a owl:Class ;
     rdfs:label "dorsal part of serosa of body of urinary bladder" ;
     ILX:0739238 ILX:0103492,
         ILX:0739276 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739278 ;
     ilxtr:hasIlxId ILX:0739278 ;
@@ -4305,6 +5091,7 @@ ILX:0739279 a owl:Class ;
     rdfs:label "ventral part of serosa of body of urinary bladder" ;
     ILX:0739238 ILX:0112359,
         ILX:0739276 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739279 ;
     ilxtr:hasIlxId ILX:0739279 ;
@@ -4315,6 +5102,7 @@ ILX:0739280 a owl:Class ;
     rdfs:label "dorsal part of serosa of neck of urinary bladder" ;
     ILX:0739238 ILX:0103492,
         ILX:0739277 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739280 ;
     ilxtr:hasIlxId ILX:0739280 ;
@@ -4325,6 +5113,7 @@ ILX:0739281 a owl:Class ;
     rdfs:label "ventral part of serosa of neck of urinary bladder" ;
     ILX:0739238 ILX:0112359,
         ILX:0739277 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739281 ;
     ilxtr:hasIlxId ILX:0739281 ;
@@ -4333,6 +5122,7 @@ ILX:0739281 a owl:Class ;
 
 ILX:0739282 a owl:Class ;
     rdfs:label "serosa of urethra" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739282 ;
     ilxtr:hasIlxId ILX:0739282 ;
@@ -4343,6 +5133,7 @@ ILX:0739283 a owl:Class ;
     rdfs:label "dorsal part of serosa of urethra" ;
     ILX:0739238 ILX:0103492,
         ILX:0739282 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739283 ;
     ilxtr:hasIlxId ILX:0739283 ;
@@ -4381,6 +5172,7 @@ ILX:0739297 a owl:Class ;
 ILX:0739298 a owl:Class ;
     rdfs:label "gray communicating ramus of twelfth thoracic nerve" ;
     NIFRID:synonym "T12 gray ramus" ;
+    definition: "Communicating nerve connecting the twelfth thoracic nerve to the chain ganglia." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739298 ;
     ilxtr:hasIlxId ILX:0739298 ;
@@ -4389,6 +5181,7 @@ ILX:0739298 a owl:Class ;
 ILX:0739299 a owl:Class ;
     rdfs:label "Gray communicating ramus of sixth lumbar nerve" ;
     NIFRID:synonym "L6 gray ramus" ;
+    definition: "Communicating nerve connecting the sixth lumbar nerve to the chain ganglia." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739299 ;
     ilxtr:hasIlxId ILX:0739299 ;
@@ -4396,6 +5189,7 @@ ILX:0739299 a owl:Class ;
 
 ILX:0739301 a owl:Class ;
     rdfs:label "Junction between gray communicating ramus of first thoracic nerve and cervicothoracic ganglion" ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:6469,
         ILX:0739271 ;
     ilxr:type ilx.type:term ;
@@ -4407,6 +5201,7 @@ ILX:0739301 a owl:Class ;
 ILX:0739302 a owl:Class ;
     rdfs:label "Junction between gray communicating ramus of second thoracic nerve and cervicothoracic ganglion" ;
     definition: "Origin of the nerve as it intersects with the cervicothoracic ganglion (stellate ganglia). Should be a single point at the center of the axonal bundle. Represented by a single point ( x, y, and z location)." ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:6469,
         ILX:0739303 ;
     ilxr:type ilx.type:term ;
@@ -4418,6 +5213,7 @@ ILX:0739302 a owl:Class ;
 ILX:0739303 a owl:Class ;
     rdfs:label "gray communicating ramus of second thoracic nerve" ;
     definition: "Communicating nerve branching off of the second thoracic nerve to the chain ganglia" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739303 ;
     ilxtr:hasIlxId ILX:0739303 ;
@@ -4427,6 +5223,7 @@ ILX:0739303 a owl:Class ;
 ILX:0739304 a owl:Class ;
     rdfs:label "gray communicating ramus of third thoracic nerve" ;
     definition: "Communicating nerve branching off of the third thoracic nerve to the chain ganglia" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739304 ;
     ilxtr:hasIlxId ILX:0739304 ;
@@ -4436,6 +5233,7 @@ ILX:0739304 a owl:Class ;
 ILX:0739305 a owl:Class ;
     rdfs:label "Junction between gray communicating ramus of third thoracic nerve and cervicothoracic ganglion" ;
     definition: "Origin of the nerve as it intersects with the cervicothoracic ganglion (stellate ganglia). Should be a single point at the center of the axonal bundle. Represented by a single point ( x, y, and z location)." ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:6469,
         ILX:0739304 ;
     ilxr:type ilx.type:term ;
@@ -4448,6 +5246,7 @@ ILX:0739306 a owl:Class ;
     rdfs:label "ventral part of serosa of urethra" ;
     ILX:0739238 ILX:0112359,
         ILX:0739282 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739306 ;
     ilxtr:hasIlxId ILX:0739306 ;
@@ -4480,10 +5279,21 @@ ILX:0739768 a owl:Class ;
 
 ILX:0739769 a owl:Class ;
     rdfs:label "left medial cervical vagus nerve" ;
+    definition: "Parasympathetic and sympathetic fibers that pass inferiorly between the left common carotid and left subclavian arteries." ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739769 ;
     ilxtr:hasIlxId ILX:0739769 ;
     ilxtr:hasIlxPreferredId ILX:0739769 .
+
+ILX:0739771 a owl:Class ;
+    rdfs:label "Left cervical vagus nerve" ;
+    NIFRID:synonym "Left cervical vagus" ;
+    ilx.partOf: FMA:5731 ;
+    ILX:0383242 FMA:18176 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0739771 ;
+    ilxtr:hasIlxId ILX:0739771 ;
+    ilxtr:hasIlxPreferredId ILX:0739771 .
 
 ILX:0739772 a owl:Class ;
     rdfs:label "Ventral gastric branch of the abdominal vagus nerve" ;
@@ -4525,11 +5335,13 @@ ILX:0776034 a owl:Class ;
 
 ILX:0777077 a owl:Class ;
     rdfs:label "inner submucosal nerve plexus" ;
+    NIFRID:synonym "inner submucosal plexus" ;
     definition: "A sparse network of ganglia on the luminal side of the submucosa of the intestine, close to the muscularis mucosae muscle, in larger mammals." ;
     rdfs:subClassOf FMA:21542 ;
     ilx.anno.hasDefinitionSource: SCR:018709 ;
     ILX:0381449 <https://doi.org/10.1002/1097-0185(20010101)262:1%3C71::AID-AR1012%3E3.0.CO;2-A>,
         <https://doi.org/10.1007/s00418-009-0657-2> ;
+    ILX:0739239 "True" ;
     ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777077 ;
@@ -4539,12 +5351,14 @@ ILX:0777077 a owl:Class ;
 
 ILX:0777078 a owl:Class ;
     rdfs:label "outer submucosal nerve plexus" ;
+    NIFRID:synonym "outer submucosal plexus" ;
     definition: "A dense network of ganglia in the submucosa, close to the circular muscle of the intestine in larger mammals." ;
     rdfs:subClassOf FMA:21542 ;
     ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.partOf: FMA:7199 ;
     ILX:0381449 "doi:10.1007/s00418-009-0657-2",
         "doi: 10.1002/1097-0185%2820010101%29262%3A1%3C71%3A%3AAID-AR1012%3E3.0.CO%3B2-A" ;
+    ILX:0739239 "True" ;
     ILX:0777130 ilx:ilx_0739291 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777078 ;
@@ -4556,6 +5370,7 @@ ILX:0777083 a owl:Class ;
     rdfs:label "first coccygeal spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the first coccygeal spinal nerve." ;
     rdfs:subClassOf FMA:256635 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777083 ;
     ilxtr:hasIlxId ILX:0777083 ;
@@ -4565,6 +5380,7 @@ ILX:0777084 a owl:Class ;
     rdfs:label "second coccygeal spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the second coccygeal spinal nerve." ;
     rdfs:subClassOf FMA:256635 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777084 ;
     ilxtr:hasIlxId ILX:0777084 ;
@@ -4688,6 +5504,7 @@ ILX:0777099 a owl:Class ;
     definition: "Nerve fibers in the inner submucosal nerve plexus of the intestine, in larger mammals" ;
     rdfs:subClassOf ILX:0485634 ;
     ilx.partOf: ILX:0777077 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777099 ;
     ilxtr:hasIlxId ILX:0777099 ;
@@ -4698,6 +5515,7 @@ ILX:0777100 a owl:Class ;
     rdfs:label "ganglia of the inner submucosal nerve plexus" ;
     definition: "Cluster of neurons in the inner submucosal nerve plexus of the intestine, in larger mammals" ;
     ilx.partOf: ILX:0777077 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777100 ;
     ilxtr:hasIlxId ILX:0777100 ;
@@ -4707,6 +5525,7 @@ ILX:0777100 a owl:Class ;
 ILX:0777101 a owl:Class ;
     rdfs:label "junction between pulmonary valve and right ventricle" ;
     definition: "A single point on the left cusp of the pulmonary semilunar valve, close to the midline of the heart. Represented by a single point ( x, y, and z location)." ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:7098,
         FMA:7246 ;
     ilxr:type ilx.type:term ;
@@ -4718,6 +5537,7 @@ ILX:0777101 a owl:Class ;
 ILX:0777102 a owl:Class ;
     rdfs:label "junction between aortic valve and coronary vessel" ;
     definition: "A single point on the endothelium of the right cusp of the aortic semilunar valve leaflet, where the right coronary artery branches off the aorta. Represented by a single point (x, y, and z location)." ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:7236 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777102 ;
@@ -4728,6 +5548,7 @@ ILX:0777102 a owl:Class ;
 ILX:0777103 a owl:Class ;
     rdfs:label "junction between superior vena cava and right atrium" ;
     definition: "A single point (x, y, and z location) denoting the superior vena cava and right atrium junction was determined by the ventral-most point by which the opening of the SVC connects with the muscle of the right atrium." ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:7096 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777103 ;
@@ -4738,6 +5559,7 @@ ILX:0777103 a owl:Class ;
 ILX:0777112 a owl:Class ;
     rdfs:label "nerve fibers of the mucosa of ascending colon" ;
     definition: "The nerve fibers in the inner mucosa layer of the ascending colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777112 ;
     ilxtr:hasIlxId ILX:0777112 ;
@@ -4748,6 +5570,7 @@ ILX:0777112 a owl:Class ;
 ILX:0777113 a owl:Class ;
     rdfs:label "nerve fibers of the mucosa of  transverse colon" ;
     definition: "The nerve fibers in the inner mucosa layer of the transverse colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777113 ;
     ilxtr:hasIlxId ILX:0777113 ;
@@ -4758,6 +5581,7 @@ ILX:0777113 a owl:Class ;
 ILX:0777114 a owl:Class ;
     rdfs:label "nerve fibers of the mucosa of descending colon" ;
     definition: "The nerve fibers in the inner mucosa layer of the descending colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777114 ;
     ilxtr:hasIlxId ILX:0777114 ;
@@ -4768,6 +5592,7 @@ ILX:0777114 a owl:Class ;
 ILX:0777115 a owl:Class ;
     rdfs:label "nerve fibers of the mucosa of sigmoid colon" ;
     definition: "The nerve fibers in the inner mucosa layer of the sigmoid colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777115 ;
     ilxtr:hasIlxId ILX:0777115 ;
@@ -4778,6 +5603,7 @@ ILX:0777115 a owl:Class ;
 ILX:0777116 a owl:Class ;
     rdfs:label "nerve fibers of the submucosa of ascending colon" ;
     definition: "The nerve fibers in the submucosa layer of the ascending colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777116 ;
     ilxtr:hasIlxId ILX:0777116 ;
@@ -4788,6 +5614,7 @@ ILX:0777116 a owl:Class ;
 ILX:0777117 a owl:Class ;
     rdfs:label "nerve fibers of the submucosa of transverse colon" ;
     definition: "The nerve fibers in the submucosa layer of the transverse colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777117 ;
     ilxtr:hasIlxId ILX:0777117 ;
@@ -4798,6 +5625,7 @@ ILX:0777117 a owl:Class ;
 ILX:0777118 a owl:Class ;
     rdfs:label "nerve fibers of the submucosa of descending colon" ;
     definition: "The nerve fibers in the submucosa layer of the descending colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777118 ;
     ilxtr:hasIlxId ILX:0777118 ;
@@ -4808,6 +5636,7 @@ ILX:0777118 a owl:Class ;
 ILX:0777119 a owl:Class ;
     rdfs:label "nerve fibers of the submucosa of sigmoid colon" ;
     definition: "The nerve fibers in the submucosa layer of the sigmoid colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777119 ;
     ilxtr:hasIlxId ILX:0777119 ;
@@ -4818,6 +5647,7 @@ ILX:0777119 a owl:Class ;
 ILX:0777120 a owl:Class ;
     rdfs:label "nerve fibers of the circular muscle layer of ascending colon" ;
     definition: "The nerve fibers in the inner circular muscle layer in the muscularis propria of the ascending colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777120 ;
     ilxtr:hasIlxId ILX:0777120 ;
@@ -4828,6 +5658,7 @@ ILX:0777120 a owl:Class ;
 ILX:0777121 a owl:Class ;
     rdfs:label "nerve fibers of the circular muscle layer of transverse colon" ;
     definition: "The nerve fibers in the inner circular muscle layer in the muscularis propria of the transverse colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777121 ;
     ilxtr:hasIlxId ILX:0777121 ;
@@ -4838,6 +5669,7 @@ ILX:0777121 a owl:Class ;
 ILX:0777122 a owl:Class ;
     rdfs:label "nerve fibers of the circular muscle layer of descending colon" ;
     definition: "The nerve fibers in the inner circular muscle layer in the muscularis propria of the descending colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777122 ;
     ilxtr:hasIlxId ILX:0777122 ;
@@ -4848,6 +5680,7 @@ ILX:0777122 a owl:Class ;
 ILX:0777123 a owl:Class ;
     rdfs:label "nerve fibers of the circular muscle layer of sigmoid colon" ;
     definition: "The nerve fibers in the inner circular muscle layer in the muscularis propria of the sigmoid colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777123 ;
     ilxtr:hasIlxId ILX:0777123 ;
@@ -4858,6 +5691,7 @@ ILX:0777123 a owl:Class ;
 ILX:0777124 a owl:Class ;
     rdfs:label "nerve fibers of the longitudinal muscle layer of ascending colon" ;
     definition: "The nerve fibers in the outer longitudinal muscle layer in the muscularis propria of the ascending colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777124 ;
     ilxtr:hasIlxId ILX:0777124 ;
@@ -4868,6 +5702,7 @@ ILX:0777124 a owl:Class ;
 ILX:0777125 a owl:Class ;
     rdfs:label "nerve fibers of the longitudinal muscle layer of transverse colon" ;
     definition: "The nerve fibers in the outer longitudinal muscle layer in the muscularis propria of the transverse colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777125 ;
     ilxtr:hasIlxId ILX:0777125 ;
@@ -4878,6 +5713,7 @@ ILX:0777125 a owl:Class ;
 ILX:0777126 a owl:Class ;
     rdfs:label "nerve fibers of the longitudinal muscle layer of descending colon" ;
     definition: "The nerve fibers in the outer longitudinal muscle layer in the muscularis propria of the descending colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777126 ;
     ilxtr:hasIlxId ILX:0777126 ;
@@ -4888,6 +5724,7 @@ ILX:0777126 a owl:Class ;
 ILX:0777127 a owl:Class ;
     rdfs:label "nerve fibers of the longitudinal muscle layer of sigmoid colon" ;
     definition: "The nerve fibers in the outer longitudinal muscle layer in the muscularis propria of the sigmoid colon." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777127 ;
     ilxtr:hasIlxId ILX:0777127 ;
@@ -4898,6 +5735,7 @@ ILX:0777127 a owl:Class ;
 ILX:0777128 a owl:Class ;
     rdfs:label "Dorsal part of urinary bladder lumen" ;
     definition: "The dorsal portion of the bladder lumen, including both the lumen of the body and the neck of the bladder." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777128 ;
     ilxtr:hasIlxId ILX:0777128 ;
@@ -4907,6 +5745,7 @@ ILX:0777128 a owl:Class ;
 ILX:0777129 a owl:Class ;
     rdfs:label "Ventral part of urinary bladder lumen" ;
     definition: "The ventral portion of the bladder lumen, including both the lumen of the body and the neck of the bladder." ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0777129 ;
     ilxtr:hasIlxId ILX:0777129 ;
@@ -4917,6 +5756,7 @@ ILX:0778116 a owl:Class ;
     rdfs:label "left atrium epicardium venous midpoint" ;
     definition: "Point at centre of pulmonary vein ostia on left atrium epicardium, on anterior/ventral side for rodents" ;
     rdfs:subClassOf FMA:9658 ;
+    ILX:0739239 "True" ;
     ILX:0739265 ILX:0776034 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778116 ;
@@ -4928,6 +5768,7 @@ ILX:0778117 a owl:Class ;
     rdfs:label "right atrium epicardium venous midpoint" ;
     definition: "Point at centre of inferior and superior vena cavae on right atrium epicardium" ;
     rdfs:subClassOf FMA:9658 ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:7281,
         ILX:0743311,
         ILX:0743583 ;
@@ -4941,6 +5782,7 @@ ILX:0778118 a owl:Class ;
     rdfs:label "Ventral base of left lung" ;
     definition: "The ventral base of the left lung is the most ventral point at the oblique fissure of the left lung." ;
     rdfs:subClassOf ILX:0743544 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778118 ;
     ilxtr:hasIlxId ILX:0778118 ;
@@ -4951,6 +5793,7 @@ ILX:0778119 a owl:Class ;
     rdfs:label "Apex of right lung accessory lobe" ;
     definition: "The apex of the accessory lobe is the highest superficial part of the accessory lobe in the right lung. It is located next to the heart and points cranially ." ;
     rdfs:subClassOf UBERON:0004890 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778119 ;
     ilxtr:hasIlxId ILX:0778119 ;
@@ -4961,6 +5804,7 @@ ILX:0778120 a owl:Class ;
     rdfs:label "Medial base of left lung" ;
     definition: "The medial base of the left lung is the most medial point/corner sitting at the base of the left lung. It is close to the medial base of the right lung and pointing towards the right lung." ;
     rdfs:subClassOf ILX:0743544 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778120 ;
     ilxtr:hasIlxId ILX:0778120 ;
@@ -4971,6 +5815,7 @@ ILX:0778121 a owl:Class ;
     rdfs:label "Medial base of right lung" ;
     definition: "The medial base of the right lung is the most medial point/corner sitting at the base of the right lung. It is close to the medial base of the left lung and pointing towards the left lung." ;
     rdfs:subClassOf ILX:0743544 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778121 ;
     ilxtr:hasIlxId ILX:0778121 ;
@@ -4981,6 +5826,7 @@ ILX:0778122 a owl:Class ;
     rdfs:label "Ventral base of right lung" ;
     definition: "The ventral base of the right lung is the most ventral point sitting on the base of the right lung (In human, where the oblique fissure of the right lung is located. In rodent, where the ventral tip of the right lung is located)." ;
     rdfs:subClassOf ILX:0743544 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778122 ;
     ilxtr:hasIlxId ILX:0778122 ;
@@ -4991,6 +5837,7 @@ ILX:0778123 a owl:Class ;
     rdfs:label "Ventral base of right lung accessory lobe" ;
     definition: "The ventral base of the accessory lobe is the most ventral point of the accessory lobe. It is adjacent to the ventral base of the right lung in rodents." ;
     rdfs:subClassOf UBERON:0004890 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778123 ;
     ilxtr:hasIlxId ILX:0778123 ;
@@ -5001,6 +5848,7 @@ ILX:0778124 a owl:Class ;
     rdfs:label "laterodorsal tip of middle lobe of right lung" ;
     definition: "The laterodorsal tip of the middle lobe of the right lung is the most lateral/distal point of the right lung sitting on the junction of the horizontal and oblique fissures of the right lung." ;
     rdfs:subClassOf FMA:7383 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778124 ;
     ilxtr:hasIlxId ILX:0778124 ;
@@ -5011,6 +5859,7 @@ ILX:0778125 a owl:Class ;
     rdfs:label "dorsal base of right lung accessory lobe" ;
     definition: "The dorsal base of the accessory lobe is the point sitting on the base of the accessory lobe, closest to the mediodorsal edge of the left lung." ;
     rdfs:subClassOf UBERON:0004890 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778125 ;
     ilxtr:hasIlxId ILX:0778125 ;
@@ -5023,6 +5872,7 @@ ILX:0778126 a owl:Class ;
     rdfs:subClassOf FMA:9658 ;
     ILX:0739238 ILX:0103492,
         ILX:0778139 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778126 ;
     ilxtr:hasIlxId ILX:0778126 ;
@@ -5035,6 +5885,7 @@ ILX:0778127 a owl:Class ;
     rdfs:subClassOf FMA:9658 ;
     ILX:0739238 FMA:86152,
         ILX:0103492 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778127 ;
     ilxtr:hasIlxId ILX:0778127 ;
@@ -5046,6 +5897,7 @@ ILX:0778139 a owl:Class ;
     NIFRID:synonym "base of left lung",
         "Left lung base" ;
     rdfs:subClassOf FMA:7195 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778139 ;
     ilxtr:hasIlxId ILX:0778139 ;
@@ -5055,6 +5907,7 @@ ILX:0778142 a owl:Class ;
     rdfs:label "left ureter junction with bladder" ;
     definition: "The junction between the left ureter and the bladder. This junction is located at the bladder lumen where the left ureter merges with the bladder wall." ;
     rdfs:subClassOf FMA:9658 ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:15572,
         FMA:15900 ;
     ilxr:type ilx.type:term ;
@@ -5067,6 +5920,7 @@ ILX:0778143 a owl:Class ;
     rdfs:label "right ureter junction with bladder" ;
     definition: "The junction between the right ureter and the bladder. This junction is located at the bladder lumen where the right ureter merges with the bladder wall." ;
     rdfs:subClassOf FMA:9658 ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:15571,
         FMA:15900 ;
     ilxr:type ilx.type:term ;
@@ -5079,6 +5933,7 @@ ILX:0778154 a owl:Class ;
     rdfs:label "urethra junction of dorsal bladder neck" ;
     definition: "The anatomical junction between the urethra and dorsal bladder neck. This junction is located at the dorsal part of the bladder lumen where the urethra begins." ;
     rdfs:subClassOf FMA:9658 ;
+    ILX:0739239 "True" ;
     ILX:0739265 FMA:19667,
         ILX:0739253 ;
     ilxr:type ilx.type:term ;
@@ -5116,11 +5971,454 @@ ILX:0784215 a owl:Class ;
     rdfs:subClassOf UBERON:0012453 ;
     ILX:0381449 <https://doi.org/10.1007/s004290050037>,
         <https://doi.org/10.1111/j.1469-7793.2001.00255.x> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0784215 ;
     ilxtr:hasIlxId ILX:0784215 ;
     ilxtr:hasIlxPreferredId ILX:0784215 ;
     ilxtr:includedForSPARCUnder FMA:9903 .
+
+ILX:0793082 a owl:Class ;
+    rdfs:label "celiac ganglion-mesenteric complex" ;
+    NIFRID:synonym "coeliac-superior mesenteric ganglion complex",
+        "CSMG" ;
+    definition: "Clusters of sympathetic ganglion neurons in the upper abdomen located at the base of the celiac trunk and superior mesenteric arteries connected via short nerve trunks." ;
+    rdfs:subClassOf FMA:5890 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793082 ;
+    ilxtr:hasIlxId ILX:0793082 ;
+    ilxtr:hasIlxPreferredId ILX:0793082 .
+
+ILX:0793083 a owl:Class ;
+    rdfs:label "luminal surface of the colonic mucosa" ;
+    definition: "The surface of epithelium that is facing the lumen of the colon." ;
+    rdfs:subClassOf FMA:24137 ;
+    ilx.partOf: FMA:14984 ;
+    ILX:0777130 "Mabelle Lin",
+        "SPARC Anatomy Working Group, RRID:SCR_018709" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793083 ;
+    ilxtr:hasIlxId ILX:0793083 ;
+    ilxtr:hasIlxPreferredId ILX:0793083 ;
+    ilxtr:includedForSPARCUnder FMA:14543 .
+
+ILX:0793085 a owl:Class ;
+    rdfs:label "ventral stomach" ;
+    definition: "The half of stomach facing away from the back of the animal" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793085 ;
+    ilxtr:hasIlxId ILX:0793085 ;
+    ilxtr:hasIlxPreferredId ILX:0793085 ;
+    ilxtr:includedForSPARCUnder FMA:7148 .
+
+ILX:0793086 a owl:Class ;
+    rdfs:label "dorsal stomach" ;
+    definition: "The half of stomach facing towards the back of the animal" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793086 ;
+    ilxtr:hasIlxId ILX:0793086 ;
+    ilxtr:hasIlxPreferredId ILX:0793086 ;
+    ilxtr:includedForSPARCUnder FMA:7148 .
+
+ILX:0793087 a owl:Class ;
+    rdfs:label "body-antrum junction along the greater curvature on serosa" ;
+    definition: "The point at which the outer, serosal surface of the gastric body merges with the outer, serosal surface surface of the gastric antrum at the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793087 ;
+    ilxtr:hasIlxId ILX:0793087 ;
+    ilxtr:hasIlxPreferredId ILX:0793087 .
+
+ILX:0793088 a owl:Class ;
+    rdfs:label "circular-longitudinal muscle interface of body of stomach along the gastric-omentum attachment" ;
+    definition: "The interface between the circular and longitudinal muscle layers of the body of the stomach along its greater curvature where the greater omentum attaches to the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793088 ;
+    ilxtr:hasIlxId ILX:0793088 ;
+    ilxtr:hasIlxPreferredId ILX:0793088 .
+
+ILX:0793089 a owl:Class ;
+    rdfs:label "circular-longitudinal muscle interface of dorsal stomach" ;
+    definition: "The interface between the circular and longitudinal muscle layers of the dorsal side of the stomach" ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793089 ;
+    ilxtr:hasIlxId ILX:0793089 ;
+    ilxtr:hasIlxPreferredId ILX:0793089 .
+
+ILX:0793090 a owl:Class ;
+    rdfs:label "circular-longitudinal muscle interface of first segment of the duodenum along the gastric-omentum attachment" ;
+    definition: "The interface between the circular and longitudinal muscle layers of the first segment of the duodenum that extends from the greater and lesser curvatures of the stomach." ;
+    ilx.includeForSPARC: FMA:7206 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793090 ;
+    ilxtr:hasIlxId ILX:0793090 ;
+    ilxtr:hasIlxPreferredId ILX:0793090 .
+
+ILX:0793091 a owl:Class ;
+    rdfs:label "circular-longitudinal muscle interface of esophagus along the cut margin" ;
+    definition: "The interface between the circular and longitudinal muscle layers of the esophagus along the plane separating the esophagus into its dorsal and ventral side" ;
+    ilx.includeForSPARC: FMA:7131 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793091 ;
+    ilxtr:hasIlxId ILX:0793091 ;
+    ilxtr:hasIlxPreferredId ILX:0793091 .
+
+ILX:0793092 a owl:Class ;
+    rdfs:label "circular-longitudinal muscle interface of fundus of stomach along the greater curvature" ;
+    definition: "The interface between the circular and longitudinal muscle layers of the fundus of the stomach along its greater curvature where the greater omentum attaches to the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793092 ;
+    ilxtr:hasIlxId ILX:0793092 ;
+    ilxtr:hasIlxPreferredId ILX:0793092 .
+
+ILX:0793093 a owl:Class ;
+    rdfs:label "circular-longitudinal muscle interface of gastroduodenal junction" ;
+    definition: "The interface between the circular and longitudinal muscle layers at the junction between the stomach and the duodenum" ;
+    ilx.includeForSPARC: FMA:7148,
+        FMA:7206 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793093 ;
+    ilxtr:hasIlxId ILX:0793093 ;
+    ilxtr:hasIlxPreferredId ILX:0793093 .
+
+ILX:0793094 a owl:Class ;
+    rdfs:label "circular-longitudinal muscle interface of pyloric antrum along the greater and lesser curvatures" ;
+    definition: "The interface between the circular and longitudinal muscle layers of the antrum of the stomach along its greater curvature where the greater omentum attaches to the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793094 ;
+    ilxtr:hasIlxId ILX:0793094 ;
+    ilxtr:hasIlxPreferredId ILX:0793094 .
+
+ILX:0793095 a owl:Class ;
+    rdfs:label "circular-longitudinal muscle interface of pyloric canal along the greater and lesser curvatures" ;
+    definition: "The interface between the circular and longitudinal muscle layers of the pyloric canal along the edge that is continuous with the greater and lesser curvatures of the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793095 ;
+    ilxtr:hasIlxId ILX:0793095 ;
+    ilxtr:hasIlxPreferredId ILX:0793095 .
+
+ILX:0793096 a owl:Class ;
+    rdfs:label "circular-longitudinal muscle interface of stomach" ;
+    definition: "The interface between the circular and longitudinal muscle layers of the stomach" ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793096 ;
+    ilxtr:hasIlxId ILX:0793096 ;
+    ilxtr:hasIlxPreferredId ILX:0793096 .
+
+ILX:0793097 a owl:Class ;
+    rdfs:label "circular-longitudinal muscle interface of ventral stomach" ;
+    definition: "The interface between the circular and longitudinal muscle layers of the ventral side of the stomach" ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793097 ;
+    ilxtr:hasIlxId ILX:0793097 ;
+    ilxtr:hasIlxPreferredId ILX:0793097 .
+
+ILX:0793098 a owl:Class ;
+    rdfs:label "esophagogastric junction along the greater curvature on circular-longitudinal muscle interface" ;
+    definition: "The point at which the circular-longitudinal muscle interface  of the esophagus merges with the circular-longitudinal muscle interface  of the stomach at the greater curvature of the stomach" ;
+    ilx.includeForSPARC: FMA:7131,
+        FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793098 ;
+    ilxtr:hasIlxId ILX:0793098 ;
+    ilxtr:hasIlxPreferredId ILX:0793098 .
+
+ILX:0793099 a owl:Class ;
+    rdfs:label "esophagogastric junction along the greater curvature on luminal surface" ;
+    definition: "The point at which the inner, epithelial surface of the esophagus merges with the inner, epithelial surface of the stomach at the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7131,
+        FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793099 ;
+    ilxtr:hasIlxId ILX:0793099 ;
+    ilxtr:hasIlxPreferredId ILX:0793099 .
+
+ILX:0793100 a owl:Class ;
+    rdfs:label "esophagogastric junction along the greater curvature on serosa" ;
+    definition: "The point at which the outer, serosal surface of the esophagus merges with the outer, serosal surface of the stomach at the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7131,
+        FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793100 ;
+    ilxtr:hasIlxId ILX:0793100 ;
+    ilxtr:hasIlxPreferredId ILX:0793100 .
+
+ILX:0793101 a owl:Class ;
+    rdfs:label "esophagogastric junction along the lesser curvature on circular-longitudinal muscle interface" ;
+    definition: "The point at which the circular-longitudinal muscle interface  of the esophagus merges with the circular-longitudinal muscle interface  of the stomach at the lesser curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7131,
+        FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793101 ;
+    ilxtr:hasIlxId ILX:0793101 ;
+    ilxtr:hasIlxPreferredId ILX:0793101 .
+
+ILX:0793102 a owl:Class ;
+    rdfs:label "esophagogastric junction along the lesser curvature on luminal surface" ;
+    definition: "The point at which the inner, epithelial surface of the esophagus merges with the inner, epithelial surface of the stomach at the lesser curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7131,
+        FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793102 ;
+    ilxtr:hasIlxId ILX:0793102 ;
+    ilxtr:hasIlxPreferredId ILX:0793102 .
+
+ILX:0793103 a owl:Class ;
+    rdfs:label "esophagogastric junction along the lesser curvature on serosa" ;
+    definition: "The point at which the outer, serosal surface of the esophagus merges with the outer, serosal surface of the stomach at the lesser curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7131,
+        FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793103 ;
+    ilxtr:hasIlxId ILX:0793103 ;
+    ilxtr:hasIlxPreferredId ILX:0793103 .
+
+ILX:0793104 a owl:Class ;
+    rdfs:label "fundus-body junction along the greater curvature on circular-longitudinal muscle interface" ;
+    definition: "The point at which the circular-longitudinal muscle interface  of the gastric fundus merges with the circular-longitudinal muscle interface  of the gastric body at the greater curvature of the stomach" ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793104 ;
+    ilxtr:hasIlxId ILX:0793104 ;
+    ilxtr:hasIlxPreferredId ILX:0793104 .
+
+ILX:0793105 a owl:Class ;
+    rdfs:label "fundus-body junction along the greater curvature on luminal surface" ;
+    definition: "The point at which the inner, epithelial surface  of the gastric fundus merges with the inner, epithelial surface of the gastric body at the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793105 ;
+    ilxtr:hasIlxId ILX:0793105 ;
+    ilxtr:hasIlxPreferredId ILX:0793105 .
+
+ILX:0793106 a owl:Class ;
+    rdfs:label "fundus-body junction along the greater curvature on serosa" ;
+    definition: "The point at which the outer, serosal surface  of the gastric fundus merges with the outer, serosal surface of the gastric body at the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793106 ;
+    ilxtr:hasIlxId ILX:0793106 ;
+    ilxtr:hasIlxPreferredId ILX:0793106 .
+
+ILX:0793107 a owl:Class ;
+    rdfs:label "gastroduodenal junction along the greater curvature on circular-longitudinal muscle interface" ;
+    definition: "The point at which the circular-longitudinal muscle interface  of the duodenum merges with the circular-longitudinal muscle interface  of the stomach at the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148,
+        FMA:7206 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793107 ;
+    ilxtr:hasIlxId ILX:0793107 ;
+    ilxtr:hasIlxPreferredId ILX:0793107 .
+
+ILX:0793108 a owl:Class ;
+    rdfs:label "gastroduodenal junction along the greater curvature on luminal surface" ;
+    definition: "The point at which the inner, epithelial surface  of the duodenum merges with the inner, epithelial surface  of the stomach at the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148,
+        FMA:7206 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793108 ;
+    ilxtr:hasIlxId ILX:0793108 ;
+    ilxtr:hasIlxPreferredId ILX:0793108 .
+
+ILX:0793109 a owl:Class ;
+    rdfs:label "gastroduodenal junction along the greater curvature on serosa" ;
+    definition: "The point at which the outer, serosal surface  of the duodenum merges with the outer, serosal surface  of the stomach at the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148,
+        FMA:7206 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793109 ;
+    ilxtr:hasIlxId ILX:0793109 ;
+    ilxtr:hasIlxPreferredId ILX:0793109 .
+
+ILX:0793110 a owl:Class ;
+    rdfs:label "gastroduodenal junction along the lesser curvature on circular-longitudinal muscle interface" ;
+    definition: "The point at which the circular-longitudinal muscle interface  of the duodenum merges with the circular-longitudinal muscle interface  of the stomach at the lesser curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148,
+        FMA:7206 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793110 ;
+    ilxtr:hasIlxId ILX:0793110 ;
+    ilxtr:hasIlxPreferredId ILX:0793110 .
+
+ILX:0793111 a owl:Class ;
+    rdfs:label "gastroduodenal junction along the lesser curvature on luminal surface" ;
+    definition: "The point at which the inner, epithelial surface  of the duodenum merges with the inner, epithelial surface  of the stomach at the lesser curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148,
+        FMA:7206 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793111 ;
+    ilxtr:hasIlxId ILX:0793111 ;
+    ilxtr:hasIlxPreferredId ILX:0793111 .
+
+ILX:0793112 a owl:Class ;
+    rdfs:label "gastroduodenal junction along the lesser curvature on serosa" ;
+    definition: "The point at which the outer, serosal surface  of the duodenum merges with the outer, serosal surface  of the stomach at the lesser curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148,
+        FMA:7206 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793112 ;
+    ilxtr:hasIlxId ILX:0793112 ;
+    ilxtr:hasIlxPreferredId ILX:0793112 .
+
+ILX:0793113 a owl:Class ;
+    rdfs:label "limiting ridge at the greater curvature on the circular-longitudinal muscle interface" ;
+    definition: "The interface between the circular and longitudinal muscle layers at the junction between the corpus and fundus along the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793113 ;
+    ilxtr:hasIlxId ILX:0793113 ;
+    ilxtr:hasIlxPreferredId ILX:0793113 .
+
+ILX:0793114 a owl:Class ;
+    rdfs:label "limiting ridge at the greater curvature on the luminal surface" ;
+    definition: "The point on the surface facing the gastric lumen at the junction of the corpus and fundus along the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793114 ;
+    ilxtr:hasIlxId ILX:0793114 ;
+    ilxtr:hasIlxPreferredId ILX:0793114 .
+
+ILX:0793115 a owl:Class ;
+    rdfs:label "limiting ridge at the greater curvature on serosa" ;
+    definition: "The point on the outer surface of the stomach at the junction of the corpus and fundus along the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793115 ;
+    ilxtr:hasIlxId ILX:0793115 ;
+    ilxtr:hasIlxPreferredId ILX:0793115 .
+
+ILX:0793116 a owl:Class ;
+    rdfs:label "limiting ridge on circular-longitudinal muscle interface" ;
+    definition: "The interface between the corpus and fundus at the circular and longitudinal muscle layers of the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793116 ;
+    ilxtr:hasIlxId ILX:0793116 ;
+    ilxtr:hasIlxPreferredId ILX:0793116 .
+
+ILX:0793117 a owl:Class ;
+    rdfs:label "limiting ridge on luminal surface" ;
+    definition: "body-antrum junction along the greater curvature on circular-longitudinal muscle interface" ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793117 ;
+    ilxtr:hasIlxId ILX:0793117 ;
+    ilxtr:hasIlxPreferredId ILX:0793117 .
+
+ILX:0793118 a owl:Class ;
+    rdfs:label "limiting ridge on serosa" ;
+    definition: "The boundary of the limiting ridge at the junction of the corpus and fundus on the outer surface of the stomach" ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793118 ;
+    ilxtr:hasIlxId ILX:0793118 ;
+    ilxtr:hasIlxPreferredId ILX:0793118 .
+
+ILX:0793119 a owl:Class ;
+    rdfs:label "luminal surface of body of stomach" ;
+    definition: "The inner, epithelial surface of the body of the stomach that faces the gastric lumen" ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793119 ;
+    ilxtr:hasIlxId ILX:0793119 ;
+    ilxtr:hasIlxPreferredId ILX:0793119 .
+
+ILX:0793120 a owl:Class ;
+    rdfs:label "luminal surface of cardia of stomach" ;
+    definition: "The surface of the cardia of the stomach which faces the stomach lumen" ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793120 ;
+    ilxtr:hasIlxId ILX:0793120 ;
+    ilxtr:hasIlxPreferredId ILX:0793120 .
+
+ILX:0793121 a owl:Class ;
+    rdfs:label "luminal surface of duodenum" ;
+    definition: "The inner, epithelial surface of the duodenum that faces its lumen." ;
+    ilx.includeForSPARC: FMA:7206 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793121 ;
+    ilxtr:hasIlxId ILX:0793121 ;
+    ilxtr:hasIlxPreferredId ILX:0793121 .
+
+ILX:0793122 a owl:Class ;
+    rdfs:label "luminal surface of esophagus" ;
+    definition: "The inner, epithelial surface of the esophagus that faces its lumen" ;
+    ilx.includeForSPARC: FMA:7131 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793122 ;
+    ilxtr:hasIlxId ILX:0793122 ;
+    ilxtr:hasIlxPreferredId ILX:0793122 .
+
+ILX:0793123 a owl:Class ;
+    rdfs:label "luminal surface of fundus of stomach" ;
+    definition: "The inner, epithelial surface of the gastric fundus that faces the stomach lumen." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793123 ;
+    ilxtr:hasIlxId ILX:0793123 ;
+    ilxtr:hasIlxPreferredId ILX:0793123 .
+
+ILX:0793124 a owl:Class ;
+    rdfs:label "luminal surface of pyloric antrum" ;
+    definition: "The inner, epithelial surface of the pyloric antrum of the stomach which faces the gastric lumen." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793124 ;
+    ilxtr:hasIlxId ILX:0793124 ;
+    ilxtr:hasIlxPreferredId ILX:0793124 .
+
+ILX:0793125 a owl:Class ;
+    rdfs:label "luminal surface of pyloric canal" ;
+    definition: "The inner, epithelial surface of the pyloric canal of the stomach that faces the gastric lumen" ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793125 ;
+    ilxtr:hasIlxId ILX:0793125 ;
+    ilxtr:hasIlxPreferredId ILX:0793125 .
+
+ILX:0793126 a owl:Class ;
+    rdfs:label "luminal surface of stomach" ;
+    definition: "The inner, epithelial surface of the stomach that faces its lumen" ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793126 ;
+    ilxtr:hasIlxId ILX:0793126 ;
+    ilxtr:hasIlxPreferredId ILX:0793126 .
+
+ILX:0793127 a owl:Class ;
+    rdfs:label "body-antrum junction along the greater curvature on circular-longitudinal muscle interface" ;
+    definition: "the circular-longitudinal muscle interface  of the gastric body merges with the circular-longitudinal muscle interface  of the gastric antrum at the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793127 ;
+    ilxtr:hasIlxId ILX:0793127 ;
+    ilxtr:hasIlxPreferredId ILX:0793127 .
+
+ILX:0793128 a owl:Class ;
+    rdfs:label "body-antrum junction along the greater curvature on luminal surface" ;
+    definition: "The point at which the inner, epithelial surface of the gastric body merges with the inner, epithelial surface of the gastric antrum at the greater curvature of the stomach." ;
+    ilx.includeForSPARC: FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793128 ;
+    ilxtr:hasIlxId ILX:0793128 ;
+    ilxtr:hasIlxPreferredId ILX:0793128 .
+
+ILX:0793130 a owl:Class ;
+    rdfs:label "anterior border of left lung" ;
+    definition: "anterior border of left lung is formed by the convergence of the mediastinal and costal surfaces." ;
+    rdfs:subClassOf FMA:7310 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793130 ;
+    ilxtr:hasIlxId ILX:0793130 ;
+    ilxtr:hasIlxPreferredId ILX:0793130 .
 
 NCBITaxon:9821 a owl:Class ;
     rdfs:label "Suidae" ;
@@ -5141,8 +6439,9 @@ NCBITaxon:9822 a owl:Class ;
     ilxtr:hasIlxPreferredId NCBITaxon:9822 .
 
 NCBITaxon:9823 a owl:Class ;
-    rdfs:label "Sus scrofa" ;
+    rdfs:label "Pig" ;
     NIFRID:synonym "pig",
+        "Sus scrofa",
         "swine",
         "wild boar" ;
     definition: "A mammal of the artiodactyla order and genus sus." ;
@@ -5155,7 +6454,7 @@ NCBITaxon:9823 a owl:Class ;
     ilxtr:hasIlxPreferredId NCBITaxon:9823 .
 
 NCBITaxon:9825 a owl:Class ;
-    rdfs:label "Sus scrofa domesticus" ;
+    rdfs:label "Domestic Pig" ;
     NIFRID:synonym "domestic pig",
         "Sus domestica",
         "Sus domesticus",
@@ -5219,7 +6518,10 @@ PAXSPN:23 a owl:Class ;
     rdfs:label "dorsolateral fasciculus (paxspn)" ;
     NIFRID:synonym "DLF",
         "Dorsolateral fasciculus",
+        "dorsolateral fasciculus (lissauer)",
+        "dorsolateral fasciculus (paxspn)",
         "Tract of Lissauer" ;
+    NIFRID:abbrev "dl" ;
     definition: "A small bundle of fibers running longitudinally in the white matter between the dorsolateral edge of the dorsal horn and the entrance of the dorsal roots. This is synonymous with the ‘Tract of Lissauer’ and contains both small diameter primary afferents and axons from neurons in the dorsal lamina providing intraspinal connections." ;
     ilx.anno.hasDefinitionSource: SCR:018709 ;
     ilx.hasDbXref: BIRNLEX:1267,
@@ -5227,6 +6529,7 @@ PAXSPN:23 a owl:Class ;
         PAXRAT:274,
         UBERON:0002649 ;
     ILX:0381449 <https://doi.org/10.1016/B978-0-12-374245-2.00005-X> ;
+    ILX:0739239 "True" ;
     ILX:0778161 PAXSPN: ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0772919,
@@ -5237,27 +6540,35 @@ PAXSPN:23 a owl:Class ;
 
 PAXSPN:65 a owl:Class ;
     rdfs:label "lumbar dorsal commissural nucleus (paxspn)" ;
-    NIFRID:synonym "lumbar dorsal commissural nucleus" ;
+    NIFRID:synonym "lumbar dorsal commissural nucleus",
+        "lumbar dorsal commissural nucleus (paxspn)" ;
+    NIFRID:abbrev "LDCom" ;
     definition: "A large cluster of round, oval, or spindle shaped neurons located in lamina VII of T11–L1 along the midline, in the dorsal gray commissure." ;
     ILX:0381449 <https://doi.org/10.1002/ar.22450>,
         <https://doi.org/10.1016/B978-0-12-374247-6.50010-9> ;
+    ILX:0739239 "True" ;
     ILX:0778161 PAXSPN: ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0784294,
         PAXSPN:65 ;
     ilxtr:hasIlxId ILX:0784294 ;
-    ilxtr:hasIlxPreferredId PAXSPN:65 .
+    ilxtr:hasIlxPreferredId PAXSPN:65 ;
+    ilxtr:includedForSPARCUnder FMA:7647 .
 
 PAXSPN:79 a owl:Class ;
     rdfs:label "sacral dorsal commissural nucleus (paxspn)" ;
-    NIFRID:synonym "sacral dorsal commissural nucleus" ;
+    NIFRID:synonym "sacral dorsal commissural nucleus",
+        "sacral dorsal commissural nucleus (paxspn)" ;
+    NIFRID:abbrev "SDCom" ;
     definition: "A large cluster of small neurons located in the grey matter dorsal to the central canal in the lower lumbar and sacral spinal cord." ;
+    ILX:0739239 "True" ;
     ILX:0778161 PAXSPN: ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0784250,
         PAXSPN:79 ;
     ilxtr:hasIlxId ILX:0784250 ;
-    ilxtr:hasIlxPreferredId PAXSPN:79 .
+    ilxtr:hasIlxPreferredId PAXSPN:79 ;
+    ilxtr:includedForSPARCUnder FMA:7647 .
 
 SCR:018709 a owl:Class ;
     rdfs:label "SPARC Anatomical Working Group" ;
@@ -5279,6 +6590,44 @@ UBERON:0000073 a owl:Class ;
         UBERON:0000073 ;
     ilxtr:hasIlxId ILX:0109857 ;
     ilxtr:hasIlxPreferredId UBERON:0000073 .
+
+UBERON:0001585 a owl:Class ;
+    rdfs:label "anterior vena cava" ;
+    definition: "A vein that carries deoxygenated blood from the upper half of the body into the right atrium of the heart." ;
+    ilx.anno.hasExactSynonym: "superior caval vein",
+        "superior vena cava" ;
+    ilx.anno.hasRelatedSynonym: "cranial vena cava",
+        "precava",
+        "vena cava superior",
+        "vena maxima" ;
+    ilx.hasDbXref: "BTO:0002683",
+        "EHDAA2:0001962",
+        "EHDAA:8726",
+        "EMAPA:18417",
+        "FMA:4720",
+        "GAID:549",
+        "galen:SuperiorVenaCava",
+        "MA:0000481",
+        "MESH:D014683",
+        "NCIT:C12816",
+        "UMLS:C0042459",
+        "VHOG:0001195",
+        <http://en.wikipedia.org/wiki/Superior_vena_cava>,
+        <http://linkedlifedata.com/resource/umls/id/C0042459>,
+        <http://www.snomedbrowser.com/Codes/Details/181368006> ;
+    ILX:0739239 "True" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0725354,
+        UBERON:0001585 ;
+    ilxtr:hasExternalId UBERON:0001585 ;
+    ilxtr:hasIlxId ILX:0725354 ;
+    ilxtr:hasIlxPreferredId UBERON:0001585 ;
+    oboInOwl:hasExactSynonym "superior caval vein",
+        "superior vena cava" ;
+    oboInOwl:hasRelatedSynonym "cranial vena cava",
+        "precava",
+        "vena cava superior",
+        "vena maxima" .
 
 UBERON:0001948 a owl:Class ;
     rdfs:label "Regional part of spinal cord" ;
@@ -5317,6 +6666,7 @@ UBERON:0004851 a owl:Class ;
         "NCIT:C49190",
         "UMLS:C1706824",
         <http://linkedlifedata.com/resource/umls/id/C1706824> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0726903,
         UBERON:0004851 ;
@@ -5353,6 +6703,7 @@ UBERON:0006765 a owl:Class ;
     rdfs:label "left anterior vena cava" ;
     ilx.anno.hasExactSynonym: "left superior vena cava" ;
     ilx.hasDbXref: "EMAPA:18418" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0731981,
         UBERON:0006765 ;
@@ -5368,6 +6719,7 @@ UBERON:0006766 a owl:Class ;
     ilx.anno.hasExactSynonym: "right superior vena cava" ;
     ilx.hasDbXref: "EMAPA:18419",
         "FMA:4720" ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0724962,
         UBERON:0006766 ;
@@ -5386,6 +6738,7 @@ UBERON:0009030 a owl:Class ;
         "UMLS:C0226670",
         <http://linkedlifedata.com/resource/umls/id/C0226670>,
         <http://www.snomedbrowser.com/Codes/Details/304057004> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0733186,
         UBERON:0009030 ;
@@ -5403,6 +6756,7 @@ UBERON:0009032 a owl:Class ;
         "UMLS:C0226669",
         <http://linkedlifedata.com/resource/umls/id/C0226669>,
         <http://www.snomedbrowser.com/Codes/Details/304056008> ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0729203,
         UBERON:0009032 ;
@@ -5421,6 +6775,7 @@ UBERON:0011776 a owl:Class ;
         NLX:144463,
         NLXWIKI:nlx_144463 ;
     ilx.partOf: FMA:7647 ;
+    ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0103430,
         NLX:144463,
@@ -5443,6 +6798,13 @@ UBERON:0012453 a owl:Class ;
 ### Axioms
 
 [] a owl:Axiom ;
+    owl:annotatedSource FMA:7647 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "SP" ;
+    ilxtr:MISSING_ILX_ID true ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
+
+[] a owl:Axiom ;
     owl:annotatedSource FMA:9903 ;
     owl:annotatedProperty NIFRID:synonym ;
     owl:annotatedTarget "PNS" ;
@@ -5450,6 +6812,20 @@ UBERON:0012453 a owl:Class ;
     ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
 
 [] a owl:Axiom ;
+    owl:annotatedSource FMA:258416 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "GF" ;
+    ilxtr:MISSING_ILX_ID true ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
+
+[] a owl:Axiom ;
+    owl:annotatedSource FMA:258416 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "GF" ;
+    ilxtr:MISSING_ILX_ID true ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
+
+[] a owl:Axiom ;
     owl:annotatedSource ILX:0784215 ;
     owl:annotatedProperty NIFRID:synonym ;
     owl:annotatedTarget "IGLEs" ;
@@ -5460,6 +6836,13 @@ UBERON:0012453 a owl:Class ;
     owl:annotatedSource ILX:0784215 ;
     owl:annotatedProperty NIFRID:synonym ;
     owl:annotatedTarget "IGLEs" ;
+    ilxtr:MISSING_ILX_ID true ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
+
+[] a owl:Axiom ;
+    owl:annotatedSource ILX:0793082 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "CSMG" ;
     ilxtr:MISSING_ILX_ID true ;
     ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
 
@@ -5467,6 +6850,13 @@ UBERON:0012453 a owl:Class ;
     owl:annotatedSource NLX:158477 ;
     owl:annotatedProperty NIFRID:synonym ;
     owl:annotatedTarget "CSA" ;
+    ilxtr:MISSING_ILX_ID true ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
+
+[] a owl:Axiom ;
+    owl:annotatedSource PAXSPN:23 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "DLF" ;
     ilxtr:MISSING_ILX_ID true ;
     ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
 
