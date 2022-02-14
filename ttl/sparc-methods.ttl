@@ -11,6 +11,7 @@
 @prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix replacedBy: <http://purl.obolibrary.org/obo/IAO_0100001> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sparc: <http://uri.interlex.org/tgbugs/uris/readable/sparc/> .
 @prefix TEMP: <http://uri.interlex.org/temp/uris/> .
 @prefix TEMPRAW: <http://uri.interlex.org/temp/uris/raw/> .
@@ -21,18 +22,21 @@
 ### Object Properties
 
 sparc:animalSubjectIsOfSpecies a owl:ObjectProperty ;
+    skos:altLabel "species" ;
     definition: "The species of the subject." ;
     rdfs:domain sparc:AnimalSubject ;
     rdfs:range NCBITaxon:33208 ;
     editorNote: "currently unaligned but a DatatypeProperty, which is undesireable" .
 
 sparc:hasBiologicalSex a owl:ObjectProperty ;
+    skos:altLabel "sex" ;
     definition: "The biological sex of the subject." ;
     rdfs:domain sparc:AnimalSubject ;
     rdfs:range PATO:0000047 .
 
 sparc:hasORCIDId a owl:FunctionalProperty,
         owl:ObjectProperty ;
+    skos:altLabel "ORCiD" ;
     definition: "The ORCiD of the person." ;
     rdfs:domain sparc:Person ;
     editorNote: "not clear that this is a functional property, though ideally it would be" .
@@ -72,6 +76,7 @@ TEMP:dereferencesTo a owl:ObjectProperty ;
     editorNote: "used to map identifier resolution e.g. doi -> protocols.io" .
 
 TEMP:hasAgeCategory a owl:ObjectProperty ;
+    skos:altLabel "age category" ;
     definition: "Property relating a subject to the life cycle stage it was at when the expeirment was conducted, i.e. adult vs infant" ;
     editorNote: "currently unaligned, should be an object property" ;
     ilxtr:futureType owl:ObjectProperty .
@@ -84,9 +89,11 @@ TEMP:hasContactPerson a owl:ObjectProperty ;
     definition: "Property relating a dataset to the contact person for that dataset." .
 
 TEMP:hasDerivedInformationAsParticipant a owl:ObjectProperty ;
+    skos:altLabel "in dataset" ;
     definition: "Property directly relating a participant to a resource that contains information that was derrived from a processes they were involved in e.g. the performance of an experimental protocol." .
 
 TEMP:hasDoi a owl:ObjectProperty ;
+    skos:altLabel "DOI" ;
     definition: "The doi for a given resource. It may be the same is the identifier, or the doi may dereference to that identifier or an alias of that identifier (in the pointer aliasing sense)." .
 
 TEMP:hasExperimentalModality a owl:AnnotationProperty,
@@ -96,6 +103,7 @@ TEMP:hasExperimentalModality a owl:AnnotationProperty,
     editorNote: "should be objprop" .
 
 TEMP:hasFolderAboutIt a owl:ObjectProperty ;
+    skos:altLabel "directory" ;
     definition: "Property relating a participant to folders that contain data about it." .
 
 TEMP:hasProtocol a owl:ObjectProperty ;
@@ -126,6 +134,7 @@ TEMP:involvesAnatomicalRegion a owl:AnnotationProperty,
         "should be objprop" .
 
 TEMP:isAboutParticipant a owl:ObjectProperty ;
+    skos:altLabel "subjects and samples" ;
     definition: "Property directly relating a resource to a participant that it contains information about." .
 
 TEMP:isDescribedBy a owl:ObjectProperty ;
@@ -185,10 +194,12 @@ TEMP:hasAffiliation a owl:AnnotationProperty ;
     ilxtr:futureType owl:ObjectProperty .
 
 TEMP:hasAge a owl:AnnotationProperty ;
+    skos:altLabel "age" ;
     definition: "The age of a subject. Ideally this value would be associated with a performance, because subjects have multiple ages." ;
     editorNote: "range is sparc:Measurement" .
 
 TEMP:hasAssignedGroup a owl:AnnotationProperty ;
+    skos:altLabel "experimental group" ;
     definition: "Property relating a participant to the experimental group that it is a member of." ;
     ilxtr:futureType owl:ObjectProperty .
 
@@ -200,6 +211,7 @@ TEMP:hasBiologicalSex a owl:AnnotationProperty ;
     ilxtr:futureType owl:ObjectProperty .
 
 TEMP:hasDatasetTemplateSchemaVersion a owl:AnnotationProperty ;
+    skos:altLabel "SDS template version" ;
     definition: "The version of the dataset template that was used for submission." .
 
 TEMP:hasDigitalArtifactThatIsAboutIt a owl:AnnotationProperty ;
@@ -275,6 +287,7 @@ TEMP:milestoneCompletionDate a owl:AnnotationProperty ;
     ilxtr:curationInternal true .
 
 TEMP:participantInPerformanceOf a owl:AnnotationProperty ;
+    skos:altLabel "protocol" ;
     definition: "Property relating a participant to a protocol that constrained a performance that they were a participant in." .
 
 TEMP:protocolExecutionDate a owl:AnnotationProperty ;
@@ -577,6 +590,7 @@ TEMP:DatasetContributor owl:deprecated true ;
     replacedBy: sparc:DatasetContribution .
 
 TEMP:hasExperimentalApproach owl:deprecated true ;
+    skos:altLabel "experimental approach" ;
     definition: "A property relating a dataset to the experimental approaches that were used when generating it." .
 
 TEMPRAW: a ilxtr:Namespace ;
