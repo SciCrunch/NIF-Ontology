@@ -306,6 +306,11 @@ ilxtr:ElectrophysiologicalPhenotype a owl:Class ;
     ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
     skos:hiddenLabel "Electrophysiological" .
 
+ilxtr:EntericPhenotype a owl:Class ;
+    rdfs:label "Enteric phenotype" ;
+    rdfs:subClassOf ilxtr:CellPhenotype ;
+    skos:hiddenLabel "Enteric" .
+
 ilxtr:ExpressionPhenotype a owl:Class ;
     rdfs:label "Expression phenotype" ;
     NIFRID:synonym "molecular phenotype" ;
@@ -469,7 +474,7 @@ ilxtr:MorphologicalPhenotype a owl:Class ;
 ilxtr:MotorPhenotype a owl:Class ;
     rdfs:label "Motor phenotype" ;
     rdfs:subClassOf ilxtr:ProjectionPhenotype ;
-    rdfs:comment "motor neuron phenotype, motor projecting phenotype, muscle projecting phenotype, hasForwardConnectionPhenotype some myocyte, implies " ;
+    rdfs:comment "motor neuron phenotype, motor projecting phenotype, muscle projecting phenotype, hasForwardConnectionPhenotype some myocyte, implies" ;
     skos:hiddenLabel "Motor" .
 
 ilxtr:NarrowPhenotype a owl:Class ;
@@ -532,28 +537,26 @@ ilxtr:NeurogliaformSparseAxonPhenotype a owl:Class ;
 
 ilxtr:neuron-phenotype-para-post a owl:Class ;
     rdfs:label "Parasympathetic Post-Ganglionic phenotype" ;
-    rdfs:subClassOf ilxtr:ANSPopulationPhenotype ;
-    owl:disjointWith ilxtr:neuron-phenotype-para-pre,
-        ilxtr:neuron-phenotype-sym-post,
-        ilxtr:neuron-phenotype-sym-pre ;
+    rdfs:subClassOf ilxtr:ParasympatheticPhenotype,
+        ilxtr:PostGanglionicPhenotype ;
     skos:hiddenLabel "Parasympathetic Post-Ganglionic" .
 
 ilxtr:neuron-phenotype-para-pre a owl:Class ;
     rdfs:label "Parasympathetic Pre-Ganglionic phenotype" ;
-    rdfs:subClassOf ilxtr:ANSPopulationPhenotype ;
-    owl:disjointWith ilxtr:neuron-phenotype-sym-post,
-        ilxtr:neuron-phenotype-sym-pre ;
+    rdfs:subClassOf ilxtr:ParasympatheticPhenotype,
+        ilxtr:PreGanglionicPhenotype ;
     skos:hiddenLabel "Parasympathetic Pre-Ganglionic" .
 
 ilxtr:neuron-phenotype-sym-post a owl:Class ;
     rdfs:label "Sympathetic Post-Ganglionic phenotype" ;
-    rdfs:subClassOf ilxtr:ANSPopulationPhenotype ;
-    owl:disjointWith ilxtr:neuron-phenotype-sym-pre ;
+    rdfs:subClassOf ilxtr:PostGanglionicPhenotype,
+        ilxtr:SympatheticPhenotype ;
     skos:hiddenLabel "Sympathetic Post-Ganglionic" .
 
 ilxtr:neuron-phenotype-sym-pre a owl:Class ;
     rdfs:label "Sympathetic Pre-Ganglionic phenotype" ;
-    rdfs:subClassOf ilxtr:ANSPopulationPhenotype ;
+    rdfs:subClassOf ilxtr:PreGanglionicPhenotype,
+        ilxtr:SympatheticPhenotype ;
     skos:hiddenLabel "Sympathetic Pre-Ganglionic" .
 
 ilxtr:NonAccommodatingSpikingPhenotype a owl:Class ;
@@ -561,6 +564,12 @@ ilxtr:NonAccommodatingSpikingPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:SpikingPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
     skos:hiddenLabel "Non accommodating spiking" .
+
+ilxtr:ParasympatheticPhenotype a owl:Class ;
+    rdfs:label "Parasympathetic phenotype" ;
+    rdfs:subClassOf ilxtr:ANSPopulationPhenotype ;
+    owl:disjointWith ilxtr:SympatheticPhenotype ;
+    skos:hiddenLabel "Parasympathetic" .
 
 ilxtr:PerforantPathwayAssociated a owl:Class ;
     rdfs:label "Perforant pathway associated" ;
@@ -637,6 +646,17 @@ ilxtr:PetillaSustainedStutteringPhenotype a owl:Class ;
     rdfs:subClassOf ilxtr:PetillaSustainedSpikingPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
     skos:hiddenLabel "Petilla sustained stuttering" .
+
+ilxtr:PostGanglionicPhenotype a owl:Class ;
+    rdfs:label "Post ganglionic phenotype" ;
+    rdfs:subClassOf ilxtr:ANSPopulationPhenotype ;
+    owl:disjointWith ilxtr:PreGanglionicPhenotype ;
+    skos:hiddenLabel "Post ganglionic" .
+
+ilxtr:PreGanglionicPhenotype a owl:Class ;
+    rdfs:label "Pre ganglionic phenotype" ;
+    rdfs:subClassOf ilxtr:ANSPopulationPhenotype ;
+    skos:hiddenLabel "Pre ganglionic" .
 
 ilxtr:ProjectionPhenotype a owl:Class ;
     rdfs:label "Projection phenotype" ;
@@ -747,6 +767,16 @@ ilxtr:SpikingPhenotype a owl:Class ;
     ilxtr:useObjectProperty ilxtr:hasElectrophysiologicalPhenotype ;
     skos:hiddenLabel "Spiking" .
 
+ilxtr:SpinalCordAscendingProjectionPhenotype a owl:Class ;
+    rdfs:label "Spinal cord ascending projection phenotype" ;
+    rdfs:subClassOf ilxtr:ProjectionPhenotype ;
+    skos:hiddenLabel "Spinal cord ascending projection" .
+
+ilxtr:SpinalCordDescendingProjectionPhenotype a owl:Class ;
+    rdfs:label "Spinal cord descending projection phenotype" ;
+    rdfs:subClassOf ilxtr:ProjectionPhenotype ;
+    skos:hiddenLabel "Spinal cord descending projection" .
+
 ilxtr:SpinyPhenotype a owl:Class ;
     rdfs:label "Spiny phenotype" ;
     rdfs:subClassOf ilxtr:DendritePhenotype ;
@@ -775,6 +805,11 @@ ilxtr:StriatoCortical a owl:Class ;
     rdfs:subClassOf ilxtr:ProjectionPhenotype ;
     ilxtr:useObjectProperty ilxtr:hasProjectionPhenotype ;
     skos:hiddenLabel "Striato cortical" .
+
+ilxtr:SympatheticPhenotype a owl:Class ;
+    rdfs:label "Sympathetic phenotype" ;
+    rdfs:subClassOf ilxtr:ANSPopulationPhenotype ;
+    skos:hiddenLabel "Sympathetic" .
 
 ilxtr:ThalamoCortical a owl:Class ;
     rdfs:label "Thalamo cortical" ;
