@@ -1,9 +1,12 @@
 @prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix BIRNLEX: <http://uri.neuinfo.org/nif/nifstd/birnlex_> .
+@prefix CL: <http://purl.obolibrary.org/obo/CL_> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 @prefix EMAPA: <http://purl.obolibrary.org/obo/EMAPA_> .
 @prefix fma: <http://purl.org/sig/ont/fma/> .
 @prefix FMA: <http://purl.org/sig/ont/fma/fma> .
+@prefix GBIF: <http://www.gbif.org/species/> .
 @prefix ilx: <http://uri.interlex.org/> .
 @prefix ILX: <http://uri.interlex.org/base/ilx_> .
 @prefix ilx.anno.hasBroadSynonym: <http://uri.interlex.org/base/ilx_0737164> .
@@ -26,7 +29,9 @@
 @prefix NLX: <http://uri.neuinfo.org/nif/nifstd/nlx_> .
 @prefix NLXANAT: <http://uri.neuinfo.org/nif/nifstd/nlx_anat_> .
 @prefix NLXOEN: <http://uri.neuinfo.org/nif/nifstd/oen_> .
+@prefix NLXSUB: <http://uri.neuinfo.org/nif/nifstd/nlx_subcell_> .
 @prefix NLXWIKI: <http://neurolex.org/wiki/> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix obo: <http://purl.obolibrary.org/obo/> .
 @prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -35,12 +40,13 @@
 @prefix PAXSPN: <http://uri.interlex.org/paxinos/uris/spine/labels/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix replacedBy: <http://purl.obolibrary.org/obo/IAO_0100001> .
+@prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix SCR: <http://scicrunch.org/resolver/SCR_> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
 
 <http://uri.interlex.org/sparc/ontologies/ilx_0793177> a owl:Ontology ;
-    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/ilx_0793177/version/1668374133/ilx_0793177> ;
-    owl:versionInfo "2022-11-13T21:15:33,626480Z" .
+    owl:versionIRI <http://uri.interlex.org/sparc/ontologies/ilx_0793177/version/1674339580/ilx_0793177> ;
+    owl:versionInfo "2023-01-21T22:19:40,133701Z" .
 
 ### Object Properties
 
@@ -166,6 +172,105 @@ ILX:0793665 a owl:AnnotationProperty ;
     ilxtr:hasIlxPreferredId ILX:0793665 .
 
 ### Classes
+
+BFO:0000004 a owl:Class ;
+    rdfs:label "Independent continuant" ;
+    NIFRID:synonym "substantial entity" ;
+    definition: "A continuant that is a bearer of quality and realizable entity entities, in which other entities inhere and which itself cannot inhere in anything." ;
+    rdfs:subClassOf ILX:0102514 ;
+    ILX:0778161 BFO:0000002 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BFO:0000004,
+        ILX:0105405,
+        NLXWIKI:IndependentContinuant ;
+    ilxtr:hasExternalId BFO:0000004,
+        NLXWIKI:IndependentContinuant ;
+    ilxtr:hasIlxId ILX:0105405 ;
+    ilxtr:hasIlxPreferredId NLXWIKI:IndependentContinuant .
+
+BFO:0000040 a owl:Class ;
+    rdfs:label "Material entity" ;
+    definition: "An independent continuant that is spatially extended whose identity is independent of that of other entities and can be maintained through time." ;
+    rdfs:subClassOf BFO:0000004 ;
+    ILX:0778161 BFO:0000004 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BFO:0000040,
+        ILX:0106552,
+        NLXWIKI:MaterialEntity ;
+    ilxtr:hasExternalId BFO:0000040,
+        NLXWIKI:MaterialEntity ;
+    ilxtr:hasIlxId ILX:0106552 ;
+    ilxtr:hasIlxPreferredId NLXWIKI:MaterialEntity .
+
+BIRNLEX:2 a owl:Class ;
+    rdfs:label "Organism" ;
+    definition: "A material entity that is an individual living system, such as animal, plant, bacteria or virus, that is capable of replicating or reproducing, growth and maintenance in the right environment. An organism may be unicellular or made up, like humans, of many billions of cells divided into specialized tissues and organs." ;
+    rdfs:subClassOf BFO:0000040 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_2 ;
+    ILX:0778161 BFO:0000040 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:2,
+        ILX:0108133,
+        OBI:0100026 ;
+    ilxtr:hasExternalId BIRNLEX:2,
+        OBI:0100026 ;
+    ilxtr:hasIlxId ILX:0108133 ;
+    ilxtr:hasIlxPreferredId BIRNLEX:2 .
+
+BIRNLEX:11 a owl:Class ;
+    rdfs:label "Regional part of body system" ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_11 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:11,
+        ILX:0109834 ;
+    ilxtr:hasExternalId BIRNLEX:11 ;
+    ilxtr:hasIlxId ILX:0109834 ;
+    ilxtr:hasIlxPreferredId BIRNLEX:11 .
+
+BIRNLEX:972 a owl:Class ;
+    rdfs:label "Regional part of thoracic spinal cord" ;
+    rdfs:subClassOf FMA:62420 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_972 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:972,
+        ILX:0109869 ;
+    ilxtr:hasExternalId BIRNLEX:972 ;
+    ilxtr:hasIlxId ILX:0109869 ;
+    ilxtr:hasIlxPreferredId BIRNLEX:972 .
+
+BIRNLEX:1284 a owl:Class ;
+    rdfs:label "Regional part of sacral spinal cord" ;
+    rdfs:subClassOf FMA:62420 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_1284 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:1284,
+        ILX:0109863 ;
+    ilxtr:hasExternalId BIRNLEX:1284 ;
+    ilxtr:hasIlxId ILX:0109863 ;
+    ilxtr:hasIlxPreferredId BIRNLEX:1284 .
+
+BIRNLEX:1505 a owl:Class ;
+    rdfs:label "Regional part of cervical spinal cord" ;
+    rdfs:subClassOf FMA:62420 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_1505 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:1505,
+        ILX:0109840 ;
+    ilxtr:hasExternalId BIRNLEX:1505 ;
+    ilxtr:hasIlxId ILX:0109840 ;
+    ilxtr:hasIlxPreferredId BIRNLEX:1505 .
+
+BIRNLEX:1602 a owl:Class ;
+    rdfs:label "Regional part of lumbar spinal cord" ;
+    rdfs:subClassOf FMA:62420 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_1602 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:1602,
+        ILX:0109852 ;
+    ilxtr:hasExternalId BIRNLEX:1602 ;
+    ilxtr:hasIlxId ILX:0109852 ;
+    ilxtr:hasIlxPreferredId BIRNLEX:1602 .
 
 EMAPA:18995 a owl:Class ;
     rdfs:label "pelvic urethra of male" ;
@@ -488,8 +593,8 @@ FMA:3740 a owl:Class ;
     ilxtr:hasIlxPreferredId FMA:3740 .
 
 FMA:3768 a owl:Class ;
-    rdfs:label "Aortic arch",
-        "arch of aorta" ;
+    rdfs:label "Aortic arch" ;
+    ilxtr:deprecatedLabel "arch of aorta" ;
     ilxtr:hasExistingId FMA:3768,
         ILX:0731458,
         ILX:0738302,
@@ -622,6 +727,55 @@ FMA:5860 a owl:Class ;
     ilxtr:hasIlxId ILX:0735852 ;
     ilxtr:hasIlxPreferredId UBERON:0003726 .
 
+FMA:5884 a owl:Class ;
+    rdfs:label "ganglion" ;
+    definition: "A biological tissue mass, most commonly a mass of nerve cell bodies." ;
+    ilx.anno.hasRelatedSynonym: "ganglia",
+        "neural ganglion" ;
+    ilx.hasDbXref: "AAO:0010426",
+        "AEO:0000135",
+        "BAMS:G",
+        "BTO:0000497",
+        "CALOHA:TS-0397",
+        "EFO:0000899",
+        "EHDAA2:0003135",
+        "EHDAA:918",
+        "EHDAA:2897",
+        "EHDAA:4662",
+        "EHDAA:5621",
+        "EMAPA:32846",
+        "EV:0100372",
+        "FBbt:00005137",
+        "FMA:5884",
+        "MA:0002406",
+        "MAT:0000207",
+        "MAT:0000343",
+        "MESH:D005724",
+        "MIAA:0000207",
+        "MIAA:0000343",
+        "NCIT:C12719",
+        "TAO:0000190",
+        "TGMA:0001016",
+        "UMLS:C0017067",
+        "VHOG:0000156",
+        "WBbt:0005189",
+        "XAO:0000209",
+        "ZFA:0000190",
+        <http://en.wikipedia.org/wiki/Ganglion>,
+        <http://linkedlifedata.com/resource/umls/id/C0017067>,
+        <http://uri.interlex.org/swanson/uris/neuroanatomical-terminology/terms/4>,
+        NLXANAT:100302 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:5884,
+        ILX:0723996,
+        UBERON:0000045 ;
+    ilxtr:hasExternalId FMA:5884,
+        UBERON:0000045 ;
+    ilxtr:hasIlxId ILX:0723996 ;
+    ilxtr:hasIlxPreferredId UBERON:0000045 ;
+    oboInOwl:hasRelatedSynonym "ganglia",
+        "neural ganglion" .
+
 FMA:5889 a owl:Class ;
     rdfs:label "autonomic ganglion" ;
     ilxtr:hasExistingId FMA:5889,
@@ -750,13 +904,24 @@ FMA:6171 a owl:Class ;
     ilxtr:hasIlxId ILX:0739246 ;
     ilxtr:hasIlxPreferredId FMA:6171 .
 
+FMA:6225 a owl:Class ;
+    rdfs:label "Esophageal nerve plexus" ;
+    definition: "The esophageal plexus (oesophageal plexus in British-English) is formed by nerve fibers from two sources, branches of the vagus nerve, and visceral branches of the sympathetic trunk. The esophageal plexus and the cardiac plexus contain the same types of fibers and are both considered thoracic autonomic plexus. (Wikipedia)" ;
+    rdfs:subClassOf FMA:5901 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:6225,
+        ILX:0793704 ;
+    ilxtr:hasExternalId FMA:6225 ;
+    ilxtr:hasIlxId ILX:0793704 ;
+    ilxtr:hasIlxPreferredId FMA:6225 .
+
 FMA:6239 a owl:Class ;
-    rdfs:label "Superior laryngeal nerve",
-        "superior laryngeal nerve" ;
+    rdfs:label "superior laryngeal nerve" ;
     definition: "A branch of the vagus nerve (cranial nerve X) that gives rise to the internal and external laryngeal nerves." ;
     ILX:0383242 FMA:6239 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Superior laryngeal nerve" ;
     ilxtr:hasExistingId FMA:6239,
         ILX:0731053,
         ILX:0793625,
@@ -769,13 +934,13 @@ FMA:6239 a owl:Class ;
         UBERON:0011326 .
 
 FMA:6240 a owl:Class ;
-    rdfs:label "Internal branch of superior laryngeal nerve",
-        "Internal laryngeal nerve" ;
+    rdfs:label "Internal branch of superior laryngeal nerve" ;
     NIFRID:synonym "Internal laryngeal nerve",
         "Internal superior laryngeal nerve" ;
     rdfs:subClassOf FMA:65132 ;
     ilx.partOf: FMA:6239 ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Internal laryngeal nerve" ;
     ilxtr:hasExistingId FMA:6240,
         ILX:0738373,
         ILX:0793561 ;
@@ -798,8 +963,8 @@ FMA:6243 a owl:Class ;
     ilxtr:hasIlxPreferredId FMA:6243 .
 
 FMA:6246 a owl:Class ;
-    rdfs:label "Inferior laryngeal nerve",
-        "Recurrent Laryngeal Nerve" ;
+    rdfs:label "Recurrent Laryngeal Nerve" ;
+    ilxtr:deprecatedLabel "Inferior laryngeal nerve" ;
     ilxtr:hasExistingId FMA:6246,
         <http://id.nlm.nih.gov/mesh/2018/M0018665>,
         <https://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20Metathesaurus&code=C0034898>,
@@ -1273,6 +1438,63 @@ FMA:6634 a owl:Class ;
     ilxtr:hasExternalId FMA:6634 ;
     ilxtr:hasIlxId ILX:0793563 ;
     ilxtr:hasIlxPreferredId FMA:6634 .
+
+FMA:6638 a owl:Class ;
+    rdfs:label "ovarian nerve plexus" ;
+    definition: "Nerve plexus that arises from the renal plexus, and is distributed to the ovary, and fundus of the uterus (Wikipedia via Gray's Anatomy)." ;
+    rdfs:subClassOf FMA:5901 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:6638,
+        ILX:0793832 ;
+    ilxtr:hasExternalId FMA:6638 ;
+    ilxtr:hasIlxId ILX:0793832 ;
+    ilxtr:hasIlxPreferredId FMA:6638 .
+
+FMA:6643 a owl:Class ;
+    rdfs:label "inferior hypogastric nerve plexus" ;
+    definition: "The inferior hypogastric plexus (pelvic plexus in some texts) is a plexus of nerves that supplies the viscera of the pelvic cavity. The inferior hypogastric plexus is a paired structure, with each situated on the side of the rectum in the male, and at the sides of the rectum and vagina in the female. [WP,unvetted]." ;
+    ilx.anno.hasExactSynonym: "inferior hypogastric plexus",
+        "pelvic nerve plexus",
+        "pelvic plexus",
+        "plexus hypogastricus inferior",
+        "plexus nervosus hypogastricus inferior",
+        "plexus nervosus pelvicus",
+        "plexus pelvicus" ;
+    ilx.anno.hasRelatedSynonym: "plexus hypogastricus inferior" ;
+    ilx.hasDbXref: "EMAPA:19275",
+        "FMA:6643",
+        "MA:0001141",
+        "NCIT:C52721",
+        "UMLS:C0205797",
+        <http://en.wikipedia.org/wiki/Inferior_hypogastric_plexus>,
+        <http://linkedlifedata.com/resource/umls/id/C0205797>,
+        <http://www.snomedbrowser.com/Codes/Details/192608000> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:6643,
+        ILX:0724860,
+        UBERON:0002014 ;
+    ilxtr:hasExternalId FMA:6643,
+        UBERON:0002014 ;
+    ilxtr:hasIlxId ILX:0724860 ;
+    ilxtr:hasIlxPreferredId UBERON:0002014 ;
+    oboInOwl:hasExactSynonym "inferior hypogastric plexus",
+        "pelvic nerve plexus",
+        "pelvic plexus",
+        "plexus nervosus hypogastricus inferior",
+        "plexus nervosus pelvicus",
+        "plexus pelvicus" ;
+    oboInOwl:hasRelatedSynonym "plexus hypogastricus inferior" .
+
+FMA:6647 a owl:Class ;
+    rdfs:label "prostatic nerve plexus" ;
+    NIFRID:synonym "prostatic plexus" ;
+    rdfs:subClassOf FMA:5901 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:6647,
+        ILX:0793806 ;
+    ilxtr:hasExternalId FMA:6647 ;
+    ilxtr:hasIlxId ILX:0793806 ;
+    ilxtr:hasIlxPreferredId FMA:6647 .
 
 FMA:6942 a owl:Class ;
     rdfs:label "Interganglionic branch of inferior cervical ganglion to middle cervical ganglion" ;
@@ -1860,9 +2082,17 @@ FMA:7411 a owl:Class ;
     ilxtr:hasIlxId ILX:0726965 ;
     ilxtr:hasIlxPreferredId UBERON:0002187 .
 
+FMA:7470 a owl:Class ;
+    rdfs:label "Wall of trachea" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:7470,
+        ILX:0793684 ;
+    ilxtr:hasExternalId FMA:7470 ;
+    ilxtr:hasIlxId ILX:0793684 ;
+    ilxtr:hasIlxPreferredId FMA:7470 .
+
 FMA:7471 a owl:Class ;
-    rdfs:label "Mucosa of trachea",
-        "tracheal mucosa" ;
+    rdfs:label "Mucosa of trachea" ;
     NIFRID:synonym "Mucosa of trachea" ;
     definition: "A mucosa that is part of a respiratory airway." ;
     fma:synonym "Tracheal mucosa" ;
@@ -1891,6 +2121,7 @@ FMA:7471 a owl:Class ;
     ILX:0738303 "36381" ;
     ILX:0777130 UBERON:0000379 ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "tracheal mucosa" ;
     ilxtr:hasExistingId FMA:7471,
         ILX:0724678,
         ILX:0738327,
@@ -2904,12 +3135,12 @@ FMA:14984 a owl:Class ;
     ilxtr:hasIlxPreferredId UBERON:0000317 .
 
 FMA:14990 a owl:Class ;
-    rdfs:label "Serosa in colon",
-        "serosa of colon" ;
+    rdfs:label "Serosa in colon" ;
     definition: "A serous membrane that is part of a colon [Automatically generated definition]. [ OBOL : automatic ]" ;
     ILX:0383242 FMA:14990 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "serosa of colon" ;
     ilxtr:hasExistingId FMA:14990,
         ILX:0736932,
         ILX:0793653,
@@ -3004,8 +3235,8 @@ FMA:15572 a owl:Class ;
     ilxtr:hasIlxPreferredId UBERON:0001223 .
 
 FMA:15657 a owl:Class ;
-    rdfs:label "Lamina propria mucosae of colon",
-        "lamina propria of mucosa of colon" ;
+    rdfs:label "lamina propria of mucosa of colon" ;
+    ilxtr:deprecatedLabel "Lamina propria mucosae of colon" ;
     ilxtr:hasExistingId FMA:15657,
         ILX:0735235,
         ILX:0776710,
@@ -3302,8 +3533,7 @@ FMA:18175 a owl:Class ;
     ilxtr:hasIlxPreferredId FMA:18175 .
 
 FMA:18176 a owl:Class ;
-    rdfs:label "Cervical part of trunk of left vagus nerve",
-        "Left cervical vagus nerve" ;
+    rdfs:label "Left cervical vagus nerve" ;
     NIFRID:synonym "Cervical part of trunk of left vagus nerve",
         "Left cervical vagus",
         "Left cervical vagus nerve" ;
@@ -3312,7 +3542,9 @@ FMA:18176 a owl:Class ;
     ilx.partOf: FMA:5731 ;
     ILX:0383242 FMA:18176 ;
     ILX:0739239 "True" ;
+    ILX:0777130 "SAWG" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Cervical part of trunk of left vagus nerve" ;
     ilxtr:hasExistingId FMA:18176,
         ILX:0738429,
         ILX:0739771 ;
@@ -3530,6 +3762,58 @@ FMA:24137 a owl:Class ;
     ilxtr:hasIlxId ILX:0726119 ;
     ilxtr:hasIlxPreferredId UBERON:0006984 .
 
+FMA:45566 a owl:Class ;
+    rdfs:label "simple cuboidal epithelium" ;
+    definition: "Unilaminar epithelium that consists of a single layer of cuboidal cells." ;
+    ilx.anno.hasExactSynonym: "epithelium simplex cuboideum" ;
+    ilx.anno.hasRelatedSynonym: "simple cuboidal epithelia" ;
+    ilx.hasDbXref: "AAO:0010064",
+        "AEO:0000067",
+        "BILA:0000067",
+        "CARO:0000067",
+        "EHDAA2:0003067",
+        "FMA:45566",
+        "HAO:0000067",
+        "NCIT:C33553",
+        "TAO:0001497",
+        "UMLS:C0836134",
+        "XAO:0004009",
+        "ZFA:0001497",
+        <http://en.wikipedia.org/wiki/Simple_cuboidal_epithelium>,
+        <http://linkedlifedata.com/resource/umls/id/C0836134> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:45566,
+        ILX:0730337,
+        UBERON:0000484 ;
+    ilxtr:hasExternalId FMA:45566,
+        UBERON:0000484 ;
+    ilxtr:hasIlxId ILX:0730337 ;
+    ilxtr:hasIlxPreferredId UBERON:0000484 ;
+    oboInOwl:hasExactSynonym "epithelium simplex cuboideum" ;
+    oboInOwl:hasRelatedSynonym "simple cuboidal epithelia" .
+
+FMA:45569 a owl:Class ;
+    rdfs:label "non-keratinized stratified squamous epithelium" ;
+    definition: "Stratified squamous epithelium is a stratified squamous epithelium, the cells of which synthesizes but does not accumulate keratin. Examples: epithelium of vagina, epithelium of wall of esophagus." ;
+    ilx.anno.hasExactSynonym: "epithelium stratificatum squamosum noncornificatum",
+        "nonkeratinizing stratified squamous epithelium",
+        "stratified squamous non-keratinized epithelium",
+        "stratified squamous nonkeratinizing epithelium" ;
+    ilx.hasDbXref: "FMA:45569",
+        <http://en.wikipedia.org/wiki/Stratified_squamous_epithelium#Nonkeratinized> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:45569,
+        ILX:0736159,
+        UBERON:0010304 ;
+    ilxtr:hasExternalId FMA:45569,
+        UBERON:0010304 ;
+    ilxtr:hasIlxId ILX:0736159 ;
+    ilxtr:hasIlxPreferredId UBERON:0010304 ;
+    oboInOwl:hasExactSynonym "epithelium stratificatum squamosum noncornificatum",
+        "nonkeratinizing stratified squamous epithelium",
+        "stratified squamous non-keratinized epithelium",
+        "stratified squamous nonkeratinizing epithelium" .
+
 FMA:45659 a owl:Class ;
     rdfs:label "lower urinary tract" ;
     NIFRID:synonym "[]" ;
@@ -3608,6 +3892,59 @@ FMA:50094 a owl:Class ;
     ilxtr:hasIlxPreferredId UBERON:0003708 ;
     oboInOwl:hasRelatedSynonym "carotid bulb",
         "sinus caroticus" .
+
+FMA:50722 a owl:Class ;
+    rdfs:label "Blood vessel" ;
+    definition: "Organ segment which is a regional part of a vascular tree organ. Examples: capillary, segment of arterial tree organ." ;
+    rdfs:subClassOf FMA:62955 ;
+    fma:synonym "Blood vessel trunk",
+        "Region of vascular tree organ",
+        "Vascular tree organ region" ;
+    ilx.anno.hasBroadSynonym: "vascular element" ;
+    ilx.anno.hasExactSynonym: "region of vascular tree organ",
+        "vascular tree organ region" ;
+    ilx.anno.hasRelatedSynonym: "vas sanguineum" ;
+    ilx.hasDbXref: "AAO:0011004",
+        "AEO:0000207",
+        "BTO:0001102",
+        "CALOHA:TS-0080",
+        "EFO:0000817",
+        "EHDAA2:0003252",
+        "EHDAA:240",
+        "EMAPA:32743",
+        "EMAPA:35993",
+        "FMA:50722",
+        "FMA:63183",
+        "GAID:169",
+        "MA:0000060",
+        "MAT:0000393",
+        "MESH:D001808",
+        "NCIT:C12679",
+        "OpenCyc:Mx4rvVjxlpwpEbGdrcN5Y29ycA",
+        "TAO:0002137",
+        "UMLS:C0005847",
+        "VHOG:0001250",
+        "XAO:0001011",
+        "ZFA:0005314",
+        <http://en.wikipedia.org/wiki/Blood_vessel>,
+        <http://linkedlifedata.com/resource/umls/id/C0005847>,
+        <http://www.snomedbrowser.com/Codes/Details/361097006>,
+        NLXANAT:090901,
+        NLXWIKI:nlx_anat_090901 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:50722,
+        FMA:63183,
+        ILX:0101359,
+        NLXANAT:090901,
+        UBERON:0001981 ;
+    ilxtr:hasExternalId FMA:50722,
+        FMA:63183,
+        NLXANAT:090901,
+        UBERON:0001981 ;
+    ilxtr:hasIlxId ILX:0101359 ;
+    ilxtr:hasIlxPreferredId UBERON:0001981 ;
+    oboInOwl:hasBroadSynonym "vascular element" ;
+    oboInOwl:hasRelatedSynonym "vas sanguineum" .
 
 FMA:50772 a owl:Class ;
     rdfs:label "cavernous sinus" ;
@@ -3699,6 +4036,29 @@ FMA:52585 a owl:Class ;
     ilxtr:hasIlxId ILX:0108726 ;
     ilxtr:hasIlxPreferredId UBERON:0000121 .
 
+FMA:52967 a owl:Class ;
+    rdfs:label "Zygomatic nerve" ;
+    NIFRID:synonym "Zygomatic branch of V2" ;
+    definition: "The zygomatic nerve is a branch of the maxillary nerve, itself a branch of the trigeminal nerve (CN V). It travels through the orbit and divides into the zygomaticotemporal and the zygomaticofacial nerve. It provides sensory supply to skin over the zygomatic bone and the temporal bone. It also carries postganglionic parasympathetic axons to the lacrimal gland. It may be blocked by anaesthetising the maxillary nerve (Wikipedia)." ;
+    rdfs:subClassOf FMA:65132 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:52967,
+        ILX:0793712 ;
+    ilxtr:hasExternalId FMA:52967 ;
+    ilxtr:hasIlxId ILX:0793712 ;
+    ilxtr:hasIlxPreferredId FMA:52967 .
+
+FMA:53000 a owl:Class ;
+    rdfs:label "Auriculotemporal nerve" ;
+    definition: "The auriculotemporal nerve is a branch of the mandibular nerve (CN V3) that runs with the superficial temporal artery and vein, and provides sensory innervation to various regions on the side of the head, including parasympathetic innervation of the parotid gland (Adapted from Wikipedia)" ;
+    rdfs:subClassOf FMA:65132 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:53000,
+        ILX:0793723 ;
+    ilxtr:hasExternalId FMA:53000 ;
+    ilxtr:hasIlxId ILX:0793723 ;
+    ilxtr:hasIlxPreferredId FMA:53000 .
+
 FMA:53056 a owl:Class ;
     rdfs:label "Medial pterygoid nerve" ;
     NIFRID:synonym "internal pterygoid nerve" ;
@@ -3709,6 +4069,50 @@ FMA:53056 a owl:Class ;
     ilxtr:hasExternalId FMA:53056 ;
     ilxtr:hasIlxId ILX:0793622 ;
     ilxtr:hasIlxPreferredId FMA:53056 .
+
+FMA:53275 a owl:Class ;
+    rdfs:label "Stapedius nerve" ;
+    definition: "Branch of facial nerve" ;
+    rdfs:subClassOf FMA:65132 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:53275,
+        ILX:0793707 ;
+    ilxtr:hasExternalId FMA:53275 ;
+    ilxtr:hasIlxId ILX:0793707 ;
+    ilxtr:hasIlxPreferredId FMA:53275 .
+
+FMA:53365 a owl:Class ;
+    rdfs:label "Marginal mandibular branch of facial nerve" ;
+    definition: "Branch of facial nerve" ;
+    rdfs:subClassOf FMA:65132 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:53365,
+        ILX:0793705 ;
+    ilxtr:hasExternalId FMA:53365 ;
+    ilxtr:hasIlxId ILX:0793705 ;
+    ilxtr:hasIlxPreferredId FMA:53365 .
+
+FMA:53396 a owl:Class ;
+    rdfs:label "Cervical branch of facial nerve" ;
+    definition: "Branch of facial nerve" ;
+    rdfs:subClassOf FMA:65132 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:53396,
+        ILX:0793703 ;
+    ilxtr:hasExternalId FMA:53396 ;
+    ilxtr:hasIlxId ILX:0793703 ;
+    ilxtr:hasIlxPreferredId FMA:53396 .
+
+FMA:53417 a owl:Class ;
+    rdfs:label "Greater petrosal nerve" ;
+    definition: "Branch of facial nerve" ;
+    rdfs:subClassOf FMA:65132 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:53417,
+        ILX:0793702 ;
+    ilxtr:hasExternalId FMA:53417 ;
+    ilxtr:hasIlxId ILX:0793702 ;
+    ilxtr:hasIlxPreferredId FMA:53417 .
 
 FMA:53486 a owl:Class ;
     rdfs:label "Pharyngeal branch of glossopharyngeal nerve" ;
@@ -3722,6 +4126,17 @@ FMA:53486 a owl:Class ;
     ilxtr:hasExternalId FMA:53486 ;
     ilxtr:hasIlxId ILX:0789339 ;
     ilxtr:hasIlxPreferredId FMA:53486 .
+
+FMA:53491 a owl:Class ;
+    rdfs:label "Lesser petrosal nerve" ;
+    definition: "The lesser petrosal nerve (also known as the small superficial petrosal nerve) is the general visceral efferent (GVE) component of the glossopharyngeal nerve (CN IX), carrying parasympathetic preganglionic fibers from the tympanic plexus to the parotid gland. It synapses in the otic ganglion, from where the postganglionic fibers emerge. (Wikipedia)" ;
+    rdfs:subClassOf FMA:65132 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:53491,
+        ILX:0793722 ;
+    ilxtr:hasExternalId FMA:53491 ;
+    ilxtr:hasIlxId ILX:0793722 ;
+    ilxtr:hasIlxPreferredId FMA:53491 .
 
 FMA:54501 a owl:Class ;
     rdfs:label "Cranial nerve nucleus" ;
@@ -3851,9 +4266,50 @@ FMA:55676 a owl:Class ;
     ilxtr:hasIlxId ILX:0109835 ;
     ilxtr:hasIlxPreferredId UBERON:0002616 .
 
+FMA:61948 a owl:Class ;
+    rdfs:label "splenium of the corpus callosum" ;
+    NIFRID:synonym "posterior corpus callosum" ;
+    definition: "The posterior end of the corpus callosum. It overlaps the tela chorioidea of the third ventricle and the mid-brain, and ends in a thick, convex, free border." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.anno.hasBroadSynonym: "splenium" ;
+    ilx.anno.hasExactSynonym: "corpus callosum splenium",
+        "corpus callosum, splenium" ;
+    ilx.anno.hasRelatedSynonym: "corpus callosum splenium",
+        "corpus callosum, splenium",
+        "corpus callosum, splenium (Burdach)",
+        "splenium corporis callosi",
+        "splenium corpus callosi",
+        "splenium of corpus callosum",
+        "splenium of the corpus callosum" ;
+    ilx.hasDbXref: "DHBA:10565",
+        "FMA:61948",
+        "HBA:9225",
+        "MBA:986",
+        "NCIT:C33610",
+        "NeuroNamesCNID:178",
+        <http://braininfo.rprc.washington.edu/centraldirectory.aspx?ID=196>,
+        <http://en.wikipedia.org/wiki/Splenium>,
+        <http://linkedlifedata.com/resource/umls/id/C0152319>,
+        <http://www.snomedbrowser.com/Codes/Details/362355007> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:61948,
+        ILX:0724356,
+        UBERON:0015708 ;
+    ilxtr:hasExternalId FMA:61948,
+        UBERON:0015708 ;
+    ilxtr:hasIlxId ILX:0724356 ;
+    ilxtr:hasIlxPreferredId UBERON:0015708 ;
+    oboInOwl:hasBroadSynonym "splenium" ;
+    oboInOwl:hasRelatedSynonym "corpus callosum splenium",
+        "corpus callosum, splenium",
+        "corpus callosum, splenium (Burdach)",
+        "splenium corporis callosi",
+        "splenium corpus callosi",
+        "splenium of corpus callosum",
+        "splenium of the corpus callosum" .
+
 FMA:62004 a owl:Class ;
-    rdfs:label "Medulla",
-        "Medulla oblongata" ;
+    rdfs:label "Medulla" ;
     NIFRID:synonym "Afterbrain",
         "Bulb",
         "Epencephalon",
@@ -3905,6 +4361,7 @@ FMA:62004 a owl:Class ;
     ilx.relatedTo: FMA:67687 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Medulla oblongata" ;
     ilxtr:hasExistingId BIRNLEX:957,
         FMA:62004,
         ILX:0106736,
@@ -3929,6 +4386,34 @@ FMA:62122 a owl:Class ;
     ilxtr:hasExternalId FMA:62122 ;
     ilxtr:hasIlxId ILX:0793567 ;
     ilxtr:hasIlxPreferredId FMA:62122 .
+
+FMA:62420 a owl:Class ;
+    rdfs:label "Axial regional part of spinal cord" ;
+    rdfs:subClassOf UBERON:0001948 ;
+    fma:synonym "Spinal cord segment" ;
+    ilx.anno.hasExactSynonym: "axial part of spinal cord",
+        "axial regional part of spinal cord",
+        "segment of spinal cord" ;
+    ilx.anno.hasRelatedSynonym: "spinal neuromeres" ;
+    ilx.hasDbXref: "FMA:62420",
+        "MA:0003080",
+        BIRNLEX:2665,
+        <http://www.snomedbrowser.com/Codes/Details/278748001>,
+        NLXWIKI:birnlex_2665 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:2665,
+        FMA:62420,
+        ILX:0101036,
+        UBERON:0005844 ;
+    ilxtr:hasExternalId BIRNLEX:2665,
+        FMA:62420,
+        UBERON:0005844 ;
+    ilxtr:hasIlxId ILX:0101036 ;
+    ilxtr:hasIlxPreferredId UBERON:0005844 ;
+    oboInOwl:hasExactSynonym "axial part of spinal cord",
+        "axial regional part of spinal cord",
+        "segment of spinal cord" ;
+    oboInOwl:hasRelatedSynonym "spinal neuromeres" .
 
 FMA:62421 a owl:Class ;
     rdfs:label "T1 segment" ;
@@ -4174,6 +4659,18 @@ FMA:67473 a owl:Class ;
     ilxtr:hasIlxId ILX:0727079 ;
     ilxtr:hasIlxPreferredId UBERON:0035965 .
 
+FMA:67480 a owl:Class ;
+    rdfs:label "Wall of bronchus" ;
+    NIFRID:synonym "Bronchial wall",
+        "Wall of bronchus" ;
+    rdfs:subClassOf FMA:62955 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:67480,
+        ILX:0793764 ;
+    ilxtr:hasExternalId FMA:67480 ;
+    ilxtr:hasIlxId ILX:0793764 ;
+    ilxtr:hasIlxPreferredId FMA:67480 .
+
 FMA:67498 a owl:Class ;
     rdfs:label "Organ" ;
     ilxtr:hasExistingId BIRNLEX:4,
@@ -4198,6 +4695,18 @@ FMA:67532 a owl:Class ;
     ilxtr:hasIlxId ILX:0793621 ;
     ilxtr:hasIlxPreferredId FMA:67532 .
 
+FMA:67549 a owl:Class ;
+    rdfs:label "Deep petrosal nerve" ;
+    NIFRID:synonym "Sympathetic root of pterygopalatine ganglion" ;
+    definition: "The deep petrosal nerve is a branch of the internal carotid plexus which runs through the carotid canal lateral to the internal carotid artery. It enters the cartilaginous substance which fills the foramen lacerum, and joins with the greater petrosal nerve to form the nerve of the pterygoid canal, also known as the Vidian nerve. The deep petrosal nerve carries postganglionic sympathetic axons to the pterygopalatine ganglion, which pass through without synapsing. These axons innervate blood vessels and mucous glands of the head and neck. The neuron cell bodies of the axons which form the deep petrosal nerve are found in the superior cervical ganglion. (Wikipedia)" ;
+    rdfs:subClassOf FMA:65132 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:67549,
+        ILX:0793713 ;
+    ilxtr:hasExternalId FMA:67549 ;
+    ilxtr:hasIlxId ILX:0793713 ;
+    ilxtr:hasIlxPreferredId FMA:67549 .
+
 FMA:67687 a owl:Class ;
     rdfs:label "Hindbrain" ;
     ilxtr:hasExistingId BIRNLEX:942,
@@ -4209,6 +4718,18 @@ FMA:67687 a owl:Class ;
         UBERON:0002028 ;
     ilxtr:hasIlxId ILX:0105004 ;
     ilxtr:hasIlxPreferredId UBERON:0002028 .
+
+FMA:67943 a owl:Class ;
+    rdfs:label "Pons" ;
+    ilxtr:hasExistingId BIRNLEX:733,
+        FMA:67943,
+        ILX:0109019,
+        UBERON:0000988 ;
+    ilxtr:hasExternalId BIRNLEX:733,
+        FMA:67943,
+        UBERON:0000988 ;
+    ilxtr:hasIlxId ILX:0109019 ;
+    ilxtr:hasIlxPreferredId UBERON:0000988 .
 
 FMA:68862 a owl:Class ;
     rdfs:label "Lamina I of gray matter of spinal cord" ;
@@ -4936,9 +5457,7 @@ FMA:71181 a owl:Class ;
         "third cervical spinal cord segment" .
 
 FMA:71182 a owl:Class ;
-    rdfs:label "C4 segment",
-        "C4 segment of cervical spinal cord",
-        "C4 spinal segment" ;
+    rdfs:label "C4 segment of cervical spinal cord" ;
     NIFRID:synonym "C4 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the fourth cervical spinal nerve which exits the spinal column above the fourth cervical vertebra in most mammals." ;
     rdfs:subClassOf FMA:256653 ;
@@ -4952,6 +5471,8 @@ FMA:71182 a owl:Class ;
         <http://www.snomedbrowser.com/Codes/Details/278757007>,
         NLXWIKI:birnlex_753 ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "C4 segment",
+        "C4 spinal segment" ;
     ilxtr:hasExistingId BIRNLEX:753,
         FMA:71182,
         ILX:0104364,
@@ -4971,9 +5492,7 @@ FMA:71182 a owl:Class ;
         "forth cervical spinal cord segment" .
 
 FMA:71183 a owl:Class ;
-    rdfs:label "C5 segment",
-        "C5 segment of cervical spinal cord",
-        "C5 spinal segment" ;
+    rdfs:label "C5 segment" ;
     NIFRID:synonym "C5 spinal cord segment" ;
     definition: "The segment of the spinal cord that gives rise to the dorsal and ventral roots that coalesce to form the fifth cervical spinal nerve which exits the spinal column above the fifth cervical vertebra in most mammals." ;
     rdfs:subClassOf FMA:256653 ;
@@ -4987,6 +5506,8 @@ FMA:71183 a owl:Class ;
         <http://www.snomedbrowser.com/Codes/Details/278758002>,
         NLXWIKI:birnlex_760 ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "C5 segment of cervical spinal cord",
+        "C5 spinal segment" ;
     ilxtr:hasExistingId BIRNLEX:760,
         FMA:71183,
         ILX:0104216,
@@ -5352,6 +5873,18 @@ FMA:74510 a owl:Class ;
     ilxtr:hasIlxId ILX:0108717 ;
     ilxtr:hasIlxPreferredId UBERON:0003040 .
 
+FMA:74655 a owl:Class ;
+    rdfs:label "Wall of bronchiole" ;
+    NIFRID:synonym "Bronchiolar wall",
+        "Bronchiole wall",
+        "Wall of bronchiole" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:74655,
+        ILX:0793765 ;
+    ilxtr:hasExternalId FMA:74655 ;
+    ilxtr:hasIlxId ILX:0793765 ;
+    ilxtr:hasIlxPreferredId FMA:74655 .
+
 FMA:77458 a owl:Class ;
     rdfs:label "nucleus of phrenic nerve" ;
     ilxtr:hasExistingId FMA:77458,
@@ -5361,6 +5894,24 @@ FMA:77458 a owl:Class ;
         UBERON:0016850 ;
     ilxtr:hasIlxId ILX:0736665 ;
     ilxtr:hasIlxPreferredId UBERON:0016850 .
+
+FMA:77533 a owl:Class ;
+    rdfs:label "Tympanic plexus" ;
+    NIFRID:synonym "Jacobson's plexus" ;
+    definition: """In the tympanic cavity, the tympanic nerve (a branch of CN IX) divides into branches which, along with sympathetic fibres from the carotid plexus, form the tympanic plexus. This plexus is located on the surface of the promontory.
+
+This tympanic plexus branches into:
+
+the lesser petrosal nerve (preganglionic parasympathetic axons to otic ganglion)
+sensory branches to the tympanic cavity
+The branches to the tympanic cavity provide sensory innervation to the mucosa of the tympanic cavity and the internal surface of the tympanic membrane. The cell bodies of these neurons are found in the superior ganglion of the glossopharyngeal nerve. (Wikipedia)""" ;
+    rdfs:subClassOf FMA:5901 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:77533,
+        ILX:0793706 ;
+    ilxtr:hasExternalId FMA:77533 ;
+    ilxtr:hasIlxId ILX:0793706 ;
+    ilxtr:hasIlxPreferredId FMA:77533 .
 
 FMA:77570 a owl:Class ;
     rdfs:label "celiac ganglion" ;
@@ -5411,6 +5962,64 @@ FMA:77589 a owl:Class ;
     ilxtr:hasIlxPreferredId UBERON:0005479 ;
     oboInOwl:hasRelatedSynonym "ganglion mesentericum superius",
         "superior mesenteric ganglia" .
+
+FMA:78480 a owl:Class ;
+    rdfs:label "facial colliculus" ;
+    definition: "The facial colliculus is an elevated area located on the pontine tegmentum (dorsal pons) in the floor of the fourth ventricle. It is formed by fibers from the facial motor nucleus of the facial nerve (cranial nerve VII) as they loop over the abducens nucleus. (Wikipedia)" ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: NLX:70428 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:78480,
+        ILX:0793694 ;
+    ilxtr:hasExternalId FMA:78480 ;
+    ilxtr:hasIlxId ILX:0793694 ;
+    ilxtr:hasIlxPreferredId FMA:78480 .
+
+FMA:79646 a owl:Class ;
+    rdfs:label "biliary system" ;
+    definition: "Organ system subdivision that consists of the organs and ducts that are involved in the production and transportation of bile. In most species this is the gallbladder and the bile ducts (biliary tree)." ;
+    ilx.anno.hasExactSynonym: "biliary apparatus" ;
+    ilx.anno.hasRelatedSynonym: "biliary tract" ;
+    ilx.hasDbXref: "FMA:79646",
+        "GAID:279",
+        "MA:0001273",
+        "MESH:D001659",
+        "NCIT:C12678",
+        <http://en.wikipedia.org/wiki/Biliary_system>,
+        <http://www.snomedbrowser.com/Codes/Details/361354009> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:79646,
+        ILX:0727164,
+        UBERON:0002294 ;
+    ilxtr:hasExternalId FMA:79646,
+        UBERON:0002294 ;
+    ilxtr:hasIlxId ILX:0727164 ;
+    ilxtr:hasIlxPreferredId UBERON:0002294 ;
+    oboInOwl:hasExactSynonym "biliary apparatus" ;
+    oboInOwl:hasRelatedSynonym "biliary tract" .
+
+FMA:83115 a owl:Class ;
+    rdfs:label "multi cell part structure" ;
+    definition: "A structure consisting of multiple cell components but which is not itself a cell and does not have (complete) cells as a part." ;
+    rdfs:subClassOf FMA:49443 ;
+    ilx.anno.hasExactSynonym: "multi-cell-component structure",
+        "multi-cell-part structure" ;
+    ilx.anno.hasRelatedSynonym: "cell part cluster" ;
+    ilx.hasDbXref: "AAO:0011000",
+        "CARO:0001000",
+        "FBbt:00007060",
+        "FMA:83115" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId FMA:83115,
+        ILX:0727544,
+        UBERON:0005162 ;
+    ilxtr:hasExternalId FMA:83115,
+        UBERON:0005162 ;
+    ilxtr:hasIlxId ILX:0727544 ;
+    ilxtr:hasIlxPreferredId UBERON:0005162 ;
+    oboInOwl:hasExactSynonym "multi-cell-component structure",
+        "multi-cell-part structure" ;
+    oboInOwl:hasRelatedSynonym "cell part cluster" .
 
 FMA:83686 a owl:Class ;
     rdfs:label "Nucleus of CNS" ;
@@ -5674,8 +6283,7 @@ FMA:256659 a owl:Class ;
     ilxtr:hasIlxPreferredId UBERON:0007717 .
 
 FMA:256691 a owl:Class ;
-    rdfs:label "Nucleus tractus solitarius",
-        "Solitary nucleus" ;
+    rdfs:label "Nucleus tractus solitarius" ;
     NIFRID:synonym "nucleus of the solitary tract",
         "nucleus of the tractus solitarius",
         "Nucleus solitary tract",
@@ -5721,6 +6329,7 @@ FMA:256691 a owl:Class ;
     ILX:0112773 NLX:143568 ;
     ILX:0738303 "36381" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Solitary nucleus" ;
     ilxtr:hasExistingId BIRNLEX:1429,
         FMA:256691,
         ILX:0110729,
@@ -5796,6 +6405,33 @@ FMA:258416 a owl:Class ;
         "gracile tract",
         "tract of Goll" .
 
+FMA:280556 a owl:Class ;
+    rdfs:label "Bodily fluid" ;
+    NIFRID:synonym "Body fluid" ;
+    definition: "Liquid components of living organisms. includes fluids that are excreted or secreted from the body as well as body water that normally is not." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.anno.hasBroadSynonym: "fluid" ;
+    ilx.anno.hasExactSynonym: "body fluid" ;
+    ilx.hasDbXref: "EMAPA:37441",
+        "FMA:280556",
+        "GAID:266",
+        "galen:BodyFluid",
+        "MESH:D001826",
+        BIRNLEX:20,
+        <http://en.wikipedia.org/wiki/Body_fluid>,
+        NLXWIKI:birnlex_20 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:20,
+        FMA:280556,
+        ILX:0101369,
+        UBERON:0006314 ;
+    ilxtr:hasExternalId BIRNLEX:20,
+        FMA:280556,
+        UBERON:0006314 ;
+    ilxtr:hasIlxId ILX:0101369 ;
+    ilxtr:hasIlxPreferredId UBERON:0006314 ;
+    oboInOwl:hasBroadSynonym "fluid" .
+
 FMA:305751 a owl:Class ;
     rdfs:label "anatomical structure" ;
     definition: "Material anatomical entity that is a single connected structure with inherent 3D shape generated by coordinated expression of the organism's own genome." ;
@@ -5834,21 +6470,28 @@ FMA:305751 a owl:Class ;
     oboInOwl:hasExactSynonym "biological structure",
         "connected biological structure" .
 
-ILX:0100131 a owl:Class ;
-    rdfs:label "Quality of related physical entities" ;
-    ilxtr:hasExistingId ILX:0100131,
-        PATO:0001238 ;
-    ilxtr:hasExternalId PATO:0001238 ;
-    ilxtr:hasIlxId ILX:0100131 ;
-    ilxtr:hasIlxPreferredId ILX:0100131 .
+ILX:0101839 a owl:Class ;
+    rdfs:label "Cell" ;
+    definition: "A material entity of anatomical origin (part of or deriving from an organism) that has as its parts a maximally connected cell compartment surrounded by a plasma membrane." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.hasDbXref: NLXWIKI:sao1813327414 ;
+    ILX:0778161 BFO:0000040 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId CL:0000000,
+        ILX:0101839,
+        SAO:1813327414 ;
+    ilxtr:hasExternalId CL:0000000,
+        SAO:1813327414 ;
+    ilxtr:hasIlxId ILX:0101839 ;
+    ilxtr:hasIlxPreferredId SAO:1813327414 .
 
-ILX:0103492 a owl:Class ;
-    rdfs:label "Dorsal to" ;
-    ilxtr:hasExistingId ILX:0103492,
-        PATO:0001233 ;
-    ilxtr:hasExternalId PATO:0001233 ;
-    ilxtr:hasIlxId ILX:0103492 ;
-    ilxtr:hasIlxPreferredId ILX:0103492 .
+ILX:0102514 a owl:Class ;
+    rdfs:label "Continuant" ;
+    ilxtr:hasExistingId ILX:0102514,
+        NLXWIKI:Continuant ;
+    ilxtr:hasExternalId NLXWIKI:Continuant ;
+    ilxtr:hasIlxId ILX:0102514 ;
+    ilxtr:hasIlxPreferredId ILX:0102514 .
 
 ILX:0103720 a owl:Class ;
     rdfs:label "Electrophysiology concept" ;
@@ -5858,10 +6501,22 @@ ILX:0103720 a owl:Class ;
     ilxtr:hasIlxId ILX:0103720 ;
     ilxtr:hasIlxPreferredId ILX:0103720 .
 
+ILX:0103900 a owl:Class ;
+    rdfs:label "Epithelial Cell" ;
+    definition: "Cell that line the inner and outer surfaces of the body by forming cellular layers (epithelium) or masses (MSH)." ;
+    rdfs:subClassOf ILX:0101839 ;
+    ilx.hasDbXref: NLXWIKI:sao441624014 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0103900,
+        SAO:441624014 ;
+    ilxtr:hasExternalId SAO:441624014 ;
+    ilxtr:hasIlxId ILX:0103900 ;
+    ilxtr:hasIlxPreferredId SAO:441624014 .
+
 ILX:0104003 a owl:Class ;
     rdfs:label "Excitatory" ;
     definition: "Said of a neuron, synapse, or synaptic potential that produces depolarization of the postsynaptic cell." ;
-    rdfs:subClassOf ILX:0100131 ;
+    rdfs:subClassOf PATO:0001238 ;
     ilx.hasDbXref: NLXWIKI:oen_0001145 ;
     ilx.hasRole: ILX:0103720 ;
     ilxr:type ilx.type:term ;
@@ -5874,7 +6529,7 @@ ILX:0104003 a owl:Class ;
 ILX:0105486 a owl:Class ;
     rdfs:label "Inhibitory" ;
     definition: "A synapse in which an action potential in the presynaptic cell reduces the probability of an action potential occurring in the postsynaptic cell." ;
-    rdfs:subClassOf ILX:0100131 ;
+    rdfs:subClassOf PATO:0001238 ;
     ilx.hasDbXref: NLXWIKI:oen_0001143 ;
     ilx.hasRole: ILX:0103720 ;
     ilxr:type ilx.type:term ;
@@ -5884,13 +6539,53 @@ ILX:0105486 a owl:Class ;
     ilxtr:hasIlxId ILX:0105486 ;
     ilxtr:hasIlxPreferredId ILX:0105486 .
 
-ILX:0112359 a owl:Class ;
-    rdfs:label "Ventral to" ;
-    ilxtr:hasExistingId ILX:0112359,
-        PATO:0001196 ;
-    ilxtr:hasExternalId PATO:0001196 ;
-    ilxtr:hasIlxId ILX:0112359 ;
-    ilxtr:hasIlxPreferredId ILX:0112359 .
+ILX:0107217 a owl:Class ;
+    rdfs:label "Muscle Cell" ;
+    NIFRID:synonym "myocyte" ;
+    definition: "Mature contractile cells, commonly known as myocytes, that form one of three kinds of muscle. The three types of muscle cells are skeletal (muscle fibers), cardiac (myocytes, cardiac), and smooth (myocytes, smooth muscle). They are derived from embryonic (precursor) muscle cells called myoblasts (MSH)." ;
+    rdfs:subClassOf ILX:0101839 ;
+    ilx.hasDbXref: NLXWIKI:sao519252327 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0107217,
+        SAO:519252327 ;
+    ilxtr:hasExternalId SAO:519252327 ;
+    ilxtr:hasIlxId ILX:0107217 ;
+    ilxtr:hasIlxPreferredId SAO:519252327 .
+
+ILX:0110658 a owl:Class ;
+    rdfs:label "Skeletal Muscle Cell" ;
+    rdfs:subClassOf ILX:0111095 ;
+    ilx.hasDbXref: NLXWIKI:sao1741889714 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0110658,
+        SAO:1741889714 ;
+    ilxtr:hasExternalId SAO:1741889714 ;
+    ilxtr:hasIlxId ILX:0110658 ;
+    ilxtr:hasIlxPreferredId SAO:1741889714 .
+
+ILX:0111095 a owl:Class ;
+    rdfs:label "Striated Muscle Cell" ;
+    rdfs:subClassOf ILX:0107217 ;
+    ilx.hasDbXref: NLXWIKI:sao82362520 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0111095,
+        SAO:82362520 ;
+    ilxtr:hasExternalId SAO:82362520 ;
+    ilxtr:hasIlxId ILX:0111095 ;
+    ilxtr:hasIlxPreferredId SAO:82362520 .
+
+ILX:0111157 a owl:Class ;
+    rdfs:label "Subcellular entity" ;
+    NIFRID:synonym "cellular component" ;
+    definition: "Entity derived from a cell or cells. The anatomical scale of these objects roughly corresponds to that which would be visible in high resolution light microscopy or conventional electron microscopy, e.g., nanometers to microns. Example: mitochondrion, dendrite, extracellular matrix." ;
+    rdfs:subClassOf BFO:0000040 ;
+    ilx.hasDbXref: NLXWIKI:nlx_subcell_100315 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0111157,
+        NLXSUB:100315 ;
+    ilxtr:hasExternalId NLXSUB:100315 ;
+    ilxtr:hasIlxId ILX:0111157 ;
+    ilxtr:hasIlxPreferredId NLXSUB:100315 .
 
 ILX:0485634 a owl:Class ;
     rdfs:label "Nerve Fibers" ;
@@ -5901,6 +6596,18 @@ ILX:0485634 a owl:Class ;
         <https://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20Metathesaurus&code=C0027749> ;
     ilxtr:hasIlxId ILX:0485634 ;
     ilxtr:hasIlxPreferredId <http://id.nlm.nih.gov/mesh/2018/M0014647> .
+
+ILX:0489552 a owl:Class ;
+    rdfs:label "Respiratory Mucosa" ;
+    definition: "The mucous membrane lining the RESPIRATORY TRACT, including the NASAL CAVITY; the LARYNX; the TRACHEA; and the BRONCHI tree. The respiratory mucosa consists of various types of epithelial cells ranging from ciliated columnar to simple squamous, mucous GOBLET CELLS, and glands containing both mucous and serous cells." ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId <http://id.nlm.nih.gov/mesh/2018/M0328056>,
+        <https://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20Metathesaurus&code=C0751974>,
+        ILX:0489552 ;
+    ilxtr:hasExternalId <http://id.nlm.nih.gov/mesh/2018/M0328056>,
+        <https://ncimeta.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20Metathesaurus&code=C0751974> ;
+    ilxtr:hasIlxId ILX:0489552 ;
+    ilxtr:hasIlxPreferredId <http://id.nlm.nih.gov/mesh/2018/M0328056> .
 
 ILX:0738176 a owl:Class ;
     rdfs:label "Right atrial ganglionated plexus" ;
@@ -6074,8 +6781,7 @@ ILX:0738291 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0738291 .
 
 ILX:0738292 a owl:Class ;
-    rdfs:label "MCG-SCG sympathetic trunk",
-        "T6 - T7 Interganglionic segment" ;
+    rdfs:label "MCG-SCG sympathetic trunk" ;
     definition: "Nerve fibers connecting the sixth and seventh thoracic sympathetic ganglia in the sympathetic trunk.",
         "Nerve fibers connecting the superior cervical ganglia and the next closest ganglia, the middle cervical ganglia, inferiorly in the sympathetic trunk." ;
     rdfs:subClassOf FMA:6258 ;
@@ -6083,6 +6789,7 @@ ILX:0738292 a owl:Class ;
         ILX:0777095 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "T6 - T7 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0738292,
         ILX:0784989,
         ILX:0793235 ;
@@ -6807,7 +7514,7 @@ ILX:0739247 a owl:Class ;
 ILX:0739248 a owl:Class ;
     rdfs:label "Dorsal part of serosa of urinary bladder" ;
     ILX:0739238 FMA:15932,
-        ILX:0103492 ;
+        PATO:0001233 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739248 ;
@@ -6818,7 +7525,7 @@ ILX:0739248 a owl:Class ;
 ILX:0739249 a owl:Class ;
     rdfs:label "Ventral part of serosa of urinary bladder" ;
     ILX:0739238 FMA:15932,
-        ILX:0112359 ;
+        PATO:0001196 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739249 ;
@@ -6828,8 +7535,8 @@ ILX:0739249 a owl:Class ;
 
 ILX:0739250 a owl:Class ;
     rdfs:label "Dorsal part of lumen of body of urinary bladder" ;
-    ILX:0739238 ILX:0103492,
-        ILX:0739252 ;
+    ILX:0739238 ILX:0739252,
+        PATO:0001233 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739250 ;
@@ -6839,8 +7546,8 @@ ILX:0739250 a owl:Class ;
 
 ILX:0739251 a owl:Class ;
     rdfs:label "Ventral part of lumen of body of urinary bladder" ;
-    ILX:0739238 ILX:0112359,
-        ILX:0739252 ;
+    ILX:0739238 ILX:0739252,
+        PATO:0001196 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739251 ;
@@ -6858,7 +7565,7 @@ ILX:0739252 a owl:Class ;
 ILX:0739253 a owl:Class ;
     rdfs:label "Dorsal part of neck of urinary bladder" ;
     ILX:0739238 FMA:15912,
-        ILX:0103492 ;
+        PATO:0001233 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739253 ;
@@ -6869,7 +7576,7 @@ ILX:0739253 a owl:Class ;
 ILX:0739254 a owl:Class ;
     rdfs:label "Ventral part of neck of urinary bladder" ;
     ILX:0739238 FMA:15912,
-        ILX:0112359 ;
+        PATO:0001196 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739254 ;
@@ -6880,7 +7587,7 @@ ILX:0739254 a owl:Class ;
 ILX:0739255 a owl:Class ;
     rdfs:label "Dorsal part of lumen of neck of urinary bladder" ;
     ILX:0739238 FMA:17873,
-        ILX:0103492 ;
+        PATO:0001233 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739255 ;
@@ -6891,7 +7598,7 @@ ILX:0739255 a owl:Class ;
 ILX:0739257 a owl:Class ;
     rdfs:label "Ventral part of lumen of neck of urinary bladder" ;
     ILX:0739238 FMA:17873,
-        ILX:0112359 ;
+        PATO:0001196 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739257 ;
@@ -6902,7 +7609,7 @@ ILX:0739257 a owl:Class ;
 ILX:0739258 a owl:Class ;
     rdfs:label "Dorsal part of urethra" ;
     ILX:0739238 FMA:19667,
-        ILX:0103492 ;
+        PATO:0001233 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739258 ;
@@ -6913,7 +7620,7 @@ ILX:0739258 a owl:Class ;
 ILX:0739259 a owl:Class ;
     rdfs:label "Ventral part of urethra" ;
     ILX:0739238 FMA:19667,
-        ILX:0112359 ;
+        PATO:0001196 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739259 ;
@@ -6924,7 +7631,7 @@ ILX:0739259 a owl:Class ;
 ILX:0739260 a owl:Class ;
     rdfs:label "Dorsal part of lumen of urethra" ;
     ILX:0739238 FMA:19709,
-        ILX:0103492 ;
+        PATO:0001233 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739260 ;
@@ -6935,7 +7642,7 @@ ILX:0739260 a owl:Class ;
 ILX:0739261 a owl:Class ;
     rdfs:label "Ventral part of lumen of urethra" ;
     ILX:0739238 FMA:19709,
-        ILX:0112359 ;
+        PATO:0001196 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739261 ;
@@ -7079,8 +7786,8 @@ ILX:0739277 a owl:Class ;
 
 ILX:0739278 a owl:Class ;
     rdfs:label "dorsal part of serosa of body of urinary bladder" ;
-    ILX:0739238 ILX:0103492,
-        ILX:0739276 ;
+    ILX:0739238 ILX:0739276,
+        PATO:0001233 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739278 ;
@@ -7090,8 +7797,8 @@ ILX:0739278 a owl:Class ;
 
 ILX:0739279 a owl:Class ;
     rdfs:label "ventral part of serosa of body of urinary bladder" ;
-    ILX:0739238 ILX:0112359,
-        ILX:0739276 ;
+    ILX:0739238 ILX:0739276,
+        PATO:0001196 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739279 ;
@@ -7101,8 +7808,8 @@ ILX:0739279 a owl:Class ;
 
 ILX:0739280 a owl:Class ;
     rdfs:label "dorsal part of serosa of neck of urinary bladder" ;
-    ILX:0739238 ILX:0103492,
-        ILX:0739277 ;
+    ILX:0739238 ILX:0739277,
+        PATO:0001233 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739280 ;
@@ -7112,8 +7819,8 @@ ILX:0739280 a owl:Class ;
 
 ILX:0739281 a owl:Class ;
     rdfs:label "ventral part of serosa of neck of urinary bladder" ;
-    ILX:0739238 ILX:0112359,
-        ILX:0739277 ;
+    ILX:0739238 ILX:0739277,
+        PATO:0001196 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739281 ;
@@ -7132,8 +7839,8 @@ ILX:0739282 a owl:Class ;
 
 ILX:0739283 a owl:Class ;
     rdfs:label "dorsal part of serosa of urethra" ;
-    ILX:0739238 ILX:0103492,
-        ILX:0739282 ;
+    ILX:0739238 ILX:0739282,
+        PATO:0001233 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739283 ;
@@ -7253,8 +7960,8 @@ ILX:0739305 a owl:Class ;
 
 ILX:0739306 a owl:Class ;
     rdfs:label "ventral part of serosa of urethra" ;
-    ILX:0739238 ILX:0112359,
-        ILX:0739282 ;
+    ILX:0739238 ILX:0739282,
+        PATO:0001196 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0739306 ;
@@ -7325,6 +8032,38 @@ ILX:0743583 a owl:Class ;
     ilxtr:hasExternalId <https://taviewer.openanatomy.org/?id=A12.3.03.001> ;
     ilxtr:hasIlxId ILX:0743583 ;
     ilxtr:hasIlxPreferredId ILX:0743583 .
+
+ILX:0743703 a owl:Class ;
+    rdfs:label "human body (TA98)" ;
+    ilxtr:hasExistingId <https://taviewer.openanatomy.org/?id=A01.0.00.000>,
+        ILX:0743703 ;
+    ilxtr:hasExternalId <https://taviewer.openanatomy.org/?id=A01.0.00.000> ;
+    ilxtr:hasIlxId ILX:0743703 ;
+    ilxtr:hasIlxPreferredId ILX:0743703 .
+
+ILX:0744806 a owl:Class ;
+    rdfs:label "lungs (TA98)" ;
+    NIFRID:synonym "lungs" ;
+    rdfs:subClassOf ILX:0747957 ;
+    ilx.hasDbXref: "FMA:68877" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId <https://taviewer.openanatomy.org/?id=A06.5.01.001>,
+        ILX:0744806 ;
+    ilxtr:hasExternalId <https://taviewer.openanatomy.org/?id=A06.5.01.001> ;
+    ilxtr:hasIlxId ILX:0744806 ;
+    ilxtr:hasIlxPreferredId ILX:0744806 .
+
+ILX:0747957 a owl:Class ;
+    rdfs:label "respiratory system (TA98)" ;
+    NIFRID:synonym "respiratory system" ;
+    rdfs:subClassOf ILX:0743703 ;
+    ilx.hasDbXref: "FMA:7158" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId <https://taviewer.openanatomy.org/?id=A06.0.00.000>,
+        ILX:0747957 ;
+    ilxtr:hasExternalId <https://taviewer.openanatomy.org/?id=A06.0.00.000> ;
+    ilxtr:hasIlxId ILX:0747957 ;
+    ilxtr:hasIlxPreferredId ILX:0747957 .
 
 ILX:0770759 a owl:Class ;
     rdfs:label "Lamina propria mucosae of descending colon" ;
@@ -7491,10 +8230,10 @@ ILX:0777085 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777085 .
 
 ILX:0777086 a owl:Class ;
-    rdfs:label "Interganglionic branch of twelfth thoracic ganglion to thirteenth thoracic ganglion",
-        "T12 - T13 Interganglionic segment" ;
+    rdfs:label "T12 - T13 Interganglionic segment" ;
     rdfs:subClassOf FMA:5890 ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Interganglionic branch of twelfth thoracic ganglion to thirteenth thoracic ganglion" ;
     ilxtr:hasExistingId ILX:0777086,
         ILX:0793198 ;
     ilxtr:hasIlxId ILX:0777086,
@@ -7502,10 +8241,10 @@ ILX:0777086 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777086 .
 
 ILX:0777087 a owl:Class ;
-    rdfs:label "Interganglionic branch of thirteenth thoracic ganglion to first lumbar ganglion",
-        "T13 - L1 Interganglionic segment" ;
+    rdfs:label "T13 - L1 Interganglionic segment" ;
     rdfs:subClassOf FMA:5890 ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Interganglionic branch of thirteenth thoracic ganglion to first lumbar ganglion" ;
     ilxtr:hasExistingId ILX:0777087,
         ILX:0793202 ;
     ilxtr:hasIlxId ILX:0777087,
@@ -7513,15 +8252,15 @@ ILX:0777087 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777087 .
 
 ILX:0777088 a owl:Class ;
-    rdfs:label "Interganglionic branch of first lumbar ganglion to second lumbar ganglion",
-        "L1 - L2 Interganglionic segment",
-        "L1 - L2 interganglionic segment" ;
+    rdfs:label "L1 - L2 interganglionic segment" ;
     definition: "Nerve fibers connecting the first and second lumbar sympathetic ganglia in the sympathetic trunk" ;
     rdfs:subClassOf FMA:5890,
         FMA:62955 ;
     ILX:0383242 ILX:0777088 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Interganglionic branch of first lumbar ganglion to second lumbar ganglion",
+        "L1 - L2 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0777088,
         ILX:0793162,
         ILX:0793244 ;
@@ -7531,14 +8270,14 @@ ILX:0777088 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777088 .
 
 ILX:0777089 a owl:Class ;
-    rdfs:label "Interganglionic branch of third lumbar ganglion to fourth lumbar ganglion",
-        "L2 - L3 Interganglionic segment",
-        "L2 - L3 interganglionic segment" ;
+    rdfs:label "L2 - L3 interganglionic segment" ;
     definition: "Nerve fibers connecting the second and third lumbar sympathetic ganglia in the sympathetic trunk" ;
     rdfs:subClassOf FMA:5890 ;
     ILX:0383242 ILX:0777089 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Interganglionic branch of third lumbar ganglion to fourth lumbar ganglion",
+        "L2 - L3 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0777089,
         ILX:0793164,
         ILX:0793245 ;
@@ -7548,14 +8287,14 @@ ILX:0777089 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777089 .
 
 ILX:0777090 a owl:Class ;
-    rdfs:label "Interganglionic branch of third sacral ganglion to fourth sacral ganglion",
-        "L3 - L4 Interganglionic segment",
-        "L3 - L4 interganglionic segment" ;
+    rdfs:label "L3 - L4 interganglionic segment" ;
     definition: "Nerve fibers connecting the third and fourth lumbar sympathetic ganglia in the sympathetic trunk" ;
     rdfs:subClassOf FMA:6258 ;
     ILX:0383242 ILX:0777090 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Interganglionic branch of third sacral ganglion to fourth sacral ganglion",
+        "L3 - L4 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0777090,
         ILX:0793168,
         ILX:0793246 ;
@@ -7565,14 +8304,14 @@ ILX:0777090 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777090 .
 
 ILX:0777091 a owl:Class ;
-    rdfs:label "L4 - L5 interganglionic segment",
-        "L4-L5 Interganglionic segment" ;
+    rdfs:label "L4 - L5 interganglionic segment" ;
     definition: "Nerve fibers connecting the fourth and fifth lumbar sympathetic ganglia in the sympathetic trunk" ;
     rdfs:subClassOf FMA:5890,
         FMA:6258 ;
     ILX:0383242 ILX:0777091 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "L4-L5 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0777091,
         ILX:0793247 ;
     ilxtr:hasIlxId ILX:0777091,
@@ -7580,13 +8319,13 @@ ILX:0777091 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777091 .
 
 ILX:0777092 a owl:Class ;
-    rdfs:label "L5 - L6 interganglionic segment",
-        "L5 - S1 Interganglionic segment" ;
+    rdfs:label "L5 - L6 interganglionic segment" ;
     definition: "Nerve fibers connecting the fifth lumbar sympathetic ganglia and the first sacral sympathetic ganglia in the sympathetic trunk" ;
     rdfs:subClassOf FMA:5890 ;
     ILX:0383242 ILX:0777092 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "L5 - S1 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0777092,
         ILX:0793249 ;
     ilxtr:hasIlxId ILX:0777092,
@@ -7594,11 +8333,11 @@ ILX:0777092 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777092 .
 
 ILX:0777093 a owl:Class ;
-    rdfs:label "Interganglionic branch of sixth lumbar ganglion to first sacral ganglion",
-        "L6 - S1 interganglionic segment" ;
+    rdfs:label "L6 - S1 interganglionic segment" ;
     definition: "Nerve fibers connecting the sixth lumbar sympathetic ganglia and the first sacral sympathetic ganglia in the sympathetic trunk. Only present in some mammalian species." ;
     rdfs:subClassOf FMA:5890 ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Interganglionic branch of sixth lumbar ganglion to first sacral ganglion" ;
     ilxtr:hasExistingId ILX:0777093,
         ILX:0793204 ;
     ilxtr:hasIlxId ILX:0777093,
@@ -7615,11 +8354,11 @@ ILX:0777094 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777094 .
 
 ILX:0777095 a owl:Class ;
-    rdfs:label "Interganglionic branch of sixth thoracic ganglion to seventh thoracic ganglion",
-        "T2 - T3 Interganglionic segment" ;
+    rdfs:label "T2 - T3 Interganglionic segment" ;
     definition: "Nerve fibers connecting the second and third thoracic sympathetic ganglia in the sympathetic trunk." ;
     rdfs:subClassOf FMA:5890 ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Interganglionic branch of sixth thoracic ganglion to seventh thoracic ganglion" ;
     ilxtr:hasExistingId ILX:0777095,
         ILX:0793156 ;
     ilxtr:hasIlxId ILX:0777095,
@@ -7627,11 +8366,11 @@ ILX:0777095 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777095 .
 
 ILX:0777096 a owl:Class ;
-    rdfs:label "Interganglionic branch of third thoracic ganglion to fourth thoracic ganglion",
-        "T3 - T4 Interganglionic segment" ;
+    rdfs:label "T3 - T4 Interganglionic segment" ;
     definition: "Nerve fibers connecting the third and fourth thoracic sympathetic ganglia in the sympathetic trunk." ;
     rdfs:subClassOf FMA:5890 ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Interganglionic branch of third thoracic ganglion to fourth thoracic ganglion" ;
     ilxtr:hasExistingId ILX:0777096,
         ILX:0793153 ;
     ilxtr:hasIlxId ILX:0777096,
@@ -7639,11 +8378,11 @@ ILX:0777096 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777096 .
 
 ILX:0777097 a owl:Class ;
-    rdfs:label "Interganglionic branch of fourth thoracic ganglion to fifth thoracic ganglion",
-        "T4 - T5 Interganglionic segment" ;
+    rdfs:label "T4 - T5 Interganglionic segment" ;
     definition: "Nerve fibers connecting the fourth and fifth thoracic sympathetic ganglia in the sympathetic trunk." ;
     rdfs:subClassOf FMA:5890 ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Interganglionic branch of fourth thoracic ganglion to fifth thoracic ganglion" ;
     ilxtr:hasExistingId ILX:0777097,
         ILX:0793154 ;
     ilxtr:hasIlxId ILX:0777097,
@@ -7651,11 +8390,11 @@ ILX:0777097 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0777097 .
 
 ILX:0777098 a owl:Class ;
-    rdfs:label "Interganglionic branch of fifth thoracic ganglion to sixth thoracic ganglion",
-        "T5 - T6 Interganglionic segment" ;
+    rdfs:label "T5 - T6 Interganglionic segment" ;
     definition: "Nerve fibers connecting the fifth and sixth thoracic sympathetic ganglia in the sympathetic trunk." ;
     rdfs:subClassOf FMA:62955 ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "Interganglionic branch of fifth thoracic ganglion to sixth thoracic ganglion" ;
     ilxtr:hasExistingId ILX:0777098,
         ILX:0793155 ;
     ilxtr:hasIlxId ILX:0777098,
@@ -8033,8 +8772,8 @@ ILX:0778126 a owl:Class ;
     rdfs:label "dorsal base of left lung" ;
     definition: "The dorsal base of the left lung is the most dorsal point/corner sitting at the base of the left lung. It points dorsally." ;
     rdfs:subClassOf FMA:9658 ;
-    ILX:0739238 ILX:0103492,
-        ILX:0778139 ;
+    ILX:0739238 ILX:0778139,
+        PATO:0001233 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778126 ;
@@ -8047,7 +8786,7 @@ ILX:0778127 a owl:Class ;
     definition: "The dorsal base of the right lung is the most dorsal point/corner sitting at the base of the right lung. It points dorsally." ;
     rdfs:subClassOf FMA:9658 ;
     ILX:0739238 FMA:86152,
-        ILX:0103492 ;
+        PATO:0001233 ;
     ILX:0739239 "True" ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778127 ;
@@ -8109,7 +8848,7 @@ ILX:0778155 a owl:Class ;
     rdfs:label "dorsal part of bladder" ;
     definition: "The dorsal portion of the whole bladder organ, including both the body and the neck of the bladder." ;
     ILX:0739238 FMA:15900,
-        ILX:0103492 ;
+        PATO:0001233 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778155 ;
     ilxtr:hasIlxId ILX:0778155 ;
@@ -8120,7 +8859,7 @@ ILX:0778156 a owl:Class ;
     rdfs:label "ventral part of bladder" ;
     definition: "The ventral portion of the whole bladder organ, including both the body and the neck of the bladder." ;
     ILX:0739238 FMA:15900,
-        ILX:0112359 ;
+        PATO:0001196 ;
     ilxr:type ilx.type:term ;
     ilxtr:hasExistingId ILX:0778156 ;
     ilxtr:hasIlxId ILX:0778156 ;
@@ -8636,12 +9375,12 @@ ILX:0793141 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0793141 .
 
 ILX:0793157 a owl:Class ;
-    rdfs:label "Interganglionic branch of seventh thoracic ganglion to eighth thoracic ganglion",
-        "T7 - T8 Interganglionic segment" ;
+    rdfs:label "Interganglionic branch of seventh thoracic ganglion to eighth thoracic ganglion" ;
     definition: "Nerve fibers connecting the seventh and eighth thoracic sympathetic ganglia in the sympathetic trunk." ;
     ILX:0383242 ILX:0793157 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "T7 - T8 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0793157,
         ILX:0793236 ;
     ilxtr:hasIlxId ILX:0793157,
@@ -8649,12 +9388,12 @@ ILX:0793157 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0793157 .
 
 ILX:0793158 a owl:Class ;
-    rdfs:label "Interganglionic branch of eighth thoracic ganglion to ninth thoracic ganglion",
-        "T8 - T9 Interganglionic segment" ;
+    rdfs:label "Interganglionic branch of eighth thoracic ganglion to ninth thoracic ganglion" ;
     definition: "Nerve fibers connecting the eighth and ninth thoracic sympathetic ganglia in the sympathetic trunk." ;
     ILX:0383242 ILX:0793158 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "T8 - T9 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0793158,
         ILX:0793237 ;
     ilxtr:hasIlxId ILX:0793158,
@@ -8662,12 +9401,12 @@ ILX:0793158 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0793158 .
 
 ILX:0793159 a owl:Class ;
-    rdfs:label "Interganglionic branch of ninth thoracic ganglion to tenth thoracic ganglion",
-        "T9 - T10 Interganglionic segment" ;
+    rdfs:label "Interganglionic branch of ninth thoracic ganglion to tenth thoracic ganglion" ;
     definition: "Nerve fibers connecting the ninth and tenth thoracic sympathetic ganglia in the sympathetic trunk." ;
     ILX:0383242 ILX:0793159 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "T9 - T10 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0793159,
         ILX:0793238 ;
     ilxtr:hasIlxId ILX:0793159,
@@ -8675,12 +9414,12 @@ ILX:0793159 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0793159 .
 
 ILX:0793160 a owl:Class ;
-    rdfs:label "Interganglionic branch of tenth thoracic ganglion to eleventh thoracic ganglion",
-        "T10 - T11 Interganglionic segment" ;
+    rdfs:label "Interganglionic branch of tenth thoracic ganglion to eleventh thoracic ganglion" ;
     definition: "Nerve fibers connecting the tenth and eleventh thoracic sympathetic ganglia in the sympathetic trunk." ;
     ILX:0383242 ILX:0793160 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "T10 - T11 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0793160,
         ILX:0793239 ;
     ilxtr:hasIlxId ILX:0793160,
@@ -8688,12 +9427,12 @@ ILX:0793160 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0793160 .
 
 ILX:0793166 a owl:Class ;
-    rdfs:label "Interganglionic branch of first sacral ganglion to second sacral ganglion",
-        "S1 - S2 Interganglionic segment" ;
+    rdfs:label "Interganglionic branch of first sacral ganglion to second sacral ganglion" ;
     definition: "Nerve fibers connecting the first and second sacral sympathetic ganglia in the sympathetic trunk" ;
     ILX:0383242 ILX:0793166 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "S1 - S2 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0793166,
         ILX:0793250 ;
     ilxtr:hasIlxId ILX:0793166,
@@ -8701,12 +9440,12 @@ ILX:0793166 a owl:Class ;
     ilxtr:hasIlxPreferredId ILX:0793166 .
 
 ILX:0793167 a owl:Class ;
-    rdfs:label "Interganglionic branch of second sacral ganglion to third sacral ganglion",
-        "S2 - S3 Interganglionic segment" ;
+    rdfs:label "Interganglionic branch of second sacral ganglion to third sacral ganglion" ;
     definition: "Nerve fibers connecting the second and third sacral sympathetic ganglia in the sympathetic trunk" ;
     ILX:0383242 ILX:0793167 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "S2 - S3 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0793167,
         ILX:0793251 ;
     ilxtr:hasIlxId ILX:0793167,
@@ -8760,12 +9499,12 @@ ILX:0793182 a owl:Class ;
     ilxtr:includedForSPARCUnder FMA:7131 .
 
 ILX:0793199 a owl:Class ;
-    rdfs:label "Interganglionic branch of eleventh thoracic ganglion to twelfth thoracic ganglion",
-        "T11 - T12 Interganglionic segment" ;
+    rdfs:label "Interganglionic branch of eleventh thoracic ganglion to twelfth thoracic ganglion" ;
     definition: "Nerve fibers connecting the eleventh and twelfth thoracic sympathetic ganglia in the sympathetic trunk." ;
     ILX:0383242 ILX:0793199 ;
     ILX:0793078 "True" ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "T11 - T12 Interganglionic segment" ;
     ilxtr:hasExistingId ILX:0793199,
         ILX:0793240 ;
     ilxtr:hasIlxId ILX:0793199,
@@ -10031,11 +10770,933 @@ ILX:0793681 a owl:Class ;
     ilxtr:hasIlxId ILX:0793681 ;
     ilxtr:hasIlxPreferredId ILX:0793681 .
 
+ILX:0793697 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of second thoracic segment" ;
+    NIFRID:synonym "T2 intermediolateral cell column",
+        "T2 intermediolateral nucleus" ;
+    definition: "Part of Intermediolateral nucleus located in the second thoracic spinal cord segment." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:73915 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793697 ;
+    ilxtr:hasIlxId ILX:0793697 ;
+    ilxtr:hasIlxPreferredId ILX:0793697 .
+
+ILX:0793698 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of third thoracic segment" ;
+    NIFRID:synonym "T3 intermediolateral cell column",
+        "T3 intermediolateral nucleus" ;
+    definition: "Part of Intermediolateral nucleus located in the third thoracic spinal cord segment ." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:73915 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793698 ;
+    ilxtr:hasIlxId ILX:0793698 ;
+    ilxtr:hasIlxPreferredId ILX:0793698 .
+
+ILX:0793699 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of fourth thoracic segment" ;
+    NIFRID:synonym "T4 intermediolateral cell column",
+        "T4 intermediolateral nucleus" ;
+    definition: "Part of intermediolateral nucleus located in the fourth thoracic spinal cord segment" ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:73915 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793699 ;
+    ilxtr:hasIlxId ILX:0793699 ;
+    ilxtr:hasIlxPreferredId ILX:0793699 .
+
+ILX:0793700 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of fifth thoracic segment" ;
+    definition: "Part of Intermediolateral nucleus located in the fifth thoracic spinal cord segment" ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:73915 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793700 ;
+    ilxtr:hasIlxId ILX:0793700 ;
+    ilxtr:hasIlxPreferredId ILX:0793700 .
+
+ILX:0793701 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of sixth thoracic segment" ;
+    NIFRID:synonym "T6 intermediolateral nucleus",
+        "T6 intermediorlateral nucleus" ;
+    definition: "Part of Intermediolateral nucleus located in the sixth thoracic spinal cord segment" ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:73915 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793701 ;
+    ilxtr:hasIlxId ILX:0793701 ;
+    ilxtr:hasIlxPreferredId ILX:0793701 .
+
+ILX:0793708 a owl:Class ;
+    rdfs:label "posterior corpus callosum" ;
+    ILX:0383242 FMA:61948 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793708 ;
+    ilxtr:hasIlxId ILX:0793708 ;
+    ilxtr:hasIlxPreferredId ILX:0793708 .
+
+ILX:0793709 a owl:Class ;
+    rdfs:label "spinal blood vessel" ;
+    definition: "Blood vessel in the spinal cord." ;
+    rdfs:subClassOf FMA:50722 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793709 ;
+    ilxtr:hasIlxId ILX:0793709 ;
+    ilxtr:hasIlxPreferredId ILX:0793709 .
+
+ILX:0793711 a owl:Class ;
+    rdfs:label "Communicating branch of zygomatic nerve" ;
+    NIFRID:synonym "Communicating branch to V1",
+        "Communicating branch with zygomatic nerve" ;
+    definition: "Communicating nerve between the zygomatic nerve and the lacrimal nerve. The lacrimal nerve is a branch of the ophthalmic, one of three divisions of the trigeminal nerve (CN V) (Wikipedia)." ;
+    rdfs:subClassOf FMA:65132 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793711 ;
+    ilxtr:hasIlxId ILX:0793711 ;
+    ilxtr:hasIlxPreferredId ILX:0793711 .
+
+ILX:0793714 a owl:Class ;
+    rdfs:label "Mesenteric nerve" ;
+    definition: "Nerve containing axons originating from mesenteric ganglia" ;
+    rdfs:subClassOf FMA:65132 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793714 ;
+    ilxtr:hasIlxId ILX:0793714 ;
+    ilxtr:hasIlxPreferredId ILX:0793714 .
+
+ILX:0793716 a owl:Class ;
+    rdfs:label "chordae tendineae of the tricuspid valve" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793716 ;
+    ilxtr:hasIlxId ILX:0793716 ;
+    ilxtr:hasIlxPreferredId ILX:0793716 .
+
+ILX:0793717 a owl:Class ;
+    rdfs:label "chordae tendineae of the mitral valve" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793717 ;
+    ilxtr:hasIlxId ILX:0793717 ;
+    ilxtr:hasIlxPreferredId ILX:0793717 .
+
+ILX:0793718 a owl:Class ;
+    rdfs:label "root of aorta" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793718 ;
+    ilxtr:hasIlxId ILX:0793718 ;
+    ilxtr:hasIlxPreferredId ILX:0793718 .
+
+ILX:0793721 a owl:Class ;
+    rdfs:label "azygous vein" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793721 ;
+    ilxtr:hasIlxId ILX:0793721 ;
+    ilxtr:hasIlxPreferredId ILX:0793721 .
+
+ILX:0793724 a owl:Class ;
+    rdfs:label "appendix" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793724 ;
+    ilxtr:hasIlxId ILX:0793724 ;
+    ilxtr:hasIlxPreferredId ILX:0793724 .
+
+ILX:0793725 a owl:Class ;
+    rdfs:label "epithelial stem cell" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793725 ;
+    ilxtr:hasIlxId ILX:0793725 ;
+    ilxtr:hasIlxPreferredId ILX:0793725 .
+
+ILX:0793726 a owl:Class ;
+    rdfs:label "Suprapectinate anal canal" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793726 ;
+    ilxtr:hasIlxId ILX:0793726 ;
+    ilxtr:hasIlxPreferredId ILX:0793726 .
+
+ILX:0793727 a owl:Class ;
+    rdfs:label "Infrapectinate anal canal" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793727 ;
+    ilxtr:hasIlxId ILX:0793727 ;
+    ilxtr:hasIlxPreferredId ILX:0793727 .
+
+ILX:0793728 a owl:Class ;
+    rdfs:label "skeletal muscle cell of the gastrointestinal tract" ;
+    rdfs:subClassOf ILX:0110658 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793728 ;
+    ilxtr:hasIlxId ILX:0793728 ;
+    ilxtr:hasIlxPreferredId ILX:0793728 .
+
+ILX:0793729 a owl:Class ;
+    rdfs:label "Lower esophageal sphincter" ;
+    rdfs:subClassOf UBERON:0007652 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793729 ;
+    ilxtr:hasIlxId ILX:0793729 ;
+    ilxtr:hasIlxPreferredId ILX:0793729 .
+
+ILX:0793730 a owl:Class ;
+    rdfs:label "non-keratinized squamous epithelial cell" ;
+    rdfs:subClassOf FMA:45569 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793730 ;
+    ilxtr:hasIlxId ILX:0793730 ;
+    ilxtr:hasIlxPreferredId ILX:0793730 .
+
+ILX:0793731 a owl:Class ;
+    rdfs:label "gastric epithelium" ;
+    rdfs:subClassOf FMA:7148 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793731 ;
+    ilxtr:hasIlxId ILX:0793731 ;
+    ilxtr:hasIlxPreferredId ILX:0793731 .
+
+ILX:0793732 a owl:Class ;
+    rdfs:label "large intestine epithelial stem cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793732 ;
+    ilxtr:hasIlxId ILX:0793732 ;
+    ilxtr:hasIlxPreferredId ILX:0793732 .
+
+ILX:0793733 a owl:Class ;
+    rdfs:label "simple cuboidal epithelium of small intestine" ;
+    rdfs:subClassOf FMA:45566 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793733 ;
+    ilxtr:hasIlxId ILX:0793733 ;
+    ilxtr:hasIlxPreferredId ILX:0793733 .
+
+ILX:0793734 a owl:Class ;
+    rdfs:label "myenteric ganglion" ;
+    NIFRID:synonym "myenteric plexus ganglion" ;
+    definition: "A ganglion located in the myenteric plexus" ;
+    rdfs:subClassOf FMA:5884 ;
+    ilx.partOf: FMA:63252 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793734 ;
+    ilxtr:hasIlxId ILX:0793734 ;
+    ilxtr:hasIlxPreferredId ILX:0793734 .
+
+ILX:0793735 a owl:Class ;
+    rdfs:label "Myenteric ganglion of small intestine" ;
+    definition: "A myenteric ganglion located in the myenteric plexus of the small intestine" ;
+    rdfs:subClassOf ILX:0793734 ;
+    ilx.partOf: UBERON:8410063 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793735 ;
+    ilxtr:hasIlxId ILX:0793735 ;
+    ilxtr:hasIlxPreferredId ILX:0793735 .
+
+ILX:0793737 a owl:Class ;
+    rdfs:label "Nerve fiber from submandibular ganglion to submandibular gland" ;
+    definition: "Post-ganglionic parasympathetic fiber bundles that arise from the submandibular ganglion and innervate the submandibular gland" ;
+    rdfs:subClassOf UBERON:0011929 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793737 ;
+    ilxtr:hasIlxId ILX:0793737 ;
+    ilxtr:hasIlxPreferredId ILX:0793737 .
+
+ILX:0793738 a owl:Class ;
+    rdfs:label "Nerve fiber from submandibular ganglion to mouth mucosa" ;
+    definition: "Post-ganglionic parasympathetic fiber bundles that arise from the submandibular ganglion and innervate the mouth mucosa" ;
+    rdfs:subClassOf UBERON:0011929 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793738 ;
+    ilxtr:hasIlxId ILX:0793738 ;
+    ilxtr:hasIlxPreferredId ILX:0793738 .
+
+ILX:0793739 a owl:Class ;
+    rdfs:label "Nerve fiber from submandibular ganglion to sublingual gland" ;
+    definition: "Post-ganglionic parasympathetic fiber bundles that arise from the submandibular ganglion and innervate the sublingual gland" ;
+    rdfs:subClassOf UBERON:0011929 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793739 ;
+    ilxtr:hasIlxId ILX:0793739 ;
+    ilxtr:hasIlxPreferredId ILX:0793739 .
+
+ILX:0793741 a owl:Class ;
+    rdfs:label "pancreatic enteroendocrine cells" ;
+    definition: "Specialized cells located in the islets of Langerhans of the pancreas with endocrine function." ;
+    rdfs:subClassOf ILX:0103900 ;
+    ILX:0739239 "True" ;
+    ILX:0777130 <https://en.wikipedia.org/wiki/Enteroendocrine_cell> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793741 ;
+    ilxtr:hasIlxId ILX:0793741 ;
+    ilxtr:hasIlxPreferredId ILX:0793741 .
+
+ILX:0793742 a owl:Class ;
+    rdfs:label "pancreatic squamous cell" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793742 ;
+    ilxtr:hasIlxId ILX:0793742 ;
+    ilxtr:hasIlxPreferredId ILX:0793742 .
+
+ILX:0793743 a owl:Class ;
+    rdfs:label "pancreatic squamous epithelium" ;
+    definition: "A simple or stratified flat epithelium in the pancreas." ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793743 ;
+    ilxtr:hasIlxId ILX:0793743 ;
+    ilxtr:hasIlxPreferredId ILX:0793743 .
+
+ILX:0793744 a owl:Class ;
+    rdfs:label "acinar cells of the exocrine pancreas" ;
+    definition: "Pyramidal shaped, glandular epithelial cells specialized for digestive enzyme secretion in the pancreas." ;
+    rdfs:subClassOf ILX:0103900 ;
+    ilx.partOf: FMA:7198 ;
+    ILX:0739239 "True" ;
+    ILX:0777130 "SAWG",
+        <https://histology.siu.edu/erg/gicells.htm#serous> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793744 ;
+    ilxtr:hasIlxId ILX:0793744 ;
+    ilxtr:hasIlxPreferredId ILX:0793744 .
+
+ILX:0793745 a owl:Class ;
+    rdfs:label "pancreatic basement membrane" ;
+    definition: "A layer of extracellular matrix, located at the basal surface of the pancreatic epithelium." ;
+    rdfs:subClassOf ILX:0111157 ;
+    ilx.partOf: FMA:7198 ;
+    ILX:0739239 "True" ;
+    ILX:0777130 "SAWG" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793745 ;
+    ilxtr:hasIlxId ILX:0793745 ;
+    ilxtr:hasIlxPreferredId ILX:0793745 .
+
+ILX:0793746 a owl:Class ;
+    rdfs:label "biliopancreatic fluids" ;
+    definition: "Mixture of bile and pancreatic juices that blends at the choledocho-pancreatic duct." ;
+    rdfs:subClassOf FMA:280556 ;
+    ilx.partOf: FMA:79646 ;
+    ILX:0739239 "True" ;
+    ILX:0777130 "SAWG" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793746 ;
+    ilxtr:hasIlxId ILX:0793746 ;
+    ilxtr:hasIlxPreferredId ILX:0793746 .
+
+ILX:0793748 a owl:Class ;
+    rdfs:label "airway basal cell" ;
+    rdfs:subClassOf ILX:0489552 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793748 ;
+    ilxtr:hasIlxId ILX:0793748 ;
+    ilxtr:hasIlxPreferredId ILX:0793748 .
+
+ILX:0793749 a owl:Class ;
+    rdfs:label "biliary duct canal of Hering epithelial tissue" ;
+    rdfs:subClassOf UBERON:0004820 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793749 ;
+    ilxtr:hasIlxId ILX:0793749 ;
+    ilxtr:hasIlxPreferredId ILX:0793749 .
+
+ILX:0793750 a owl:Class ;
+    rdfs:label "biliary duct biliary canaliculus epithelial tissue" ;
+    rdfs:subClassOf UBERON:0004820 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793750 ;
+    ilxtr:hasIlxId ILX:0793750 ;
+    ilxtr:hasIlxPreferredId ILX:0793750 .
+
+ILX:0793751 a owl:Class ;
+    rdfs:label "neck of gallbladder epithelial tissue" ;
+    rdfs:subClassOf UBERON:0004820 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793751 ;
+    ilxtr:hasIlxId ILX:0793751 ;
+    ilxtr:hasIlxPreferredId ILX:0793751 .
+
+ILX:0793752 a owl:Class ;
+    rdfs:label "urinary transitional epithelium superficial layer dome cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793752 ;
+    ilxtr:hasIlxId ILX:0793752 ;
+    ilxtr:hasIlxPreferredId ILX:0793752 .
+
+ILX:0793753 a owl:Class ;
+    rdfs:label " urinary transitional epithelium intermediate cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793753 ;
+    ilxtr:hasIlxId ILX:0793753 ;
+    ilxtr:hasIlxPreferredId ILX:0793753 .
+
+ILX:0793754 a owl:Class ;
+    rdfs:label "urinary transitional epithelium basal layer stem cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793754 ;
+    ilxtr:hasIlxId ILX:0793754 ;
+    ilxtr:hasIlxPreferredId ILX:0793754 .
+
+ILX:0793755 a owl:Class ;
+    rdfs:label "urinary retroperitoneal adipose tissue" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793755 ;
+    ilxtr:hasIlxId ILX:0793755 ;
+    ilxtr:hasIlxPreferredId ILX:0793755 .
+
+ILX:0793756 a owl:Class ;
+    rdfs:label "intermediate layer urothelium" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793756 ;
+    ilxtr:hasIlxId ILX:0793756 ;
+    ilxtr:hasIlxPreferredId ILX:0793756 .
+
+ILX:0793757 a owl:Class ;
+    rdfs:label "superficial layer of urothelium" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793757 ;
+    ilxtr:hasIlxId ILX:0793757 ;
+    ilxtr:hasIlxPreferredId ILX:0793757 .
+
+ILX:0793758 a owl:Class ;
+    rdfs:label "fallopian tube mesothelial tissue" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793758 ;
+    ilxtr:hasIlxId ILX:0793758 ;
+    ilxtr:hasIlxPreferredId ILX:0793758 .
+
+ILX:0793759 a owl:Class ;
+    rdfs:label "nonciliated columnar epithelium of fallopian tubes" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793759 ;
+    ilxtr:hasIlxId ILX:0793759 ;
+    ilxtr:hasIlxPreferredId ILX:0793759 .
+
+ILX:0793760 a owl:Class ;
+    rdfs:label "ciliated columnar epithelial cell of fallopian tube" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793760 ;
+    ilxtr:hasIlxId ILX:0793760 ;
+    ilxtr:hasIlxPreferredId ILX:0793760 .
+
+ILX:0793761 a owl:Class ;
+    rdfs:label "nonciliated columnar epithelial cell of fallopian tube" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793761 ;
+    ilxtr:hasIlxId ILX:0793761 ;
+    ilxtr:hasIlxPreferredId ILX:0793761 .
+
+ILX:0793762 a owl:Class ;
+    rdfs:label "intramural part of uterine (fallopian) tube" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793762 ;
+    ilxtr:hasIlxId ILX:0793762 ;
+    ilxtr:hasIlxPreferredId ILX:0793762 .
+
+ILX:0793763 a owl:Class ;
+    rdfs:label "muscle layer of uterine (fallopian) tube" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793763 ;
+    ilxtr:hasIlxId ILX:0793763 ;
+    ilxtr:hasIlxPreferredId ILX:0793763 .
+
 ILX:0793766 a owl:Class ;
     rdfs:label "sympathetic chain segment" ;
     ilxtr:hasExistingId ILX:0793766 ;
     ilxtr:hasIlxId ILX:0793766 ;
     ilxtr:hasIlxPreferredId ILX:0793766 .
+
+ILX:0793767 a owl:Class ;
+    rdfs:label "salivary gland" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793767 ;
+    ilxtr:hasIlxId ILX:0793767 ;
+    ilxtr:hasIlxPreferredId ILX:0793767 .
+
+ILX:0793768 a owl:Class ;
+    rdfs:label "skin" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793768 ;
+    ilxtr:hasIlxId ILX:0793768 ;
+    ilxtr:hasIlxPreferredId ILX:0793768 .
+
+ILX:0793769 a owl:Class ;
+    rdfs:label "smooth muscle" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793769 ;
+    ilxtr:hasIlxId ILX:0793769 ;
+    ilxtr:hasIlxPreferredId ILX:0793769 .
+
+ILX:0793770 a owl:Class ;
+    rdfs:label "germinal center cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793770 ;
+    ilxtr:hasIlxId ILX:0793770 ;
+    ilxtr:hasIlxPreferredId ILX:0793770 .
+
+ILX:0793773 a owl:Class ;
+    rdfs:label "non-germinal center cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793773 ;
+    ilxtr:hasIlxId ILX:0793773 ;
+    ilxtr:hasIlxPreferredId ILX:0793773 .
+
+ILX:0793774 a owl:Class ;
+    rdfs:label "follicle cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793774 ;
+    ilxtr:hasIlxId ILX:0793774 ;
+    ilxtr:hasIlxPreferredId ILX:0793774 .
+
+ILX:0793775 a owl:Class ;
+    rdfs:label "ovarian stroma cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793775 ;
+    ilxtr:hasIlxId ILX:0793775 ;
+    ilxtr:hasIlxPreferredId ILX:0793775 .
+
+ILX:0793776 a owl:Class ;
+    rdfs:label "exocrine glandular cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793776 ;
+    ilxtr:hasIlxId ILX:0793776 ;
+    ilxtr:hasIlxPreferredId ILX:0793776 .
+
+ILX:0793777 a owl:Class ;
+    rdfs:label "glandular cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793777 ;
+    ilxtr:hasIlxId ILX:0793777 ;
+    ilxtr:hasIlxPreferredId ILX:0793777 .
+
+ILX:0793778 a owl:Class ;
+    rdfs:label "mucosal lymphoid cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793778 ;
+    ilxtr:hasIlxId ILX:0793778 ;
+    ilxtr:hasIlxPreferredId ILX:0793778 .
+
+ILX:0793779 a owl:Class ;
+    rdfs:label "ganglion cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793779 ;
+    ilxtr:hasIlxId ILX:0793779 ;
+    ilxtr:hasIlxPreferredId ILX:0793779 .
+
+ILX:0793780 a owl:Class ;
+    rdfs:label "stratum spinosum cell" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793780 ;
+    ilxtr:hasIlxId ILX:0793780 ;
+    ilxtr:hasIlxPreferredId ILX:0793780 .
+
+ILX:0793781 a owl:Class ;
+    rdfs:label "Fibrohistiocytic cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793781 ;
+    ilxtr:hasIlxId ILX:0793781 ;
+    ilxtr:hasIlxPreferredId ILX:0793781 .
+
+ILX:0793782 a owl:Class ;
+    rdfs:label "red pulp of spleen cell" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793782 ;
+    ilxtr:hasIlxId ILX:0793782 ;
+    ilxtr:hasIlxPreferredId ILX:0793782 .
+
+ILX:0793783 a owl:Class ;
+    rdfs:label "white pulp cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793783 ;
+    ilxtr:hasIlxId ILX:0793783 ;
+    ilxtr:hasIlxPreferredId ILX:0793783 .
+
+ILX:0793784 a owl:Class ;
+    rdfs:label "preleptotene spermatocytes" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793784 ;
+    ilxtr:hasIlxId ILX:0793784 ;
+    ilxtr:hasIlxPreferredId ILX:0793784 .
+
+ILX:0793785 a owl:Class ;
+    rdfs:label "pachytene spermatocytes" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793785 ;
+    ilxtr:hasIlxId ILX:0793785 ;
+    ilxtr:hasIlxPreferredId ILX:0793785 .
+
+ILX:0793786 a owl:Class ;
+    rdfs:label "early or round spermatids" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793786 ;
+    ilxtr:hasIlxId ILX:0793786 ;
+    ilxtr:hasIlxPreferredId ILX:0793786 .
+
+ILX:0793787 a owl:Class ;
+    rdfs:label "spermatogonia cells" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793787 ;
+    ilxtr:hasIlxId ILX:0793787 ;
+    ilxtr:hasIlxPreferredId ILX:0793787 .
+
+ILX:0793788 a owl:Class ;
+    rdfs:label "non-ciliated epithelial cell" ;
+    rdfs:subClassOf ILX:0103900 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793788 ;
+    ilxtr:hasIlxId ILX:0793788 ;
+    ilxtr:hasIlxPreferredId ILX:0793788 .
+
+ILX:0793791 a owl:Class ;
+    rdfs:label "anterior pituitary cell" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793791 ;
+    ilxtr:hasIlxId ILX:0793791 ;
+    ilxtr:hasIlxPreferredId ILX:0793791 .
+
+ILX:0793795 a owl:Class ;
+    rdfs:label "glandular cell of thyroid" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793795 ;
+    ilxtr:hasIlxId ILX:0793795 ;
+    ilxtr:hasIlxPreferredId ILX:0793795 .
+
+ILX:0793796 a owl:Class ;
+    rdfs:label "Spermatogenic Cell" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793796 ;
+    ilxtr:hasIlxId ILX:0793796 ;
+    ilxtr:hasIlxPreferredId ILX:0793796 .
+
+ILX:0793799 a owl:Class ;
+    rdfs:label "Set of sacral parasympathetic nuclei" ;
+    definition: "Set of parasympathetic nuclei in the sacral spinal cord" ;
+    rdfs:subClassOf FMA:62955 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793799 ;
+    ilxtr:hasIlxId ILX:0793799 ;
+    ilxtr:hasIlxPreferredId ILX:0793799 .
+
+ILX:0793800 a owl:Class ;
+    rdfs:label "S2 sacral parasympathetic nucleus" ;
+    definition: "Parasympathetic nucleus located in the intermediate grey region of the spinal cord level S2." ;
+    rdfs:subClassOf PAXSPN:80 ;
+    ilx.partOf: ILX:0793799 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793800 ;
+    ilxtr:hasIlxId ILX:0793800 ;
+    ilxtr:hasIlxPreferredId ILX:0793800 .
+
+ILX:0793801 a owl:Class ;
+    rdfs:label "S3 sacral parasympathetic nucleus" ;
+    definition: "Sacral parasympathetic nucleus located in the intermediate grey region of the spinal cord sacral level S3." ;
+    rdfs:subClassOf PAXSPN:80 ;
+    ilx.partOf: ILX:0793799 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793801 ;
+    ilxtr:hasIlxId ILX:0793801 ;
+    ilxtr:hasIlxPreferredId ILX:0793801 .
+
+ILX:0793802 a owl:Class ;
+    rdfs:label "S4 sacral parasympathetic nucleus" ;
+    definition: "Sacral parasympathetic nucleus located in the intermediate grey region of the spinal cord sacral level S4." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793802 ;
+    ilxtr:hasIlxId ILX:0793802 ;
+    ilxtr:hasIlxPreferredId ILX:0793802 .
+
+ILX:0793803 a owl:Class ;
+    rdfs:label "inferior hypogastric nerve plexus ganglion" ;
+    definition: "Ganglion that is part of the inferior hypogastric nerve plexus" ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:6643 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793803 ;
+    ilxtr:hasIlxId ILX:0793803 ;
+    ilxtr:hasIlxPreferredId ILX:0793803 .
+
+ILX:0793804 a owl:Class ;
+    rdfs:label "L6 Sacral parasympathetic nucleus" ;
+    definition: "Sacral parasympathetic nucleus located in the intermediate grey region of the spinal cord lumbar level 6 (rodent)." ;
+    rdfs:subClassOf PAXSPN:80 ;
+    ilx.partOf: ILX:0793799 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793804 ;
+    ilxtr:hasIlxId ILX:0793804 ;
+    ilxtr:hasIlxPreferredId ILX:0793804 .
+
+ILX:0793805 a owl:Class ;
+    rdfs:label "S1 sacral parasympathetic nucleus" ;
+    definition: "Sacral parasympathetic nucleus that is located in the intermediate grey region of the spinal cord level S1." ;
+    rdfs:subClassOf PAXSPN:80 ;
+    ilx.partOf: ILX:0793799 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793805 ;
+    ilxtr:hasIlxId ILX:0793805 ;
+    ilxtr:hasIlxPreferredId ILX:0793805 .
+
+ILX:0793809 a owl:Class ;
+    rdfs:label "cavernous nerve of clitoris" ;
+    definition: "The cavernous nerves of clitoris are post-ganglionic parasympathetic nerves that facilitate clitoral erection. They arise from cell bodies in the inferior hypogastric plexus where they receive the pre-ganglionic pelvic splanchnic nerves (S2-S4) (https://en.wikipedia.org/wiki/Cavernous_nerves)" ;
+    rdfs:subClassOf FMA:65132 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793809 ;
+    ilxtr:hasIlxId ILX:0793809 ;
+    ilxtr:hasIlxPreferredId ILX:0793809 .
+
+ILX:0793811 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of seventh thoracic segment" ;
+    NIFRID:synonym "L7 Intermediolateral nucleus" ;
+    definition: "Part of intermediolateral nucleus located in the seventh thoracic spinal cord segment" ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:73915 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793811 ;
+    ilxtr:hasIlxId ILX:0793811 ;
+    ilxtr:hasIlxPreferredId ILX:0793811 .
+
+ILX:0793812 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of eighth thoracic segment" ;
+    NIFRID:synonym "T8 Intermediolateral nucleus" ;
+    definition: "Part of intermediolateral nucleus located in the eighth thoracic spinal cord segment" ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:73915 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793812 ;
+    ilxtr:hasIlxId ILX:0793812 ;
+    ilxtr:hasIlxPreferredId ILX:0793812 .
+
+ILX:0793813 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of ninth thoracic segment" ;
+    NIFRID:synonym "T9 Intermediolateral nucleus" ;
+    definition: "Part of intermediolateral nucleus located in the ninth thoracic spinal cord segment." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793813 ;
+    ilxtr:hasIlxId ILX:0793813 ;
+    ilxtr:hasIlxPreferredId ILX:0793813 .
+
+ILX:0793814 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of tenth thoracic segment" ;
+    NIFRID:synonym "T10 Intermediolateral nucleus" ;
+    definition: "Part of intermediolateral nucleus located in the tenth thoracic spinal cord segment." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:73915 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793814 ;
+    ilxtr:hasIlxId ILX:0793814 ;
+    ilxtr:hasIlxPreferredId ILX:0793814 .
+
+ILX:0793815 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of eleventh thoracic segment" ;
+    NIFRID:synonym "InT11 termediolateral nucleus" ;
+    definition: "Part of Intermediolateral nucleus located in the eleventh thoracic spinal cord segment." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:73915 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793815 ;
+    ilxtr:hasIlxId ILX:0793815 ;
+    ilxtr:hasIlxPreferredId ILX:0793815 .
+
+ILX:0793816 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of twelfth thoracic segment" ;
+    definition: "Part of intermediolateral nucleus located in the twelfth thoracic spinal cord segment." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793816 ;
+    ilxtr:hasIlxId ILX:0793816 ;
+    ilxtr:hasIlxPreferredId ILX:0793816 .
+
+ILX:0793817 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of thirteenth thoracic segment" ;
+    NIFRID:synonym "T13 intermediolateral nucleus" ;
+    definition: "Part of intermediolateral nucleus located in the thirteenth thoracic spinal cord segment." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793817 ;
+    ilxtr:hasIlxId ILX:0793817 ;
+    ilxtr:hasIlxPreferredId ILX:0793817 .
+
+ILX:0793818 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of first lumbar segment" ;
+    definition: "Part of Intermediolateral nucleus located in the first lumbar spinal cord segment." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:73915 ;
+    ILX:0739239 "True" ;
+    ILX:0777130 "SAWG" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793818 ;
+    ilxtr:hasIlxId ILX:0793818 ;
+    ilxtr:hasIlxPreferredId ILX:0793818 .
+
+ILX:0793819 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of second lumbar segment" ;
+    definition: "Part of Intermediolateral nucleus located in the second lumbar spinal cord segment" ;
+    rdfs:subClassOf FMA:62955 ;
+    ilx.partOf: FMA:73915 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793819 ;
+    ilxtr:hasIlxId ILX:0793819 ;
+    ilxtr:hasIlxPreferredId ILX:0793819 .
+
+ILX:0793820 a owl:Class ;
+    rdfs:label "Intermediolateral nucleus of third lumbar segment" ;
+    NIFRID:synonym "L3 intermediolateral nucleus" ;
+    definition: "Part of Intermediolateral nucleus located in the third lumbar spinal cord segment. Not always present." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793820 ;
+    ilxtr:hasIlxId ILX:0793820 ;
+    ilxtr:hasIlxPreferredId ILX:0793820 .
+
+ILX:0793821 a owl:Class ;
+    rdfs:label "prevertebral sympathetic ganglion in abdominal aortic plexus" ;
+    NIFRID:synonym "abdominal aortic plexus prevertebral sympathetic ganglion" ;
+    definition: "A prevertebral sympathetic ganglion anterior to the vertebral column in the abdominal aortic plexus, normally located at the base of major branches of the abdominal aorta." ;
+    rdfs:subClassOf FMA:62955 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793821 ;
+    ilxtr:hasIlxId ILX:0793821 ;
+    ilxtr:hasIlxPreferredId ILX:0793821 .
+
+ILX:0793822 a owl:Class ;
+    rdfs:label "Superior ovarian nerve" ;
+    NIFRID:synonym "SON" ;
+    definition: "Sympathetic postganglionic nerve that innervates the rat ovary, the other being the ovarian plexus nerve. . The SON originates from the celiac–superior mesenteric ganglia; runs together with the suspensory ligament and predominantly innervates steroidogenic cells, particularly the theca and interstitial cells; and provides the ovary with NE, NPY, and VIP." ;
+    rdfs:subClassOf FMA:65132 ;
+    ILX:0739239 "True" ;
+    ILX:0777130 <https://doi.org/10.3389/fphys.2018.0114> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793822 ;
+    ilxtr:hasIlxId ILX:0793822 ;
+    ilxtr:hasIlxPreferredId ILX:0793822 .
+
+ILX:0793823 a owl:Class ;
+    rdfs:label "major pelvic ganglion" ;
+    NIFRID:synonym "MPG",
+        "pelvic ganglion" ;
+    definition: "The bilateral major pelvic ganglia are locations of postganglionic parasympathetic and sympathetic neurons innervating pelvic organs of rodents; the functionally equivalent structure in humans is the inferior hypogastric plexus, although humans and other larger species also have intramural parasympathetic ganglia in the walls of the organs" ;
+    rdfs:subClassOf FMA:5884 ;
+    ILX:0739239 "True" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793823 ;
+    ilxtr:hasIlxId ILX:0793823 ;
+    ilxtr:hasIlxPreferredId ILX:0793823 .
+
+ILX:0793833 a owl:Class ;
+    rdfs:label "ovarian nerve plexus parasympathetic ganglion" ;
+    definition: "A parasympathetic ganglion located in the ovarian nerve plexus" ;
+    rdfs:subClassOf FMA:5884 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793833 ;
+    ilxtr:hasIlxId ILX:0793833 ;
+    ilxtr:hasIlxPreferredId ILX:0793833 .
+
+ILX:0793834 a owl:Class ;
+    rdfs:label "accessory pelvic ganglion" ;
+    definition: """One of a cluster a cluster of very small
+ganglia, the accessory ganglia, which are considered to
+be functionally identical to the major pelvic ganglia, except that they provide little innervation of non-reproductive targets (Keast, Behavioural Brain Research 105 (1999) 81–92).""" ;
+    rdfs:subClassOf FMA:5884 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0793834 ;
+    ilxtr:hasIlxId ILX:0793834 ;
+    ilxtr:hasIlxPreferredId ILX:0793834 .
+
+NCBITaxon:2759 a owl:Class ;
+    rdfs:label "Eukaryota" ;
+    NIFRID:synonym "Eucaryotae",
+        "eucaryotes",
+        "Eukarya",
+        "eukaryote" ;
+    definition: "An organism whose cells contain complex structures enclosed within membranes. Almost all species of large organisms are eukaryotes, including animals, plants and fungi, although most species of eukaryotic protists are microorganisms. The defining membrane-bound structure that sets eukaryotic cells apart from prokaryotic cells is the nucleus. The presence of a nucleus gives eukaryotes their name, which comes from the Greek ευ (eu, \"good\", \"noble\" & \"true\") and κάρυον (karyon, \"nut\" & \"kernel\"). Most eukaryotic cells contain other membrane-bound organelles such as mitochondria, chloroplasts and the Golgi apparatus. (Wikipedia)" ;
+    rdfs:subClassOf BIRNLEX:2 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_399 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:399,
+        ILX:0103976,
+        NCBITaxon:2759 ;
+    ilxtr:hasExternalId BIRNLEX:399,
+        NCBITaxon:2759 ;
+    ilxtr:hasIlxId ILX:0103976 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:2759 .
+
+NCBITaxon:6072 a owl:Class ;
+    rdfs:label "Eumetazoa" ;
+    rdfs:subClassOf NCBITaxon:33208 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_569 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:569,
+        ILX:0103978,
+        NCBITaxon:6072 ;
+    ilxtr:hasExternalId BIRNLEX:569,
+        NCBITaxon:6072 ;
+    ilxtr:hasIlxId ILX:0103978 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:6072 .
+
+NCBITaxon:7711 a owl:Class ;
+    rdfs:label "Chordata" ;
+    rdfs:subClassOf NCBITaxon:33511 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_589 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:589,
+        GBIF:44,
+        ILX:0102135,
+        NCBITaxon:7711 ;
+    ilxtr:hasExternalId BIRNLEX:589,
+        GBIF:44,
+        NCBITaxon:7711 ;
+    ilxtr:hasIlxId ILX:0102135 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:7711 .
+
+NCBITaxon:7742 a owl:Class ;
+    rdfs:label "Vertebrata" ;
+    rdfs:subClassOf NCBITaxon:89593 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_212 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:212,
+        ILX:0112412,
+        NCBITaxon:7742 ;
+    ilxtr:hasExternalId BIRNLEX:212,
+        NCBITaxon:7742 ;
+    ilxtr:hasIlxId ILX:0112412 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:7742 .
+
+NCBITaxon:7776 a owl:Class ;
+    rdfs:label "Gnathostomata" ;
+    rdfs:subClassOf NCBITaxon:7742 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_201 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:201,
+        ILX:0104698,
+        NCBITaxon:7776 ;
+    ilxtr:hasExternalId BIRNLEX:201,
+        NCBITaxon:7776 ;
+    ilxtr:hasIlxId ILX:0104698 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:7776 .
+
+NCBITaxon:8287 a owl:Class ;
+    rdfs:label "Sarcopterygii" ;
+    rdfs:subClassOf NCBITaxon:117571 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_182 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:182,
+        ILX:0110340,
+        NCBITaxon:8287 ;
+    ilxtr:hasExternalId BIRNLEX:182,
+        NCBITaxon:8287 ;
+    ilxtr:hasIlxId ILX:0110340 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:8287 .
+
+NCBITaxon:9347 a owl:Class ;
+    rdfs:label "Eutheria" ;
+    NIFRID:synonym "Placentalia" ;
+    rdfs:subClassOf NCBITaxon:32525 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_605 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:605,
+        ILX:0103988,
+        NCBITaxon:9347 ;
+    ilxtr:hasExternalId BIRNLEX:605,
+        NCBITaxon:9347 ;
+    ilxtr:hasIlxId ILX:0103988 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:9347 .
 
 NCBITaxon:9821 a owl:Class ;
     rdfs:label "Suidae" ;
@@ -10085,6 +11746,202 @@ NCBITaxon:9825 a owl:Class ;
     ilxtr:hasIlxId ILX:0739770 ;
     ilxtr:hasIlxPreferredId NCBITaxon:9825 .
 
+NCBITaxon:32523 a owl:Class ;
+    rdfs:label "Tetrapoda" ;
+    rdfs:subClassOf NCBITaxon:8287 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_387 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:387,
+        ILX:0111643,
+        NCBITaxon:32523 ;
+    ilxtr:hasExternalId BIRNLEX:387,
+        NCBITaxon:32523 ;
+    ilxtr:hasIlxId ILX:0111643 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:32523 .
+
+NCBITaxon:32524 a owl:Class ;
+    rdfs:label "Amniota" ;
+    rdfs:subClassOf NCBITaxon:32523 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_264 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:264,
+        ILX:0100551,
+        NCBITaxon:32524 ;
+    ilxtr:hasExternalId BIRNLEX:264,
+        NCBITaxon:32524 ;
+    ilxtr:hasIlxId ILX:0100551 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:32524 .
+
+NCBITaxon:32525 a owl:Class ;
+    rdfs:label "Theria" ;
+    rdfs:subClassOf NCBITaxon:40674 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_485 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:485,
+        ILX:0111679,
+        NCBITaxon:32525 ;
+    ilxtr:hasExternalId BIRNLEX:485,
+        NCBITaxon:32525 ;
+    ilxtr:hasIlxId ILX:0111679 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:32525 .
+
+NCBITaxon:33208 a owl:Class ;
+    rdfs:label "Metazoa" ;
+    NIFRID:synonym "Animalia" ;
+    rdfs:subClassOf NCBITaxon:2759 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_561 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:561,
+        GBIF:100351207,
+        ILX:0106844,
+        NCBITaxon:33208 ;
+    ilxtr:hasExternalId BIRNLEX:561,
+        GBIF:100351207,
+        NCBITaxon:33208 ;
+    ilxtr:hasIlxId ILX:0106844 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:33208 .
+
+NCBITaxon:33213 a owl:Class ;
+    rdfs:label "Bilateria" ;
+    rdfs:subClassOf NCBITaxon:6072 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_610 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:610,
+        ILX:0101278,
+        NCBITaxon:33213 ;
+    ilxtr:hasExternalId BIRNLEX:610,
+        NCBITaxon:33213 ;
+    ilxtr:hasIlxId ILX:0101278 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:33213 .
+
+NCBITaxon:33316 a owl:Class ;
+    rdfs:label "Coelomata" ;
+    rdfs:subClassOf NCBITaxon:33213 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_606 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:606,
+        ILX:0102337,
+        NCBITaxon:33316 ;
+    ilxtr:hasExternalId BIRNLEX:606,
+        NCBITaxon:33316 ;
+    ilxtr:hasIlxId ILX:0102337 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:33316 .
+
+NCBITaxon:33511 a owl:Class ;
+    rdfs:label "Deuterostomia" ;
+    rdfs:subClassOf NCBITaxon:33316 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_272 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:272,
+        ILX:0103158,
+        NCBITaxon:33511 ;
+    ilxtr:hasExternalId BIRNLEX:272,
+        NCBITaxon:33511 ;
+    ilxtr:hasIlxId ILX:0103158 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:33511 .
+
+NCBITaxon:35497 a owl:Class ;
+    rdfs:label "Suina" ;
+    NIFRID:synonym "even-toed ungulates" ;
+    definition: "Infraorder of cetartiodactyla" ;
+    rdfs:subClassOf NCBITaxon:91561 ;
+    ilx.hasDbXref: <http://neurolex.org/wiki/NCBITaxon:35497> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0111244,
+        NCBITaxon:35497 ;
+    ilxtr:hasExternalId NCBITaxon:35497 ;
+    ilxtr:hasIlxId ILX:0111244 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:35497 .
+
+NCBITaxon:40674 a owl:Class ;
+    rdfs:label "Mammal" ;
+    NIFRID:synonym "Mammalia" ;
+    rdfs:subClassOf NCBITaxon:32524 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_252 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:252,
+        GBIF:135316337,
+        ILX:0106498,
+        NCBITaxon:40674 ;
+    ilxtr:hasExternalId BIRNLEX:252,
+        GBIF:135316337,
+        NCBITaxon:40674 ;
+    ilxtr:hasIlxId ILX:0106498 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:40674 .
+
+NCBITaxon:89593 a owl:Class ;
+    rdfs:label "Craniata" ;
+    rdfs:subClassOf NCBITaxon:7711 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_222 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:222,
+        ILX:0102612,
+        NCBITaxon:89593 ;
+    ilxtr:hasExternalId BIRNLEX:222,
+        NCBITaxon:89593 ;
+    ilxtr:hasIlxId ILX:0102612 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:89593 .
+
+NCBITaxon:91561 a owl:Class ;
+    rdfs:label "Cetartiodactyla" ;
+    rdfs:subClassOf NCBITaxon:314145 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_517 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:517,
+        ILX:0102023,
+        NCBITaxon:91561 ;
+    ilxtr:hasExternalId BIRNLEX:517,
+        NCBITaxon:91561 ;
+    ilxtr:hasIlxId ILX:0102023 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:91561 .
+
+NCBITaxon:117570 a owl:Class ;
+    rdfs:label "Teleostomi" ;
+    rdfs:subClassOf NCBITaxon:7776 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_193 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:193,
+        ILX:0111564,
+        NCBITaxon:117570 ;
+    ilxtr:hasExternalId BIRNLEX:193,
+        NCBITaxon:117570 ;
+    ilxtr:hasIlxId ILX:0111564 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:117570 .
+
+NCBITaxon:117571 a owl:Class ;
+    rdfs:label "Euteleostomi" ;
+    rdfs:subClassOf NCBITaxon:117570 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_188 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:188,
+        ILX:0103987,
+        NCBITaxon:117571 ;
+    ilxtr:hasExternalId BIRNLEX:188,
+        NCBITaxon:117571 ;
+    ilxtr:hasIlxId ILX:0103987 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:117571 .
+
+NCBITaxon:314145 a owl:Class ;
+    rdfs:label "Laurasiatheria" ;
+    rdfs:subClassOf NCBITaxon:9347 ;
+    ilx.hasDbXref: NLXWIKI:birnlex_496 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId BIRNLEX:496,
+        ILX:0106143,
+        NCBITaxon:314145 ;
+    ilxtr:hasExternalId BIRNLEX:496,
+        NCBITaxon:314145 ;
+    ilxtr:hasIlxId ILX:0106143 ;
+    ilxtr:hasIlxPreferredId NCBITaxon:314145 .
+
+NLX:62707 a owl:Class ;
+    rdfs:label "Brain Subdivisions based on automated term selection" ;
+    ilxtr:hasExistingId ILX:0101443,
+        NLX:62707 ;
+    ilxtr:hasExternalId NLX:62707 ;
+    ilxtr:hasIlxId ILX:0101443 ;
+    ilxtr:hasIlxPreferredId NLX:62707 .
+
 NLX:64503 a owl:Class ;
     rdfs:label "CUMBO term" ;
     ilxtr:hasExistingId ILX:0102661,
@@ -10092,6 +11949,23 @@ NLX:64503 a owl:Class ;
     ilxtr:hasExternalId NLX:64503 ;
     ilxtr:hasIlxId ILX:0102661 ;
     ilxtr:hasIlxPreferredId NLX:64503 .
+
+NLX:70428 a owl:Class ;
+    rdfs:label "Dorsal pons" ;
+    rdfs:subClassOf NLX:62707 ;
+    ilx.hasDbXref: NLXWIKI:nlx_70428 ;
+    ilx.partOf: FMA:67943 ;
+    ILX:0381449 "PMID:1262547",
+        "PMID:6619341",
+        "PMID:6715573",
+        "PMID:14566941",
+        "PMID:20187136" ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0103467,
+        NLX:70428 ;
+    ilxtr:hasExternalId NLX:70428 ;
+    ilxtr:hasIlxId ILX:0103467 ;
+    ilxtr:hasIlxPreferredId NLX:70428 .
 
 NLX:143568 a owl:Class ;
     rdfs:label "Thyroarytenoid muscle" ;
@@ -10131,8 +12005,31 @@ NLX:158477 a owl:Class ;
     ilxtr:hasIlxId ILX:0101999 ;
     ilxtr:hasIlxPreferredId NLX:158477 .
 
+PATO:0001196 a owl:Class ;
+    rdfs:label "Ventral to" ;
+    ilxtr:hasExistingId ILX:0112359,
+        PATO:0001196 ;
+    ilxtr:hasExternalId PATO:0001196 ;
+    ilxtr:hasIlxId ILX:0112359 ;
+    ilxtr:hasIlxPreferredId PATO:0001196 .
+
+PATO:0001233 a owl:Class ;
+    rdfs:label "Dorsal to" ;
+    ilxtr:hasExistingId ILX:0103492,
+        PATO:0001233 ;
+    ilxtr:hasExternalId PATO:0001233 ;
+    ilxtr:hasIlxId ILX:0103492 ;
+    ilxtr:hasIlxPreferredId PATO:0001233 .
+
+PATO:0001238 a owl:Class ;
+    rdfs:label "Quality of related physical entities" ;
+    ilxtr:hasExistingId ILX:0100131,
+        PATO:0001238 ;
+    ilxtr:hasExternalId PATO:0001238 ;
+    ilxtr:hasIlxId ILX:0100131 ;
+    ilxtr:hasIlxPreferredId PATO:0001238 .
+
 PAXSPN:23 a owl:Class ;
-    rdfs:label "dorsolateral fasciculus (paxspn)" ;
     NIFRID:synonym "DLF",
         "Dorsolateral fasciculus",
         "dorsolateral fasciculus (lissauer)",
@@ -10149,6 +12046,7 @@ PAXSPN:23 a owl:Class ;
     ILX:0739239 "True" ;
     ILX:0778161 PAXSPN: ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "dorsolateral fasciculus (paxspn)" ;
     ilxtr:hasExistingId ILX:0772919,
         PAXSPN:23 ;
     ilxtr:hasIlxId ILX:0772919 ;
@@ -10156,7 +12054,6 @@ PAXSPN:23 a owl:Class ;
     ilxtr:includedForSPARCUnder FMA:9903 .
 
 PAXSPN:65 a owl:Class ;
-    rdfs:label "lumbar dorsal commissural nucleus (paxspn)" ;
     NIFRID:synonym "lumbar dorsal commissural nucleus",
         "lumbar dorsal commissural nucleus (paxspn)" ;
     NIFRID:abbrev "LDCom" ;
@@ -10166,6 +12063,7 @@ PAXSPN:65 a owl:Class ;
     ILX:0739239 "True" ;
     ILX:0778161 PAXSPN: ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "lumbar dorsal commissural nucleus (paxspn)" ;
     ilxtr:hasExistingId ILX:0784294,
         PAXSPN:65 ;
     ilxtr:hasIlxId ILX:0784294 ;
@@ -10173,7 +12071,6 @@ PAXSPN:65 a owl:Class ;
     ilxtr:includedForSPARCUnder FMA:7647 .
 
 PAXSPN:79 a owl:Class ;
-    rdfs:label "sacral dorsal commissural nucleus (paxspn)" ;
     NIFRID:synonym "sacral dorsal commissural nucleus",
         "sacral dorsal commissural nucleus (paxspn)" ;
     NIFRID:abbrev "SDCom" ;
@@ -10181,11 +12078,23 @@ PAXSPN:79 a owl:Class ;
     ILX:0739239 "True" ;
     ILX:0778161 PAXSPN: ;
     ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "sacral dorsal commissural nucleus (paxspn)" ;
     ilxtr:hasExistingId ILX:0784250,
         PAXSPN:79 ;
     ilxtr:hasIlxId ILX:0784250 ;
     ilxtr:hasIlxPreferredId PAXSPN:79 ;
     ilxtr:includedForSPARCUnder FMA:7647 .
+
+PAXSPN:80 a owl:Class ;
+    NIFRID:abbrev "sacral parasympathetic nucleus (paxspn)",
+        "SPSy" ;
+    ILX:0778161 PAXSPN: ;
+    ilxr:type ilx.type:term ;
+    ilxtr:deprecatedLabel "sacral parasympathetic nucleus" ;
+    ilxtr:hasExistingId ILX:0784305,
+        PAXSPN:80 ;
+    ilxtr:hasIlxId ILX:0784305 ;
+    ilxtr:hasIlxPreferredId PAXSPN:80 .
 
 SCR:018709 a owl:Class ;
     rdfs:label "SPARC Anatomical Working Group" ;
@@ -10207,6 +12116,26 @@ UBERON:0000073 a owl:Class ;
         UBERON:0000073 ;
     ilxtr:hasIlxId ILX:0109857 ;
     ilxtr:hasIlxPreferredId UBERON:0000073 .
+
+UBERON:0000122 a owl:Class ;
+    rdfs:label "neuron projection bundle" ;
+    definition: "A fasciculated bundle of neuron projections (GO:0043005), largely or completely lacking synapses." ;
+    rdfs:subClassOf FMA:83115 ;
+    ilx.anno.hasExactSynonym: "funiculus",
+        "nerve fiber bundle",
+        "neural fiber bundle" ;
+    ilx.hasDbXref: "CARO:0001001",
+        "FBbt:00005099",
+        NLX:147821 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0726087,
+        UBERON:0000122 ;
+    ilxtr:hasExternalId UBERON:0000122 ;
+    ilxtr:hasIlxId ILX:0726087 ;
+    ilxtr:hasIlxPreferredId UBERON:0000122 ;
+    oboInOwl:hasExactSynonym "funiculus",
+        "nerve fiber bundle",
+        "neural fiber bundle" .
 
 UBERON:0001585 a owl:Class ;
     rdfs:label "anterior vena cava" ;
@@ -10263,6 +12192,27 @@ UBERON:0004295 a owl:Class ;
     ilxtr:hasExternalId UBERON:0004295 ;
     ilxtr:hasIlxId ILX:0731729 ;
     ilxtr:hasIlxPreferredId UBERON:0004295 .
+
+UBERON:0004820 a owl:Class ;
+    rdfs:label "bile duct epithelium" ;
+    definition: "Any epithelium that lines one of the bile ducts." ;
+    ilx.anno.hasExactSynonym: "biliary duct epithelium",
+        "epithelium of bile duct",
+        "epithelium of biliary duct" ;
+    ilx.hasDbXref: "BTO:0000417",
+        "MA:0001629",
+        "NCIT:C43616",
+        "UMLS:C1711208",
+        <http://linkedlifedata.com/resource/umls/id/C1711208> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0736131,
+        UBERON:0004820 ;
+    ilxtr:hasExternalId UBERON:0004820 ;
+    ilxtr:hasIlxId ILX:0736131 ;
+    ilxtr:hasIlxPreferredId UBERON:0004820 ;
+    oboInOwl:hasExactSynonym "biliary duct epithelium",
+        "epithelium of bile duct",
+        "epithelium of biliary duct" .
 
 UBERON:0004851 a owl:Class ;
     rdfs:label "aorta endothelium" ;
@@ -10354,6 +12304,17 @@ UBERON:0006766 a owl:Class ;
     ilxtr:includedForSPARCUnder FMA:7088 ;
     oboInOwl:hasExactSynonym "right superior vena cava" .
 
+UBERON:0007652 a owl:Class ;
+    rdfs:label "esophageal sphincter" ;
+    definition: "A sphincter that is part of an esophagus." ;
+    ilx.hasDbXref: <http://www.snomedbrowser.com/Codes/Details/277765007> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0727368,
+        UBERON:0007652 ;
+    ilxtr:hasExternalId UBERON:0007652 ;
+    ilxtr:hasIlxId ILX:0727368 ;
+    ilxtr:hasIlxPreferredId UBERON:0007652 .
+
 UBERON:0009030 a owl:Class ;
     rdfs:label "left pulmonary vein" ;
     definition: "Vein that drains left lung and returns blood to the heart." ;
@@ -10411,6 +12372,23 @@ UBERON:0011776 a owl:Class ;
     ilxtr:hasIlxPreferredId UBERON:0011776 ;
     ilxtr:includedForSPARCUnder FMA:9903 ;
     oboInOwl:hasBroadSynonym "spinal cord dorsal commissural nucleus" .
+
+UBERON:0011929 a owl:Class ;
+    rdfs:label "postganglionic parasympathetic fiber" ;
+    definition: "A cholinergic axonal fiber projecting from a parasympathetic ganglion to an effector organ" ;
+    ilx.anno.hasRelatedSynonym: "parasympathetic postganglionic fiber" ;
+    ilx.hasDbXref: "MESH:A08.663.542.100.700",
+        "NCIT:C12649",
+        "UMLS:C0206252",
+        <http://en.wikipedia.org/wiki/Postganglionic_fibers>,
+        <http://linkedlifedata.com/resource/umls/id/C0206252> ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0732293,
+        UBERON:0011929 ;
+    ilxtr:hasExternalId UBERON:0011929 ;
+    ilxtr:hasIlxId ILX:0732293 ;
+    ilxtr:hasIlxPreferredId UBERON:0011929 ;
+    oboInOwl:hasRelatedSynonym "parasympathetic postganglionic fiber" .
 
 UBERON:0012453 a owl:Class ;
     rdfs:label "nerve ending" ;
@@ -10536,6 +12514,18 @@ UBERON:8410063 a owl:Class ;
     ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
 
 [] a owl:Axiom ;
+    owl:annotatedSource ILX:0793822 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "SON" ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
+
+[] a owl:Axiom ;
+    owl:annotatedSource ILX:0793823 ;
+    owl:annotatedProperty NIFRID:synonym ;
+    owl:annotatedTarget "MPG" ;
+    ilxtr:synonymType <http://uri.interlex.org/tgbugs/uris/readable/synonyms/abbreviation> .
+
+[] a owl:Axiom ;
     owl:annotatedSource NLX:158477 ;
     owl:annotatedProperty NIFRID:synonym ;
     owl:annotatedTarget "CSA" ;
@@ -10562,4 +12552,4 @@ ILX:0793177 a ilxr:TermSet ;
     ilxtr:hasIlxId ILX:0793177 ;
     ilxtr:hasIlxPreferredId ILX:0793177 .
 
-### Serialized using the ttlser deterministic serializer v1.2.0
+### Serialized using the ttlser deterministic serializer v1.2.1
