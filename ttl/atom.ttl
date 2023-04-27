@@ -1,14 +1,19 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
 @prefix atom: <http://uri.interlex.org/tgbugs/uris/readable/atlas/> .
-@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix editorNote: <http://purl.obolibrary.org/obo/IAO_0000116> .
 @prefix hasMember: <http://purl.obolibrary.org/obo/RO_0002351> .
 @prefix hasPart: <http://purl.obolibrary.org/obo/BFO_0000051> .
 @prefix ILX: <http://uri.interlex.org/base/ilx_> .
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix MIRO: <http://uri.interlex.org/MIRO/uris/readable/> .
 @prefix NCBITaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix partOf: <http://purl.obolibrary.org/obo/BFO_0000050> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
@@ -16,8 +21,41 @@
 
 <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/atlas/ttl/atom.ttl> a owl:Ontology ;
     rdfs:label "Atlas Ontology Model" ;
+    dc:title "Atlas Ontology Model" ;
+    dc:description "An ontology model for anatomical atlases." ;
     rdfs:comment "Core OWL2 entities for describing anatomical atlases." ;
-    owl:versionInfo "2021-05-20" .
+    owl:versionInfo "2023-04-27" ;
+    dc:contributor "Jan G. Bjaalie - https://orcid.org/0000-0001-7899-906X",
+        "Lyuba Zehl - https://orcid.org/0000-0002-5947-9939",
+        "Maryann Martone - https://orcid.org/0000-0002-8406-3871",
+        "Timo Dickscheid - https://orcid.org/0000-0002-9051-3701" ;
+    dc:creator "Heidi Kleven - https://orcid.org/0000-0002-3710-321X",
+        "Tom Gillespie - https://orcid.org/0000-0002-7509-4801",
+        "Trygve B. Leergaard - https://orcid.org/0000-0001-5965-8470" ;
+    dcterms:license <http://spdx.org/licenses/CC-BY-4.0> ;
+    doap:audience "researchers using or creating anatomical atlases" ;
+    doap:bug-database <https://github.com/SciCrunch/NIF-Ontology/issues> ;
+    doap:GitRespository <https://github.com/SciCrunch/NIF-Ontology> ;
+    MIRO:axiom_patterns "OWL restrictions are used, however there are no general patterns that are employed at scale." ;
+    MIRO:competition <http://purl.obolibrary.org/obo/bspo.owl> ;
+    MIRO:dereferenceable_iris "`atom:' and `ilxtr:' identifiers are not currently dereferenceable, but they are planned to be." ;
+    MIRO:development_community <https://github.com/SciCrunch/NIF-Ontology> ;
+    MIRO:development_environment "Protégé, FaCT++, ELK" ;
+    MIRO:entity_deprecation_strategy "Specific ontology ids are never deprecated." ;
+    MIRO:entity_metadata_policy "`rdfs:label' should be present. Old iris that are equivalent classes may not contain a label." ;
+    MIRO:entity_naming_convention "Entities are named in English according to the technical terminology used in the field." ;
+    MIRO:evaluation "No formal external evaluation has been conducted, however external groups have applied the model to their atlases. See https://doi.org/10.1101/2023.01.22.525049" ;
+    MIRO:example_of_use <https://doi.org/10.1101/2023.01.22.525049> ;
+    MIRO:identifier_generation_policy "Identifiers should not be automatically generated. Human readable iris are created as needed." ;
+    MIRO:knowledge_acquisition_methodology <https://doi.org/10.1101/2023.01.22.525049> ;
+    MIRO:knowledge_representation_language <http://www.w3.org/2002/07/owl> ;
+    MIRO:methodological_framework <https://doi.org/10.1101/2023.01.22.525049> ;
+    MIRO:need "There is a need to establish a minimal model for anatomical atlases for use in information systems. There is also a need to establish a shared vocabulary to facilitate communication between groups that are creating anatomical atlases that use slightly different words to describe the same things. Finally there is a need for such a model to provide a foundation for documenting the criteria used in the creation and versioning of atlases." ;
+    MIRO:scope_and_coverage "Scope: components of anatomical atlases, their parts, and metadata. Coverage: AtOM provides a core model for describing anatomical atlases." ;
+    MIRO:source_knowledge_location <https://doi.org/10.1101/2023.01.22.525049> ;
+    MIRO:sustainability_plan "AtOM is maintained as part of the NIF-Ontology." ;
+    MIRO:testing "See https://doi.org/10.1101/2023.01.22.525049" ;
+    MIRO:versioning_policy "Development versions of the ontology are released continuously and are identified by their git commit hashes. Stable versions are released periodically and can be accessed by their git tag." .
 
 ### Object Properties
 
@@ -46,6 +84,7 @@ atom:hasUnit a owl:ObjectProperty ;
     ilxtr:hasIlxId ILX:0778136 .
 
 atom:isMeasurementOf a owl:ObjectProperty ;
+    rdfs:label "isMeasurementOf" ;
     rdfs:domain atom:Data .
 
 atom:names a owl:ObjectProperty ;
@@ -55,20 +94,25 @@ atom:names a owl:ObjectProperty ;
     ilxtr:hasIlxId ILX:0778133 .
 
 atom:transforms a owl:ObjectProperty ;
+    rdfs:label "transforms" ;
     rdfs:domain atom:TransformationRule ;
     rdfs:range atom:Space .
 
 ilxtr:labelPartOf a owl:ObjectProperty,
         owl:TransitiveProperty ;
-    rdfs:subPropertyOf BFO:0000050 .
+    rdfs:label "labelPartOf" ;
+    rdfs:subPropertyOf partOf: .
 
 ### Data Properties
 
-atom:hasResolutionX a owl:DatatypeProperty .
+atom:hasResolutionX a owl:DatatypeProperty ;
+    rdfs:label "hasResolutionX" .
 
-atom:hasResolutionY a owl:DatatypeProperty .
+atom:hasResolutionY a owl:DatatypeProperty ;
+    rdfs:label "hasResolutionY" .
 
-atom:hasResolutionZ a owl:DatatypeProperty .
+atom:hasResolutionZ a owl:DatatypeProperty ;
+    rdfs:label "hasResolutionZ" .
 
 ### Classes
 
@@ -85,6 +129,7 @@ atom:Alignment a owl:Class ;
     ilxtr:localName "alignment" .
 
 atom:AnatomicalAxis a owl:Class ;
+    rdfs:label "anatomical axis" ;
     definition: "an anatomical axis, e.g. rostral caudal, dorsal ventral, etc. is composed of two colinear and opposed anatomical directions" ;
     rdfs:subClassOf atom:Axis .
 
@@ -119,6 +164,7 @@ atom:AnatomicalDataset a owl:Class ;
     ilxtr:localName "anatomical dataset" .
 
 atom:AnatomicalDirection a owl:Class ;
+    rdfs:label "anatomical direction" ;
     rdfs:subClassOf atom:Direction .
 
 atom:Anchoring a owl:Class ;
@@ -165,12 +211,14 @@ atom:AnnotationSet a owl:Class ;
     ilxtr:localName "annotation set" .
 
 atom:Anterior a owl:Class ;
+    rdfs:label "anterior" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
             owl:someValuesFrom atom:Posterior ] .
 
 atom:AnteriorPosteriorAxis a owl:Class ;
+    rdfs:label "anterior posterior axis" ;
     rdfs:subClassOf atom:AnatomicalAxis,
         [ a owl:Restriction ;
             owl:onProperty atom:hasDirection ;
@@ -205,15 +253,18 @@ atom:Atlas a owl:Class ;
     ilxtr:localName "atlas" .
 
 atom:Axis a owl:Class ;
+    rdfs:label "axis" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty atom:hasDirection ;
             owl:someValuesFrom atom:Direction ;
             owl:cardinality 2 ] .
 
 atom:AxisDirectionMatrix a owl:Class ;
+    rdfs:label "axis direction matrix" ;
     rdfs:subClassOf atom:Matrix .
 
 atom:AxisOrigin a owl:Class ;
+    rdfs:label "axis origin" ;
     rdfs:subClassOf atom:Vector ;
     editorNote: "" .
 
@@ -231,6 +282,7 @@ atom:Boundary a owl:Class ;
     ilxtr:localName "boundary" .
 
 atom:Caudal a owl:Class ;
+    rdfs:label "caudal" ;
     definition: "toward the tail" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
@@ -297,9 +349,11 @@ atom:Delineation a owl:Class ;
     rdfs:subClassOf atom:Annotation ;
     ilxtr:localName "delineation" .
 
-atom:Direction a owl:Class .
+atom:Direction a owl:Class ;
+    rdfs:label "direction" .
 
 atom:Dorsal a owl:Class ;
+    rdfs:label "dorsal" ;
     definition: "toward the back or toward the top of the skull in organisms where development has twisted things (humans)" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
@@ -307,6 +361,7 @@ atom:Dorsal a owl:Class ;
             owl:someValuesFrom atom:Ventral ] .
 
 atom:DorsalVentralAxis a owl:Class ;
+    rdfs:label "dorsal ventral axis" ;
     definition: "the anatomical axis from back to belly" ;
     rdfs:subClassOf atom:AnatomicalAxis,
         [ a owl:Restriction ;
@@ -333,12 +388,14 @@ atom:ImageSpace a owl:Class ;
     ilxtr:localName "image space" .
 
 atom:Inferior a owl:Class ;
+    rdfs:label "inferior" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
             owl:someValuesFrom atom:Superior ] .
 
 atom:InferiorSuperiorAxis a owl:Class ;
+    rdfs:label "inferior superior axis" ;
     rdfs:subClassOf atom:AnatomicalAxis,
         [ a owl:Restriction ;
             owl:onProperty atom:hasDirection ;
@@ -363,6 +420,7 @@ atom:Landmark a owl:Class ;
     ilxtr:localName "landmark" .
 
 atom:Lateral a owl:Class ;
+    rdfs:label "lateral" ;
     definition: "direction away from the midline" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
@@ -370,12 +428,14 @@ atom:Lateral a owl:Class ;
             owl:someValuesFrom atom:Medial ] .
 
 atom:Left a owl:Class ;
+    rdfs:label "left" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
             owl:someValuesFrom atom:Right ] .
 
 atom:LeftRightAxis a owl:Class ;
+    rdfs:label "left right axis" ;
     rdfs:subClassOf atom:AnatomicalAxis,
         [ a owl:Restriction ;
             owl:onProperty atom:hasDirection ;
@@ -390,12 +450,14 @@ atom:Line a owl:Class ;
     ilxtr:localName "line" .
 
 atom:LinearRegistration a owl:Class ;
+    rdfs:label "linear registration" ;
     rdfs:subClassOf atom:Registration,
         [ a owl:Restriction ;
             owl:onProperty hasPart: ;
             owl:someValuesFrom atom:LinearTransformation ] .
 
 atom:LinearTransformation a owl:Class ;
+    rdfs:label "linear transformation" ;
     rdfs:subClassOf atom:Transformation .
 
 atom:Matrix a owl:Class ;
@@ -403,6 +465,7 @@ atom:Matrix a owl:Class ;
     ilxtr:localName "matrix" .
 
 atom:Medial a owl:Class ;
+    rdfs:label "medial" ;
     definition: "toward the midline" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
@@ -410,6 +473,7 @@ atom:Medial a owl:Class ;
             owl:someValuesFrom atom:Lateral ] .
 
 atom:MedialLateralAxis a owl:Class ;
+    rdfs:label "medial lateral axis" ;
     rdfs:subClassOf atom:AnatomicalAxis,
         [ a owl:Restriction ;
             owl:onProperty atom:hasDirection ;
@@ -419,30 +483,35 @@ atom:MedialLateralAxis a owl:Class ;
             owl:someValuesFrom atom:Medial ] .
 
 atom:NegativeX a owl:Class ;
+    rdfs:label "negative x" ;
     rdfs:subClassOf atom:SpatialDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
             owl:someValuesFrom atom:PositiveX ] .
 
 atom:NegativeY a owl:Class ;
+    rdfs:label "negative y" ;
     rdfs:subClassOf atom:SpatialDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
             owl:someValuesFrom atom:PositiveY ] .
 
 atom:NegativeZ a owl:Class ;
+    rdfs:label "negative z" ;
     rdfs:subClassOf atom:SpatialDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
             owl:someValuesFrom atom:PositiveZ ] .
 
 atom:NonLinearRegistration a owl:Class ;
+    rdfs:label "nonlinear registration" ;
     rdfs:subClassOf atom:Registration,
         [ a owl:Restriction ;
             owl:onProperty hasPart: ;
             owl:someValuesFrom atom:NonLinearTransformation ] .
 
 atom:NonLinearTransformation a owl:Class ;
+    rdfs:label "nonlinear transformation" ;
     rdfs:subClassOf atom:Transformation .
 
 atom:Orienting a owl:Class ;
@@ -467,24 +536,28 @@ atom:Point a owl:Class ;
     ilxtr:localName "point" .
 
 atom:PositiveX a owl:Class ;
+    rdfs:label "positive x" ;
     rdfs:subClassOf atom:SpatialDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
             owl:someValuesFrom atom:NegativeX ] .
 
 atom:PositiveY a owl:Class ;
+    rdfs:label "positive y" ;
     rdfs:subClassOf atom:SpatialDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
             owl:someValuesFrom atom:NegativeY ] .
 
 atom:PositiveZ a owl:Class ;
+    rdfs:label "positive z" ;
     rdfs:subClassOf atom:SpatialDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
             owl:someValuesFrom atom:NegativeZ ] .
 
 atom:Posterior a owl:Class ;
+    rdfs:label "posterior" ;
     definition: "toward the buttocks" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
@@ -535,12 +608,14 @@ atom:Resolution a owl:Class ;
     ilxtr:localName "resolution" .
 
 atom:Right a owl:Class ;
+    rdfs:label "right" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
             owl:someValuesFrom atom:Left ] .
 
 atom:Rostral a owl:Class ;
+    rdfs:label "rostral" ;
     definition: "toward the snount" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
@@ -548,6 +623,7 @@ atom:Rostral a owl:Class ;
             owl:someValuesFrom atom:Caudal ] .
 
 atom:RostralCaudalAxis a owl:Class ;
+    rdfs:label "rostral caudal axis" ;
     definition: "The snout to tail axis." ;
     rdfs:subClassOf atom:AnatomicalAxis,
         [ a owl:Restriction ;
@@ -558,12 +634,15 @@ atom:RostralCaudalAxis a owl:Class ;
             owl:someValuesFrom atom:Rostral ] .
 
 atom:Rotation a owl:Class ;
+    rdfs:label "rotation" ;
     rdfs:subClassOf atom:SpacePreservingLinearTransformation .
 
 atom:RotationMatrix a owl:Class ;
+    rdfs:label "rotation matrix" ;
     rdfs:subClassOf atom:TransformationMatrix .
 
 atom:Scaling a owl:Class ;
+    rdfs:label "scaling" ;
     rdfs:subClassOf atom:LinearTransformation .
 
 atom:Segmentation a owl:Class ;
@@ -600,15 +679,19 @@ atom:Space a owl:Class ;
     ilxtr:localName "space" .
 
 atom:SpacePreservingLinearTransformation a owl:Class ;
+    rdfs:label "space preserving linear transformation" ;
     rdfs:subClassOf atom:LinearTransformation .
 
 atom:SpatialAxis a owl:Class ;
+    rdfs:label "spatial axis" ;
     rdfs:subClassOf atom:Axis .
 
 atom:SpatialDirection a owl:Class ;
+    rdfs:label "spatial direction" ;
     rdfs:subClassOf atom:Direction .
 
 atom:Superior a owl:Class ;
+    rdfs:label "superior" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
             owl:onProperty atom:hasOppositeDirection ;
@@ -659,9 +742,11 @@ atom:TransformationRule a owl:Class ;
     ilxtr:localName "transformation rule" .
 
 atom:Translation a owl:Class ;
+    rdfs:label "translation" ;
     rdfs:subClassOf atom:SpacePreservingLinearTransformation .
 
 atom:UnorientedSpace a owl:Class ;
+    rdfs:label "unoriented space" ;
     definition: "A mathematical space that is not equipped with an explicit mapping between spatial and anatomical axes. In such spaces it is not possible to determine whether an anatomical dataset is correctly oriented even if that dataset has been annotated with landmarks that can be used to determine the anatomical axes." ;
     ilxtr:localName "unoriented space" .
 
@@ -670,6 +755,7 @@ atom:Vector a owl:Class ;
     ilxtr:localName "vector" .
 
 atom:Ventral a owl:Class ;
+    rdfs:label "ventral" ;
     definition: "toward the belly" ;
     rdfs:subClassOf atom:AnatomicalDirection,
         [ a owl:Restriction ;
@@ -677,6 +763,7 @@ atom:Ventral a owl:Class ;
             owl:someValuesFrom atom:Dorsal ] .
 
 atom:XAxis a owl:Class ;
+    rdfs:label "x axis" ;
     rdfs:subClassOf atom:SpatialAxis,
         [ a owl:Restriction ;
             owl:onProperty atom:hasDirection ;
@@ -686,6 +773,7 @@ atom:XAxis a owl:Class ;
             owl:someValuesFrom atom:PositiveX ] .
 
 atom:YAxis a owl:Class ;
+    rdfs:label "y axis" ;
     rdfs:subClassOf atom:SpatialAxis,
         [ a owl:Restriction ;
             owl:onProperty atom:hasDirection ;
@@ -695,6 +783,7 @@ atom:YAxis a owl:Class ;
             owl:someValuesFrom atom:PositiveY ] .
 
 atom:ZAxis a owl:Class ;
+    rdfs:label "z axis" ;
     rdfs:subClassOf atom:SpatialAxis,
         [ a owl:Restriction ;
             owl:onProperty atom:hasDirection ;
@@ -739,4 +828,4 @@ atom:AAVC-RAS a atom:AnatomicalAxisAlignmentVectorCartesian,
     atom:hasDirectionMappedToPositiveY atom:Anterior ;
     atom:hasDirectionMappedToPositiveZ atom:Superior .
 
-### Serialized using the ttlser deterministic serializer v1.2.0
+### Serialized using the ttlser deterministic serializer v1.2.1
