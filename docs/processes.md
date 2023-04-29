@@ -274,9 +274,11 @@ ontology that a maintainer or curator needs to keep up to date.
 3. https://scicrunch.org/resolver/SCR_016178 (InterLex)
 4. https://bioportal.bioontology.org/ontologies/NIFSTD
 5. https://bioportal.bioontology.org/ontologies/NIFSUBCELL
-6. https://fairsharing.org/bsg-s002584 (NeuroLex)
-7. https://fairsharing.org/bsg-s002628 (NIF Ontology)
-8. https://fairsharing.org/bsg-s002835 (subcellular)
+6. https://bioportal.bioontology.org/ontologies/NPOKB
+7. https://bioportal.bioontology.org/ontologies/ATOM
+8. https://fairsharing.org/bsg-s002584 (NeuroLex)
+9. https://fairsharing.org/bsg-s002628 (NIF Ontology)
+10. https://fairsharing.org/bsg-s002835 (subcellular)
 
 ### Other references
 1. https://www.biccn.org/tools/atlas
