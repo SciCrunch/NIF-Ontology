@@ -3,16 +3,64 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
 
+ilxtr:Ont-BTO a owl:Ontology ;
+    skos:title "Behavioral Tasks Ontology" ;
+    ilxtr:comment "an ontology for describing behavioral tasks, super duper work in progress" .
 
-ilxtr:ContivieSystem a owl:Class .
+ilxtr:Behavior a owl:Class . # subClassOf process
 
-ilxtr:SensorySystem a owl:Class .
+ilxtr:BehavioralTaskDescription a owl:Class ;  # subClassOf information artifact
+    ilxtr:comment "Reminder that the behavioral task that we are trying to describe below is not itself the description but rather the process that is to be carried out." .
 
-ilxtr:SensoryModality a owl:Class . # may not be different
-# could be stimulation of the sensory neurons using electrical, mechanical, optical, chemical
-# patrick notes that we can distinguish between sensory neurons and non-sensory neurons
-# perhaps by using bfo:function
+ilxtr:BehavioralTask a owl:Class ;
+    rdfs:subClassOf ilxtr:Behavior,
+        [ a owl:Restriction;
+          owl:onProperty ilxtr:hasProcessPart ;  # process part is likely not quite what we want?
+          owl:someValuesFrom ilxtr:StimulusComponent ],
+        [ a owl:Restriction;
+          owl:onProperty ilxtr:hasProcessPart;
+          owl:someValuesFrom ilxtr:SensoryComponent ],
+        [ a owl:Restriction;
+          owl:onProperty ilxtr:hasProcessPart;
+          owl:someValuesFrom ilxtr:NervousSystemComponent ],
+        [ a owl:Restriction;
+          owl:onProperty ilxtr:hasProcessPart;
+          owl:someValuesFrom ilxtr:MotorComponent ],
+        [ a owl:Restriction;
+          owl:onProperty ilxtr:hasProcessPart;
+          owl:someValuesFrom ilxtr:ResponseComponent ]
+ .
+
+ilxtr:BehavioralTaskComponent a owl:Class ;
+    ilxtr:comment """there is an implicit \"intended\" prepended to all these components
+because in the absence of a proper control we can't know for sure
+that e.g. a particular sensory system was indeed the sensory component
+that was used during the behavioral task""" .
+
+ilxtr:StimulusComponent a owl:Class ;
+    rdfs:subClassOf ilxtr:BehavioralTaskComponent ;
+    definition: "the part of a behavioral task that is involved in "
+.
+ilxtr:SensoryComponent a owl:Class ;
+    definition: "the part of a behavioral task that is involved in "
+    .
+ilxtr:MotorComponent a owl:Class ;
+    definition: "the part of a behavioral task that is involved in "
+    .
+ilxtr:ResponseComponent a owl:Class ;
+    definition: "the part of a behavioral task that is involved in "
+.
+ilxtr:NervousSystemComponent a owl:Class ;
+    definition: "the part of a behavioral task that is involved in "
+    .
+ilxtr:CognitiveComponent a owl:Class ;
+    definition: "the part of a behavioral task that is involved in " ;
+    ilxtr:comment "based on our other naming it seems that the CognitiveComponent is more like the NervousSystemHighLevelStructureCompoenent"
+    .
+
+# ilxtr:ProcessingComponent a owl:Class .
 
 ilxtr:StimulusModality a owl:Class .
 # could be stimulation of the NONsensory neurons using electrical, mechanical, optical, chemical
@@ -22,22 +70,16 @@ ilxtr:SimulusHighLevelStructure a owl:Class ;
     ilxtr:comment "language, visual plaid, drifting grating, gabor patches, music"
     .
 
-ilxtr:MotorResponseAnatomicalEntity a owl:Class ;
-    ilxtr:comment "some anatomical entity, hand, the muscles of the orofacial speech production system, oculomotor system, forelimb, hindlimb, locomotor, eye, hand, foot, finger" .
+ilxtr:SensorySystem a owl:Class .
 
-ilxtr:MotorResponseSystem a owl:Class ; # may not need?
-    rdfs:subClassOf ilxtr:MotorResponseAnatomicalEntity .
+ilxtr:SensoryModality a owl:Class . # may not be different
+# could be stimulation of the sensory neurons using electrical, mechanical, optical, chemical
+# patrick notes that we can distinguish between sensory neurons and non-sensory neurons
+# perhaps by using bfo:function
 
-# ilxtr:ResponseSystem a owl:Class .
-
-# ilxtr:ResponseModality a owl:Class .  # we think already captured in anatomical entity
-
-ilxtr:ResponseHighLevelStructure a owl:Class ;
-    ilxtr:comment "something that needs more processing to interpret, e.g. saying yes or no vs pressing left or right buttons; language, body language, gestures, humming melody, tapping a rythem, reaction time, startle response?, sneeze, facial expression" .
-
-
-ilxtr:BehavioralAspectMeasured a owl:Class ;
-    ilxtr:comment "reaction time, licking frequency, response correctness ratio, not going when in no go, going in go, (NOT BOLD signal), pupil dilation, blinking, corresponding to some muscle output NOT to some motor neuron output, blood pressure"
+ilxtr:CognitiveSystem a owl:Class ;
+    ilxtr:comment "is this actually NervousSystemHighLevelStructure for parallelism?"
+    .
 
 ilxtr:NervousSystemMeasurement a owl:Class ;
     ilxtr:comment "fMRI, EEG, EKG, ecog, single unit recording" .
@@ -48,6 +90,36 @@ ilxtr:NervousSystemStimulation a owl:Class ;
 # where does electrically stimulating a muscle to evoke a propreoceptive sensation fall?
 # where does inducing the patellar reflex fall?
 # startle response ?
+
+ilxtr:MotorResponseAnatomicalEntity a owl:Class ;
+    ilxtr:comment "some anatomical entity, hand, the muscles of the orofacial speech production system, oculomotor system, forelimb, hindlimb, locomotor, eye, hand, foot, finger" .
+
+ilxtr:MotorResponseSystem a owl:Class ; # may not need?
+    rdfs:subClassOf ilxtr:MotorResponseAnatomicalEntity .
+
+ilxtr:ResponseHighLevelStructure a owl:Class ;
+    ilxtr:comment "something that needs more processing to interpret, e.g. saying yes or no vs pressing left or right buttons; language, body language, gestures, humming melody, tapping a rythem, reaction time, startle response?, sneeze, facial expression" .
+
+# ilxtr:ResponseVector a owl:Class .
+ilxtr:ResponseEffector a owl:Class ; # XXX already covered by MotorResponseSystem
+    ilxtr:comment "the thing that produces the response, i.e. the muscles, NOT the end plate potential, or possibly the pen held in the hand etc. could also be actuator" .
+# ilxtr:ResponseSystem a owl:Class .
+
+# ilxtr:ResponseModality a owl:Class .  # we think already captured in anatomical entity
+
+ilxtr:ResponseMediator a owl:Class ;
+    ilxtr:comment "interverning phenomena that usually are not explicitly mentioned in the task description e.g. sound waves, photos, direct force of hand on lever, etc."
+.
+
+ilxtr:ResponseReceiver a owl:Class ;
+    # alterates ResponseDetector (seems more active in its response, want something more passive)
+    # patrick gives the broken Smoke Detector example
+    ilxtr:comment "this is the measurement device or thing, e.g. a piece of paper, or the under graduate taking notes, key is that it can be passive or active, but is usually active, is the piece of paper actually closer to the sound wave? but there is a secondary information transformation, but you do still want the first named target in the task description, for piece of paper think more checkboxes or holes punches than written responses (though of course it can mediate both)"
+.
+
+ilxtr:BehavioralAspectMeasured a owl:Class ;
+    ilxtr:comment "reaction time, licking frequency, response correctness ratio, not going when in no go, going in go, (NOT BOLD signal), pupil dilation, blinking, corresponding to some muscle output NOT to some motor neuron output, blood pressure"
+.
 
 ilxtr:Device a owl:Class .   # rig falls under here
 ilxtr:ResponseDevice a owl:Class .
