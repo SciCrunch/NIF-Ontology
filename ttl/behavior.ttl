@@ -1,0 +1,56 @@
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+
+ilxtr:ContivieSystem a owl:Class .
+
+ilxtr:SensorySystem a owl:Class .
+
+ilxtr:SensoryModality a owl:Class . # may not be different
+# could be stimulation of the sensory neurons using electrical, mechanical, optical, chemical
+# patrick notes that we can distinguish between sensory neurons and non-sensory neurons
+# perhaps by using bfo:function
+
+ilxtr:StimulusModality a owl:Class .
+# could be stimulation of the NONsensory neurons using electrical, mechanical, optical, chemical
+# this is a smaller set and sensory modality has multiple different sensing systems that can be actuated by the same modality, e.g. can feel the mechical stimulation from sound via skin and ear
+
+ilxtr:SimulusHighLevelStructure a owl:Class ;
+    ilxtr:comment "language, visual plaid, drifting grating, gabor patches, music"
+    .
+
+ilxtr:MotorResponseAnatomicalEntity a owl:Class ;
+    ilxtr:comment "some anatomical entity, hand, the muscles of the orofacial speech production system, oculomotor system, forelimb, hindlimb, locomotor, eye, hand, foot, finger" .
+
+ilxtr:MotorResponseSystem a owl:Class ; # may not need?
+    rdfs:subClassOf ilxtr:MotorResponseAnatomicalEntity .
+
+# ilxtr:ResponseSystem a owl:Class .
+
+# ilxtr:ResponseModality a owl:Class .  # we think already captured in anatomical entity
+
+ilxtr:ResponseHighLevelStructure a owl:Class ;
+    ilxtr:comment "something that needs more processing to interpret, e.g. saying yes or no vs pressing left or right buttons; language, body language, gestures, humming melody, tapping a rythem, reaction time, startle response?, sneeze, facial expression" .
+
+
+ilxtr:BehavioralAspectMeasured a owl:Class ;
+    ilxtr:comment "reaction time, licking frequency, response correctness ratio, not going when in no go, going in go, (NOT BOLD signal), pupil dilation, blinking, corresponding to some muscle output NOT to some motor neuron output, blood pressure"
+
+ilxtr:NervousSystemMeasurement a owl:Class ;
+    ilxtr:comment "fMRI, EEG, EKG, ecog, single unit recording" .
+
+ilxtr:NervousSystemStimulation a owl:Class ;
+    ilxtr:comment "direct electrical stimulation, TMS, photon simulation (optogenetics), heat based stimulation, chemical stimulation, etc." .
+# do we distingish between nervous and other? e.g. electrical stimulation of the muscles
+# where does electrically stimulating a muscle to evoke a propreoceptive sensation fall?
+# where does inducing the patellar reflex fall?
+# startle response ?
+
+ilxtr:Device a owl:Class .   # rig falls under here
+ilxtr:ResponseDevice a owl:Class .
+ilxtr:SimulationDevice a owl:Class .
+
+ilxtr:Protocol a owl:Class . # already defined elsewhere
