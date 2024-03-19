@@ -9,12 +9,36 @@ ilxtr:Ont-BTO a owl:Ontology ;
     skos:title "Behavioral Tasks Ontology" ;
     ilxtr:comment "an ontology for describing behavioral tasks, super duper work in progress" .
 
+ilxtr:hasStimulus a owl:ObjectProperty .
+# what goes here? can devices go here? like a tv, a screen, a speaker, a piezo, a thermocouple, etc.?
+# the simulus component has participant some device
+ilxtr:hasStimulusFeedback a owl:ObjectProperty .
+ilxtr:hasStimulusHighLevelStructureFeedback a owl:ObjectProperty .
+# e.g. difficulty
+ilxtr:hasHighLevelStimulusStructure a owl:ObjectProperty .
+# gratings, plaids, chirps, olfactory blends, feedback about correctness
+# has stimulus with some feedback role or something like that
+ilxtr:hasHighLevelSensory a owl:ObjectProperty .
+ilxtr:hasHighLevelMotorStructure a owl:ObjectProperty .
+# scratching, singing, language, subvocalization
+ilxtr:hasHighLevelResponse a owl:ObjectProperty .  # this one is confusing, motor + gland etc.
+ilxtr:hasHighLevelResultStructure a owl:ObjectProperty .  # this one is confusing, motor + gland etc.
+# language, things not necessarily measured, correctness?
+ilxtr:hasHighLevelTotalTaskStructure a owl:ObjectProperty .
+# closed loop, feedback about correctness, something that ties a result to a feedback stimulus
+
+# how do we simplify cases where there is a stimulus after the response that provides
+# feedback on whether the previous attempt was correct or similar, we don't want to have
+# to string multiple behaviors together
+
+
 ilxtr:Behavior a owl:Class . # subClassOf process
 
 ilxtr:BehavioralTaskDescription a owl:Class ;  # subClassOf information artifact
     ilxtr:comment "Reminder that the behavioral task that we are trying to describe below is not itself the description but rather the process that is to be carried out." .
 
 ilxtr:BehavioralTask a owl:Class ;
+    ilxtr:comment "subset of behaviors that are subjected to measurement or some scientific control or more practically, that have some information artifact that describes them that includes an agent that determines whether they are carried out correctly rather than merely observes" ;
     rdfs:subClassOf ilxtr:Behavior,
         [ a owl:Restriction;
           owl:onProperty ilxtr:hasProcessPart ;  # process part is likely not quite what we want?
@@ -27,11 +51,21 @@ ilxtr:BehavioralTask a owl:Class ;
           owl:someValuesFrom ilxtr:NervousSystemComponent ],
         [ a owl:Restriction;
           owl:onProperty ilxtr:hasProcessPart;
-          owl:someValuesFrom ilxtr:MotorComponent ],
+          owl:someValuesFrom ilxtr:MotorComponent ],  # missing non-motor (glandular) closed loop eeg etc.
         [ a owl:Restriction;
           owl:onProperty ilxtr:hasProcessPart;
-          owl:someValuesFrom ilxtr:ResponseComponent ]
+          owl:someValuesFrom ilxtr:ResponseComponent ],  # response conflates at least 3 other components
+        [ a owl:Restriction;
+          owl:onProperty ilxtr:hasProcessPart;
+          owl:someValuesFrom ilxtr:ResultComponent ]  # impact on the environment
+    # result component has participant some button (e.g.)
  .
+
+# is it just motor?
+# more saliva production (gladular activity?), if you measure total saliva volume/unit time is that in the ResponseComponent
+# more methane production/farting etc.
+# fever, thermoregulation, sweating
+# heart rate
 
 ilxtr:BehavioralTaskComponent a owl:Class ;
     ilxtr:comment """there is an implicit \"intended\" prepended to all these components
@@ -50,9 +84,11 @@ ilxtr:MotorComponent a owl:Class ;
     definition: "the part of a behavioral task that is involved in "
     .
 ilxtr:ResponseComponent a owl:Class ;
+    # change in environment caused by the behavior
     definition: "the part of a behavioral task that is involved in "
 .
 ilxtr:NervousSystemComponent a owl:Class ;
+    # nervous system not-motor-not-sensory
     definition: "the part of a behavioral task that is involved in "
     .
 ilxtr:CognitiveComponent a owl:Class ;
