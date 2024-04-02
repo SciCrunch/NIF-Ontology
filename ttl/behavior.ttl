@@ -9,7 +9,23 @@ ilxtr:Ont-BTO a owl:Ontology ;
     skos:title "Behavioral Tasks Ontology" ;
     ilxtr:comment "an ontology for describing behavioral tasks, super duper work in progress" .
 
-ilxtr:hasStimulus a owl:ObjectProperty .
+ilxtr:hasStimulus a owl:ObjectProperty ;
+    rdfs:domain ilxtr:Behavior
+    #rdfs:range continuant: ;  # XXX may also have occurants ?
+    #owl:ObjectPropertyChain (ilxtr:hasProcessPart o ilxtr:hasParticipant)
+            # could also be (hpp o hasDevice)
+    .
+
+ilxtr:some-behavior-1 a owl:NamedIndividual ;
+    ilxtr:hasProcessPart
+    [ a owl:Class ;
+      rdfs:subClassOf ilxtr:StimulusComponent;
+      ilxtr:hasParticipant ilxtr:drifting-grating-displaying-thing ] ;
+
+ilxtr:hasStimulus ilxtr:drifting-grating-displaying-thing
+    .
+
+
 # what goes here? can devices go here? like a tv, a screen, a speaker, a piezo, a thermocouple, etc.?
 # the simulus component has participant some device
 ilxtr:hasStimulusFeedback a owl:ObjectProperty .
@@ -19,10 +35,82 @@ ilxtr:hasHighLevelStimulusStructure a owl:ObjectProperty .
 # gratings, plaids, chirps, olfactory blends, feedback about correctness
 # has stimulus with some feedback role or something like that
 ilxtr:hasHighLevelSensory a owl:ObjectProperty .
-ilxtr:hasHighLevelMotorStructure a owl:ObjectProperty .
+
+ilxtr:hasMotorAnatomy a owl:ObjectProperty ;
+    ilxtr:comment """hand, shoulder, finger, vocal cords, etc.
+
+in the case that there are multiple bits of anatomy some that move
+and some that are targets, e.g. left hand scratches right shoulder
+right hand scratches left shoulder etc. the combinations are lost
+but at least we can recover this directly, also note that the
+target vs moving is not actually obvious, because sometimes the
+target is what is moved, the left shoulder can be moved to produce
+scratching by a stationary right hand, see bear scratching self on tree"""
+    .
+
+#ilxtr:hasMotorGlandSystemAnatomyThatMoves a owl:ObjectProperty ;
+    #ilxtr:comment "the right hand scratches the x" .
+
+# we need compentecy query for coding the scratching behavior case
+# ilxtr:hasMotorThing hand: shoulder: . then at least you can find it pairing isn't here
+#ilxtr:hasRelatedResponseTarget a owl:ObjectProperty .
+
+ilxtr:hasHighLevelMotorStructure a owl:ObjectProperty ;
+    ilxtr:comment """
+
+this is where the full complexity of a behavior could be described,
+so the range is a ilxtr:Behavior that is a process part of the whole behavior,
+the restriction to motor here is a bit confusing because e.g. scratching is a
+whole feedback loop behavior, not just a motor behavior, so the right way to do
+this would be to describe all the possible outcomes separately and then use
+hasProcessPart to put them together into the whole behavior?
+
+
+scratch target anatomy 1 (own nose)
+scratch target anatomy 2 (own butt)
+scratch target anatomy 3 (other nose)
+scratch target anatomy 4 (other butt)
+
+nose and butt here a auxillary anatomy that could be the target of some behavior
+
+appendage scratches target, where does this ontology draw the line
+there is also implicit nervous system feedback in this example
+"""
+    .
 # scratching, singing, language, subvocalization
 ilxtr:hasHighLevelResponse a owl:ObjectProperty .  # this one is confusing, motor + gland etc.
-ilxtr:hasHighLevelResultStructure a owl:ObjectProperty .  # this one is confusing, motor + gland etc.
+ilxtr:hasResultDetector a owl:ObjectProperty ;
+    ilxtr:comment """examples: button, investigator, microphone, whiteboard + marker, video camera
+result is 'what happened to the environment' might also call it effect? (worse?)
+we don't care about result recorder here
+
+what if there are multiple steps in processing the response and it happens off line
+after the primary data is collected?
+
+this is closer to recorder in a sense, usually modality specific
+""" ;
+    rdfs:domain ilxtr:Behavior ;
+    rdfs:range ilxtr:continuant .
+
+ilxtr:hasHighLevelResultStructure a owl:ObjectProperty ;
+    ilxtr:comment "language, interpretive dance, ..., target, go/no/go failure condition vs success, scratch, no scratch, butt scratch, nose scratch, vigorous scratch (these goe in HLMotor)"
+.  # this one is confusing, motor + gland etc.
+
+
+ilxtr:hasHighLevelResultStructureDetector a owl:ObjectProperty ;
+    # is this subPropertyOf hasResultDetector
+    ilxtr:comment """
+if we have two results say a word vs whistle
+real example nonsense word, word, syllable, non-syllable letters
+
+then we have either an investigator that is
+going to distingish them, or these days maybe some algorithmic classifier
+after a processing pipeline
+
+a microphone does not fit here because it cannot actually distingish the high level categories
+"""
+    .
+
 # language, things not necessarily measured, correctness?
 ilxtr:hasHighLevelTotalTaskStructure a owl:ObjectProperty .
 # closed loop, feedback about correctness, something that ties a result to a feedback stimulus
