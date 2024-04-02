@@ -9,20 +9,54 @@ ilxtr:Ont-BTO a owl:Ontology ;
     skos:title "Behavioral Tasks Ontology" ;
     ilxtr:comment "an ontology for describing behavioral tasks, super duper work in progress" .
 
+ilxtr:hasProcessPart a owl:ObjectProperty .
+
+ilxtr:hasStimulusProcessPart a owl:ObjectProperty ;
+    rdfs:domain ilxtr:Behavior ;
+    rdfs:range ilxtr:StimulusComponent ;
+    rdfs:subPropertyOf ilxtr:hasProcessPart .
+
+ilxtr:hasSensoryProcessPart a owl:ObjectProperty ;
+    rdfs:domain ilxtr:Behavior ;
+    rdfs:range ilxtr:SensoryComponent ;
+    rdfs:subPropertyOf ilxtr:hasProcessPart .
+
+ilxtr:hasResponseProcessPart a owl:ObjectProperty ;
+    rdfs:domain ilxtr:Behavior ;
+    # reminder: response conflates motor and result
+    rdfs:range ilxtr:ResponseComponent ;
+    rdfs:subPropertyOf ilxtr:hasProcessPart .
+
 ilxtr:hasStimulus a owl:ObjectProperty ;
-    rdfs:domain ilxtr:Behavior
-    #rdfs:range continuant: ;  # XXX may also have occurants ?
+    ilxtr:comment "a stimulus itself is usually another process?" .
+
+ilxtr:hasStimulusProducer a owl:ObjectProperty ;  # FIXME producer isn't quite right, it's more just hasStimulusParticipant ???
+    rdfs:domain ilxtr:Behavior ;
+    owl:propertyChainAxiom (
+            ilxtr:hasStimulusProcessPart
+            ilxtr:hasParticipant
+    )
     #owl:ObjectPropertyChain (ilxtr:hasProcessPart o ilxtr:hasParticipant)
             # could also be (hpp o hasDevice)
     .
 
+ilxtr:hasSensor a owl:ObjectProperty ;
+    ilxtr:comment "a biological sensor, usually an anatomical entity" ;
+    rdfs:domain ilxtr:Behavior ;
+    rdfs:range ilxtr:AnatomicalEntity ;
+    owl:propertyChainAxiom (
+            ilxtr:hasSensoryProcessPart
+            ilxtr:hasParticipant
+    )
+    .
+
 ilxtr:some-behavior-1 a owl:NamedIndividual ;
+    ilxtr:comment "old" ;
     ilxtr:hasProcessPart
     [ a owl:Class ;
       rdfs:subClassOf ilxtr:StimulusComponent;
       ilxtr:hasParticipant ilxtr:drifting-grating-displaying-thing ] ;
-
-ilxtr:hasStimulus ilxtr:drifting-grating-displaying-thing
+    ilxtr:hasStimulus ilxtr:drifting-grating-displaying-thing
     .
 
 
@@ -171,8 +205,12 @@ ilxtr:SensoryComponent a owl:Class ;
 ilxtr:MotorComponent a owl:Class ;
     definition: "the part of a behavioral task that is involved in "
     .
+ilxtr:ResultComponent a owl:Class ;
+    # this is the change in the environment
+    definition: "the part of a behavioral task that is involved in "
+    .
 ilxtr:ResponseComponent a owl:Class ;
-    # change in environment caused by the behavior
+    # change in environment caused by the behavior PLUS the motor component, it conflates them
     definition: "the part of a behavioral task that is involved in "
 .
 ilxtr:NervousSystemComponent a owl:Class ;
