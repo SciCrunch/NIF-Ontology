@@ -4,10 +4,80 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
+@prefix : <http://uri.interlex.org/tgbugs/uris/readable/base-colon-nonsense/> .
 
 ilxtr:Ont-BTO a owl:Ontology ;
     skos:title "Behavioral Tasks Ontology" ;
     ilxtr:comment "an ontology for describing behavioral tasks, super duper work in progress" .
+
+ilxtr:example-auditory-perception-task a owl:NamedIndividual, ilxtr:BehavioralTask;
+:stimulus-system :auditory;
+:stimulus-system-insturction :auditory;
+:TODO :instructed;
+:TODO :listen;  # nervous system
+:TODO :stimulus-random;  # 12 categories * 3 examples for each category
+:TODO :stimulus-multiple;
+:TODO :stimulus-temporal-sequential;
+:TODO :discriminate;  # nervous system
+:TODO :closed-eyes;
+#:previously-heard  # do we want this to be orthognola, so stimulus novel, stimulus prior exposure
+#:not-previously-heard
+:TODO :stimulus-novel;
+:TODO :stimulus-previously-presented;
+#:stimulus-prior-exposure
+
+# skipping 12 seconds duration 22KHz 16bits, mono for now
+
+:TODO :stimulus-intensity-normalized;
+:TODO :stimulus-intensity-comfortable;
+
+:TODO :interleaved-rest-period;
+
+# stimulus categories
+:TODO :speech;
+:TODO :speech-reversed;
+:TODO :music;
+:TODO :sounds-animal;
+:TODO :sounds-environmental
+.
+
+ilxtr:example-visuo-spatial-working-memory-task a owl:NamedIndividual, ilxtr:BehavioralTask;
+:stimulus-system :visual;
+:TODO :instructed;
+:TODO :feedback;
+ilxtr:assertedCognitiveSystem :working-memory;
+#:stimulus-dot-multiple
+#:stimulus-grid
+#:stimlulus-dot-single
+:TODO :stimulus-subset-matches;
+# hlss because it is really the result of two similar stimuli with a temporal gap, and the instruction
+# the only question is whether the instruction is what makes it "match-"
+# "truth" is the stimulus that was actually displayed
+ilxtr:highLevelStimulusStructure :stimulus;
+ilxtr:highLevelStimulusStructure :rest;
+ilxtr:highLevelStimulusStructure :stimulus-yes-subset;
+ilxtr:highLevelStimulusStructure :stimulus-no-subset;
+ilxtr:highLevelStimulusStructure :stimulus-rest-stimulus-subset;
+ilxtr:highLevelNervousSystemActivityStructure :match;  # could also be what is going on in the nervous system component
+ilxtr:highLevelResultStructure :yes;
+ilxtr:highLevelResultStructure :no;
+ilxtr:highLevelStimulusAndResultStructure :match-to-sample; # or is it just highLevelTaskStructure
+ilxtr:highLevelStimulusAndResultStructure :delayed-match-to-sample;
+ilxtr:hasResultDetector :button;
+ilxtr:MotorResponseAnatomicalEntity :right-finger;
+#ilxtr:MotorResponseAnatomicalEntity :right-index-finger;
+#ilxtr:MotorResponseAnatomicalEntity :right-middle-finger;
+:stimlulus-system-feedback :visual;
+:feedback-conveys :correctness;
+.
+
+ilxtr:example-visuo-spatial-working-memory-task-control a owl:NamedIndividual, ilxtr:BehavioralTask;
+:TODO :visual;
+:TODO :instructed;
+:TODO :fixation
+#:stimulus-dot-single
+#:stimulus-dot-internal-white-spot
+.
 
 ilxtr:hasProcessPart a owl:ObjectProperty .
 
