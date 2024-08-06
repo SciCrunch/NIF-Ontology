@@ -54,7 +54,7 @@ ilxtr:assertedCognitiveSystem :working-memory;
 # the only question is whether the instruction is what makes it "match-"
 # "truth" is the stimulus that was actually displayed
 ilxtr:highLevelStimulusStructure :stimulus;
-ilxtr:highLevelStimulusStructure :rest;
+ilxtr:highLevelStimulusStructure :rest;  # FIXME AKA :delay below
 ilxtr:highLevelStimulusStructure :stimulus-yes-subset;
 ilxtr:highLevelStimulusStructure :stimulus-no-subset;
 ilxtr:highLevelStimulusStructure :stimulus-rest-stimulus-subset;
@@ -107,6 +107,34 @@ ilxtr:example-resting-state a owl:NamedIndividual, ilxtr:BehavioralTask;
 :TODO :no-motor-readout ; # OR
 :TODO :no-result-component ;  # i.e. this is open loop
 :TODO :no-stimulus ;
+.
+
+
+ilxtr:sternberg-verbal-working-memory-task a owl:NamedIndividual, ilxtr:BehavioralTask;
+:TODOhasSensoryModality :visual ;
+:TODOhasHighLevelStimulusStructure :written-language;
+:TODO :fixation;
+:TODO :delay;
+:TODO :feedback;
+:stimulus-system-feedback :visual;
+ilxtr:highLevelStimulusAndResultStructure :two-alternate-forced-choice, :delayed-matche-to-sample, :match-to-sample;
+
+ilxtr:highLevelStimulusStructure
+:letter, :octothorp-pound-sign-sharp-sign-hash-tag,
+:stimulus-yes-subset,
+:stimulus-no-subset,
+:stimulus-rest-stimulus-subset; # FIXME AKA :stimulus-delay-stimulus-subset
+ilxtr:highLevelNervousSystemActivityStructure :match;  # could also be what is going on in the nervous system component
+ilxtr:highLevelResultStructure :yes;
+ilxtr:highLevelResultStructure :no;
+
+ilxtr:MotorResponseAnatomicalEntity :right-finger, :index-finger, :middle-finger ;
+ilxtr:hasResultDetector :button;
+ilxtr:assertedCognitiveSystem :working-memory;
+:TODO :inter-trial-interval; # or inter-stimulus-interval but that isn't actually accurate
+:TODO # high level sequence structure descriptor
+    :stimulus-delay-stimulus-subset-response-feedback-pause-loop,
+    :stimulus-delay-stimulus-response-feedback-pause-loop  # note that the delay here could include fixation behavior but they don't say that the task fails if they break fixation (as might happen in other task types)
 .
 
 ilxtr:hasProcessPart a owl:ObjectProperty .
