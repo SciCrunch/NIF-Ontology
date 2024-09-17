@@ -137,6 +137,91 @@ ilxtr:assertedCognitiveSystem :working-memory;
     :stimulus-delay-stimulus-response-feedback-pause-loop  # note that the delay here could include fixation behavior but they don't say that the task fails if they break fixation (as might happen in other task types)
 .
 
+ilxtr:hasTemporalPart a owl:ObjectProperty .
+ilxtr:hasDisjointTemporalPart a owl:ObjectProperty ;
+rdfs:subPropertyOf ilxtr:hasTemporalPart .
+
+ilxtr:visual-oddball-task a owl:NamedIndividual, ilxtr:BehavioralTask;
+    #hasPart:
+    ilxtr:hasDisjointTemporalPart  # distinguished from hasProcessPart used elsewhere
+    ilxtr:visual-oddball-task-active,
+    ilxtr:visual-oddball-task-rest,
+    ilxtr:visual-oddball-task-instruct-start-active,
+    ilxtr:visual-oddball-task-instruct-start-rest ;
+
+    # mostly to facilitate search kind of mirroring the use of working memory
+    # also misleading if e.g. that was actually used to study resting state
+    ilxtr:hasPrimaryBehaviorTaskPart ilxtr:visual-oddball-task-active;
+
+    ilxtr:hasBlockSequence (
+        ilxtr:visual-oddball-task-instruct-start-active
+            ilxtr:visual-oddball-task-active
+            ilxtr:visual-oddball-task-instruct-start-rest
+            ilxtr:visual-oddball-task-rest);
+    .
+
+ilxtr:visual-oddball-task-active a owl:NamedIndividual, ilxtr:BehavioralTask;
+# short 200ms display of images with and unknown instruction about how rapidly to hit the button
+# during an isi of 900 - 1100ms onset to onset, so true isi is 700-900ms so they have at most 900ms to respond, there are 405 of these max 1100ms blocks of which 19 had the fruits each series was 5 pictures interupted by 40 seconds, so on average (5 seconds + 40 seconds) * 81 which winds up being almost exactly and hour (probably for scheduling reasons)
+:TODOhasSensoryModality :visual ;
+:TODO :instructed; # TODO need a separate instruction modality probably?
+:TODOhasInstructionModality :auditory ;
+:TODOhasHighLevelInstructionStructure :language ;
+
+# that is, there is no delay, so presumably no working memory
+:TODOhightLevelTrialStructure :stimulus-response-repeat-rest-repeat,
+    :simulus-immediate-response,
+    [:complementOf :delay] ;
+
+ilxtr:hasStimulusPresentationThing :screen ;
+ilxtr:MotorResponseAnatomicalEntity :right-finger, :index-finger ;
+ilxtr:hasResultDetector :button;
+
+ilxtr:highLevelStimulusStructure
+:stimulus-yes-subset,
+:stimulus-no-subset,
+:stimulus-rest-stimulus-subset,
+# FIXME TODO do we need a separate predicate for things like this? .e.g for auditory we have sweeps and chirps, for olfaction we might have just chemical names or mixtures ?
+:houses,
+:faces,
+:animals,
+:landscapes,
+:objects,
+:french-pseudo-words, :language-fake, :language-pseudo,  # what makes them french? and pseudo?
+:consonant-strings,
+:scrambled-pictures,
+:fruits
+;
+
+ilxtr:highLevelNervousSystemActivityStructure :match-category;
+
+:TODO :inter-trial-interval;
+:TODO :interleaved-rest-period;  # TODO could also be a predicate pointing to the block
+:TODOalternatesWith ilxtr:visual-oddball-resting-block;
+
+# TODO how do we capture some of the more specific information here
+# e.g. about screen resolution, picture size, screen distance etc.
+# block timing, etc. bock timing kind of goes to something like HED for individual trials
+# but they don't give the overview of the whole structure, like the fact that it is an hour
+.
+
+ilxtr:visual-oddball-resting-block a owl:NamedIndividual, ilxtr:BehavioralTask ;
+:TODO :instructed ;
+:TODO :rest ;  # this is a whole body behavioral state, so sort of cognitive, complement of moving, complement of asleep, explicitly not quiescence
+# ilxtr:assertedCognitiveSystem :default-mode-network;  # XXX this is NOT cognitive
+:TODO :closed-eyes;
+# mind-wandering-state is technically a report on perception of (presumably) internally generated stimuli
+:TODO :no-motor-readout ; # OR
+:TODO :no-result-component ;  # i.e. this is open loop
+:TODO :no-stimulus # FIXME does this count as no stimulus if it is bracketed by auditory instructions? :instructed-rest? so we would move the auditory stimulus to be beginning and end of the primary block? or you prepend the auditory instructions to each behavior, or you make it is its own thing
+.
+
+
+
+
+
+
+
 ilxtr:hasProcessPart a owl:ObjectProperty .
 
 ilxtr:hasStimulusProcessPart a owl:ObjectProperty ;
