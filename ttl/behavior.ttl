@@ -217,9 +217,36 @@ ilxtr:visual-oddball-resting-block a owl:NamedIndividual, ilxtr:BehavioralTask ;
 .
 
 
-
-
-
+# 6x6 grid of randomly tilted L's with a single T hiding in it
+# see figure 1a https://www.jneurosci.org/content/jneuro/32/10/3414/F1.large.jpg?width=800&height=600&carousel=1
+ilxtr:visual-search-task a owl:NamedIndividual, ilxtr:BehavioralTask ;
+:stimulus-system :visual;
+ilxtr:highLevelStimulusStructure :letter, :light-dark-contrast, :yes-contrast, :no-contrast, :stimulus-subset-yes, :stimulus-subset-no;
+# TODO how to express target distractor reaction time paradigm with variable target/distractor contrast (distance in whatever perceptual space, distinctness)
+#:TODO :target ;
+#:TODO :distractor ;
+:TODO :instructed ;
+:TODO :feedback;
+:TODO :rest;
+:TODO :reaction-time;  # measured quantity or something? closes the loop? puts a time limit on the process that underlies the result
+ilxtr:MotorResponseAnatomicalEntity :right-finger, :index-finger, :middle-finger ;
+ilxtr:hasResultDetector :button;
+:comment "instructed to respond as fast as possible is somehow different from simply having rapidly displayed blocks, seems an implication of measuring reaction time in a instructionally motivated state, lyuba notes that the primary difference seems to be no training vs training for dealing with short time intervals, not clear whether the 3 seconds is actually long enough to make it easy vs hard because we don't know the difficulty";
+:stimlulus-system-feedback :auditory;  # correctness
+:feedback-conveys :correctness;  # XXX note that we have two feedbacks
+:stimlulus-system-feedback :visual, :language;  # FIXME language is wrong here
+:feedback-conveys :performance;  # speed of response
+# remotivation? demotivation? XXX do they actually display the words "please respond as fast as possible" or do they just show the average reaction time
+:cognitive-system :visual-search ;
+# distractor as within minimal temporal block?
+# or can we describe the stimulus-no-subset as distractors too?
+# maybe temporal (trial structure?) vs stimulus space distractor
+# likely want to be able to distinguish between noise and a distractor?
+# distractor might be bad because it already implies attention
+# very often have target identified without explicitly stating distractor
+# i think that going with stimulus subset allows noise to be factored orthognoally
+# as long as correctness is binary we don't have to worry about trying to map stimulus subset to response (e.g. a 10 tone 10 finger mapping)
+.
 
 
 ilxtr:hasProcessPart a owl:ObjectProperty .
