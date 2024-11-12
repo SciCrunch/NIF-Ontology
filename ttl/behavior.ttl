@@ -131,7 +131,7 @@ ilxtr:highLevelResultStructure :no;
 ilxtr:MotorResponseAnatomicalEntity :right-finger, :index-finger, :middle-finger ;
 ilxtr:hasResultDetector :button;
 ilxtr:assertedCognitiveSystem :working-memory;
-:TODO :inter-trial-interval; # or inter-stimulus-interval but that isn't actually accurate
+:TODO :has-repitition-interval; # :inter-trial-interval; # or inter-stimulus-interval but that isn't actually accurate
 :TODO # high level sequence structure descriptor
     :stimulus-delay-stimulus-subset-response-feedback-pause-loop,
     :stimulus-delay-stimulus-response-feedback-pause-loop  # note that the delay here could include fixation behavior but they don't say that the task fails if they break fixation (as might happen in other task types)
@@ -195,7 +195,7 @@ ilxtr:highLevelStimulusStructure
 
 ilxtr:highLevelNervousSystemActivityStructure :match-category;
 
-:TODO :inter-trial-interval;
+:TODO :has-repitition-interval;
 :TODO :interleaved-rest-period;  # TODO could also be a predicate pointing to the block
 :TODOalternatesWith ilxtr:visual-oddball-resting-block;
 
@@ -293,6 +293,31 @@ ilxtr:action-artifact-tests a owl:NamedIndividual, ilxtr:BehavioralTask ;
 :responseThingTODO :blink, :move-eyes-left-and-right, :swallow, :clench-teeth, :frown, :move-tongue-with-mouth-closed, :smile, :visual-fixation;
 # TODO not mentioned directly, but most of these can translate into anatomical entities
 :responseAnatomicalEntity :eyelid, :extraocular-muscles, :throat, :jaw, :tongue, :face
+.
+
+# something between hed and this that can capture complex nested
+ilxtr:word-recognition-task a owl:NamedIndividual, ilxtr:BehavioralTask ;
+# https://www.explainxkcd.com/wiki/index.php/2657:_Complex_Vowels
+# https://www.explainxkcd.com/wiki/index.php/File:complex_vowels.png
+# 2 alternate forced choice with 3 block types
+:stimulus-system :visual;
+
+:highLevelSimulusStructure :language, :words, :pseudo-words, :definitely-not-words, :living-entity, :syllables, :alphabet-casing ;
+
+ilxtr:MotorResponseAnatomicalEntity :right-finger, :index-finger, :middle-finger ;
+ilxtr:hasResultDetector :button;
+
+:TODO :has-repitition-interval;  # maybe this could be used to ask how many levels of repetition, highLevelTaskStructure similar to feedback probably
+# hasNumberOfRepeatedStructureLevels ???
+:hasNumberOfRepeatedStructureLevels 2;
+    # could do this but probably too detailed for this ontology
+# :hasNStructureRepsAtLevel1 5;
+# :hasNStructureRepsAtLevel2 :not-specified-in-protocol;
+
+:TODO :read ;
+:TODO :feedback;
+:feedback-conveys :correctness;
+:TODO :fixation
 .
 
 ilxtr:hasProcessPart a owl:ObjectProperty .
