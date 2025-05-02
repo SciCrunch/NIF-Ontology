@@ -160,6 +160,46 @@ pretty long.
 *** =http://uri.interlex.org/{group}/ontologies/{path/}filename{.ext}= :terminal:
 Need to consider naming, but this is where automatically generated ontology files could live.
 =files= or =graphs= are reasonable alternative names?
+*** =http://uri.interlex.org/{group}/ontologies/{path/}filename/spec= :terminal:
+needs to accept PATCH so to add or remove terms from the ontology
+and change the serialization rules
+basically this is a graph described by an rdf mini language
+that operates like any other resource wrt history except that
+it is only used to hold the spec rules and metadata for the ontology
+if the spec is for an interlex generated ontology, for external ontologies
+it only holds the pointer to the canonical external name, of course we know
+that there can be many, many versions of an ontology so the spec is only shown
+for the interlex reference name
+
+#+begin_src ttl
+@prefix ilxr: <http://uri.interlex.org/base/readable/> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+
+<http://uri.interlex.org/uberon/ontologies/uberon/spec> a ilxr:OntologySpec ;
+    ilxtr:spec-type ilxtr:external-ontology ;
+    ilxtr:ontology-canonical-name <http://purl.obolibrary.org/obo/uberon.owl> .
+#+end_src
+
+#+begin_src ttl
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix ILX: <http://uri.interlex.org/base/ilx_> .
+@prefix ilxr: <http://uri.interlex.org/base/readable/> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://uri.interlex.org/tgbugs/ontologies/example/spec> a ilxr:OntologySpec ;
+    ilxtr:exclude-external-sources <http://purl.org/sig/ont/fma.owl> ;
+    ilxtr:includes-subjects ILX:0101431,
+        ILX:0101432 ;
+    ilxtr:materalize-imports true ;
+    ilxtr:ontology-canonical-name <http://uri.interlex.org/tgbugs/ontologies/example> ;
+    ilxtr:spec-type ilxtr:interlex-generated-ontology .
+
+<http://uri.interlex.org/tgbugs/ontologies/example> a owl:Ontology ;
+    owl:imports <http://uri.interlex.org/tgbugs/ontologies/example-import> ;
+    dc:title "tom's example ontology for spec" .
+#+end_src
 *** =http://uri.interlex.org/{group}/ontologies/{path/}filename/version/{epoch}/filename{.ext}= :terminal:
 Access to versions of auto-generated ontology files.
 This may be hard to pull off for arbitrary dates.
@@ -175,6 +215,8 @@ Sandboxing of group ontology iris.
 *** =http://uri.interlex.org/{group}/ilx_{1234567}= :terminal:
 *** =http://uri.interlex.org/{group}/ilx_{1234567}/other= :terminal:
 List other explicit variants of this term (do not include inherited variants).
+*** =http://uri.interlex.org/{group}/ilx_{1234567}/versions= :terminal:
+List all previous versions of a term, essentially a list of URIs pointing to datetimes.
 *** =http://uri.interlex.org/{group}/readable/{word}= :terminal:
 Entities listed here need to be in a 1:1 mapping from ilx_ to readable.
 They map to the user's view of the underlying ilx identifier.
@@ -307,6 +349,34 @@ resolves to a diff of the two terms.
 *** =http://uri.interlex.org/{group}/diff/{other-user}/curies/=
 
 *** =http://uri.interlex.org/{group}/diff/{other-user}/ontologies/=
+*** =http://uri.interlex.org/{group}/query/transitive/{property}/{start}?depth={depth}=
+needs an argument to toggle whether properties follow the group conventions or
+global interlex conventions, specifically about the expansion of curies, also
+not entirely clear what the default should be, but I think for consistency =ILX:=
+and =ilxr:= and other predicates should expand to the groups variant unless otherwise
+specified (i.e. by a query parameter)
+
+needed for part of and subClassOf
+
+for this we traverse the triples table and then prune out any edges that were removed for
+specific perspectives
+
+*** =http://uri.interlex.org/{group}/new-entity=
+either fails or returns the new ilx id
+this is not for creating ontologies, only for
+metadata entities (terms, relations, classes, etc.)
+
+*** =http://uri.interlex.org/{group}/modify-a-b=
+example of patch content
+#+begin_src json
+{"old": the_jsonld_you_got_from_interlex,
+ "new": the_jsonld_with_your_modifications}
+#+end_src
+
+*** =http://uri.interlex.org/{group}/modify-add-rem=
+set of triples to remove and set to add
+effectively this is what =modify-a-b= calls internally
+
 * CURIE resolver structure =resolver.interlex.org=
 *NOTE: This section is still highly provisional.*
 Since =uri.interlex.org= is intended to manage resolvable ontology identifiers
