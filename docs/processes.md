@@ -211,19 +211,19 @@ through the full commit log.
 ### Build graph for SciGraph release
 This process has been automated via `run-load-graph-nifstd`
 or `run-load-graph-sparc`. See the nifstd
-[SciGraph README](https://github.com/tgbugs/pyontutils/master/nifstd/scigraph/README.org#sparc-graph-load)
+[SciGraph README](https://github.com/tgbugs/pyontutils/blob/master/nifstd/scigraph/README.org#sparc-graph-load)
 for details.
 
 ### Build and deploy services config
 This only needs to be done if the services config has changed.  
 This process has been automated via `run-build-deploy-nistd` or
 `run-build-deploy-sparc`. See the nifstd
-[SciGraph README](https://github.com/tgbugs/pyontutils/master/nifstd/scigraph/README.org#sparc-services-build-deploy)
+[SciGraph README](https://github.com/tgbugs/pyontutils/blob/master/nifstd/scigraph/README.org#sparc-services-build-deploy)
 for details.
 
 ### Deploy to SciGraph
-See the [RPM Builds](https://github.com/tgbugs/pyontutils/blob/master/nifstd/scigraph/README.md#rpm-builds) secion of the
-[the pyontutils scigraph readme](https://github.com/tgbugs/pyontutils/blob/master/nifstd/scigraph/README.md) for the rest
+See the [RPM](https://github.com/tgbugs/pyontutils/blob/master/nifstd/scigraph/README.org#rpm) secion of the
+[the pyontutils scigraph readme](https://github.com/tgbugs/pyontutils/blob/master/nifstd/scigraph/README.org) for the rest
 of the instructions for deployment.
 
 ### Restart dependent services
@@ -274,9 +274,11 @@ ontology that a maintainer or curator needs to keep up to date.
 3. https://scicrunch.org/resolver/SCR_016178 (InterLex)
 4. https://bioportal.bioontology.org/ontologies/NIFSTD
 5. https://bioportal.bioontology.org/ontologies/NIFSUBCELL
-6. https://fairsharing.org/bsg-s002584 (NeuroLex)
-7. https://fairsharing.org/bsg-s002628 (NIF Ontology)
-8. https://fairsharing.org/bsg-s002835 (subcellular)
+6. https://bioportal.bioontology.org/ontologies/NPOKB
+7. https://bioportal.bioontology.org/ontologies/ATOM
+8. https://fairsharing.org/bsg-s002584 (NeuroLex)
+9. https://fairsharing.org/bsg-s002628 (NIF Ontology)
+10. https://fairsharing.org/bsg-s002835 (subcellular)
 
 ### Other references
 1. https://www.biccn.org/tools/atlas

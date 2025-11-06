@@ -44,7 +44,7 @@ At the moment if you see an `ILX:` identifier in one of the ontology files that 
 1. Follow the ontology [development setup doc](./development-setup.md).
 Be sure not to miss the section on setting up the [catalog file](./development-setup.md#catalog).
 2. Make sure you are working on the neurons branch (run `git checkout neurons`).
-2. Open [ttl/neuron-development.ttl](./../ttl/neuron-development.ttl) **from disk** in protege.
+2. Open [ttl/npo.ttl](./../ttl/npo.ttl) **from disk** in protege.
 3. Follow these sections of the ontology processes document as you edit the file.
    - [Changing an ontology file](./processes.md#changing-an-ontology-file)
    - [Prior to commit](./processes.md#prior-to-commit)
@@ -58,7 +58,7 @@ https://github.com/tgbugs/pyontutils/blob/master/neurondm/docs/NeuronLangExample
 
 1. The neurons branch  
 https://github.com/SciCrunch/NIF-Ontology/tree/neurons/ttl  
-https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/neuron-development.ttl  
+https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/npo.ttl  
 https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/bridge/neuron-bridge.ttl  
 https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/phenotype-core.ttl  
 https://github.com/SciCrunch/NIF-Ontology/blob/neurons/ttl/phenotypes.ttl  

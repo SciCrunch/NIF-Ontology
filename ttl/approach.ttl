@@ -1,0 +1,340 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix definition: <http://purl.obolibrary.org/obo/IAO_0000115> .
+@prefix editorNote: <http://purl.obolibrary.org/obo/IAO_0000116> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix mod: <http://uri.interlex.org/tgbugs/uris/readable/modality/> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/methods/ttl/approach.ttl> a owl:Ontology ;
+    rdfs:label "Experimental approaches." .
+
+### Classes
+
+mod:Anatomy a owl:Class ;
+    rdfs:label "anatomical approach" ;
+    definition: "Experimental approach focused on the bodily structure of living organisms." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:definitionHBP "Techniques concerned with the bodily structure of living organisms, especially as revealed by dissection and the separation of parts." ;
+    ilxtr:definitionSPARC "Study that aims to understand the structure of organisms or their parts. " ;
+    ilxtr:displayLabel "anatomy" ;
+    ilxtr:existingHBP "anatomy" ;
+    ilxtr:existingSPARC "anatomy" .
+
+mod:Behavior a owl:Class ;
+    rdfs:label "behavioral approach" ;
+    definition: "Experimental approach focused on the mechanical activity or cognitive processes underlying mechanical activity of living organisms often in response to external sensory stimuli." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:definitionHBP "Techniques concerned with determining cognitive powers of living organisms and/or their responses to stimuli." ;
+    ilxtr:definitionSPARC "Study that induces and/or measures the behavior of the subject" ;
+    ilxtr:displayLabel "behavior" ;
+    ilxtr:existingHBP "behavioral assay" ;
+    ilxtr:existingSPARC "behavioral" .
+
+mod:CellMorphology a owl:Class ;
+    rdfs:label "cell morphological approach" ;
+    definition: "Experimental approach focused on the shape and structure of individual cells." ;
+    rdfs:subClassOf mod:Cellular ;
+    ilxtr:definitionHBP "Techniques concerned with determining the shape and structure of individual cells." ;
+    ilxtr:definitionSPARC "Study that specifically seeks to understand the shape and structure of individual cells" ;
+    ilxtr:displayLabel "cell morphology" ;
+    ilxtr:existingBICCN "cell morphology" ;
+    ilxtr:existingHBP "cell morphology" ;
+    ilxtr:existingSPARC "cell morphology" .
+
+mod:CellPopulationCharachterization a owl:Class ;
+    rdfs:label "cell population characterization" ;
+    definition: "Experimental approach focused on biochemical, molecular and/or physiological characteristics of populations of cells as opposed to individual cells." ;
+    rdfs:subClassOf mod:Cellular ;
+    ilxtr:definitionHBP "Techniques concerned with determining biochemical, molecular and/or physiological characteristics of cell populations as opposed to individual cells." ;
+    ilxtr:definitionSPARC "Study that measures biochemical, molecular and/or physiological characteristics of populations of cells as opposed to individual cells" ;
+    ilxtr:displayLabel "cell population characterization" ;
+    ilxtr:existingHBP "cell population characterization" ;
+    ilxtr:existingSPARC "cell population characterization" .
+
+mod:CellPopulationImaging a owl:Class ;
+    rdfs:label "cell population imaging" ;
+    definition: "Experimental approach focused on imaging biochemical, molecular, or physiological characteristics of populations of cells." ;
+    rdfs:subClassOf mod:Cellular ;
+    editorNote: "Need to check whether this would fall under cell population charachterization, I don't think it does, there is some overlap, but neither contains the other" ;
+    ilxtr:displayLabel "cell population imaging" ;
+    ilxtr:existingBICCN "population imaging" .
+
+mod:CellPopulationManipulation a owl:Class ;
+    rdfs:label "cell population manipulation" ;
+    definition: "Experimental approach focused on manipulation of biochemical, molecular, or physiological characteristics of populations of cells." ;
+    rdfs:subClassOf mod:Cellular ;
+    editorNote: "this is fairly nebulous, but is meant to cover things like optogentics, chemogenetics, electrical stimulation, etc. but might also include things like expression manipuation, which could be used to enable optogenetic manipulation of a particular cell population" ;
+    ilxtr:displayLabel "cell population manipulation" .
+
+mod:Cellular a owl:Class ;
+    rdfs:label "cellular approach" ;
+    definition: "Experimental approach focused on structure, function, multiplication, pathology, and life history of biological cells." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:displayLabel "cellular" .
+
+mod:Chemogenetics a owl:Class ;
+    rdfs:label "chemogenetic approach" ;
+    definition: "Experimental approach focused on using genetically encoded chemically sensitive proteins in combination with a specific agonist delivered systemically in order to manipulate the behavior of populations of cells." ;
+    rdfs:subClassOf mod:Genetics ;
+    ilxtr:displayLabel "chemogenetics" .
+
+mod:Clinical a owl:Class ;
+    rdfs:label "clinical approach" ;
+    definition: "Experimental approach focused on medical observation, treatment, or testing of patients. " ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:displayLabel "clinical" .
+
+mod:ComputationalModelling a owl:Class ;
+    rdfs:label "computational modeling" ;
+    NIFRID:synonym "simulation" ;
+    definition: "Experimental approach focused on creating or characterizing computational models or simulations of experimentally observed phenomena." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:definitionHBP "Techniques concerned with creating or characterizing computational models or simulations of other experimentally observed phenomena." ;
+    ilxtr:definitionSPARC "Study that creates or charachterizes computational models or simulations of other experimentally observed phenomena" ;
+    ilxtr:displayLabel "computational modeling" ;
+    ilxtr:existingHBP "models" ;
+    ilxtr:existingSPARC "models" .
+
+mod:Developmental a owl:Class ;
+    rdfs:label "developmental approach" ;
+    definition: "Experimental approach focused on life cycle, development, or developmental history of an organism." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:displayLabel "developmental" .
+
+mod:Ecology a owl:Class ;
+    rdfs:label "ecological approach" ;
+    definition: "Experimental approach focused on interrelationship of organisms and their environments, including causes and consequences." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:displayLabel "ecology" .
+
+mod:Electrophysiology a owl:Class ;
+    rdfs:label "electrophysiological approach" ;
+    NIFRID:synonym "electorphysiological approach" ;
+    definition: "Experimental approach focused on electrical phenomena associated with living systems, most notably the nervous system, cardiac system, and musculoskeletal system." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    editorNote: "I am not entirely sure where we slot techniques that change the activity of cell populations and then look at either a behavioral readout or a readout in another cell population or what. I'm going to put them under electrophysiology right now because in principle at some point they are mediated by changes in the electrical properties of some cells directly or indirectly. Actually I'm going to create cell population manipulation which I think captures the intention quite nicely." ;
+    ilxtr:definitionHBP "Techniques concerned with the electrical phenomena associated with neural and other bodily activity." ;
+    ilxtr:definitionSPARC "Study that measures electrical impulses within an organism, cell or tissue or the effects of direct electrical stimulation" ;
+    ilxtr:displayLabel "electrophysiology" ;
+    ilxtr:existingHBP "electrophysiology" ;
+    ilxtr:existingSPARC "electrophysiology" .
+
+mod:Epidemiology a owl:Class ;
+    rdfs:label "epidemiological approach" ;
+    definition: "Experimental approach focused on incidence, distribution, and possible control of diseases and other factors relating to health." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:displayLabel "epidemiology" .
+
+mod:Epigenomics a owl:Class ;
+    rdfs:label "epigenomic approach" ;
+    definition: "Experimental approach focused on processes that modulate transcription but that do not directly alter the primary sequences of an organism's DNA." ;
+    rdfs:subClassOf mod:Omics ;
+    ilxtr:definitionHBP "Techniques concerned with determining genetic modifications that affect transcription but do not alter the organism's DNA." ;
+    ilxtr:definitionSPARC "Study that measures modifications of genetic material that affect transcription but do not alter the organism's DNA" ;
+    ilxtr:displayLabel "epigenomics" ;
+    ilxtr:existingBICCN "epigenomics" ;
+    ilxtr:existingHBP "epigenomics" ;
+    ilxtr:existingSPARC "epigenomics" .
+
+mod:Ethology a owl:Class ;
+    rdfs:label "ethological approach" ;
+    definition: "Experimental approach focused on natural unmanipulated human or animal behavior and social organization from a biological, life history, and often evolutionary perspective." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:displayLabel "ethology" .
+
+mod:Evolution a owl:Class ;
+    rdfs:label "evolutionary approach" ;
+    definition: "Experimental approach focused on heritable characteristics of biological populations and their variation through the modification of developmental process to produce new forms and species." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:displayLabel "evolution" .
+
+mod:Expression a owl:Class ;
+    rdfs:label "molecular expression approach" ;
+    definition: "Experimental approach focused on driving or detecting expression of genes in cells or tissues." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:definitionHBP "Techniques concerned with determining single gene or protein expression within cells or tissues." ;
+    ilxtr:definitionSPARC "Study that measures or visualizes gene or protein expression within cells or tissues. Focuses on the gene." ;
+    ilxtr:displayLabel "expression" ;
+    ilxtr:existingHBP "expression" ;
+    ilxtr:existingSPARC "expression" .
+
+mod:ExpressionCharachterization a owl:Class ;
+    rdfs:label "molecular expression characterization" ;
+    NIFRID:synonym "moleculr expression characterization approach" ;
+    definition: "Experimental approach focused on the cellular, anatomical, or morphological distribution of gene expression." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:definitionHBP "Techniques concerned with determining the cellular, anatomical, or morphological distribution of gene expression." ;
+    ilxtr:definitionSPARC "Study that charachterizes the cellular, anatomical, or morphological distribution of gene expression. Focuses on population." ;
+    ilxtr:displayLabel "expression characterization" ;
+    ilxtr:existingHBP "expression characterization" ;
+    ilxtr:existingSPARC "expression characterization" .
+
+mod:Genetics a owl:Class ;
+    rdfs:label "genetic approach" ;
+    definition: "Experimental approach that measures or manipulates some aspect of the genetic material of an organism." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:displayLabel "genetics" .
+
+mod:Genomics a owl:Class ;
+    rdfs:label "genomic approach" ;
+    NIFRID:synonym "genomic approach" ;
+    definition: "Experimental approach focused on structure, function, evolution, and mapping of genomes, the entiretiy of the genetic material of a single organism." ;
+    rdfs:subClassOf mod:Omics ;
+    ilxtr:definitionHBP "Techniques concerned with the structure, function, evolution, and mapping of genomes." ;
+    ilxtr:definitionSPARC "Study that measures aspects related to the complete DNA genemone of an organsim" ;
+    ilxtr:displayLabel "genomics" ;
+    ilxtr:existingHBP "genomics" ;
+    ilxtr:existingSPARC "genomics" .
+
+mod:Histology a owl:Class ;
+    rdfs:label "histological approach" ;
+    definition: "Experimental approach focused on structure of biological tissue." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:definitionHBP "Techniques concerned with the microscopic anatomy of biological tissue." ;
+    ilxtr:definitionSPARC "Study that investigates the microscopic structure of tissues" ;
+    ilxtr:displayLabel "histology" ;
+    ilxtr:existingHBP "histology" ;
+    ilxtr:existingSPARC "histology" .
+
+mod:Informatics a owl:Class ;
+    rdfs:label "informatics approach" ;
+    definition: "Experimental approach focused on collection, classification, storage, retrieval, analysis, visualization, and dissemination of recorded knowledge in computational systems." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:displayLabel "informatics" .
+
+mod:Metabolomics a owl:Class ;
+    rdfs:label "metabolomic approach" ;
+    NIFRID:synonym "metabolomic approach" ;
+    definition: "Experimental approach focused on chemical processes involving metabolites, the small molecule substrates, intermediates and products of cell metabolism. " ;
+    rdfs:subClassOf mod:Omics ;
+    ilxtr:displayLabel "metabolomics" .
+
+mod:Microscopy a owl:Class ;
+    rdfs:label "microscopy approach" ;
+    NIFRID:synonym "microscopic approach" ;
+    definition: "Experimental approach focused on using differential contrast of microscopic structures to form an image." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:definitionHBP "Techniques using microscopes to view objects and areas of objects that cannot be seen with the naked eye." ;
+    ilxtr:definitionSPARC "Study that primarily uses light or electron microscopic imaging" ;
+    ilxtr:displayLabel "microscopy" ;
+    ilxtr:existingHBP "microscopy" ;
+    ilxtr:existingSPARC "microscopy" .
+
+mod:Morphology a owl:Class ;
+    rdfs:label "morphological approach" ;
+    definition: "Experimental approach focused on the shape and structure of living organisms or their parts." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:definitionHBP "Techniques concerned with the form and structure of living organisms or biological tissue." ;
+    ilxtr:definitionSPARC "Study designed to determine the shape and structure of tissues and body parts" ;
+    ilxtr:displayLabel "morphology" ;
+    ilxtr:existingHBP "morphology" ;
+    ilxtr:existingSPARC "morphology" .
+
+mod:Multimodal a owl:Class ;
+    rdfs:label "multimodal approach" ;
+    definition: "Experimental approach that employs multiple experimental approaches in significant ways." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:definitionHBP "Techniques that employ multiple modalities in significant ways." ;
+    ilxtr:definitionSPARC "Study that employs multiple modalities in signifcant ways" ;
+    ilxtr:displayLabel "multimodal" ;
+    ilxtr:existingBICCN "multimodal" ;
+    ilxtr:existingHBP "multimodal" ;
+    ilxtr:existingSPARC "multimodal" .
+
+mod:Multiomics a owl:Class ;
+    rdfs:label "multiomic approach" ;
+    NIFRID:synonym "multiomic approach" ;
+    definition: "Experimental approach that employs multiple omics approaches in significant ways." ;
+    rdfs:subClassOf mod:Omics ;
+    ilxtr:displayLabel "multiomics" .
+
+mod:NeuralConnectivity a owl:Class ;
+    rdfs:label "neural connectivity" ;
+    definition: "Experimental approach focused on functional or anatomical connections between single neurons or populations of neurons in defined anatomical regions." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    editorNote: "Connectivity includes things like tract tracing, but also functional connectivity which may have a cell to cell rather than area to area angle. You can have anatomy and connectivty in some cases. Making the label neural connectivity, though it could be more generally cellular connectivity. In some cases it overlaps with anatomical connectivity. This previously used mod:Connectivity as its identifier, but was updated to mod:NeuralConnectivity for clarity." ;
+    ilxtr:definitionHBP "Techniques concerned with determining functional and/or anatomical connections between single neurons or neuron populations in defined anatomical regions." ;
+    ilxtr:definitionSPARC "Study that maps or measures functional and/or anatomical connections between nerve cells and their targets or connections between populations of neurons in defined anatomical regions." ;
+    ilxtr:displayLabel "connectivity" ;
+    ilxtr:existingBICCN "connectivity" ;
+    ilxtr:existingHBP "connectivity" ;
+    ilxtr:existingSPARC "connectivity" .
+
+mod:Neuroimaging a owl:Class ;
+    rdfs:label "neuroimaging approach" ;
+    NIFRID:synonym "neuroimaging approach" ;
+    definition: "Experimental approach focused on the non-invasive direct or indirect imaging of the structure, function, or pharmacology of the nervous system." ;
+    rdfs:subClassOf mod:Radiology ;
+    editorNote: "This has some subset of techniques that overlap with radiology. In common usage there are also a subset the overlap with electorphysiology (e.g. EEG, MEG)." ;
+    ilxtr:definitionHBP "Techniques concerned with imaging directly or indirectly the structure, function, or pharmacology of the nervous system." ;
+    ilxtr:displayLabel "neuroimaging" ;
+    ilxtr:existingHBP "neuroimaging" .
+
+mod:Omics a owl:Class ;
+    rdfs:label "omic approach" ;
+    NIFRID:synonym "omic approach" ;
+    definition: "Experimental approach focused on characterization and quantification of biological molecules that give rise to the structure, function, and dynamics of organisms or their parts. " ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:displayLabel "omics" .
+
+mod:Optogenetics a owl:Class ;
+    rdfs:label "optogenetic approach" ;
+    definition: "Experimental approach focused on using genetically encoded light-sensitive proteins in combination with targeted delivery of light in order to manipulate the behavior of populations of cells." ;
+    rdfs:subClassOf mod:Genetics ;
+    ilxtr:displayLabel "optogenetics" .
+
+mod:Physiology a owl:Class ;
+    rdfs:label "physiological approach" ;
+    definition: "Experimental approach focused on normal functions of living organisms and their parts." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    ilxtr:definitionHBP "Techniques concerned with determining normal functions of living organisms and their parts." ;
+    ilxtr:definitionSPARC "Study that measures the function or behavior of organs and tissues in living systems." ;
+    ilxtr:displayLabel "physiology" ;
+    ilxtr:existingHBP "physiology" ;
+    ilxtr:existingSPARC "physiology" .
+
+mod:Proteomics a owl:Class ;
+    rdfs:label "proteomic approach" ;
+    NIFRID:synonym "proteomic approach" ;
+    definition: "Experimental approach focused on the composition, structure, and activity of an entire set of proteins in organisms or their parts." ;
+    rdfs:subClassOf mod:Omics ;
+    ilxtr:displayLabel "proteomics" .
+
+mod:Radiology a owl:Class ;
+    rdfs:label "radiological appraoch" ;
+    NIFRID:synonym "radiological approach" ;
+    definition: "Experimental approach focused on using non-invasive techniques that use intrinsic or induced contrast to form images. Also covers purely clinical domains such as nuclear medicine." ;
+    rdfs:subClassOf ilxtr:ExperimentalApproach ;
+    editorNote: "This nominally must include MRI since many users might expect to find MRI under it." ;
+    ilxtr:definitionHBP "Techniques concerned with the use of radiant energy or radioactive material in the diagnosis and treatment of disease." ;
+    ilxtr:definitionSPARC "Study that uses at least one of a varity of minimally invasive probes such as x-rays, ultrasound, or nuclear magnetic resonance signals to capture data about the internal structure of intact subjects." ;
+    ilxtr:displayLabel "radiology" ;
+    ilxtr:existingHBP "radiology" ;
+    ilxtr:existingSPARC "radiology" .
+
+mod:SpatialTranscriptomics a owl:Class ;
+    rdfs:label "spatial transcriptomic approach" ;
+    NIFRID:synonym "spatial transcriptomic approach" ;
+    definition: "Experimental approach focused on mapping the spatial location of gene activity in biological tissue." ;
+    rdfs:subClassOf mod:Transcriptomics ;
+    ilxtr:definitionHBP "Techniques concerned with determining and mapping all gene activity in biological tissue." ;
+    ilxtr:definitionSPARC "Study used to spatially resolve RNA-seq data, and thereby all mRNAs, in individual tissue sections (Wikipedia)." ;
+    ilxtr:displayLabel "spatial transcriptomics" ;
+    ilxtr:existingHBP "spatial transcriptomics" ;
+    ilxtr:existingSPARC "spatial transcriptomics" .
+
+mod:Transcriptomics a owl:Class ;
+    rdfs:label "transcriptomic approach" ;
+    NIFRID:synonym "transcriptomic approach" ;
+    definition: "Experimental approach focused on the transcriptome (all RNA transcripts) of one or more cells, tissues, or organisms." ;
+    rdfs:subClassOf mod:Omics ;
+    ilxtr:definitionHBP "Techniques concerned with determining an organism's transcriptome (all RNA transcripts)." ;
+    ilxtr:definitionSPARC "Study that measures RNA transcription in the organism or cell population of interest" ;
+    ilxtr:displayLabel "transcriptomics" ;
+    ilxtr:existingBICCN "transcriptomics" ;
+    ilxtr:existingHBP "transcriptomics" ;
+    ilxtr:existingSPARC "transcriptomics" .
+
+### Serialized using the ttlser deterministic serializer v1.2.0
