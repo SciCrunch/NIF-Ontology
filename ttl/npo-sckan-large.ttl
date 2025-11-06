@@ -1,0 +1,62 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix hasRole: <http://purl.obolibrary.org/obo/RO_0000087> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix NLXMOL: <http://uri.neuinfo.org/nif/nifstd/nlx_mol_> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix partOf: <http://purl.obolibrary.org/obo/BFO_0000050> .
+@prefix PAXRAT: <http://uri.interlex.org/paxinos/uris/rat/labels/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
+@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/npo-sckan-large.ttl> a owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/bridge/chemical-bridge.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/bridge/custom-neuron-bridge.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/generated/parcellation-artifacts.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/generated/parcellation.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/generated/parcellation/mbaslim.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/generated/parcellation/paxinos-rat-labels.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/generated/uberon-parcellation-mappings.ttl>,
+        obo:uberon.owl ;
+    rdfs:label "Utility ontology for neuron development (with SCKAN integration - large version)" ;
+    owl:versionInfo "2025-11-06" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/d545af8339fa11b79969b3cc53a5d7d9d0c22952/neurondm/neurondm/custom_build.py#L1696> .
+
+### Classes
+
+ilxtr:GABAReceptor a owl:Class ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hasRole: ;
+            owl:someValuesFrom NLXMOL:1006001 ] ;
+    rdfs:label "GABA receptor" ;
+    NIFRID:synonym "GABAR" .
+
+ilxtr:glutamateReceptor a owl:Class ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hasRole: ;
+            owl:someValuesFrom SAO:1164727693 ] ;
+    rdfs:label "Glutamate receptor" ;
+    NIFRID:synonym "GluR" .
+
+### Annotations
+
+ilxtr:parcellationLabel rdfs:subClassOf UBERON:0001062 .
+
+ilxtr:Phenotype rdfs:subClassOf BFO:0000016 .
+
+partOf: rdfs:label "part of" .
+
+PAXRAT:794 rdfs:subClassOf UBERON:0008933,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:delineates ;
+            owl:someValuesFrom UBERON:0008933 ] .
+
+UBERON:0008933 rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDelineatedBy ;
+            owl:someValuesFrom PAXRAT:794 ] .
+
+### Serialized using the ttlser deterministic serializer v1.2.3
