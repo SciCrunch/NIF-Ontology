@@ -1,0 +1,649 @@
+@prefix : <file:///ERROR/EMPTY/PREFIX/BANNED/> .
+@prefix AIBSTL: <http://api.brain-map.org/api/v2/data/TransgenicLine/> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix hasRole: <http://purl.obolibrary.org/obo/RO_0000087> .
+@prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
+@prefix JAX: <http://jaxmice.jax.org/strain/> .
+@prefix MMRRC: <http://www.mmrrc.org/catalog/getSDS.jsp?mmrrc_id=> .
+@prefix NCBIGene: <http://www.ncbi.nlm.nih.gov/gene/> .
+@prefix NIFEXT: <http://uri.neuinfo.org/nif/nifstd/nifext_> .
+@prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
+@prefix NIFSTD: <http://uri.neuinfo.org/nif/nifstd/> .
+@prefix NLX: <http://uri.neuinfo.org/nif/nifstd/nlx_> .
+@prefix NLXCELL: <http://uri.neuinfo.org/nif/nifstd/nlx_cell_> .
+@prefix NLXMOL: <http://uri.neuinfo.org/nif/nifstd/nlx_mol_> .
+@prefix npokb: <http://uri.interlex.org/npo/uris/neurons/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix partOf: <http://purl.obolibrary.org/obo/BFO_0000050> .
+@prefix PAXRAT: <http://uri.interlex.org/paxinos/uris/rat/labels/> .
+@prefix PR: <http://purl.obolibrary.org/obo/PR_> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix PTHR: <http://www.pantherdb.org/panther/family.do?clsAccession=PTHR> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
+@prefix TEMPIND: <http://uri.interlex.org/temp/uris/phenotype-indicators/> .
+@prefix UBERON: <http://purl.obolibrary.org/obo/UBERON_> .
+
+<https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/npo-sckan-large.ttl> a owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/bridge/chemical-bridge.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/bridge/custom-neuron-bridge.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/generated/parcellation-artifacts.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/generated/parcellation.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/generated/parcellation/mbaslim.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/generated/parcellation/paxinos-rat-labels.ttl>,
+        <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/dev-sckan/ttl/generated/uberon-parcellation-mappings.ttl>,
+        obo:uberon.owl ;
+    rdfs:label "Utility ontology for neuron development (with SCKAN integration - large version)" ;
+    owl:versionInfo "2025-11-08" ;
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/d545af8339fa11b79969b3cc53a5d7d9d0c22952/neurondm/neurondm/build_custom.py#L1782> .
+
+### Classes
+
+ilxtr:GABAReceptor a owl:Class ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hasRole: ;
+            owl:someValuesFrom NLXMOL:1006001 ] ;
+    rdfs:label "GABA receptor" ;
+    NIFRID:synonym "GABAR" ;
+    rdfs:subClassOf TEMPIND:GABAR .
+
+ilxtr:glutamateReceptor a owl:Class ;
+    owl:equivalentClass [ a owl:Restriction ;
+            owl:onProperty hasRole: ;
+            owl:someValuesFrom SAO:1164727693 ] ;
+    rdfs:label "Glutamate receptor" ;
+    NIFRID:synonym "GluR" ;
+    rdfs:subClassOf TEMPIND:GluR .
+
+### Annotations
+
+AIBSTL:301021674 rdfs:subClassOf TEMPIND:Oxtr .
+
+AIBSTL:543338518 rdfs:subClassOf TEMPIND:Vipr2 .
+
+CHEBI:9937 rdfs:subClassOf TEMPIND:Avp .
+
+CHEBI:15355 rdfs:subClassOf TEMPIND:ACh .
+
+CHEBI:16015 rdfs:subClassOf TEMPIND:Glutamate .
+
+CHEBI:16865 rdfs:subClassOf TEMPIND:GABA .
+
+CHEBI:28790 rdfs:subClassOf TEMPIND:Serotonin .
+
+CHEBI:64628 rdfs:subClassOf TEMPIND:Sst .
+
+ilxtr:Cav2_1_P_Q rdfs:subClassOf ilxtr:gene .
+
+ilxtr:CCK-cre rdfs:subClassOf TEMPIND:Cck .
+
+ilxtr:Kv3 rdfs:subClassOf ilxtr:gene .
+
+ilxtr:Nav1_1 rdfs:subClassOf ilxtr:gene .
+
+ilxtr:Nav1_6 rdfs:subClassOf ilxtr:gene .
+
+ilxtr:Nav1_7 rdfs:subClassOf ilxtr:gene .
+
+ilxtr:NeuronACT rdfs:subClassOf ilxtr:NeuronEBM .
+
+ilxtr:NeuronApinatSimple rdfs:subClassOf ilxtr:NeuronEBM .
+
+ilxtr:NeuronHuang2017 rdfs:subClassOf ilxtr:NeuronEBM .
+
+ilxtr:NeuronMarkram2015 rdfs:subClassOf ilxtr:NeuronEBM .
+
+ilxtr:NeuronSparcNlp rdfs:subClassOf ilxtr:NeuronEBM .
+
+ilxtr:NOS1-creER rdfs:subClassOf TEMPIND:Nos1 .
+
+ilxtr:parcellationLabel rdfs:subClassOf UBERON:0001062 .
+
+ilxtr:Phenotype rdfs:subClassOf BFO:0000016 .
+
+ilxtr:PV-cre rdfs:subClassOf TEMPIND:Pvalb .
+
+ilxtr:Pvalb rdfs:subClassOf TEMPIND:Pvalb .
+
+ilxtr:SST-flp rdfs:subClassOf TEMPIND:Sst .
+
+ilxtr:VIP-flp rdfs:subClassOf TEMPIND:VIP .
+
+JAX:006410 rdfs:subClassOf TEMPIND:ACh .
+
+JAX:007914 rdfs:subClassOf TEMPIND:CreDependentProteinFluorescingInSpectrumRed .
+
+JAX:008069 rdfs:subClassOf TEMPIND:Pvalb .
+
+JAX:010802 rdfs:subClassOf TEMPIND:GABA .
+
+JAX:010908 rdfs:subClassOf TEMPIND:VIP .
+
+JAX:012706 rdfs:subClassOf ilxtr:transgenicLine,
+        TEMPIND:Cck .
+
+JAX:013044 rdfs:subClassOf TEMPIND:Sst .
+
+JAX:013730 rdfs:subClassOf ilxtr:transgenicLine,
+        TEMPIND:Calb2 .
+
+JAX:014541 rdfs:subClassOf ilxtr:transgenicLine,
+        TEMPIND:Nos1 .
+
+JAX:014552 rdfs:subClassOf ilxtr:transgenicLine .
+
+JAX:017320 rdfs:subClassOf ilxtr:transgenicLine,
+        TEMPIND:Pvalb .
+
+JAX:021189 rdfs:subClassOf TEMPIND:Pvalb .
+
+JAX:021190 rdfs:subClassOf TEMPIND:Pvalb .
+
+JAX:021875 rdfs:subClassOf TEMPIND:CreFlpDependentProteinFluorescingInSpectrumRed .
+
+JAX:022730 rdfs:subClassOf TEMPIND:Pvalb .
+
+JAX:025112 rdfs:subClassOf TEMPIND:Penk .
+
+JAX:028577 rdfs:subClassOf ilxtr:transgenicLine .
+
+JAX:028578 rdfs:subClassOf ilxtr:transgenicLine,
+        TEMPIND:VIP .
+
+JAX:028579 rdfs:subClassOf ilxtr:transgenicLine,
+        TEMPIND:Sst .
+
+JAX:029591 rdfs:subClassOf TEMPIND:GABA .
+
+MMRRC:036680 rdfs:subClassOf TEMPIND:Htr3a .
+
+NCBIGene:11535 rdfs:subClassOf TEMPIND:Adm .
+
+NCBIGene:11998 rdfs:subClassOf TEMPIND:Avp .
+
+NCBIGene:12307 rdfs:subClassOf TEMPIND:Calb .
+
+NCBIGene:12308 rdfs:subClassOf TEMPIND:Calb2 .
+
+NCBIGene:12310 rdfs:subClassOf TEMPIND:Calca .
+
+NCBIGene:12424 rdfs:subClassOf TEMPIND:Cck .
+
+NCBIGene:12426 rdfs:subClassOf TEMPIND:Cckbr .
+
+NCBIGene:12647 rdfs:subClassOf TEMPIND:ACh .
+
+NCBIGene:12801 rdfs:subClassOf TEMPIND:Cnr1 .
+
+NCBIGene:12854 rdfs:subClassOf TEMPIND:Cort .
+
+NCBIGene:12918 rdfs:subClassOf TEMPIND:Crh .
+
+NCBIGene:13488 rdfs:subClassOf TEMPIND:Drd1 .
+
+NCBIGene:13489 rdfs:subClassOf TEMPIND:Drd2 .
+
+NCBIGene:13616 rdfs:subClassOf TEMPIND:Edn3 .
+
+NCBIGene:14417 rdfs:subClassOf TEMPIND:GABA .
+
+NCBIGene:15561 rdfs:subClassOf TEMPIND:Htr3a .
+
+NCBIGene:15567 rdfs:subClassOf TEMPIND:Serotonin .
+
+NCBIGene:16000 rdfs:subClassOf TEMPIND:Igf1 .
+
+NCBIGene:18125 rdfs:subClassOf TEMPIND:Nos1 .
+
+NCBIGene:18430 rdfs:subClassOf TEMPIND:Oxtr .
+
+NCBIGene:18619 rdfs:subClassOf TEMPIND:Penk .
+
+NCBIGene:19293 rdfs:subClassOf TEMPIND:Pvalb .
+
+NCBIGene:20508 rdfs:subClassOf TEMPIND:ACh .
+
+NCBIGene:20604 rdfs:subClassOf TEMPIND:Sst .
+
+NCBIGene:21823 rdfs:subClassOf TEMPIND:TH .
+
+NCBIGene:22348 rdfs:subClassOf TEMPIND:GABA .
+
+NCBIGene:22353 rdfs:subClassOf TEMPIND:VIP .
+
+NCBIGene:22354 rdfs:subClassOf TEMPIND:Vipr1 .
+
+NCBIGene:22355 rdfs:subClassOf TEMPIND:Vipr2 .
+
+NCBIGene:109648 rdfs:subClassOf TEMPIND:Npy .
+
+NCBIGene:140919 rdfs:subClassOf TEMPIND:Glutamate .
+
+NCBIGene:243764 rdfs:subClassOf TEMPIND:Chrm2 .
+
+NIFEXT:5 rdfs:subClassOf TEMPIND:Calb2 .
+
+NIFEXT:6 rdfs:subClassOf TEMPIND:Pvalb .
+
+NIFEXT:17 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:31 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:36 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:40 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:49 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:53 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:55 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:56 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:57 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:66 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:68 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:69 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:70 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:72 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:73 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:74 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:75 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:76 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:81 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:84 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:106 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:109 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:113 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:116 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:118 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:119 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:120 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:121 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:122 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:123 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:124 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:128 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:130 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:132 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:133 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:135 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:136 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:144 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:153 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NIFEXT:5068 rdfs:subClassOf TEMPIND:Cck .
+
+NIFEXT:5090 rdfs:subClassOf TEMPIND:Npy .
+
+NIFEXT:5096 rdfs:subClassOf TEMPIND:Penk .
+
+NIFEXT:5116 rdfs:subClassOf TEMPIND:Sst .
+
+NIFEXT:5124 rdfs:subClassOf TEMPIND:Avp .
+
+NIFEXT:5137 rdfs:subClassOf TEMPIND:Crh .
+
+NIFEXT:5148 rdfs:subClassOf TEMPIND:VIP .
+
+NIFEXT:5239 rdfs:subClassOf TEMPIND:GluR .
+
+NIFEXT:5833 rdfs:subClassOf TEMPIND:Drd2 .
+
+NIFEXT:5845 rdfs:subClassOf TEMPIND:Drd1 .
+
+NIFSTD:BAMSC1125 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLX:268 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLX:16848 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLX:38713 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLX:50129 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLX:70345 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLX:82555 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLX:144252 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLX:153867 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLX:153868 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:091001 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:091002 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:091005 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:091202 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:091205 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:091207 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:091213 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:100201 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:100212 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:100311 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:1003113 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:20081201 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:20081202 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:20090304 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:20090305 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:20090311 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXCELL:20090401 rdfs:subClassOf ilxtr:NeuronCUT .
+
+NLXMOL:1006006 rdfs:subClassOf TEMPIND:Calb .
+
+NLXMOL:1006008 rdfs:subClassOf TEMPIND:ACh .
+
+NLXMOL:1006009 rdfs:subClassOf TEMPIND:Glutamate .
+
+NLXMOL:20090604 rdfs:subClassOf TEMPIND:GABAR .
+
+npokb:1 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:2 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:3 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:4 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:5 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:6 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:7 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:8 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:9 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:10 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:11 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:12 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:13 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:14 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:15 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:16 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:17 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:18 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:19 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:20 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:21 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:22 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:23 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:24 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:25 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:26 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:27 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:28 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:29 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:30 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:31 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:32 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:33 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:34 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:35 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:36 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:37 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:38 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:39 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:52 rdfs:subClassOf npokb:53 .
+
+npokb:57 rdfs:subClassOf npokb:53 .
+
+npokb:913 rdfs:subClassOf ilxtr:NeuronCUT .
+
+npokb:914 rdfs:subClassOf ilxtr:NeuronCUT .
+
+partOf: rdfs:label "part of" .
+
+PAXRAT:794 rdfs:subClassOf UBERON:0008933,
+        [ a owl:Restriction ;
+            owl:onProperty ilxtr:delineates ;
+            owl:someValuesFrom UBERON:0008933 ] .
+
+PR:000001125 rdfs:subClassOf TEMPIND:Cnr1 .
+
+PR:000001217 rdfs:subClassOf TEMPIND:Cckbr .
+
+PR:000001614 rdfs:subClassOf TEMPIND:Chrm2 .
+
+PR:000001635 rdfs:subClassOf TEMPIND:Oxtr .
+
+PR:000003781 rdfs:subClassOf TEMPIND:Adm .
+
+PR:000004967 rdfs:subClassOf TEMPIND:Calb .
+
+PR:000004968 rdfs:subClassOf TEMPIND:Calb2 .
+
+PR:000005110 rdfs:subClassOf TEMPIND:Cck .
+
+PR:000005404 rdfs:subClassOf TEMPIND:ACh .
+
+PR:000005767 rdfs:subClassOf TEMPIND:Cort .
+
+PR:000005867 rdfs:subClassOf TEMPIND:Crh .
+
+PR:000006899 rdfs:subClassOf TEMPIND:Edn3 .
+
+PR:000007786 rdfs:subClassOf TEMPIND:GABA .
+
+PR:000008833 rdfs:subClassOf TEMPIND:Htr3a .
+
+PR:000009182 rdfs:subClassOf TEMPIND:Igf1 .
+
+PR:000011326 rdfs:subClassOf TEMPIND:Nos1 .
+
+PR:000011387 rdfs:subClassOf TEMPIND:Npy .
+
+PR:000012544 rdfs:subClassOf TEMPIND:Penk .
+
+PR:000013502 rdfs:subClassOf TEMPIND:Pvalb .
+
+PR:000014962 rdfs:subClassOf TEMPIND:Glutamate .
+
+PR:000014968 rdfs:subClassOf TEMPIND:ACh .
+
+PR:000015084 rdfs:subClassOf TEMPIND:GABA .
+
+PR:000015189 rdfs:subClassOf TEMPIND:Serotonin .
+
+PR:000015665 rdfs:subClassOf TEMPIND:Sst .
+
+PR:000016301 rdfs:subClassOf TEMPIND:TH .
+
+PR:000017299 rdfs:subClassOf TEMPIND:VIP .
+
+PR:000017300 rdfs:subClassOf TEMPIND:Vipr1 .
+
+PR:000017301 rdfs:subClassOf TEMPIND:Vipr2 .
+
+PR:000027222 rdfs:subClassOf TEMPIND:Calca .
+
+PTHR:10558 rdfs:subClassOf TEMPIND:Sst .
+
+PTHR:11653 rdfs:subClassOf TEMPIND:Pvalb .
+
+SAO:185580330 rdfs:subClassOf TEMPIND:ACh .
+
+SAO:229636300 rdfs:subClassOf TEMPIND:GABA .
+
+SAO:289587392 rdfs:subClassOf TEMPIND:TH .
+
+SAO:383526650 rdfs:subClassOf ilxtr:NeuronCUT .
+
+SAO:471801888 rdfs:subClassOf ilxtr:NeuronCUT .
+
+SAO:666951243 rdfs:subClassOf ilxtr:NeuronCUT .
+
+SAO:711465902 rdfs:subClassOf TEMPIND:Serotonin .
+
+SAO:722953401 rdfs:subClassOf TEMPIND:ACh .
+
+SAO:830368389 rdfs:subClassOf ilxtr:NeuronCUT .
+
+SAO:1103104164 rdfs:subClassOf ilxtr:NeuronCUT .
+
+SAO:1154704263 rdfs:subClassOf ilxtr:NeuronCUT .
+
+SAO:1415726815 rdfs:subClassOf ilxtr:NeuronCUT .
+
+SAO:1438006234 rdfs:subClassOf ilxtr:NeuronCUT .
+
+SAO:1582628662 rdfs:subClassOf ilxtr:NeuronCUT .
+
+SAO:1744435799 rdfs:subClassOf TEMPIND:Glutamate .
+
+TEMPIND:ACh rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Adm rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Avp rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Calb rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Calb2 rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Calca rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Cck rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Cckbr rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Chrm2 rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Cnr1 rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Cort rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:CreDependentProteinFluorescingInSpectrumRed rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:CreFlpDependentProteinFluorescingInSpectrumRed rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Crh rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Drd1 rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Drd2 rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Edn3 rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:GABA rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:GABAR rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:GluR rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Glutamate rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Htr3a rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Igf1 rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Nos1 rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Npy rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Oxtr rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Penk rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:ProteinFluorescingInSpectrumRed rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Pvalb rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Serotonin rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Sst rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:TH rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:VIP rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Vipr1 rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+TEMPIND:Vipr2 rdfs:subClassOf ilxtr:PhenotypeIndicator .
+
+UBERON:0008933 rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ilxtr:isDelineatedBy ;
+            owl:someValuesFrom PAXRAT:794 ] .
+
+### Serialized using the ttlser deterministic serializer v1.2.3
