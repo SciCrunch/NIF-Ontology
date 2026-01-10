@@ -1,6 +1,7 @@
 @prefix ilxtr: <http://uri.interlex.org/tgbugs/uris/readable/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
 @prefix SAO: <http://uri.neuinfo.org/nif/nifstd/sao> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
@@ -423,6 +424,13 @@ ilxtr:hasTaxonRank a owl:AsymmetricProperty,
     rdfs:subPropertyOf ilxtr:hasInstanceInTaxon ;
     rdfs:comment "note that this is a subPropertyOf hasInstanceInTaxon NOT the other way around, aka isAncestralInTaxon, even stronger claim than instance and propagates downward implying that instances were present in all members except those specifically marked (which owl can't really support)" .
 
+ilxtr:isMemberOfCircuit a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "isMemberOfCircuit" ;
+    skos:definition "Expresses a relationship between a neuron type and a circuit type that the neuron type is a member of. Implies that individual neurons of that type each have at least one forward or reverse connection with some other member of that circuit type." ;
+    rdfs:subPropertyOf RO:0002350 .
+
 ilxtr:phenotypeCooccuresWith a owl:ObjectProperty ;
     rdfs:label "phenotypeCooccuresWith" ;
     skos:definition "Expresses a relationship between a phenotype and a phenotype. This should be used when two phenotypes commonly cooccure." ;
@@ -461,4 +469,4 @@ ilxtr:Phenotype a owl:Class ;
 
 ilxtr:delineates owl:inverseOf ilxtr:isDelineatedBy .
 
-### Serialized using the ttlser deterministic serializer v1.2.2
+### Serialized using the ttlser deterministic serializer v1.2.3

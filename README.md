@@ -7,6 +7,9 @@ terms and concepts important for the domains of neuroscience and biology.
 If you are having trouble loading [ttl/nif.ttl](./ttl/nif.ttl) in protege
 please see [docs/development-setup.md#protege](./docs/development-setup.md#protege).
 
+# Where are the latest changes?
+Check the [dev branch](https://github.com/SciCrunch/NIF-Ontology/tree/dev) for the latest developments.
+
 # Using NIFSTD
 The easiest way to use the NIF Ontology is through our SciGraph [REST API](https://scicrunch.org/browse/api-docs/index.html?url=https://scicrunch.org/swagger-docs/swagger.json).  
 You will need a SciCunch API key.  
