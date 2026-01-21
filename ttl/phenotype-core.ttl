@@ -11,6 +11,13 @@
 
 ### Object Properties
 
+ilxtr:hasAdaptationPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasAdaptationPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasElectrophysiologicalPhenotype ;
+    rdfs:comment "currently spo ephys since it describes the changes in phys in response to repeated stimulation" .
+
 ilxtr:hasAnatomicalSystemPhenotype a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
         owl:ObjectProperty ;
@@ -254,6 +261,14 @@ ilxtr:hasFunctionalCircuitRolePhenotype a owl:AsymmetricProperty,
     rdfs:subPropertyOf ilxtr:hasPhenotype ;
     rdfs:comment "this is currently a subproperty of hasPhenotype because we need to work out the relationship between circuit role and projection phenotype" .
 
+ilxtr:hasFunctionalPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasFunctionalPhenotype" ;
+    skos:definition "Expresses a relationship between a neuron and some external property such as high level sensory function." ;
+    rdfs:subPropertyOf ilxtr:hasPhenotype ;
+    rdfs:comment "This should probably be equivalent to hasExperimentalPhenotype, however experimental phenotype implies that the value was actually determined experimentally for a given individual which functional does not necessarily imply." .
+
 ilxtr:hasInstanceInSpecies a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
         owl:ObjectProperty ;
@@ -423,6 +438,13 @@ ilxtr:hasTaxonRank a owl:AsymmetricProperty,
     skos:definition "Expresses a relationship between a neuron type and a taxon. This should be used when a neuron type is thought to have been present in the last common ancestor of the taxon." ;
     rdfs:subPropertyOf ilxtr:hasInstanceInTaxon ;
     rdfs:comment "note that this is a subPropertyOf hasInstanceInTaxon NOT the other way around, aka isAncestralInTaxon, even stronger claim than instance and propagates downward implying that instances were present in all members except those specifically marked (which owl can't really support)" .
+
+ilxtr:hasThresholdPhenotype a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "hasThresholdPhenotype" ;
+    rdfs:subPropertyOf ilxtr:hasFunctionalPhenotype ;
+    rdfs:comment "currently spo functional, I think this is general to any external metric where the response of a neuron behaves non-linearly across a set threshold" .
 
 ilxtr:isMemberOfCircuit a owl:AsymmetricProperty,
         owl:IrreflexiveProperty,
