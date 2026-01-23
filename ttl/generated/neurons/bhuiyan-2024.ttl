@@ -17,7 +17,7 @@
     owl:imports <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-core.ttl>,
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotype-indicators.ttl>,
         <https://raw.githubusercontent.com/SciCrunch/NIF-Ontology/neurons/ttl/phenotypes.ttl> ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/uncommitted@9bf11c85/neurondm/neurondm/core.py#L1864> .
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/d5e03a35be551fc8356b642cbd41835a0e29274a/neurondm/neurondm/core.py#L1883> .
 
 ### Classes
 
@@ -46,7 +46,7 @@
             owl:someValuesFrom NCBITaxon:10090 ] ;
     ilxtr:genLabel "dorsal root ganglion +PV proprioceptive (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
-<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/1/guinea/pig> a owl:Class ;
+<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/1/guinea-pig> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
@@ -184,18 +184,20 @@
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasAdaptationPhenotype ;
-                        owl:someValuesFrom ILX:0796517 ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasAdaptationPhenotype ;
+                                    owl:someValuesFrom ILX:0796517 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasFunctionalPhenotype ;
+                                    owl:someValuesFrom ILX:0796527 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796512 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasDriverExpressionConstitutivePhenotype ;
                         owl:someValuesFrom JAX:030291 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasFunctionalPhenotype ;
-                        owl:someValuesFrom ILX:0796527 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -212,32 +214,36 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber slowly adapting type 1 (SA1) nerve fiber +JAX:030291 field-type cutaneous mechanosensitivity low-threshold mechanosensitivity (LTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber (unionOf slowly adapting type 1 (SA1) nerve fiber field-type cutaneous mechanosensitivity) +JAX:030291 low-threshold mechanosensitivity (LTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
-<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/2/guinea/pig> a owl:Class ;
+<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/2/guinea-pig> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
                     [ a owl:Class ;
-                        owl:intersectionOf (
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:100731493 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:HigherExpression ] ) ]
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasExpressionPhenotype ;
-                                    owl:someValuesFrom NCBIGene:100731493 ]
+                                    owl:someValuesFrom NCBIGene:100724500 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
                                 [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPhenotypeModifier ;
-                                    owl:someValuesFrom ilxtr:HigherExpression ] ) ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasAdaptationPhenotype ;
-                        owl:someValuesFrom ILX:0796517 ]
+                                    owl:onProperty ilxtr:hasAdaptationPhenotype ;
+                                    owl:someValuesFrom ILX:0796517 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasFunctionalPhenotype ;
+                                    owl:someValuesFrom ILX:0796527 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796512 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:100724500 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasFunctionalPhenotype ;
-                        owl:someValuesFrom ILX:0796527 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -254,32 +260,36 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10141 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber slowly adapting type 1 (SA1) nerve fiber (intersectionOf +NCBIGene:100731493 ilxtr:HigherExpression) +NCBIGene:100724500 field-type cutaneous mechanosensitivity low-threshold mechanosensitivity (LTM) (implies Cavia porcellus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber (unionOf slowly adapting type 1 (SA1) nerve fiber field-type cutaneous mechanosensitivity) (unionOf (intersectionOf +NCBIGene:100731493 ilxtr:HigherExpression) +NCBIGene:100724500) low-threshold mechanosensitivity (LTM) (implies Cavia porcellus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/2/human> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
                     [ a owl:Class ;
-                        owl:intersectionOf (
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:4916 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:HigherExpression ] ) ]
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasExpressionPhenotype ;
-                                    owl:someValuesFrom NCBIGene:4916 ]
+                                    owl:someValuesFrom NCBIGene:2918 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
                                 [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPhenotypeModifier ;
-                                    owl:someValuesFrom ilxtr:HigherExpression ] ) ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasAdaptationPhenotype ;
-                        owl:someValuesFrom ILX:0796517 ]
+                                    owl:onProperty ilxtr:hasAdaptationPhenotype ;
+                                    owl:someValuesFrom ILX:0796517 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasFunctionalPhenotype ;
+                                    owl:someValuesFrom ILX:0796527 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796512 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:2918 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasFunctionalPhenotype ;
-                        owl:someValuesFrom ILX:0796527 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -296,35 +306,49 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9606 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber slowly adapting type 1 (SA1) nerve fiber (intersectionOf +NCBIGene:4916 ilxtr:HigherExpression) +NCBIGene:2918 field-type cutaneous mechanosensitivity low-threshold mechanosensitivity (LTM) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber (unionOf slowly adapting type 1 (SA1) nerve fiber field-type cutaneous mechanosensitivity) (unionOf (intersectionOf +NCBIGene:4916 ilxtr:HigherExpression) +NCBIGene:2918) low-threshold mechanosensitivity (LTM) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/2/macaque> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
                     [ a owl:Class ;
-                        owl:intersectionOf (
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:697615 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:HigherExpression ] ) ]
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasExpressionPhenotype ;
-                                    owl:someValuesFrom NCBIGene:697615 ]
+                                    owl:someValuesFrom NCBIGene:697465 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:697615 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:HigherExpression ] ) ]
                                 [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPhenotypeModifier ;
-                                    owl:someValuesFrom ilxtr:HigherExpression ] ) ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasAdaptationPhenotype ;
-                        owl:someValuesFrom ILX:0796517 ]
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:713638 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasAdaptationPhenotype ;
+                                    owl:someValuesFrom ILX:0796517 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasFunctionalPhenotype ;
+                                    owl:someValuesFrom ILX:0796527 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796512 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:697465 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:713638 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasFunctionalPhenotype ;
-                        owl:someValuesFrom ILX:0796527 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -341,7 +365,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9544 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber slowly adapting type 1 (SA1) nerve fiber (intersectionOf +NCBIGene:697615 ilxtr:HigherExpression) +NCBIGene:697465 +NCBIGene:713638 field-type cutaneous mechanosensitivity low-threshold mechanosensitivity (LTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber (unionOf slowly adapting type 1 (SA1) nerve fiber field-type cutaneous mechanosensitivity) (unionOf (intersectionOf +NCBIGene:697615 ilxtr:HigherExpression) +NCBIGene:697465) (unionOf (intersectionOf +NCBIGene:697615 ilxtr:HigherExpression) +NCBIGene:713638) low-threshold mechanosensitivity (LTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/2/master> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -355,21 +379,25 @@
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasPhenotypeModifier ;
                                     owl:someValuesFrom ilxtr:HigherExpression ] ) ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasAdaptationPhenotype ;
-                        owl:someValuesFrom ILX:0796517 ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasAdaptationPhenotype ;
+                                    owl:someValuesFrom ILX:0796517 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasFunctionalPhenotype ;
+                                    owl:someValuesFrom ILX:0796527 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom TEMPIND:Grm8 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom TEMPIND:S100a16 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796512 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom TEMPIND:Grm8 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom TEMPIND:S100a16 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasFunctionalPhenotype ;
-                        owl:someValuesFrom ILX:0796527 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -395,35 +423,49 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10141 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber slowly adapting type 1 (SA1) nerve fiber (intersectionOf +Ntrk3 ilxtr:HigherExpression) +Grm8 +S100a16 field-type cutaneous mechanosensitivity low-threshold mechanosensitivity (LTM) (implies Cavia porcellus Homo sapiens Macaca mulatta Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber (unionOf slowly adapting type 1 (SA1) nerve fiber field-type cutaneous mechanosensitivity) (intersectionOf +Ntrk3 ilxtr:HigherExpression) (unionOf +Grm8 +S100a16) low-threshold mechanosensitivity (LTM) (implies Cavia porcellus Homo sapiens Macaca mulatta Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/2/mouse> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
                     [ a owl:Class ;
-                        owl:intersectionOf (
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:18213 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:HigherExpression ] ) ]
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasExpressionPhenotype ;
-                                    owl:someValuesFrom NCBIGene:18213 ]
+                                    owl:someValuesFrom NCBIGene:14823 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:18213 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:HigherExpression ] ) ]
                                 [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPhenotypeModifier ;
-                                    owl:someValuesFrom ilxtr:HigherExpression ] ) ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasAdaptationPhenotype ;
-                        owl:someValuesFrom ILX:0796517 ]
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:67860 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasAdaptationPhenotype ;
+                                    owl:someValuesFrom ILX:0796517 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasFunctionalPhenotype ;
+                                    owl:someValuesFrom ILX:0796527 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796512 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:14823 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:67860 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasFunctionalPhenotype ;
-                        owl:someValuesFrom ILX:0796527 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -440,7 +482,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber slowly adapting type 1 (SA1) nerve fiber (intersectionOf +TrkC ilxtr:HigherExpression) +NCBIGene:14823 +NCBIGene:67860 field-type cutaneous mechanosensitivity low-threshold mechanosensitivity (LTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber (unionOf slowly adapting type 1 (SA1) nerve fiber field-type cutaneous mechanosensitivity) (unionOf (intersectionOf +TrkC ilxtr:HigherExpression) +NCBIGene:14823) (unionOf (intersectionOf +TrkC ilxtr:HigherExpression) +NCBIGene:67860) low-threshold mechanosensitivity (LTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/3/cre> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -478,22 +520,24 @@
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
                     [ a owl:Class ;
-                        owl:intersectionOf (
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:4916 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:HigherExpression ] ) ]
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasExpressionPhenotype ;
-                                    owl:someValuesFrom NCBIGene:4916 ]
-                                [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPhenotypeModifier ;
-                                    owl:someValuesFrom ilxtr:HigherExpression ] ) ]
+                                    owl:someValuesFrom NCBIGene:4915 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAdaptationPhenotype ;
                         owl:someValuesFrom ILX:0796518 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796512 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:4915 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -510,29 +554,31 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9606 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber rapidly adapting (RA) nerve fiber (intersectionOf +NCBIGene:4916 ilxtr:HigherExpression) +NCBIGene:4915 low-threshold mechanosensitivity (LTM) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber rapidly adapting (RA) nerve fiber (unionOf (intersectionOf +NCBIGene:4916 ilxtr:HigherExpression) +NCBIGene:4915) low-threshold mechanosensitivity (LTM) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/3/macaque> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
                     [ a owl:Class ;
-                        owl:intersectionOf (
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:697615 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:HigherExpression ] ) ]
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasExpressionPhenotype ;
-                                    owl:someValuesFrom NCBIGene:697615 ]
-                                [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPhenotypeModifier ;
-                                    owl:someValuesFrom ilxtr:HigherExpression ] ) ]
+                                    owl:someValuesFrom NCBIGene:709757 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAdaptationPhenotype ;
                         owl:someValuesFrom ILX:0796518 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796512 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:709757 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -549,7 +595,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9544 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber rapidly adapting (RA) nerve fiber (intersectionOf +NCBIGene:697615 ilxtr:HigherExpression) +NCBIGene:709757 low-threshold mechanosensitivity (LTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber rapidly adapting (RA) nerve fiber (unionOf (intersectionOf +NCBIGene:697615 ilxtr:HigherExpression) +NCBIGene:709757) low-threshold mechanosensitivity (LTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/3/master> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -601,25 +647,37 @@
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
                     [ a owl:Class ;
-                        owl:intersectionOf (
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:18213 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:HigherExpression ] ) ]
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasExpressionPhenotype ;
-                                    owl:someValuesFrom NCBIGene:18213 ]
+                                    owl:someValuesFrom NCBIGene:12307 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:18213 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:HigherExpression ] ) ]
                                 [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPhenotypeModifier ;
-                                    owl:someValuesFrom ilxtr:HigherExpression ] ) ]
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:18212 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAdaptationPhenotype ;
                         owl:someValuesFrom ILX:0796518 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796512 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:12307 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:18212 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -636,7 +694,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber rapidly adapting (RA) nerve fiber (intersectionOf +TrkC ilxtr:HigherExpression) +Calb +Tkrb low-threshold mechanosensitivity (LTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aβ (beta) nerve fiber rapidly adapting (RA) nerve fiber (unionOf (intersectionOf +TrkC ilxtr:HigherExpression) +Calb) (unionOf (intersectionOf +TrkC ilxtr:HigherExpression) +Tkrb) low-threshold mechanosensitivity (LTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/4/cre> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -666,24 +724,26 @@
             owl:someValuesFrom NCBITaxon:10090 ] ;
     ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +Ntrk2-CreER low-threshold mechanosensitivity (LTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
-<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/4/guinea/pig> a owl:Class ;
+<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/4/guinea-pig> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
                     [ a owl:Class ;
-                        owl:intersectionOf (
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:100731493 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:LowerExpression ] ) ]
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasExpressionPhenotype ;
-                                    owl:someValuesFrom NCBIGene:100731493 ]
-                                [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPhenotypeModifier ;
-                                    owl:someValuesFrom ilxtr:LowerExpression ] ) ]
+                                    owl:someValuesFrom NCBIGene:100723565 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:100723565 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -700,62 +760,68 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10141 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (intersectionOf +NCBIGene:100731493 ilxtr:LowerExpression) +NCBIGene:100723565 low-threshold mechanosensitivity (LTM) (implies Cavia porcellus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (unionOf (intersectionOf +NCBIGene:100731493 ilxtr:LowerExpression) +NCBIGene:100723565) low-threshold mechanosensitivity (LTM) (implies Cavia porcellus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/4/human> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
                     [ a owl:Class ;
-                        owl:intersectionOf (
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:4916 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:LowerExpression ] ) ]
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasExpressionPhenotype ;
-                                    owl:someValuesFrom NCBIGene:4916 ]
+                                    owl:someValuesFrom NCBIGene:4915 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
                                 [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPhenotypeModifier ;
-                                    owl:someValuesFrom ilxtr:LowerExpression ] ) ]
+                                    owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                                    owl:someValuesFrom ilxtr:SensoryPhenotype ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:9606 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasSomaLocatedIn ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0000044 ] ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:4915 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty partOf: ;
-                                owl:someValuesFrom UBERON:0000044 ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasThresholdPhenotype ;
                         owl:someValuesFrom ILX:0796525 ] ) ] ;
     rdfs:label "DRG Ntrk3^low+Ntrk2 human (bhuiyan)" ;
     skos:prefLabel "Ntrk3^low+Ntrk2 human neuron" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-            owl:someValuesFrom ilxtr:SensoryPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:9606 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (intersectionOf +NCBIGene:4916 ilxtr:LowerExpression) +NCBIGene:4915 low-threshold mechanosensitivity (LTM) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "(unionOf dorsal root ganglion (implies Homo sapiens sensory)) type Aδ (delta) nerve fiber (unionOf (intersectionOf +NCBIGene:4916 ilxtr:LowerExpression) +NCBIGene:4915) low-threshold mechanosensitivity (LTM) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/4/macaque> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
                     [ a owl:Class ;
-                        owl:intersectionOf (
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:697615 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:LowerExpression ] ) ]
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasExpressionPhenotype ;
-                                    owl:someValuesFrom NCBIGene:697615 ]
-                                [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPhenotypeModifier ;
-                                    owl:someValuesFrom ilxtr:LowerExpression ] ) ]
+                                    owl:someValuesFrom NCBIGene:709757 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:709757 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -772,7 +838,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9544 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (intersectionOf +NCBIGene:697615 ilxtr:LowerExpression) +NCBIGene:709757 low-threshold mechanosensitivity (LTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (unionOf (intersectionOf +NCBIGene:697615 ilxtr:LowerExpression) +NCBIGene:709757) low-threshold mechanosensitivity (LTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/4/master> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -824,19 +890,21 @@
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
                     [ a owl:Class ;
-                        owl:intersectionOf (
+                        owl:unionOf (
+                                [ a owl:Class ;
+                                    owl:intersectionOf (
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                                owl:someValuesFrom NCBIGene:18213 ]
+                                            [ a owl:Restriction ;
+                                                owl:onProperty ilxtr:hasPhenotypeModifier ;
+                                                owl:someValuesFrom ilxtr:LowerExpression ] ) ]
                                 [ a owl:Restriction ;
                                     owl:onProperty ilxtr:hasExpressionPhenotype ;
-                                    owl:someValuesFrom NCBIGene:18213 ]
-                                [ a owl:Restriction ;
-                                    owl:onProperty ilxtr:hasPhenotypeModifier ;
-                                    owl:someValuesFrom ilxtr:LowerExpression ] ) ]
+                                    owl:someValuesFrom NCBIGene:18212 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:18212 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -853,7 +921,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (intersectionOf +TrkC ilxtr:LowerExpression) +Tkrb low-threshold mechanosensitivity (LTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (unionOf (intersectionOf +TrkC ilxtr:LowerExpression) +Tkrb) low-threshold mechanosensitivity (LTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/5/cre> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -886,19 +954,21 @@
             owl:someValuesFrom NCBITaxon:10090 ] ;
     ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +JAX:039562 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
-<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/5/guinea/pig> a owl:Class ;
+<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/5/guinea-pig> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:100713032 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:100720640 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:100713032 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:100720640 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
@@ -918,21 +988,23 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10141 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +NCBIGene:100713032 +NCBIGene:100720640 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Cavia porcellus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (unionOf +NCBIGene:100713032 +NCBIGene:100720640) heat-sensitive high-threshold mechanosensitivity (HTM) (implies Cavia porcellus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/5/human> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:796 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:1139 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:796 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:1139 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
@@ -952,21 +1024,23 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9606 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +NCBIGene:1139 +NCBIGene:796 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (unionOf +NCBIGene:1139 +NCBIGene:796) heat-sensitive high-threshold mechanosensitivity (HTM) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/5/macaque> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:574230 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:700649 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:574230 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:700649 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
@@ -986,12 +1060,30 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9544 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +NCBIGene:574230 +NCBIGene:700649 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (unionOf +NCBIGene:574230 +NCBIGene:700649) heat-sensitive high-threshold mechanosensitivity (HTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/5/master> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom TEMPIND:Smr2 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:9606 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:10141 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasSomaLocatedIn ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0000044 ] ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
@@ -999,16 +1091,8 @@
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom TEMPIND:Calca ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom TEMPIND:Smr2 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty partOf: ;
-                                owl:someValuesFrom UBERON:0000044 ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasThresholdPhenotype ;
                         owl:someValuesFrom ILX:0796526 ] ) ] ;
@@ -1022,31 +1106,32 @@
             owl:someValuesFrom NCBITaxon:9544 ],
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:9606 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:10090 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:10141 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +Calca +Smr2 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Cavia porcellus Homo sapiens Macaca mulatta Mus musculus sensory) neuron (Bhuiyan2024)" .
+            owl:someValuesFrom NCBITaxon:10090 ] ;
+    ilxtr:genLabel "(unionOf +Smr2 (implies Homo sapiens)) type Aδ (delta) nerve fiber +Calca heat-sensitive high-threshold mechanosensitivity (HTM) (implies Macaca mulatta Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/5/mouse> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:11441 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:12310 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:12310 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:20600 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:11441 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:12310 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:20600 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
@@ -1066,7 +1151,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +Calca +NCBIGene:11441 +NCBIGene:20600 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (unionOf +Calca +NCBIGene:11441) (unionOf +Calca +NCBIGene:20600) heat-sensitive high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/6/cre> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1096,19 +1181,21 @@
             owl:someValuesFrom NCBITaxon:10090 ] ;
     ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +JAX:039561 high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
-<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/6/guinea/pig> a owl:Class ;
+<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/6/guinea-pig> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:100713032 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:100726397 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:100713032 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:100726397 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -1125,52 +1212,58 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10141 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +NCBIGene:100713032 +NCBIGene:100726397 high-threshold mechanosensitivity (HTM) (implies Cavia porcellus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (unionOf +NCBIGene:100713032 +NCBIGene:100726397) high-threshold mechanosensitivity (HTM) (implies Cavia porcellus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/6/human> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                                    owl:someValuesFrom ilxtr:SensoryPhenotype ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:9606 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasSomaLocatedIn ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0000044 ] ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:796 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:3815 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:796 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:3815 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty partOf: ;
-                                owl:someValuesFrom UBERON:0000044 ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasThresholdPhenotype ;
                         owl:someValuesFrom ILX:0796526 ] ) ] ;
     rdfs:label "DRG Calca+Bmpr1b human (bhuiyan)" ;
     skos:prefLabel "Calca+Bmpr1b human neuron" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-            owl:someValuesFrom ilxtr:SensoryPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:9606 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +NCBIGene:3815 +NCBIGene:796 high-threshold mechanosensitivity (HTM) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "(unionOf dorsal root ganglion (implies Homo sapiens sensory)) type Aδ (delta) nerve fiber (unionOf +NCBIGene:3815 +NCBIGene:796) high-threshold mechanosensitivity (HTM) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/6/macaque> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:696759 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:700649 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:696759 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:700649 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -1187,7 +1280,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9544 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +NCBIGene:696759 +NCBIGene:700649 high-threshold mechanosensitivity (HTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (unionOf +NCBIGene:696759 +NCBIGene:700649) high-threshold mechanosensitivity (HTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/6/master> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1233,15 +1326,17 @@
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:12167 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:12310 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796514 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:12167 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:12310 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -1258,40 +1353,55 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber +Calca +NCBIGene:12167 high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type Aδ (delta) nerve fiber (unionOf +Calca +NCBIGene:12167) high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/7/cre> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                                    owl:someValuesFrom ilxtr:SensoryPhenotype ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasDriverExpressionConstitutivePhenotype ;
+                                    owl:someValuesFrom JAX:025614 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:10090 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasSomaLocatedIn ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0000044 ] ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasDriverExpressionConstitutivePhenotype ;
-                        owl:someValuesFrom JAX:025614 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty partOf: ;
-                                owl:someValuesFrom UBERON:0000044 ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasThresholdPhenotype ;
                         owl:someValuesFrom ILX:0796525 ] ) ] ;
     rdfs:label "DRG Th mouse Cre (bhuiyan)" ;
     skos:prefLabel "Th mouse Cre neuron" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-            owl:someValuesFrom ilxtr:SensoryPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +JAX:025614 low-threshold mechanosensitivity (LTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "(unionOf dorsal root ganglion +JAX:025614 (implies Mus musculus sensory)) type C nerve fiber low-threshold mechanosensitivity (LTM) neuron (Bhuiyan2024)" .
 
-<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/7/guinea/pig> a owl:Class ;
+<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/7/guinea-pig> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                                    owl:someValuesFrom ilxtr:SensoryPhenotype ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:10141 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasSomaLocatedIn ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0000044 ] ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
@@ -1299,27 +1409,29 @@
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom NCBIGene:100717894 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty partOf: ;
-                                owl:someValuesFrom UBERON:0000044 ] ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasThresholdPhenotype ;
                         owl:someValuesFrom ILX:0796525 ] ) ] ;
     rdfs:label "DRG Th guinea pig (bhuiyan)" ;
     skos:prefLabel "Th guinea pig neuron" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-            owl:someValuesFrom ilxtr:SensoryPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:10141 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +NCBIGene:100717894 low-threshold mechanosensitivity (LTM) (implies Cavia porcellus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "(unionOf dorsal root ganglion (implies Cavia porcellus sensory)) type C nerve fiber +NCBIGene:100717894 low-threshold mechanosensitivity (LTM) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/7/human> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                                    owl:someValuesFrom ilxtr:SensoryPhenotype ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:9606 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasSomaLocatedIn ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0000044 ] ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
@@ -1327,27 +1439,29 @@
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom NCBIGene:1007 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty partOf: ;
-                                owl:someValuesFrom UBERON:0000044 ] ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasThresholdPhenotype ;
                         owl:someValuesFrom ILX:0796525 ] ) ] ;
     rdfs:label "DRG Th human (bhuiyan)" ;
     skos:prefLabel "Th human neuron" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-            owl:someValuesFrom ilxtr:SensoryPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:9606 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +NCBIGene:1007 low-threshold mechanosensitivity (LTM) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "(unionOf dorsal root ganglion (implies Homo sapiens sensory)) type C nerve fiber +NCBIGene:1007 low-threshold mechanosensitivity (LTM) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/7/macaque> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                                    owl:someValuesFrom ilxtr:SensoryPhenotype ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:9544 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasSomaLocatedIn ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0000044 ] ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
@@ -1355,22 +1469,11 @@
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom NCBIGene:694989 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty partOf: ;
-                                owl:someValuesFrom UBERON:0000044 ] ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasThresholdPhenotype ;
                         owl:someValuesFrom ILX:0796525 ] ) ] ;
     rdfs:label "DRG Th macaque (bhuiyan)" ;
     skos:prefLabel "Th macaque neuron" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-            owl:someValuesFrom ilxtr:SensoryPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:9544 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +NCBIGene:694989 low-threshold mechanosensitivity (LTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "(unionOf dorsal root ganglion (implies Macaca mulatta sensory)) type C nerve fiber +NCBIGene:694989 low-threshold mechanosensitivity (LTM) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/7/master> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1471,53 +1574,59 @@
             owl:someValuesFrom NCBITaxon:10090 ] ;
     ilxtr:genLabel "dorsal root ganglion type C nerve fiber +JAX:031286 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
-<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/8/guinea/pig> a owl:Class ;
+<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/8/guinea-pig> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                                    owl:someValuesFrom ilxtr:SensoryPhenotype ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:10141 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasSomaLocatedIn ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0000044 ] ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:100720930 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:100734219 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:100720930 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:100734219 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty partOf: ;
-                                owl:someValuesFrom UBERON:0000044 ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasThresholdPhenotype ;
                         owl:someValuesFrom ILX:0796526 ] ) ] ;
     rdfs:label "DRG Mrgprd guinea pig (bhuiyan)" ;
     skos:prefLabel "Mrgprd guinea pig neuron" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-            owl:someValuesFrom ilxtr:SensoryPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:10141 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +NCBIGene:100720930 +NCBIGene:100734219 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Cavia porcellus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "(unionOf dorsal root ganglion (implies Cavia porcellus sensory)) type C nerve fiber (unionOf +NCBIGene:100720930 +NCBIGene:100734219) heat-sensitive high-threshold mechanosensitivity (HTM) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/8/human> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:2674 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:11280 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:2674 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:11280 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
@@ -1537,12 +1646,33 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9606 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +NCBIGene:11280 +NCBIGene:2674 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type C nerve fiber (unionOf +NCBIGene:11280 +NCBIGene:2674) heat-sensitive high-threshold mechanosensitivity (HTM) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/8/macaque> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                                    owl:someValuesFrom ilxtr:SensoryPhenotype ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:9544 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasSomaLocatedIn ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0000044 ] ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:706353 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:709555 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
@@ -1550,42 +1680,30 @@
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom NCBIGene:695258 ]
                     [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:706353 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:709555 ]
-                    [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty partOf: ;
-                                owl:someValuesFrom UBERON:0000044 ] ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasThresholdPhenotype ;
                         owl:someValuesFrom ILX:0796526 ] ) ] ;
     rdfs:label "DRG Mrgprd macaque (bhuiyan)" ;
     skos:prefLabel "Mrgprd macaque neuron" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-            owl:someValuesFrom ilxtr:SensoryPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:9544 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +NCBIGene:695258 +NCBIGene:706353 +NCBIGene:709555 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "(unionOf dorsal root ganglion (implies Macaca mulatta sensory)) type C nerve fiber (unionOf +NCBIGene:706353 +NCBIGene:709555) +NCBIGene:695258 heat-sensitive high-threshold mechanosensitivity (HTM) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/8/master> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom TEMPIND:Mrgprd ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:9606 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom TEMPIND:Mrgprd ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
@@ -1607,28 +1725,27 @@
             owl:someValuesFrom NCBITaxon:9544 ],
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:9606 ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ],
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10141 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +Mrgprd heat-sensitive high-threshold mechanosensitivity (HTM) (implies Cavia porcellus Homo sapiens Macaca mulatta Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "(unionOf +Mrgprd (implies Homo sapiens)) dorsal root ganglion type C nerve fiber heat-sensitive high-threshold mechanosensitivity (HTM) (implies Cavia porcellus Macaca mulatta Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/8/mouse> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:14585 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:24046 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:14585 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:24046 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom NCBIGene:211578 ]
@@ -1651,7 +1768,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +NCBIGene:14585 +NCBIGene:211578 +NCBIGene:24046 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type C nerve fiber (unionOf +NCBIGene:14585 +NCBIGene:24046) +NCBIGene:211578 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/9/cre> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1722,15 +1839,17 @@
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:193034 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:233222 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:193034 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:233222 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
@@ -1750,7 +1869,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +NCBIGene:193034 +NCBIGene:233222 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type C nerve fiber (unionOf +NCBIGene:193034 +NCBIGene:233222) heat-sensitive high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/10/cre> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1821,15 +1940,17 @@
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:233222 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:233230 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:233222 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:233230 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
@@ -1849,7 +1970,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +NCBIGene:233222 +NCBIGene:233230 heat-sensitive high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type C nerve fiber (unionOf +NCBIGene:233222 +NCBIGene:233230) heat-sensitive high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/11/cre> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1883,15 +2004,17 @@
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:796 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:11122 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:796 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:11122 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
@@ -1908,21 +2031,23 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9606 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +NCBIGene:11122 +NCBIGene:796 heat-sensitive (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type C nerve fiber (unionOf +NCBIGene:11122 +NCBIGene:796) heat-sensitive (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/11/macaque> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:696796 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:700649 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:696796 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:700649 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
@@ -1939,7 +2064,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9544 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +NCBIGene:696796 +NCBIGene:700649 heat-sensitive (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type C nerve fiber (unionOf +NCBIGene:696796 +NCBIGene:700649) heat-sensitive (implies Macaca mulatta sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/11/master> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -1982,18 +2107,25 @@
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:12310 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:19281 ] ) ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:12310 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:20606 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasAxonPhenotype ;
                         owl:someValuesFrom ILX:0796516 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:12310 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:19281 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:20606 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasFunctionalPhenotype ;
                         owl:someValuesFrom ILX:0796528 ]
@@ -2010,7 +2142,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion type C nerve fiber +Calca +NCBIGene:19281 +NCBIGene:20606 heat-sensitive (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion type C nerve fiber (unionOf +Calca +NCBIGene:19281) (unionOf +Calca +NCBIGene:20606) heat-sensitive (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/12/cre> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -2063,12 +2195,14 @@
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:12310 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:18387 ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:12310 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:18387 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -2082,7 +2216,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion +Calca +NCBIGene:18387 (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion (unionOf +Calca +NCBIGene:18387) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/13/cre> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -2110,12 +2244,14 @@
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:150 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:796 ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:150 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:796 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -2129,7 +2265,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:9606 ] ;
-    ilxtr:genLabel "dorsal root ganglion +NCBIGene:150 +NCBIGene:796 (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion (unionOf +NCBIGene:150 +NCBIGene:796) (implies Homo sapiens sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/13/master> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -2163,37 +2299,41 @@
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasCircuitRolePhenotype ;
+                                    owl:someValuesFrom ilxtr:SensoryPhenotype ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasInstanceInTaxon ;
+                                    owl:someValuesFrom NCBITaxon:10090 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasSomaLocatedIn ;
+                                    owl:someValuesFrom [ a owl:Restriction ;
+                                            owl:onProperty partOf: ;
+                                            owl:someValuesFrom UBERON:0000044 ] ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
                         owl:someValuesFrom NCBIGene:11551 ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:12310 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasSomaLocatedIn ;
-                        owl:someValuesFrom [ a owl:Restriction ;
-                                owl:onProperty partOf: ;
-                                owl:someValuesFrom UBERON:0000044 ] ] ) ] ;
+                        owl:someValuesFrom NCBIGene:12310 ] ) ] ;
     rdfs:label "DRG Calca+Adra2a mouse (bhuiyan)" ;
     skos:prefLabel "Calca+Adra2a mouse neuron" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasCircuitRolePhenotype ;
-            owl:someValuesFrom ilxtr:SensoryPhenotype ],
-        [ a owl:Restriction ;
-            owl:onProperty ilxtr:hasInstanceInTaxon ;
-            owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion +Calca +NCBIGene:11551 (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "(unionOf dorsal root ganglion (implies Mus musculus sensory)) +Calca +NCBIGene:11551 neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/14/master> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom TEMPIND:Calca ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom TEMPIND:Dcn ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom TEMPIND:Calca ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom TEMPIND:Dcn ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -2207,18 +2347,20 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion +Calca +Dcn (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion (unionOf +Calca +Dcn) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/14/mouse> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:12310 ]
-                    [ a owl:Restriction ;
-                        owl:onProperty ilxtr:hasExpressionPhenotype ;
-                        owl:someValuesFrom NCBIGene:13179 ]
+                    [ a owl:Class ;
+                        owl:unionOf (
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:12310 ]
+                                [ a owl:Restriction ;
+                                    owl:onProperty ilxtr:hasExpressionPhenotype ;
+                                    owl:someValuesFrom NCBIGene:13179 ] ) ]
                     [ a owl:Restriction ;
                         owl:onProperty ilxtr:hasSomaLocatedIn ;
                         owl:someValuesFrom [ a owl:Restriction ;
@@ -2232,7 +2374,7 @@
         [ a owl:Restriction ;
             owl:onProperty ilxtr:hasInstanceInTaxon ;
             owl:someValuesFrom NCBITaxon:10090 ] ;
-    ilxtr:genLabel "dorsal root ganglion +Calca +Dcn (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
+    ilxtr:genLabel "dorsal root ganglion (unionOf +Calca +Dcn) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
 <http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/15/macaque> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
@@ -2331,7 +2473,7 @@
             owl:someValuesFrom NCBITaxon:10090 ] ;
     ilxtr:genLabel "dorsal root ganglion type C nerve fiber +Trpm8-Cre-Trpm8-Flpo cold-sensitive (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
-<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/16/guinea/pig> a owl:Class ;
+<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/16/guinea-pig> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
@@ -2508,7 +2650,7 @@
             owl:someValuesFrom NCBITaxon:10090 ] ;
     ilxtr:genLabel "dorsal root ganglion type C nerve fiber +Cysltr2-Cre-Sst-Cre high-threshold mechanosensitivity (HTM) (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
-<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/17/guinea/pig> a owl:Class ;
+<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/17/guinea-pig> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
@@ -2679,7 +2821,7 @@
             owl:someValuesFrom NCBITaxon:10090 ] ;
     ilxtr:genLabel "dorsal root ganglion +JAX:037483 (implies Mus musculus sensory) neuron (Bhuiyan2024)" .
 
-<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/18/guinea/pig> a owl:Class ;
+<http://uri.interlex.org/tgbugs/uris/readable/neurons/bhuiyan/18/guinea-pig> a owl:Class ;
     owl:equivalentClass [ a owl:Class ;
             owl:intersectionOf (
                     ilxtr:NeuronBhuiyan2024
