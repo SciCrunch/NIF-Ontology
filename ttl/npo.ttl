@@ -29,6 +29,7 @@
 @prefix NLX: <http://uri.neuinfo.org/nif/nifstd/nlx_> .
 @prefix NLXANAT: <http://uri.neuinfo.org/nif/nifstd/nlx_anat_> .
 @prefix NLXMOL: <http://uri.neuinfo.org/nif/nifstd/nlx_mol_> .
+@prefix NLXSUB: <http://uri.neuinfo.org/nif/nifstd/nlx_subcell_> .
 @prefix NLXWIKI: <http://neurolex.org/wiki/> .
 @prefix npokb: <http://uri.interlex.org/npo/uris/neurons/> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
@@ -58,7 +59,7 @@
     rdfs:label "The Neuron Phenotype Ontology" ;
     dc:title "The Neuron Phenotype Ontology" ;
     dc:description "An ontology of neuron types based on the phenotypic dimensions of cells that can be measure experimentally." ;
-    owl:versionInfo "2026-01-21" ;
+    owl:versionInfo "2026-03-19" ;
     dc:contributor "Bernard de Bono - https://orcid.org/0000-0003-0638-5274",
         "Fahim Imam - https://orcid.org/0000-0003-4752-543X",
         "Ilias Ziogas - https://orcid.org/0000-0002-9210-2455",
@@ -885,6 +886,13 @@ CHEBI:35701 a owl:Class ;
         "esters" ;
     rdfs:subClassOf CHEBI:36963 .
 
+CHEBI:36080 a owl:Class ;
+    rdfs:label "protein" ;
+    NIFRID:synonym "proteins" ;
+    rdfs:subClassOf CHEBI:33695,
+        PR:000018263,
+        PR:000064867 .
+
 CHEBI:36357 a owl:Class ;
     rdfs:label "Polyatomic entity" ;
     NIFRID:synonym "polyatomic entities" ;
@@ -1061,6 +1069,10 @@ CHEBI:72695 a owl:Class ;
     rdfs:subClassOf CHEBI:25367,
         CHEBI:50860 .
 
+CHEBI:80308 a owl:Class .
+
+CHEBI:80338 a owl:Class .
+
 CHEBI:83813 a owl:Class ;
     rdfs:label "proteinogenic amino acid" ;
     NIFRID:synonym "canonical amino acid",
@@ -1097,12 +1109,6 @@ CHEBI:132943 a owl:Class ;
     rdfs:label "aspartate" ;
     rdfs:subClassOf CHEBI:33558,
         CHEBI:35693 .
-
-dc:description a owl:Class ;
-    rdfs:label "Description" .
-
-dc:title a owl:Class ;
-    rdfs:label "Title" .
 
 FMA:5874 a owl:Class ;
     rdfs:label "Communicating branch of spinal nerve" ;
@@ -1356,6 +1362,10 @@ ILX:0101528 a owl:Class ;
 ILX:0102514 a owl:Class ;
     rdfs:label "Continuant" .
 
+ILX:0103766 a owl:Class ;
+    rdfs:label "Encapsulated nerve ending" ;
+    rdfs:subClassOf ILX:0111339 .
+
 ILX:0104003 a owl:Class ;
     rdfs:label "Excitatory" ;
     rdfs:subClassOf PATO:0001238 .
@@ -1368,6 +1378,68 @@ ILX:0106328 a owl:Class ;
     rdfs:label "Local Circuit role" ;
     NIFRID:synonym "Pathway,	Small circuit" ;
     rdfs:subClassOf BFO:0000023 .
+
+ILX:0106756 a owl:Class ;
+    rdfs:label "Meissners corpuscle" ;
+    NIFRID:synonym "Meisner&#39;s corpuscle",
+        "Meissner&#39;s corpuscle",
+        "tactile corpuscle" ;
+    rdfs:subClassOf ILX:0103766 .
+
+ILX:0106806 a owl:Class ;
+    rdfs:label "Merkels disc" ;
+    NIFRID:synonym "Merkel disk receptor",
+        "Merkel&#39;s disc",
+        "Merkel&#39;s disk" ;
+    rdfs:subClassOf ILX:0103766 .
+
+ILX:0108808 a owl:Class ;
+    rdfs:label "Phenotype" ;
+    rdfs:subClassOf BFO:0000019 .
+
+ILX:0110092 a owl:Class ;
+    rdfs:label "Rexed lamina II" ;
+    rdfs:subClassOf NLX:143975 .
+
+ILX:0110093 a owl:Class ;
+    rdfs:label "Rexed lamina III" ;
+    NIFRID:synonym "lamina III" ;
+    rdfs:subClassOf NLX:143975 .
+
+ILX:0110094 a owl:Class ;
+    rdfs:label "Rexed lamina IV" ;
+    NIFRID:synonym "lamina IV" ;
+    rdfs:subClassOf NLX:143975 .
+
+ILX:0110941 a owl:Class ;
+    rdfs:label "Spinal cord ventral horn motor neuron alpha" ;
+    NIFRID:synonym "alpha motoneuron",
+        "lower motor neuron" ;
+    rdfs:subClassOf ILX:0107497 .
+
+ILX:0111157 a owl:Class ;
+    rdfs:label "Subcellular entity" ;
+    ilxtr:hasExistingId ILX:0111157,
+        NLXSUB:100315 ;
+    ilxtr:hasExternalId NLXSUB:100315 ;
+    ilxtr:hasIlxId ILX:0111157 ;
+    ilxtr:hasIlxPreferredId NLXSUB:100315 .
+
+ILX:0111339 a owl:Class ;
+    rdfs:label "Supra Cellular Structure" ;
+    NIFRID:synonym "Supracellular Structure" ;
+    definition: "A morphological or functional domain formed by parts of two or more cells, e.g., neuropil, dendritic bundles." ;
+    rdfs:subClassOf ILX:0111157 ;
+    ilx.hasDbXref: NLXWIKI:sao508165343 ;
+    ilxr:type ilx.type:term ;
+    ilxtr:hasExistingId ILX:0111339,
+        SAO:508165343 ;
+    ilxtr:hasExternalId SAO:508165343 ;
+    ilxtr:hasIlxId ILX:0111339 ;
+    ilxtr:hasIlxPreferredId SAO:508165343 .
+
+ILX:0485922 a owl:Class ;
+    rdfs:label "Pacinian Corpuscles" .
 
 ILX:0731969 a owl:Class ;
     rdfs:label "least splanchnic nerve" ;
@@ -3824,6 +3896,14 @@ ILX:0796510 a owl:Class ;
     rdfs:label "type A nerve fiber" ;
     rdfs:subClassOf UBERON:0006135 .
 
+ILX:0796511 a owl:Class ;
+    rdfs:label "type Aα (alpha) nerve fiber" ;
+    rdfs:subClassOf ILX:0796510 .
+
+ILX:0796512 a owl:Class ;
+    rdfs:label "type Aβ (beta) nerve fiber" ;
+    rdfs:subClassOf ILX:0796510 .
+
 ILX:0796514 a owl:Class ;
     rdfs:label "type Aδ (delta) nerve fiber" ;
     rdfs:subClassOf ILX:0796510 .
@@ -3832,9 +3912,45 @@ ILX:0796516 a owl:Class ;
     rdfs:label "type C nerve fiber" ;
     rdfs:subClassOf UBERON:0006136 .
 
+ILX:0796517 a owl:Class ;
+    rdfs:label "slowly adapting type 1 (SA1) nerve fiber" ;
+    rdfs:subClassOf UBERON:0006134 .
+
+ILX:0796518 a owl:Class ;
+    rdfs:label "rapidly adapting (RA) nerve fiber" ;
+    rdfs:subClassOf UBERON:0006134 .
+
+ILX:0796525 a owl:Class ;
+    rdfs:label "low-threshold mechanosensitivity (LTM) phenotype" ;
+    rdfs:subClassOf ILX:0108808 .
+
+ILX:0796526 a owl:Class ;
+    rdfs:label "high-threshold mechanosensitivity (HTM) phenotype" ;
+    rdfs:subClassOf ILX:0108808 .
+
+ILX:0796527 a owl:Class ;
+    rdfs:label "field-type cutaneous mechanosensitivity phenotype" ;
+    rdfs:subClassOf ILX:0108808 .
+
+ILX:0796528 a owl:Class ;
+    rdfs:label "heat-sensitive phenotype" ;
+    rdfs:subClassOf ILX:0797459 .
+
+ILX:0796529 a owl:Class ;
+    rdfs:label "cold-sensitive phenotype" ;
+    rdfs:subClassOf ILX:0797459 .
+
 ILX:0796530 a owl:Class ;
     rdfs:label "nociceptive circuit" ;
     rdfs:subClassOf ILX:0106328 .
+
+ILX:0796531 a owl:Class ;
+    rdfs:label "proprioceptive phenotype" ;
+    rdfs:subClassOf ILX:0108808 .
+
+ILX:0796535 a owl:Class ;
+    rdfs:label "pruriceptive circuit" ;
+    rdfs:subClassOf UBERON:0001032 .
 
 ILX:0796679 a owl:Class ;
     rdfs:label "cardiac interganglionic nerve" ;
@@ -3873,6 +3989,30 @@ ILX:0797451 a owl:Class ;
     rdfs:label "subcostal nerve" ;
     rdfs:subClassOf UBERON:0003726 .
 
+ILX:0797452 a owl:Class ;
+    rdfs:label "pruritogenic phenotype" ;
+    rdfs:subClassOf ILX:0108808 .
+
+ILX:0797453 a owl:Class ;
+    rdfs:label "Group Ia afferent" ;
+    rdfs:subClassOf ILX:0796521 .
+
+ILX:0797454 a owl:Class ;
+    rdfs:label "Group II afferent" ;
+    rdfs:subClassOf ILX:0796521 .
+
+ILX:0797455 a owl:Class ;
+    rdfs:label "Group Ib afferent" ;
+    rdfs:subClassOf ILX:0796521 .
+
+ILX:0797459 a owl:Class ;
+    rdfs:label "thermosensitive" ;
+    rdfs:subClassOf ILX:0108808 .
+
+ILX:0797460 a owl:Class ;
+    rdfs:label "mechanosensitive" ;
+    rdfs:subClassOf ILX:0108808 .
+
 ilxcr:hasComposerURI a owl:Class .
 
 ilxtr:GABAReceptor a owl:Class ;
@@ -3889,6 +4029,269 @@ ilxtr:glutamateReceptor a owl:Class ;
     rdfs:label "Glutamate receptor" ;
     NIFRID:synonym "GluR" .
 
+NCBIGene:41 a owl:Class .
+
+NCBIGene:136 a owl:Class .
+
+NCBIGene:150 a owl:Class ;
+    rdfs:label "ADRA2A" ;
+    NIFRID:synonym "ADRA2",
+        "ADRA2R",
+        "ADRAR",
+        "adrenergic, alpha-2A-, receptor",
+        "adrenoceptor alpha 2A",
+        "ALPHA2AAR",
+        "alpha-2 adrenergic receptor subtype C10",
+        "alpha-2-adrenergic receptor, platelet type",
+        "alpha-2A adrenergic receptor",
+        "alpha-2A adrenoceptor",
+        "alpha-2A adrenoreceptor",
+        "alpha-2AAR subtype C10",
+        "FPLD8",
+        "ZNF32" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:152 a owl:Class .
+
+NCBIGene:183 a owl:Class .
+
+NCBIGene:467 a owl:Class ;
+    rdfs:label "ATF3" ;
+    NIFRID:synonym "activating transcription factor 3",
+        "cAMP-dependent transcription factor ATF-3",
+        "cyclic AMP-dependent transcription factor ATF-3" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:796 a owl:Class ;
+    rdfs:label "CALCA" ;
+    NIFRID:synonym "alpha-type CGRP",
+        "CALC1",
+        "calcitonin",
+        "calcitonin 1",
+        "calcitonin gene-related peptide 1",
+        "calcitonin gene-related peptide I",
+        "calcitonin related polypeptide alpha",
+        "calcitonin/calcitonin-related polypeptide, alpha",
+        "CGRP",
+        "CGRP1",
+        "CGRP-alpha",
+        "CGRP-I",
+        "CT",
+        "katacalcin",
+        "KC",
+        "PCT" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:845 a owl:Class .
+
+NCBIGene:885 a owl:Class .
+
+NCBIGene:886 a owl:Class .
+
+NCBIGene:1007 a owl:Class ;
+    rdfs:label "CDH9" ;
+    NIFRID:synonym "cadherin 9",
+        "cadherin-9",
+        "T1-cadherin" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:1136 a owl:Class .
+
+NCBIGene:1139 a owl:Class ;
+    rdfs:label "CHRNA7" ;
+    NIFRID:synonym "a7 nicotinic acetylcholine receptor",
+        "alpha 7 neuronal nicotinic acetylcholine receptor",
+        "alpha-7 nicotinic cholinergic receptor subunit",
+        "cholinergic receptor nicotinic alpha 7 subunit",
+        "cholinergic receptor, nicotinic alpha 7",
+        "cholinergic receptor, nicotinic, alpha 7 (neuronal)",
+        "cholinergic receptor, nicotinic, alpha polypeptide 7",
+        "CHRNA7-2",
+        "nAChR7",
+        "NACHRA7",
+        "neuronal acetylcholine receptor protein, alpha-7 chain",
+        "neuronal acetylcholine receptor subunit alpha-7",
+        "nicotinic acetylcholine receptor subunit alpha-7" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:2042 a owl:Class .
+
+NCBIGene:2115 a owl:Class .
+
+NCBIGene:2674 a owl:Class ;
+    rdfs:label "GFRA1" ;
+    NIFRID:synonym "GDNF family receptor alpha 1",
+        "GDNF family receptor alpha-1",
+        "GDNF receptor alpha 1d",
+        "GDNF receptor alpha 1e",
+        "GDNFR",
+        "GDNFR-alpha-1",
+        "GDNFRA",
+        "GFR-ALPHA-1",
+        "GFRalpha-1",
+        "Glial cell line-derived neurotrophic factor receptor alpha",
+        "GPI-linked anchor protein",
+        "PI-linked cell-surface accessory protein",
+        "RET1L",
+        "RET ligand 1",
+        "RETL1",
+        "RHDA4",
+        "TGF-beta-related neurotrophic factor receptor 1",
+        "TRNR1" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:2675 a owl:Class .
+
+NCBIGene:2676 a owl:Class .
+
+NCBIGene:2918 a owl:Class ;
+    rdfs:label "GRM8" ;
+    NIFRID:synonym "GLUR8",
+        "glutamate metabotropic receptor 8",
+        "glutamate receptor, metabotropic 8",
+        "GPRC1H",
+        "metabotropic glutamate receptor 8",
+        "mGlu8",
+        "MGLUR8" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:3269 a owl:Class .
+
+NCBIGene:3787 a owl:Class .
+
+NCBIGene:3815 a owl:Class ;
+    rdfs:label "KIT" ;
+    NIFRID:synonym "C-Kit",
+        "c-Kit protooncogene",
+        "CD117",
+        "KIT proto-oncogene, receptor tyrosine kinase",
+        "mast/stem cell growth factor receptor Kit",
+        "MASTC",
+        "p145 c-kit",
+        "PBT",
+        "piebald trait protein",
+        "proto-oncogene c-Kit",
+        "proto-oncogene tyrosine-protein kinase Kit",
+        "SCFR",
+        "tyrosine-protein kinase Kit",
+        "v-kit Hardy-Zuckerman 4 feline sarcoma viral oncogene homolog",
+        "v-kit Hardy-Zuckerman 4 feline sarcoma viral oncogene-like protein" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:4879 a owl:Class .
+
+NCBIGene:4915 a owl:Class ;
+    rdfs:label "NTRK2" ;
+    NIFRID:synonym "BDNF-tropomyosine receptor kinase B",
+        "BDNF/NT-3 growth factors receptor",
+        "DEE58",
+        "EIEE58",
+        "GP145-TrkB",
+        "neurotrophic receptor tyrosine kinase 2",
+        "neurotrophic tyrosine kinase receptor type 2",
+        "OBHD",
+        "trk-B",
+        "TRKB",
+        "tropomyosin-related kinase B",
+        "tyrosine kinase receptor B" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:4916 a owl:Class ;
+    rdfs:label "NTRK3" ;
+    NIFRID:synonym "ETS related protein-neurotrophic receptor tyrosine kinase fusion protein",
+        "ETV6-NTRK3 fusion",
+        "gp145(trkC)",
+        "GP145-TrkC",
+        "neurotrophic receptor tyrosine kinase 3",
+        "neurotrophic tyrosine kinase, receptor, type 3",
+        "NT-3 growth factor receptor",
+        "TRKC",
+        "tyrosine kinase receptor C" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:4985 a owl:Class .
+
+NCBIGene:4988 a owl:Class .
+
+NCBIGene:5100 a owl:Class .
+
+NCBIGene:5179 a owl:Class .
+
+NCBIGene:5739 a owl:Class .
+
+NCBIGene:5816 a owl:Class ;
+    rdfs:label "PVALB" ;
+    NIFRID:synonym "alpha-parvalbumin",
+        "alpha-PV",
+        "D22S749",
+        "parvalbumin",
+        "parvalbumin alpha" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:6275 a owl:Class .
+
+NCBIGene:6336 a owl:Class .
+
+NCBIGene:6572 a owl:Class .
+
+NCBIGene:6750 a owl:Class ;
+    rdfs:label "SST" ;
+    NIFRID:synonym "growth hormone release-inhibiting factor",
+        "prepro-somatostatin",
+        "SMST",
+        "somatostatin",
+        "somatostatin-14",
+        "somatostatin-28",
+        "SST1" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:6863 a owl:Class .
+
+NCBIGene:6866 a owl:Class .
+
+NCBIGene:7442 a owl:Class .
+
+NCBIGene:7905 a owl:Class .
+
+NCBIGene:8111 a owl:Class .
+
+NCBIGene:8989 a owl:Class .
+
+NCBIGene:9362 a owl:Class .
+
+NCBIGene:10590 a owl:Class .
+
+NCBIGene:11122 a owl:Class ;
+    rdfs:label "PTPRT" ;
+    NIFRID:synonym "protein tyrosine phosphatase receptor type T",
+        "R-PTP-T",
+        "receptor protein tyrosine phosphatase",
+        "receptor-type tyrosine-protein phosphatase rho",
+        "receptor-type tyrosine-protein phosphatase T",
+        "RPTP-rho",
+        "RPTPrho" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:11280 a owl:Class ;
+    rdfs:label "SCN11A" ;
+    NIFRID:synonym "FEPS3",
+        "HSAN7",
+        "NaN",
+        "NAV1.9",
+        "peripheral nerve sodium channel 5",
+        "PN5",
+        "SCN12A",
+        "sensory neuron sodium channel 2",
+        "SNS-2",
+        "sodium channel protein type 11 subunit alpha",
+        "sodium channel protein type XI subunit alpha",
+        "sodium channel, voltage-gated, type XI, alpha polypeptide",
+        "sodium channel, voltage-gated, type XI, alpha subunit",
+        "sodium channel, voltage-gated, type XII, alpha polypeptide",
+        "sodium voltage-gated channel alpha subunit 11",
+        "voltage-gated sodium channel subunit alpha Nav1.9" ;
+    rdfs:subClassOf SO:0000110 .
+
 NCBIGene:11438 a owl:Class ;
     rdfs:label "Chrna4" ;
     NIFRID:synonym "a4 nicotinic receptor",
@@ -3901,6 +4304,20 @@ NCBIGene:11438 a owl:Class ;
         "EBN1",
         "ENFL1",
         "neuronal acetylcholine receptor subunit alpha-4" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:11441 a owl:Class ;
+    rdfs:label "Chrna7" ;
+    NIFRID:synonym "acetylcholine receptor alpha 7 neural",
+        "Acra7",
+        "alpha7",
+        "alpha7 nicotinic receptor",
+        "alpha7-nAChR",
+        "cholinergic receptor, nicotinic, alpha polypeptide 7",
+        "nAchR",
+        "nAChR7",
+        "neuronal acetylcholine receptor subunit alpha-7",
+        "nicotinic acetylcholine receptor subunit alpha-7" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:11514 a owl:Class ;
@@ -3945,6 +4362,54 @@ NCBIGene:11548 a owl:Class ;
         "alpha-1B adrenoreceptor" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:11551 a owl:Class ;
+    rdfs:label "Adra2a" ;
+    NIFRID:synonym "Adra-2",
+        "Adra-2a",
+        "adrenergic receptor, alpha 2a",
+        "alpha2-C10",
+        "alpha2A",
+        "alpha2A-adrenergic receptor",
+        "alpha2A-AR",
+        "alpha(2A)AR",
+        "alpha-2A adrenergic receptor",
+        "alpha-2A adrenoceptor",
+        "alpha-2A adrenoreceptor",
+        "alpha-2AAR",
+        "subtype alpha2-C10" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:11668 a owl:Class ;
+    rdfs:label "Aldh1a1" ;
+    NIFRID:synonym "3-deoxyglucosone dehydrogenase",
+        "Ahd2",
+        "Ahd-2",
+        "alcohol dehydrogenase family 1, subfamily A1",
+        "alcohol dehydrogenase family 1, subfamily A2",
+        "aldehyde dehydrogenase 1, liver cytosolic (class 1)",
+        "aldehyde dehydrogenase 1A1",
+        "aldehyde dehydrogenase family 1 member A1",
+        "aldehyde dehydrogenase family 1, subfamily A1",
+        "aldehyde dehydrogenase, cytosolic",
+        "Aldh1",
+        "Aldh1a2",
+        "ALDH-E1",
+        "ALHDII",
+        "E1",
+        "Raldh1",
+        "RALDH 1",
+        "retinal dehydrogenase 1" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:11910 a owl:Class ;
+    rdfs:label "Atf3" ;
+    NIFRID:synonym "activating transcription factor 3",
+        "cAMP-dependent transcription factor ATF-3",
+        "cyclic AMP-dependent transcription factor ATF-3",
+        "LRG-21",
+        "transcription factor LRG-21" ;
+    rdfs:subClassOf SO:0000110 .
+
 NCBIGene:11989 a owl:Class ;
     rdfs:label "Slc7a3" ;
     NIFRID:synonym "amino acid transporter, cationic 3",
@@ -3968,6 +4433,22 @@ NCBIGene:11998 a owl:Class ;
         "vasopressin-neurophysin 2-copeptin",
         "Vp",
         "Vsp" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:12167 a owl:Class ;
+    rdfs:label "Bmpr1b" ;
+    NIFRID:synonym "activin receptor-like kinase 6",
+        "Acvrlk6",
+        "Alk6",
+        "ALK-6",
+        "BMP type-1B receptor",
+        "BMPR-1B",
+        "BMPR-IB",
+        "bone morphogenetic protein receptor type-1B",
+        "bone morphogenetic protein receptor, type 1B",
+        "CFK-43a",
+        "serine/threonine-protein kinase receptor R6",
+        "SKR6" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:12307 a owl:Class ;
@@ -4029,6 +4510,13 @@ NCBIGene:12426 a owl:Class ;
         "cholecystokinin B receptor",
         "cholecystokinin-2 receptor",
         "gastrin/cholecystokinin type B receptor" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:12565 a owl:Class ;
+    rdfs:label "Cdh9" ;
+    NIFRID:synonym "cadherin 9",
+        "cadherin-9",
+        "T1-cadherin" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:12647 a owl:Class ;
@@ -4107,6 +4595,28 @@ NCBIGene:12918 a owl:Class ;
         "corticotropin releasing hormone",
         "CRF",
         "Gm1347" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:13048 a owl:Class ;
+    rdfs:label "Cux2" ;
+    NIFRID:synonym "1700051K22Rik",
+        "cut-like homeobox 2",
+        "Cutl2",
+        "Cux-2",
+        "homeobox protein cut-like 2",
+        "homeobox protein Cux-2" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:13179 a owl:Class ;
+    rdfs:label "Dcn" ;
+    NIFRID:synonym "bone proteoglycan II",
+        "DC",
+        "decorin",
+        "DSPG2",
+        "PG40",
+        "PGII",
+        "PGS2",
+        "SLRR1B" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:13488 a owl:Class ;
@@ -4212,6 +4722,20 @@ NCBIGene:14417 a owl:Class ;
         "glutamic acid decarboxylase 2" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:14585 a owl:Class ;
+    rdfs:label "Gfra1" ;
+    NIFRID:synonym "GDNF family receptor alpha-1",
+        "GDNF receptor alpha 1 (GFRa-1)",
+        "GDNF receptor alpha 1c",
+        "GDNF receptor alpha 1d",
+        "GDNF receptor alpha 1e",
+        "GDNFR-alpha-1",
+        "GFR alpha-1",
+        "GFRalpha-1",
+        "glial cell line derived neurotrophic factor family receptor alpha 1",
+        "TGF-beta-related neurotrophic factor receptor 1" ;
+    rdfs:subClassOf SO:0000110 .
+
 NCBIGene:14799 a owl:Class ;
     rdfs:label "Gria1" ;
     NIFRID:synonym "2900051M01Rik",
@@ -4245,6 +4769,17 @@ NCBIGene:14802 a owl:Class ;
         "glutamate receptor, ionotropic, AMPA4 (alpha 4)",
         "spike wave 1",
         "spkw1" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:14823 a owl:Class ;
+    rdfs:label "Grm8" ;
+    NIFRID:synonym "A230002O04",
+        "G protein coupled receptor, family C, group 1, member H",
+        "GluR8",
+        "glutamate receptor, metabotropic 8",
+        "Gprc1h",
+        "metabotropic glutamate receptor 8",
+        "mGluR8" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:15560 a owl:Class ;
@@ -4302,6 +4837,8 @@ NCBIGene:16000 a owl:Class ;
         "somatomedin" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:16188 a owl:Class .
+
 NCBIGene:16324 a owl:Class ;
     rdfs:label "Inhbb" ;
     NIFRID:synonym "activin beta-B chain",
@@ -4349,6 +4886,8 @@ NCBIGene:18155 a owl:Class ;
         "proorphanin" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:18158 a owl:Class .
+
 NCBIGene:18159 a owl:Class ;
     rdfs:label "Nppc" ;
     NIFRID:synonym "C-type natriuretic peptide",
@@ -4394,6 +4933,43 @@ NCBIGene:18195 a owl:Class ;
         "suppressor of K(+) transport growth defect 2",
         "vesicle-fusing ATPase",
         "vesicular-fusion protein NSF" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:18212 a owl:Class ;
+    rdfs:label "Ntrk2" ;
+    NIFRID:synonym "BDNF/NT-3 growth factors receptor",
+        "GP145-TrkB/GP95-TrkB",
+        "neurotrophic tyrosine kinase, receptor, type 2",
+        "neurotrophic tyrosine receptor kinase type 2",
+        "Tkrb",
+        "trk-B",
+        "trkB",
+        "trkB tyrosine kinase" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:18213 a owl:Class ;
+    rdfs:label "Ntrk3" ;
+    NIFRID:synonym "GP145-TrkC",
+        "neurotrophic tyrosine kinase, receptor, type 3",
+        "neurotrophin-3",
+        "NT-3 growth factor receptor",
+        "Ntrk3_tv3",
+        "trk-C",
+        "TrkC",
+        "trkC tyrosine kinase" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:18387 a owl:Class ;
+    rdfs:label "Oprk1" ;
+    NIFRID:synonym "K-OR-1",
+        "kappa-type opioid receptor",
+        "KOR",
+        "KOR-1",
+        "MSL-1",
+        "opioid receptor, kappa 1",
+        "opioid receptor, kappa 2",
+        "Oprk2",
+        "R21" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:18430 a owl:Class ;
@@ -4517,6 +5093,21 @@ NCBIGene:19242 a owl:Class ;
         "pleiotrophin" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:19281 a owl:Class ;
+    rdfs:label "Ptprt" ;
+    NIFRID:synonym "mKIAA0283",
+        "mRPTPrho",
+        "protein tyrosine phosphatase receptor type T",
+        "R-PTP-T",
+        "receptor protein tyrosine phosphatase-rho",
+        "receptor-type tyrosine-protein phosphatase rho",
+        "receptor-type tyrosine-protein phosphatase T",
+        "RPTP-rfo",
+        "RPTP-rho",
+        "RPTPmam4",
+        "RPTPrho" ;
+    rdfs:subClassOf SO:0000110 .
+
 NCBIGene:19293 a owl:Class ;
     rdfs:label "Pvalb" ;
     NIFRID:synonym "alpha-parvalbumin",
@@ -4594,6 +5185,13 @@ NCBIGene:20564 a owl:Class ;
         "slit-3" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:20600 a owl:Class ;
+    rdfs:label "Smr2" ;
+    NIFRID:synonym "MSG2",
+        "submaxillary gland androgen regulated protein 2",
+        "Vcs2" ;
+    rdfs:subClassOf SO:0000110 .
+
 NCBIGene:20604 a owl:Class ;
     rdfs:label "Sst" ;
     NIFRID:synonym "preprosomatostatin",
@@ -4602,6 +5200,18 @@ NCBIGene:20604 a owl:Class ;
         "somatostatin",
         "SRIF",
         "SS" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:20606 a owl:Class ;
+    rdfs:label "Sstr2" ;
+    NIFRID:synonym "Smstr2",
+        "Smstr-2",
+        "somatostatin receptor 2",
+        "somatostatin receptor type 2",
+        "SRIF-1",
+        "SS2R",
+        "sst2",
+        "SSTR-2" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:20614 a owl:Class ;
@@ -4836,6 +5446,22 @@ NCBIGene:24012 a owl:Class ;
         "Regulator of G-protein signaling 7 (RGS7)" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:24046 a owl:Class ;
+    rdfs:label "Scn11a" ;
+    NIFRID:synonym "NaN",
+        "NaT",
+        "NaV1.9",
+        "NSS2",
+        "sensory neuron sodium channel 2",
+        "SNS2",
+        "sodium channel protein type 11 subunit alpha",
+        "sodium channel protein type XI subunit alpha",
+        "sodium channel, voltage-gated, type XI, alpha",
+        "sodium channel, voltage-gated, type XI, alpha polypeptide",
+        "voltage-gated sodium channel NAV1.9b",
+        "voltage-gated sodium channel subunit alpha Nav1.9" ;
+    rdfs:subClassOf SO:0000110 .
+
 NCBIGene:26381 a owl:Class ;
     rdfs:label "Esrrg" ;
     NIFRID:synonym "ERR3",
@@ -4847,6 +5473,10 @@ NCBIGene:26381 a owl:Class ;
         "NR3B3",
         "nuclear receptor subfamily 3 group B member 3" ;
     rdfs:subClassOf SO:0000110 .
+
+NCBIGene:27091 a owl:Class .
+
+NCBIGene:28240 a owl:Class .
 
 NCBIGene:29863 a owl:Class ;
     rdfs:label "Pde7b" ;
@@ -4883,6 +5513,8 @@ NCBIGene:50787 a owl:Class ;
         "HS6ST-3" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:51617 a owl:Class .
+
 NCBIGene:53420 a owl:Class ;
     rdfs:label "Syt5" ;
     NIFRID:synonym "synaptotagmin IX",
@@ -4890,6 +5522,10 @@ NCBIGene:53420 a owl:Class ;
         "synaptotagmin-5",
         "SytV" ;
     rdfs:subClassOf SO:0000110 .
+
+NCBIGene:53972 a owl:Class .
+
+NCBIGene:54140 a owl:Class .
 
 NCBIGene:54195 a owl:Class ;
     rdfs:label "Gucy1b1" ;
@@ -4931,6 +5567,8 @@ NCBIGene:54526 a owl:Class ;
         "sytX" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:55203 a owl:Class .
+
 NCBIGene:58802 a owl:Class ;
     rdfs:label "Kcnmb4" ;
     NIFRID:synonym "1700058G18Rik",
@@ -4948,6 +5586,8 @@ NCBIGene:58802 a owl:Class ;
         "Slowpoke beta 4" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:59350 a owl:Class .
+
 NCBIGene:60596 a owl:Class ;
     rdfs:label "Gucy1a1" ;
     NIFRID:synonym "1200016O07Rik",
@@ -4962,6 +5602,8 @@ NCBIGene:60596 a owl:Class ;
         "soluble guanylate cyclase large subunit" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:63895 a owl:Class .
+
 NCBIGene:64378 a owl:Class ;
     rdfs:label "Gpr88" ;
     NIFRID:synonym "G protein-coupled receptor 88",
@@ -4975,6 +5617,15 @@ NCBIGene:67792 a owl:Class ;
     rdfs:label "Rgs8" ;
     NIFRID:synonym "6530413N01Rik",
         "regulator of G-protein signaling 8" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:67860 a owl:Class ;
+    rdfs:label "S100a16" ;
+    NIFRID:synonym "2300002L21Rik",
+        "DT1P1A7",
+        "protein S100-A16",
+        "S100 calcium binding protein A16",
+        "S100F" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:67865 a owl:Class ;
@@ -5030,6 +5681,18 @@ NCBIGene:76969 a owl:Class ;
         "N-acetylglucosamine-6-O-sulfotransferase 1" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:79054 a owl:Class ;
+    rdfs:label "TRPM8" ;
+    NIFRID:synonym "LTRPC6",
+        "LTrpC-6",
+        "transient receptor potential cation channel subfamily M member 8",
+        "transient receptor potential p8",
+        "transient receptor potential subfamily M member 8",
+        "trp-p8",
+        "TRPM8 cationic channel",
+        "TRPP8" ;
+    rdfs:subClassOf SO:0000110 .
+
 NCBIGene:107448 a owl:Class ;
     rdfs:label "Unc5a" ;
     NIFRID:synonym "mKIAA1976",
@@ -5060,6 +5723,21 @@ NCBIGene:109648 a owl:Class ;
         "pro-neuropeptide Y" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:114142 a owl:Class ;
+    rdfs:label "Foxp2" ;
+    NIFRID:synonym "2810043D05Rik",
+        "CAG-16",
+        "D0Kist7",
+        "forkhead box P2",
+        "forkhead box protein P2" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:117196 a owl:Class .
+
+NCBIGene:133396 a owl:Class .
+
+NCBIGene:140576 a owl:Class .
+
 NCBIGene:140919 a owl:Class ;
     rdfs:label "Slc17a6" ;
     NIFRID:synonym "2900073D12Rik",
@@ -5071,6 +5749,20 @@ NCBIGene:140919 a owl:Class ;
         "solute carrier family 17 member 6",
         "vesicular glutamate transporter 2",
         "VGLUT2" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:171382 a owl:Class ;
+    rdfs:label "Trpm8" ;
+    NIFRID:synonym "CMR1",
+        "long transient receptor potential channel 6",
+        "LTRPC6",
+        "LTrpC-6",
+        "transient receptor potential cation channel subfamily M member 8",
+        "transient receptor potential cation channel, subfamily M, member 8",
+        "transient receptor potential p8",
+        "TRP ion channel TRPM8",
+        "Trp-p8",
+        "TRPP8" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:192199 a owl:Class ;
@@ -5085,6 +5777,24 @@ NCBIGene:192199 a owl:Class ;
         "roof plate-specific spondin-1",
         "Rspondin",
         "thrombospondin type 1 domain containing gene Rspondin" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:193034 a owl:Class ;
+    rdfs:label "Trpv1" ;
+    NIFRID:synonym "capsaicin receptor",
+        "cation channel",
+        "deltaN-TRPv1",
+        "osm-9-like TRP channel 1",
+        "OTRPC1",
+        "transient receptor potential cation channel subfamily V member 1",
+        "transient receptor potential cation channel V1",
+        "transient receptor potential cation channel, subfamily V, member 1",
+        "TRPV1alpha",
+        "TRPV1beta",
+        "vanilloid receptor 1",
+        "vanilloid receptor subtype 1",
+        "Vr1",
+        "VR-1" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:194642 a owl:Class ;
@@ -5136,6 +5846,20 @@ NCBIGene:210801 a owl:Class ;
         "unc-5 netrin receptor D" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:211578 a owl:Class ;
+    rdfs:label "Mrgprd" ;
+    NIFRID:synonym "beta-alanine receptor",
+        "G protein-coupled receptor MrgD",
+        "G-protein coupled receptor TGR7",
+        "Gm499",
+        "Mas-related G protein-coupled receptor d",
+        "mas-related G-protein coupled receptor member D",
+        "MAS-related GPR, member D",
+        "Mgrd",
+        "MrgD",
+        "TGR7" ;
+    rdfs:subClassOf SO:0000110 .
+
 NCBIGene:230777 a owl:Class ;
     rdfs:label "Hcrtr1" ;
     NIFRID:synonym "hypocretin (orexin) receptor 1",
@@ -5145,6 +5869,23 @@ NCBIGene:230777 a owl:Class ;
         "ox1-R",
         "Ox1r",
         "ox-1-R" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:233222 a owl:Class ;
+    rdfs:label "Mrgpra3" ;
+    NIFRID:synonym "G protein-coupled receptor MRGA3",
+        "mas-related G-protein coupled receptor member A3",
+        "Mas-related gene A3",
+        "MAS-related GPR, member A3",
+        "Mrga3" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:233230 a owl:Class ;
+    rdfs:label "Mrgprb4" ;
+    NIFRID:synonym "mas-related G-protein coupled receptor member B4",
+        "MAS-related GPR, member B4",
+        "MrgB4",
+        "MrgB4 G protein-coupled receptor" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:234094 a owl:Class ;
@@ -5183,6 +5924,8 @@ NCBIGene:239405 a owl:Class ;
         "R-spondin-2",
         "roof plate-specific spondin-2" ;
     rdfs:subClassOf SO:0000110 .
+
+NCBIGene:239556 a owl:Class .
 
 NCBIGene:241489 a owl:Class ;
     rdfs:label "Pde11a" ;
@@ -5233,6 +5976,14 @@ NCBIGene:243764 a owl:Class ;
         "muscarinic acetylcholine receptor M2" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:246313 a owl:Class .
+
+NCBIGene:259249 a owl:Class .
+
+NCBIGene:332309 a owl:Class .
+
+NCBIGene:375057 a owl:Class .
+
 NCBIGene:380684 a owl:Class ;
     rdfs:label "Nefh" ;
     NIFRID:synonym "200 kDa neurofilament protein",
@@ -5245,6 +5996,21 @@ NCBIGene:380684 a owl:Class ;
         "NF-H",
         "Nfh" ;
     rdfs:subClassOf SO:0000110 .
+
+NCBIGene:381310 a owl:Class .
+
+NCBIGene:381489 a owl:Class ;
+    rdfs:label "Rxfp1" ;
+    NIFRID:synonym "Gm1018",
+        "leucine-rich repeat-containing 7",
+        "leucine-rich repeat-containing G-protein coupled receptor 7",
+        "Lgr7",
+        "relaxin family peptide receptor 1",
+        "relaxin receptor 1",
+        "relaxin/insulin-like family peptide receptor 1" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:404037 a owl:Class .
 
 NCBIGene:432530 a owl:Class ;
     rdfs:label "Adcy1" ;
@@ -5261,11 +6027,218 @@ NCBIGene:432530 a owl:Class ;
         "I-AC" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:574230 a owl:Class ;
+    rdfs:label "CHRNA7" ;
+    NIFRID:synonym "cholinergic receptor nicotinic alpha 7 subunit",
+        "cholinergic receptor, nicotinic, alpha 7 (neuronal)",
+        "nAChR7",
+        "neuronal acetylcholine receptor subunit alpha-7",
+        "nica7",
+        "nicotinic acetylcholine receptor alpha7",
+        "nicotinic acetylcholine receptor subunit alpha7",
+        "nicotinic acetylcholine receptor subunit alpha-7" ;
+    rdfs:subClassOf SO:0000110 .
+
 NCBIGene:628779 a owl:Class ;
     rdfs:label "Hs3st4" ;
     NIFRID:synonym "Gm6915",
         "heparan sulfate (glucosamine) 3-O-sulfotransferase 4",
         "heparan sulfate glucosamine 3-O-sulfotransferase 4" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:667742 a owl:Class .
+
+NCBIGene:694989 a owl:Class ;
+    rdfs:label "CDH9" ;
+    NIFRID:synonym "cadherin 9",
+        "cadherin-9",
+        "cadherin-9 preproprotein" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:695258 a owl:Class ;
+    rdfs:label "SCN11A" ;
+    NIFRID:synonym "sodium channel protein type 11 subunit alpha",
+        "sodium channel, voltage-gated, type XI, alpha subunit",
+        "sodium voltage-gated channel alpha subunit 11" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:696759 a owl:Class ;
+    rdfs:label "KIT" ;
+    NIFRID:synonym "EGK_15881",
+        "KIT proto-oncogene, receptor tyrosine kinase",
+        "Mast/stem cell growth factor receptor",
+        "mast/stem cell growth factor receptor Kit" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:696796 a owl:Class ;
+    rdfs:label "PTPRT" ;
+    NIFRID:synonym "protein tyrosine phosphatase receptor type T",
+        "receptor-type tyrosine-protein phosphatase T" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:697272 a owl:Class ;
+    rdfs:label "PVALB" ;
+    NIFRID:synonym "parvalbumin",
+        "parvalbumin alpha" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:697465 a owl:Class ;
+    rdfs:label "GRM8" ;
+    NIFRID:synonym "glutamate metabotropic receptor 8",
+        "metabotropic glutamate receptor 8" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:697615 a owl:Class ;
+    rdfs:label "NTRK3" ;
+    NIFRID:synonym "neurotrophic receptor tyrosine kinase 3",
+        "NT-3 growth factor receptor" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:700649 a owl:Class ;
+    rdfs:label "CALCA" ;
+    NIFRID:synonym "calcitonin",
+        "calcitonin gene-related peptide",
+        "calcitonin related polypeptide alpha",
+        "CGRP" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:701107 a owl:Class ;
+    rdfs:label "RXFP1" ;
+    NIFRID:synonym "leucine-rich repeat-containing G protein-coupled receptor 7",
+        "LGR7",
+        "relaxin family peptide receptor 1",
+        "relaxin receptor 1",
+        "relaxin/insulin like family peptide receptor 1" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:706353 a owl:Class ;
+    rdfs:label "GFRA1" ;
+    NIFRID:synonym "GDNF family receptor alpha 1",
+        "GDNF family receptor alpha-1" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:708626 a owl:Class ;
+    rdfs:label "SST" ;
+    NIFRID:synonym "EGK_12201",
+        "somatostatin",
+        "somatostatin preproprotein" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:709555 a owl:Class ;
+    rdfs:label "MRGPRD" ;
+    NIFRID:synonym "MAS related GPR family member D",
+        "Mas-related G protein-coupled receptor D",
+        "mas-related G-protein coupled receptor member D",
+        "MGRD" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:709757 a owl:Class ;
+    rdfs:label "NTRK2" ;
+    NIFRID:synonym "BDNF/NT-3 growth factors receptor",
+        "EGK_07828",
+        "neurotrophic receptor tyrosine kinase 2" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:710832 a owl:Class ;
+    rdfs:label "ATF3" ;
+    NIFRID:synonym "activating transcription factor 3",
+        "cyclic AMP-dependent transcription factor ATF-3",
+        "EGK_01674" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:713638 a owl:Class ;
+    rdfs:label "S100A16" ;
+    NIFRID:synonym "protein S100-A16",
+        "S100 calcium binding protein A16" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100135608 a owl:Class ;
+    rdfs:label "Pvalb" ;
+    NIFRID:synonym "parvalbumin",
+        "Parvalbumin alpha",
+        "parvalbumin alpha" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100337634 a owl:Class ;
+    rdfs:label "Trpm8" ;
+    NIFRID:synonym "transient potential cation channel subfamily M member 8",
+        "transient receptor potential cation channel subfamily M member 8" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100429414 a owl:Class ;
+    rdfs:label "TRPM8" ;
+    NIFRID:synonym "transient receptor potential cation channel subfamily M member 8" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100713032 a owl:Class ;
+    rdfs:label "Tac1" ;
+    NIFRID:synonym "protachykinin-1",
+        "tachykinin precursor 1" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100717894 a owl:Class ;
+    rdfs:label "Cdh9" ;
+    NIFRID:synonym "cadherin 9",
+        "cadherin-9" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100720640 a owl:Class ;
+    rdfs:label "LOC100720640" ;
+    NIFRID:synonym "cholinergic receptor nicotinic alpha 7 subunit",
+        "Chrna7",
+        "neuronal acetylcholine receptor subunit alpha-7" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100720930 a owl:Class ;
+    rdfs:label "Gfra1" ;
+    NIFRID:synonym "GDNF family receptor alpha 1",
+        "GDNF family receptor alpha-1",
+        "glial cell line derived neurotrophic factor family receptor alpha 1" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100722370 a owl:Class ;
+    rdfs:label "Atf3" ;
+    NIFRID:synonym "activating transcription factor 3",
+        "cyclic AMP-dependent transcription factor ATF-3" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100723565 a owl:Class ;
+    rdfs:label "Ntrk2" ;
+    NIFRID:synonym "BDNF/NT-3 growth factors receptor",
+        "neurotrophic receptor tyrosine kinase 2",
+        "TrkB" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100724500 a owl:Class ;
+    rdfs:label "S100a16" ;
+    NIFRID:synonym "protein S100-A16",
+        "S100 calcium binding protein A16" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100726397 a owl:Class ;
+    rdfs:label "Kit" ;
+    NIFRID:synonym "KIT proto-oncogene, receptor tyrosine kinase",
+        "mast/stem cell growth factor receptor Kit",
+        "v-kit Hardy-Zuckerman 4 feline sarcoma viral oncogene-like protein" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100730851 a owl:Class ;
+    rdfs:label "Sst" ;
+    NIFRID:synonym "somatostatin" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100731493 a owl:Class ;
+    rdfs:label "Ntrk3" ;
+    NIFRID:synonym "neurotrophic receptor tyrosine kinase 3",
+        "NT-3 growth factor receptor" ;
+    rdfs:subClassOf SO:0000110 .
+
+NCBIGene:100734219 a owl:Class ;
+    rdfs:label "Scn11a" ;
+    NIFRID:synonym "sodium channel protein type 11 subunit alpha",
+        "sodium channel, voltage-gated, type XI, alpha subunit",
+        "sodium voltage-gated channel alpha subunit 11",
+        "type XI voltage-gated sodium channel alpha polypeptide" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBITaxon:1 a owl:Class ;
@@ -5337,6 +6310,32 @@ NCBITaxon:9526 a owl:Class ;
     rdfs:label "Catarrhini" ;
     NIFRID:synonym "Catarrhini" ;
     rdfs:subClassOf NCBITaxon:314293 .
+
+NCBITaxon:9527 a owl:Class ;
+    rdfs:label "Cercopithecidae" ;
+    NIFRID:synonym "monkey",
+        "monkeys",
+        "Old World monkeys" ;
+    rdfs:subClassOf NCBITaxon:314294 .
+
+NCBITaxon:9528 a owl:Class ;
+    rdfs:label "Cercopithecinae" ;
+    rdfs:subClassOf NCBITaxon:9527 .
+
+NCBITaxon:9539 a owl:Class ;
+    rdfs:label "Macaca" ;
+    NIFRID:synonym "macaque",
+        "macaques" ;
+    rdfs:subClassOf NCBITaxon:9528 .
+
+NCBITaxon:9544 a owl:Class ;
+    rdfs:label "Macaca mulatta" ;
+    NIFRID:synonym "Cercopithecus mulatta",
+        "rhesus macaque",
+        "rhesus macaques",
+        "Rhesus monkey",
+        "rhesus monkeys" ;
+    rdfs:subClassOf NCBITaxon:9539 .
 
 NCBITaxon:9604 a owl:Class ;
     rdfs:label "Hominidae" ;
@@ -5631,6 +6630,10 @@ NCBITaxon:314293 a owl:Class ;
     NIFRID:synonym "Anthropoidea",
         "Simiiformes" ;
     rdfs:subClassOf NCBITaxon:376913 .
+
+NCBITaxon:314294 a owl:Class ;
+    rdfs:label "Cercopithecoidea" ;
+    rdfs:subClassOf NCBITaxon:9526 .
 
 NCBITaxon:314295 a owl:Class ;
     rdfs:label "Hominoidea" ;
@@ -5935,6 +6938,9 @@ NLX:69833 a owl:Class ;
     ilxtr:hasIlxId ILX:0104674 ;
     ilxtr:hasIlxPreferredId NLX:69833 .
 
+NLX:143975 a owl:Class ;
+    rdfs:label "Rexed spinal cord parcellation scheme region" .
+
 NLX:149264 a owl:Class ;
     rdfs:label "Superior paraolivary nucleus" ;
     rdfs:subClassOf UBERON:0002616,
@@ -6076,8 +7082,7 @@ NLXMOL:20090604 a owl:Class ;
     NIFRID:synonym "GABA receptor" .
 
 OBI:0100026 a owl:Class ;
-    rdfs:label "organism" ;
-    rdfs:subClassOf BFO:0000040 .
+    rdfs:label "organism" .
 
 owl:Class a owl:Class .
 
@@ -6193,6 +7198,23 @@ PR:000000001 a owl:Class ;
         PR:000018263,
         PR:000064867 .
 
+PR:000000681 a owl:Class ;
+    rdfs:label "transient receptor potential cation channel TRPV" ;
+    NIFRID:synonym "fam:TRPV" ;
+    rdfs:subClassOf PR:000000001,
+        PR:000044657 .
+
+PR:000001065 a owl:Class ;
+    rdfs:label "transient receptor potential cation channel TRPV1" ;
+    NIFRID:synonym "capsaicin receptor",
+        "Osm-9-like TRP channel 1",
+        "OTRPC1",
+        "TRPV1",
+        "TrpV1",
+        "vanilloid receptor 1",
+        "VR1" ;
+    rdfs:subClassOf PR:000000681 .
+
 PR:000001094 a owl:Class ;
     rdfs:label "rhodopsin-like G-protein coupled receptor" ;
     NIFRID:synonym "class 1 G-protein coupled receptor",
@@ -6229,6 +7251,12 @@ PR:000001488 a owl:Class ;
     rdfs:label "muscarinic acetylcholine receptor" ;
     rdfs:subClassOf PR:000001094 .
 
+PR:000001551 a owl:Class ;
+    rdfs:label "relaxin family peptide receptor protein" ;
+    NIFRID:synonym "fam:RXFP",
+        "relaxin receptor" ;
+    rdfs:subClassOf PR:000001094 .
+
 PR:000001562 a owl:Class ;
     rdfs:label "vasopressin/oxytocin receptor" ;
     NIFRID:synonym "name: vasopressin and oxytocin receptor" ;
@@ -6246,6 +7274,15 @@ PR:000001635 a owl:Class ;
     NIFRID:synonym "OT-R",
         "OXTR" ;
     rdfs:subClassOf PR:000001562 .
+
+PR:000001666 a owl:Class ;
+    rdfs:label "relaxin receptor 1" ;
+    NIFRID:synonym "Gm1018",
+        "leucine-rich repeat-containing G-protein coupled receptor 7",
+        "LGR7",
+        "relaxin family peptide receptor 1",
+        "RXFP1" ;
+    rdfs:subClassOf PR:000001551 .
 
 PR:000003781 a owl:Class ;
     rdfs:label "ADM" ;
@@ -6480,11 +7517,22 @@ PR:000018263 a owl:Class ;
         "polypeptide" ;
     rdfs:subClassOf CHEBI:50047 .
 
+PR:000024112 a owl:Class ;
+    rdfs:label "Trk system potassium uptake protein trkA" ;
+    NIFRID:synonym "K(+)-uptake protein trkA",
+        "trkA" ;
+    rdfs:subClassOf PR:000000001 .
+
 PR:000027222 a owl:Class ;
     rdfs:label "CALCA gene translation product" ;
     NIFRID:synonym "CALC",
         "CALCA" ;
     rdfs:subClassOf PR:000000001 .
+
+PR:000029032 a owl:Class ;
+    rdfs:label "Mus musculus protein" ;
+    NIFRID:synonym "mouse protein" ;
+    rdfs:subClassOf PR:000036194 .
 
 PR:000030035 a owl:Class ;
     rdfs:label "G-protein coupled receptor" ;
@@ -6493,6 +7541,54 @@ PR:000030035 a owl:Class ;
         "seven-transmembrane receptor" ;
     rdfs:subClassOf PR:000000001 .
 
+PR:000032708 a owl:Class ;
+    rdfs:label "piezo-type mechanosensitive ion channel component 2" ;
+    NIFRID:synonym "C18orf30",
+        "C18orf58",
+        "FAM38B",
+        "PIEZO2",
+        "protein FAM38B" ;
+    rdfs:subClassOf PR:000044682 .
+
+PR:000036194 a owl:Class ;
+    rdfs:label "eukaryotic protein" ;
+    NIFRID:synonym "Eukaryota protein" ;
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001 .
+
+PR:000038104 a owl:Class .
+
+PR:000044628 a owl:Class ;
+    rdfs:label "voltage-gated ion channel protein" ;
+    NIFRID:synonym "fam:vgate_ion_chan" ;
+    rdfs:subClassOf PR:000049983 .
+
+PR:000044657 a owl:Class ;
+    rdfs:label "transient receptor potential channel protein" ;
+    NIFRID:synonym "fam:TRP_chan" ;
+    rdfs:subClassOf PR:000044628 .
+
+PR:000044676 a owl:Class ;
+    rdfs:label "channel protein" ;
+    NIFRID:synonym "channel-forming toxin protein",
+        "channel/pore class transporter protein",
+        "fam:chan",
+        "nonselective channel protein",
+        "pore class transporter protein",
+        "pore protein" ;
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001 .
+
+PR:000044682 a owl:Class ;
+    rdfs:label "piezo channel protein" ;
+    NIFRID:synonym "fam:piezo_chan" ;
+    rdfs:subClassOf PR:000049983 .
+
+PR:000049983 a owl:Class ;
+    rdfs:label "ion channel protein" ;
+    NIFRID:synonym "fam:ion_chan" ;
+    rdfs:subClassOf PR:000044676 .
+
 PR:000064867 a owl:Class ;
     rdfs:label "protein-containing molecular entity" ;
     NIFRID:synonym "protein",
@@ -6500,6 +7596,54 @@ PR:000064867 a owl:Class ;
         "protein complex",
         "protein-containing complex" ;
     rdfs:subClassOf CHEBI:23367 .
+
+PR:P15209 a owl:Class .
+
+PR:P30875 a owl:Class .
+
+PR:P33534 a owl:Class .
+
+PR:P36898 a owl:Class .
+
+PR:P47743 a owl:Class .
+
+PR:Q6R6I7 a owl:Class ;
+    rdfs:label "relaxin receptor 1 (mouse)" ;
+    NIFRID:synonym "Gm1018",
+        "leucine-rich repeat-containing G-protein coupled receptor 7 (mouse)",
+        "Lgr7",
+        "mRXFP1",
+        "relaxin family peptide receptor 1 (mouse)",
+        "Rxfp1" ;
+    rdfs:subClassOf PR:000001666,
+        PR:000029032 .
+
+PR:Q6VNS1 a owl:Class .
+
+PR:Q8BNE1 a owl:Class .
+
+PR:Q9D708 a owl:Class .
+
+PR:Q91WW3 a owl:Class .
+
+PR:Q91ZB8 a owl:Class .
+
+PR:Q91ZC0 a owl:Class .
+
+PR:Q704Y3 a owl:Class ;
+    rdfs:label "transient receptor potential cation channel subfamily V member 1 (mouse)" ;
+    NIFRID:synonym "mTRPV1",
+        "Osm-9-like TRP channel 1 (mouse)",
+        "OTRPC1 (mouse)",
+        "Trpv1",
+        "TrpV1 (mouse)",
+        "vanilloid receptor 1 (mouse)" ;
+    rdfs:subClassOf PR:000001065,
+        PR:000029032 .
+
+PR:Q01338 a owl:Class .
+
+PR:Q60765 a owl:Class .
 
 PTHR:10558 a owl:Class .
 
@@ -8578,6 +9722,13 @@ UBERON:0001021 a owl:Class ;
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0000010 ] .
+
+UBERON:0001027 a owl:Class ;
+    rdfs:label "sensory nerve" ;
+    NIFRID:synonym "afferent nerve",
+        "nervus sensorius",
+        "sensory nerve" ;
+    rdfs:subClassOf UBERON:0001021 .
 
 UBERON:0001032 a owl:Class ;
     rdfs:label "sensory system" ;
@@ -13122,6 +14273,30 @@ UBERON:0002059 a owl:Class ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0000011 ] .
 
+UBERON:0002067 a owl:Class ;
+    rdfs:label "dermis" ;
+    NIFRID:synonym "corium",
+        "cutis",
+        "dermis",
+        "vertebrate dermis" ;
+    rdfs:subClassOf UBERON:0004923,
+        UBERON:0010314,
+        UBERON:0013754,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0002097 ] .
+
+UBERON:0002073 a owl:Class ;
+    rdfs:label "hair follicle" ;
+    NIFRID:synonym "folliculus pili" ;
+    rdfs:subClassOf UBERON:0036150,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0001003 ],
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0011932 ] .
+
 UBERON:0002075 a owl:Class ;
     rdfs:label "viscus" ;
     NIFRID:synonym "splanchnic tissue",
@@ -17331,6 +18506,15 @@ UBERON:0003716 a owl:Class ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0001759 ] .
 
+UBERON:0003718 a owl:Class ;
+    rdfs:label "muscle spindle" ;
+    NIFRID:synonym "muscle stretch receptor",
+        "neuromuscular spindle" ;
+    rdfs:subClassOf UBERON:0000061,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0001016 ] .
+
 UBERON:0003721 a owl:Class ;
     rdfs:label "lingual nerve" ;
     NIFRID:synonym "lingual branch of trigeminal nerve",
@@ -17931,6 +19115,15 @@ UBERON:0004001 a owl:Class ;
         [ a owl:Restriction ;
             owl:onProperty RO:0002433 ;
             owl:someValuesFrom UBERON:0002264 ] .
+
+UBERON:0004012 a owl:Class ;
+    rdfs:label "golgi tendon organ" ;
+    NIFRID:synonym "neurotendinous ending",
+        "neurotendinous organ of golgi" ;
+    rdfs:subClassOf UBERON:0000020,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0001630 ] .
 
 UBERON:0004054 a owl:Class ;
     rdfs:label "internal male genitalia" ;
@@ -23802,6 +24995,18 @@ UBERON:0011929 a owl:Class ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0004293 ] .
 
+UBERON:0011932 a owl:Class ;
+    rdfs:label "pilosebaceous unit" ;
+    NIFRID:synonym "fabrica pilosebacea",
+        "pilo-sebaceous apparatus",
+        "pilo-sebaceous unit",
+        "pilosebaceous apparatus",
+        "pilosebaceous gland" ;
+    rdfs:subClassOf UBERON:0000063,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0006003 ] .
+
 UBERON:0011968 a owl:Class ;
     rdfs:label "radio-carpal joint" ;
     NIFRID:synonym "articulatio radiocarpea",
@@ -23952,6 +25157,27 @@ UBERON:0012419 a owl:Class ;
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0011198 ] .
+
+UBERON:0012449 a owl:Class ;
+    rdfs:label "mechanoreceptor" ;
+    rdfs:subClassOf UBERON:0012451 .
+
+UBERON:0012451 a owl:Class ;
+    rdfs:label "sensory receptor" ;
+    NIFRID:synonym "peripheral ending of sensory neuron",
+        "sensory nerve ending" ;
+    rdfs:subClassOf UBERON:0012453 .
+
+UBERON:0012453 a owl:Class ;
+    rdfs:label "nerve ending" ;
+    NIFRID:synonym "nerve ending" ;
+    rdfs:subClassOf UBERON:0005162,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0000010 ],
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0001027 ] .
 
 UBERON:0012469 a owl:Class ;
     rdfs:label "external anal region" ;
@@ -24139,6 +25365,16 @@ UBERON:0013703 a owl:Class ;
     NIFRID:synonym "skin projection" ;
     rdfs:subClassOf UBERON:0004529,
         UBERON:0006003,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0002416 ] .
+
+UBERON:0013754 a owl:Class ;
+    rdfs:label "integumentary system layer" ;
+    NIFRID:synonym "integumentary system layer",
+        "layer of skin",
+        "skin layer" ;
+    rdfs:subClassOf UBERON:0004923,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002416 ] .
@@ -24890,6 +26126,34 @@ UBERON:0016570 a owl:Class ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002315 ] .
 
+UBERON:0016574 a owl:Class ;
+    rdfs:label "lamina III of gray matter of spinal cord" ;
+    NIFRID:synonym "lamina 3",
+        "lamina III",
+        "lamina spinale III",
+        "lamina spinalis III",
+        "rexed lamina III",
+        "Rexed's lamina III",
+        "spinal lamina III" ;
+    rdfs:subClassOf UBERON:0016570,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0016610 ] .
+
+UBERON:0016575 a owl:Class ;
+    rdfs:label "lamina IV of gray matter of spinal cord" ;
+    NIFRID:synonym "lamina 4",
+        "lamina IV",
+        "lamina spinale IV",
+        "lamina spinalis IV",
+        "rexed lamina IV",
+        "Rexed's lamina IV",
+        "spinal lamina IV" ;
+    rdfs:subClassOf UBERON:0016570,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0016610 ] .
+
 UBERON:0016576 a owl:Class ;
     rdfs:label "lamina V of gray matter of spinal cord" ;
     NIFRID:synonym "lamina 5",
@@ -24916,6 +26180,22 @@ UBERON:0016578 a owl:Class ;
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002257 ] .
+
+UBERON:0016579 a owl:Class ;
+    rdfs:label "lamina VIII of gray matter of spinal cord" ;
+    NIFRID:synonym "lamina 8",
+        "lamina spinalis",
+        "lamina VIII",
+        "rexed lamina VIII",
+        "Rexed's lamina VIII",
+        "spinal lamina VIII" ;
+    rdfs:subClassOf UBERON:0016570,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0002257 ],
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0034771 ] .
 
 UBERON:0016580 a owl:Class ;
     rdfs:label "lamina IX of gray matter of spinal cord" ;
@@ -25518,6 +26798,15 @@ UBERON:0034769 a owl:Class ;
     rdfs:label "lymphomyeloid tissue" ;
     rdfs:subClassOf UBERON:0015757 .
 
+UBERON:0034771 a owl:Class ;
+    rdfs:label "ventral commissural nucleus of spinal cord" ;
+    NIFRID:synonym "commissural nucleus of spinal cord",
+        "lamina VIII" ;
+    rdfs:subClassOf UBERON:0011777,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0002257 ] .
+
 UBERON:0034908 a owl:Class ;
     rdfs:label "scapular muscle" ;
     rdfs:subClassOf UBERON:0014892 .
@@ -25638,6 +26927,11 @@ UBERON:0035014 a owl:Class ;
     NIFRID:synonym "functional part of brain" ;
     rdfs:subClassOf UBERON:0002616 .
 
+UBERON:0035016 a owl:Class ;
+    rdfs:label "tactile mechanoreceptor" ;
+    NIFRID:synonym "contact receptor" ;
+    rdfs:subClassOf UBERON:0012449 .
+
 UBERON:0035032 a owl:Class ;
     rdfs:label "abdominal oblique muscle" ;
     NIFRID:synonym "oblique abdominal muscle" ;
@@ -25701,6 +26995,15 @@ UBERON:0035258 a owl:Class ;
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0000997 ] .
+
+UBERON:0035501 a owl:Class ;
+    rdfs:label "unencapsulated tactile receptor" ;
+    NIFRID:synonym "free nerve ending",
+        "unencapsulated nerve ending" ;
+    rdfs:subClassOf UBERON:0035016,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0002067 ] .
 
 UBERON:0035526 a owl:Class ;
     rdfs:label "superficial fibular nerve" ;
@@ -25846,6 +27149,16 @@ UBERON:0036014 a owl:Class ;
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002355 ] .
+
+UBERON:0036150 a owl:Class ;
+    rdfs:label "skin appendage follicle" ;
+    NIFRID:synonym "cutaneous appendage follicle",
+        "follicle",
+        "skin follicle" ;
+    rdfs:subClassOf UBERON:0000063,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0000014 ] .
 
 UBERON:0036172 a owl:Class ;
     rdfs:label "palmaris brevis" ;
