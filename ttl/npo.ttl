@@ -28,7 +28,10 @@
 @prefix NIFRID: <http://uri.neuinfo.org/nif/nifstd/readable/> .
 @prefix NLX: <http://uri.neuinfo.org/nif/nifstd/nlx_> .
 @prefix NLXANAT: <http://uri.neuinfo.org/nif/nifstd/nlx_anat_> .
+@prefix NLXCELL: <http://uri.neuinfo.org/nif/nifstd/nlx_cell_> .
 @prefix NLXMOL: <http://uri.neuinfo.org/nif/nifstd/nlx_mol_> .
+@prefix NLXNEURNT: <http://uri.neuinfo.org/nif/nifstd/nlx_neuron_nt_> .
+@prefix NLXORG: <http://uri.neuinfo.org/nif/nifstd/nlx_organ_> .
 @prefix NLXSUB: <http://uri.neuinfo.org/nif/nifstd/nlx_subcell_> .
 @prefix NLXWIKI: <http://neurolex.org/wiki/> .
 @prefix npokb: <http://uri.interlex.org/npo/uris/neurons/> .
@@ -36,10 +39,12 @@
 @prefix obo: <http://purl.obolibrary.org/obo/> .
 @prefix overlaps: <http://purl.obolibrary.org/obo/RO_0002131> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pain1: <http://uri.interlex.org/composer/uris/set/pain1/> .
+@prefix pain2: <http://uri.interlex.org/composer/uris/set/pain2/> .
 @prefix partOf: <http://purl.obolibrary.org/obo/BFO_0000050> .
 @prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
 @prefix PAXRAT: <http://uri.interlex.org/paxinos/uris/rat/labels/> .
-@prefix PAXSPN: <http://uri.interlex.org/paxinos/uris/spine/labels/> .
+@prefix portal: <http://uri.interlex.org/composer/uris/set/portal/> .
 @prefix PR: <http://purl.obolibrary.org/obo/PR_> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix PTHR: <http://www.pantherdb.org/panther/family.do?clsAccession=PTHR> .
@@ -59,7 +64,7 @@
     rdfs:label "The Neuron Phenotype Ontology" ;
     dc:title "The Neuron Phenotype Ontology" ;
     dc:description "An ontology of neuron types based on the phenotypic dimensions of cells that can be measure experimentally." ;
-    owl:versionInfo "2026-03-19" ;
+    owl:versionInfo "2026-11-11" ;
     dc:contributor "Bernard de Bono - https://orcid.org/0000-0003-0638-5274",
         "Fahim Imam - https://orcid.org/0000-0003-4752-543X",
         "Ilias Ziogas - https://orcid.org/0000-0002-9210-2455",
@@ -97,7 +102,7 @@
     MIRO:sustainability_plan "The npo is maintained as part of the NIF-Ontology." ;
     MIRO:testing "See `MIRO:axiom_patterns' and paper https://doi.org/10.1007/s12021-022-09566-7" ;
     MIRO:versioning_policy "Development versions of the ontology are released continuously and are identified by their git commit hashes. Stable versions are released periodically and can be accessed by their git tag." ;
-    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/master/neurondm/neurondm/build.py> .
+    prov:wasGeneratedBy <https://github.com/tgbugs/pyontutils/blob/56f897588c96786c3d8d5d96a7136f9a134846cf/neurondm/neurondm/build.py#L1459> .
 
 ### Object Properties
 
@@ -110,7 +115,8 @@ ilx.partOf: a owl:Class,
         owl:ObjectProperty ;
     rdfs:label "Is part of" ;
     definition: "Generic partonomy relationship;  does not distinguish among subtypes" ;
-    rdfs:subPropertyOf partOf: ;
+    rdfs:subPropertyOf ILX:0770269,
+        partOf: ;
     ilxr:type ilx.type:relationship ;
     ilxtr:hasExistingId ilx.partOf: ;
     ilxtr:hasIlxId ilx.partOf: ;
@@ -139,6 +145,13 @@ skos:prefLabel a owl:AnnotationProperty ;
 AIBSTL:301021674 a owl:Class .
 
 AIBSTL:543338518 a owl:Class .
+
+atom:Label a owl:Class ;
+    rdfs:label "parcellation label" ;
+    NIFRID:synonym "Parcellation Label",
+        "parcellation term",
+        "term" ;
+    rdfs:subClassOf UBERON:0001062 .
 
 CHEBI:5686 a owl:Class ;
     rdfs:label "heterocyclic compound" ;
@@ -219,7 +232,6 @@ CHEBI:15428 a owl:Class ;
         "Hgly",
         "Leimzucker" ;
     rdfs:subClassOf CHEBI:26650,
-        CHEBI:33704,
         CHEBI:83813 .
 
 CHEBI:15705 a owl:Class ;
@@ -248,10 +260,8 @@ CHEBI:16015 a owl:Class ;
         "L-glutamic acid",
         "L-Glutaminic acid",
         "L-Glutaminsaeure" ;
-    rdfs:subClassOf CHEBI:15705,
-        CHEBI:18237,
-        CHEBI:24318,
-        CHEBI:83813 .
+    rdfs:subClassOf CHEBI:18237,
+        CHEBI:24318 .
 
 CHEBI:16670 a owl:Class ;
     rdfs:label "peptide" ;
@@ -324,6 +334,7 @@ CHEBI:18243 a owl:Class ;
         "Oxytyramine",
         "Revimine" ;
     rdfs:subClassOf CHEBI:33567,
+        NLXMOL:100306,
         SAO:1456045859 .
 
 CHEBI:22563 a owl:Class ;
@@ -455,8 +466,7 @@ CHEBI:25367 a owl:Class ;
         "molecules",
         "Molekuel",
         "neutral molecular compounds" ;
-    rdfs:subClassOf CHEBI:24431,
-        CHEBI:36357 .
+    rdfs:subClassOf CHEBI:36357 .
 
 CHEBI:25375 a owl:Class ;
     rdfs:label "monoamine molecular messenger" ;
@@ -636,8 +646,7 @@ CHEBI:33567 a owl:Class ;
     NIFRID:synonym "Catecholamine",
         "catecholamines" ;
     rdfs:subClassOf CHEBI:25375,
-        CHEBI:33566,
-        CHEBI:64365 .
+        CHEBI:33566 .
 
 CHEBI:33570 a owl:Class ;
     rdfs:label "benzenediols" ;
@@ -1002,8 +1011,7 @@ CHEBI:48705 a owl:Class ;
 CHEBI:50047 a owl:Class ;
     rdfs:label "organic amino compound" ;
     NIFRID:synonym "organic amino compounds" ;
-    rdfs:subClassOf CHEBI:35352,
-        CHEBI:50860 .
+    rdfs:subClassOf CHEBI:35352 .
 
 CHEBI:50860 a owl:Class ;
     rdfs:label "organic molecular entity" ;
@@ -1107,6 +1115,8 @@ CHEBI:131927 a owl:Class ;
 
 CHEBI:132943 a owl:Class ;
     rdfs:label "aspartate" ;
+    NIFRID:synonym "aspartate anion",
+        "aspartic acid anion" ;
     rdfs:subClassOf CHEBI:33558,
         CHEBI:35693 .
 
@@ -1373,11 +1383,6 @@ ILX:0104003 a owl:Class ;
 ILX:0105486 a owl:Class ;
     rdfs:label "Inhibitory" ;
     rdfs:subClassOf PATO:0001238 .
-
-ILX:0106328 a owl:Class ;
-    rdfs:label "Local Circuit role" ;
-    NIFRID:synonym "Pathway,	Small circuit" ;
-    rdfs:subClassOf BFO:0000023 .
 
 ILX:0106756 a owl:Class ;
     rdfs:label "Meissners corpuscle" ;
@@ -1676,6 +1681,12 @@ ILX:0748695 a owl:Class ;
     NIFRID:synonym "muscles",
         "muscles OF muscles of lower limb" ;
     rdfs:subClassOf ILX:0746029 .
+
+ILX:0770269 a owl:Class ;
+    rdfs:label "Relationship" ;
+    ilxtr:hasExistingId ILX:0770269 ;
+    ilxtr:hasIlxId ILX:0770269 ;
+    ilxtr:hasIlxPreferredId ILX:0770269 .
 
 ILX:0770759 a owl:Class ;
     rdfs:label "Lamina propria mucosae of descending colon" ;
@@ -3343,18 +3354,30 @@ ILX:0794950 a owl:Class ;
 ILX:0794951 a owl:Class ;
     rdfs:label "lateral cutaneous nerve of the forearm" ;
     NIFRID:synonym "lateral antebrachial cutaneous nerve" ;
-    rdfs:subClassOf UBERON:0002386 .
+    rdfs:subClassOf UBERON:0001027,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0002386 ] .
 
 ILX:0794952 a owl:Class ;
-    rdfs:label "medial cutaneous nerve of the arm" ;
+    rdfs:label "Medial cutaneous nerve of the arm" ;
     NIFRID:synonym "lesser internal cutaneous nerve",
         "medial brachial cutaneous nerve" ;
-    rdfs:subClassOf UBERON:0001814 .
+    rdfs:subClassOf UBERON:0003433,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0001814 ] .
 
 ILX:0794953 a owl:Class ;
     rdfs:label "medial cutaneous nerve of the forearm" ;
     NIFRID:synonym "medial antebrachial cutaneous nerve" ;
-    rdfs:subClassOf UBERON:0001814 .
+    rdfs:subClassOf UBERON:0001027,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0001814 ],
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0003433 ] .
 
 ILX:0794954 a owl:Class ;
     rdfs:label "dorsum of the hand" ;
@@ -3408,12 +3431,14 @@ ILX:0794965 a owl:Class ;
 
 ILX:0794966 a owl:Class ;
     rdfs:label "suprascapular nerve" ;
-    rdfs:subClassOf UBERON:0001814 .
+    rdfs:subClassOf UBERON:0001021,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0001814 ] .
 
 ILX:0794967 a owl:Class ;
     rdfs:label "posterior interosseous nerve" ;
-    NIFRID:synonym "Deep branch of radial nerve" ;
-    rdfs:subClassOf UBERON:0003433 .
+    rdfs:subClassOf UBERON:0001021 .
 
 ILX:0794969 a owl:Class ;
     rdfs:label "deep branch of ulnar nerve" ;
@@ -3444,7 +3469,12 @@ ILX:0794973 a owl:Class ;
 
 ILX:0794975 a owl:Class ;
     rdfs:label "medial pectoral nerve" ;
-    rdfs:subClassOf UBERON:0001814 .
+    NIFRID:synonym "anterior thoracic nerve",
+        "medial anterior thoracic nerve" ;
+    rdfs:subClassOf UBERON:0001021,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0001814 ] .
 
 ILX:0794976 a owl:Class ;
     rdfs:label "long head of triceps brachii muscle" ;
@@ -3455,7 +3485,10 @@ ILX:0794976 a owl:Class ;
 ILX:0794977 a owl:Class ;
     rdfs:label "deep branch of radial nerve" ;
     NIFRID:synonym "Posterior interosseous nerve" ;
-    rdfs:subClassOf UBERON:0001492 .
+    rdfs:subClassOf UBERON:0001021,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0001492 ] .
 
 ILX:0794978 a owl:Class ;
     rdfs:label "extensor indicis muscle" ;
@@ -3464,7 +3497,10 @@ ILX:0794978 a owl:Class ;
 
 ILX:0794979 a owl:Class ;
     rdfs:label "dorsal scapular nerve" ;
-    rdfs:subClassOf UBERON:0001814 .
+    rdfs:subClassOf UBERON:0001021,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0001814 ] .
 
 ILX:0794980 a owl:Class ;
     rdfs:label "rhomboid major muscle" ;
@@ -3552,7 +3588,11 @@ ILX:0794995 a owl:Class ;
 ILX:0794996 a owl:Class ;
     rdfs:label "Ilioinguinal nerve" ;
     NIFRID:synonym """Ilio-inguinal nerve\r
-Nervus ilio-inguinalis""" .
+Nervus ilio-inguinalis""" ;
+    rdfs:subClassOf UBERON:0001021,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0034987 ] .
 
 ILX:0794997 a owl:Class ;
     rdfs:label "femoral branch of genitofemoral nerve" ;
@@ -3569,7 +3609,10 @@ ILX:0794998 a owl:Class ;
 ILX:0794999 a owl:Class ;
     rdfs:label "Lateral cutaneous nerve of thigh" ;
     NIFRID:synonym "Lateral femoral cutaneous nerve" ;
-    rdfs:subClassOf UBERON:0034987 .
+    rdfs:subClassOf UBERON:0001027,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0034987 ] .
 
 ILX:0795000 a owl:Class ;
     rdfs:label "posterior cutaneous nerve of thigh" ;
@@ -3583,7 +3626,10 @@ ILX:0795001 a owl:Class ;
 ILX:0795002 a owl:Class ;
     rdfs:label "iliohypogastric nerve" ;
     NIFRID:synonym "Iliopubic nerve" ;
-    rdfs:subClassOf UBERON:0034987 .
+    rdfs:subClassOf UBERON:0001021,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0034987 ] .
 
 ILX:0795003 a owl:Class ;
     rdfs:label "Skin of buttock" ;
@@ -3598,7 +3644,10 @@ ILX:0795004 a owl:Class ;
 ILX:0795005 a owl:Class ;
     rdfs:label "Posterior cutaneous nerve of arm" ;
     NIFRID:synonym "Posterior brachial cutaneous nerve" ;
-    rdfs:subClassOf UBERON:0001492 .
+    rdfs:subClassOf UBERON:0003433,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0001492 ] .
 
 ILX:0795006 a owl:Class ;
     rdfs:label "Suboccipital nerve" ;
@@ -3633,8 +3682,13 @@ ILX:0795016 a owl:Class ;
     rdfs:subClassOf UBERON:0002530 .
 
 ILX:0795018 a owl:Class ;
-    rdfs:label "palmar digital nerve" ;
-    NIFRID:synonym "Proper Palmar Digital Branches of Median Nerve" .
+    rdfs:label "proper palmar digital branches of median nerve" ;
+    NIFRID:synonym "Proper Palmar Digital Branches of Median Nerve",
+        "proper palmar digital nerve of median nerve" ;
+    rdfs:subClassOf UBERON:0001027,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0001148 ] .
 
 ILX:0795019 a owl:Class ;
     rdfs:label "superficial transverse perineal muscle" ;
@@ -3898,14 +3952,20 @@ ILX:0796510 a owl:Class ;
 
 ILX:0796511 a owl:Class ;
     rdfs:label "type Aα (alpha) nerve fiber" ;
+    NIFRID:synonym "type A alpha nerve fiber",
+        "type A-alpha nerve fiber" ;
     rdfs:subClassOf ILX:0796510 .
 
 ILX:0796512 a owl:Class ;
-    rdfs:label "type Aβ (beta) nerve fiber" ;
+    rdfs:label "type Aβ nerve fiber" ;
+    NIFRID:synonym "type A beta nerve fiber",
+        "type A-beta nerve fiber" ;
     rdfs:subClassOf ILX:0796510 .
 
 ILX:0796514 a owl:Class ;
-    rdfs:label "type Aδ (delta) nerve fiber" ;
+    rdfs:label "type Aδ nerve fiber" ;
+    NIFRID:synonym "type A delta nerve fiber",
+        "type A-delta nerve fiber" ;
     rdfs:subClassOf ILX:0796510 .
 
 ILX:0796516 a owl:Class ;
@@ -3942,15 +4002,19 @@ ILX:0796529 a owl:Class ;
 
 ILX:0796530 a owl:Class ;
     rdfs:label "nociceptive circuit" ;
-    rdfs:subClassOf ILX:0106328 .
+    rdfs:subClassOf ILX:0797554 .
 
 ILX:0796531 a owl:Class ;
     rdfs:label "proprioceptive phenotype" ;
     rdfs:subClassOf ILX:0108808 .
 
+ILX:0796532 a owl:Class ;
+    rdfs:label "proprioceptive circuit" ;
+    rdfs:subClassOf ILX:0797554 .
+
 ILX:0796535 a owl:Class ;
     rdfs:label "pruriceptive circuit" ;
-    rdfs:subClassOf UBERON:0001032 .
+    rdfs:subClassOf ILX:0797554 .
 
 ILX:0796679 a owl:Class ;
     rdfs:label "cardiac interganglionic nerve" ;
@@ -3964,7 +4028,10 @@ ILX:0796952 a owl:Class ;
 
 ILX:0797391 a owl:Class ;
     rdfs:label "superficial branch of radial nerve" ;
-    rdfs:subClassOf UBERON:0001021 .
+    rdfs:subClassOf UBERON:0001021,
+        [ a owl:Restriction ;
+            owl:onProperty ilx.partOf: ;
+            owl:someValuesFrom UBERON:0001492 ] .
 
 ILX:0797430 a owl:Class ;
     rdfs:label "nerve plexus along the left precaval vein" .
@@ -3989,10 +4056,6 @@ ILX:0797451 a owl:Class ;
     rdfs:label "subcostal nerve" ;
     rdfs:subClassOf UBERON:0003726 .
 
-ILX:0797452 a owl:Class ;
-    rdfs:label "pruritogenic phenotype" ;
-    rdfs:subClassOf ILX:0108808 .
-
 ILX:0797453 a owl:Class ;
     rdfs:label "Group Ia afferent" ;
     rdfs:subClassOf ILX:0796521 .
@@ -4013,6 +4076,10 @@ ILX:0797460 a owl:Class ;
     rdfs:label "mechanosensitive" ;
     rdfs:subClassOf ILX:0108808 .
 
+ILX:0797554 a owl:Class ;
+    rdfs:label "neuronal circuit" ;
+    rdfs:subClassOf UBERON:0001062 .
+
 ilxcr:hasComposerURI a owl:Class .
 
 ilxtr:GABAReceptor a owl:Class ;
@@ -4031,6 +4098,8 @@ ilxtr:glutamateReceptor a owl:Class ;
 
 NCBIGene:41 a owl:Class .
 
+NCBIGene:116 a owl:Class .
+
 NCBIGene:136 a owl:Class .
 
 NCBIGene:150 a owl:Class ;
@@ -4047,8 +4116,7 @@ NCBIGene:150 a owl:Class ;
         "alpha-2A adrenoceptor",
         "alpha-2A adrenoreceptor",
         "alpha-2AAR subtype C10",
-        "FPLD8",
-        "ZNF32" ;
+        "FPLD8" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:152 a owl:Class .
@@ -4100,6 +4168,7 @@ NCBIGene:1136 a owl:Class .
 NCBIGene:1139 a owl:Class ;
     rdfs:label "CHRNA7" ;
     NIFRID:synonym "a7 nicotinic acetylcholine receptor",
+        "a7nAChR",
         "alpha 7 neuronal nicotinic acetylcholine receptor",
         "alpha-7 nicotinic cholinergic receptor subunit",
         "cholinergic receptor nicotinic alpha 7 subunit",
@@ -4114,9 +4183,17 @@ NCBIGene:1139 a owl:Class ;
         "nicotinic acetylcholine receptor subunit alpha-7" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:1501 a owl:Class .
+
 NCBIGene:2042 a owl:Class .
 
 NCBIGene:2115 a owl:Class .
+
+NCBIGene:2167 a owl:Class .
+
+NCBIGene:2173 a owl:Class .
+
+NCBIGene:2321 a owl:Class .
 
 NCBIGene:2674 a owl:Class ;
     rdfs:label "GFRA1" ;
@@ -4178,6 +4255,12 @@ NCBIGene:3815 a owl:Class ;
         "v-kit Hardy-Zuckerman 4 feline sarcoma viral oncogene-like protein" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:4155 a owl:Class .
+
+NCBIGene:4359 a owl:Class .
+
+NCBIGene:4854 a owl:Class .
+
 NCBIGene:4879 a owl:Class .
 
 NCBIGene:4915 a owl:Class ;
@@ -4217,6 +4300,8 @@ NCBIGene:5100 a owl:Class .
 
 NCBIGene:5179 a owl:Class .
 
+NCBIGene:5346 a owl:Class .
+
 NCBIGene:5739 a owl:Class .
 
 NCBIGene:5816 a owl:Class ;
@@ -4229,6 +4314,8 @@ NCBIGene:5816 a owl:Class ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:6275 a owl:Class .
+
+NCBIGene:6332 a owl:Class .
 
 NCBIGene:6336 a owl:Class .
 
@@ -4249,11 +4336,15 @@ NCBIGene:6863 a owl:Class .
 
 NCBIGene:6866 a owl:Class .
 
+NCBIGene:7122 a owl:Class .
+
 NCBIGene:7442 a owl:Class .
 
 NCBIGene:7905 a owl:Class .
 
 NCBIGene:8111 a owl:Class .
+
+NCBIGene:8490 a owl:Class .
 
 NCBIGene:8989 a owl:Class .
 
@@ -4593,6 +4684,7 @@ NCBIGene:12918 a owl:Class ;
     NIFRID:synonym "corticoliberin",
         "corticotropin releasing factor",
         "corticotropin releasing hormone",
+        "corticotropin-releasing hormone",
         "CRF",
         "Gm1347" ;
     rdfs:subClassOf SO:0000110 .
@@ -5128,6 +5220,7 @@ NCBIGene:19339 a owl:Class ;
 NCBIGene:19734 a owl:Class ;
     rdfs:label "Rgs16" ;
     NIFRID:synonym "A28-RGS14P",
+        "regulator of G protein signaling 16",
         "regulator of G-protein signaling 16",
         "retinal-specific RGS",
         "retinally abundant regulator of G-protein signaling",
@@ -5140,6 +5233,7 @@ NCBIGene:19736 a owl:Class ;
     rdfs:label "Rgs4" ;
     NIFRID:synonym "ESTM48",
         "ESTM50",
+        "regulator of G protein signaling 4",
         "regulator of G-protein signaling 4" ;
     rdfs:subClassOf SO:0000110 .
 
@@ -5439,6 +5533,10 @@ NCBIGene:22784 a owl:Class ;
         "znT-3" ;
     rdfs:subClassOf SO:0000110 .
 
+NCBIGene:22941 a owl:Class .
+
+NCBIGene:22986 a owl:Class .
+
 NCBIGene:24012 a owl:Class ;
     rdfs:label "Rgs7" ;
     NIFRID:synonym "regulator of G protein signaling 7",
@@ -5502,7 +5600,8 @@ NCBIGene:50501 a owl:Class ;
 
 NCBIGene:50779 a owl:Class ;
     rdfs:label "Rgs6" ;
-    NIFRID:synonym "regulator of G-protein signaling 6" ;
+    NIFRID:synonym "regulator of G protein signaling 6",
+        "regulator of G-protein signaling 6" ;
     rdfs:subClassOf SO:0000110 .
 
 NCBIGene:50787 a owl:Class ;
@@ -5512,6 +5611,8 @@ NCBIGene:50787 a owl:Class ;
         "heparan-sulfate 6-O-sulfotransferase 3",
         "HS6ST-3" ;
     rdfs:subClassOf SO:0000110 .
+
+NCBIGene:51162 a owl:Class .
 
 NCBIGene:51617 a owl:Class .
 
@@ -5569,6 +5670,8 @@ NCBIGene:54526 a owl:Class ;
 
 NCBIGene:55203 a owl:Class .
 
+NCBIGene:57716 a owl:Class .
+
 NCBIGene:58802 a owl:Class ;
     rdfs:label "Kcnmb4" ;
     NIFRID:synonym "1700058G18Rik",
@@ -5616,6 +5719,7 @@ NCBIGene:64378 a owl:Class ;
 NCBIGene:67792 a owl:Class ;
     rdfs:label "Rgs8" ;
     NIFRID:synonym "6530413N01Rik",
+        "regulator of G protein signaling 8",
         "regulator of G-protein signaling 8" ;
     rdfs:subClassOf SO:0000110 .
 
@@ -5631,6 +5735,7 @@ NCBIGene:67860 a owl:Class ;
 NCBIGene:67865 a owl:Class ;
     rdfs:label "Rgs10" ;
     NIFRID:synonym "2310010N19Rik",
+        "regulator of G protein signaling 10",
         "regulator of G-protein signaling 10",
         "regulator of G-protein signalling 10" ;
     rdfs:subClassOf SO:0000110 .
@@ -5647,6 +5752,7 @@ NCBIGene:71729 a owl:Class ;
     NIFRID:synonym "1200016K18Rik",
         "4632412M04Rik",
         "E130309H11",
+        "regulator of G protein signaling 12",
         "regulator of G-protein signaling 12" ;
     rdfs:subClassOf SO:0000110 .
 
@@ -5853,6 +5959,7 @@ NCBIGene:211578 a owl:Class ;
         "G-protein coupled receptor TGR7",
         "Gm499",
         "Mas-related G protein-coupled receptor d",
+        "mas-related G protein-coupled receptor member D",
         "mas-related G-protein coupled receptor member D",
         "MAS-related GPR, member D",
         "Mgrd",
@@ -5874,6 +5981,7 @@ NCBIGene:230777 a owl:Class ;
 NCBIGene:233222 a owl:Class ;
     rdfs:label "Mrgpra3" ;
     NIFRID:synonym "G protein-coupled receptor MRGA3",
+        "mas-related G protein-coupled receptor member A3",
         "mas-related G-protein coupled receptor member A3",
         "Mas-related gene A3",
         "MAS-related GPR, member A3",
@@ -5882,7 +5990,8 @@ NCBIGene:233222 a owl:Class ;
 
 NCBIGene:233230 a owl:Class ;
     rdfs:label "Mrgprb4" ;
-    NIFRID:synonym "mas-related G-protein coupled receptor member B4",
+    NIFRID:synonym "mas-related G protein-coupled receptor member B4",
+        "mas-related G-protein coupled receptor member B4",
         "MAS-related GPR, member B4",
         "MrgB4",
         "MrgB4 G protein-coupled receptor" ;
@@ -6257,7 +6366,8 @@ NCBITaxon:2759 a owl:Class ;
         "Eukaryotae",
         "eukaryote",
         "eukaryotes" ;
-    rdfs:subClassOf NCBITaxon:131567 .
+    rdfs:subClassOf NCBITaxon:131567,
+        NLXORG:110506 .
 
 NCBITaxon:6072 a owl:Class ;
     rdfs:label "Eumetazoa" ;
@@ -6352,10 +6462,11 @@ NCBITaxon:9605 a owl:Class ;
 
 NCBITaxon:9606 a owl:Class ;
     rdfs:label "Homo sapiens" ;
-    NIFRID:synonym "Homo sapiens",
-        "human" ;
-    rdfs:subClassOf NCBITaxon:9605,
-        OBI:0100026 .
+    NIFRID:synonym "h",
+        "Homo sapiens",
+        "human",
+        "man" ;
+    rdfs:subClassOf NCBITaxon:9605 .
 
 NCBITaxon:9608 a owl:Class ;
     rdfs:label "Canidae" ;
@@ -6381,8 +6492,7 @@ NCBITaxon:9615 a owl:Class ;
         "Canis lupus borealis",
         "dog",
         "dogs" ;
-    rdfs:subClassOf NCBITaxon:9612,
-        OBI:0100026 .
+    rdfs:subClassOf NCBITaxon:9612 .
 
 NCBITaxon:9681 a owl:Class ;
     rdfs:label "Felidae" ;
@@ -6419,8 +6529,7 @@ NCBITaxon:9823 a owl:Class ;
         "Sus scrofa",
         "swine",
         "wild boar" ;
-    rdfs:subClassOf NCBITaxon:9822,
-        OBI:0100026 .
+    rdfs:subClassOf NCBITaxon:9822 .
 
 NCBITaxon:9825 a owl:Class ;
     rdfs:label "Domestic Pig" ;
@@ -6453,10 +6562,10 @@ NCBITaxon:10088 a owl:Class ;
 NCBITaxon:10090 a owl:Class ;
     rdfs:label "Mus musculus" ;
     NIFRID:synonym "house mouse",
+        "m",
         "mouse",
         "Mus musculus" ;
-    rdfs:subClassOf NCBITaxon:862507,
-        OBI:0100026 .
+    rdfs:subClassOf NCBITaxon:862507 .
 
 NCBITaxon:10114 a owl:Class ;
     rdfs:label "Rattus" ;
@@ -6471,8 +6580,7 @@ NCBITaxon:10116 a owl:Class ;
         "Norway rat",
         "rat",
         "rats" ;
-    rdfs:subClassOf NCBITaxon:10114,
-        OBI:0100026 .
+    rdfs:subClassOf NCBITaxon:10114 .
 
 NCBITaxon:10139 a owl:Class ;
     rdfs:label "Caviidae" ;
@@ -6498,8 +6606,7 @@ NCBITaxon:32523 a owl:Class ;
     rdfs:label "Tetrapoda" ;
     NIFRID:synonym "Tetrapoda",
         "tetrapods" ;
-    rdfs:subClassOf NCBITaxon:8287,
-        NCBITaxon:1338369 .
+    rdfs:subClassOf NCBITaxon:1338369 .
 
 NCBITaxon:32524 a owl:Class ;
     rdfs:label "Amniota" ;
@@ -6527,8 +6634,7 @@ NCBITaxon:33208 a owl:Class ;
         "Metazoa",
         "metazoans",
         "multicellular animals" ;
-    rdfs:subClassOf NCBITaxon:2759,
-        NCBITaxon:33154 .
+    rdfs:subClassOf NCBITaxon:33154 .
 
 NCBITaxon:33213 a owl:Class ;
     rdfs:label "Bilateria" ;
@@ -6543,8 +6649,7 @@ NCBITaxon:33511 a owl:Class ;
     rdfs:label "Deuterostomia" ;
     NIFRID:synonym "deuterostomes",
         "Deuterostomia" ;
-    rdfs:subClassOf NCBITaxon:33213,
-        NCBITaxon:33316 .
+    rdfs:subClassOf NCBITaxon:33316 .
 
 NCBITaxon:33550 a owl:Class ;
     rdfs:label "Hystricomorpha" ;
@@ -6598,7 +6703,7 @@ NCBITaxon:117571 a owl:Class ;
     rdfs:subClassOf NCBITaxon:117570 .
 
 NCBITaxon:131567 a owl:Class ;
-    rdfs:label "cellular organisms" ;
+    rdfs:label "cellular organism" ;
     NIFRID:synonym "biota",
         "cellular organisms" ;
     rdfs:subClassOf NCBITaxon:1 .
@@ -6611,8 +6716,7 @@ NCBITaxon:207598 a owl:Class ;
 
 NCBITaxon:314145 a owl:Class ;
     rdfs:label "Laurasiatheria" ;
-    rdfs:subClassOf NCBITaxon:9347,
-        NCBITaxon:1437010 .
+    rdfs:subClassOf NCBITaxon:1437010 .
 
 NCBITaxon:314146 a owl:Class ;
     rdfs:label "Euarchontoglires" ;
@@ -6702,41 +6806,30 @@ NIFEXT:123 a owl:Class ;
         "Olfactory bulb main granule cell",
         "Olfactory Granule cell",
         "Olfactory granule neuron" ;
-    rdfs:subClassOf SAO:1417703748 .
+    rdfs:subClassOf NLXCELL:100601,
+        NLXCELL:0912005,
+        NLXCELL:1003113,
+        NLXNEURNT:090803,
+        npokb:7 .
 
 NIFEXT:2502 a owl:Class ;
     rdfs:label "Multimeric ion channel" ;
     NIFRID:synonym "Multimeric ion channel" ;
-    rdfs:subClassOf SAO:26622963 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 NIFEXT:2505 a owl:Class ;
     rdfs:label "Tetrameric ion channel" ;
     NIFRID:synonym "Tetrameric ion channel" ;
     rdfs:subClassOf NIFEXT:2502 .
 
-NIFEXT:2506 a owl:Class ;
-    rdfs:label "Multimeric Voltage-gated ion channel" ;
-    NIFRID:synonym "Multimeric Voltage-gated ion channel",
-        "Voltage-gated ion channel" ;
-    rdfs:subClassOf NIFEXT:2502 .
-
-NIFEXT:2507 a owl:Class ;
-    rdfs:label "Tetrameric Voltage-gated ion channel" ;
-    NIFRID:synonym "Tetrameric Voltage-gated ion channel" ;
-    rdfs:subClassOf NIFEXT:2506 .
-
-NIFEXT:2516 a owl:Class ;
-    rdfs:label "Hyperpolarization and cyclic-nucleotide gated channel" ;
-    NIFRID:synonym "HCN channel",
-        "Hyperpolarization and cyclic-nucleotide gated channel" ;
-    rdfs:subClassOf NIFEXT:2507 .
-
 NIFEXT:3061 a owl:Class ;
     rdfs:label "HCN1" ;
     NIFRID:synonym "BCNG1",
         "HAC2",
         "HCN1" ;
-    rdfs:subClassOf NIFEXT:2516 .
+    rdfs:subClassOf PR:000000676 .
 
 NIFEXT:5000 a owl:Class ;
     rdfs:label "Peptide" ;
@@ -7051,15 +7144,21 @@ NLXMOL:1006006 a owl:Class ;
         "Calbindin",
         "calbindin 1",
         "calbindin D28K" ;
-    rdfs:subClassOf SAO:26622963 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 NLXMOL:1006008 a owl:Class ;
     rdfs:label "Vesicular acetylcholine transporter" ;
-    rdfs:subClassOf SAO:26622963 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 NLXMOL:1006009 a owl:Class ;
     rdfs:label "Vesicular glutamate transporter 2" ;
-    rdfs:subClassOf SAO:26622963 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 NLXMOL:20090303 a owl:Class ;
     rdfs:label "Molecule role" ;
@@ -7071,7 +7170,9 @@ NLXMOL:20090405 a owl:Class ;
 
 NLXMOL:20090513 a owl:Class ;
     rdfs:label "Doublecortin" ;
-    rdfs:subClassOf SAO:26622963 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 NLXMOL:20090515 a owl:Class ;
     rdfs:label "Neurotransmitter role" ;
@@ -7080,6 +7181,9 @@ NLXMOL:20090515 a owl:Class ;
 NLXMOL:20090604 a owl:Class ;
     rdfs:label "GABA-gated anionic channel" ;
     NIFRID:synonym "GABA receptor" .
+
+NLXORG:110506 a owl:Class ;
+    rdfs:subClassOf BFO:0000040 .
 
 OBI:0100026 a owl:Class ;
     rdfs:label "organism" .
@@ -7179,7 +7283,7 @@ PATO:0001995 a owl:Class ;
 
 PAXRAT: a owl:Class ;
     rdfs:label "Paxinos rat parcellation label root" ;
-    rdfs:subClassOf ilxtr:parcellationLabel .
+    rdfs:subClassOf atom:Label .
 
 PAXRAT:794 a owl:Class ;
     rdfs:label "primary somatosensory cortex (paxrat)" ;
@@ -7198,11 +7302,18 @@ PR:000000001 a owl:Class ;
         PR:000018263,
         PR:000064867 .
 
+PR:000000676 a owl:Class ;
+    rdfs:label "potassium/sodium hyperpolarization-activated cyclic nucleotide-gated channel protein" ;
+    NIFRID:synonym "f-channel",
+        "HCN" ;
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
+
 PR:000000681 a owl:Class ;
     rdfs:label "transient receptor potential cation channel TRPV" ;
     NIFRID:synonym "fam:TRPV" ;
-    rdfs:subClassOf PR:000000001,
-        PR:000044657 .
+    rdfs:subClassOf PR:000044657 .
 
 PR:000001065 a owl:Class ;
     rdfs:label "transient receptor potential cation channel TRPV1" ;
@@ -7220,8 +7331,7 @@ PR:000001094 a owl:Class ;
     NIFRID:synonym "class 1 G-protein coupled receptor",
         "class A G-protein coupled receptor",
         "fam:rhodopsin" ;
-    rdfs:subClassOf PR:000000001,
-        PR:000030035 .
+    rdfs:subClassOf PR:000030035 .
 
 PR:000001125 a owl:Class ;
     rdfs:label "cannabinoid receptor 1" ;
@@ -7249,7 +7359,8 @@ PR:000001217 a owl:Class ;
 
 PR:000001488 a owl:Class ;
     rdfs:label "muscarinic acetylcholine receptor" ;
-    rdfs:subClassOf PR:000001094 .
+    rdfs:subClassOf PR:000001094,
+        SAO:1700719022 .
 
 PR:000001551 a owl:Class ;
     rdfs:label "relaxin family peptide receptor protein" ;
@@ -7267,7 +7378,8 @@ PR:000001614 a owl:Class ;
     NIFRID:synonym "CHRM2",
         "Chrm-2",
         "muscarinic acetylcholine receptor 2" ;
-    rdfs:subClassOf PR:000001488 .
+    rdfs:subClassOf PR:000001488,
+        SAO:2062447305 .
 
 PR:000001635 a owl:Class ;
     rdfs:label "oxytocin receptor" ;
@@ -7288,7 +7400,9 @@ PR:000003781 a owl:Class ;
     rdfs:label "ADM" ;
     NIFRID:synonym "ADM",
         "AM" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000004967 a owl:Class ;
     rdfs:label "calbindin" ;
@@ -7299,7 +7413,9 @@ PR:000004967 a owl:Class ;
         "PCD-29",
         "spot 35 protein",
         "vitamin D-dependent calcium-binding protein, avian-type" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000004968 a owl:Class ;
     rdfs:label "calretinin" ;
@@ -7307,12 +7423,16 @@ PR:000004968 a owl:Class ;
         "CAB29",
         "CALB2",
         "CR" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000005110 a owl:Class ;
     rdfs:label "cholecystokinin" ;
     NIFRID:synonym "CCK" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000005404 a owl:Class ;
     rdfs:label "choline O-acetyltransferase" ;
@@ -7320,12 +7440,16 @@ PR:000005404 a owl:Class ;
         "ChAT",
         "CHOACTase",
         "choline acetylase" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000005767 a owl:Class ;
     rdfs:label "cortistatin" ;
     NIFRID:synonym "CORT" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000005867 a owl:Class ;
     rdfs:label "corticoliberin" ;
@@ -7334,7 +7458,9 @@ PR:000005867 a owl:Class ;
         "CRF",
         "CRH",
         "Gm1347" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000006899 a owl:Class ;
     rdfs:label "endothelin-3" ;
@@ -7342,7 +7468,9 @@ PR:000006899 a owl:Class ;
         "ET-3",
         "PPET3",
         "preproendothelin-3" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000007786 a owl:Class ;
     rdfs:label "glutamate decarboxylase 2" ;
@@ -7351,7 +7479,9 @@ PR:000007786 a owl:Class ;
         "GAD65",
         "GAD-65",
         "glutamate decarboxylase 65 kDa isoform" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000008476 a owl:Class ;
     rdfs:label "orexin" ;
@@ -7361,7 +7491,9 @@ PR:000008476 a owl:Class ;
         "OX",
         "PPORX",
         "PPOX" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000008833 a owl:Class ;
     rdfs:label "5-hydroxytryptamine receptor 3A" ;
@@ -7376,7 +7508,9 @@ PR:000008833 a owl:Class ;
         "HTR3A",
         "serotonin receptor 3A",
         "serotonin-gated ion channel receptor" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000009182 a owl:Class ;
     rdfs:label "insulin-like growth factor I" ;
@@ -7384,7 +7518,9 @@ PR:000009182 a owl:Class ;
         "Igf-1",
         "IGF-I",
         "somatomedin" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000011326 a owl:Class ;
     rdfs:label "nitric oxide synthase 1" ;
@@ -7398,24 +7534,32 @@ PR:000011326 a owl:Class ;
         "NOS1",
         "NOS type I",
         "peptidyl-cysteine S-nitrosylase NOS1" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000011387 a owl:Class ;
     rdfs:label "neuropeptide Y" ;
     NIFRID:synonym "NPY" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000012544 a owl:Class ;
     rdfs:label "proenkephalin-A" ;
     NIFRID:synonym "PENK",
         "Penk1" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000013502 a owl:Class ;
     rdfs:label "parvalbumin alpha" ;
     NIFRID:synonym "Pva",
         "PVALB" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000014962 a owl:Class ;
     rdfs:label "vesicular glutamate transporter 2" ;
@@ -7426,7 +7570,9 @@ PR:000014962 a owl:Class ;
         "solute carrier family 17 member 6",
         "VGLUT2",
         "VGluT2" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000014968 a owl:Class ;
     rdfs:label "vesicular acetylcholine transporter" ;
@@ -7434,14 +7580,18 @@ PR:000014968 a owl:Class ;
         "solute carrier family 18 member 3",
         "VACHT",
         "VAChT" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000015040 a owl:Class ;
     rdfs:label "prestin" ;
     NIFRID:synonym "PRES",
         "SLC26A5",
         "solute carrier family 26 member 5" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000015084 a owl:Class ;
     rdfs:label "vesicular inhibitory amino acid transporter" ;
@@ -7454,7 +7604,9 @@ PR:000015084 a owl:Class ;
         "vesicular GABA transporter",
         "VGAT",
         "VIAAT" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000015189 a owl:Class ;
     rdfs:label "sodium-dependent serotonin transporter" ;
@@ -7464,21 +7616,27 @@ PR:000015189 a owl:Class ;
         "SERT",
         "SLC6A4",
         "solute carrier family 6 member 4" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000015665 a owl:Class ;
     rdfs:label "somatostatin" ;
     NIFRID:synonym "growth hormone release-inhibiting factor",
         "Smst",
         "SST" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000016301 a owl:Class ;
     rdfs:label "tyrosine 3-monooxygenase" ;
     NIFRID:synonym "TH",
         "TYH",
         "tyrosine 3-hydroxylase" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000017299 a owl:Class ;
     rdfs:label "VIP peptides" ;
@@ -7486,7 +7644,9 @@ PR:000017299 a owl:Class ;
         "vasoactive intestinal polypeptides",
         "vasoactive intestinal polypeptides precursor",
         "VIP" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000017300 a owl:Class ;
     rdfs:label "vasoactive intestinal polypeptide receptor 1" ;
@@ -7497,7 +7657,9 @@ PR:000017300 a owl:Class ;
         "VIP-R-1",
         "VIPR1",
         "VPAC1" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000017301 a owl:Class ;
     rdfs:label "vasoactive intestinal polypeptide receptor 2" ;
@@ -7509,7 +7671,9 @@ PR:000017301 a owl:Class ;
         "VIP2R",
         "VIP-R-2",
         "VIPR2" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000018263 a owl:Class ;
     rdfs:label "amino acid chain" ;
@@ -7521,13 +7685,17 @@ PR:000024112 a owl:Class ;
     rdfs:label "Trk system potassium uptake protein trkA" ;
     NIFRID:synonym "K(+)-uptake protein trkA",
         "trkA" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000027222 a owl:Class ;
     rdfs:label "CALCA gene translation product" ;
     NIFRID:synonym "CALC",
         "CALCA" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000029032 a owl:Class ;
     rdfs:label "Mus musculus protein" ;
@@ -7539,7 +7707,9 @@ PR:000030035 a owl:Class ;
     NIFRID:synonym "7TM receptor",
         "fam:GPCR",
         "seven-transmembrane receptor" ;
-    rdfs:subClassOf PR:000000001 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000032708 a owl:Class ;
     rdfs:label "piezo-type mechanosensitive ion channel component 2" ;
@@ -7554,7 +7724,8 @@ PR:000036194 a owl:Class ;
     rdfs:label "eukaryotic protein" ;
     NIFRID:synonym "Eukaryota protein" ;
     rdfs:subClassOf CHEBI:36080,
-        PR:000000001 .
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000038104 a owl:Class .
 
@@ -7577,7 +7748,8 @@ PR:000044676 a owl:Class ;
         "pore class transporter protein",
         "pore protein" ;
     rdfs:subClassOf CHEBI:36080,
-        PR:000000001 .
+        PR:000000001,
+        SAO:26622963 .
 
 PR:000044682 a owl:Class ;
     rdfs:label "piezo channel protein" ;
@@ -7655,7 +7827,10 @@ RO:0002577 a owl:Class ;
 
 SAO:26622963 a owl:Class ;
     rdfs:label "Protein" ;
-    NIFRID:synonym "Protein" .
+    NIFRID:synonym "Protein" ;
+    rdfs:subClassOf CHEBI:33695,
+        PR:000018263,
+        PR:000064867 .
 
 SAO:83745184 a owl:Class ;
     rdfs:label "Nucleic Acid" ;
@@ -7735,10 +7910,15 @@ SAO:1103104164 a owl:Class ;
 SAO:1164727693 a owl:Class ;
     rdfs:label "Glutamate Receptor" ;
     NIFRID:synonym "Glutamate Receptor" ;
-    rdfs:subClassOf SAO:26622963 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 SAO:1224657022 a owl:Class ;
-    rdfs:label "Nervous System Cell" .
+    rdfs:label "Nervous System Cell" ;
+    NIFRID:synonym "Nervous System Cell",
+        "Neuroepithelial cell" ;
+    rdfs:subClassOf SAO:1813327414 .
 
 SAO:1246280606 a owl:Class ;
     rdfs:label "Synthetic Enzyme" ;
@@ -7782,7 +7962,18 @@ SAO:1511566913 a owl:Class ;
 SAO:1593305396 a owl:Class ;
     rdfs:label "Cytoskeletal Protein" ;
     NIFRID:synonym "Cytoskeletal Protein" ;
-    rdfs:subClassOf SAO:26622963 .
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
+
+SAO:1700719022 a owl:Class ;
+    rdfs:label "Acetylcholine Receptor" ;
+    NIFRID:synonym "Acetylcholine Receptor",
+        "AChR",
+        "cholinergic receptor" ;
+    rdfs:subClassOf CHEBI:36080,
+        PR:000000001,
+        SAO:26622963 .
 
 SAO:1744435799 a owl:Class ;
     rdfs:label "Glutamate" ;
@@ -7791,6 +7982,12 @@ SAO:1744435799 a owl:Class ;
     rdfs:subClassOf NLXMOL:100306,
         SAO:1511566913 .
 
+SAO:1813327414 a owl:Class ;
+    rdfs:label "Cell" ;
+    NIFRID:synonym "Cell",
+        "cell" ;
+    rdfs:subClassOf BFO:0000040 .
+
 SAO:1843715402 a owl:Class ;
     rdfs:label "RNA" ;
     NIFRID:synonym "RNA" ;
@@ -7798,6 +7995,13 @@ SAO:1843715402 a owl:Class ;
 
 SAO:2046464388 a owl:Class ;
     rdfs:label "Hair Cell" .
+
+SAO:2062447305 a owl:Class ;
+    rdfs:label "Muscarinic Acetylcholine Receptor" ;
+    NIFRID:synonym "Muscarinic Acetylcholine Receptor",
+        "Muscarinic cholinergic receptor" ;
+    rdfs:subClassOf PR:000001094,
+        SAO:1700719022 .
 
 SAO:9271919883 a owl:Class ;
     rdfs:label "Stellate" ;
@@ -7830,6 +8034,10 @@ SO:0001411 a owl:Class ;
         "INSDC_misc_feature",
         "INSDC_note:biological_region" ;
     rdfs:subClassOf SO:0000001 .
+
+UBERON:0000001 a owl:Class ;
+    rdfs:label "gross anatomical part" ;
+    rdfs:subClassOf UBERON:0000465 .
 
 UBERON:0000002 a owl:Class ;
     rdfs:label "uterine cervix" ;
@@ -8338,8 +8546,7 @@ UBERON:0000122 a owl:Class ;
         "nerve fiber bundle",
         "neural fiber bundle",
         "neuron projection bundle" ;
-    rdfs:subClassOf UBERON:0000061,
-        UBERON:0005162,
+    rdfs:subClassOf UBERON:0005162,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0001016 ] .
@@ -9009,7 +9216,8 @@ UBERON:0000467 a owl:Class ;
 
 UBERON:0000468 a owl:Class ;
     rdfs:label "multicellular organism" ;
-    NIFRID:synonym "body",
+    NIFRID:synonym "animal",
+        "body",
         "Koerper",
         "multi-cellular organism",
         "multicellular organism",
@@ -9077,7 +9285,8 @@ UBERON:0000476 a owl:Class ;
     rdfs:label "acellular anatomical structure" ;
     NIFRID:synonym "acellular anatomical structure",
         "acellular anatomical structures" ;
-    rdfs:subClassOf UBERON:0000061 .
+    rdfs:subClassOf UBERON:0000001,
+        UBERON:0000061 .
 
 UBERON:0000477 a owl:Class ;
     rdfs:label "anatomical cluster" ;
@@ -9090,8 +9299,7 @@ UBERON:0000479 a owl:Class ;
         "simple tissue",
         "tissue",
         "tissue portion" ;
-    rdfs:subClassOf UBERON:0000465,
-        UBERON:0010000,
+    rdfs:subClassOf UBERON:0010000,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0000468 ] .
@@ -9100,10 +9308,7 @@ UBERON:0000481 a owl:Class ;
     rdfs:label "multi-tissue structure" ;
     NIFRID:synonym "multi-tissue structure",
         "multi-tissue structures" ;
-    rdfs:subClassOf UBERON:0010000,
-        [ a owl:Restriction ;
-            owl:onProperty partOf: ;
-            owl:someValuesFrom NCBITaxon:6072 ] .
+    rdfs:subClassOf UBERON:0010000 .
 
 UBERON:0000483 a owl:Class ;
     rdfs:label "epithelium" ;
@@ -9278,7 +9483,6 @@ UBERON:0000955 a owl:Class ;
         "synganglion",
         "the brain" ;
     rdfs:subClassOf UBERON:0000062,
-        UBERON:0000465,
         UBERON:0004121,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
@@ -9774,8 +9978,7 @@ UBERON:0001043 a owl:Class ;
     NIFRID:synonym "esophagus",
         "gullet",
         "oesophagus" ;
-    rdfs:subClassOf UBERON:0000062,
-        UBERON:0004921,
+    rdfs:subClassOf UBERON:0004921,
         UBERON:0005178,
         UBERON:0013765,
         [ a owl:Restriction ;
@@ -9834,10 +10037,7 @@ UBERON:0001052 a owl:Class ;
 UBERON:0001062 a owl:Class ;
     rdfs:label "anatomical entity" ;
     NIFRID:synonym "anatomical entity" ;
-    rdfs:subClassOf BFO:0000004,
-        [ a owl:Restriction ;
-            owl:onProperty partOf: ;
-            owl:someValuesFrom UBERON:0003942 ] .
+    rdfs:subClassOf BFO:0000004 .
 
 UBERON:0001096 a owl:Class ;
     rdfs:label "wall of esophagus" ;
@@ -10199,8 +10399,7 @@ UBERON:0001172 a owl:Class ;
     NIFRID:synonym "hepatic acinus",
         "liver acinus",
         "portal acinus" ;
-    rdfs:subClassOf UBERON:0009842,
-        UBERON:0011858,
+    rdfs:subClassOf UBERON:0011858,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0001280 ] .
@@ -10495,6 +10694,7 @@ UBERON:0001220 a owl:Class ;
     rdfs:label "quadratus lumborum" ;
     NIFRID:synonym "muscle of posterior abdominal wall" ;
     rdfs:subClassOf UBERON:0002378,
+        UBERON:0003897,
         UBERON:0004518 .
 
 UBERON:0001221 a owl:Class ;
@@ -10977,7 +11177,8 @@ UBERON:0001281 a owl:Class ;
         "sinusoidal blood vessel of liver",
         "vas capillare sinusoideum",
         "vas sinusoideum" ;
-    rdfs:subClassOf UBERON:0003909,
+    rdfs:subClassOf UBERON:0001915,
+        UBERON:0003909,
         UBERON:0015796,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
@@ -11032,8 +11233,7 @@ UBERON:0001296 a owl:Class ;
         "tunica muscularis (myometrium)",
         "uterine myometrium",
         "uterine smooth muscle" ;
-    rdfs:subClassOf UBERON:0004923,
-        UBERON:0005156,
+    rdfs:subClassOf UBERON:0005156,
         UBERON:0034933,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
@@ -11260,6 +11460,7 @@ UBERON:0001370 a owl:Class ;
         "m.gluteus maximus",
         "musculus gluteus maximus" ;
     rdfs:subClassOf UBERON:0002000,
+        UBERON:0003897,
         UBERON:0011645,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
@@ -11558,8 +11759,7 @@ UBERON:0001461 a owl:Class ;
         "cubital region",
         "elbow limb segment",
         "elbow region" ;
-    rdfs:subClassOf UBERON:0002529,
-        UBERON:0008785,
+    rdfs:subClassOf UBERON:0008785,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0001460 ] .
@@ -12342,8 +12542,7 @@ UBERON:0001640 a owl:Class ;
         "coeliac trunk",
         "truncus coeliacus",
         "truncus cœliacus" ;
-    rdfs:subClassOf UBERON:0004573,
-        UBERON:0012254 .
+    rdfs:subClassOf UBERON:0012254 .
 
 UBERON:0001643 a owl:Class ;
     rdfs:label "oculomotor nerve" ;
@@ -13162,8 +13361,7 @@ UBERON:0001820 a owl:Class ;
     NIFRID:synonym "glandula sudorifera",
         "sudoriferous gland",
         "sudoriparous gland" ;
-    rdfs:subClassOf UBERON:0002365,
-        UBERON:0007771,
+    rdfs:subClassOf UBERON:0007771,
         UBERON:0019319,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
@@ -13178,7 +13376,6 @@ UBERON:0001826 a owl:Class ;
         "tunica mucosa nasalis",
         "tunica mucosa nasi" ;
     rdfs:subClassOf UBERON:0000379,
-        UBERON:0004785,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0015788 ] .
@@ -13575,6 +13772,26 @@ UBERON:0001898 a owl:Class ;
             owl:onProperty RO:0002433 ;
             owl:someValuesFrom UBERON:0001894 ] .
 
+UBERON:0001901 a owl:Class ;
+    rdfs:label "epithelium of trachea" ;
+    NIFRID:synonym "epithelial tissue of trachea",
+        "epithelial tissue of windpipe",
+        "epithelium of trachea",
+        "epithelium of windpipe",
+        "trachea epithelial tissue",
+        "trachea epithelium",
+        "tracheal epithelium",
+        "windpipe epithelial tissue",
+        "windpipe epithelium" ;
+    rdfs:subClassOf UBERON:0005911,
+        UBERON:0008397,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0003126 ],
+        [ a owl:Restriction ;
+            owl:onProperty RO:0002433 ;
+            owl:someValuesFrom UBERON:0003126 ] .
+
 UBERON:0001902 a owl:Class ;
     rdfs:label "epithelium of small intestine" ;
     NIFRID:synonym "epithelial tissue of small bowel",
@@ -13595,6 +13812,19 @@ UBERON:0001902 a owl:Class ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002108 ] .
 
+UBERON:0001915 a owl:Class ;
+    rdfs:label "endothelium of capillary" ;
+    NIFRID:synonym "blood capillary endothelium",
+        "capillary endothelium",
+        "capillary vessel endothelium",
+        "endothelium of blood capillary",
+        "endothelium of capillary",
+        "endothelium of capillary vessel" ;
+    rdfs:subClassOf UBERON:0008339,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0001982 ] .
+
 UBERON:0001926 a owl:Class ;
     rdfs:label "lateral geniculate body" ;
     NIFRID:synonym "corpus geniculatum externum",
@@ -13609,8 +13839,7 @@ UBERON:0001926 a owl:Class ;
         "LGN",
         "nucleus corporis geniculati lateralis",
         "nucleus geniculatus lateralis" ;
-    rdfs:subClassOf UBERON:0007692,
-        UBERON:0015233,
+    rdfs:subClassOf UBERON:0015233,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002704 ],
@@ -13929,7 +14158,6 @@ UBERON:0001981 a owl:Class ;
         "vascular element",
         "vascular tree organ region" ;
     rdfs:subClassOf UBERON:0000055,
-        UBERON:0010000,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0004537 ] .
@@ -13939,8 +14167,7 @@ UBERON:0001982 a owl:Class ;
     NIFRID:synonym "blood capillary",
         "capillary",
         "capillary vessel" ;
-    rdfs:subClassOf UBERON:0001981,
-        UBERON:8410081 .
+    rdfs:subClassOf UBERON:8410081 .
 
 UBERON:0001986 a owl:Class ;
     rdfs:label "endothelium" ;
@@ -13982,7 +14209,6 @@ UBERON:0001997 a owl:Class ;
     rdfs:subClassOf UBERON:0005384,
         UBERON:0006934,
         UBERON:0010371,
-        UBERON:0010499,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0000012 ],
@@ -14279,8 +14505,7 @@ UBERON:0002067 a owl:Class ;
         "cutis",
         "dermis",
         "vertebrate dermis" ;
-    rdfs:subClassOf UBERON:0004923,
-        UBERON:0010314,
+    rdfs:subClassOf UBERON:0010314,
         UBERON:0013754,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
@@ -15299,8 +15524,7 @@ UBERON:0002298 a owl:Class ;
         "lamina pallidi incompleta",
         "truncus encephali",
         "truncus encephalicus" ;
-    rdfs:subClassOf UBERON:0000481,
-        UBERON:0002616,
+    rdfs:subClassOf UBERON:0002616,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0000955 ],
@@ -15606,8 +15830,7 @@ UBERON:0002366 a owl:Class ;
         "glandula bulbourethralis",
         "Mery's gland",
         "Méry gland" ;
-    rdfs:subClassOf UBERON:0000414,
-        UBERON:0006868,
+    rdfs:subClassOf UBERON:0006868,
         UBERON:0010147,
         UBERON:0010186,
         [ a owl:Restriction ;
@@ -15751,7 +15974,8 @@ UBERON:0002381 a owl:Class ;
         "pectoralis major muscle",
         "pectoralis major muscle structure" ;
     rdfs:subClassOf UBERON:0001482,
-        UBERON:0001495 .
+        UBERON:0001495,
+        UBERON:0003897 .
 
 UBERON:0002382 a owl:Class ;
     rdfs:label "rectus abdominis muscle" ;
@@ -15759,6 +15983,7 @@ UBERON:0002382 a owl:Class ;
         "musculus rectus abdominis",
         "rectus abdominis" ;
     rdfs:subClassOf UBERON:0002461,
+        UBERON:0003897,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0006635 ],
@@ -16597,8 +16822,7 @@ UBERON:0002596 a owl:Class ;
         "ventroposterior nucleus of thalamus",
         "VP",
         "VPN" ;
-    rdfs:subClassOf UBERON:0002308,
-        UBERON:0015233,
+    rdfs:subClassOf UBERON:0015233,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002776 ] .
@@ -16752,8 +16976,7 @@ UBERON:0002691 a owl:Class ;
         "ventral tegmental nucleus of tsai",
         "ventromedial mesencephalic tegmentum",
         "VTA" ;
-    rdfs:subClassOf UBERON:0000481,
-        UBERON:0002616,
+    rdfs:subClassOf UBERON:0002616,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0001943 ] .
@@ -16831,8 +17054,7 @@ UBERON:0002736 a owl:Class ;
         "LNG",
         "nuclei laterales thalami",
         "nucleus lateralis thalami" ;
-    rdfs:subClassOf UBERON:0000125,
-        UBERON:0015233,
+    rdfs:subClassOf UBERON:0015233,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0004703 ] .
@@ -17334,7 +17556,6 @@ UBERON:0002925 a owl:Class ;
         "trigeminal nucleus",
         "trigeminal V nucleus" ;
     rdfs:subClassOf UBERON:0000126,
-        UBERON:0002308,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0007641 ] .
@@ -17392,8 +17613,7 @@ UBERON:0002945 a owl:Class ;
         "ventroposterior medial thalamic nucleus",
         "ventroposteromedial nucleus of the thalamus",
         "VPM" ;
-    rdfs:subClassOf UBERON:0007692,
-        UBERON:0015233,
+    rdfs:subClassOf UBERON:0015233,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002596 ] .
@@ -17454,7 +17674,8 @@ UBERON:0002973 a owl:Class ;
         "gyrus parahippocampalis",
         "gyrus parahippocampi",
         "hippocampal convolution",
-        "hippocampal gyrus" ;
+        "hippocampal gyrus",
+        "parahippocampal gyrus" ;
     rdfs:subClassOf UBERON:0000200,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
@@ -17503,8 +17724,7 @@ UBERON:0002981 a owl:Class ;
         "pulvinar nuclei",
         "pulvinar thalami",
         "pulvinar thalamus" ;
-    rdfs:subClassOf UBERON:0007692,
-        UBERON:0015233,
+    rdfs:subClassOf UBERON:0015233,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002736 ] .
@@ -18932,6 +19152,17 @@ UBERON:0003893 a owl:Class ;
     rdfs:label "capsule" ;
     rdfs:subClassOf UBERON:0000158 .
 
+UBERON:0003897 a owl:Class ;
+    rdfs:label "axial muscle" ;
+    NIFRID:synonym "axial muscle" ;
+    rdfs:subClassOf UBERON:0014892,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0013700 ],
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0013701 ] .
+
 UBERON:0003898 a owl:Class ;
     rdfs:label "skeletal muscle tissue of trunk" ;
     NIFRID:synonym "skeletal muscle of torso",
@@ -18971,8 +19202,7 @@ UBERON:0003909 a owl:Class ;
         "sinusoidal blood vessel endothelium",
         "sinusoidal capillary",
         "sinusoidal endothelium" ;
-    rdfs:subClassOf UBERON:0001982,
-        UBERON:2005260 .
+    rdfs:subClassOf UBERON:2005260 .
 
 UBERON:0003914 a owl:Class ;
     rdfs:label "epithelial tube" ;
@@ -19278,8 +19508,7 @@ UBERON:0004132 a owl:Class ;
         "sensory trigeminal V nucleus",
         "trigeminal sensory nucleus",
         "trigeminal V sensory nucleus" ;
-    rdfs:subClassOf UBERON:0000126,
-        UBERON:0002925,
+    rdfs:subClassOf UBERON:0002925,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002925 ] .
@@ -20552,6 +20781,17 @@ UBERON:0004814 a owl:Class ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0001557 ] .
 
+UBERON:0004815 a owl:Class ;
+    rdfs:label "lower respiratory tract epithelium" ;
+    NIFRID:synonym "epithelial tissue of lower respiratory tract",
+        "epithelium of lower respiratory tract",
+        "lower respiratory tract epithelial tissue",
+        "lower respiratory tract epithelium" ;
+    rdfs:subClassOf UBERON:0004802,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0001558 ] .
+
 UBERON:0004819 a owl:Class ;
     rdfs:label "kidney epithelium" ;
     NIFRID:synonym "epithelial tissue of kidney",
@@ -21244,7 +21484,8 @@ UBERON:0005384 a owl:Class ;
     NIFRID:synonym "nasal cavity epithelium",
         "nasal epithelium",
         "nasal mucosa" ;
-    rdfs:subClassOf UBERON:0003350,
+    rdfs:subClassOf UBERON:0001901,
+        UBERON:0003350,
         UBERON:0004814,
         UBERON:0019306,
         [ a owl:Restriction ;
@@ -21557,7 +21798,8 @@ UBERON:0005454 a owl:Class ;
         "obliquus internus",
         "obliquus internus abdominis",
         "obliquus internus abdominis muscle" ;
-    rdfs:subClassOf UBERON:0035032,
+    rdfs:subClassOf UBERON:0003897,
+        UBERON:0035032,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0006635 ] .
@@ -21570,6 +21812,7 @@ UBERON:0005461 a owl:Class ;
         "levator scapulæ",
         "musculus levator scapulae" ;
     rdfs:subClassOf UBERON:0001482,
+        UBERON:0003897,
         UBERON:0004518,
         UBERON:0034908,
         [ a owl:Restriction ;
@@ -22294,8 +22537,7 @@ UBERON:0006514 a owl:Class ;
     NIFRID:synonym "neuraxis pallidum",
         "pallidum",
         "pallidum of neuraxis" ;
-    rdfs:subClassOf UBERON:0002020,
-        UBERON:0003528,
+    rdfs:subClassOf UBERON:0003528,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002420 ] .
@@ -22392,8 +22634,7 @@ UBERON:0006660 a owl:Class ;
         "transverse muscular fibers",
         "tunica externa",
         "tunica muscularis" ;
-    rdfs:subClassOf UBERON:0004923,
-        UBERON:0018260 .
+    rdfs:subClassOf UBERON:0018260 .
 
 UBERON:0006676 a owl:Class ;
     rdfs:label "muscularis mucosa" ;
@@ -22401,8 +22642,7 @@ UBERON:0006676 a owl:Class ;
         "lamina muscularis mucosa",
         "laminar muscularis mucosa",
         "muscularis mucosae" ;
-    rdfs:subClassOf UBERON:0001135,
-        UBERON:0004226,
+    rdfs:subClassOf UBERON:0004226,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0001555 ],
@@ -22866,8 +23106,7 @@ UBERON:0007633 a owl:Class ;
         "trapezoid nuclear complex",
         "trapezoid nuclei",
         "Tz" ;
-    rdfs:subClassOf UBERON:0006331,
-        UBERON:0007247,
+    rdfs:subClassOf UBERON:0007247,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0000988 ],
@@ -23029,7 +23268,6 @@ UBERON:0007715 a owl:Class ;
     rdfs:label "thoracic subsegment of spinal cord" ;
     NIFRID:synonym "segment part of thoracic spinal cord" ;
     rdfs:subClassOf UBERON:0003038,
-        UBERON:0005844,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0003038 ] .
@@ -23038,7 +23276,6 @@ UBERON:0007716 a owl:Class ;
     rdfs:label "lumbar subsegment of spinal cord" ;
     NIFRID:synonym "segment part of lumbar spinal cord" ;
     rdfs:subClassOf UBERON:0002792,
-        UBERON:0005844,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002792 ] .
@@ -23076,8 +23313,7 @@ UBERON:0007771 a owl:Class ;
 UBERON:0007798 a owl:Class ;
     rdfs:label "vascular system" ;
     NIFRID:synonym "vascular system" ;
-    rdfs:subClassOf UBERON:0000465,
-        UBERON:0000467,
+    rdfs:subClassOf UBERON:0000467,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0004535 ] .
@@ -23176,8 +23412,7 @@ UBERON:0007832 a owl:Class ;
 UBERON:0007838 a owl:Class ;
     rdfs:label "spinal cord white commissure" ;
     NIFRID:synonym "white commissure of spinal cord" ;
-    rdfs:subClassOf UBERON:0001020,
-        UBERON:0008882,
+    rdfs:subClassOf UBERON:0008882,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002240 ] .
@@ -23289,6 +23524,23 @@ UBERON:0008338 a owl:Class ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002387 ] .
 
+UBERON:0008339 a owl:Class ;
+    rdfs:label "microvascular endothelium" ;
+    NIFRID:synonym "microvascular endothelium" ;
+    rdfs:subClassOf UBERON:0004638,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:8410081 ] .
+
+UBERON:0008397 a owl:Class ;
+    rdfs:label "tracheobronchial epithelium" ;
+    NIFRID:synonym "bronchotracheal epithelium",
+        "tracheobronchial epithelium" ;
+    rdfs:subClassOf UBERON:0004815,
+        [ a owl:Restriction ;
+            owl:onProperty partOf: ;
+            owl:someValuesFrom UBERON:0007196 ] .
+
 UBERON:0008446 a owl:Class ;
     rdfs:label "flexor pollicis longus muscle" ;
     NIFRID:synonym "flexor pollicis",
@@ -23332,6 +23584,7 @@ UBERON:0008455 a owl:Class ;
         "rectus capitus posterior minor muscle",
         "rectus posterior minor" ;
     rdfs:subClassOf UBERON:0002377,
+        UBERON:0003897,
         UBERON:0004518,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
@@ -23378,6 +23631,7 @@ UBERON:0008529 a owl:Class ;
         "piriformis",
         "piriformis muscle" ;
     rdfs:subClassOf UBERON:0002000,
+        UBERON:0003897,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0004470 ] .
@@ -23549,8 +23803,7 @@ UBERON:0008862 a owl:Class ;
     NIFRID:synonym "inner oblique muscle layer of stomach",
         "oblique fiber layer of gastric muscularis",
         "oblique muscle layer of stomach" ;
-    rdfs:subClassOf UBERON:0004923,
-        UBERON:0034933,
+    rdfs:subClassOf UBERON:0034933,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0008856 ],
@@ -23928,8 +24181,7 @@ UBERON:0009912 a owl:Class ;
 UBERON:0009918 a owl:Class ;
     rdfs:label "retrotrapezoid nucleus" ;
     NIFRID:synonym "retrotrapezoid nucleus" ;
-    rdfs:subClassOf UBERON:0000125,
-        UBERON:0007635,
+    rdfs:subClassOf UBERON:0007635,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0001896 ] .
@@ -24295,10 +24547,7 @@ UBERON:0010708 a owl:Class ;
         "upper limb",
         "upper limb and pectoral girdle",
         "upper limb and shoulder" ;
-    rdfs:subClassOf UBERON:0010707,
-        [ a owl:Restriction ;
-            owl:onProperty partOf: ;
-            owl:someValuesFrom UBERON:0000153 ] .
+    rdfs:subClassOf UBERON:0010707 .
 
 UBERON:0010709 a owl:Class ;
     rdfs:label "pelvic complex" ;
@@ -24308,10 +24557,7 @@ UBERON:0010709 a owl:Class ;
         "pelvic appendage/girdle complex",
         "pelvic girdle plus pelvic limb or fin",
         "pelvic girdle plus posterior limb or fin" ;
-    rdfs:subClassOf UBERON:0010707,
-        [ a owl:Restriction ;
-            owl:onProperty partOf: ;
-            owl:someValuesFrom UBERON:0000154 ] .
+    rdfs:subClassOf UBERON:0010707 .
 
 UBERON:0010719 a owl:Class ;
     rdfs:label "girdle skeleton" ;
@@ -24707,8 +24953,7 @@ UBERON:0011222 a owl:Class ;
     NIFRID:synonym "intra-ocular muscle",
         "intrinsic muscle of eyeball",
         "intrinsic ocular muscle" ;
-    rdfs:subClassOf UBERON:0001630,
-        UBERON:0004277,
+    rdfs:subClassOf UBERON:0004277,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0000019 ],
@@ -25521,6 +25766,7 @@ UBERON:0014548 a owl:Class ;
         "CA1 stratum pyramidale",
         "CA1 stratum pyramidale hippocampi",
         "field CA1, pyramidal layer",
+        "pyramidal layer of CA1",
         "stratum pyramidale of CA1",
         "stratum pyramidale of the CA1 field" ;
     rdfs:subClassOf UBERON:0035786,
@@ -25533,6 +25779,7 @@ UBERON:0014549 a owl:Class ;
     NIFRID:synonym "CA2 part of stratum pyramidale hippocampi",
         "CA2 stratum pyramidale hippocampi",
         "field CA2, pyramidal layer",
+        "pyramidal layer of CA2",
         "stratum pyramidale of CA2",
         "stratum pyramidale of the CA2 field" ;
     rdfs:subClassOf UBERON:0035787,
@@ -25621,7 +25868,8 @@ UBERON:0014556 a owl:Class ;
 
 UBERON:0014570 a owl:Class ;
     rdfs:label "CA1 alveus" ;
-    NIFRID:synonym "alveus of the CA1 field" ;
+    NIFRID:synonym "alveus of the CA1 field",
+        "CA1 alveus" ;
     rdfs:subClassOf UBERON:0035786,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
@@ -25805,8 +26053,7 @@ UBERON:0015128 a owl:Class ;
     NIFRID:synonym "perimysial connective tissue of subepicardium",
         "subepicardial connective tissue",
         "subepicardial layer of epicardium" ;
-    rdfs:subClassOf UBERON:0001136,
-        UBERON:0007188,
+    rdfs:subClassOf UBERON:0007188,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
             owl:someValuesFrom UBERON:0002348 ] .
@@ -27089,6 +27336,7 @@ UBERON:0035783 a owl:Class ;
 
 UBERON:0035786 a owl:Class ;
     rdfs:label "layer of CA1 field" ;
+    NIFRID:synonym "layer of CA1 field" ;
     rdfs:subClassOf UBERON:0002305,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
@@ -27096,6 +27344,7 @@ UBERON:0035786 a owl:Class ;
 
 UBERON:0035787 a owl:Class ;
     rdfs:label "layer of CA2 field" ;
+    NIFRID:synonym "layer of CA2 field" ;
     rdfs:subClassOf UBERON:0002305,
         [ a owl:Restriction ;
             owl:onProperty partOf: ;
